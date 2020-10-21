@@ -1,7 +1,10 @@
 {
   "name": "dragalia-posts-site-front",
   "version": "0.1.0",
-  "private": false,
+  "engines": {
+    "node": "12.x"
+  },
+  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -12,7 +15,7 @@
     "@types/react-dom": "^16.9.8",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "react-scripts-ts": "^3.1.0",
     "typescript": "^4.0.3"
   },
@@ -20,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
   }
 }
