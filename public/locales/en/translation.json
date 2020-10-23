@@ -1,0 +1,6 @@
+{
+  "googleSignin": {
+    "login": "Login",
+    "logout": "Logout"
+  }
+}
