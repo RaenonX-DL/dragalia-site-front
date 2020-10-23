@@ -1,6 +1,39 @@
 {
+  "about": "About",
+  "game": {
+    "data": {
+      "dir": "Game Data",
+      "active": "Active",
+      "cex": "Chain EX",
+      "others": "Others",
+      "passive": "Passive",
+      "print": "Wyrmprints",
+      "skill-atk": "Skill (Attack)",
+      "skill-sup": "Skill (Support)",
+      "story": "Story"
+    },
+    "tools": {
+      "dir": "Game Tools",
+      "damage": "Damage Calculator",
+      "rotation": "Rotations Calculator"
+    }
+  },
   "googleSignin": {
     "login": "Login",
     "logout": "Logout"
+  },
+  "lang": {
+    "in-use": "Currently in-use"
+  },
+  "posts": {
+    "misc": {
+      "dir": "Others"
+    },
+    "new-object": {
+      "dir": "New Objects"
+    },
+    "quest": {
+      "dir": "HDCs"
+    }
   }
 }

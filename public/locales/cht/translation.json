@@ -1,6 +1,39 @@
 {
+  "about": "關於",
+  "game": {
+    "data": {
+      "dir": "遊戲資訊",
+      "active": "主動技能",
+      "cex": "CEX",
+      "others": "其他",
+      "passive": "被動技能",
+      "print": "護符",
+      "skill-atk": "攻擊技能",
+      "skill-sup": "支援技能",
+      "story": "故事"
+    },
+    "tools": {
+      "dir": "遊戲工具",
+      "damage": "傷害計算",
+      "rotation": "輪轉計算"
+    }
+  },
   "googleSignin": {
     "login": "登入",
     "logout": "登出"
+  },
+  "lang": {
+    "in-use": "目前使用中"
+  },
+  "posts": {
+    "misc": {
+      "dir": "其他文章"
+    },
+    "new-object": {
+      "dir": "物件評測"
+    },
+    "quest": {
+      "dir": "高難攻略"
+    }
   }
 }

@@ -31,7 +31,7 @@ class LanguageSwitch extends I18nComponent<I18nProps, States> {
   render() {
     return (
       <NavDropdown title={this.getCurrentLanguage()} id="language-switch" className="pr-2">
-        <NavDropdown.Header>Currently in-use</NavDropdown.Header>
+        <NavDropdown.Header>{this.props.t('lang.in-use')}</NavDropdown.Header>
         <NavDropdown.Item disabled>{this.getCurrentLanguage()}</NavDropdown.Item>
         <NavDropdown.Divider/>
         {
