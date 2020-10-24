@@ -13,11 +13,9 @@ import './bootstrap.css';
 import './i18n';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Main/>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Main/>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 

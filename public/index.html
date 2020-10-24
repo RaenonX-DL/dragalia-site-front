@@ -3,11 +3,17 @@
 <head>
     <meta charset="utf-8"/>
 
+    <!-- FIXME: Use react-ga instead -->
+    <!--    https://www.npmjs.com/package/react-ga -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-75EMZWS1L3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
       gtag('js', new Date());
 
       gtag('config', 'G-75EMZWS1L3');
@@ -49,7 +55,7 @@
 
     <!-- Customized bootstrap stylesheet -->
     <!--suppress HtmlUnknownTarget -->
-    <link href="%PUBLIC_URL%/custom.css" rel="stylesheet" />
+    <link href="%PUBLIC_URL%/custom.css" rel="stylesheet"/>
 </head>
 <body>
 <noscript>請啟用 JavaScript 以瀏覽本網站。</noscript>

@@ -18,14 +18,35 @@
       "rotation": "輪轉計算"
     }
   },
-  "googleSignin": {
+  "google-signin": {
+    "no-uid": "無 Google 使用者 ID",
+    "no-uid-details": "找不到 Google 使用者 ID。請嘗試重新登入。",
     "login": "登入",
-    "logout": "登出"
+    "login-error": "錯誤碼: {{errorCode}}",
+    "login-failed": "登入失敗",
+    "logout": "登出",
+    "logout-failed": "登出失敗",
+    "logout-unknown": "因為不明原因，無法登出。",
+    "request-failed": "無法傳送登入請求"
   },
   "lang": {
     "in-use": "目前使用中"
   },
+  "misc": {
+    "add": "新增",
+    "remove": "移除"
+  },
+  "pages": {
+    "not-implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
+  },
   "posts": {
+    "manage": {
+      "add": "新增貼文",
+      "md": "Markdown",
+      "preview": "預覽",
+      "publish": "發布",
+      "publish-failed": "發布失敗"
+    },
     "misc": {
       "dir": "其他文章"
     },
@@ -33,7 +54,16 @@
       "dir": "物件評測"
     },
     "quest": {
-      "dir": "高難攻略"
+      "dir": "高難攻略",
+      "addendum": "附記",
+      "builds": "配置",
+      "character": "角色",
+      "general": "通用注意事項",
+      "positional": "角色/職業別攻略",
+      "rotations": "套路 / 手順",
+      "tips": "要點",
+      "title": "標題",
+      "video": "影片"
     }
   }
 }

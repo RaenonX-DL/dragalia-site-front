@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {LinkContainer} from 'react-router-bootstrap';
 
-import GoogleSignin from './googleSignin';
+import {GoogleSigninButton} from './googleSignin';
 import LanguageSwitch from './langSwitch';
 import Path from '../../constants/path';
 
@@ -14,8 +14,8 @@ export const Navigation = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" variant="dark">
-        <Navbar.Brand href={Path.getHome()}>OM 龍絆攻略站</Navbar.Brand>
+      <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
+        <Navbar.Brand href={Path.HOME}>OM 龍絆攻略站</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
@@ -59,20 +59,21 @@ export const Navigation = () => {
                 <NavDropdown.Item>{t('game.tools.rotation')}</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <LinkContainer to={Path.getAbout()}>
+            <LinkContainer to={Path.ABOUT}>
               <Nav.Link>{t('about')}</Nav.Link>
             </LinkContainer>
           </Nav>
           {/* Right part of the navbar */}
           <Nav>
             <LanguageSwitch/>
-            <GoogleSignin/>
+            <GoogleSigninButton/>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 0}}>
+      <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 999}}>
         Dummy Title Oasis of the Maniacs AAAAA BBBBB CCCCCC
       </Navbar>
+      {/* TODO: Animate the above navbar */}
     </>
   );
 };

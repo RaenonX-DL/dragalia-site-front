@@ -1,5 +1,7 @@
 import {Home} from './pages/home';
 import {About} from './pages/about';
-import {Quest} from './pages/quest';
+import {QuestDir, QuestNew, QuestPage} from './pages/quest';
 
-export {Home, About, Quest};
+import {NotImplemented} from './pages/notImplemented';
+
+export {Home, About, QuestDir, QuestNew, QuestPage, NotImplemented};

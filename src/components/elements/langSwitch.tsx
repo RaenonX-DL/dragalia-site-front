@@ -4,9 +4,12 @@ import {withTranslation} from 'react-i18next';
 import {NavDropdown} from 'react-bootstrap';
 
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
-import {I18nComponent, I18nProps} from '../base/I18nComponent';
+import {I18nComponent, I18nProps} from '../base';
 
 type States = {}
+
+
+// TODO: I18n component to be functional component
 
 /**
  * Language switch element.
