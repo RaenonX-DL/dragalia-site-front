@@ -1,6 +1,7 @@
-import React, {Suspense} from 'react';
-import {Route} from 'react-router-dom';
+import React, {Suspense, useEffect} from 'react';
+import {Route, useHistory} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import ReactGA from 'react-ga';
 
 import {About, Home, NotImplemented, QuestDir, QuestNew, QuestPage} from './components/pages';
 import {Footer, Navigation} from './components/elements';
@@ -58,10 +59,24 @@ const PageLoading = () => (
   </div>
 );
 
-const Main = () => (
-  <Suspense fallback={<PageLoading/>}>
-    <Page/>
-  </Suspense>
-);
+const Main = () => {
+  const history = useHistory();
+
+  useEffect(
+    () => {
+      return history.listen((location) => {
+        ReactGA.set({page: location.pathname});
+        ReactGA.pageview(location.pathname);
+      });
+    },
+    [history],
+  );
+
+  return (
+    <Suspense fallback={<PageLoading/>}>
+      <Page/>
+    </Suspense>
+  );
+};
 
 export default Main;

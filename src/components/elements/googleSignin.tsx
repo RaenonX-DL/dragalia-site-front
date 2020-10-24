@@ -86,6 +86,7 @@ export const GoogleSigninButton = () => {
     onSuccess: onLoginSuccess,
     onFailure: onLoginFailure,
     onAutoLoadFinished: onLoginAutoloadCompleted,
+    isSignedIn: true,
   });
 
   const onLogoutSuccess = () => {
