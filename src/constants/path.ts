@@ -46,7 +46,7 @@ export default class Path {
    * @return {string} path of a quest info post
    */
   static getQuest(qid: number | string): string {
-    return generatePath(Path.QUEST, {qid});
+    return generatePath(Path.QUEST, {qid: qid});
   }
 
   /**
@@ -56,7 +56,7 @@ export default class Path {
    * @return {string} path of a new object post
    */
   static getNewObject(oid: number | string): string {
-    return generatePath(Path.NEW_OBJECT, {oid});
+    return generatePath(Path.NEW_OBJECT, {oid: oid});
   }
 
   /**
@@ -66,6 +66,6 @@ export default class Path {
    * @return {string} path of a miscellaneous post
    */
   static getMisc(pid: number | string): string {
-    return generatePath(Path.MISC, {pid});
+    return generatePath(Path.MISC, {pid: pid});
   }
 }

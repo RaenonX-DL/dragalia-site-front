@@ -6,5 +6,5 @@ import {Markdown} from '../elements/markdown';
 export const NotImplemented = () => {
   const {t} = useTranslation();
 
-  return (<Markdown>{t('pages.not-implemented')}</Markdown>);
+  return (<Markdown>{t('pages.not_implemented')}</Markdown>);
 };

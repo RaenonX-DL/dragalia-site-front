@@ -1,15 +1,15 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React from 'react';
 import {Modal} from 'react-bootstrap';
 
 type Props = {
   title: string,
   message: string,
   show: boolean,
-  setShow: Dispatch<SetStateAction<boolean>>
+  fnHideModal: () => void
 }
 
-export const ExpressModal = ({title, message, show, setShow}: Props) => {
-  const onModalHidden = () => setShow(false);
+export const ExpressModal = ({title, message, show, fnHideModal}: Props) => {
+  const onModalHidden = () => fnHideModal();
 
   return (
     <Modal show={show} onHide={onModalHidden}>

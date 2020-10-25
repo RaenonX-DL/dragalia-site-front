@@ -11,6 +11,13 @@ import {GOOGLE_CLIENT_ID} from '../../constants/config';
 const STORAGE_KEY = 'X_GOOGLE_UID';
 
 
+export type ModalState = {
+  show: boolean,
+  title: string,
+  message: string
+}
+
+
 /**
  * Get the Google UID if logged in. Returns `null` if not logged in.
  *
@@ -26,40 +33,26 @@ export const GoogleSigninButton = () => {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
 
-  const [modalLoginReqFailedShow, setModalLoginReqFailedShow] = React.useState(false);
-  const [modalLoginReqFailedError, setModalLoginReqFailedError] = React.useState('');
-
-  const modalLoginRequestFailed = (
-    <ExpressModal
-      title={t('google-signin.request-failed')} message={modalLoginReqFailedError}
-      show={modalLoginReqFailedShow} setShow={setModalLoginReqFailedShow}
-    />);
-
-  const [modalLoginFailedShow, setModalLoginFailedShow] = React.useState(false);
-  const [modalLoginFailedError, setModalLoginFailedError] = React.useState('');
+  const [modalLoginFailedState, setModalLoginFailedState] = React.useState<ModalState>(
+    {show: false, title: '', message: ''},
+  );
 
   const modalLoginFailed = (
     <ExpressModal
-      title={t('google-signin.login-failed')}
-      message={t('google-signin.login-error', {errorCode: modalLoginFailedError})}
-      show={modalLoginFailedShow} setShow={setModalLoginFailedShow}
-    />);
-
-  const [modalLogoutFailedShow, setModalLogoutFailedShow] = React.useState(false);
-
-  const modalLogoutFailed = (
-    <ExpressModal
-      title={t('google-signin.logout-failed')} message={t('google-signin.logout-unknown')}
-      show={modalLogoutFailedShow} setShow={setModalLogoutFailedShow}
+      title={modalLoginFailedState.title} message={modalLoginFailedState.message}
+      show={modalLoginFailedState.show}
+      fnHideModal={() => setModalLoginFailedState({show: false, title: '', message: ''})}
     />);
 
   const sendUserLogin = (googleUid: string, googleEmail: string) => {
     ApiRequestSender.userLogin(googleUid, googleEmail)
-      .then((response) => response.json())
       .then((data) => setLoggedIn(data.success))
       .catch((error) => {
-        setModalLoginReqFailedShow(true);
-        setModalLoginReqFailedError(JSON.stringify(error));
+        setModalLoginFailedState({
+          show: true,
+          title: t('google_signin.request_failed'),
+          message: JSON.stringify(error.toString()),
+        });
       });
   };
 
@@ -73,8 +66,11 @@ export const GoogleSigninButton = () => {
   };
 
   const onLoginFailure = (response) => {
-    setModalLoginFailedShow(true);
-    setModalLoginFailedError(response.error || '(unknown error)');
+    setModalLoginFailedState({
+      show: true,
+      title: t('google_signin.login_failed'),
+      message: t('google_signin.login_error', {error: response.toString() || '(unknown error)'}),
+    });
   };
 
   const onLoginAutoloadCompleted = (success: boolean) => {
@@ -95,7 +91,11 @@ export const GoogleSigninButton = () => {
   };
 
   const onLogoutFailure = () => {
-    setModalLogoutFailedShow(true);
+    setModalLoginFailedState({
+      show: true,
+      title: t('google_signin.logout_failed'),
+      message: t('google_signin.logout_unknown'),
+    });
   };
 
   const {signOut} = useGoogleLogout({
@@ -104,14 +104,12 @@ export const GoogleSigninButton = () => {
     onFailure: onLogoutFailure,
   });
 
-  const logoutButton = <Button onClick={signOut}>{t('google-signin.logout')}</Button>;
-  const loginButton = <Button onClick={signIn}>{t('google-signin.login')}</Button>;
+  const logoutButton = <Button onClick={signOut}>{t('google_signin.logout')}</Button>;
+  const loginButton = <Button onClick={signIn}>{t('google_signin.login')}</Button>;
 
   return (
     <>
-      {modalLoginRequestFailed}
       {modalLoginFailed}
-      {modalLogoutFailed}
       {loggedIn ? logoutButton : loginButton}
     </>
   );

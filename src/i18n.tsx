@@ -15,6 +15,7 @@ i18n
     {lookupQuerystring: 'lang'}))
   .use(initReactI18next)
   .init({
+    lng: 'cht',
     fallbackLng: false,
     debug: false,
   });

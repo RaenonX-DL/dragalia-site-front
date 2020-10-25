@@ -23,6 +23,13 @@ export type PositionalInfo = {
 }
 
 
+export type ModalState = {
+  show: boolean,
+  title: string,
+  message: string,
+}
+
+
 export const QuestNewPostForm = () => {
   const {i18n, t} = useTranslation();
 
@@ -149,21 +156,15 @@ export const QuestNewPostForm = () => {
     </Row>
   );
 
-  const [modalSubmissionFailedShow, setModalSubmissionFailedShow] = React.useState(false);
-  const [modalSubmissionFailedError, setModalSubmissionFailedError] = React.useState('');
+  const [modalSubmissionFailedState, setModalSubmissionFailedState] = React.useState<ModalState>(
+    {show: false, title: '', message: ''},
+  );
 
   const modalSubmissionFailed = (
     <ExpressModal
-      title={t('posts.manage.publish-failed')} message={modalSubmissionFailedError}
-      show={modalSubmissionFailedShow} setShow={setModalSubmissionFailedShow}
-    />);
-
-  const [modalNoGoogleUidShow, setModalNoGoogleUidShow] = React.useState(false);
-
-  const modelNoGoogleUid = (
-    <ExpressModal
-      title={t('google-signin.no-uid')} message={t('google-signin.no-uid-details')}
-      show={modalNoGoogleUidShow} setShow={setModalNoGoogleUidShow}
+      title={modalSubmissionFailedState.title} message={modalSubmissionFailedState.message}
+      show={modalSubmissionFailedState.show}
+      fnHideModal={() => setModalSubmissionFailedState({show: false, title: '', message: ''})}
     />);
 
   const [redirToPostPage, setRedirToPostPage] = React.useState(-1);
@@ -172,21 +173,33 @@ export const QuestNewPostForm = () => {
     e.preventDefault();
 
     if (getGoogleUid() === null) {
-      setModalNoGoogleUidShow(true);
+      setModalSubmissionFailedState({
+        show: true,
+        title: t('google_signin.no_uid'),
+        message: t('google_signin.no_uid_details'),
+      });
       return;
     }
 
-    ApiRequestSender.publishQuestPost(
+    ApiRequestSender.questPostPublish(
       getGoogleUid() || '', title, langCode, generalInfo, video, positionInfo, addendum)
-      .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           setRedirToPostPage(data.seqId);
+        } else {
+          setModalSubmissionFailedState({
+            show: true,
+            title: t('posts.manage.publish_failed'),
+            message: data.code.toString(),
+          });
         }
       })
       .catch((error) => {
-        setModalSubmissionFailedShow(true);
-        setModalSubmissionFailedError(JSON.stringify(error));
+        setModalSubmissionFailedState({
+          show: true,
+          title: t('posts.manage.publish_failed'),
+          message: JSON.stringify(error.toString()),
+        });
       });
   };
 
@@ -197,7 +210,6 @@ export const QuestNewPostForm = () => {
   return (
     <>
       {modalSubmissionFailed}
-      {modelNoGoogleUid}
       <form onSubmit={onFormSubmit}>
         {sectionTitle}
         <hr/>

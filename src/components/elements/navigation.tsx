@@ -24,7 +24,7 @@ export const Navigation = () => {
               <Nav.Link>{t('posts.quest.dir')}</Nav.Link>
             </LinkContainer>
             <LinkContainer to={Path.NEW_OBJECT_DIR}>
-              <Nav.Link>{t('posts.new-object.dir')}</Nav.Link>
+              <Nav.Link>{t('posts.new_object.dir')}</Nav.Link>
             </LinkContainer>
             <LinkContainer to={Path.MISC_DIR}>
               <Nav.Link>{t('posts.misc.dir')}</Nav.Link>
@@ -40,10 +40,10 @@ export const Navigation = () => {
               <NavDropdown.Divider/>
               <NavDropdown.Header>{t('game.data.active')}</NavDropdown.Header>
               <LinkContainer to={Path.SKILL_ATK}>
-                <NavDropdown.Item>{t('game.data.skill-atk')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.skill_atk')}</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to={Path.SKILL_SUP}>
-                <NavDropdown.Item>{t('game.data.skill-sup')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.skill_sup')}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
               <NavDropdown.Header>{t('game.data.others')}</NavDropdown.Header>
@@ -73,6 +73,7 @@ export const Navigation = () => {
       <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 999}}>
         Dummy Title Oasis of the Maniacs AAAAA BBBBB CCCCCC
       </Navbar>
+      {/* FIXME: Ability to change the title of this navbar */}
       {/* TODO: Animate the above navbar */}
     </>
   );

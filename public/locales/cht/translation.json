@@ -8,8 +8,8 @@
       "others": "其他",
       "passive": "被動技能",
       "print": "護符",
-      "skill-atk": "攻擊技能",
-      "skill-sup": "支援技能",
+      "skill_atk": "攻擊技能",
+      "skill_sup": "支援技能",
       "story": "故事"
     },
     "tools": {
@@ -18,16 +18,17 @@
       "rotation": "輪轉計算"
     }
   },
-  "google-signin": {
-    "no-uid": "無 Google 使用者 ID",
-    "no-uid-details": "找不到 Google 使用者 ID。請嘗試重新登入。",
+  "google_signin": {
+    "no_uid": "無 Google 使用者 ID",
+    "no_uid_details": "找不到 Google 使用者 ID。請嘗試重新登入。",
     "login": "登入",
-    "login-error": "錯誤碼: {{errorCode}}",
-    "login-failed": "登入失敗",
+    "login_error": "錯誤碼: {{errorCode}}",
+    "login_failed": "登入失敗",
+    "login_unknown": "因為不明原因，無法登入。({{error}})",
     "logout": "登出",
-    "logout-failed": "登出失敗",
-    "logout-unknown": "因為不明原因，無法登出。",
-    "request-failed": "無法傳送登入請求"
+    "logout_failed": "登出失敗",
+    "logout_unknown": "因為不明原因，無法登出。",
+    "request_failed": "無法傳送登入請求"
   },
   "lang": {
     "in-use": "目前使用中"
@@ -37,20 +38,28 @@
     "remove": "移除"
   },
   "pages": {
-    "not-implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
+    "not_implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
   },
   "posts": {
     "manage": {
       "add": "新增貼文",
+      "fetch_failed": "貼文清單獲取失敗。({{error}})",
       "md": "Markdown",
       "preview": "預覽",
       "publish": "發布",
-      "publish-failed": "發布失敗"
+      "publish_failed": "發布失敗"
+    },
+    "list": {
+      "id": "ID",
+      "last_modified": "最後修改時間",
+      "published": "發布時間",
+      "title": "標題",
+      "view_count": "瀏覽次數"
     },
     "misc": {
       "dir": "其他文章"
     },
-    "new-object": {
+    "new_object": {
       "dir": "物件評測"
     },
     "quest": {
