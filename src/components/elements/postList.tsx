@@ -2,8 +2,9 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-// These keys need to be consistent with the definition structure at the back side
-// Type name: `QuestPostListResponseKey`
+/**
+ * Sync with `QuestPostListResponseKey` at back.
+ */
 export type PostListEntry = {
   seqId: number | string,
   lang: string,

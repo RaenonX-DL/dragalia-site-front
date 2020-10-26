@@ -1,30 +1,40 @@
-import ApiRequestPayloadMaker from './requestPayload';
+import ApiRequestPayloadMaker, {QuestPostEditPayload, QuestPostPublishPayload} from './requestPayload';
 import {ApiEndPoints} from '../api';
-import {PositionalInfo, PostListEntry} from '../../components/elements';
+import {PositionalInfo, PostListEntry, PostModifyNote} from '../../components/elements';
 
 type BaseResponse = {
   code: number,
   success: boolean
 }
-
+/**
+ * Sync with `UserLoginResponse` at back.
+ */
 interface UserLoginResponse extends BaseResponse {}
 
+/**
+ * Sync with `QuestPostListResponseKey` at back.
+ */
 interface QuestPostListResponse extends BaseResponse {
   isAdmin: boolean,
   startIdx: number,
   posts: Array<PostListEntry>
 }
 
-interface QuestPostPublishResponse extends BaseResponse {
+export interface QuestPostUpdateResponse extends BaseResponse {
   isAdmin: boolean,
   seqId: number
 }
 
-type PostModifyNote = {
-  timestamp: string,
-  note: string
-}
+interface QuestPostEditResponse extends QuestPostUpdateResponse {}
 
+/**
+ * Sync with `QuestPostPublishSuccessResponseKey` at back.
+ */
+interface QuestPostPublishResponse extends QuestPostUpdateResponse {}
+
+/**
+ * Sync with `QuestPostGetSuccessResponseKey` at back.
+ */
 export interface QuestPostGetResponse extends BaseResponse {
   isAdmin: boolean,
   seqId: number,
@@ -65,13 +75,15 @@ export default class ApiRequestSender {
    * @param {string} googleUid Google UID of the logged in user
    * @param {number} seqId sequential ID of the post to get
    * @param {string} langCode language code of the post to get
+   * @param {boolean} increaseCount if the post view count should be increased or not
    * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
    */
-  static questPostGet(googleUid: string, seqId: number, langCode: string): Promise<QuestPostGetResponse> {
+  static questPostGet(
+    googleUid: string, seqId: number, langCode: string, increaseCount?: boolean): Promise<QuestPostGetResponse> {
     return this.sendRequest<QuestPostGetResponse>(
       'GET',
       ApiEndPoints.POST_QUEST_GET,
-      ApiRequestPayloadMaker.questPostGet(googleUid, seqId, langCode),
+      ApiRequestPayloadMaker.questPostGet(googleUid, seqId, langCode, increaseCount),
     );
   }
 
@@ -94,22 +106,28 @@ export default class ApiRequestSender {
   /**
    * Send a quest post publish request.
    *
-   * @param {string} googleUid current Google UID
-   * @param {string} title title of the post
-   * @param {string} langCode language code of the post
-   * @param {string} generalInfo general info for the post
-   * @param {string} video video of the post
-   * @param {Array<PositionalInfo>} posInfo positional info in the post
-   * @param {string} addendum addendum of the post
+   * @param {QuestPostEditPayload} payload payload for publishing a post
    * @return {Promise<QuestPostPublishResponse>} promise returned from `fetch`
    */
-  static questPostPublish(
-    googleUid: string, title: string, langCode: string, generalInfo: string, video: string,
-    posInfo: Array<PositionalInfo>, addendum: string): Promise<QuestPostPublishResponse> {
+  static questPostPublish(payload: QuestPostPublishPayload): Promise<QuestPostPublishResponse> {
     return this.sendRequest<QuestPostPublishResponse>(
       'POST',
       ApiEndPoints.POST_QUEST_PUBLISH,
-      ApiRequestPayloadMaker.questPostPublish(googleUid, title, langCode, generalInfo, video, posInfo, addendum),
+      payload,
+    );
+  }
+
+  /**
+   * Send a quest post edit request.
+   *
+   * @param {QuestPostEditPayload} payload payload for editing a post
+   * @return {Promise<QuestPostPublishResponse>} promise returned from `fetch`
+   */
+  static questPostEdit(payload: QuestPostEditPayload): Promise<QuestPostEditResponse> {
+    return this.sendRequest<QuestPostPublishResponse>(
+      'POST',
+      ApiEndPoints.POST_QUEST_EDIT,
+      payload,
     );
   }
 

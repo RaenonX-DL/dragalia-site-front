@@ -7,21 +7,15 @@ import {getGoogleUid} from './googleSignin';
 import {MarkdownInput} from './markdownInput';
 import {ExpressModal} from './modalExpress';
 import {QuestPositionForm} from './questPositionForm';
-import {ApiRequestSender} from '../../constants/api';
+import {
+  QuestPostEditPayload,
+  QuestPostGetResponse,
+  QuestPostPublishPayload,
+  QuestPostUpdatePayload,
+  QuestPostUpdateResponse,
+} from '../../constants/api';
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
 import Path from '../../constants/path';
-
-
-// FIXME: "attach" the post of different language to use the same seq id
-//  - Add with same seq ID but different lang? May need to be able to display duplicated - ID occupied
-
-
-export type PositionalInfo = {
-  position: string,
-  builds: string,
-  rotations: string,
-  tips: string,
-}
 
 
 export type ModalState = {
@@ -31,29 +25,46 @@ export type ModalState = {
 }
 
 
-export const QuestNewPostForm = () => {
+export type PostModifyNote = {
+  timestamp: string,
+  note: string
+}
+
+
+type QuestPostFormProps = {
+  post?: QuestPostGetResponse | null,
+  handleSubmit: <T extends QuestPostUpdatePayload>(payload: T) => Promise<QuestPostUpdateResponse>
+}
+
+
+// FIXME: "attach" the post of different language to use the same seq id
+//  - Add with same seq ID but different lang? May need to be able to display duplicated - ID occupied
+
+
+export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   const {i18n, t} = useTranslation();
 
   const newInitData = () => {
     return {position: '', builds: '', rotations: '', tips: ''};
   };
 
-  const [title, setTitle] = React.useState('');
+  // region States and event handlers
+  const [title, setTitle] = React.useState(post?.title || '');
   const onTitleChanged = (e) => setTitle(e.target.value);
 
-  const [langCode, setLangCode] = React.useState(i18n.language);
+  const [langCode, setLangCode] = React.useState(post?.langCode || i18n.language);
   const onLangCodeChanged = (e) => setLangCode(e.target.value);
 
-  const [generalInfo, setGeneralInfo] = React.useState('');
+  const [generalInfo, setGeneralInfo] = React.useState(post?.general || '');
   const onGeneralInfoChanged = (e) => setGeneralInfo(e.target.value);
 
-  const [video, setVideo] = React.useState('');
+  const [video, setVideo] = React.useState(post?.video || '');
   const onVideoChanged = (e) => setVideo(e.target.value);
 
-  const [addendum, setAddendum] = React.useState('');
+  const [addendum, setAddendum] = React.useState(post?.addendum || '');
   const onAddendumChanged = (e) => setAddendum(e.target.value);
 
-  const [positionInfo, setPositionInfo] = React.useState([newInitData()]);
+  const [positionInfo, setPositionInfo] = React.useState(post?.info || [newInitData()]);
   const onPositionInfoChanged = (elemIdx, key) => (e) => {
     const newPositionData = positionInfo.map((posInfo, posInfoIdx) => {
       if (elemIdx !== posInfoIdx) {
@@ -79,16 +90,23 @@ export const QuestNewPostForm = () => {
     }
   };
 
+  const [modifyNote, setModifyNote] = React.useState('');
+  const onModifyNoteChanged = (e) => setModifyNote(e.target.value);
+  // endregion
+
+  // region Sections
   const sectionTitle = (
     <Row>
       <Col lg={9}>
         <Form.Control
           className="mb-2" type="text" placeholder={t('posts.quest.title')}
-          onChange={onTitleChanged} required
+          onChange={onTitleChanged} value={title} required
         />
       </Col>
       <Col lg={3}>
-        <Form.Control as="select" defaultValue={SUPPORTED_LANG_NAME.get(i18n.language)} onChange={onLangCodeChanged}>
+        <Form.Control
+          as="select" defaultValue={SUPPORTED_LANG_NAME.get(langCode)} disabled={post !== undefined && post !== null}
+          onChange={onLangCodeChanged}>
           {
             SUPPORTED_LANG.map((lang) => {
               return (<option key={lang}>{SUPPORTED_LANG_NAME.get(lang)}</option>);
@@ -103,11 +121,11 @@ export const QuestNewPostForm = () => {
       <Row>
         <Col className="pr-2">
           <h5>{t('posts.quest.general')}</h5>
-          <MarkdownInput onChanged={onGeneralInfoChanged} rows={5}/>
+          <MarkdownInput onChanged={onGeneralInfoChanged} rows={5} value={generalInfo}/>
         </Col>
         <Col className="pl-2">
           <h5>{t('posts.quest.video')}</h5>
-          <MarkdownInput onChanged={onVideoChanged} rows={5}/>
+          <MarkdownInput onChanged={onVideoChanged} rows={5} value={video}/>
         </Col>
       </Row>
     </>
@@ -125,38 +143,54 @@ export const QuestNewPostForm = () => {
               onRotationsChanged={onPositionInfoChanged(posIdx, 'rotations')}
               onTipsChanged={onPositionInfoChanged(posIdx, 'tips')}
               required={['all']}
+              positionName={posInfo.position} builds={posInfo.builds} rotations={posInfo.rotations} tips={posInfo.tips}
             />
           </div>
         ))
       }
+
+      <Row className="mt-2">
+        <Col>
+          <Button
+            variant="outline-danger" className="d-inline float-right ml-2" onClick={onPositionInfoRemoved}>
+            {t('misc.remove')}
+          </Button>
+          <Button
+            variant="outline-success" className="d-inline float-right" onClick={onPositionInfoAdded}>
+            {t('misc.add')}
+          </Button>
+        </Col>
+      </Row>
     </>
   );
   const sectionAddendum = (
     <>
       <h5>{t('posts.quest.addendum')}</h5>
       <Row>
-        <Col><MarkdownInput onChanged={onAddendumChanged} rows={5}/></Col>
+        <Col><MarkdownInput onChanged={onAddendumChanged} rows={5} value={addendum}/></Col>
+      </Row>
+    </>
+  );
+  const sectionModifyNote = (
+    <>
+      <h5>{t('posts.manage.modify_note')}</h5>
+      <Row>
+        <Col><MarkdownInput onChanged={onModifyNoteChanged} rows={5}/></Col>
       </Row>
     </>
   );
   const sectionControl = (
     <Row className="mb-6">
       <Col>
-        <Button type="submit">{t('posts.manage.publish')}</Button>
-      </Col>
-      <Col>
-        <Button
-          variant="outline-danger" className="d-inline float-right ml-2" onClick={onPositionInfoRemoved}>
-          {t('misc.remove')}
-        </Button>
-        <Button
-          variant="outline-success" className="d-inline float-right" onClick={onPositionInfoAdded}>
-          {t('misc.add')}
+        <Button type="submit" className="float-right">
+          {post ? t('posts.manage.publish') : t('posts.manage.edit')}
         </Button>
       </Col>
     </Row>
   );
+  // endregion
 
+  // region Modals
   const [modalSubmissionFailedState, setModalSubmissionFailedState] = React.useState<ModalState>(
     {show: false, title: '', message: ''},
   );
@@ -167,6 +201,7 @@ export const QuestNewPostForm = () => {
       show={modalSubmissionFailedState.show}
       fnHideModal={() => setModalSubmissionFailedState({show: false, title: '', message: ''})}
     />);
+  // endregion
 
   const [redirToPostPage, setRedirToPostPage] = React.useState(-1);
 
@@ -182,8 +217,33 @@ export const QuestNewPostForm = () => {
       return;
     }
 
-    ApiRequestSender.questPostPublish(
-      getGoogleUid() || '', title, langCode, generalInfo, video, positionInfo, addendum)
+    let promise;
+
+    if (post) {
+      promise = handleSubmit<QuestPostEditPayload>({
+        google_uid: getGoogleUid() || '',
+        seq_id: post.seqId,
+        title: title,
+        lang: langCode,
+        general: generalInfo,
+        video: video,
+        positional: positionInfo,
+        addendum: addendum,
+        modify_note: modifyNote,
+      });
+    } else {
+      promise = handleSubmit<QuestPostPublishPayload>({
+        google_uid: getGoogleUid() || '',
+        title: title,
+        lang: langCode,
+        general: generalInfo,
+        video: video,
+        positional: positionInfo,
+        addendum: addendum,
+      });
+    }
+
+    promise
       .then((data) => {
         if (data.success) {
           setRedirToPostPage(data.seqId);
@@ -219,6 +279,14 @@ export const QuestNewPostForm = () => {
         {sectionPositional}
         <hr/>
         {sectionAddendum}
+        {
+          post ?
+            <>
+              <hr/>
+              {sectionModifyNote}
+            </> :
+            <></>
+        }
         <hr/>
         {sectionControl}
       </form>

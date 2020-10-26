@@ -4,20 +4,33 @@ import {Col, Form, Row} from 'react-bootstrap';
 
 import {MarkdownInput} from './markdownInput';
 
-type QuestPositionInputProps = {
+
+export type PositionalInfo = {
+  position: string,
+  builds: string,
+  rotations: string,
+  tips: string,
+}
+
+
+export type QuestPositionInputProps = {
   onPositionNameChanged?: ChangeEventHandler<HTMLInputElement>,
   onBuildsChanged?: ChangeEventHandler<HTMLInputElement>,
   onRotationsChanged?: ChangeEventHandler<HTMLInputElement>,
   onTipsChanged?: ChangeEventHandler<HTMLInputElement>,
   onAnyChanged?: ChangeEventHandler<HTMLInputElement>,
   required?: Array<'all' | 'builds' | 'rotations' | 'tips'>,
+  positionName?: string,
+  builds?: string,
+  rotations?: string,
+  tips?: string
 };
 
 export const QuestPositionForm = (props: QuestPositionInputProps) => {
   const {
-    onPositionNameChanged, onBuildsChanged, onRotationsChanged, onTipsChanged,
-    onAnyChanged,
+    onPositionNameChanged, onBuildsChanged, onRotationsChanged, onTipsChanged, onAnyChanged,
     required = [],
+    positionName = '', builds = '', rotations = '', tips = '',
   } = props;
 
   const onAnyInputChanged = (eventHandler) => (e) => {
@@ -37,7 +50,7 @@ export const QuestPositionForm = (props: QuestPositionInputProps) => {
         <Col>
           <Form.Control
             className="mb-2" type="text" placeholder={t('posts.quest.character')}
-            onChange={onAnyInputChanged(onPositionNameChanged)} required
+            onChange={onAnyInputChanged(onPositionNameChanged)} value={positionName} required
           />
         </Col>
       </Row>
@@ -45,21 +58,21 @@ export const QuestPositionForm = (props: QuestPositionInputProps) => {
         <Col lg={4} className="pr-lg-2 mb-2">
           <Form.Label>{t('posts.quest.builds')}</Form.Label>
           <MarkdownInput
-            rows={7} onChanged={onAnyInputChanged(onBuildsChanged)}
+            rows={7} onChanged={onAnyInputChanged(onBuildsChanged)} value={builds}
             required={required.some((val) => val === 'all' || val === 'builds')}
           />
         </Col>
         <Col lg={4} className="px-lg-2 mb-2">
           <Form.Label>{t('posts.quest.rotations')}</Form.Label>
           <MarkdownInput
-            rows={7} onChanged={onAnyInputChanged(onRotationsChanged)}
+            rows={7} onChanged={onAnyInputChanged(onRotationsChanged)} value={rotations}
             required={required.some((val) => val === 'all' || val === 'rotations')}
           />
         </Col>
         <Col lg={4} className="pl-lg-2 mb-2">
           <Form.Label>{t('posts.quest.tips')}</Form.Label>
           <MarkdownInput
-            rows={7} onChanged={onAnyInputChanged(onTipsChanged)}
+            rows={7} onChanged={onAnyInputChanged(onTipsChanged)} value={tips}
             required={required.some((val) => val === 'all' || val === 'tips')}
           />
         </Col>

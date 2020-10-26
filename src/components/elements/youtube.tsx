@@ -29,7 +29,6 @@ export class EmbeddedYoutubeVideo extends React.Component<Props, States> {
    */
   render() {
     const videoUrl = `//www.youtube.com/embed/${this.props.videoId}`;
-    console.log(videoUrl);
 
     return (
       <div className="youtube-embed mb-2">

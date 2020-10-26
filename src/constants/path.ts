@@ -13,9 +13,10 @@ export default class Path {
   static QUEST_LIST = '/quest';
   static QUEST_NEW = '/quest/new';
   static QUEST = '/quest/:pid(\\d+)';
+  static QUEST_EDIT = '/quest/:pid(\\d+)/edit';
 
   static NEW_OBJECT_LIST = '/object';
-  static NEW_OBJECT = '/object/:oid(\\d+)';
+  static NEW_OBJECT = '/object/:pid(\\d+)';
 
   static MISC_LIST = '/misc';
   static MISC = '/misc/:pid(\\d+)';
@@ -46,17 +47,27 @@ export default class Path {
    * @return {string} path of a quest info post
    */
   static getQuest(pid: number | string): string {
-    return generatePath(Path.QUEST, {pid: pid});
+    return generatePath(Path.QUEST, {pid});
+  }
+
+  /**
+   * Get the path for editing a quest info post. ('/quest/:pid/edit')
+   *
+   * @param {number | string} pid quest info post ID
+   * @return {string} path of a quest info post to be edited
+   */
+  static getQuestEdit(pid: number | string): string {
+    return generatePath(Path.QUEST_EDIT, {pid});
   }
 
   /**
    * Get the path of a new object post. ('/object/:oid')
    *
-   * @param {number | string} oid quest new object post ID
+   * @param {number | string} pid quest new object post ID
    * @return {string} path of a new object post
    */
-  static getNewObject(oid: number | string): string {
-    return generatePath(Path.NEW_OBJECT, {oid: oid});
+  static getNewObject(pid: number | string): string {
+    return generatePath(Path.NEW_OBJECT, {pid});
   }
 
   /**
@@ -66,6 +77,6 @@ export default class Path {
    * @return {string} path of a miscellaneous post
    */
   static getMisc(pid: number | string): string {
-    return generatePath(Path.MISC, {pid: pid});
+    return generatePath(Path.MISC, {pid});
   }
 }

@@ -10,7 +10,7 @@ import {LanguageSwitch} from './langSwitch';
 import Path from '../../constants/path';
 
 type NavigationProps = {
-  pageTitle: string
+  pageTitle?: string
 }
 
 export const Navigation = ({pageTitle}: NavigationProps) => {

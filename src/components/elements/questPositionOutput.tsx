@@ -1,13 +1,15 @@
 import React from 'react';
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
-import {PositionalInfo} from './questNewPostForm';
+import {PositionalInfo} from './questPositionForm';
 import {Markdown} from './markdown';
 import {useTranslation} from 'react-i18next';
 
 type OutputProps = {
   info: Array<PositionalInfo>
 }
+
+// FIXME: Display mod notes
 
 
 export const QuestPositionOutput = ({info}: OutputProps) => {

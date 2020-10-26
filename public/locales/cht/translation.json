@@ -41,8 +41,9 @@
       "about": "關於",
       "home": "首頁",
       "constructing": "建置中",
+      "quest_edit": "編輯高難攻略",
       "quest_list": "高難副本攻略目錄",
-      "quest_new": "新增高難攻略文",
+      "quest_new": "新增高難攻略",
       "quest_post": "高難副本攻略",
       "site": "龍絆攻略站 by OM",
       "suffix": " | 龍絆攻略站 by OM"
@@ -61,9 +62,11 @@
     "manage": {
       "add": "新增貼文",
       "collapse": "收摺/展開",
+      "edit": "編輯貼文",
       "fetch_list_failed": "貼文清單獲取失敗。({{error}})",
       "fetch_post_failed": "貼文獲取失敗。({{error}})",
       "md": "Markdown",
+      "modify_note": "編輯註記",
       "post_not_exists": "貼文不存在。",
       "preview": "預覽",
       "publish": "發布",

@@ -7,18 +7,19 @@ import {Markdown} from './markdown';
 type MarkdownInputProps = {
   rows?: number,
   onChanged?: ChangeEventHandler<HTMLInputElement>,
+  value?: string,
   required?: boolean
 };
 
-export const MarkdownInput = ({rows, onChanged, required = false}: MarkdownInputProps) => {
+export const MarkdownInput = ({rows, onChanged, value = '', required = false}: MarkdownInputProps) => {
   const {t} = useTranslation();
 
-  const [content, setContent] = React.useState('');
+  const [content, setContent] = React.useState(value);
 
   const updateContent = (e) => {
     setContent(e.target.value);
 
-    if (onChanged !== undefined) {
+    if (onChanged) {
       onChanged(e);
     }
   };
@@ -27,7 +28,8 @@ export const MarkdownInput = ({rows, onChanged, required = false}: MarkdownInput
     <div>
       <Tabs defaultActiveKey="markdown">
         <Tab eventKey="markdown" title={t('posts.manage.md')}>
-          <textarea className="form-control mt-1" rows={rows} onChange={updateContent} required={required}/>
+          <textarea
+            className="form-control mt-1" rows={rows} onChange={updateContent} required={required} value={content}/>
         </Tab>
         <Tab eventKey="preview" title={t('posts.manage.preview')}>
           <div className="p-3">

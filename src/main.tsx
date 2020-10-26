@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import {useTranslation} from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import {About, Constructing, Home, QuestList, QuestNew, QuestPage} from './components/pages';
+import {About, Constructing, Home, QuestEdit, QuestList, QuestNew, QuestPage} from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
@@ -14,6 +14,9 @@ const Page = () => {
   const [pageTitle, setPageTitle] = React.useState('');
 
   const updatePageTitle = (newTitle?: string) => {
+    // FIXME: [PRIORITY] Duplicated re-rendering triggered by `setPageTitle()`
+    //  - Sub-page component completed rendering then call this method
+    //  - This method let the whole page re-render
     newTitle = newTitle || t('pages.name.site');
 
     if (!newTitle) {
@@ -44,6 +47,9 @@ const Page = () => {
         </Route>
         <Route exact path={Path.QUEST}>
           <QuestPage fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.QUEST_EDIT}>
+          <QuestEdit fnSetTitle={updatePageTitle}/>
         </Route>
 
         <Route exact path={Path.NEW_OBJECT_LIST}>

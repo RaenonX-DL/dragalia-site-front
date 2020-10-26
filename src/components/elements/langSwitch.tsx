@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {NavDropdown} from 'react-bootstrap';
 
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
+import {GAEvent} from '../../constants/ga';
 
 
 export const LanguageSwitch = () => {
@@ -19,8 +20,11 @@ export const LanguageSwitch = () => {
 
   const changeLanguage = (newLanguage?: string) => {
     const newLang: string = newLanguage || new URLSearchParams(locations.search).get('lang') || 'dev';
+
     // noinspection JSIgnoredPromiseFromCall
     i18n.changeLanguage(newLang);
+
+    GAEvent.languageChange(newLang);
   };
 
   return (
