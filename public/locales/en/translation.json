@@ -67,6 +67,7 @@
       "fetch_post_failed": "Failed to fetch the post. ({{error}})",
       "md": "Markdown",
       "modify_note": "Modification Note",
+      "modify_time": "Modified at",
       "post_not_exists": "Post not exists.",
       "preview": "Preview",
       "publish": "Publish",

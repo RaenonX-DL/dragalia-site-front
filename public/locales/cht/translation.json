@@ -67,6 +67,7 @@
       "fetch_post_failed": "貼文獲取失敗。({{error}})",
       "md": "Markdown",
       "modify_note": "編輯註記",
+      "modify_time": "編輯時間",
       "post_not_exists": "貼文不存在。",
       "preview": "預覽",
       "publish": "發布",

@@ -9,8 +9,6 @@ type OutputProps = {
   info: Array<PositionalInfo>
 }
 
-// FIXME: Display mod notes
-
 
 export const QuestPositionOutput = ({info}: OutputProps) => {
   const {t} = useTranslation();

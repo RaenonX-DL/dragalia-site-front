@@ -4,6 +4,7 @@ import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
 import {InfoCard} from '../elements/infoCard';
+import {PostModificationNotes} from '../elements/postModNotes';
 import {QuestPositionOutput} from '../elements/questPositionOutput';
 import {FetchPost, Markdown, PostManageBar, QuestPostFetchStatus} from '../elements';
 import {PageProps} from './base';
@@ -82,6 +83,15 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
             <div className="d-lg-none mb-3"/>
           </Col>
         </Row>
+        {
+          status.post.modifyNotes.length > 0 ?
+            <Row className="mt-lg-3">
+              <Col>
+                <PostModificationNotes modifyNote={status.post.modifyNotes}/>
+              </Col>
+            </Row> :
+            <></>
+        }
       </>
     );
   } else {
