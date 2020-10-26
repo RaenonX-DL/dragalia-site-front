@@ -10,14 +10,14 @@ export default class Path {
 
   // Posts
 
-  static QUEST_DIR = '/quest';
+  static QUEST_LIST = '/quest';
   static QUEST_NEW = '/quest/new';
-  static QUEST = '/quest/:qid(\\d+)';
+  static QUEST = '/quest/:pid(\\d+)';
 
-  static NEW_OBJECT_DIR = '/object';
+  static NEW_OBJECT_LIST = '/object';
   static NEW_OBJECT = '/object/:oid(\\d+)';
 
-  static MISC_DIR = '/misc';
+  static MISC_LIST = '/misc';
   static MISC = '/misc/:pid(\\d+)';
 
   // In-game data
@@ -40,13 +40,13 @@ export default class Path {
   static ABOUT = '/about';
 
   /**
-   * Get the path of a quest info post. ('/quest/:qid')
+   * Get the path of a quest info post. ('/quest/:pid')
    *
-   * @param {number | string} qid quest info post ID
+   * @param {number | string} pid quest info post ID
    * @return {string} path of a quest info post
    */
-  static getQuest(qid: number | string): string {
-    return generatePath(Path.QUEST, {qid: qid});
+  static getQuest(pid: number | string): string {
+    return generatePath(Path.QUEST, {pid: pid});
   }
 
   /**

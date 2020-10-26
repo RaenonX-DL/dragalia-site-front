@@ -3,7 +3,7 @@ import {Table} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
 // These keys need to be consistent with the definition structure at the back side
-// Type name: `QuestPostDirResponseKey`
+// Type name: `QuestPostListResponseKey`
 export type PostListEntry = {
   seqId: number | string,
   title: string,
@@ -23,11 +23,11 @@ export const PostList = ({posts, linkGenerator}: { posts: Array<PostListEntry>, 
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
-          <th className="text-center">{t('posts.list.id')}</th>
-          <th className="text-center w-25">{t('posts.list.title')}</th>
-          <th className="text-center">{t('posts.list.view_count')}</th>
-          <th className="text-center">{t('posts.list.last_modified')}</th>
-          <th className="text-center">{t('posts.list.published')}</th>
+          <th className="text-center">{t('posts.info.id')}</th>
+          <th className="text-center w-25">{t('posts.info.title')}</th>
+          <th className="text-center">{t('posts.info.view_count')}</th>
+          <th className="text-center">{t('posts.info.last_modified')}</th>
+          <th className="text-center">{t('posts.info.published')}</th>
         </tr>
       </thead>
       <tbody>

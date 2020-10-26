@@ -23,6 +23,11 @@ interface QuestPostPublishPayload extends RequestPayloadBase {
   addendum: string,
 }
 
+interface QuestPostGetPayload extends RequestPayloadBase {
+  seq_id: number,
+  lang_code?: string
+}
+
 /**
  * Class for making the payload for an API request.
  */
@@ -38,6 +43,22 @@ export default class ApiRequestPayloadMaker {
     return {
       google_uid: googleUid,
       google_email: googleEmail,
+    };
+  }
+
+  /**
+   * Make the payload for getting a single post.
+   *
+   * @param {string} googleUid Google UID of the logged in user
+   * @param {number} seqId sequential ID of the post to get
+   * @param {string} langCode language code of the post to get
+   * @return {QuestPostGetPayload} payload object
+   */
+  static questPostGet(googleUid: string, seqId: number, langCode: string): QuestPostGetPayload {
+    return {
+      google_uid: googleUid,
+      seq_id: seqId,
+      lang_code: langCode,
     };
   }
 

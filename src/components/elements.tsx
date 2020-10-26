@@ -6,6 +6,7 @@ import {PostList, PostListEntry} from './elements/postList';
 import {Paginator} from './elements/paginator';
 import {getGoogleUid} from './elements/googleSignin';
 import {ExpressModal} from './elements/modalExpress';
+import {Markdown} from './elements/markdown';
 
 
 export type {PositionalInfo, PostListEntry};
@@ -14,5 +15,5 @@ export {
   QuestNewPostForm,
   Navigation, Footer,
   PostManageBar, PostList, Paginator,
-  getGoogleUid, ExpressModal,
+  getGoogleUid, ExpressModal, Markdown,
 };

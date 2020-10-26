@@ -13,7 +13,7 @@ type QuestPositionInputProps = {
   required?: Array<'all' | 'builds' | 'rotations' | 'tips'>,
 };
 
-export const QuestPositionInput = (props: QuestPositionInputProps) => {
+export const QuestPositionForm = (props: QuestPositionInputProps) => {
   const {
     onPositionNameChanged, onBuildsChanged, onRotationsChanged, onTipsChanged,
     onAnyChanged,
@@ -37,7 +37,7 @@ export const QuestPositionInput = (props: QuestPositionInputProps) => {
         <Col>
           <Form.Control
             className="mb-2" type="text" placeholder={t('posts.quest.character')}
-            onChange={onAnyInputChanged(onPositionNameChanged)}
+            onChange={onAnyInputChanged(onPositionNameChanged)} required
           />
         </Col>
       </Row>

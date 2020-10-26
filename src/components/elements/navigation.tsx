@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {LinkContainer} from 'react-router-bootstrap';
 
 import {GoogleSigninButton} from './googleSignin';
-import LanguageSwitch from './langSwitch';
+import {LanguageSwitch} from './langSwitch';
 import Path from '../../constants/path';
 
 export const Navigation = () => {
@@ -15,21 +15,23 @@ export const Navigation = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
-        <Navbar.Brand href={Path.HOME}>OM 龍絆攻略站</Navbar.Brand>
+        <LinkContainer to={Path.HOME}>
+          <Navbar.Brand>{t('pages.name.home')}</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
           <Nav className="mr-auto">
-            <LinkContainer to={Path.QUEST_DIR}>
-              <Nav.Link>{t('posts.quest.dir')}</Nav.Link>
+            <LinkContainer to={Path.QUEST_LIST}>
+              <Nav.Link>{t('posts.quest.title_self')}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.NEW_OBJECT_DIR}>
-              <Nav.Link>{t('posts.new_object.dir')}</Nav.Link>
+            <LinkContainer to={Path.NEW_OBJECT_LIST}>
+              <Nav.Link>{t('posts.new_object.title_self')}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.MISC_DIR}>
-              <Nav.Link>{t('posts.misc.dir')}</Nav.Link>
+            <LinkContainer to={Path.MISC_LIST}>
+              <Nav.Link>{t('posts.misc.title_self')}</Nav.Link>
             </LinkContainer>
-            <NavDropdown title={t('game.data.dir')} id="collapsible-nav-dropdown">
+            <NavDropdown title={t('game.data.title_self')} id="collapsible-nav-dropdown">
               <NavDropdown.Header>{t('game.data.passive')}</NavDropdown.Header>
               <LinkContainer to={Path.CEX}>
                 <NavDropdown.Item>{t('game.data.cex')}</NavDropdown.Item>
@@ -51,7 +53,7 @@ export const Navigation = () => {
                 <NavDropdown.Item>{t('game.data.story')}</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <NavDropdown title={t('game.tools.dir')} id="collapsible-nav-dropdown">
+            <NavDropdown title={t('game.tools.title_self')} id="collapsible-nav-dropdown">
               <LinkContainer to={Path.DMG_CALC}>
                 <NavDropdown.Item>{t('game.tools.damage')}</NavDropdown.Item>
               </LinkContainer>
@@ -60,7 +62,7 @@ export const Navigation = () => {
               </LinkContainer>
             </NavDropdown>
             <LinkContainer to={Path.ABOUT}>
-              <Nav.Link>{t('about')}</Nav.Link>
+              <Nav.Link>{t('pages.name.about')}</Nav.Link>
             </LinkContainer>
           </Nav>
           {/* Right part of the navbar */}

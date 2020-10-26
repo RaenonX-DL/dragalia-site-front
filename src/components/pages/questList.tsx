@@ -20,8 +20,10 @@ type Status = {
 }
 
 
-export const QuestDir = ({location}: { location: { search: string } }) => {
+export const QuestList = ({location}: { location: { search: string } }) => {
   const {t} = useTranslation();
+
+  document.title = t('pages.title.quest_list');
 
   const [status, setStatus] = React.useState<Status>(
     {
@@ -50,7 +52,7 @@ export const QuestDir = ({location}: { location: { search: string } }) => {
       startIdx = getStartIdxFromUrl();
     }
 
-    ApiRequestSender.questPostDir(
+    ApiRequestSender.questPostList(
       getGoogleUid() || '', startIdx, limit)
       .then((data) => {
         // setting state triggers re-render, re-render triggers API call,
@@ -97,7 +99,7 @@ export const QuestDir = ({location}: { location: { search: string } }) => {
   };
 
   const alertFetchFailed = (
-    <Alert variant="danger">{t('posts.manage.fetch_failed', {error: status.errorContent})}</Alert>
+    <Alert variant="danger">{t('posts.manage.fetch_list_failed', {error: status.errorContent})}</Alert>
   );
 
   // Trigger the fetch request if the start index seems to be in the initializing state
@@ -108,13 +110,13 @@ export const QuestDir = ({location}: { location: { search: string } }) => {
   return (
     <>
       <Jumbotron>
-        <h4 className="header">{t('posts.quest.dir')}</h4>
+        <h4>{t('posts.quest.title_self')}</h4>
       </Jumbotron>
       {status.isAdmin ? <div className="mb-3"><PostManageBar newPostUrl={Path.QUEST_NEW}/></div> : <></>}
       {status.showAlert ? alertFetchFailed : <></>}
       <PostList posts={status.posts} linkGenerator={(id) => Path.getQuest(id)}/>
       <Paginator
-        path={Path.QUEST_DIR} onPageClick={onPageClick} queryParamGenerator={queryParamGenerator}
+        path={Path.QUEST_LIST} onPageClick={onPageClick} queryParamGenerator={queryParamGenerator}
         initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / 25 + 1))}/>
       {/* DRAFT: search bar at top right side */}
     </>

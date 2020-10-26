@@ -1,8 +1,7 @@
 {
-  "about": "關於",
   "game": {
     "data": {
-      "dir": "遊戲資訊",
+      "title_self": "遊戲資訊",
       "active": "主動技能",
       "cex": "CEX",
       "others": "其他",
@@ -13,7 +12,7 @@
       "story": "故事"
     },
     "tools": {
-      "dir": "遊戲工具",
+      "title_self": "遊戲工具",
       "damage": "傷害計算",
       "rotation": "輪轉計算"
     }
@@ -21,11 +20,11 @@
   "google_signin": {
     "no_uid": "無 Google 使用者 ID",
     "no_uid_details": "找不到 Google 使用者 ID。請嘗試重新登入。",
-    "login": "登入",
+    "login": "Google 登入",
     "login_error": "錯誤碼: {{errorCode}}",
     "login_failed": "登入失敗",
     "login_unknown": "因為不明原因，無法登入。({{error}})",
-    "logout": "登出",
+    "logout": "Google 登出",
     "logout_failed": "登出失敗",
     "logout_unknown": "因為不明原因，無法登出。",
     "request_failed": "無法傳送登入請求"
@@ -38,18 +37,35 @@
     "remove": "移除"
   },
   "pages": {
+    "title": {
+      "about": "關於 | 龍絆攻略站 by OM",
+      "home": "首頁 | 龍絆攻略站 by OM",
+      "not_implemented": "未完成 | 龍絆攻略站 by OM",
+      "quest_post": "高難攻略 | 龍絆攻略站 by OM",
+      "quest_list": "高難攻略目錄 | 龍絆攻略站 by OM",
+      "quest_new": "新增高難攻略 | 龍絆攻略站 by OM",
+      "quest_suffix": " | 龍絆攻略站 by OM"
+    },
+    "name": {
+      "about": "關於",
+      "home": "首頁"
+    },
     "not_implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
   },
   "posts": {
     "manage": {
       "add": "新增貼文",
-      "fetch_failed": "貼文清單獲取失敗。({{error}})",
+      "collapse": "收摺/展開",
+      "fetch_list_failed": "貼文清單獲取失敗。({{error}})",
+      "fetch_post_failed": "貼文獲取失敗。({{error}})",
       "md": "Markdown",
+      "post_not_exists": "貼文不存在。",
       "preview": "預覽",
       "publish": "發布",
       "publish_failed": "發布失敗"
     },
-    "list": {
+    "info": {
+      "title_self": "貼文資訊",
       "id": "ID",
       "last_modified": "最後修改時間",
       "published": "發布時間",
@@ -57,13 +73,13 @@
       "view_count": "瀏覽次數"
     },
     "misc": {
-      "dir": "其他文章"
+      "title_self": "其他文章"
     },
     "new_object": {
-      "dir": "物件評測"
+      "title_self": "物件評測"
     },
     "quest": {
-      "dir": "高難攻略",
+      "title_self": "高難攻略",
       "addendum": "附記",
       "builds": "配置",
       "character": "角色",

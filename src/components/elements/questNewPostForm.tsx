@@ -6,13 +6,14 @@ import {useTranslation} from 'react-i18next';
 import {getGoogleUid} from './googleSignin';
 import {MarkdownInput} from './markdownInput';
 import {ExpressModal} from './modalExpress';
-import {QuestPositionInput} from './questPosition';
+import {QuestPositionForm} from './questPositionForm';
 import {ApiRequestSender} from '../../constants/api';
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
 import Path from '../../constants/path';
 
 
 // FIXME: "attach" the post of different language to use the same seq id
+//  - Add with same seq ID but different lang? May need to be able to display duplicated - ID occupied
 
 
 export type PositionalInfo = {
@@ -118,7 +119,7 @@ export const QuestNewPostForm = () => {
       {
         positionInfo.map((posInfo, posIdx) => (
           <div key={`pos-info-${posIdx}`} className="mt-2">
-            <QuestPositionInput
+            <QuestPositionForm
               onPositionNameChanged={onPositionInfoChanged(posIdx, 'position')}
               onBuildsChanged={onPositionInfoChanged(posIdx, 'builds')}
               onRotationsChanged={onPositionInfoChanged(posIdx, 'rotations')}

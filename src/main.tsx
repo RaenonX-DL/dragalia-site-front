@@ -3,7 +3,7 @@ import {Route, useHistory} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import ReactGA from 'react-ga';
 
-import {About, Home, NotImplemented, QuestDir, QuestNew, QuestPage} from './components/pages';
+import {About, Home, NotImplemented, QuestList, QuestNew, QuestPage} from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
@@ -18,14 +18,14 @@ const Page = () => {
 
         {/* Posts */}
 
-        <Route exact path={Path.QUEST_DIR} component={QuestDir}/>
+        <Route exact path={Path.QUEST_LIST} component={QuestList}/>
         <Route exact path={Path.QUEST_NEW} component={QuestNew}/>
         <Route exact path={Path.QUEST} component={QuestPage}/>
 
-        <Route exact path={Path.NEW_OBJECT_DIR} component={NotImplemented}/>
+        <Route exact path={Path.NEW_OBJECT_LIST} component={NotImplemented}/>
         <Route exact path={Path.NEW_OBJECT} component={NotImplemented}/>
 
-        <Route exact path={Path.MISC_DIR} component={NotImplemented}/>
+        <Route exact path={Path.MISC_LIST} component={NotImplemented}/>
         <Route exact path={Path.MISC} component={NotImplemented}/>
 
         {/* In-game data */}

@@ -30,6 +30,6 @@ export class ImageInHTML extends React.Component<Props, States> {
    * @return {JSX} element in JSX
    */
   render() {
-    return <img className="mb-2" src={this.props.imageUrl} alt={this.props.alt}/>;
+    return <a href={this.props.imageUrl}><img className="mb-2" src={this.props.imageUrl} alt={this.props.alt}/></a>;
   }
 }
