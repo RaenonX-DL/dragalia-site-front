@@ -6,6 +6,7 @@ import {useTranslation} from 'react-i18next';
 // Type name: `QuestPostListResponseKey`
 export type PostListEntry = {
   seqId: number | string,
+  lang: string,
   title: string,
   viewCount: number,
   modified: string,
@@ -34,7 +35,7 @@ export const PostList = ({posts, linkGenerator}: { posts: Array<PostListEntry>, 
         {
           posts.map((post) => {
             return (
-              <tr key={post.seqId}>
+              <tr key={post.seqId.toString() + post.lang}>
                 <td className="text-center">#{post.seqId}</td>
                 <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.title}</a></td>
                 <td className="text-right">{post.viewCount}</td>

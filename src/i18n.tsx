@@ -15,7 +15,7 @@ i18n
     {lookupQuerystring: 'lang'}))
   .use(initReactI18next)
   .init({
-    lng: 'cht',
+    // DON'T set the language `lng` here, because the user settings of language will then not being stored
     fallbackLng: false,
     debug: false,
   });

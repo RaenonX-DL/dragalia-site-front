@@ -9,13 +9,13 @@ import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
 export const LanguageSwitch = () => {
   const {t, i18n} = useTranslation();
 
+  const locations = useLocation();
+
   const getCurrentLanguage = (getName: boolean = true) => {
     const lang = i18n.language;
 
     return getName ? (SUPPORTED_LANG_NAME.get(lang) || lang) : lang;
   };
-
-  const locations = useLocation();
 
   const changeLanguage = (newLanguage?: string) => {
     const newLang: string = newLanguage || new URLSearchParams(locations.search).get('lang') || 'dev';
