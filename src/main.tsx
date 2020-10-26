@@ -1,51 +1,99 @@
 import React, {Suspense, useEffect} from 'react';
 import {Route, useHistory} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import {useTranslation} from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import {About, Home, NotImplemented, QuestList, QuestNew, QuestPage} from './components/pages';
+import {About, Constructing, Home, QuestList, QuestNew, QuestPage} from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
 const Page = () => {
+  const {t} = useTranslation();
+
+  const [pageTitle, setPageTitle] = React.useState('');
+
+  const updatePageTitle = (newTitle?: string) => {
+    newTitle = newTitle || t('pages.name.site');
+
+    if (!newTitle) {
+      newTitle = '';
+    }
+
+    setPageTitle(newTitle);
+    document.title = newTitle + t('pages.name.suffix');
+  };
+
   return (
     <>
-      <Navigation/>
+      <Navigation pageTitle={pageTitle}/>
       <Container className="p-3">
         {/* Home */}
 
-        <Route exact path={Path.HOME} component={Home}/>
+        <Route exact path={Path.HOME}>
+          <Home fnSetTitle={updatePageTitle}/>
+        </Route>
 
         {/* Posts */}
 
-        <Route exact path={Path.QUEST_LIST} component={QuestList}/>
-        <Route exact path={Path.QUEST_NEW} component={QuestNew}/>
-        <Route exact path={Path.QUEST} component={QuestPage}/>
+        <Route exact path={Path.QUEST_LIST}>
+          <QuestList fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.QUEST_NEW}>
+          <QuestNew fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.QUEST}>
+          <QuestPage fnSetTitle={updatePageTitle}/>
+        </Route>
 
-        <Route exact path={Path.NEW_OBJECT_LIST} component={NotImplemented}/>
-        <Route exact path={Path.NEW_OBJECT} component={NotImplemented}/>
+        <Route exact path={Path.NEW_OBJECT_LIST}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.NEW_OBJECT}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
-        <Route exact path={Path.MISC_LIST} component={NotImplemented}/>
-        <Route exact path={Path.MISC} component={NotImplemented}/>
+        <Route exact path={Path.MISC_LIST}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.MISC}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
         {/* In-game data */}
 
-        <Route exact path={Path.CEX} component={NotImplemented}/>
-        <Route exact path={Path.PRINT} component={NotImplemented}/>
+        <Route exact path={Path.CEX}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.PRINT}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
-        <Route exact path={Path.SKILL_ATK} component={NotImplemented}/>
-        <Route exact path={Path.SKILL_SUP} component={NotImplemented}/>
+        <Route exact path={Path.SKILL_ATK}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.SKILL_SUP}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
-        <Route exact path={Path.STORY} component={NotImplemented}/>
+        <Route exact path={Path.STORY}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
         {/* Tools */}
 
-        <Route exact path={Path.DMG_CALC} component={NotImplemented}/>
-        <Route exact path={Path.ROTATION_CALC} component={NotImplemented}/>
+        <Route exact path={Path.DMG_CALC}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.ROTATION_CALC}>
+          <Constructing fnSetTitle={updatePageTitle}/>
+        </Route>
 
         {/* Not game related */}
 
-        <Route exact path={Path.ABOUT} component={About}/>
+        <Route exact path={Path.ABOUT}>
+          <About fnSetTitle={updatePageTitle}/>
+        </Route>
       </Container>
 
       <Footer/>

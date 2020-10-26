@@ -8,6 +8,7 @@ import {getGoogleUid} from '../elements/googleSignin';
 import {InfoCard} from '../elements/infoCard';
 import {QuestPositionOutput} from '../elements/questPositionOutput';
 import {Markdown} from '../elements';
+import {PageProps} from './base';
 
 
 // FIXME: [PRIORITY] edit post
@@ -22,7 +23,7 @@ type Status = {
   failContent: string
 }
 
-export const QuestPage = () => {
+export const QuestPage = ({fnSetTitle}: PageProps) => {
   const {t, i18n} = useTranslation();
 
   const {pid} = useParams();
@@ -36,11 +37,7 @@ export const QuestPage = () => {
     },
   );
 
-  document.title = `#${pid} ${
-    status.postContent ?
-      status.postContent.title + t('pages.title.quest_suffix') :
-      t('pages.title.quest_post')
-  }`;
+  fnSetTitle(`#${pid} ${status.postContent ? status.postContent.title : t('pages.name.quest_post')}`);
 
   const fetchPost = () => {
     ApiRequestSender.questPostGet(

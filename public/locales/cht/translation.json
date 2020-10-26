@@ -37,23 +37,27 @@
     "remove": "移除"
   },
   "pages": {
-    "title": {
-      "about": "關於 | 龍絆攻略站 by OM",
-      "home": "首頁 | 龍絆攻略站 by OM",
-      "not_implemented": "未完成 | 龍絆攻略站 by OM",
-      "quest_post": "高難攻略 | 龍絆攻略站 by OM",
-      "quest_list": "高難攻略目錄 | 龍絆攻略站 by OM",
-      "quest_new": "新增高難攻略 | 龍絆攻略站 by OM",
-      "quest_suffix": " | 龍絆攻略站 by OM"
-    },
     "name": {
       "about": "關於",
       "home": "首頁",
-      "site": "龍絆攻略站 by OM"
+      "constructing": "建置中",
+      "quest_list": "高難副本攻略目錄",
+      "quest_new": "新增高難攻略文",
+      "quest_post": "高難副本攻略",
+      "site": "龍絆攻略站 by OM",
+      "suffix": " | 龍絆攻略站 by OM"
     },
-    "not_implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
+    "constructing": "網頁/功能建置中。建置完畢後會公布。\n\n### Email 通知系統完成前\n\n會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n### Email 通知系統完成後\n\n有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。"
   },
   "posts": {
+    "info": {
+      "title_self": "貼文資訊",
+      "id": "ID",
+      "last_modified": "最後修改時間",
+      "published": "發布時間",
+      "title": "標題",
+      "view_count": "瀏覽次數"
+    },
     "manage": {
       "add": "新增貼文",
       "collapse": "收摺/展開",
@@ -64,14 +68,6 @@
       "preview": "預覽",
       "publish": "發布",
       "publish_failed": "發布失敗"
-    },
-    "info": {
-      "title_self": "貼文資訊",
-      "id": "ID",
-      "last_modified": "最後修改時間",
-      "published": "發布時間",
-      "title": "標題",
-      "view_count": "瀏覽次數"
     },
     "misc": {
       "title_self": "其他文章"

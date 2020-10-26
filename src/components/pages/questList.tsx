@@ -1,15 +1,16 @@
 import React from 'react';
+import {useLocation} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {Alert} from 'react-bootstrap';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
+import {PageProps} from './base';
 import {getGoogleUid, Paginator, PostList, PostListEntry, PostManageBar} from '../elements';
 import Path from '../../constants/path';
 import {ApiRequestSender} from '../../constants/api';
 
 
 const limit = 25;
-
 
 type Status = {
   startIdx: number,
@@ -20,10 +21,12 @@ type Status = {
 }
 
 
-export const QuestList = ({location}: { location: { search: string } }) => {
+export const QuestList = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
 
-  document.title = t('pages.title.quest_list');
+  const location = useLocation();
+
+  fnSetTitle(t('pages.name.quest_list'));
 
   const [status, setStatus] = React.useState<Status>(
     {

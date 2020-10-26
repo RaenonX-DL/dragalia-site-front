@@ -1,10 +1,12 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-export const About = () => {
+import {PageProps} from './base';
+
+export const About = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
 
-  document.title = t('pages.title.about');
+  fnSetTitle(t('pages.name.about'));
 
   return (
     <h2>About</h2>

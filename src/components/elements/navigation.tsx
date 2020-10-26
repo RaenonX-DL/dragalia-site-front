@@ -9,14 +9,18 @@ import {GoogleSigninButton} from './googleSignin';
 import {LanguageSwitch} from './langSwitch';
 import Path from '../../constants/path';
 
-export const Navigation = () => {
+type NavigationProps = {
+  pageTitle: string
+}
+
+export const Navigation = ({pageTitle}: NavigationProps) => {
   const {t} = useTranslation();
 
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
         <LinkContainer to={Path.HOME}>
-          <Navbar.Brand>{t('pages.name.home')}</Navbar.Brand>
+          <Navbar.Brand>{t('pages.name.site')}</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -72,9 +76,13 @@ export const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 999}}>
-        Dummy Title Oasis of the Maniacs AAAAA BBBBB CCCCCC
-      </Navbar>
+      {
+        pageTitle ?
+          <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 999}}>
+            {pageTitle}
+          </Navbar> :
+          <></>
+      }
       {/* FIXME: Ability to change the title of this navbar */}
       {/* TODO: Animate the above navbar */}
     </>
