@@ -10,6 +10,7 @@ interface UserLoginPayload extends RequestPayloadBase {
 }
 
 interface QuestPostListPayload extends RequestPayloadBase {
+  lang_code: string,
   start: number,
   limit: number
 }
@@ -94,13 +95,15 @@ export default class ApiRequestPayloadMaker {
    * Make the payload for getting the list of query posts.
    *
    * @param {string} googleUid Google UID of the logged in user
+   * @param {string} langCode language code of the posts
    * @param {number} start starting index of the posts
    * @param {number} limit maximum count of the data to be returned
    * @return {QuestPostListPayload} payload object
    */
-  static questPostList(googleUid: string, start: number, limit: number): QuestPostListPayload {
+  static questPostList(googleUid: string, langCode: string, start: number, limit: number): QuestPostListPayload {
     return {
       google_uid: googleUid,
+      lang_code: langCode,
       start: start,
       limit: limit,
     };

@@ -10,6 +10,8 @@ import {GAEvent} from '../../constants/ga';
 export const LanguageSwitch = () => {
   const {t, i18n} = useTranslation();
 
+  const [redirected, setRedirected] = React.useState(false);
+
   const locations = useLocation();
 
   const getCurrentLanguage = (getName: boolean = true) => {
@@ -25,7 +27,15 @@ export const LanguageSwitch = () => {
     i18n.changeLanguage(newLang);
 
     GAEvent.languageChange(newLang);
+
+    setRedirected(true);
   };
+
+  if (redirected) {
+    // OPTIMIZE: Find a better way than refreshing the whole page - probably just re-render the page part?
+    window.location.reload();
+    return <></>;
+  }
 
   return (
     <NavDropdown title={getCurrentLanguage()} id="language-switch" className="pr-2">

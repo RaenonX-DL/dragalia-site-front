@@ -38,9 +38,6 @@ type QuestPostFormProps = {
 }
 
 
-// FIXME: Index page display specific language only
-
-
 export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   const {i18n, t} = useTranslation();
 

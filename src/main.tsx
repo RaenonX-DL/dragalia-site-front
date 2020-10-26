@@ -11,7 +11,7 @@ import Path from './constants/path';
 const Page = () => {
   const {t} = useTranslation();
 
-  const ref = React.createRef<HTMLSpanElement>();
+  const ref = React.useRef<HTMLSpanElement>();
 
   const updatePageTitle = (newTitle?: string) => {
     newTitle = newTitle || t('pages.name.site');
@@ -20,11 +20,12 @@ const Page = () => {
       newTitle = '';
     }
 
-    // FIXME: [PRIORITY] Not displaying title on initial load
+    // FIXME: this causes some page not using the correct title - use context?
     // `ref.current` can be null before ref is "connected"
     if (ref.current) {
       ref.current.innerText = newTitle;
     }
+
     document.title = newTitle + t('pages.name.suffix');
     return newTitle;
   };

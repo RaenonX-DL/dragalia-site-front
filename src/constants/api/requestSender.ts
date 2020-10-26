@@ -100,15 +100,17 @@ export default class ApiRequestSender {
    * Get a list of all quest posts.
    *
    * @param {string} googleUid Google UID of the logged in user
+   * @param {string} langCode language code of the posts
    * @param {number} start starting index of the posts
    * @param {number} limit maximum count of the data to be returned
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
-  static questPostList(googleUid: string, start: number, limit: number): Promise<QuestPostListResponse> {
+  static questPostList(
+    googleUid: string, langCode: string, start: number, limit: number): Promise<QuestPostListResponse> {
     return this.sendRequest<QuestPostListResponse>(
       'GET',
       ApiEndPoints.POST_QUEST_LIST,
-      ApiRequestPayloadMaker.questPostList(googleUid, start, limit),
+      ApiRequestPayloadMaker.questPostList(googleUid, langCode, start, limit),
     );
   }
 

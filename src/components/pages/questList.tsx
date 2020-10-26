@@ -22,7 +22,7 @@ type Status = {
 
 
 export const QuestList = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const location = useLocation();
 
@@ -56,7 +56,7 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
     }
 
     ApiRequestSender.questPostList(
-      getGoogleUid() || '', startIdx, limit)
+      getGoogleUid() || '', i18n.language, startIdx, limit)
       .then((data) => {
         // setting state triggers re-render, re-render triggers API call,
         // so having a if statement to guard from the re-render and API re-call
