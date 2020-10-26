@@ -1,6 +1,5 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import {Button, Col, Row} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {useTranslation} from 'react-i18next';
 

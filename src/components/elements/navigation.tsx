@@ -1,8 +1,6 @@
 import React from 'react';
-import {Nav} from 'react-bootstrap';
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import {LinkContainer} from 'react-router-bootstrap';
 
 import {GoogleSigninButton} from './googleSignin';
@@ -10,7 +8,10 @@ import {LanguageSwitch} from './langSwitch';
 import Path from '../../constants/path';
 
 
-export const Navigation = React.forwardRef((props, ref) => {
+type Props = {};
+
+
+export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) => {
   const {t} = useTranslation();
 
   return (
@@ -74,7 +75,6 @@ export const Navigation = React.forwardRef((props, ref) => {
         </Navbar.Collapse>
       </Navbar>
       <Navbar collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}}>
-        {/* @ts-ignore */}
         <span ref={ref}>{t('pages.name.site')}</span>
       </Navbar>
     </>

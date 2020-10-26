@@ -1,6 +1,6 @@
 import React, {Suspense, useEffect} from 'react';
 import {Route, useHistory} from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+import {Container, Spinner} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import ReactGA from 'react-ga';
 
@@ -8,10 +8,12 @@ import {About, Constructing, Home, QuestEdit, QuestList, QuestNew, QuestPage} fr
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
-const Page = () => {
+
+const PageMain = () => {
   const {t} = useTranslation();
 
-  const ref = React.useRef<HTMLSpanElement>();
+  const ref = React.useRef<HTMLSpanElement>(null) as React.MutableRefObject<HTMLSpanElement>;
+  const title = React.useRef<string>(t('pages.name.site'));
 
   const updatePageTitle = (newTitle?: string) => {
     newTitle = newTitle || t('pages.name.site');
@@ -20,15 +22,19 @@ const Page = () => {
       newTitle = '';
     }
 
-    // FIXME: this causes some page not using the correct title - use context?
-    // `ref.current` can be null before ref is "connected"
     if (ref.current) {
       ref.current.innerText = newTitle;
     }
 
+    title.current = newTitle;
     document.title = newTitle + t('pages.name.suffix');
-    return newTitle;
   };
+
+  // Ensure that the title has been set
+  useEffect(() => {
+    document.title = title.current;
+    ref.current.innerText = title.current;
+  });
 
   return (
     <>
@@ -111,9 +117,12 @@ const Page = () => {
 };
 
 const PageLoading = () => (
-  <div>
-    Loading...
-  </div>
+  <>
+    <div className="d-flex justify-content-center" style={{minHeight: '100vh', alignItems: 'center'}}>
+      <Spinner animation="border" variant="light" style={{minHeight: '8vh', minWidth: '8vh'}}/>
+      <span className="ml-3" style={{fontSize: '8vh'}}>Loading...</span>
+    </div>
+  </>
 );
 
 const Main = () => {
@@ -131,7 +140,7 @@ const Main = () => {
 
   return (
     <Suspense fallback={<PageLoading/>}>
-      <Page/>
+      <PageMain/>
     </Suspense>
   );
 };
