@@ -7,7 +7,6 @@ import {Markdown} from '../elements/markdown';
 export const Constructing = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
 
-  console.log(fnSetTitle);
   if (fnSetTitle) {
     fnSetTitle(t('pages.name.constructing'));
   }

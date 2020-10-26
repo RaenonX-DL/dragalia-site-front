@@ -3,6 +3,23 @@
   background-image: linear-gradient(to right, #02152A, #2F4668);
 }
 
+.bg-anim-om {
+  background: linear-gradient(315deg, #02152A 20%, #2F4668 50%, #02152A 80%);
+  background-size: 500%;
+  animation-name: bg-transform;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-transform {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

@@ -78,13 +78,11 @@ export const Navigation = ({pageTitle}: NavigationProps) => {
       </Navbar>
       {
         pageTitle ?
-          <Navbar collapseOnSelect expand="lg" bg="om-gradient" variant="dark" sticky="top" style={{zIndex: 999}}>
+          <Navbar collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}}>
             {pageTitle}
           </Navbar> :
           <></>
       }
-      {/* FIXME: Ability to change the title of this navbar */}
-      {/* TODO: Animate the above navbar */}
     </>
   );
 };

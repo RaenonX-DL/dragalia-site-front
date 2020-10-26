@@ -1,3 +1,5 @@
+/* region Global styling */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,6 +14,28 @@ code {
     monospace;
 }
 
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* endregion */
+
+
+/* region Selective styling */
+
+div.footer {
+  height: 15vh;
+}
+
+.no-line-break {
+  white-space: nowrap;
+}
+
+/* endregion */
+
+
+/* region Youtube Embed */
 /* https://www.ankursheel.com/blog/full-width-you-tube-video-embed */
 
 div.youtube-embed {
@@ -29,15 +53,4 @@ iframe.youtube-embed {
   border: 0;
 }
 
-img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-div.footer {
-  height: 15vh;
-}
-
-.no-line-break {
-  white-space: nowrap;
-}
+/* endregion */
