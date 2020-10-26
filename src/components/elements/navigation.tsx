@@ -12,8 +12,6 @@ import Path from '../../constants/path';
 export const Navigation = React.forwardRef((props, ref) => {
   const {t} = useTranslation();
 
-  // const [pageTitle, setPageTitle] = React.useState('');
-
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>

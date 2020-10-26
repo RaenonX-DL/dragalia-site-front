@@ -61,6 +61,7 @@
     },
     "manage": {
       "add": "New Post",
+      "add_note": "Specify ID to post multi-language version of a post. The web app will check if the combination of the post ID and the language code is available. ID without any related posts is unavailable.",
       "collapse": "Collapse/Expand",
       "edit": "Edit Post",
       "fetch_list_failed": "Failed to fetch the post list. ({{error}})",

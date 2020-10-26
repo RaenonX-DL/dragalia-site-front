@@ -8,6 +8,7 @@ import {MarkdownInput} from './markdownInput';
 import {ExpressModal} from './modalExpress';
 import {QuestPositionForm} from './questPositionForm';
 import {
+  ApiRequestSender,
   QuestPostEditPayload,
   QuestPostGetResponse,
   QuestPostPublishPayload,
@@ -37,8 +38,7 @@ type QuestPostFormProps = {
 }
 
 
-// FIXME: "attach" the post of different language to use the same seq id
-//  - Add with same seq ID but different lang? May need to be able to display duplicated - ID occupied
+// FIXME: Index page display specific language only
 
 
 export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
@@ -49,11 +49,20 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   };
 
   // region States and event handlers
+  const [postId, setPostId] = React.useState(post?.seqId.toString() || '');
+  const onPostIdChanged = (e) => {
+    setPostId(e.target.value);
+    checkAvailability(e.target.value, langCode);
+  };
+
   const [title, setTitle] = React.useState(post?.title || '');
   const onTitleChanged = (e) => setTitle(e.target.value);
 
   const [langCode, setLangCode] = React.useState(post?.langCode || i18n.language);
-  const onLangCodeChanged = (e) => setLangCode(e.target.value);
+  const onLangCodeChanged = (e) => {
+    setLangCode(e.target.value);
+    checkAvailability(postId, e.target.value);
+  };
 
   const [generalInfo, setGeneralInfo] = React.useState(post?.general || '');
   const onGeneralInfoChanged = (e) => setGeneralInfo(e.target.value);
@@ -92,12 +101,33 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
 
   const [modifyNote, setModifyNote] = React.useState('');
   const onModifyNoteChanged = (e) => setModifyNote(e.target.value);
+
+  const [availability, setAvailability] = React.useState(true);
+  const checkAvailability = (postId, langCode) => {
+    // Passing 2 arguments instead of using the variables for all is because that setting the state is an async action
+    ApiRequestSender.questPostIdCheck(getGoogleUid() || '', parseInt(postId) || null, langCode)
+      .then((data) => setAvailability(data.available))
+      .catch(() => setAvailability(false));
+  };
+
   // endregion
 
   // region Sections
+  const sectionHeader = (
+    <Row>
+      <Col className="m-3 p-3 rounded bg-black-32">{t('posts.manage.add_note')}</Col>
+    </Row>
+  );
   const sectionTitle = (
     <Row>
-      <Col lg={9}>
+      <Col lg={2}>
+        <Form.Control
+          className="mb-2" type="number" placeholder={t('posts.info.id')}
+          isValid={availability} isInvalid={!availability}
+          onChange={onPostIdChanged} value={postId} disabled={post !== undefined && post !== null}
+        />
+      </Col>
+      <Col lg={7}>
         <Form.Control
           className="mb-2" type="text" placeholder={t('posts.quest.title')}
           onChange={onTitleChanged} value={title} required
@@ -109,7 +139,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
           onChange={onLangCodeChanged}>
           {
             SUPPORTED_LANG.map((lang) => {
-              return (<option key={lang}>{SUPPORTED_LANG_NAME.get(lang)}</option>);
+              return (<option key={lang} value={lang}>{SUPPORTED_LANG_NAME.get(lang)}</option>);
             })
           }
         </Form.Control>
@@ -182,8 +212,8 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   const sectionControl = (
     <Row className="mb-6">
       <Col>
-        <Button type="submit" className="float-right">
-          {post ? t('posts.manage.publish') : t('posts.manage.edit')}
+        <Button type="submit" className="float-right" disabled={!availability}>
+          {post ? t('posts.manage.edit') : t('posts.manage.publish')}
         </Button>
       </Col>
     </Row>
@@ -234,6 +264,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
     } else {
       promise = handleSubmit<QuestPostPublishPayload>({
         google_uid: getGoogleUid() || '',
+        seq_id: postId || undefined,
         title: title,
         lang: langCode,
         general: generalInfo,
@@ -265,13 +296,14 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   };
 
   if (redirToPostPage > 0) {
-    return <Redirect to={Path.getQuest(redirToPostPage)}/>;
+    return <Redirect to={{pathname: Path.getQuest(redirToPostPage), search: `?lang=${langCode}`}}/>;
   }
 
   return (
     <>
       {modalSubmissionFailed}
       <form onSubmit={onFormSubmit}>
+        {sectionHeader}
         {sectionTitle}
         <hr/>
         {sectionGeneralInfo}

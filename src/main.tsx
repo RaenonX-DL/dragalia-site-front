@@ -20,6 +20,7 @@ const Page = () => {
       newTitle = '';
     }
 
+    // FIXME: [PRIORITY] Not displaying title on initial load
     // `ref.current` can be null before ref is "connected"
     if (ref.current) {
       ref.current.innerText = newTitle;

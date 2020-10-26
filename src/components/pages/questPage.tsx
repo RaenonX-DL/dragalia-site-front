@@ -27,7 +27,7 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
     },
   );
 
-  fnSetTitle(`#${pid} ${status.post ? status.post.title : t('pages.name.quest_post')}`);
+  fnSetTitle(`#Q${pid} ${status.post ? status.post.title : t('pages.name.quest_post')}`);
 
   if (status.fetched && status.post) {
     return (

@@ -10,4 +10,5 @@ export default class ApiEndPoints {
   static POST_QUEST_LIST = ApiEndPoints.ROOT + '/posts/quest';
   static POST_QUEST_PUBLISH = ApiEndPoints.ROOT + '/posts/quest/publish';
   static POST_QUEST_EDIT = ApiEndPoints.ROOT + '/posts/quest/edit'
+  static POST_QUEST_ID_CHECK = ApiEndPoints.ROOT + '/posts/quest/id-check';
 }

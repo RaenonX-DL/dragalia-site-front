@@ -6,6 +6,7 @@ type BaseResponse = {
   code: number,
   success: boolean
 }
+
 /**
  * Sync with `UserLoginResponse` at back.
  */
@@ -37,7 +38,7 @@ interface QuestPostPublishResponse extends QuestPostUpdateResponse {}
  */
 export interface QuestPostGetResponse extends BaseResponse {
   isAdmin: boolean,
-  seqId: number,
+  seqId: string,
   title: string,
   langCode: string,
   general: string,
@@ -48,6 +49,14 @@ export interface QuestPostGetResponse extends BaseResponse {
   published: string,
   modifyNotes: Array<PostModifyNote>,
   viewCount: number
+}
+
+/**
+ * Sync with `QuestPostIDCheckResponseKey` at back.
+ */
+interface QuestPostIdCheckResponse extends BaseResponse {
+  isAdmin: boolean,
+  available: boolean
 }
 
 /**
@@ -128,6 +137,23 @@ export default class ApiRequestSender {
       'POST',
       ApiEndPoints.POST_QUEST_EDIT,
       payload,
+    );
+  }
+
+  /**
+   * Send a request to check if the ID combination is available.
+   *
+   * @param {string} googleUid current Google UID
+   * @param {number | null} seqId title of the post
+   * @param {string} langCode language code of the post
+   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   */
+  static questPostIdCheck(
+    googleUid: string, seqId: number | null, langCode: string): Promise<QuestPostIdCheckResponse> {
+    return this.sendRequest<QuestPostIdCheckResponse>(
+      'GET',
+      ApiEndPoints.POST_QUEST_ID_CHECK,
+      ApiRequestPayloadMaker.questPostIdCheck(googleUid, seqId, langCode),
     );
   }
 

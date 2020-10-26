@@ -15,7 +15,7 @@ interface QuestPostListPayload extends RequestPayloadBase {
 }
 
 export interface QuestPostUpdatePayload extends RequestPayloadBase {
-  seq_id?: number,
+  seq_id?: string,
   title: string,
   lang: string,
   general: string,
@@ -25,17 +25,32 @@ export interface QuestPostUpdatePayload extends RequestPayloadBase {
   modify_note?: string,
 }
 
-export interface QuestPostPublishPayload extends QuestPostUpdatePayload {}
+export interface QuestPostPublishPayload extends QuestPostUpdatePayload {
+}
 
 export interface QuestPostEditPayload extends QuestPostPublishPayload {
-  seq_id: number,
+  seq_id: string,
   modify_note: string,
 }
 
+/**
+ * Sync with `EPQuestPostGetParam` at back.
+ */
 interface QuestPostGetPayload extends RequestPayloadBase {
   seq_id: number,
-  lang_code?: string,
+  lang?: string,
   inc_count?: boolean
+}
+
+interface IdCheckPayload extends RequestPayloadBase {
+  seq_id?: number,
+  lang: string
+}
+
+/**
+ * Sync with `EPQuestPostIDCheckParam` at back.
+ */
+interface QuestPostIdCheckPayload extends IdCheckPayload {
 }
 
 /**
@@ -70,7 +85,7 @@ export default class ApiRequestPayloadMaker {
     return {
       google_uid: googleUid,
       seq_id: seqId,
-      lang_code: langCode,
+      lang: langCode,
       inc_count: increaseCount,
     };
   }
@@ -92,58 +107,25 @@ export default class ApiRequestPayloadMaker {
   }
 
   /**
-   * Make the payload for publishing a quest post.
+   * Make the payload for checking the ID availability of a quest post.
+   *
+   * `seqId` will only being attached to the payload if it's not `null`.
    *
    * @param {string} googleUid current Google UID
-   * @param {string} title title of the post
+   * @param {number | null} seqId title of the post
    * @param {string} langCode language code of the post
-   * @param {string} generalInfo general info for the post
-   * @param {string} video video of the post
-   * @param {Array<PositionalInfo>} posInfo positional info in the post
-   * @param {string} addendum addendum of the post
-   * @return {QuestPostPublishPayload} payload object
+   * @return {QuestPostIdCheckPayload} payload object
    */
-  static questPostPublish(
-    googleUid: string, title: string, langCode: string, generalInfo: string, video: string,
-    posInfo: Array<PositionalInfo>, addendum: string): QuestPostPublishPayload {
-    return {
+  static questPostIdCheck(googleUid: string, seqId: number | null, langCode: string): QuestPostIdCheckPayload {
+    const ret = {
       google_uid: googleUid,
-      title: title,
       lang: langCode,
-      general: generalInfo,
-      video: video,
-      positional: posInfo,
-      addendum: addendum,
     };
-  }
 
-  /**
-   * Make the payload for editing a quest post.
-   *
-   * @param {string} googleUid current Google UID
-   * @param {number} seqId sequential ID of the post
-   * @param {string} title title of the post
-   * @param {string} langCode language code of the post
-   * @param {string} generalInfo general info for the post
-   * @param {string} video video of the post
-   * @param {Array<PositionalInfo>} posInfo positional info in the post
-   * @param {string} addendum addendum of the post
-   * @param {string} modifyNote modification note for the current edit
-   * @return {QuestPostPublishPayload} payload object
-   */
-  static questPostEdit(
-    googleUid: string, seqId: number, title: string, langCode: string, generalInfo: string, video: string,
-    posInfo: Array<PositionalInfo>, addendum: string, modifyNote: string): QuestPostEditPayload {
-    return {
-      google_uid: googleUid,
-      seq_id: seqId,
-      title: title,
-      lang: langCode,
-      general: generalInfo,
-      video: video,
-      positional: posInfo,
-      addendum: addendum,
-      modify_note: modifyNote,
-    };
+    if (seqId) {
+      ret['seq_id'] = seqId;
+    }
+
+    return ret;
   }
 }

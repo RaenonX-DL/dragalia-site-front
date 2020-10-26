@@ -18,7 +18,7 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
   });
 
   if (status.post) {
-    fnSetTitle(`#${status.post.seqId} - ${t('pages.name.quest_edit')}`);
+    fnSetTitle(`#Q${status.post.seqId} - ${t('pages.name.quest_edit')}`);
   } else {
     fnSetTitle(t('pages.name.quest_edit'));
   }

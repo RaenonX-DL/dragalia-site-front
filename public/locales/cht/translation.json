@@ -61,6 +61,7 @@
     },
     "manage": {
       "add": "新增貼文",
+      "add_note": "若有指定 ID，則代表欲新增貼文為多國語言版本。網頁將會檢查該 ID 和語言是否可用。還沒有對應貼文的 ID 無法使用。",
       "collapse": "收摺/展開",
       "edit": "編輯貼文",
       "fetch_list_failed": "貼文清單獲取失敗。({{error}})",
@@ -70,7 +71,7 @@
       "modify_time": "編輯時間",
       "post_not_exists": "貼文不存在。",
       "preview": "預覽",
-      "publish": "發布",
+      "publish": "發布貼文",
       "publish_failed": "發布失敗"
     },
     "misc": {
