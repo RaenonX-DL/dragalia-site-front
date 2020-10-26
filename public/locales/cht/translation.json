@@ -48,7 +48,8 @@
     },
     "name": {
       "about": "關於",
-      "home": "首頁"
+      "home": "首頁",
+      "site": "龍絆攻略站 by OM"
     },
     "not_implemented": "還沒做完，做完會公布。\n\n實作完 Email 通知功能後，會開放讓使用者可以在新功能釋出後收到 Email 通知。"
   },

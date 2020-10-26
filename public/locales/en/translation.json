@@ -48,7 +48,8 @@
     },
     "name": {
       "about": "About",
-      "home": "Home"
+      "home": "Home",
+      "site": "DL Info by OM"
     },
     "not_implemented": "Not implemented yet. Will announce upon completion somewhere.<br/>Users can receive email notifications after the implementation of the related feature has been completed."
   },

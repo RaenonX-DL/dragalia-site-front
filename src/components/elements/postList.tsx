@@ -36,7 +36,7 @@ export const PostList = ({posts, linkGenerator}: { posts: Array<PostListEntry>, 
             return (
               <tr key={post.seqId}>
                 <td className="text-center">#{post.seqId}</td>
-                <td><a href={linkGenerator(post.seqId)}>{post.title}</a></td>
+                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.title}</a></td>
                 <td className="text-right">{post.viewCount}</td>
                 <td className="text-center">{post.modified}</td>
                 <td className="text-center">{post.published}</td>

@@ -11,6 +11,7 @@ import {Markdown} from '../elements';
 
 
 // FIXME: [PRIORITY] edit post
+// FIXME: lang query param seems not working
 // FIXME: Generalize post ID to be the same (possibly the URL too)
 
 

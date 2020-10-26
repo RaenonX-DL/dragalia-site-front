@@ -104,8 +104,8 @@ export const GoogleSigninButton = () => {
     onFailure: onLogoutFailure,
   });
 
-  const logoutButton = <Button onClick={signOut}>{t('google_signin.logout')}</Button>;
-  const loginButton = <Button onClick={signIn}>{t('google_signin.login')}</Button>;
+  const logoutButton = <Button variant="outline-info" onClick={signOut}>{t('google_signin.logout')}</Button>;
+  const loginButton = <Button variant="outline-success" onClick={signIn}>{t('google_signin.login')}</Button>;
 
   return (
     <>
