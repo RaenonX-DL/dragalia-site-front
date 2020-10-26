@@ -9,12 +9,10 @@ import {GoogleSigninButton} from './googleSignin';
 import {LanguageSwitch} from './langSwitch';
 import Path from '../../constants/path';
 
-type NavigationProps = {
-  pageTitle?: string
-}
-
-export const Navigation = ({pageTitle}: NavigationProps) => {
+export const Navigation = React.forwardRef((props, ref) => {
   const {t} = useTranslation();
+
+  // const [pageTitle, setPageTitle] = React.useState('');
 
   return (
     <>
@@ -76,13 +74,12 @@ export const Navigation = ({pageTitle}: NavigationProps) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {
-        pageTitle ?
-          <Navbar collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}}>
-            {pageTitle}
-          </Navbar> :
-          <></>
-      }
+      <Navbar collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}}>
+        {/* @ts-ignore */}
+        <span ref={ref}>{t('pages.name.site')}</span>
+      </Navbar>
     </>
   );
-};
+});
+
+Navigation.displayName = 'Navigation';

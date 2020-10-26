@@ -11,25 +11,26 @@ import Path from './constants/path';
 const Page = () => {
   const {t} = useTranslation();
 
-  const [pageTitle, setPageTitle] = React.useState('');
+  const ref = React.createRef<HTMLSpanElement>();
 
   const updatePageTitle = (newTitle?: string) => {
-    // FIXME: [PRIORITY] Duplicated re-rendering triggered by `setPageTitle()`
-    //  - Sub-page component completed rendering then call this method
-    //  - This method let the whole page re-render
     newTitle = newTitle || t('pages.name.site');
 
     if (!newTitle) {
       newTitle = '';
     }
 
-    setPageTitle(newTitle);
+    // `ref.current` can be null before ref is "connected"
+    if (ref.current) {
+      ref.current.innerText = newTitle;
+    }
     document.title = newTitle + t('pages.name.suffix');
+    return newTitle;
   };
 
   return (
     <>
-      <Navigation pageTitle={pageTitle}/>
+      <Navigation ref={ref}/>
       <Container className="p-3">
         {/* Home */}
 
