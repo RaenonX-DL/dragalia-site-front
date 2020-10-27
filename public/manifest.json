@@ -1,10 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "龍絆攻略站 by OM",
+  "name": "龍絆攻略站 by OM",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "256x256 128x128 64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#202020",
+  "background_color": "#323232"
 }

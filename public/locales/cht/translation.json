@@ -1,0 +1,101 @@
+{
+  "game": {
+    "data": {
+      "title_self": "遊戲資訊",
+      "active": "主動技能",
+      "cex": "CEX",
+      "others": "其他",
+      "passive": "被動技能",
+      "print": "護符",
+      "skill_atk": "攻擊技能",
+      "skill_sup": "支援技能",
+      "story": "故事"
+    },
+    "tools": {
+      "title_self": "遊戲工具",
+      "damage": "傷害計算",
+      "rotation": "輪轉計算"
+    }
+  },
+  "google_signin": {
+    "no_uid": "無 Google 使用者 ID",
+    "no_uid_details": "找不到 Google 使用者 ID。請嘗試重新登入。",
+    "login": "Google 登入",
+    "login_error": "錯誤碼: {{errorCode}}",
+    "login_failed": "登入失敗",
+    "login_unknown": "因為不明原因，無法登入。({{error}})",
+    "logout": "Google 登出",
+    "logout_failed": "登出失敗",
+    "logout_unknown": "因為不明原因，無法登出。",
+    "request_failed": "無法傳送登入請求"
+  },
+  "lang": {
+    "in-use": "目前使用中"
+  },
+  "misc": {
+    "add": "新增",
+    "remove": "移除"
+  },
+  "pages": {
+    "name": {
+      "about": "關於",
+      "home": "首頁",
+      "constructing": "建置中",
+      "quest_edit": "編輯高難攻略",
+      "quest_list": "高難副本攻略目錄",
+      "quest_new": "新增高難攻略",
+      "quest_post": "高難副本攻略",
+      "site": "龍絆攻略站 by OM",
+      "suffix": " | 龍絆攻略站 by OM"
+    },
+    "constructing": "網頁/功能建置中。建置完畢後會公布。\n\n### Email 通知系統完成前\n\n會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n### Email 通知系統完成後\n\n有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。",
+    "welcome": "歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n目前 **高難攻略** 已完成，歡迎瀏覽。\n\n點選建置中的頁面可以查看相關說明。"
+  },
+  "posts": {
+    "info": {
+      "title_self": "貼文資訊",
+      "id": "ID",
+      "last_modified": "最後修改時間",
+      "published": "發布時間",
+      "title": "標題",
+      "view_count": "瀏覽次數"
+    },
+    "manage": {
+      "add": "新增貼文",
+      "add_note": "若有指定 ID，則代表欲新增貼文為多國語言版本。網頁將會檢查該 ID 和語言是否可用。還沒有對應貼文的 ID 無法使用。",
+      "collapse": "收摺/展開",
+      "edit": "編輯貼文",
+      "fetch_list_failed": "貼文清單獲取失敗。({{error}})",
+      "fetch_post_failed": "貼文獲取失敗。({{error}})",
+      "md": "Markdown",
+      "modify_note": "編輯註記",
+      "modify_time": "編輯時間",
+      "post_not_exists": "貼文不存在。",
+      "preview": "預覽",
+      "publish": "發布貼文",
+      "publish_failed": "發布失敗"
+    },
+    "message": {
+      "alt_lang": "本貼文沒有語言為 {{langUi}} 的版本。因此，以下顯示語言為 {{langPost}} 的版本替代。",
+      "other_lang": "本貼文有其他語言的版本。"
+    },
+    "misc": {
+      "title_self": "其他文章"
+    },
+    "new_object": {
+      "title_self": "物件評測"
+    },
+    "quest": {
+      "title_self": "高難攻略",
+      "addendum": "附記",
+      "builds": "配置",
+      "character": "角色",
+      "general": "通用注意事項",
+      "positional": "角色/職業別攻略",
+      "rotations": "套路 / 手順",
+      "tips": "要點",
+      "title": "標題",
+      "video": "影片"
+    }
+  }
+}

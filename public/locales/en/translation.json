@@ -1,0 +1,101 @@
+{
+  "game": {
+    "data": {
+      "title_self": "Game Data",
+      "active": "Active",
+      "cex": "Chain EX",
+      "others": "Others",
+      "passive": "Passive",
+      "print": "Wyrmprints",
+      "skill_atk": "Skill (Attack)",
+      "skill_sup": "Skill (Support)",
+      "story": "Story"
+    },
+    "tools": {
+      "title_self": "Game Tools",
+      "damage": "Damage Calculator",
+      "rotation": "Rotations Calculator"
+    }
+  },
+  "google_signin": {
+    "no_uid": "No Google user ID",
+    "no_uid_details": "Cannot find Google user ID. Please try re-login.",
+    "login": "Google Login",
+    "login_error": "Error code: {{errorCode}}",
+    "login_failed": "Login failed",
+    "login_unknown": "Failed to login for unknown reason. ({{error}})",
+    "logout": "Google Logout",
+    "logout_failed": "Logout failed",
+    "logout_unknown": "Failed to logout for unknown reason.",
+    "request_failed": "Failed to send login request"
+  },
+  "lang": {
+    "in-use": "Currently in-use"
+  },
+  "misc": {
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "pages": {
+    "name": {
+      "about": "About",
+      "home": "Homepage",
+      "constructing": "Under construction",
+      "quest_edit": "Edit HDTs/Agitos",
+      "quest_list": "Index of HDTs/Agitos",
+      "quest_new": "New HDTs/Agitos",
+      "quest_post": "HDTs/Agitos",
+      "site": "DL Info by OM",
+      "suffix": " | DL Info by OM"
+    },
+    "constructing": "Under construction. Will announce upon completion somewhere.\n\n### Completed before email notification system has been completed\n\nWe will announce it in social media (Reddit, FB groups, etc.).\n\n### Completed after the email notification system has been implemented\n\nUsers who logged in before or signed up for the email list will receive an email about the new release.",
+    "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos** section is completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."
+  },
+  "posts": {
+    "info": {
+      "title_self": "Post Information",
+      "id": "ID",
+      "last_modified": "Last Modified",
+      "published": "Published",
+      "title": "Title",
+      "view_count": "View Count"
+    },
+    "manage": {
+      "add": "New Post",
+      "add_note": "Specify ID to post multi-language version of a post. The web app will check if the combination of the post ID and the language code is available. ID without any related posts is unavailable.",
+      "collapse": "Collapse/Expand",
+      "edit": "Edit Post",
+      "fetch_list_failed": "Failed to fetch the post list. ({{error}})",
+      "fetch_post_failed": "Failed to fetch the post. ({{error}})",
+      "md": "Markdown",
+      "modify_note": "Modification Note",
+      "modify_time": "Modified at",
+      "post_not_exists": "Post not exists.",
+      "preview": "Preview",
+      "publish": "Publish",
+      "publish_failed": "Failed to publish"
+    },
+    "message": {
+      "alt_lang": "This post does not have a version in {{langUi}}. Therefore, we're displaying it in {{langPost}}.",
+      "other_lang": "This post is multilingual."
+    },
+    "misc": {
+      "title_self": "Others"
+    },
+    "new_object": {
+      "title_self": "New Objects"
+    },
+    "quest": {
+      "title_self": "HDTs/Agitos",
+      "addendum": "Addendum",
+      "builds": "Builds",
+      "character": "Character",
+      "general": "General Tips",
+      "positional": "For each position/character",
+      "rotations": "Rotations",
+      "tips": "Tips",
+      "title": "Title",
+      "video": "Video"
+    }
+  }
+}

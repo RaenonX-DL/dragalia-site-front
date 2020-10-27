@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from 'react-router-dom';
+import ReactGA from 'react-ga';
+
 import './index.css';
-import App from './App';
+import Main from './main';
 import * as serviceWorker from './serviceWorker';
 
+// Style sheets
+import './bootstrap.css';
+
+// import i18n (needs to be bundled)
+import './i18n';
+
+// Initialize Google Analytics
+ReactGA.initialize('G-75EMZWS1L3');
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Main/>
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
