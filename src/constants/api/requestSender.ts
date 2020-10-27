@@ -18,6 +18,7 @@ interface UserLoginResponse extends BaseResponse {}
 interface QuestPostListResponse extends BaseResponse {
   isAdmin: boolean,
   startIdx: number,
+  postCount: number,
   posts: Array<PostListEntry>
 }
 

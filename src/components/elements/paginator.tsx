@@ -7,12 +7,13 @@ type PaginatorParams = {
   path: string,
   onPageClick: (page: number) => void,
   queryParamGenerator: (page: number) => string, // page starts from 1, excludes '?'
-  initPage?: number
-  maxPage?: number
+  initPage?: number,
+  maxPage?: number,
+  disable?: boolean
 }
 
 export const Paginator = (params: PaginatorParams) => {
-  const {path, onPageClick, queryParamGenerator, initPage, maxPage} = params;
+  const {path, onPageClick, queryParamGenerator, initPage, maxPage, disable = false} = params;
 
   const [page, setPage] = useState(initPage || 1);
 
@@ -54,15 +55,15 @@ export const Paginator = (params: PaginatorParams) => {
 
   return (
     <Pagination onClick={changePage}>
-      <Pagination.First/>
-      <Pagination.Prev/>
+      <Pagination.First disabled={disable}/>
+      <Pagination.Prev disabled={disable}/>
       {
         [page - 2, page - 1, page, page + 1, page + 2]
-          .filter((n) => n > 0)
-          .map((i) => <Pagination.Item key={i} active={page === i}>{i}</Pagination.Item>)
+          .filter((n) => n > 0 && (maxPage !== undefined ? n <= maxPage : true))
+          .map((i) => <Pagination.Item key={i} active={page === i} disabled={disable}>{i}</Pagination.Item>)
       }
-      <Pagination.Next/>
-      {maxPage ? <Pagination.Last/> : <></>}
+      <Pagination.Next disabled={disable}/>
+      {maxPage ? <Pagination.Last disabled={disable}/> : <></>}
     </Pagination>
   );
 };

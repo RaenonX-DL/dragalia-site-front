@@ -14,6 +14,7 @@ const limit = 25;
 
 type Status = {
   startIdx: number,
+  maxPage: number,
   posts: Array<PostListEntry>,
   isAdmin: boolean,
   showAlert: boolean,
@@ -31,6 +32,7 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
   const [status, setStatus] = React.useState<Status>(
     {
       startIdx: -1,
+      maxPage: 1,
       posts: [],
       isAdmin: false,
       showAlert: false,
@@ -68,6 +70,7 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
               const newState = {...prevState};
 
               newState.startIdx = data.startIdx;
+              newState.maxPage = Math.ceil(data.postCount / limit);
               newState.posts = data.posts;
               newState.isAdmin = data.isAdmin;
               newState.showAlert = false;
@@ -118,9 +121,12 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
       {status.isAdmin ? <div className="mb-3"><PostManageBar newPostUrl={Path.QUEST_NEW}/></div> : <></>}
       {status.showAlert ? alertFetchFailed : <></>}
       <PostList posts={status.posts} linkGenerator={(id) => Path.getQuest(id)}/>
-      <Paginator
-        path={Path.QUEST_LIST} onPageClick={onPageClick} queryParamGenerator={queryParamGenerator}
-        initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / 25 + 1))}/>
+      <div className="d-flex justify-content-center">
+        <Paginator
+          path={Path.QUEST_LIST} onPageClick={onPageClick} queryParamGenerator={queryParamGenerator}
+          disable={status.showAlert}
+          initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / limit + 1))} maxPage={status.maxPage}/>
+      </div>
       {/* DRAFT: search bar at top right side */}
     </>
   );

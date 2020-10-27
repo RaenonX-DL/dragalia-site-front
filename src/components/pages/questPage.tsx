@@ -60,8 +60,6 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
         }
       </Alert>);
 
-    // FIXME: Paginator remove next (not available)
-
     return (
       <>
         {
