@@ -2,6 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 
 import {PageProps} from './base';
+import {Markdown} from '../elements';
 
 export const Home = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
@@ -9,6 +10,8 @@ export const Home = ({fnSetTitle}: PageProps) => {
   fnSetTitle(t('pages.name.home'));
 
   return (
-    <h2>Home</h2>
+    <>
+      <Markdown>{t('pages.welcome')}</Markdown>
+    </>
   );
 };
