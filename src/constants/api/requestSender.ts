@@ -40,7 +40,7 @@ export interface QuestPostGetResponse extends BaseResponse {
   isAdmin: boolean,
   seqId: string,
   title: string,
-  langCode: string,
+  lang: string,
   general: string,
   video: string,
   info: Array<PositionalInfo>,
@@ -48,7 +48,9 @@ export interface QuestPostGetResponse extends BaseResponse {
   modified: string,
   published: string,
   modifyNotes: Array<PostModifyNote>,
-  viewCount: number
+  viewCount: number,
+  isAltLang: boolean,
+  otherLangs: Array<string>
 }
 
 /**

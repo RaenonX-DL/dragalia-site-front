@@ -55,7 +55,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   const [title, setTitle] = React.useState(post?.title || '');
   const onTitleChanged = (e) => setTitle(e.target.value);
 
-  const [langCode, setLangCode] = React.useState(post?.langCode || i18n.language);
+  const [langCode, setLangCode] = React.useState(post?.lang || i18n.language);
   const onLangCodeChanged = (e) => {
     setLangCode(e.target.value);
     checkAvailability(postId, e.target.value);

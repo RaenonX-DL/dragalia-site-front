@@ -74,6 +74,10 @@
       "publish": "發布貼文",
       "publish_failed": "發布失敗"
     },
+    "message": {
+      "alt_lang": "本貼文沒有語言為 {{langUi}} 的版本。因此，以下顯示語言為 {{langPost}} 的版本替代。",
+      "other_lang": "本貼文有其他語言的版本。"
+    },
     "misc": {
       "title_self": "其他文章"
     },

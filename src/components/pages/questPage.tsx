@@ -1,20 +1,19 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-import {Col, Row} from 'react-bootstrap';
+import {Alert, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
 import {InfoCard} from '../elements/infoCard';
 import {PostModificationNotes} from '../elements/postModNotes';
 import {QuestPositionOutput} from '../elements/questPositionOutput';
-import {FetchPost, Markdown, PostManageBar, QuestPostFetchStatus} from '../elements';
+import {FetchPost, Markdown, PostListEntry, PostManageBar, QuestPostFetchStatus} from '../elements';
 import {PageProps} from './base';
 import Path from '../../constants/path';
+import {SUPPORTED_LANG_NAME} from '../../constants/lang';
 
-
-// FIXME: Show that alternate language available
 
 export const QuestPage = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const {pid} = useParams();
 
@@ -30,6 +29,39 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
   fnSetTitle(`#Q${pid} ${status.post ? status.post.title : t('pages.name.quest_post')}`);
 
   if (status.fetched && status.post) {
+    // Fetched and post available
+
+    const alertIsAltLang = (
+      <Alert variant="warning" className="mt-3">
+        {
+          t(
+            'posts.message.alt_lang',
+            {
+              langUi: SUPPORTED_LANG_NAME.get(i18n.language),
+              langPost: SUPPORTED_LANG_NAME.get(status.post.lang),
+            },
+          )
+        }
+      </Alert>
+    );
+
+    const alertOtherLangAvailable = (
+      <Alert variant="info" className="mt-3">
+        {t('posts.message.other_lang')}
+        <br/>
+        {
+          status.post.otherLangs.map((langCode) => (
+            <li key={langCode}>
+              <Alert.Link href={Path.getQuest((status.post as PostListEntry).seqId) + `?lang=${langCode}`}>
+                {SUPPORTED_LANG_NAME.get(langCode)}
+              </Alert.Link>
+            </li>
+          ))
+        }
+      </Alert>);
+
+    // FIXME: Paginator remove next (not available)
+
     return (
       <>
         {
@@ -37,6 +69,8 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
             <PostManageBar newPostUrl={Path.QUEST_NEW} editPostUrl={Path.getQuestEdit(status.post.seqId)}/> :
             <></>
         }
+        {status.post.isAltLang ? alertIsAltLang : <></>}
+        {status.post.otherLangs.length > 0 ? alertOtherLangAvailable : <></>}
         <h3 className="mb-3">{t('posts.quest.general')}</h3>
         <div className="rounded bg-black-32 p-3">
           <Markdown>{status.post.general || 'N/A'}</Markdown>
