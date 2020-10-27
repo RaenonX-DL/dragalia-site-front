@@ -60,6 +60,8 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
         }
       </Alert>);
 
+    // FIXME: Amplify section title
+
     return (
       <>
         {

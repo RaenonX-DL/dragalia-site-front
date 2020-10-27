@@ -9,6 +9,9 @@ import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
 
+// TODO: Add delete post function
+
+
 const PageMain = () => {
   const {t} = useTranslation();
 

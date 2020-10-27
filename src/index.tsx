@@ -14,7 +14,7 @@ import './bootstrap.css';
 import './i18n';
 
 // Initialize Google Analytics
-ReactGA.initialize('G-75EMZWS1L3');
+ReactGA.initialize('G-796E69CFJG'); // FIXME: Currently ReactGA seems not working
 
 ReactDOM.render(
   <BrowserRouter>
