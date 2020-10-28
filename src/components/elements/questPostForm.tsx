@@ -106,7 +106,6 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
       .then((data) => setAvailability(data.available))
       .catch(() => setAvailability(false));
   };
-
   // endregion
 
   // region Sections
@@ -132,7 +131,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
       </Col>
       <Col lg={3}>
         <Form.Control
-          as="select" defaultValue={SUPPORTED_LANG_NAME.get(langCode)} disabled={post !== undefined && post !== null}
+          as="select" defaultValue={langCode} disabled={post !== undefined && post !== null}
           onChange={onLangCodeChanged}>
           {
             SUPPORTED_LANG.map((lang) => {
@@ -146,11 +145,11 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
   const sectionGeneralInfo = (
     <>
       <Row>
-        <Col className="pr-2">
+        <Col className="pr-2" lg={6}>
           <h5>{t('posts.quest.general')}</h5>
           <MarkdownInput onChanged={onGeneralInfoChanged} rows={5} value={generalInfo}/>
         </Col>
-        <Col className="pl-2">
+        <Col className="pl-2" lg={6}>
           <h5>{t('posts.quest.video')}</h5>
           <MarkdownInput onChanged={onVideoChanged} rows={5} value={video}/>
         </Col>

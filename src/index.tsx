@@ -14,7 +14,9 @@ import './bootstrap.css';
 import './i18n';
 
 // Initialize Google Analytics
-ReactGA.initialize('G-796E69CFJG'); // FIXME: Currently ReactGA seems not working
+// https://www.npmjs.com/package/react-ga#upgrading-from-1x-to-2x
+// ReactGA.initialize('G-796E69CFJG', {debug: true}); // FIXME: Currently ReactGA seems not working
+ReactGA.initialize('G-796E69CFJG');
 
 ReactDOM.render(
   <BrowserRouter>
