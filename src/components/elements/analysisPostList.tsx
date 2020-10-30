@@ -2,31 +2,38 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-/**
- * Sync with `QuestPostListResponseKey` at back.
- */
-export type PostListEntry = {
-  seqId: number | string,
-  lang: string,
-  title: string,
-  viewCount: number,
-  modified: string,
-  published: string
-}
+import {AnalysisPostListEntry, AnalysisPostType} from '../../constants/api';
 
 
 type linkGenerator = (id: number | string) => string;
 
 
-export const PostList = ({posts, linkGenerator}: { posts: Array<PostListEntry>, linkGenerator: linkGenerator }) => {
+type PostListProps = {
+  posts: Array<AnalysisPostListEntry>,
+  linkGenerator: linkGenerator
+};
+
+
+export const AnalysisPostList = ({posts, linkGenerator}: PostListProps) => {
   const {t} = useTranslation();
+
+  const translateType = (type: AnalysisPostType) => {
+    if (type === AnalysisPostType.CHARACTER) {
+      return t('posts.analysis.type.character');
+    } else if (type === AnalysisPostType.DRAGON) {
+      return t('posts.analysis.type.dragon');
+    } else {
+      return t('posts.analysis.type.uncategorized');
+    }
+  };
 
   return (
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
           <th className="text-center">{t('posts.info.id')}</th>
-          <th className="text-center w-25">{t('posts.info.title')}</th>
+          <th className="text-center">{t('posts.analysis.object_type')}</th>
+          <th className="text-center w-25">{t('posts.analysis.object_name')}</th>
           <th className="text-center">{t('posts.info.view_count')}</th>
           <th className="text-center">{t('posts.info.last_modified')}</th>
           <th className="text-center">{t('posts.info.published')}</th>
@@ -38,7 +45,8 @@ export const PostList = ({posts, linkGenerator}: { posts: Array<PostListEntry>, 
             return (
               <tr key={post.seqId.toString() + post.lang}>
                 <td className="text-center">#{post.seqId}</td>
-                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.title}</a></td>
+                <td className="text-center">{translateType(post.type)}</td>
+                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.objectName}</a></td>
                 <td className="text-right">{post.viewCount}</td>
                 <td className="text-center">{post.modified}</td>
                 <td className="text-center">{post.published}</td>

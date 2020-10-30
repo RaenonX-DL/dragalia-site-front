@@ -15,8 +15,11 @@ export default class Path {
   static QUEST = '/quest/:pid(\\d+)';
   static QUEST_EDIT = '/quest/:pid(\\d+)/edit';
 
-  static NEW_OBJECT_LIST = '/object';
-  static NEW_OBJECT = '/object/:pid(\\d+)';
+  static ANALYSIS_LIST = '/analysis';
+  static ANALYSIS_NEW_CHARA = '/analysis/new/chara';
+  static ANALYSIS_NEW_DRAGON = '/analysis/new/dragon';
+  static ANALYSIS = '/analysis/:pid(\\d+)';
+  static ANALYSIS_EDIT = '/analysis/:pid(\\d+)/edit';
 
   static MISC_LIST = '/misc';
   static MISC = '/misc/:pid(\\d+)';
@@ -61,13 +64,23 @@ export default class Path {
   }
 
   /**
-   * Get the path of a new object post. ('/object/:oid')
+   * Get the path of an analysis post. ('/analysis/:pid')
    *
-   * @param {number | string} pid quest new object post ID
-   * @return {string} path of a new object post
+   * @param {number | string} pid analysis post ID
+   * @return {string} path of an analysis post
    */
-  static getNewObject(pid: number | string): string {
-    return generatePath(Path.NEW_OBJECT, {pid});
+  static getAnalysis(pid: number | string): string {
+    return generatePath(Path.ANALYSIS, {pid});
+  }
+
+  /**
+   * Get the path for editing an analysis post. ('/analysis/:pid/edit')
+   *
+   * @param {number | string} pid analysis post ID
+   * @return {string} path of an analysis post to be edited
+   */
+  static getAnalysisEdit(pid: number | string): string {
+    return generatePath(Path.ANALYSIS_EDIT, {pid});
   }
 
   /**

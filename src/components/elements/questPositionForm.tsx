@@ -5,14 +5,6 @@ import {Col, Form, Row} from 'react-bootstrap';
 import {MarkdownInput} from './markdownInput';
 
 
-export type PositionalInfo = {
-  position: string,
-  builds: string,
-  rotations: string,
-  tips: string,
-}
-
-
 export type QuestPositionInputProps = {
   onPositionNameChanged?: ChangeEventHandler<HTMLInputElement>,
   onBuildsChanged?: ChangeEventHandler<HTMLInputElement>,

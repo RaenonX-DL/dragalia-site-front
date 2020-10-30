@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useParams} from 'react-router-dom';
-import {Alert, Col, Row} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {InfoCard} from '../elements/infoCard';
-import {PostModificationNotes} from '../elements/postModNotes';
-import {QuestPositionOutput} from '../elements/questPositionOutput';
-import {FetchPost, Markdown, PostListEntry, PostManageBar, QuestPostFetchStatus} from '../elements';
+import {
+  FetchPost,
+  getGoogleUid,
+  Markdown,
+  PostFetchStatus,
+  PostInfo,
+  PostManageBar,
+  QuestPositionOutput,
+  QuestPostFetchStatus,
+} from '../elements';
 import {PageProps} from './base';
+import {ApiRequestSender, QuestPostListEntry} from '../../constants/api';
 import Path from '../../constants/path';
 import {SUPPORTED_LANG_NAME} from '../../constants/lang';
 
@@ -52,15 +59,13 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
         {
           status.post.otherLangs.map((langCode) => (
             <li key={langCode}>
-              <Alert.Link href={Path.getQuest((status.post as PostListEntry).seqId) + `?lang=${langCode}`}>
+              <Alert.Link href={Path.getQuest((status.post as QuestPostListEntry).seqId) + `?lang=${langCode}`}>
                 {SUPPORTED_LANG_NAME.get(langCode)}
               </Alert.Link>
             </li>
           ))
         }
       </Alert>);
-
-    // FIXME: Amplify section title
 
     return (
       <>
@@ -102,33 +107,17 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
             <></>
         }
 
-        <h3 className="mb-3">{t('posts.info.title_self')}</h3>
-        <Row>
-          <Col lg={4} className="pr-lg-2">
-            <InfoCard title={t('posts.info.last_modified')} content={status.post.modified}/>
-            <div className="d-lg-none mb-3"/>
-          </Col>
-          <Col lg={4} className="px-lg-2">
-            <InfoCard title={t('posts.info.published')} content={status.post.published}/>
-            <div className="d-lg-none mb-3"/>
-          </Col>
-          <Col lg={4} className="pl-lg-2">
-            <InfoCard title={t('posts.info.view_count')} content={status.post.viewCount}/>
-            <div className="d-lg-none mb-3"/>
-          </Col>
-        </Row>
-        {
-          status.post.modifyNotes.length > 0 ?
-            <Row className="mt-lg-3">
-              <Col>
-                <PostModificationNotes modifyNote={status.post.modifyNotes}/>
-              </Col>
-            </Row> :
-            <></>
-        }
+        <PostInfo post={status.post}/>
       </>
     );
   } else {
-    return <FetchPost status={status} fnSetStatus={setStatus} pid={pid}/>;
+    const fnSendFetchRequest = () =>
+      ApiRequestSender.questPostGet(getGoogleUid() || '', pid.toString(), i18n.language, true);
+
+    return (
+      <FetchPost
+        status={status}
+        fnSetStatus={setStatus as Dispatch<SetStateAction<PostFetchStatus>>} fnSendFetchRequest={fnSendFetchRequest}/>
+    );
   }
 };

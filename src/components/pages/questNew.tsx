@@ -13,6 +13,6 @@ export const QuestNew = ({fnSetTitle}: PageProps) => {
   const handleSubmit = (payload) => ApiRequestSender.questPostPublish(payload);
 
   return (
-    <QuestPostForm handleSubmit={handleSubmit}/>
+    <QuestPostForm fnSendRequest={handleSubmit}/>
   );
 };

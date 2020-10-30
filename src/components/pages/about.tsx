@@ -9,6 +9,17 @@ export const About = ({fnSetTitle}: PageProps) => {
   fnSetTitle(t('pages.name.about'));
 
   return (
-    <h2>About</h2>
+    <a>
+      <h2>
+        <a href="https://github.com/RaenonX-DL/dragalia-site-front" target="_blank" rel="noreferrer">
+          Github Repo (Frontend)
+        </a>
+      </h2>
+      <h2>
+        <a href="https://github.com/RaenonX-DL/dragalia-site-back" target="_blank" rel="noreferrer">
+          Github Repo (Backend)
+        </a>
+      </h2>
+    </a>
   );
 };

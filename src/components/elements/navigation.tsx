@@ -27,8 +27,8 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
             <LinkContainer to={Path.QUEST_LIST}>
               <Nav.Link>{t('posts.quest.title_self')}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.NEW_OBJECT_LIST}>
-              <Nav.Link>{t('posts.new_object.title_self')}</Nav.Link>
+            <LinkContainer to={Path.ANALYSIS_LIST}>
+              <Nav.Link>{t('posts.analysis.title_self')}</Nav.Link>
             </LinkContainer>
             <LinkContainer to={Path.MISC_LIST}>
               <Nav.Link>{t('posts.misc.title_self')}</Nav.Link>
