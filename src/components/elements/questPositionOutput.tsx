@@ -1,9 +1,10 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
-import {PositionalInfo} from './questPositionForm';
 import {Markdown} from './markdown';
-import {useTranslation} from 'react-i18next';
+import {PositionalInfo} from '../../constants/api';
+
 
 type OutputProps = {
   info: Array<PositionalInfo>
@@ -29,21 +30,17 @@ export const QuestPositionOutput = ({info}: OutputProps) => {
                   </Accordion.Toggle>
                 </Col>
               </Row>
-              <hr/>
-              <Accordion.Collapse eventKey={info.position}>
+              <Accordion.Collapse eventKey={info.position} className="mt-3">
                 <Row key={info.position || 'N/A'}>
                   <Col lg={6}>
-                    <h5>{t('posts.quest.builds')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.builds')}</h5>
                     <Markdown>{info.builds || 'N/A'}</Markdown>
-                    <hr className="d-lg-none"/>
                   </Col>
                   <Col lg={6}>
-                    <h5>{t('posts.quest.rotations')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.rotations')}</h5>
                     <Markdown>{info.rotations || 'N/A'}</Markdown>
 
-                    <hr/>
-
-                    <h5>{t('posts.quest.tips')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.tips')}</h5>
                     <Markdown>{info.tips || 'N/A'}</Markdown>
                   </Col>
                 </Row>

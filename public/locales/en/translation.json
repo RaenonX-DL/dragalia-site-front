@@ -39,6 +39,10 @@
   "pages": {
     "name": {
       "about": "About",
+      "analysis_list": "Index of object analysis",
+      "analysis_new_chara": "New object analysis post (Character)",
+      "analysis_new_dragon": "New object analysis post (Dragon)",
+      "analysis_post": "Object Analysis",
       "home": "Homepage",
       "constructing": "Under construction",
       "quest_edit": "Edit HDTs/Agitos",
@@ -49,9 +53,41 @@
       "suffix": " | DL Info by OM"
     },
     "constructing": "Under construction. Will announce upon completion somewhere.\n\n### Completed before email notification system has been completed\n\nWe will announce it in social media (Reddit, FB groups, etc.).\n\n### Completed after the email notification system has been implemented\n\nUsers who logged in before or signed up for the email list will receive an email about the new release.",
-    "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos** section is completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."
+    "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos, Object Analysis** are completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."
   },
   "posts": {
+    "analysis": {
+      "title_self": "Object Analysis",
+      "force_strike": "Force Strike Module",
+      "keywords": "Keywords",
+      "normal_attack": "Normal Attack Module",
+      "notes_dragon": "Notes",
+      "object_name": "Object Name",
+      "object_type": "Object Type",
+      "passive": "Passive",
+      "skills": "Skill",
+      "story": "Story",
+      "suitable": "Suitable Characters",
+      "summary": "Summary",
+      "summon_result": "My Summoning Result",
+      "tips_builds": "Tips & Builds",
+      "ultimate": "Ultimate",
+      "videos": "Related Videos",
+      "error": {
+        "unknown_type": "Unknown post type."
+      },
+      "skill": {
+        "name": "Skill Name",
+        "info": "Skill Info",
+        "rotations": "Skill Rotations",
+        "tips": "Skill Tips"
+      },
+      "type": {
+        "character": "Character",
+        "dragon": "Dragon",
+        "uncategorized": "Uncategorized"
+      }
+    },
     "info": {
       "title_self": "Post Information",
       "id": "ID",
@@ -62,6 +98,8 @@
     },
     "manage": {
       "add": "New Post",
+      "add_chara": "New Post (Character)",
+      "add_dragon": "New Post (Dragon)",
       "add_note": "Specify ID to post multi-language version of a post. The web app will check if the combination of the post ID and the language code is available. ID without any related posts is unavailable.",
       "collapse": "Collapse/Expand",
       "edit": "Edit Post",
@@ -81,9 +119,6 @@
     },
     "misc": {
       "title_self": "Others"
-    },
-    "new_object": {
-      "title_self": "New Objects"
     },
     "quest": {
       "title_self": "HDTs/Agitos",

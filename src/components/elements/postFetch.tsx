@@ -1,33 +1,30 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert} from 'react-bootstrap';
 
-import {ApiRequestSender, ApiResponseCodes, QuestPostGetResponse} from '../../constants/api';
-import {getGoogleUid} from './googleSignin';
+import {ApiResponseCodes, PostGetSuccessResponse} from '../../constants/api';
 import {useTranslation} from 'react-i18next';
 
 
-export type QuestPostFetchStatus = {
+export type PostFetchStatus = {
   fetched: boolean,
   fetchFailed: boolean,
   failContent: string,
-  post: QuestPostGetResponse | null,
+  post: PostGetSuccessResponse | null,
 }
 
 
 type FetchPostProps = {
-  status: QuestPostFetchStatus,
-  fnSetStatus: Dispatch<SetStateAction<QuestPostFetchStatus>>,
-  pid: number,
-  increaseCount?: boolean
+  status: PostFetchStatus,
+  fnSetStatus: Dispatch<SetStateAction<PostFetchStatus>>,
+  fnSendFetchRequest: () => Promise<PostGetSuccessResponse>
 }
 
 
-export const FetchPost = ({status, fnSetStatus, pid, increaseCount = true}: FetchPostProps) => {
-  const {t, i18n} = useTranslation();
+export const FetchPost = ({status, fnSetStatus, fnSendFetchRequest}: FetchPostProps) => {
+  const {t} = useTranslation();
 
   const fetchPost = () => {
-    ApiRequestSender.questPostGet(
-      getGoogleUid() || '', pid, i18n.language, increaseCount)
+    fnSendFetchRequest()
       .then((data) => {
         // setting state triggers re-render, re-render triggers API call,
         // so having a if statement to guard from the re-render and API re-call

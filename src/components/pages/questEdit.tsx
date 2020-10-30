@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Redirect, useParams} from 'react-router-dom';
 
 import {PageProps} from './base';
 
-import {FetchPost, QuestPostFetchStatus, QuestPostForm} from '../elements';
+import {FetchPost, getGoogleUid, PostFetchStatus, QuestPostFetchStatus, QuestPostForm} from '../elements';
 import {ApiRequestSender} from '../../constants/api';
 import Path from '../../constants/path';
 
 export const QuestEdit = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const {pid} = useParams();
 
@@ -25,14 +25,19 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
 
   const handleSubmit = (payload) => ApiRequestSender.questPostEdit(payload);
 
+  const fnSendFetchRequest = () =>
+    ApiRequestSender.questPostGet(getGoogleUid() || '', pid.toString(), i18n.language, false);
+
   return (
     <>
       {
         status.fetched ?
           status.post ?
-            <QuestPostForm handleSubmit={handleSubmit} post={status.post}/> :
+            <QuestPostForm fnSendRequest={handleSubmit} post={status.post}/> :
             <Redirect to={Path.QUEST_NEW}/> :
-          <FetchPost status={status} fnSetStatus={setStatus} pid={pid} increaseCount={false}/>
+          <FetchPost
+            status={status} fnSetStatus={setStatus as Dispatch<SetStateAction<PostFetchStatus>>}
+            fnSendFetchRequest={fnSendFetchRequest}/>
       }
     </>
   );

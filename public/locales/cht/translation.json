@@ -39,6 +39,10 @@
   "pages": {
     "name": {
       "about": "關於",
+      "analysis_list": "物件評測目錄",
+      "analysis_new_chara": "新物件評測 (角色)",
+      "analysis_new_dragon": "新物件評測 (龍族)",
+      "analysis_post": "物件評測",
       "home": "首頁",
       "constructing": "建置中",
       "quest_edit": "編輯高難攻略",
@@ -49,9 +53,41 @@
       "suffix": " | 龍絆攻略站 by OM"
     },
     "constructing": "網頁/功能建置中。建置完畢後會公布。\n\n### Email 通知系統完成前\n\n會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n### Email 通知系統完成後\n\n有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。",
-    "welcome": "歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n目前 **高難攻略** 已完成，歡迎瀏覽。\n\n點選建置中的頁面可以查看相關說明。"
+    "welcome": "歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n點選建置中的頁面可以查看相關說明。"
   },
   "posts": {
+    "analysis": {
+      "title_self": "物件評測",
+      "force_strike": "特殊蓄力",
+      "keywords": "關鍵字",
+      "normal_attack": "普攻模組",
+      "notes_dragon": "註記",
+      "object_name": "物件名稱",
+      "object_type": "物件種類",
+      "passive": "被動技能",
+      "skills": "技能資訊",
+      "story": "故事",
+      "suitable": "適配角色",
+      "summary": "懶人包",
+      "summon_result": "個人抽抽結果",
+      "tips_builds": "要點 & 建議配置",
+      "ultimate": "大招",
+      "videos": "相關影片",
+      "error": {
+        "unknown_type": "無法解析貼文種類。"
+      },
+      "skill": {
+        "name": "技能名稱",
+        "info": "技能資訊",
+        "rotations": "技能輪轉",
+        "tips": "技能要點"
+      },
+      "type": {
+        "character": "角色",
+        "dragon": "龍族",
+        "uncategorized": "未分類"
+      }
+    },
     "info": {
       "title_self": "貼文資訊",
       "id": "ID",
@@ -62,6 +98,8 @@
     },
     "manage": {
       "add": "新增貼文",
+      "add_chara": "新增貼文 (角色)",
+      "add_dragon": "新增貼文 (龍族)",
       "add_note": "若有指定 ID，則代表欲新增貼文為多國語言版本。網頁將會檢查該 ID 和語言是否可用。還沒有對應貼文的 ID 無法使用。",
       "collapse": "收摺/展開",
       "edit": "編輯貼文",
@@ -81,9 +119,6 @@
     },
     "misc": {
       "title_self": "其他文章"
-    },
-    "new_object": {
-      "title_self": "物件評測"
     },
     "quest": {
       "title_self": "高難攻略",

@@ -1,134 +1,171 @@
 /* eslint-disable camelcase */
-import {PositionalInfo} from '../../components/elements';
 
+// region Base classes
+
+/**
+ * Sync with `EPParamBase` at back.
+ */
 type RequestPayloadBase = {
   google_uid: string
 }
 
-interface UserLoginPayload extends RequestPayloadBase {
-  google_email: string
-}
-
-interface QuestPostListPayload extends RequestPayloadBase {
+/**
+ * Sync with `EPPostListParamBase` at back.
+ */
+interface PostListPayload extends RequestPayloadBase {
   lang_code: string,
   start: number,
   limit: number
 }
 
-export interface QuestPostUpdatePayload extends RequestPayloadBase {
+/**
+ * Sync with `EPSinglePostParamBase` at back.
+ */
+interface SinglePostPayload extends RequestPayloadBase {
   seq_id?: string,
+  lang?: string
+}
+
+/**
+ * Sync with `EPPostModifyParamBase` at back.
+ */
+interface PostModifyPayload extends SinglePostPayload {
+  modify_note: string
+}
+
+// endregion
+
+
+// region Payload - user control
+
+/**
+ * Sync with `EPUserLoginParam` at back.
+ */
+export interface UserLoginPayload extends RequestPayloadBase {
+  google_email: string
+}
+
+// endregion
+
+
+// region Payload - quest post
+
+export type PositionalInfo = {
+  position: string,
+  builds: string,
+  rotations: string,
+  tips: string,
+}
+
+/**
+ * Sync with `EPQuestPostListParam` at back.
+ */
+export interface QuestPostListPayload extends PostListPayload {
+}
+
+/**
+ * Sync with `EPQuestPostPublishParam` at back.
+ */
+export interface QuestPostPublishPayload extends SinglePostPayload {
   title: string,
-  lang: string,
   general: string,
   video: string,
   positional: Array<PositionalInfo>,
-  addendum: string,
-  modify_note?: string,
+  addendum: string
 }
 
-export interface QuestPostPublishPayload extends QuestPostUpdatePayload {
-}
-
-export interface QuestPostEditPayload extends QuestPostPublishPayload {
-  seq_id: string,
-  modify_note: string,
+/**
+ * Sync with `EPQuestPostEditParam` at back.
+ */
+export interface QuestPostEditPayload extends QuestPostPublishPayload, PostModifyPayload {
 }
 
 /**
  * Sync with `EPQuestPostGetParam` at back.
  */
-interface QuestPostGetPayload extends RequestPayloadBase {
-  seq_id: number,
-  lang?: string,
+export interface QuestPostGetPayload extends SinglePostPayload {
   inc_count?: boolean
-}
-
-interface IdCheckPayload extends RequestPayloadBase {
-  seq_id?: number,
-  lang: string
 }
 
 /**
  * Sync with `EPQuestPostIDCheckParam` at back.
  */
-interface QuestPostIdCheckPayload extends IdCheckPayload {
+export interface QuestPostIdCheckPayload extends SinglePostPayload {
+}
+
+// endregion
+
+
+// region Payload - analysis post
+
+export type CharacterSkill = {
+  name: string,
+  info: string,
+  rotations: string,
+  tips: string
 }
 
 /**
- * Class for making the payload for an API request.
+ * Sync with `EPAnalysisPostPublishParam` at back.
  */
-export default class ApiRequestPayloadMaker {
-  /**
-   * Make the payload for user login request.
-   *
-   * @param {string} googleUid Google UID of the logged in user
-   * @param {string} googleEmail Google email of the logged in user
-   * @return {UserLoginPayload} payload object
-   */
-  static userLogin(googleUid: string, googleEmail: string): UserLoginPayload {
-    return {
-      google_uid: googleUid,
-      google_email: googleEmail,
-    };
-  }
-
-  /**
-   * Make the payload for getting a single post.
-   *
-   * @param {string} googleUid Google UID of the logged in user
-   * @param {number} seqId sequential ID of the post to get
-   * @param {string} langCode language code of the post to get
-   * @param {boolean} increaseCount if the post view count should be increased or not
-   * @return {QuestPostGetPayload} payload object
-   */
-  static questPostGet(
-    googleUid: string, seqId: number, langCode: string, increaseCount: boolean = true): QuestPostGetPayload {
-    return {
-      google_uid: googleUid,
-      seq_id: seqId,
-      lang: langCode,
-      inc_count: increaseCount,
-    };
-  }
-
-  /**
-   * Make the payload for getting the list of query posts.
-   *
-   * @param {string} googleUid Google UID of the logged in user
-   * @param {string} langCode language code of the posts
-   * @param {number} start starting index of the posts
-   * @param {number} limit maximum count of the data to be returned
-   * @return {QuestPostListPayload} payload object
-   */
-  static questPostList(googleUid: string, langCode: string, start: number, limit: number): QuestPostListPayload {
-    return {
-      google_uid: googleUid,
-      lang_code: langCode,
-      start: start,
-      limit: limit,
-    };
-  }
-
-  /**
-   * Make the payload for checking the ID availability of a quest post.
-   *
-   * `seqId` will only being attached to the payload if it's not `null`.
-   *
-   * @param {string} googleUid current Google UID
-   * @param {number | null} seqId title of the post
-   * @param {string} langCode language code of the post
-   * @return {QuestPostIdCheckPayload} payload object
-   */
-  static questPostIdCheck(googleUid: string, seqId: number | null, langCode: string): QuestPostIdCheckPayload {
-    const ret = {
-      google_uid: googleUid,
-      lang: langCode,
-    };
-
-    if (seqId) {
-      ret['seq_id'] = seqId;
-    }
-
-    return ret;
-  }
+interface AnalysisPostPublishPayload extends SinglePostPayload {
+  name: string,
+  summary: string,
+  summon: string,
+  passives: string,
+  normal_attacks: string,
+  videos: string,
+  story: string,
+  keywords: string
 }
+
+/**
+ * Sync with `EPCharaAnalysisPostPublishParam` at back.
+ */
+export interface CharaAnalysisPostPublishPayload extends AnalysisPostPublishPayload {
+  force_strikes: string,
+  skills: Array<CharacterSkill>,
+  tips_builds: string
+}
+
+/**
+ * Sync with `EPDragonAnalysisPostPublishParam` at back.
+ */
+export interface DragonAnalysisPostPublishPayload extends AnalysisPostPublishPayload {
+  ultimate: string,
+  notes: string,
+  suitable_characters: string
+}
+
+/**
+ * Sync with `EPAnalysisPostListParam` at back.
+ */
+export interface AnalysisPostListPayload extends PostListPayload {
+}
+
+/**
+ * Sync with `EPAnalysisPostGetParam` at back.
+ */
+export interface AnalysisPostGetPayload extends SinglePostPayload {
+  inc_count: boolean
+}
+
+/**
+ * Sync with `EPCharaAnalysisPostEditParam` at back.
+ */
+export interface CharaAnalysisPostEditPayload extends PostModifyPayload, CharaAnalysisPostPublishPayload {
+}
+
+/**
+ * Sync with `EPDragonAnalysisPostEditParam` at back.
+ */
+export interface DragonAnalysisPostEditPayload extends PostModifyPayload, DragonAnalysisPostPublishPayload {
+}
+
+/**
+ * Sync with `EPAnalysisPostIDCheckParam` at back.
+ */
+export interface AnalysisPostIdCheckPayload extends SinglePostPayload {
+}
+
+// endregion

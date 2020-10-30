@@ -4,7 +4,20 @@ import {Container, Spinner} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import {About, Constructing, Home, QuestEdit, QuestList, QuestNew, QuestPage} from './components/pages';
+import {
+  About,
+  AnalysisEdit,
+  AnalysisList,
+  AnalysisNewChara,
+  AnalysisNewDragon,
+  AnalysisPage,
+  Constructing,
+  Home,
+  QuestEdit,
+  QuestList,
+  QuestNew,
+  QuestPage,
+} from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
@@ -64,11 +77,20 @@ const PageMain = () => {
           <QuestEdit fnSetTitle={updatePageTitle}/>
         </Route>
 
-        <Route exact path={Path.NEW_OBJECT_LIST}>
-          <Constructing fnSetTitle={updatePageTitle}/>
+        <Route exact path={Path.ANALYSIS_LIST}>
+          <AnalysisList fnSetTitle={updatePageTitle}/>
         </Route>
-        <Route exact path={Path.NEW_OBJECT}>
-          <Constructing fnSetTitle={updatePageTitle}/>
+        <Route exact path={Path.ANALYSIS_NEW_CHARA}>
+          <AnalysisNewChara fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.ANALYSIS_NEW_DRAGON}>
+          <AnalysisNewDragon fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.ANALYSIS}>
+          <AnalysisPage fnSetTitle={updatePageTitle}/>
+        </Route>
+        <Route exact path={Path.ANALYSIS_EDIT}>
+          <AnalysisEdit fnSetTitle={updatePageTitle}/>
         </Route>
 
         <Route exact path={Path.MISC_LIST}>

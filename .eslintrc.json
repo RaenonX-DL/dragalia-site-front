@@ -21,9 +21,12 @@
     "sourceType": "module"
   },
   "plugins": [
+    "@typescript-eslint",
     "react"
   ],
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "max-len": [
       2,
       {

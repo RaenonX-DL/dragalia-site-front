@@ -165,7 +165,7 @@ export function unregister() {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister()
-          .then((_) => console.log('Service worker unregistered.'));
+          .then(() => console.log('Service worker unregistered.'));
       })
       .catch((error) => {
         console.error(error.message);

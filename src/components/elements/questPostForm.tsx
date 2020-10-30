@@ -10,10 +10,10 @@ import {QuestPositionForm} from './questPositionForm';
 import {
   ApiRequestSender,
   QuestPostEditPayload,
-  QuestPostGetResponse,
+  QuestPostEditSuccessResponse,
+  QuestPostGetSuccessResponse,
   QuestPostPublishPayload,
-  QuestPostUpdatePayload,
-  QuestPostUpdateResponse,
+  QuestPostPublishSuccessResponse,
 } from '../../constants/api';
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
 import Path from '../../constants/path';
@@ -26,19 +26,14 @@ export type ModalState = {
 }
 
 
-export type PostModifyNote = {
-  timestamp: string,
-  note: string
-}
-
-
 type QuestPostFormProps = {
-  post?: QuestPostGetResponse | null,
-  handleSubmit: <T extends QuestPostUpdatePayload>(payload: T) => Promise<QuestPostUpdateResponse>
+  post?: QuestPostGetSuccessResponse | null,
+  fnSendRequest: <T extends QuestPostPublishPayload>(payload: T)
+    => Promise<QuestPostEditSuccessResponse | QuestPostPublishSuccessResponse>
 }
 
 
-export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
+export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
   const {i18n, t} = useTranslation();
 
   const newInitData = () => {
@@ -246,7 +241,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
     let promise;
 
     if (post) {
-      promise = handleSubmit<QuestPostEditPayload>({
+      promise = fnSendRequest<QuestPostEditPayload>({
         google_uid: getGoogleUid() || '',
         seq_id: post.seqId,
         title: title,
@@ -258,7 +253,7 @@ export const QuestPostForm = ({post, handleSubmit}: QuestPostFormProps) => {
         modify_note: modifyNote,
       });
     } else {
-      promise = handleSubmit<QuestPostPublishPayload>({
+      promise = fnSendRequest<QuestPostPublishPayload>({
         google_uid: getGoogleUid() || '',
         seq_id: postId || undefined,
         title: title,
