@@ -6,6 +6,7 @@ import {useGoogleLogin, useGoogleLogout} from 'react-google-login';
 import {ExpressModal} from './modalExpress';
 import {ApiRequestSender} from '../../constants/api';
 import {GOOGLE_CLIENT_ID} from '../../constants/config';
+import {GoogleAnalytics} from '../../constants/ga';
 
 
 const STORAGE_KEY = 'X_GOOGLE_UID';
@@ -57,6 +58,8 @@ export const GoogleSigninButton = () => {
   };
 
   const onLoginSuccess = (response) => {
+    GoogleAnalytics.login('Google', true);
+
     const googleUid = response.getId();
     const googleEmail = response.getBasicProfile().getEmail();
 
@@ -66,6 +69,8 @@ export const GoogleSigninButton = () => {
   };
 
   const onLoginFailure = (response) => {
+    GoogleAnalytics.login('Google', false);
+
     setModalLoginFailedState({
       show: true,
       title: t('google_signin.login_failed'),

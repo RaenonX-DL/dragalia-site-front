@@ -285,7 +285,7 @@ const AnalysisPostPartialOutputDragon = ({post}: AnalysisPostPartialOutputDragon
         post.ultimate ?
           <>
             <h3 className="mb-3">{t('posts.analysis.ultimate')}</h3>
-            <div className="rounded bg-black-32 p-3">
+            <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.ultimate || 'N/A'}</Markdown>
             </div>
           </> :
@@ -296,7 +296,7 @@ const AnalysisPostPartialOutputDragon = ({post}: AnalysisPostPartialOutputDragon
         post.notes ?
           <>
             <h3 className="mb-3">{t('posts.analysis.notes_dragon')}</h3>
-            <div className="rounded bg-black-32 p-3">
+            <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.notes || 'N/A'}</Markdown>
             </div>
           </> :
@@ -307,7 +307,7 @@ const AnalysisPostPartialOutputDragon = ({post}: AnalysisPostPartialOutputDragon
         post.suitableCharacters ?
           <>
             <h3 className="mb-3">{t('posts.analysis.suitable')}</h3>
-            <div className="rounded bg-black-32 p-3">
+            <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.suitableCharacters || 'N/A'}</Markdown>
             </div>
           </> :
