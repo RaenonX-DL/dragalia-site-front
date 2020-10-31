@@ -21,6 +21,16 @@
     border-spacing: 2px;
 }
 
+.markdown-body blockquote {
+    background-color: #222222;
+    border-radius: 10px;
+    color: #CCCCCC;
+}
+
+.markdown-body strong {
+    color: #BBBBFF;
+}
+
 .markdown-body table, .markdown-body thead, .markdown-body th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6;

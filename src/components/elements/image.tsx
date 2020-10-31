@@ -21,7 +21,10 @@ export class ImageInHTML extends React.Component<Props, States> {
    * @return {boolean} if the URL is an image
    */
   static isImage(imageUrl: string): boolean {
-    return imageUrl.endsWith('.jpeg') || imageUrl.endsWith('.png') || imageUrl.endsWith('.jpg');
+    return imageUrl.endsWith('.jpeg') ||
+      imageUrl.endsWith('.png') ||
+      imageUrl.endsWith('.jpg') ||
+      imageUrl.endsWith('.gif');
   }
 
   /**
