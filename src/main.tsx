@@ -2,7 +2,6 @@ import React, {Suspense, useEffect} from 'react';
 import {Route, useHistory} from 'react-router-dom';
 import {Container, Spinner} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
-import ReactGA from 'react-ga';
 
 import {
   About,
@@ -20,6 +19,7 @@ import {
 } from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
+import {GoogleAnalytics} from './constants/ga';
 
 
 // TODO: Add delete post function
@@ -157,11 +157,9 @@ const Main = () => {
   useEffect(
     () => {
       return history.listen((location) => {
-        ReactGA.set({page: location.pathname});
-        ReactGA.pageview(location.pathname);
+        GoogleAnalytics.pageView(location);
       });
     },
-    [history],
   );
 
   return (
