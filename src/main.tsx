@@ -23,6 +23,7 @@ import Path from './constants/path';
 
 
 // TODO: Add delete post function
+// FIXME: Anchor for sections
 
 
 const PageMain = () => {

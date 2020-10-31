@@ -20,7 +20,7 @@ img {
 }
 
 p, ul {
-  margin: 0.5rem;
+  margin: 0.5rem !important;
 }
 
 /* endregion */
