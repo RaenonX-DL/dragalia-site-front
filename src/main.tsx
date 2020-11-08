@@ -1,5 +1,5 @@
 import React, {Suspense, useEffect} from 'react';
-import {Route, useHistory} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {Container, Spinner} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
@@ -19,7 +19,6 @@ import {
 } from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
-import {GoogleAnalytics} from './constants/ga';
 
 
 // TODO: Add delete post function
@@ -152,16 +151,6 @@ const PageLoading = () => (
 );
 
 const Main = () => {
-  const history = useHistory();
-
-  useEffect(
-    () => {
-      return history.listen((location) => {
-        GoogleAnalytics.pageView(location);
-      });
-    },
-  );
-
   return (
     <Suspense fallback={<PageLoading/>}>
       <PageMain/>
