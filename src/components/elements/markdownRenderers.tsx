@@ -25,8 +25,6 @@ class RenderConverters {
   static processLink(o: HTMLLinkElement) {
     const videoId = EmbeddedYoutubeVideo.extractVideoId(o.href);
     if (videoId) {
-      // OPTIMIZE: this returns a <div>, but for every line in Markdown, it's a <p>.
-      //  This fails the DOM nesting check, although it seems that it does not significant impact
       return (<EmbeddedYoutubeVideo videoId={videoId}/>);
     }
 

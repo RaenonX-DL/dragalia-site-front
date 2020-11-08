@@ -136,7 +136,6 @@ export const PostListPage = (props: QuestListPageProps) => {
           disable={status.showAlert}
           initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / limit + 1))} maxPage={status.maxPage}/>
       </div>
-      {/* DRAFT: search bar at top left side */}
     </>
   );
 };

@@ -9,5 +9,3 @@ test('Check main page', () => {
   const linkElement = getByText(/Paragraph/i);
   expect(linkElement).toBeInTheDocument();
 });
-
-// TEST: More markdown render test

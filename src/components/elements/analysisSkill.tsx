@@ -4,6 +4,7 @@ import {Col, Form, Row} from 'react-bootstrap';
 
 import {Markdown} from './markdown';
 import {MarkdownInput} from './markdownInput';
+import {PageAnchor} from './pageAnchor';
 
 
 export type AnalysisSkillInputProps = {
@@ -92,7 +93,7 @@ export const AnalysisSkillOutput = (props: AnalysisSkillOutputProps) => {
     <div className="rounded bg-black-32 p-3">
       <Row>
         <Col>
-          <h3>{name}</h3>
+          <PageAnchor name={name} type="h3" text={name}/>
         </Col>
       </Row>
 
@@ -102,29 +103,26 @@ export const AnalysisSkillOutput = (props: AnalysisSkillOutputProps) => {
           <Markdown>{info}</Markdown>
         </Col>
         {
-          rotations || tips ?
+          (rotations || tips) &&
             <Col lg={6}>
               {
-                rotations ?
+                rotations &&
                   <>
                     <h5 className="text-center pb-2 border-bottom">{t('posts.analysis.skill.rotations')}</h5>
                     <Markdown>{rotations}</Markdown>
-                  </> :
-                  <></>
+                  </>
               }
 
               {hasAllInfo && <div className="mb-3"/>}
 
               {
-                tips ?
+                tips &&
                   <>
                     <h5 className="text-center pb-2 border-bottom">{t('posts.analysis.skill.tips')}</h5>
                     <Markdown>{tips}</Markdown>
-                  </> :
-                  <></>
+                  </>
               }
-            </Col> :
-            <></>
+            </Col>
         }
       </Row>
     </div>

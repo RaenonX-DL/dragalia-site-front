@@ -56,5 +56,3 @@
 .markdown-body tbody tr:hover:nth-of-type(odd) {
     background-color: rgb(50, 50, 50);
 }
-
-/* TODO: Move table styling to scss */

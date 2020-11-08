@@ -4,6 +4,7 @@
 export class GAEvent {
   static LANG_CHANGE = 'lang_change';
   static LOGIN = 'login';
+  static ANCHOR = 'anchor';
 }
 
 /**
@@ -40,6 +41,31 @@ export class GoogleAnalytics {
       {
         'method': method,
         'success': success,
+      },
+    );
+  }
+
+  /**
+   * Record the event of an user uses the anchor.
+   *
+   * There are a few types of `usage`:
+   *
+   * - `navigate`: the user was navigated to the location of the anchor
+   * - `navFailed`: ~~the anchor was not found in the page, failed to navigate~~
+   *   - Currently not using, needs optimization
+   * - `click`: the user clicked on the anchor mark (possibly to obtain the link)
+   *   - This should also trigger `navigate` since the page will navigate on click.
+   *
+   * @param {'navigate' | 'click'} usage how the user uses the anchor
+   * @param {string} anchorHash hash of the anchor
+   */
+  static anchor(usage: 'navigate' | 'navFailed' | 'click', anchorHash: string) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.ANCHOR,
+      {
+        'usage': usage,
+        'hash': anchorHash,
+        'path': window.location.href,
       },
     );
   }

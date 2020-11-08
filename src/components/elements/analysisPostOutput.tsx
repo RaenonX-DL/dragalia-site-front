@@ -9,6 +9,7 @@ import {
   FetchPost,
   getGoogleUid,
   Markdown,
+  PageAnchor,
   PostFetchStatus,
   PostInfo,
   PostManageBar,
@@ -79,38 +80,38 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
 
     const sectionGeneralTop = (
       <>
-        <h3 className="mb-3">{t('posts.analysis.summary')}</h3>
+        <PageAnchor name="summary" type="h3" text={t('posts.analysis.summary')} className="mb-3"/>
         <div className="rounded bg-black-32 p-3">
           <Markdown>{status.post.summary || 'N/A'}</Markdown>
         </div>
 
         {
-          status.post.summonResult ?
+          status.post.summonResult &&
             <>
               <hr/>
-              <h3 className="mb-3">{t('posts.analysis.summon_result')}</h3>
+              <PageAnchor name="summon" type="h3" text={t('posts.analysis.summon_result')} className="mb-3"/>
               <div className="rounded bg-black-32 p-3">
                 <Markdown>{status.post.summonResult || 'N/A'}</Markdown>
               </div>
-            </> :
-            <></>
+            </>
         }
 
         <hr/>
-        <h3 className="mb-3">{t('posts.analysis.passive')}</h3>
+        <PageAnchor name="passive" type="h3" text={t('posts.analysis.passive')} className="mb-3"/>
         <div className="rounded bg-black-32 p-3 mb-3">
           <Markdown>{status.post.passives || 'N/A'}</Markdown>
         </div>
 
         {
-          status.post.normalAttacks ?
+          status.post.normalAttacks &&
             <>
-              <h3 className="mb-3">{t('posts.analysis.normal_attack')}</h3>
+              <PageAnchor
+                name="normal-attack" type="h3"
+                text={t('posts.analysis.normal_attack')} className="mb-3"/>
               <div className="rounded bg-black-32 p-3 mb-3">
                 <Markdown>{status.post.normalAttacks || 'N/A'}</Markdown>
               </div>
-            </> :
-            <></>
+            </>
         }
       </>
     );
@@ -136,45 +137,42 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
     const sectionGeneralBottom = (
       <>
         {
-          status.post.videos ?
+          status.post.videos &&
             <>
               <hr/>
               <Row>
                 <Col>
-                  <h4>{t('posts.analysis.videos')}</h4>
+                  <PageAnchor name="videos" type="h4" text={t('posts.analysis.videos')} className="mb-3"/>
                   <Markdown>{status.post.videos}</Markdown>
                 </Col>
               </Row>
-            </> :
-            <></>
+            </>
         }
 
         {
-          status.post.story ?
+          status.post.story &&
             <>
               <hr/>
               <Row>
                 <Col>
-                  <h4>{t('posts.analysis.story')}</h4>
+                  <PageAnchor name="story" type="h4" text={t('posts.analysis.story')} className="mb-3"/>
                   <Markdown>{status.post.story}</Markdown>
                 </Col>
               </Row>
-            </> :
-            <></>
+            </>
         }
 
         {
-          status.post.keywords ?
+          status.post.keywords &&
             <>
               <hr/>
               <Row>
                 <Col>
-                  <h4>{t('posts.analysis.keywords')}</h4>
+                  <PageAnchor name="keywords" type="h4" text={t('posts.analysis.keywords')} className="mb-3"/>
                   <Markdown>{status.post.keywords}</Markdown>
                 </Col>
               </Row>
-            </> :
-            <></>
+            </>
         }
       </>
     );
@@ -184,14 +182,13 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
     return (
       <>
         {
-          status.post.isAdmin ?
+          status.post.isAdmin &&
             <PostManageBar
               newPostUrl={Path.ANALYSIS_NEW_CHARA}
               newPostTitle={t('posts.manage.add_chara')}
               newPostUrl2={Path.ANALYSIS_NEW_DRAGON}
               newPostTitle2={t('posts.manage.add_dragon')}
-              editPostUrl={Path.getAnalysisEdit(status.post.seqId)}/> :
-            <></>
+              editPostUrl={Path.getAnalysisEdit(status.post.seqId)}/>
         }
         {status.post.isAltLang && alertIsAltLang}
         {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
@@ -229,17 +226,16 @@ const AnalysisPostPartialOutputChara = ({post}: AnalysisPostPartialOutputCharaPr
   return (
     <>
       {
-        post.forceStrikes ?
+        post.forceStrikes &&
           <>
-            <h3 className="mb-3">{t('posts.analysis.force_strike')}</h3>
+            <PageAnchor name="fs" type="h3" text={t('posts.analysis.force_strike')} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">
               <Markdown>{post.forceStrikes || 'N/A'}</Markdown>
             </div>
-          </> :
-          <></>
+          </>
       }
 
-      <h3 className="my-3">{t('posts.analysis.skills')}</h3>
+      <PageAnchor name="skills" type="h3" text={t('posts.analysis.skills')} className="my-3"/>
 
       {
         post.skills.map((skill, skillIdx) => (
@@ -254,17 +250,16 @@ const AnalysisPostPartialOutputChara = ({post}: AnalysisPostPartialOutputCharaPr
       }
 
       {
-        post.tipsBuilds ?
+        post.tipsBuilds &&
           <>
             <hr/>
             <Row>
               <Col>
-                <h3 className="mb-3">{t('posts.analysis.tips_builds')}</h3>
+                <PageAnchor name="tips-builds" type="h3" text={t('posts.analysis.tips_builds')} className="mb-3"/>
                 <Markdown>{post.tipsBuilds}</Markdown>
               </Col>
             </Row>
-          </> :
-          <></>
+          </>
       }
     </>
   );
@@ -282,36 +277,33 @@ const AnalysisPostPartialOutputDragon = ({post}: AnalysisPostPartialOutputDragon
   return (
     <>
       {
-        post.ultimate ?
+        post.ultimate &&
           <>
             <h3 className="mb-3">{t('posts.analysis.ultimate')}</h3>
             <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.ultimate || 'N/A'}</Markdown>
             </div>
-          </> :
-          <></>
+          </>
       }
 
       {
-        post.notes ?
+        post.notes &&
           <>
             <h3 className="mb-3">{t('posts.analysis.notes_dragon')}</h3>
             <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.notes || 'N/A'}</Markdown>
             </div>
-          </> :
-          <></>
+          </>
       }
 
       {
-        post.suitableCharacters ?
+        post.suitableCharacters &&
           <>
             <h3 className="mb-3">{t('posts.analysis.suitable')}</h3>
             <div className="rounded bg-black-32 p-3 mb-3">
               <Markdown>{post.suitableCharacters || 'N/A'}</Markdown>
             </div>
-          </> :
-          <></>
+          </>
       }
     </>
   );

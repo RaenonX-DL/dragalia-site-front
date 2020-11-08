@@ -32,7 +32,6 @@ export const LanguageSwitch = () => {
   };
 
   if (redirected) {
-    // OPTIMIZE: Find a better way than refreshing the whole page - probably just re-render the page part?
     window.location.reload();
     return <></>;
   }

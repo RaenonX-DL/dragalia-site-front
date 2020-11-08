@@ -250,12 +250,11 @@ const AnalysisPostFormBase = (props: React.PropsWithChildren<AnalysisPostFormBas
         {children}
         {sectionGeneralBottom}
         {
-          hasPost ?
+          hasPost &&
             <>
               <hr/>
               {sectionModifyNote}
-            </> :
-            <></>
+            </>
         }
         <hr/>
         {sectionControl}

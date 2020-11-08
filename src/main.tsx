@@ -21,8 +21,7 @@ import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
 
-// TODO: Add delete post function
-// FIXME: Anchor for sections
+// FIXME: Display alert if reload/closing the page of edit forms
 
 
 const PageMain = () => {

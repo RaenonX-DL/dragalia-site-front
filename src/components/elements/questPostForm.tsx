@@ -303,12 +303,11 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
         <hr/>
         {sectionAddendum}
         {
-          post ?
+          post &&
             <>
               <hr/>
               {sectionModifyNote}
-            </> :
-            <></>
+            </>
         }
         <hr/>
         {sectionControl}
