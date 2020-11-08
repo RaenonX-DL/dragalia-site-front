@@ -74,8 +74,8 @@ export const QuestPage = ({fnSetTitle}: PageProps) => {
             <PostManageBar newPostUrl={Path.QUEST_NEW} editPostUrl={Path.getQuestEdit(status.post.seqId)}/> :
             <></>
         }
-        {status.post.isAltLang ? alertIsAltLang : <></>}
-        {status.post.otherLangs.length > 0 ? alertOtherLangAvailable : <></>}
+        {status.post.isAltLang && alertIsAltLang}
+        {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
         <h3 className="mb-3">{t('posts.quest.general')}</h3>
         <div className="rounded bg-black-32 p-3">
           <Markdown>{status.post.general || 'N/A'}</Markdown>

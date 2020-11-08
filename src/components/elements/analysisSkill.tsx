@@ -113,7 +113,7 @@ export const AnalysisSkillOutput = (props: AnalysisSkillOutputProps) => {
                   <></>
               }
 
-              { hasAllInfo ? <div className="mb-3"/> : <></> }
+              {hasAllInfo && <div className="mb-3"/>}
 
               {
                 tips ?

@@ -193,8 +193,8 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
               editPostUrl={Path.getAnalysisEdit(status.post.seqId)}/> :
             <></>
         }
-        {status.post.isAltLang ? alertIsAltLang : <></>}
-        {status.post.otherLangs.length > 0 ? alertOtherLangAvailable : <></>}
+        {status.post.isAltLang && alertIsAltLang}
+        {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
 
         {sectionGeneralTop}
         {sectionSpecific}
