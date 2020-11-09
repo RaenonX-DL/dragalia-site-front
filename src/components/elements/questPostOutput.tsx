@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Alert} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
@@ -13,6 +13,7 @@ import {
   PostManageBar,
   QuestPositionOutput,
   QuestPostFetchStatus,
+  scrollToAnchor,
 } from '../elements';
 import {ApiRequestSender, QuestPostListEntry} from '../../constants/api';
 import Path from '../../constants/path';
@@ -37,6 +38,13 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
       failContent: '',
     },
   );
+
+  useEffect(() => {
+    // Only scroll to anchor if the post fetch succeed
+    if (status.fetched && status.post) {
+      scrollToAnchor();
+    }
+  });
 
   fnSetTitle(`#Q${pid} ${status.post ? status.post.title : t('pages.name.quest_post')}`);
 
@@ -76,7 +84,7 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
       <>
         {
           status.post.isAdmin &&
-            <PostManageBar newPostUrl={Path.QUEST_NEW} editPostUrl={Path.getQuestEdit(status.post.seqId)}/>
+          <PostManageBar newPostUrl={Path.QUEST_NEW} editPostUrl={Path.getQuestEdit(status.post.seqId)}/>
         }
         {status.post.isAltLang && alertIsAltLang}
         {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
@@ -102,13 +110,13 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
 
         {
           status.post.addendum &&
-            <>
-              <PageAnchor name="addendum" type="h3" text={t('posts.quest.addendum')} className="mb-3"/>
-              <div className="rounded bg-black-32 p-3">
-                <Markdown>{status.post.addendum}</Markdown>
-              </div>
-              <hr/>
-            </>
+          <>
+            <PageAnchor name="addendum" type="h3" text={t('posts.quest.addendum')} className="mb-3"/>
+            <div className="rounded bg-black-32 p-3">
+              <Markdown>{status.post.addendum}</Markdown>
+            </div>
+            <hr/>
+          </>
         }
 
         <PostInfo post={status.post}/>

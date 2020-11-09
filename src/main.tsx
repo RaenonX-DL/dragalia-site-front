@@ -45,8 +45,9 @@ const PageMain = () => {
     document.title = newTitle + t('pages.name.suffix');
   };
 
-  // Ensure that the title has been set
+  // After the page render completed
   useEffect(() => {
+    // Ensure that the title has been set
     document.title = title.current;
     ref.current.innerText = title.current;
   });

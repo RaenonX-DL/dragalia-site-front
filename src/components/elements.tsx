@@ -27,7 +27,7 @@ import {getGoogleUid} from './elements/googleSignin';
 // Components
 import {Navigation} from './elements/navigation';
 import {Footer} from './elements/footer';
-import {PageAnchor} from './elements/pageAnchor';
+import {PageAnchor, scrollToAnchor} from './elements/pageAnchor';
 import {Paginator} from './elements/paginator';
 import {ExpressModal} from './elements/modalExpress';
 import {Markdown} from './elements/markdown';
@@ -44,5 +44,5 @@ export {
   AnalysisPostOutput, AnalysisPostFormChara, AnalysisPostFormDragon, AnalysisPostList, AnalysisSkillOutput,
   PostManageBar, PostListPage, FetchPost, PostInfo, PostModificationNotes,
   getGoogleUid,
-  Navigation, Footer, PageAnchor, Paginator, ExpressModal, Markdown, InfoCard,
+  Navigation, Footer, PageAnchor, scrollToAnchor, Paginator, ExpressModal, Markdown, InfoCard,
 };

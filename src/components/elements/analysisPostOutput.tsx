@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Alert, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
@@ -13,6 +13,7 @@ import {
   PostFetchStatus,
   PostInfo,
   PostManageBar,
+  scrollToAnchor,
 } from '../elements';
 import {AnalysisPostType, ApiRequestSender, CharacterAnalysisPost, DragonAnalysisPost} from '../../constants/api';
 import Path from '../../constants/path';
@@ -37,6 +38,13 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
       failContent: '',
     },
   );
+
+  useEffect(() => {
+    // Only scroll to anchor if the post fetch succeed
+    if (status.fetched && status.post) {
+      scrollToAnchor();
+    }
+  });
 
   fnSetTitle(`#A${pid} ${status.post ? status.post.name : t('pages.name.analysis_post')}`);
 
@@ -87,13 +95,13 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
 
         {
           status.post.summonResult &&
-            <>
-              <hr/>
-              <PageAnchor name="summon" type="h3" text={t('posts.analysis.summon_result')} className="mb-3"/>
-              <div className="rounded bg-black-32 p-3">
-                <Markdown>{status.post.summonResult || 'N/A'}</Markdown>
-              </div>
-            </>
+          <>
+            <hr/>
+            <PageAnchor name="summon" type="h3" text={t('posts.analysis.summon_result')} className="mb-3"/>
+            <div className="rounded bg-black-32 p-3">
+              <Markdown>{status.post.summonResult || 'N/A'}</Markdown>
+            </div>
+          </>
         }
 
         <hr/>
@@ -104,14 +112,14 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
 
         {
           status.post.normalAttacks &&
-            <>
-              <PageAnchor
-                name="normal-attack" type="h3"
-                text={t('posts.analysis.normal_attack')} className="mb-3"/>
-              <div className="rounded bg-black-32 p-3 mb-3">
-                <Markdown>{status.post.normalAttacks || 'N/A'}</Markdown>
-              </div>
-            </>
+          <>
+            <PageAnchor
+              name="normal-attack" type="h3"
+              text={t('posts.analysis.normal_attack')} className="mb-3"/>
+            <div className="rounded bg-black-32 p-3 mb-3">
+              <Markdown>{status.post.normalAttacks || 'N/A'}</Markdown>
+            </div>
+          </>
         }
       </>
     );
@@ -138,41 +146,41 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
       <>
         {
           status.post.videos &&
-            <>
-              <hr/>
-              <Row>
-                <Col>
-                  <PageAnchor name="videos" type="h4" text={t('posts.analysis.videos')} className="mb-3"/>
-                  <Markdown>{status.post.videos}</Markdown>
-                </Col>
-              </Row>
-            </>
+          <>
+            <hr/>
+            <Row>
+              <Col>
+                <PageAnchor name="videos" type="h4" text={t('posts.analysis.videos')} className="mb-3"/>
+                <Markdown>{status.post.videos}</Markdown>
+              </Col>
+            </Row>
+          </>
         }
 
         {
           status.post.story &&
-            <>
-              <hr/>
-              <Row>
-                <Col>
-                  <PageAnchor name="story" type="h4" text={t('posts.analysis.story')} className="mb-3"/>
-                  <Markdown>{status.post.story}</Markdown>
-                </Col>
-              </Row>
-            </>
+          <>
+            <hr/>
+            <Row>
+              <Col>
+                <PageAnchor name="story" type="h4" text={t('posts.analysis.story')} className="mb-3"/>
+                <Markdown>{status.post.story}</Markdown>
+              </Col>
+            </Row>
+          </>
         }
 
         {
           status.post.keywords &&
-            <>
-              <hr/>
-              <Row>
-                <Col>
-                  <PageAnchor name="keywords" type="h4" text={t('posts.analysis.keywords')} className="mb-3"/>
-                  <Markdown>{status.post.keywords}</Markdown>
-                </Col>
-              </Row>
-            </>
+          <>
+            <hr/>
+            <Row>
+              <Col>
+                <PageAnchor name="keywords" type="h4" text={t('posts.analysis.keywords')} className="mb-3"/>
+                <Markdown>{status.post.keywords}</Markdown>
+              </Col>
+            </Row>
+          </>
         }
       </>
     );
@@ -183,12 +191,12 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
       <>
         {
           status.post.isAdmin &&
-            <PostManageBar
-              newPostUrl={Path.ANALYSIS_NEW_CHARA}
-              newPostTitle={t('posts.manage.add_chara')}
-              newPostUrl2={Path.ANALYSIS_NEW_DRAGON}
-              newPostTitle2={t('posts.manage.add_dragon')}
-              editPostUrl={Path.getAnalysisEdit(status.post.seqId)}/>
+          <PostManageBar
+            newPostUrl={Path.ANALYSIS_NEW_CHARA}
+            newPostTitle={t('posts.manage.add_chara')}
+            newPostUrl2={Path.ANALYSIS_NEW_DRAGON}
+            newPostTitle2={t('posts.manage.add_dragon')}
+            editPostUrl={Path.getAnalysisEdit(status.post.seqId)}/>
         }
         {status.post.isAltLang && alertIsAltLang}
         {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
@@ -227,12 +235,12 @@ const AnalysisPostPartialOutputChara = ({post}: AnalysisPostPartialOutputCharaPr
     <>
       {
         post.forceStrikes &&
-          <>
-            <PageAnchor name="fs" type="h3" text={t('posts.analysis.force_strike')} className="mb-3"/>
-            <div className="rounded bg-black-32 p-3">
-              <Markdown>{post.forceStrikes || 'N/A'}</Markdown>
-            </div>
-          </>
+        <>
+          <PageAnchor name="fs" type="h3" text={t('posts.analysis.force_strike')} className="mb-3"/>
+          <div className="rounded bg-black-32 p-3">
+            <Markdown>{post.forceStrikes || 'N/A'}</Markdown>
+          </div>
+        </>
       }
 
       <PageAnchor name="skills" type="h3" text={t('posts.analysis.skills')} className="my-3"/>
@@ -251,15 +259,15 @@ const AnalysisPostPartialOutputChara = ({post}: AnalysisPostPartialOutputCharaPr
 
       {
         post.tipsBuilds &&
-          <>
-            <hr/>
-            <Row>
-              <Col>
-                <PageAnchor name="tips-builds" type="h3" text={t('posts.analysis.tips_builds')} className="mb-3"/>
-                <Markdown>{post.tipsBuilds}</Markdown>
-              </Col>
-            </Row>
-          </>
+        <>
+          <hr/>
+          <Row>
+            <Col>
+              <PageAnchor name="tips-builds" type="h3" text={t('posts.analysis.tips_builds')} className="mb-3"/>
+              <Markdown>{post.tipsBuilds}</Markdown>
+            </Col>
+          </Row>
+        </>
       }
     </>
   );
@@ -278,32 +286,32 @@ const AnalysisPostPartialOutputDragon = ({post}: AnalysisPostPartialOutputDragon
     <>
       {
         post.ultimate &&
-          <>
-            <h3 className="mb-3">{t('posts.analysis.ultimate')}</h3>
-            <div className="rounded bg-black-32 p-3 mb-3">
-              <Markdown>{post.ultimate || 'N/A'}</Markdown>
-            </div>
-          </>
+        <>
+          <h3 className="mb-3">{t('posts.analysis.ultimate')}</h3>
+          <div className="rounded bg-black-32 p-3 mb-3">
+            <Markdown>{post.ultimate || 'N/A'}</Markdown>
+          </div>
+        </>
       }
 
       {
         post.notes &&
-          <>
-            <h3 className="mb-3">{t('posts.analysis.notes_dragon')}</h3>
-            <div className="rounded bg-black-32 p-3 mb-3">
-              <Markdown>{post.notes || 'N/A'}</Markdown>
-            </div>
-          </>
+        <>
+          <h3 className="mb-3">{t('posts.analysis.notes_dragon')}</h3>
+          <div className="rounded bg-black-32 p-3 mb-3">
+            <Markdown>{post.notes || 'N/A'}</Markdown>
+          </div>
+        </>
       }
 
       {
         post.suitableCharacters &&
-          <>
-            <h3 className="mb-3">{t('posts.analysis.suitable')}</h3>
-            <div className="rounded bg-black-32 p-3 mb-3">
-              <Markdown>{post.suitableCharacters || 'N/A'}</Markdown>
-            </div>
-          </>
+        <>
+          <h3 className="mb-3">{t('posts.analysis.suitable')}</h3>
+          <div className="rounded bg-black-32 p-3 mb-3">
+            <Markdown>{post.suitableCharacters || 'N/A'}</Markdown>
+          </div>
+        </>
       }
     </>
   );

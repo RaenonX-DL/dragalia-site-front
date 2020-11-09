@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {GoogleAnalytics} from '../../constants/ga';
 
 
@@ -28,6 +28,33 @@ const calcOffsetHeight = (elem: HTMLElement | null | undefined) => {
 };
 
 
+export const scrollToAnchor = (hash: string = window.location.hash) => {
+  // Early termination on hash undefined or empty
+  if (!hash) {
+    return;
+  }
+
+  // Get the anchor element and the title element
+  const anchor = document.getElementById(hash.substr(1));
+  const titleNav = document.getElementById(titleNavBarId);
+
+  if (anchor) {
+    const anchorHeight = calcOffsetHeight(anchor);
+
+    // Calculate the offset height of title nav bar
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const offsetHeight = (titleNav?.offsetHeight || 0) + rem;
+
+    // Scrolling (jump) - Safari does not support using options yet
+    window.scrollTo(0, anchorHeight - offsetHeight);
+    history.pushState(null, document.title, hash); // Push history (change URL bar too, without jumping)
+    GoogleAnalytics.anchor('navigate', hash);
+  } else {
+    GoogleAnalytics.anchor('navFailed', hash);
+  }
+};
+
+
 export const PageAnchor = ({name, type, text, className = ''}: PageAnchorProps) => {
   const anchorOnClick = (e) => {
     e.preventDefault();
@@ -39,31 +66,6 @@ export const PageAnchor = ({name, type, text, className = ''}: PageAnchorProps) 
     // Not using `e.target.href` since it returns the full URL, but we only want the hash name
     scrollToAnchor(anchorHash);
   };
-
-  const scrollToAnchor = (hash: string | undefined) => {
-    // Early termination on hash undefined or empty
-    if (!hash) {
-      return;
-    }
-
-    // Get the anchor element and the title element
-    const anchor = document.getElementById(hash.substr(1));
-    const titleNav = document.getElementById(titleNavBarId);
-
-    if (anchor) {
-      const anchorHeight = calcOffsetHeight(anchor);
-
-      // Calculate the offset height of title nav bar
-      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      const offsetHeight = (titleNav?.offsetHeight || 0) + rem;
-
-      window.scrollTo(0, anchorHeight - offsetHeight); // Scrolling (jump)
-      history.pushState(null, document.title, hash); // Push history (change URL bar too, without jumping)
-      GoogleAnalytics.anchor('navigate', hash);
-    }
-  };
-
-  useEffect(() => scrollToAnchor(window.location.hash));
 
   if (type === 'h1') {
     return <h1 className={className} id={name}>{text}&nbsp;<a href={`#${name}`} onClick={anchorOnClick}>#</a></h1>;
