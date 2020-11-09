@@ -38,7 +38,7 @@ export const LanguageSwitch = () => {
 
   return (
     <NavDropdown title={getCurrentLanguage()} id="language-switch" className="pr-2">
-      <NavDropdown.Header>{t('lang.in-use')}</NavDropdown.Header>
+      <NavDropdown.Header>{t('lang.in_use')}</NavDropdown.Header>
       <NavDropdown.Item disabled>{getCurrentLanguage()}</NavDropdown.Item>
       <NavDropdown.Divider/>
       {

@@ -30,7 +30,10 @@
     "request_failed": "Failed to send login request"
   },
   "lang": {
-    "in-use": "Currently in-use"
+    "in_use": "Currently in-use"
+  },
+  "message": {
+    "page_nav": "Are you sure to leave this page?"
   },
   "misc": {
     "add": "Add",

@@ -21,9 +21,6 @@ import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
 
 
-// FIXME: Display alert if reload/closing the page of edit forms
-
-
 const PageMain = () => {
   const {t} = useTranslation();
 

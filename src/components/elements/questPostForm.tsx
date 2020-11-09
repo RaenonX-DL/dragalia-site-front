@@ -7,6 +7,7 @@ import {getGoogleUid} from './googleSignin';
 import {MarkdownInput} from './markdownInput';
 import {ExpressModal} from './modalExpress';
 import {QuestPositionForm} from './questPositionForm';
+import {Prompt} from './prompt';
 import {
   ApiRequestSender,
   QuestPostEditPayload,
@@ -292,6 +293,7 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
 
   return (
     <>
+      <Prompt/>
       {modalSubmissionFailed}
       <form onSubmit={onFormSubmit}>
         {sectionHeader}
