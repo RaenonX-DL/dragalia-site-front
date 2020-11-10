@@ -5,6 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 
 import {GoogleSigninButton} from './googleSignin';
 import {LanguageSwitch} from './langSwitch';
+import {titleNavBarId} from './pageAnchor';
 import Path from '../../constants/path';
 
 
@@ -74,7 +75,8 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}}>
+      <Navbar
+        collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
         <span ref={ref}>{t('pages.name.site')}</span>
       </Navbar>
     </>

@@ -127,8 +127,8 @@ export const PostListPage = (props: QuestListPageProps) => {
       <Jumbotron>
         <h4>{title}</h4>
       </Jumbotron>
-      {status.isAdmin ? <div className="mb-3"><PostManageBar {...postManageBarProps}/></div> : <></>}
-      {status.showAlert ? alertFetchFailed : <></>}
+      {status.isAdmin && <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>}
+      {status.showAlert && alertFetchFailed}
       {fnGetPostListJsx(status.posts)}
       <div className="d-flex justify-content-center">
         <Paginator
@@ -136,7 +136,6 @@ export const PostListPage = (props: QuestListPageProps) => {
           disable={status.showAlert}
           initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / limit + 1))} maxPage={status.maxPage}/>
       </div>
-      {/* DRAFT: search bar at top left side */}
     </>
   );
 };

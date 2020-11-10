@@ -30,7 +30,10 @@
     "request_failed": "無法傳送登入請求"
   },
   "lang": {
-    "in-use": "目前使用中"
+    "in_use": "目前使用中"
+  },
+  "message": {
+    "page_nav": "確定要離開本頁面嗎？"
   },
   "misc": {
     "add": "新增",

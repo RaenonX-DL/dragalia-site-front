@@ -12,8 +12,6 @@ type States = {}
  */
 const regex = /\[(#[A-Fa-f0-9]{6}|[a-z]+)](.*)\[\/#]/;
 
-// TODO: Colorize text
-
 /**
  * Colorize a section of text if possible.
  *

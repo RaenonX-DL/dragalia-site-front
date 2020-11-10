@@ -63,7 +63,7 @@ export const Paginator = (params: PaginatorParams) => {
           .map((i) => <Pagination.Item key={i} active={page === i} disabled={disable}>{i}</Pagination.Item>)
       }
       <Pagination.Next disabled={disable}/>
-      {maxPage ? <Pagination.Last disabled={disable}/> : <></>}
+      {maxPage && <Pagination.Last disabled={disable}/>}
     </Pagination>
   );
 };

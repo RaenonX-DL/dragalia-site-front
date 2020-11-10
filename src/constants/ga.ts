@@ -4,11 +4,13 @@
 export class GAEvent {
   static LANG_CHANGE = 'lang_change';
   static LOGIN = 'login';
-  static PAGE_VIEW = 'page_view';
+  static ANCHOR = 'anchor';
 }
 
 /**
  * Class for sending custom GA events.
+ *
+ * Note that page view event will be automatically sent upon page reload.
  */
 export class GoogleAnalytics {
   /**
@@ -44,17 +46,26 @@ export class GoogleAnalytics {
   }
 
   /**
-   * Record the event of a page view.
+   * Record the event of an user uses the anchor.
    *
-   * @param {Location} location location object
+   * There are a few types of `usage`:
+   *
+   * - `navigate`: the user was navigated to the location of the anchor
+   * - `navFailed`: ~~the anchor was not found in the page, failed to navigate~~
+   *   - Currently not using, needs optimization
+   * - `click`: the user clicked on the anchor mark (possibly to obtain the link)
+   *   - This should also trigger `navigate` since the page will navigate on click.
+   *
+   * @param {'navigate' | 'click'} usage how the user uses the anchor
+   * @param {string} anchorHash hash of the anchor
    */
-  static pageView(location: Location) {
+  static anchor(usage: 'navigate' | 'navFailed' | 'click', anchorHash: string) {
     GoogleAnalytics.sendEvent(
-      GAEvent.PAGE_VIEW,
+      GAEvent.ANCHOR,
       {
-        'page_location': location.href,
-        'page_title': document.title,
-        'page_path': location.pathname,
+        'usage': usage,
+        'hash': anchorHash,
+        'path': window.location.href,
       },
     );
   }

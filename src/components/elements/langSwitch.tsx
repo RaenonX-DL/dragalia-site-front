@@ -32,14 +32,13 @@ export const LanguageSwitch = () => {
   };
 
   if (redirected) {
-    // OPTIMIZE: Find a better way than refreshing the whole page - probably just re-render the page part?
     window.location.reload();
     return <></>;
   }
 
   return (
     <NavDropdown title={getCurrentLanguage()} id="language-switch" className="pr-2">
-      <NavDropdown.Header>{t('lang.in-use')}</NavDropdown.Header>
+      <NavDropdown.Header>{t('lang.in_use')}</NavDropdown.Header>
       <NavDropdown.Item disabled>{getCurrentLanguage()}</NavDropdown.Item>
       <NavDropdown.Divider/>
       {

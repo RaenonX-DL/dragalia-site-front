@@ -22,31 +22,28 @@ export const PostManageBar = (props: PostManageBarProps) => {
     <Row>
       <Col>
         {
-          editPostUrl ?
+          editPostUrl &&
             <LinkContainer to={editPostUrl}>
               <Button variant="outline-info" className="float-right">
                 {t('posts.manage.edit')}
               </Button>
-            </LinkContainer> :
-            <></>
+            </LinkContainer>
         }
         {
-          newPostUrl2 ?
+          newPostUrl2 &&
             <LinkContainer to={newPostUrl2}>
               <Button variant="outline-success" className="float-right mr-2">
                 {newPostTitle2 || t('posts.manage.add')}
               </Button>
-            </LinkContainer> :
-            <></>
+            </LinkContainer>
         }
         {
-          newPostUrl ?
+          newPostUrl &&
             <LinkContainer to={newPostUrl}>
               <Button variant="outline-success" className="float-right mr-2">
                 {newPostTitle || t('posts.manage.add')}
               </Button>
-            </LinkContainer> :
-            <></>
+            </LinkContainer>
         }
       </Col>
     </Row>

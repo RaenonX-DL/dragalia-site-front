@@ -6,6 +6,7 @@ import {useTranslation} from 'react-i18next';
 import {getGoogleUid} from './googleSignin';
 import {MarkdownInput} from './markdownInput';
 import {ExpressModal} from './modalExpress';
+import {Prompt} from './prompt';
 import {AnalysisSkillInput} from './analysisSkill';
 import {
   ApiRequestSender,
@@ -250,12 +251,11 @@ const AnalysisPostFormBase = (props: React.PropsWithChildren<AnalysisPostFormBas
         {children}
         {sectionGeneralBottom}
         {
-          hasPost ?
-            <>
-              <hr/>
-              {sectionModifyNote}
-            </> :
-            <></>
+          hasPost &&
+          <>
+            <hr/>
+            {sectionModifyNote}
+          </>
         }
         <hr/>
         {sectionControl}
@@ -558,11 +558,14 @@ export const AnalysisPostFormChara = ({post, fnSendRequest}: AnalysisPostFormCha
   };
 
   return (
-    <AnalysisPostFormBase
-      states={statesBase} hasPost={post !== undefined && post !== null} handleFormSubmit={handleFormSubmit}>
-      <AnalysisPostPartialFormChara states={statesChara}/>
-      <div className="mb-3"/>
-    </AnalysisPostFormBase>
+    <>
+      <Prompt/>
+      <AnalysisPostFormBase
+        states={statesBase} hasPost={post !== undefined && post !== null} handleFormSubmit={handleFormSubmit}>
+        <AnalysisPostPartialFormChara states={statesChara}/>
+        <div className="mb-3"/>
+      </AnalysisPostFormBase>
+    </>
   );
 };
 
@@ -687,11 +690,14 @@ export const AnalysisPostFormDragon = ({post, fnSendRequest}: AnalysisPostFormDr
   };
 
   return (
-    <AnalysisPostFormBase
-      states={statesBase} hasPost={post !== undefined && post !== null} handleFormSubmit={handleFormSubmit}>
-      <AnalysisPostPartialFormDragon states={statesDragon}/>
-      <div className="mb-3"/>
-    </AnalysisPostFormBase>
+    <>
+      <Prompt/>
+      <AnalysisPostFormBase
+        states={statesBase} hasPost={post !== undefined && post !== null} handleFormSubmit={handleFormSubmit}>
+        <AnalysisPostPartialFormDragon states={statesDragon}/>
+        <div className="mb-3"/>
+      </AnalysisPostFormBase>
+    </>
   );
 };
 

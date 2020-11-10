@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
 import {Markdown} from './markdown';
+import {PageAnchor} from './pageAnchor';
 import {PositionalInfo} from '../../constants/api';
 
 
@@ -17,12 +18,12 @@ export const QuestPositionOutput = ({info}: OutputProps) => {
   return (
     <>
       {
-        info.map((info) => (
+        info.map((info, idx) => (
           <div key={info.position} className="p-3 bg-black-32 rounded mb-3">
             <Accordion>
               <Row>
                 <Col>
-                  <h4>{info.position}</h4>
+                  <PageAnchor name={`pos-${idx}`} type="h4" text={info.position}/>
                 </Col>
                 <Col className="d-flex flex-row-reverse">
                   <Accordion.Toggle as={Button} variant="outline-success" eventKey={info.position}>

@@ -8,8 +8,9 @@ import {QuestPostForm} from './elements/questPostForm';
 import {QuestPostList} from './elements/questPostList';
 import {QuestPositionOutput} from './elements/questPositionOutput';
 import {QuestPostFetchStatus} from './elements/questFetch';
-import {AnalysisPostList} from './elements/analysisPostList';
+import {QuestPostOutput} from './elements/questPostOutput';
 
+import {AnalysisPostList} from './elements/analysisPostList';
 import {AnalysisPostOutput} from './elements/analysisPostOutput';
 import {
   AnalysisPostFetchStatus,
@@ -26,6 +27,7 @@ import {getGoogleUid} from './elements/googleSignin';
 // Components
 import {Navigation} from './elements/navigation';
 import {Footer} from './elements/footer';
+import {PageAnchor, scrollToAnchor} from './elements/pageAnchor';
 import {Paginator} from './elements/paginator';
 import {ExpressModal} from './elements/modalExpress';
 import {Markdown} from './elements/markdown';
@@ -38,9 +40,9 @@ export type {
 };
 
 export {
-  QuestPostForm, QuestPostList, QuestPositionOutput,
+  QuestPostForm, QuestPostList, QuestPositionOutput, QuestPostOutput,
   AnalysisPostOutput, AnalysisPostFormChara, AnalysisPostFormDragon, AnalysisPostList, AnalysisSkillOutput,
   PostManageBar, PostListPage, FetchPost, PostInfo, PostModificationNotes,
   getGoogleUid,
-  Navigation, Footer, Paginator, ExpressModal, Markdown, InfoCard,
+  Navigation, Footer, PageAnchor, scrollToAnchor, Paginator, ExpressModal, Markdown, InfoCard,
 };
