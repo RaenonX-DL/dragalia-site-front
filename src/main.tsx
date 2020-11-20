@@ -47,6 +47,13 @@ const PageMain = () => {
     // Ensure that the title has been set
     document.title = title.current;
     ref.current.innerText = title.current;
+
+    // Google Auto AdSense
+    // @ts-ignore
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: 'ca-pub-1535004092052078',
+      enable_page_level_ads: false,
+    });
   });
 
   return (
