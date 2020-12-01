@@ -1,0 +1,139 @@
+{
+  "game": {
+    "data": {
+      "title_self": "ゲーム情報",
+      "active": "スキル",
+      "cex": "リンクEXアビリティ",
+      "others": "他の情報",
+      "passive": "アビリティ",
+      "print": "護符",
+      "skill_atk": "攻擊スキル",
+      "skill_sup": "サポートスキル",
+      "story": "ストーリー"
+    },
+    "tools": {
+      "title_self": "ゲーム用のツール",
+      "damage": "ダメージ計算",
+      "rotation": "ルーティン計算"
+    }
+  },
+  "google_signin": {
+    "no_uid": "不正確なGoogleアカウント",
+    "no_uid_details": "不正確なGoogleアカウント。もう一度ログインしてください。",
+    "login": "Googleログイン",
+    "login_error": "エラーコード: {{errorCode}}",
+    "login_failed": "ログイン失敗",
+    "login_unknown": "不明なエラーが発生，ログインができない。({{error}})",
+    "logout": "Googleログアウト",
+    "logout_failed": "ログアウト失敗",
+    "logout_unknown": "不明なエラーが発生，ログアウトができない。",
+    "request_failed": "ログインのリクエストが失敗"
+  },
+  "lang": {
+    "in_use": "使用中"
+  },
+  "message": {
+    "page_nav": "このページ閉じますか？"
+  },
+  "misc": {
+    "add": "追加",
+    "remove": "削除"
+  },
+  "pages": {
+    "name": {
+      "about": "サイドについて",
+      "analysis_list": "検測のカタログ",
+      "analysis_new_chara": "新キャラの検測",
+      "analysis_new_dragon": "新ドラゴンの検測",
+      "analysis_post": "検測",
+      "home": "ホームページ",
+      "constructing": "工事中",
+      "quest_edit": "高難易度クエスト攻略の編集",
+      "quest_list": "高難易度クエスト攻略のカタログ",
+      "quest_new": "高難易度クエスト攻略の追加",
+      "quest_post": "高難易度クエスト攻略",
+      "site": "ドラガリ攻略サイド by OM",
+      "suffix": " | ドラガリ攻略サイド by OM"
+    },
+    "constructing": "サイド機能工事中。後で発布する。\n\n### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。",
+    "welcome": "OM製作のドラガリ攻略サイドへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n今 **高難易度クエスト攻略、キャラとドラゴンの検測** は完成してる，ご覧ください。\n\nページに選択したら說明もついてます。"
+  },
+  "posts": {
+    "analysis": {
+      "title_self": "検測",
+      "force_strike": "バーストアタック",
+      "keywords": "キーワード",
+      "normal_attack": "通常殴り",
+      "notes_dragon": "記事",
+      "object_name": "検測の名前",
+      "object_type": "検測の対象",
+      "passive": "アビリティ",
+      "skills": "スキル情報",
+      "story": "ストーリー",
+      "suitable": "愛想良いキャラ",
+      "summary": "結論",
+      "summon_result": "個人のガチャ結果",
+      "tips_builds": "ポイント & おすすめ配置",
+      "ultimate": "必殺技",
+      "videos": "関する動画",
+      "error": {
+        "unknown_type": "文の種類が分別できない。"
+      },
+      "skill": {
+        "name": "スキルの名前",
+        "info": "スキルの情報",
+        "rotations": "スキルのシフト",
+        "tips": "スキルのポイント"
+      },
+      "type": {
+        "character": "キャラ",
+        "dragon": "ドラゴン",
+        "uncategorized": "未定"
+      }
+    },
+    "info": {
+      "title_self": "本ページの情報",
+      "id": "ID",
+      "last_modified": "最後の編集した日期",
+      "published": "発表した日期",
+      "title": "お題",
+      "view_count": "ご覽回數"
+    },
+    "manage": {
+      "add": "文を追加する",
+      "add_chara": "文を追加する (キャラ)",
+      "add_dragon": "文を追加する(ドラゴン)",
+      "add_note": "指定 IDあれば，文が多国言語版もあります。サイドはその ID と言語検査する。対応できない文のID は使えない。",
+      "collapse": "ズームイン/アウト",
+      "edit": "文を編集",
+      "fetch_list_failed": "文のリスト獲得失敗。({{error}})",
+      "fetch_post_failed": "文の獲得失敗。({{error}})",
+      "md": "Markdown",
+      "modify_note": "記事を編集する",
+      "modify_time": "日期を編集する",
+      "post_not_exists": "文がございません。",
+      "preview": "プレビュー",
+      "publish": "文を発表する",
+      "publish_failed": "発表失敗"
+    },
+    "message": {
+      "alt_lang": "本ページは言語が {{langUi}} の版がございませんなので。展示した言語が{{langPost}} の版に変えました。",
+      "other_lang": "本ページが他言語の版もあります。"
+    },
+    "misc": {
+      "title_self": "他の文章"
+    },
+    "quest": {
+      "title_self": "高難易度クエストの攻略",
+      "addendum": "記事",
+      "builds": "配置",
+      "character": "キャラ",
+      "general": "通常注意ポイント",
+      "positional": "キャラ/職業別の攻略",
+      "rotations": "ルーティン / スキル順番",
+      "tips": "ポイント",
+      "title": "お題",
+      "video": "関する動画"
+    }
+  }
+}
