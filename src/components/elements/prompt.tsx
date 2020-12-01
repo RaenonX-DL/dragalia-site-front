@@ -4,7 +4,6 @@ import {useTranslation} from 'react-i18next';
 
 
 const onBeforeUnload = (e) => {
-  console.log('set event');
   // Cancel the event
   e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
   // Chrome requires returnValue to be set
@@ -24,9 +23,6 @@ export const Prompt = ({display = true, text}: PromptProps) => {
   if (!text) {
     text = t('message.page_nav');
   }
-
-  console.log(display);
-  console.log(text);
 
   // Using event listener of `beforeunload` for close/reload
   window.addEventListener('beforeunload', onBeforeUnload);
