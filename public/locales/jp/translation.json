@@ -42,10 +42,10 @@
   "pages": {
     "name": {
       "about": "サイトについて",
-      "analysis_list": "検測のカタログ",
-      "analysis_new_chara": "新キャラの検測",
-      "analysis_new_dragon": "新ドラゴンの検測",
-      "analysis_post": "検測",
+      "analysis_list": "評価のカタログ",
+      "analysis_new_chara": "新キャラの評価",
+      "analysis_new_dragon": "新ドラゴンの評価",
+      "analysis_post": "評価",
       "home": "ホームページ",
       "constructing": "工事中",
       "quest_edit": "高難易度クエスト攻略の編集",
@@ -56,17 +56,17 @@
       "suffix": " | ドラガリ攻略サイト by OM"
     },
     "constructing": "サイト機能工事中。後で発布する。\n\n### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。",
-    "welcome": "OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n今 **高難易度クエスト攻略、キャラとドラゴンの検測** は完成してる，ご覧ください。\n\nページに選択したら說明もついてます。"
+    "welcome": "OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n今 **高難易度クエスト攻略、キャラ、ドラゴン評価** は完成してる，ご覧ください。\n\nページに選択したら說明もついてます。"
   },
   "posts": {
     "analysis": {
-      "title_self": "検測",
+      "title_self": "キャラ、ドラゴン評価",
       "force_strike": "バーストアタック",
       "keywords": "キーワード",
       "normal_attack": "通常殴り",
       "notes_dragon": "記事",
-      "object_name": "検測の名前",
-      "object_type": "検測の対象",
+      "object_name": "評価の名前",
+      "object_type": "評価の対象",
       "passive": "アビリティ",
       "skills": "スキル情報",
       "story": "ストーリー",
