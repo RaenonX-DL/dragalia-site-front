@@ -32,8 +32,8 @@ export const AnalysisPostList = ({posts, linkGenerator}: PostListProps) => {
       <thead>
         <tr>
           <th className="text-center">{t('posts.info.id')}</th>
-          <th className="text-center">{t('posts.analysis.object_type')}</th>
-          <th className="text-center w-25">{t('posts.analysis.object_name')}</th>
+          <th className="text-center">{t('posts.analysis.unit_type')}</th>
+          <th className="text-center w-25">{t('posts.analysis.unit_name')}</th>
           <th className="text-center">{t('posts.info.view_count')}</th>
           <th className="text-center">{t('posts.info.last_modified')}</th>
           <th className="text-center">{t('posts.info.published')}</th>
@@ -46,7 +46,7 @@ export const AnalysisPostList = ({posts, linkGenerator}: PostListProps) => {
               <tr key={post.seqId.toString() + post.lang}>
                 <td className="text-center">#{post.seqId}</td>
                 <td className="text-center">{translateType(post.type)}</td>
-                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.objectName}</a></td>
+                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.unitName}</a></td>
                 <td className="text-right">{post.viewCount}</td>
                 <td className="text-center">{post.modified}</td>
                 <td className="text-center">{post.published}</td>

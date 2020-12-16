@@ -122,7 +122,7 @@ const AnalysisPostFormBase = (props: React.PropsWithChildren<AnalysisPostFormBas
       </Col>
       <Col lg={7}>
         <Form.Control
-          className="mb-2" type="text" placeholder={t('posts.analysis.object_name')}
+          className="mb-2" type="text" placeholder={t('posts.analysis.unit_name')}
           onChange={onNameChanged} value={states.name} required
         />
       </Col>

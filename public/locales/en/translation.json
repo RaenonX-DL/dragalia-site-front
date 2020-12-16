@@ -42,10 +42,10 @@
   "pages": {
     "name": {
       "about": "About",
-      "analysis_list": "Index of object analysis",
-      "analysis_new_chara": "New object analysis post (Character)",
-      "analysis_new_dragon": "New object analysis post (Dragon)",
-      "analysis_post": "Object Analysis",
+      "analysis_list": "Index of unit analysis",
+      "analysis_new_chara": "New unit analysis post (Character)",
+      "analysis_new_dragon": "New unit analysis post (Dragon)",
+      "analysis_post": "Unit Analysis",
       "home": "Homepage",
       "constructing": "Under construction",
       "quest_edit": "Edit HDTs/Agitos",
@@ -56,17 +56,17 @@
       "suffix": " | DL Info by OM"
     },
     "constructing": "Under construction. Will announce upon completion somewhere.\n\n### Completed before email notification system has been completed\n\nWe will announce it in social media (Reddit, FB groups, etc.).\n\n### Completed after the email notification system has been implemented\n\nUsers who logged in before or signed up for the email list will receive an email about the new release.",
-    "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos, Object Analysis** are completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."
+    "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."
   },
   "posts": {
     "analysis": {
-      "title_self": "Object Analysis",
+      "title_self": "Unit Analysis",
       "force_strike": "Force Strike Module",
       "keywords": "Keywords",
       "normal_attack": "Normal Attack Module",
       "notes_dragon": "Notes",
-      "object_name": "Object Name",
-      "object_type": "Object Type",
+      "unit_name": "Unit Name",
+      "unit_type": "Unit Type",
       "passive": "Passive",
       "skills": "Skill",
       "story": "Story",
