@@ -42,7 +42,7 @@ export interface QuestPostListEntry extends PostListEntry {
 }
 
 /**
- * Sync with `ObjectAnalysisPostType` at back.
+ * Sync with `UnitAnalysisPostType` at back.
  */
 export enum AnalysisPostType {
   CHARACTER = 1,
@@ -54,7 +54,7 @@ export enum AnalysisPostType {
  */
 export interface AnalysisPostListEntry extends PostListEntry {
   type: AnalysisPostType,
-  objectName: string,
+  unitName: string,
 }
 
 /**
