@@ -5,12 +5,11 @@ export class GAEvent {
   static LANG_CHANGE = 'lang_change';
   static LOGIN = 'login';
   static ANCHOR = 'anchor';
+  static PAGE_VIEW = 'page_view';
 }
 
 /**
  * Class for sending custom GA events.
- *
- * Note that page view event will be automatically sent upon page reload.
  */
 export class GoogleAnalytics {
   /**
@@ -66,6 +65,22 @@ export class GoogleAnalytics {
         'usage': usage,
         'hash': anchorHash,
         'path': window.location.href,
+      },
+    );
+  }
+
+  /**
+   * Record the event of a page view.
+   *
+   * @param {Location} location location object
+   */
+  static pageView(location: Location) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.PAGE_VIEW,
+      {
+        'page_location': location.href,
+        'page_title': document.title,
+        'page_path': location.pathname,
       },
     );
   }
