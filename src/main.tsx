@@ -19,6 +19,7 @@ import {
 } from './components/pages';
 import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
+import {GoogleAnalytics} from './constants/ga';
 
 
 const PageMain = () => {
@@ -34,12 +35,20 @@ const PageMain = () => {
       newTitle = '';
     }
 
-    if (ref.current) {
-      ref.current.innerText = newTitle;
-    }
-
+    // Set the title element and the document title
     title.current = newTitle;
     document.title = newTitle + t('pages.name.suffix');
+
+    if (ref.current) {
+      // Title element linked, set new title to it & record the page title
+      ref.current.innerText = newTitle;
+
+      // This needs to be placed after the document title update because
+      // this method sends the current page title
+      // Not using history API because it's updated right after the navigation.
+      // Title may be loaded later.
+      GoogleAnalytics.pageView(window.location);
+    }
   };
 
   // After the page render completed
