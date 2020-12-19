@@ -2,9 +2,9 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
-import {Markdown} from './markdown';
-import {PageAnchor} from './pageAnchor';
-import {PositionalInfo} from '../../constants/api';
+import {Markdown} from '../../markdown/main';
+import {PageAnchor} from '../pageAnchor';
+import {PositionalInfo} from '../../../../constants/api';
 
 
 type OutputProps = {

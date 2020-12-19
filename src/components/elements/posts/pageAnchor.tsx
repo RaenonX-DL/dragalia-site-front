@@ -1,5 +1,5 @@
 import React from 'react';
-import {GoogleAnalytics} from '../../constants/ga';
+import {GoogleAnalytics} from '../../../constants/ga';
 
 
 export const titleNavBarId = 'nav-title';

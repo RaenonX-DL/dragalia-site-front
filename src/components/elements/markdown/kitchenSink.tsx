@@ -1,5 +1,5 @@
 import React from 'react';
-import {Markdown} from './markdown';
+import {Markdown} from './main';
 
 export const MarkdownKitchensink = () => {
   const data = `

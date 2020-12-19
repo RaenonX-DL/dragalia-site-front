@@ -1,15 +1,15 @@
 import {Home} from './pages/home';
 import {About} from './pages/about';
 
-import {QuestList} from './pages/questList';
-import {QuestNew} from './pages/questNew';
-import {QuestPage} from './pages/questPage';
-import {QuestEdit} from './pages/questEdit';
+import {QuestList} from './pages/posts/quest/list';
+import {QuestNew} from './pages/posts/quest/new';
+import {QuestPage} from './pages/posts/quest/page';
+import {QuestEdit} from './pages/posts/quest/edit';
 
-import {AnalysisList} from './pages/analysisList';
-import {AnalysisNewChara, AnalysisNewDragon} from './pages/analysisNew';
-import {AnalysisPage} from './pages/analysisPage';
-import {AnalysisEdit} from './pages/analysisEdit';
+import {AnalysisList} from './pages/posts/analysis/list';
+import {AnalysisNewChara, AnalysisNewDragon} from './pages/posts/analysis/new';
+import {AnalysisPage} from './pages/posts/analysis/page';
+import {AnalysisEdit} from './pages/posts/analysis/edit';
 
 import {Constructing} from './pages/constructing';
 

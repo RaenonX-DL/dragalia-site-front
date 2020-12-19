@@ -2,8 +2,8 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Col, Row} from 'react-bootstrap';
 
-import {InfoCard, PageAnchor, PostModificationNotes} from '../elements';
-import {PostGetSuccessResponse} from '../../constants/api';
+import {InfoCard, PageAnchor, PostModificationNotes} from '../../elements';
+import {PostGetSuccessResponse} from '../../../constants/api';
 
 
 type PostInfoProps = {

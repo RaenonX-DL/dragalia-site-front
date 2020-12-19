@@ -2,7 +2,7 @@ import React, {ChangeEventHandler} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Tab, Tabs} from 'react-bootstrap';
 
-import {Markdown} from './markdown';
+import {Markdown} from './main';
 
 type MarkdownInputProps = {
   rows?: number,

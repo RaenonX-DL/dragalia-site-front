@@ -2,11 +2,11 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Redirect, useParams} from 'react-router-dom';
 
-import {PageProps} from './base';
+import {PageProps} from '../../base';
 
-import {FetchPost, getGoogleUid, PostFetchStatus, QuestPostFetchStatus, QuestPostForm} from '../elements';
-import {ApiRequestSender} from '../../constants/api';
-import Path from '../../constants/path';
+import {FetchPost, getGoogleUid, PostFetchStatus, QuestPostFetchStatus, QuestPostForm} from '../../../elements';
+import {ApiRequestSender} from '../../../../constants/api';
+import Path from '../../../../constants/path';
 
 export const QuestEdit = ({fnSetTitle}: PageProps) => {
   const {t, i18n} = useTranslation();

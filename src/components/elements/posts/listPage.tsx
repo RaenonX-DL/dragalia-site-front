@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {Alert} from 'react-bootstrap';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
-import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../elements';
-import {PostListEntry, PostListResponse} from '../../constants/api';
+import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../../elements';
+import {PostListEntry, PostListResponse} from '../../../constants/api';
 
 
 const limit = 25;

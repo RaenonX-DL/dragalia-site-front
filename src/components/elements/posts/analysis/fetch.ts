@@ -1,5 +1,5 @@
-import {PostFetchStatus} from './postFetch';
-import {AnalysisPostGetSuccessResponse, CharacterAnalysisPost, DragonAnalysisPost} from '../../constants/api';
+import {PostFetchStatus} from '../fetch';
+import {AnalysisPostGetSuccessResponse, CharacterAnalysisPost, DragonAnalysisPost} from '../../../../constants/api';
 
 
 export interface AnalysisPostFetchStatus extends PostFetchStatus {

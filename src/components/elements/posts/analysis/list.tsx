@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {AnalysisPostListEntry, AnalysisPostType} from '../../constants/api';
+import {AnalysisPostListEntry, AnalysisPostType} from '../../../../constants/api';
 
 
 type linkGenerator = (id: number | string) => string;

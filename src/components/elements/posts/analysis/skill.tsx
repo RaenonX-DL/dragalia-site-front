@@ -2,9 +2,9 @@ import React, {ChangeEventHandler} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {Markdown} from './markdown';
-import {MarkdownInput} from './markdownInput';
-import {PageAnchor} from './pageAnchor';
+import {Markdown} from '../../markdown/main';
+import {MarkdownInput} from '../../markdown/input';
+import {PageAnchor} from '../pageAnchor';
 
 
 export type AnalysisSkillInputProps = {

@@ -1,9 +1,9 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-import {PageProps} from './base';
-import {AnalysisPostFormChara, AnalysisPostFormDragon} from '../elements';
-import {ApiRequestSender} from '../../constants/api';
+import {PageProps} from '../../base';
+import {AnalysisPostFormChara, AnalysisPostFormDragon} from '../../../elements';
+import {ApiRequestSender} from '../../../../constants/api';
 
 
 export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 
-import {Markdown} from './markdown';
+import {Markdown} from './main';
 
 test('Check main page', () => {
   const {getByText} = render(<Markdown>Paragraph</Markdown>);

@@ -14,10 +14,10 @@ import {
   QuestPositionOutput,
   QuestPostFetchStatus,
   scrollToAnchor,
-} from '../elements';
-import {ApiRequestSender, QuestPostListEntry} from '../../constants/api';
-import Path from '../../constants/path';
-import {SUPPORTED_LANG_NAME} from '../../constants/lang';
+} from '../../../elements';
+import {ApiRequestSender, QuestPostListEntry} from '../../../../constants/api';
+import Path from '../../../../constants/path';
+import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 
 
 type QuestPostOutputProps = {

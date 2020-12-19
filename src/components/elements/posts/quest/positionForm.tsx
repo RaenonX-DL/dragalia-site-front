@@ -2,7 +2,7 @@ import React, {ChangeEventHandler} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {MarkdownInput} from './markdownInput';
+import {MarkdownInput} from '../../markdown/input';
 
 
 export type QuestPositionInputProps = {

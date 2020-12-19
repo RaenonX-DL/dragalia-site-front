@@ -3,20 +3,20 @@ import {Redirect} from 'react-router-dom';
 import {Button, Col, Form, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {getGoogleUid} from './googleSignin';
-import {MarkdownInput} from './markdownInput';
-import {ExpressModal} from './modalExpress';
-import {Prompt} from './prompt';
-import {AnalysisSkillInput} from './analysisSkill';
+import {getGoogleUid} from '../../googleSignin';
+import {MarkdownInput} from '../../markdown/input';
+import {ExpressModal} from '../../modalExpress';
+import {Prompt} from '../../prompt';
+import {AnalysisSkillInput} from './skill';
 import {
   ApiRequestSender,
   CharacterAnalysisPost,
   CharacterSkill,
   DragonAnalysisPost,
   PostUpdateSuccessResponse,
-} from '../../constants/api';
-import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
-import Path from '../../constants/path';
+} from '../../../../constants/api';
+import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../../../constants/lang';
+import Path from '../../../../constants/path';
 
 
 export type ModalState = {

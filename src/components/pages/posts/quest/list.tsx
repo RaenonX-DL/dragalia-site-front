@@ -1,10 +1,10 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-import {PageProps} from './base';
-import {PostListPage, QuestPostList} from '../elements';
-import Path from '../../constants/path';
-import {ApiRequestSender, QuestPostListEntry} from '../../constants/api';
+import {PageProps} from '../../base';
+import {PostListPage, QuestPostList} from '../../../elements';
+import Path from '../../../../constants/path';
+import {ApiRequestSender, QuestPostListEntry} from '../../../../constants/api';
 
 
 export const QuestList = ({fnSetTitle}: PageProps) => {

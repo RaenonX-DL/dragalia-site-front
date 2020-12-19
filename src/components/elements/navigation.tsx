@@ -5,7 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 
 import {GoogleSigninButton} from './googleSignin';
 import {LanguageSwitch} from './langSwitch';
-import {titleNavBarId} from './pageAnchor';
+import {titleNavBarId} from './posts/pageAnchor';
 import Path from '../../constants/path';
 
 

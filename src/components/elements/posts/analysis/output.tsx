@@ -14,10 +14,10 @@ import {
   PostInfo,
   PostManageBar,
   scrollToAnchor,
-} from '../elements';
-import {AnalysisPostType, ApiRequestSender, CharacterAnalysisPost, DragonAnalysisPost} from '../../constants/api';
-import Path from '../../constants/path';
-import {SUPPORTED_LANG_NAME} from '../../constants/lang';
+} from '../../../elements';
+import {AnalysisPostType, ApiRequestSender, CharacterAnalysisPost, DragonAnalysisPost} from '../../../../constants/api';
+import Path from '../../../../constants/path';
+import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 
 
 type AnalysisPostOutputProps = {

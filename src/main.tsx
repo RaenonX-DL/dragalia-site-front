@@ -22,6 +22,97 @@ import Path from './constants/path';
 import {GoogleAnalytics} from './constants/ga';
 
 
+type PageContentProps = {
+  updatePageTitle: (newTitle?: string) => void
+}
+
+
+const PageContent = ({updatePageTitle}: PageContentProps) => {
+  return (
+    <>
+      {/* Home */}
+
+      <Route exact path={Path.HOME}>
+        <Home fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      {/* Posts */}
+
+      <Route exact path={Path.QUEST_LIST}>
+        <QuestList fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.QUEST_NEW}>
+        <QuestNew fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.QUEST}>
+        <QuestPage fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.QUEST_EDIT}>
+        <QuestEdit fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      <Route exact path={Path.ANALYSIS_LIST}>
+        <AnalysisList fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.ANALYSIS_NEW_CHARA}>
+        <AnalysisNewChara fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.ANALYSIS_NEW_DRAGON}>
+        <AnalysisNewDragon fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.ANALYSIS}>
+        <AnalysisPage fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.ANALYSIS_EDIT}>
+        <AnalysisEdit fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      <Route exact path={Path.MISC_LIST}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.MISC}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      {/* In-game data */}
+
+      <Route exact path={Path.CEX}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.PRINT}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      <Route exact path={Path.SKILL_ATK}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.SKILL_SUP}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      <Route exact path={Path.STORY}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      {/* Tools */}
+
+      <Route exact path={Path.DMG_CALC}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.ROTATION_CALC}>
+        <Constructing fnSetTitle={updatePageTitle}/>
+      </Route>
+
+      {/* Not game related */}
+
+      <Route exact path={Path.ABOUT}>
+        <About fnSetTitle={updatePageTitle}/>
+      </Route>
+    </>
+  );
+};
+
+
 const PageMain = () => {
   const {t} = useTranslation();
 
@@ -61,85 +152,9 @@ const PageMain = () => {
   return (
     <>
       <Navigation ref={ref}/>
+
       <Container className="p-3">
-        {/* Home */}
-
-        <Route exact path={Path.HOME}>
-          <Home fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        {/* Posts */}
-
-        <Route exact path={Path.QUEST_LIST}>
-          <QuestList fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.QUEST_NEW}>
-          <QuestNew fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.QUEST}>
-          <QuestPage fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.QUEST_EDIT}>
-          <QuestEdit fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        <Route exact path={Path.ANALYSIS_LIST}>
-          <AnalysisList fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.ANALYSIS_NEW_CHARA}>
-          <AnalysisNewChara fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.ANALYSIS_NEW_DRAGON}>
-          <AnalysisNewDragon fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.ANALYSIS}>
-          <AnalysisPage fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.ANALYSIS_EDIT}>
-          <AnalysisEdit fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        <Route exact path={Path.MISC_LIST}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.MISC}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        {/* In-game data */}
-
-        <Route exact path={Path.CEX}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.PRINT}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        <Route exact path={Path.SKILL_ATK}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.SKILL_SUP}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        <Route exact path={Path.STORY}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        {/* Tools */}
-
-        <Route exact path={Path.DMG_CALC}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-        <Route exact path={Path.ROTATION_CALC}>
-          <Constructing fnSetTitle={updatePageTitle}/>
-        </Route>
-
-        {/* Not game related */}
-
-        <Route exact path={Path.ABOUT}>
-          <About fnSetTitle={updatePageTitle}/>
-        </Route>
+        <PageContent updatePageTitle={updatePageTitle}/>
       </Container>
 
       <Footer/>

@@ -3,11 +3,11 @@ import {Redirect} from 'react-router-dom';
 import {Button, Col, Form, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {getGoogleUid} from './googleSignin';
-import {MarkdownInput} from './markdownInput';
-import {ExpressModal} from './modalExpress';
-import {QuestPositionForm} from './questPositionForm';
-import {Prompt} from './prompt';
+import {getGoogleUid} from '../../googleSignin';
+import {MarkdownInput} from '../../markdown/input';
+import {ExpressModal} from '../../modalExpress';
+import {QuestPositionForm} from './positionForm';
+import {Prompt} from '../../prompt';
 import {
   ApiRequestSender,
   QuestPostEditPayload,
@@ -15,9 +15,9 @@ import {
   QuestPostGetSuccessResponse,
   QuestPostPublishPayload,
   QuestPostPublishSuccessResponse,
-} from '../../constants/api';
-import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
-import Path from '../../constants/path';
+} from '../../../../constants/api';
+import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../../../constants/lang';
+import Path from '../../../../constants/path';
 
 
 export type ModalState = {

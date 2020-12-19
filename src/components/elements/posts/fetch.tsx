@@ -1,7 +1,7 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert} from 'react-bootstrap';
 
-import {ApiResponseCodes, PostGetSuccessResponse} from '../../constants/api';
+import {ApiResponseCodes, PostGetSuccessResponse} from '../../../constants/api';
 import {useTranslation} from 'react-i18next';
 
 

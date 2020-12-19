@@ -1,9 +1,9 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-import {QuestPostForm} from '../elements';
-import {PageProps} from './base';
-import {ApiRequestSender} from '../../constants/api';
+import {QuestPostForm} from '../../../elements';
+import {PageProps} from '../../base';
+import {ApiRequestSender} from '../../../../constants/api';
 
 export const QuestNew = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
