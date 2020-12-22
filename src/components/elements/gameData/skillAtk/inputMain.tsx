@@ -2,7 +2,7 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import {Button} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {ConditionCodes} from '../../../../constants/gameData';
-import {ConditionEnums, ElementEnums, ResourceLoader} from '../../../../utils/services/resources';
+import {CategorizedConditionEnums, ElementEnums, ResourceLoader} from '../../../../utils/services/resources';
 
 import {
   InputData,
@@ -20,7 +20,7 @@ import {
 
 type InputConditionEnums = {
   fetched: boolean,
-  conditionEnums: ConditionEnums,
+  conditionEnums: CategorizedConditionEnums,
 }
 
 
@@ -102,7 +102,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   });
 
   if (!inputConditionEnums.fetched) {
-    ResourceLoader.getEnumConditions((data) => {
+    ResourceLoader.getEnumCategorizedConditions((data) => {
       setInputConditionEnums({
         ...inputConditionEnums,
         fetched: true,

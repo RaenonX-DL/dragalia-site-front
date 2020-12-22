@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler} from 'react';
 import {ConditionCodes} from '../../../../constants/gameData';
-import {ConditionEnums, ElementEnums} from '../../../../utils/services/resources/types';
+import {CategorizedConditionEnums, ElementEnums} from '../../../../utils/services/resources/types';
 
 import {
   EnumResourceChecks,
@@ -60,7 +60,7 @@ type SectionPropsWithNum = SectionProps & {
 }
 
 type SectionPropsWithCondEnums = SectionProps & {
-  conditionEnums: ConditionEnums
+  conditionEnums: CategorizedConditionEnums
 };
 
 type SectionPropsWithElemEnums = SectionProps & {

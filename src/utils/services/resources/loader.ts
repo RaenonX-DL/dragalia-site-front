@@ -1,5 +1,5 @@
 import {ResourcePaths} from './paths';
-import {ConditionEnums, ElementEnums} from './types/enums';
+import {AllConditionEnums, CategorizedConditionEnums, ElementEnums} from './types/enums';
 import {ElementBonus} from './types/misc';
 import {AttackingSkillData} from './types/skill';
 
@@ -9,14 +9,27 @@ import {AttackingSkillData} from './types/skill';
 export class ResourceLoader {
   // region Enums
   /**
-   * Get the condition enums.
+   * Get the categorized condition enums.
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ConditionEnums>>} promise after the callback
+   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
    */
-  static getEnumConditions(callback?: (conditionEnums: ConditionEnums) => void): Promise<ConditionEnums> {
-    return ResourceLoader.fetchResources<ConditionEnums>(ResourcePaths.ENUMS_CONDITIONS, callback);
+  static getEnumCategorizedConditions(
+    callback?: (categorizedConditionEnums: CategorizedConditionEnums) => void,
+  ): Promise<CategorizedConditionEnums> {
+    return ResourceLoader.fetchResources<CategorizedConditionEnums>(ResourcePaths.ENUMS_CONDITIONS, callback);
+  }
+
+  /**
+   * Get all condition enums (uncategorized).
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
+   */
+  static getEnumAllConditions(callback?: (allConditionEnums: AllConditionEnums) => void): Promise<AllConditionEnums> {
+    return ResourceLoader.fetchResources<AllConditionEnums>(ResourcePaths.ENUMS_CONDITIONS_ALL, callback);
   }
 
   /**
@@ -68,7 +81,7 @@ export class ResourceLoader {
    * @param {string} resourceUrl URL of the resource
    * @function
    * @param {function} callback function to be called after fetching the resource
-   * @return {Promise<ConditionEnums>} a promise after executing the callback
+   * @return {Promise<T>} a promise after executing the callback
    */
   private static fetchResources<T>(resourceUrl: string, callback?: (resource: T) => void): Promise<T> {
     return fetch(resourceUrl)

@@ -6,6 +6,7 @@ export class ResourcePaths {
 
   static ENUMS_DIR = ResourcePaths.ROOT + '/enums';
   static ENUMS_CONDITIONS = ResourcePaths.ENUMS_DIR + '/conditions.json';
+  static ENUMS_CONDITIONS_ALL = ResourcePaths.ENUMS_DIR + '/allCondition.json';
   static ENUMS_ELEMENTS = ResourcePaths.ENUMS_DIR + '/elements.json';
 
   static SKILLS_DIR = ResourcePaths.ROOT + '/skills';

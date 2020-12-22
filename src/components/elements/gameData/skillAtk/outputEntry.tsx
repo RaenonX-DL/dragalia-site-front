@@ -2,7 +2,7 @@ import React from 'react';
 import {Badge, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {DepotPaths} from '../../../../utils/services/resources';
-import {AfflictionUnit} from '../../../../utils/services/resources/types';
+import {AfflictionUnit, AllConditionEnums} from '../../../../utils/services/resources/types';
 import {DistributionBar} from '../../charts';
 import {OverlayTooltip} from '../../express';
 
@@ -13,10 +13,11 @@ import {CalculatedData} from './outputMain';
 type SkillEntryProps = {
   inputData?: InputData,
   calculatedData: CalculatedData,
+  allConditionEnums: AllConditionEnums,
 }
 
 
-export const AttackingSkillEntry = ({inputData, calculatedData}: SkillEntryProps) => {
+export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnums}: SkillEntryProps) => {
   const {t, i18n} = useTranslation();
 
   const atkSkillEntry = calculatedData.skillEntry;
@@ -58,23 +59,38 @@ export const AttackingSkillEntry = ({inputData, calculatedData}: SkillEntryProps
     const removeDigit = (num: number) => num.toLocaleString(undefined, {maximumFractionDigits: 0});
 
     return (
-      <>
-        <Row>
-          <Col>
-            <h4>{removeDigit(calculatedData.skillDamage.expected)}</h4>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <small>{removeDigit(calculatedData.skillDamage.lowest)}</small>
-          </Col>
-          <Col>
-            <small>{removeDigit(calculatedData.skillDamage.highest)}</small>
-          </Col>
-        </Row>
-      </>
+      <Row noGutters className="text-center">
+        <Col className="my-auto">
+          <small>{removeDigit(calculatedData.skillDamage.lowest)}</small>
+        </Col>
+        <Col className="my-auto">
+          <span className="h4">{removeDigit(calculatedData.skillDamage.expected)}</span>
+        </Col>
+        <Col className="my-auto">
+          <small>{removeDigit(calculatedData.skillDamage.highest)}</small>
+        </Col>
+      </Row>
     );
   };
+
+  const SkillCondition = () => (
+    <Row>
+      <Col>
+        {
+          calculatedData.skillEntry.condition.map((conditionCode, idx: number) => {
+            const conditionEnum = allConditionEnums[String(conditionCode)];
+
+            return (
+              <>
+                {idx > 0 && ' '}
+                <Badge key={idx} variant={conditionEnum?.colorTheme}>{conditionEnum?.trans[i18n.language]}</Badge>
+              </>
+            );
+          })
+        }
+      </Col>
+    </Row>
+  );
 
   const DamageDistribution = () => (
     <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height='0.5rem' displayText={false}/>
@@ -124,6 +140,7 @@ export const AttackingSkillEntry = ({inputData, calculatedData}: SkillEntryProps
         </Col>
         <Col className="text-center my-auto" lg={5}>
           <SkillDamage/>
+          <SkillCondition/>
         </Col>
       </Row>
       <Row className="text-center">

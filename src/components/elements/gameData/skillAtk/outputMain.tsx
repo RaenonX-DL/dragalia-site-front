@@ -1,6 +1,6 @@
 import React from 'react';
 import {calculateDamage, CalculateDamageReturn} from '../../../../utils/game';
-import {AttackingSkillData, ElementBonusData} from '../../../../utils/services/resources/types';
+import {AllConditionEnums, AttackingSkillData, ElementBonusData} from '../../../../utils/services/resources/types';
 
 import {InputData} from './inputSection';
 import {AttackingSkillEntry} from './outputEntry';
@@ -37,20 +37,23 @@ type OutputProps = {
   inputData?: InputData,
   elementBonusData: ElementBonusData,
   atkSkillEntries: Array<AttackingSkillData>,
+  allConditionEnums: AllConditionEnums,
 }
 
 
-export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntries}: OutputProps) => {
+export const AttackingSkillOutput = (props: OutputProps) => {
+  const {inputData, elementBonusData, atkSkillEntries, allConditionEnums} = props;
+
   // Early termination on no input
   if (!inputData) {
     return <></>;
   }
 
   // Filter entries
-  atkSkillEntries = filterSkillEntries(inputData, atkSkillEntries);
+  const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
 
   // Calculate entries
-  const calculatedEntries: Array<CalculatedData> = atkSkillEntries.map((entry: AttackingSkillData) => {
+  const calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered.map((entry: AttackingSkillData) => {
     // Element bonus rate
     const charaElementRate = elementBonusData.getElementBonus(
       String(entry.chara.element),
@@ -71,7 +74,9 @@ export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntri
           .filter((calcData) => calcData.skillDamage.expected > 0)
           .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected)
           .map((calculatedData: CalculatedData, index: number) => (
-            <AttackingSkillEntry inputData={inputData} calculatedData={calculatedData} key={index}/>
+            <AttackingSkillEntry
+              inputData={inputData} calculatedData={calculatedData} allConditionEnums={allConditionEnums}
+              key={index}/>
           ))
       }
     </>

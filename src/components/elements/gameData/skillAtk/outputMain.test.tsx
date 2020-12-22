@@ -63,7 +63,7 @@ it('checks if elemental filtering is working correctly', async () => {
 });
 
 it('checks if affliction filtering is working correctly', async () => {
-  const enumConditions = () => ResourceLoader.getEnumConditions();
+  const enumConditions = () => ResourceLoader.getEnumCategorizedConditions();
   const attackingEntries = () => ResourceLoader.getAttackingSkillEntries();
 
   await Promise.all([enumConditions(), attackingEntries()])

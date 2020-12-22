@@ -8,7 +8,15 @@ export type EnumEntry = {
 }
 
 
-export type ConditionEnums = {
+export type ConditionEnumEntry = EnumEntry & {
+  colorTheme: string
+};
+
+
+export type AllConditionEnums = Record<string, ConditionEnumEntry>;
+
+
+export type CategorizedConditionEnums = {
   afflictions: Array<EnumEntry>,
   elements: Array<EnumEntry>,
 }
