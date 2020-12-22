@@ -1,11 +1,11 @@
-import {ConditionEnums, EnumEntry} from './types/enums';
+import {ConditionEnums, ElementEnums, EnumEntry} from './types/enums';
 import {ElementBonus, ElementBonusData} from './types/misc';
 import {AfflictionUnit, AttackingSkillData} from './types/skill';
 
 export {ElementBonusData};
 
 export type {
-  ConditionEnums, EnumEntry,
+  EnumEntry, ConditionEnums, ElementEnums,
   ElementBonus,
   AttackingSkillData, AfflictionUnit,
 };

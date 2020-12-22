@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
-import {ResourcePaths} from '../../../utils/services/resources';
+import {ResourceLoader} from '../../../utils/services/resources';
 import {AttackingSkillData, ElementBonusData} from '../../../utils/services/resources/types';
 import {PageLoading} from '../../elements';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
@@ -54,14 +54,15 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
 
   // Fetch data
   if (!elementBonusState.fetched) {
-    fetch(ResourcePaths.MISC_ELEM_BONUS)
-      .then((response) => response.json())
-      .then((data) => {
-        setElementBonusState({
-          ...elementBonusState,
-          fetched: true,
-          elementBonusData: new ElementBonusData(data),
-        });
+    ResourceLoader.getElementBonusData((data) => {
+      setElementBonusState({
+        ...elementBonusState,
+        fetched: true,
+        elementBonusData: new ElementBonusData(data),
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the element bonus data.', e);
       });
   }
   // endregion
@@ -74,14 +75,15 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
 
   // Fetch data
   if (!attackingSkillEntryState.fetched) {
-    fetch(ResourcePaths.SKILLS_ATK)
-      .then((response) => response.json())
-      .then((data) => {
-        setAttackingSkillEntryState({
-          ...attackingSkillEntryState,
-          fetched: true,
-          atkSkillEntries: data,
-        });
+    ResourceLoader.getAttackingSkillEntries((data) => {
+      setAttackingSkillEntryState({
+        ...attackingSkillEntryState,
+        fetched: true,
+        atkSkillEntries: data,
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the attacking skill data.', e);
       });
   }
   // endregion

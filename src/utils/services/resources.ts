@@ -1,6 +1,7 @@
+import {ResourceLoader} from './resources/loader';
 import {DepotPaths, ResourcePaths} from './resources/paths';
-import {ConditionEnums, EnumEntry} from './resources/types';
+import {ConditionEnums, ElementEnums, EnumEntry} from './resources/types';
 
-export type {EnumEntry, ConditionEnums};
+export type {EnumEntry, ConditionEnums, ElementEnums};
 
-export {ResourcePaths, DepotPaths};
+export {ResourcePaths, DepotPaths, ResourceLoader};

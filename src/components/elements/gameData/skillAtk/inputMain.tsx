@@ -2,7 +2,7 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import {Button} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {ConditionCodes} from '../../../../constants/gameData';
-import {ConditionEnums, ResourcePaths} from '../../../../utils/services/resources';
+import {ConditionEnums, ElementEnums, ResourceLoader} from '../../../../utils/services/resources';
 
 import {
   InputData,
@@ -10,6 +10,7 @@ import {
   SectionBuff,
   SectionCrt,
   SectionEx,
+  SectionFilter,
   SectionOther,
   SectionPunisher,
   SectionSkill,
@@ -17,9 +18,15 @@ import {
 } from './inputSection';
 
 
-export type InputEnums = {
+type InputConditionEnums = {
   fetched: boolean,
-  conditionEnums: ConditionEnums
+  conditionEnums: ConditionEnums,
+}
+
+
+type InputElementEnums = {
+  fetched: boolean,
+  elementEnums: ElementEnums,
 }
 
 
@@ -30,14 +37,6 @@ type InputProps = {
 
 export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   const {t} = useTranslation();
-
-  const [inputEnums, setInputEnums] = React.useState<InputEnums>({
-    fetched: false,
-    conditionEnums: {
-      afflictions: [],
-      elements: [],
-    },
-  });
 
   const [inputData, setInputData] = React.useState<InputData>({
     atkInGame: 5000,
@@ -63,8 +62,11 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     targetDefDownPct: 0,
     targetDefBkRate: 0.6,
     targetStateCode: ConditionCodes.NONE,
+    filterElementCode: [],
+    filterAfflictionCondCode: [],
   });
 
+  // region Update functions
   const updateInputDataValue = (e: ChangeEvent<HTMLInputElement>) => setInputData({
     ...inputData,
     [e.target.name]: Math.min(e.target.max ? parseFloat(e.target.max) : Infinity, parseFloat(e.target.value)),
@@ -88,17 +90,49 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     ...inputData,
     [e.target.name]: code,
   });
+  // endregion
 
-  // region Fetch input enums
-  if (!inputEnums.fetched) {
-    fetch(ResourcePaths.ENUMS_CONDITIONS)
-      .then((response) => response.json())
-      .then((data) => {
-        setInputEnums({
-          ...inputEnums,
-          fetched: true,
-          conditionEnums: data,
-        });
+  // region Get input enums (conditions)
+  const [inputConditionEnums, setInputConditionEnums] = React.useState<InputConditionEnums>({
+    fetched: false,
+    conditionEnums: {
+      afflictions: [],
+      elements: [],
+    },
+  });
+
+  if (!inputConditionEnums.fetched) {
+    ResourceLoader.getEnumConditions((data) => {
+      setInputConditionEnums({
+        ...inputConditionEnums,
+        fetched: true,
+        conditionEnums: data,
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the condition enum resource.', e);
+      });
+  }
+  // endregion
+
+  // region Get input enums (elements)
+  const [inputElementEnums, setInputElementEnums] = React.useState<InputElementEnums>({
+    fetched: false,
+    elementEnums: {
+      elemental: [],
+    },
+  });
+
+  if (!inputElementEnums.fetched) {
+    ResourceLoader.getEnumElements((data) => {
+      setInputElementEnums({
+        ...inputElementEnums,
+        fetched: true,
+        elementEnums: data,
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the element enum resource.', e);
       });
   }
   // endregion
@@ -136,9 +170,14 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
         fnUpdateInputDataValue={updateInputDataValue}/>
       <hr/>
       <SectionTarget
-        inputData={inputData} conditionEnums={inputEnums.conditionEnums}
+        inputData={inputData} conditionEnums={inputConditionEnums.conditionEnums}
         fnUpdateInputDataValue={updateInputDataValue}
         fnUpdateInputDataRadio={updateInputDataRadio}
+        fnUpdateInputDataCheckMulti={updateInputDataCheckEnumMulti}/>
+      <hr/>
+      <SectionFilter
+        inputData={inputData} conditionEnums={inputConditionEnums.conditionEnums}
+        elementEnums={inputElementEnums.elementEnums}
         fnUpdateInputDataCheckMulti={updateInputDataCheckEnumMulti}/>
       <hr/>
       <div className="text-right">

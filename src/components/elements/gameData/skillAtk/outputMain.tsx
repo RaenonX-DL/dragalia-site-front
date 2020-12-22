@@ -12,6 +12,27 @@ export type CalculatedData = {
 }
 
 
+export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<AttackingSkillData>) => {
+  // Filter element if specified
+  if (inputData.filterElementCode.length > 0) {
+    atkSkillEntries = atkSkillEntries
+      .filter((entry) => inputData.filterElementCode.includes(entry.chara.element));
+  }
+
+  // Filter affliction condition if specified
+  if (inputData.filterAfflictionCondCode.length > 0) {
+    atkSkillEntries = atkSkillEntries
+      .filter((entry) => {
+        const afflictionCodes = entry.skill.afflictions.map((afflictionUnit) => afflictionUnit.statusConditionCode);
+
+        return inputData.filterAfflictionCondCode.some((afflictionCode) => afflictionCodes.includes(afflictionCode));
+      });
+  }
+
+  return atkSkillEntries;
+};
+
+
 type OutputProps = {
   inputData?: InputData,
   elementBonusData: ElementBonusData,
@@ -25,6 +46,10 @@ export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntri
     return <></>;
   }
 
+  // Filter entries
+  atkSkillEntries = filterSkillEntries(inputData, atkSkillEntries);
+
+  // Calculate entries
   const calculatedEntries: Array<CalculatedData> = atkSkillEntries.map((entry: AttackingSkillData) => {
     // Element bonus rate
     const charaElementRate = elementBonusData.getElementBonus(

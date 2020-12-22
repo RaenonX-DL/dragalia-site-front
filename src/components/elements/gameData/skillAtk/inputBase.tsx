@@ -137,7 +137,7 @@ export const EnumResourceChecks = (props: EnumChecksProps) => {
         enumEntries.map((enumEntry: EnumEntry) => {
           return (
             <InlineChecks
-              id={enumEntry.name} key={enumEntry.name} type={type} groupName={groupName}
+              id={`${groupName}${enumEntry.name}`} key={enumEntry.name} type={type} groupName={groupName}
               titleLabel={enumEntry.trans[i18n.language] || enumEntry.name}
               onChange={onChange(enumEntry.code)} checked={isChecked && isChecked(enumEntry.code)}/>
           );

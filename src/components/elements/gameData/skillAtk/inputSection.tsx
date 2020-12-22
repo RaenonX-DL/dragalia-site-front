@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler} from 'react';
 import {ConditionCodes} from '../../../../constants/gameData';
-import {ConditionEnums} from '../../../../utils/services/resources/types';
+import {ConditionEnums, ElementEnums} from '../../../../utils/services/resources/types';
 
 import {
   EnumResourceChecks,
@@ -34,7 +34,9 @@ export type InputData = {
   targetDefBase: number,
   targetDefDownPct: number,
   targetDefBkRate: number,
-  targetStateCode: ConditionCodes.NONE | ConditionCodes.TARGET_STATE_BK | ConditionCodes.TARGET_STATE_OD
+  targetStateCode: ConditionCodes.NONE | ConditionCodes.TARGET_STATE_BK | ConditionCodes.TARGET_STATE_OD,
+  filterElementCode: Array<number>,
+  filterAfflictionCondCode: Array<number>,
 }
 
 type SectionProps = {
@@ -56,6 +58,14 @@ type SectionPropsWithRadio = SectionProps & {
 type SectionPropsWithNum = SectionProps & {
   fnUpdateInputDataValue: ChangeEventHandler<HTMLInputElement>
 }
+
+type SectionPropsWithCondEnums = SectionProps & {
+  conditionEnums: ConditionEnums
+};
+
+type SectionPropsWithElemEnums = SectionProps & {
+  elementEnums: ElementEnums
+};
 
 export const SectionAtk = ({inputData, fnUpdateInputDataValue}: SectionPropsWithNum) => {
   return (
@@ -187,9 +197,11 @@ export const SectionOther = ({inputData, fnUpdateInputDataValue}: SectionPropsWi
   </>
 );
 
-type SectionTargetProps = SectionPropsWithNum & SectionPropsWithRadio & SectionPropsWithCheckMulti & {
-  conditionEnums: ConditionEnums
-};
+type SectionTargetProps =
+  SectionPropsWithNum &
+  SectionPropsWithRadio &
+  SectionPropsWithCheckMulti &
+  SectionPropsWithCondEnums;
 
 export const SectionTarget = (props: SectionTargetProps) => {
   const {
@@ -215,8 +227,6 @@ export const SectionTarget = (props: SectionTargetProps) => {
     },
   ];
 
-  const checkAfflictionChecked = (code: number) => inputData.targetAfflictionCodes.includes(code);
-
   return (
     <>
       <SectionTitle
@@ -233,7 +243,8 @@ export const SectionTarget = (props: SectionTargetProps) => {
         descriptionLabel={'game.skill_atk.desc.target_affliction'}/>
       <EnumResourceChecks
         enumEntries={conditionEnums.afflictions} type="switch" groupName="targetAfflictionCodes"
-        onChange={fnUpdateInputDataCheckMulti} isChecked={checkAfflictionChecked}/>
+        onChange={fnUpdateInputDataCheckMulti}
+        isChecked={(code: number) => inputData.targetAfflictionCodes.includes(code)}/>
       <SectionSubTitle
         titleLabel={'game.skill_atk.name.target_state.title'}
         descriptionLabel={'game.skill_atk.desc.target_state.title'}/>
@@ -252,6 +263,39 @@ export const SectionTarget = (props: SectionTargetProps) => {
       <NumericalInput
         titleLabel={'game.skill_atk.name.target_def_bk'} descriptionLabel={'game.skill_atk.target_def_bk'}
         defaultValue={inputData.targetDefBkRate} name="targetDefBkRate" onChange={fnUpdateInputDataValue}/>
+    </>
+  );
+};
+
+type SectionFilterProps = SectionPropsWithCheckMulti & SectionPropsWithCondEnums & SectionPropsWithElemEnums;
+
+export const SectionFilter = (props: SectionFilterProps) => {
+  const {
+    inputData,
+    fnUpdateInputDataCheckMulti,
+    conditionEnums,
+    elementEnums,
+  } = props;
+
+  return (
+    <>
+      <SectionTitle
+        titleLabel={'game.skill_atk.name.filter'}
+        descriptionLabel={'game.skill_atk.desc.filter'}/>
+      <SectionSubTitle
+        titleLabel={'game.skill_atk.name.filter_element'}
+        descriptionLabel={'game.skill_atk.desc.filter_element'}/>
+      <EnumResourceChecks
+        enumEntries={elementEnums.elemental}
+        type="switch" groupName="filterElementCode" onChange={fnUpdateInputDataCheckMulti}
+        isChecked={(code: number) => inputData.filterElementCode.includes(code)}/>
+      <SectionSubTitle
+        titleLabel={'game.skill_atk.name.filter_affliction'}
+        descriptionLabel={'game.skill_atk.desc.filter_affliction'}/>
+      <EnumResourceChecks
+        enumEntries={conditionEnums.afflictions}
+        type="switch" groupName="filterAfflictionCondCode" onChange={fnUpdateInputDataCheckMulti}
+        isChecked={(code: number) => inputData.filterAfflictionCondCode.includes(code)}/>
     </>
   );
 };
