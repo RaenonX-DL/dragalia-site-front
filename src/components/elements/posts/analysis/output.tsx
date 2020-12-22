@@ -1,7 +1,15 @@
 import React, {Dispatch, SetStateAction, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {Alert, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {useParams} from 'react-router-dom';
+import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
+import Path from '../../../../constants/path';
+import {
+  AnalysisPostType,
+  ApiRequestSender,
+  CharacterAnalysisPost,
+  DragonAnalysisPost,
+} from '../../../../utils/services/api';
 
 import {
   AnalysisPostFetchStatus,
@@ -15,9 +23,6 @@ import {
   PostManageBar,
   scrollToAnchor,
 } from '../../../elements';
-import {AnalysisPostType, ApiRequestSender, CharacterAnalysisPost, DragonAnalysisPost} from '../../../../constants/api';
-import Path from '../../../../constants/path';
-import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 
 
 type AnalysisPostOutputProps = {
@@ -131,15 +136,12 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
     } else if (status.post.type === AnalysisPostType.DRAGON) {
       sectionSpecific = <AnalysisPostPartialOutputDragon post={status.post as DragonAnalysisPost}/>;
     } else {
-      setStatus((
-        (prevState) => {
-          const newState = {...prevState};
-
-          newState.fetched = true;
-          newState.fetchFailed = true;
-          newState.failContent = t('posts.analysis.error.unknown_type');
-          return newState;
-        }));
+      setStatus({
+        ...status,
+        fetched: true,
+        fetchFailed: true,
+        failContent: t('posts.analysis.error.unknown_type'),
+      });
     }
 
     const sectionGeneralBottom = (

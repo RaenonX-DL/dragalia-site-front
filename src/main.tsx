@@ -1,7 +1,8 @@
 import React, {Suspense, useEffect} from 'react';
-import {Route} from 'react-router-dom';
-import {Container, Spinner} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {Route} from 'react-router-dom';
+import {Footer, Navigation, PageLoading} from './components/elements';
 
 import {
   About,
@@ -10,6 +11,7 @@ import {
   AnalysisNewChara,
   AnalysisNewDragon,
   AnalysisPage,
+  AttackingSkillList,
   Constructing,
   Home,
   QuestEdit,
@@ -17,9 +19,8 @@ import {
   QuestNew,
   QuestPage,
 } from './components/pages';
-import {Footer, Navigation} from './components/elements';
 import Path from './constants/path';
-import {GoogleAnalytics} from './constants/ga';
+import {GoogleAnalytics} from './utils/services/ga';
 
 
 type PageContentProps = {
@@ -84,7 +85,7 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
       </Route>
 
       <Route exact path={Path.SKILL_ATK}>
-        <Constructing fnSetTitle={updatePageTitle}/>
+        <AttackingSkillList fnSetTitle={updatePageTitle}/>
       </Route>
       <Route exact path={Path.SKILL_SUP}>
         <Constructing fnSetTitle={updatePageTitle}/>
@@ -161,15 +162,6 @@ const PageMain = () => {
     </>
   );
 };
-
-const PageLoading = () => (
-  <>
-    <div className="d-flex justify-content-center" style={{minHeight: '100vh', alignItems: 'center'}}>
-      <Spinner animation="border" variant="light" style={{minHeight: '8vh', minWidth: '8vh'}}/>
-      <span className="ml-3" style={{fontSize: '8vh'}}>Loading...</span>
-    </div>
-  </>
-);
 
 const Main = () => {
   return (

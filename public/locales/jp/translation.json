@@ -2,14 +2,14 @@
   "game": {
     "data": {
       "title_self": "ゲーム情報",
-      "active": "スキル",
-      "cex": "リンクEXアビリティ",
-      "others": "他の情報",
-      "passive": "アビリティ",
-      "print": "護符",
-      "skill_atk": "攻擊スキル",
-      "skill_sup": "サポートスキル",
-      "story": "ストーリー"
+      "title_active": "スキル",
+      "title_cex": "リンクEXアビリティ",
+      "title_others": "他の情報",
+      "title_passive": "アビリティ",
+      "title_print": "護符",
+      "title_skill_atk": "攻擊スキル",
+      "title_skill_sup": "サポートスキル",
+      "title_story": "ストーリー"
     },
     "tools": {
       "title_self": "ゲーム用のツール",
@@ -53,7 +53,10 @@
       "quest_new": "高難易度クエスト攻略の追加",
       "quest_post": "高難易度クエスト攻略",
       "site": "ドラガリ攻略サイト by OM",
-      "suffix": " | ドラガリ攻略サイト by OM"
+      "suffix": " | ドラガリ攻略サイト by OM",
+      "game_data": {
+        "skill_atk": "TBA"
+      }
     },
     "constructing": "サイト機能工事中。後で発布する。\n\n### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。",
     "welcome": "OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n今 **高難易度クエスト攻略、キャラ、ドラゴン評価** は完成してる，ご覧ください。\n\nページに選択したら說明もついてます。"

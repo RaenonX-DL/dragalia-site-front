@@ -1,8 +1,8 @@
 import React from 'react';
-import {GoogleAnalytics} from '../../../constants/ga';
+import {GoogleAnalytics} from '../../../utils/services/ga';
 
 
-export const titleNavBarId = 'nav-title';
+export const titleNavBarId = 'nav-title'; // Global element ID for the nav bar title
 
 
 type PageAnchorProps = {
@@ -46,7 +46,7 @@ export const scrollToAnchor = (hash: string = window.location.hash) => {
     const offsetHeight = (titleNav?.offsetHeight || 0) + rem;
 
     // Scrolling (jump) - Safari does not support using options yet
-    window.scrollTo(0, anchorHeight - offsetHeight);
+    window.scrollTo({top: anchorHeight - offsetHeight, left: 0, behavior: 'smooth'});
     history.pushState(null, document.title, hash); // Push history (change URL bar too, without jumping)
     GoogleAnalytics.anchor('navigate', hash);
   } else {

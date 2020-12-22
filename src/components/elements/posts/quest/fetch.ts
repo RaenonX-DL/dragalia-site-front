@@ -1,5 +1,5 @@
+import {QuestPostGetSuccessResponse} from '../../../../utils/services/api';
 import {PostFetchStatus} from '../fetch';
-import {QuestPostGetSuccessResponse} from '../../../../constants/api';
 
 
 export interface QuestPostFetchStatus extends PostFetchStatus {

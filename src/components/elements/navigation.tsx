@@ -2,11 +2,11 @@ import React from 'react';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {LinkContainer} from 'react-router-bootstrap';
+import Path from '../../constants/path';
 
 import {GoogleSigninButton} from './googleSignin';
 import {LanguageSwitch} from './langSwitch';
 import {titleNavBarId} from './posts/pageAnchor';
-import Path from '../../constants/path';
 
 
 type Props = {};
@@ -35,25 +35,25 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
               <Nav.Link>{t('posts.misc.title_self')}</Nav.Link>
             </LinkContainer>
             <NavDropdown title={t('game.data.title_self')} id="collapsible-nav-dropdown">
-              <NavDropdown.Header>{t('game.data.passive')}</NavDropdown.Header>
+              <NavDropdown.Header>{t('game.data.title_passive')}</NavDropdown.Header>
               <LinkContainer to={Path.CEX}>
-                <NavDropdown.Item>{t('game.data.cex')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.title_cex')}</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to={Path.PRINT}>
-                <NavDropdown.Item>{t('game.data.print')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.title_print')}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
-              <NavDropdown.Header>{t('game.data.active')}</NavDropdown.Header>
+              <NavDropdown.Header>{t('game.data.title_active')}</NavDropdown.Header>
               <LinkContainer to={Path.SKILL_ATK}>
-                <NavDropdown.Item>{t('game.data.skill_atk')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.title_skill_atk')}</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to={Path.SKILL_SUP}>
-                <NavDropdown.Item>{t('game.data.skill_sup')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.title_skill_sup')}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
-              <NavDropdown.Header>{t('game.data.others')}</NavDropdown.Header>
+              <NavDropdown.Header>{t('game.data.title_others')}</NavDropdown.Header>
               <LinkContainer to={Path.STORY}>
-                <NavDropdown.Item>{t('game.data.story')}</NavDropdown.Item>
+                <NavDropdown.Item>{t('game.data.title_story')}</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
             <NavDropdown title={t('game.tools.title_self')} id="collapsible-nav-dropdown">

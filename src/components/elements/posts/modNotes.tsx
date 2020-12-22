@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {PostModifyNote} from '../../../constants/api';
+import {PostModifyNote} from '../../../utils/services/api';
 
 type PostModificationNotesProps = {
   modifyNote: Array<PostModifyNote>

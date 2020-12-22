@@ -1,11 +1,11 @@
 import React, {ReactElement} from 'react';
-import {useLocation} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
 import {Alert} from 'react-bootstrap';
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import {useTranslation} from 'react-i18next';
+import {useLocation} from 'react-router-dom';
+import {PostListEntry, PostListResponse} from '../../../utils/services/api';
 
 import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../../elements';
-import {PostListEntry, PostListResponse} from '../../../constants/api';
 
 
 const limit = 25;
@@ -73,42 +73,30 @@ export const PostListPage = (props: QuestListPageProps) => {
         // so having a if statement to guard from the re-render and API re-call
 
         if (data.success && data.startIdx !== status.startIdx) {
-          setStatus(
-            (prevState) => {
-              // Creating an object because directly modifying `prevState` won't rerender
-              const newState = {...prevState};
-
-              newState.startIdx = data.startIdx;
-              newState.maxPage = Math.ceil(data.postCount / limit);
-              newState.posts = data.posts as Array<PostListEntry>;
-              newState.isAdmin = data.isAdmin;
-              newState.showAlert = false;
-              return newState;
-            });
+          setStatus({
+            ...status,
+            startIdx: data.startIdx,
+            maxPage: Math.ceil(data.postCount / limit),
+            posts: data.posts as Array<PostListEntry>,
+            isAdmin: data.isAdmin,
+            showAlert: false,
+          });
         } else if (!data.success && !status.showAlert) {
-          setStatus(
-            (prevState) => {
-              // Creating an object because directly modifying `prevState` won't rerender
-              const newState = {...prevState};
-
-              newState.showAlert = true;
-              newState.errorContent = data.code.toString();
-              return newState;
-            });
+          setStatus({
+            ...status,
+            showAlert: true,
+            errorContent: data.code.toString(),
+          });
         }
       })
       .catch((error) => {
         // if statement to guard from re-render loop
         if (!status.showAlert) {
-          setStatus(
-            (prevState) => {
-              // Creating an object because directly modifying `prevState` won't rerender
-              const newState = {...prevState};
-
-              newState.showAlert = true;
-              newState.errorContent = error.toString();
-              return newState;
-            });
+          setStatus({
+            ...status,
+            showAlert: true,
+            errorContent: error.toString(),
+          });
         }
       });
   };

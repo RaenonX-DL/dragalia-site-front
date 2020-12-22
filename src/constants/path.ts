@@ -29,8 +29,8 @@ export default class Path {
   static CEX = '/cex';
   static PRINT = '/print';
 
-  static SKILL_ATK = '/skill-atk';
-  static SKILL_SUP = '/skill-sup';
+  static SKILL_ATK = '/skill/atk';
+  static SKILL_SUP = '/skill/sup';
 
   static STORY = '/story';
 

@@ -1,5 +1,4 @@
 import ApiEndPoints from './endpoints';
-import ApiRequestPayloadMaker from './requestPayloadMaker';
 import {
   CharaAnalysisPostEditPayload,
   CharaAnalysisPostPublishPayload,
@@ -8,6 +7,7 @@ import {
   QuestPostEditPayload,
   QuestPostPublishPayload,
 } from './requestPayload';
+import ApiRequestPayloadMaker from './requestPayloadMaker';
 import * as Response from './response';
 
 /**
@@ -258,7 +258,7 @@ export default class ApiRequestSender {
    * @return {Promise<T>} promise returned from `fetch`
    */
   private static sendRequest<T>(method: 'GET' | 'POST', endpoint: string, payload): Promise<T> {
-    console.log(`API Call in ${method} - to ${endpoint}`);
+    console.log(`[API] Sending ${method} request to ${endpoint}`);
 
     if (method === 'GET') {
       return fetch(`${endpoint}?${new URLSearchParams(payload).toString()}`, {

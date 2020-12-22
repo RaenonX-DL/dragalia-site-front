@@ -1,8 +1,8 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert} from 'react-bootstrap';
-
-import {ApiResponseCodes, PostGetSuccessResponse} from '../../../constants/api';
 import {useTranslation} from 'react-i18next';
+
+import {ApiResponseCodes, PostGetSuccessResponse} from '../../../utils/services/api';
 
 
 export type PostFetchStatus = {
@@ -31,42 +31,34 @@ export const FetchPost = ({status, fnSetStatus, fnSendFetchRequest}: FetchPostPr
 
         if (!status.fetched) {
           if (data.success) {
-            fnSetStatus(
-              (prevState) => {
-                const newState = {...prevState};
-
-                newState.fetched = true;
-                newState.post = data;
-                newState.fetchFailed = false;
-                return newState;
-              });
+            fnSetStatus({
+              ...status,
+              fetched: true,
+              fetchFailed: false,
+              post: data,
+            });
           } else {
-            fnSetStatus(
-              (prevState) => {
-                const newState = {...prevState};
-
-                newState.fetched = true;
-                newState.fetchFailed = true;
-                newState.failContent =
-                  data.code === ApiResponseCodes.FAILED_POST_NOT_EXISTS ?
-                    t('posts.manage.post_not_exists') :
-                    data.code.toString();
-                return newState;
-              });
+            fnSetStatus({
+              ...status,
+              fetched: true,
+              fetchFailed: true,
+              failContent: (
+                data.code === ApiResponseCodes.FAILED_POST_NOT_EXISTS ?
+                  t('posts.manage.post_not_exists') :
+                  data.code.toString()
+              ),
+            });
           }
         }
       })
       .catch((error) => {
         // if statement to guard from re-render loop
         if (!status.fetchFailed) {
-          fnSetStatus(
-            (prevState) => {
-              const newState = {...prevState};
-
-              newState.fetchFailed = true;
-              newState.failContent = error.toString();
-              return newState;
-            });
+          fnSetStatus({
+            ...status,
+            fetchFailed: true,
+            failContent: error.toString(),
+          });
         }
       });
   };

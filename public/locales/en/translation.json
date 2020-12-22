@@ -2,14 +2,14 @@
   "game": {
     "data": {
       "title_self": "Game Data",
-      "active": "Active",
-      "cex": "Chained Co-ability",
-      "others": "Others",
-      "passive": "Passive",
-      "print": "Wyrmprints",
-      "skill_atk": "Skill (Attack)",
-      "skill_sup": "Skill (Support)",
-      "story": "Story"
+      "title_active": "Active",
+      "title_cex": "Chained Co-ability",
+      "title_others": "Others",
+      "title_passive": "Passive",
+      "title_print": "Wyrmprints",
+      "title_skill_atk": "Skill (Attack)",
+      "title_skill_sup": "Skill (Support)",
+      "title_story": "Story"
     },
     "tools": {
       "title_self": "Game Tools",
@@ -53,7 +53,10 @@
       "quest_new": "New HDTs/Agitos",
       "quest_post": "HDTs/Agitos",
       "site": "DL Info by OM",
-      "suffix": " | DL Info by OM"
+      "suffix": " | DL Info by OM",
+      "game_data": {
+        "skill_atk": "Attacking skills"
+      }
     },
     "constructing": "Under construction. Will announce upon completion somewhere.\n\n### Completed before email notification system has been completed\n\nWe will announce it in social media (Reddit, FB groups, etc.).\n\n### Completed after the email notification system has been implemented\n\nUsers who logged in before or signed up for the email list will receive an email about the new release.",
     "welcome": "Welcome to the DL info website constructed and maintained by the members of the alliance - Oasis of the Maniacs!\n\nMost of the pages and the features are still under construction.\n\n**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\nHead to the pages/functions which are still under construction to get more details."

@@ -1,12 +1,12 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 import {Button} from 'react-bootstrap';
 import {useGoogleLogin, useGoogleLogout} from 'react-google-login';
-
-import {ExpressModal} from './modalExpress';
-import {ApiRequestSender} from '../../constants/api';
+import {useTranslation} from 'react-i18next';
 import {GOOGLE_CLIENT_ID} from '../../constants/config';
-import {GoogleAnalytics} from '../../constants/ga';
+import {ApiRequestSender} from '../../utils/services/api';
+import {GoogleAnalytics} from '../../utils/services/ga';
+
+import {ExpressModal} from './express';
 
 
 const STORAGE_KEY = 'X_GOOGLE_UID';

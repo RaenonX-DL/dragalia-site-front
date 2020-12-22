@@ -1,7 +1,10 @@
 import React, {Dispatch, SetStateAction, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {Alert} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {useParams} from 'react-router-dom';
+import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
+import Path from '../../../../constants/path';
+import {ApiRequestSender, QuestPostListEntry} from '../../../../utils/services/api';
 
 import {
   FetchPost,
@@ -15,9 +18,6 @@ import {
   QuestPostFetchStatus,
   scrollToAnchor,
 } from '../../../elements';
-import {ApiRequestSender, QuestPostListEntry} from '../../../../constants/api';
-import Path from '../../../../constants/path';
-import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 
 
 type QuestPostOutputProps = {

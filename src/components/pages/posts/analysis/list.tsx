@@ -1,10 +1,10 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import Path from '../../../../constants/path';
+import {AnalysisPostListEntry, ApiRequestSender} from '../../../../utils/services/api';
+import {AnalysisPostList, PostListPage} from '../../../elements';
 
 import {PageProps} from '../../base';
-import {AnalysisPostList, PostListPage} from '../../../elements';
-import Path from '../../../../constants/path';
-import {AnalysisPostListEntry, ApiRequestSender} from '../../../../constants/api';
 
 
 export const AnalysisList = ({fnSetTitle}: PageProps) => {

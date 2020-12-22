@@ -1,6 +1,4 @@
 import ApiEndPoints from './api/endpoints';
-import ApiResponseCodes from './api/responseCode';
-import ApiRequestPayloadMaker from './api/requestPayloadMaker';
 import {
   CharaAnalysisPostEditPayload,
   CharaAnalysisPostPublishPayload,
@@ -11,6 +9,8 @@ import {
   QuestPostEditPayload,
   QuestPostPublishPayload,
 } from './api/requestPayload';
+import ApiRequestPayloadMaker from './api/requestPayloadMaker';
+import ApiRequestSender from './api/requestSender';
 import {
   AnalysisPostEditSuccessResponse,
   AnalysisPostGetSuccessResponse,
@@ -30,7 +30,7 @@ import {
   QuestPostListEntry,
   QuestPostPublishSuccessResponse,
 } from './api/response';
-import ApiRequestSender from './api/requestSender';
+import ApiResponseCodes from './api/responseCode';
 
 export type {
   PostModifyNote, PostListEntry, QuestPostListEntry, AnalysisPostListEntry,
