@@ -1,0 +1,22 @@
+export const normalize = (numbers: Array<number>, padding: number = 0) => {
+  const max = Math.max(...numbers);
+
+  return numbers.map((num: number) => {
+    const normalized = num / max;
+
+    return normalized + (normalized - 0.5) * -2 * padding;
+  });
+};
+
+
+export const accumulate = (numbers: Array<number>) => numbers.map(((sum) => (value) => sum += value)(0));
+
+export const varTally = <T>(arr: Array<T>) => {
+  const tally: Map<T, number> = new Map();
+
+  arr.forEach((key) => {
+    tally.set(key, (tally.get(key) || 0) + 1);
+  });
+
+  return tally;
+};

@@ -1,10 +1,10 @@
 import React from 'react';
-import {useLocation} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
 import {NavDropdown} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
+import {useLocation} from 'react-router-dom';
 
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../constants/lang';
-import {GoogleAnalytics} from '../../constants/ga';
+import {GoogleAnalytics} from '../../utils/services/ga';
 
 
 export const LanguageSwitch = () => {
