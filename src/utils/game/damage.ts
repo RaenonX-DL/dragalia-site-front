@@ -1,16 +1,51 @@
 import {InputData} from '../../components/elements/gameData';
 import {ConditionCodes} from '../../constants/gameData';
+import {AttackingSkillData} from '../services/resources/types';
 
 export type CalculateDamageReturn = {
   lowest: number,
   expected: number,
-  highest: number
+  highest: number,
+  totalMods: number,
 };
+
+
+const calculateModOnCrisis = (originalMod: number, crisisMod: number, currentHpRate: number): number => {
+  return originalMod * ((1 - currentHpRate) ** 2 * (crisisMod - 1) + 1);
+};
+
 
 // TEST: test the damage calculation accuracy
 export const calculateDamage = (
-  inputData: InputData, skillTotalMods: number, charaElementRate: number,
+  inputData: InputData, attackingSkillData: AttackingSkillData, charaElementRate: number,
 ): CalculateDamageReturn => {
+  const totalMods = attackingSkillData.skill.modsMax
+    .map((mod, idx) => {
+      const crisisMod = attackingSkillData.skill.crisisMax[idx];
+      const buffCountBoost = attackingSkillData.skill.buffCountBoost[idx];
+
+      // Crisis mod
+      if (crisisMod !== 0) {
+        mod = calculateModOnCrisis(mod, crisisMod, inputData.otherCurrentHpPct / 100);
+      }
+
+      // Buff count boost
+      if (buffCountBoost.each !== 0) {
+        mod /= (1 + buffCountBoost.inEffect); // Get the original mod
+
+        const boost = buffCountBoost.inEffect + inputData.buffCount * buffCountBoost.each;
+
+        mod *= (1 + Math.min(boost, buffCountBoost.limit || Infinity));
+      }
+
+      // Buff zone boost
+      mod *= (1 + inputData.buffZoneSelf * attackingSkillData.skill.buffZoneBoost.self); // self-built buff zone
+      mod *= (1 + inputData.buffZoneAlly * attackingSkillData.skill.buffZoneBoost.ally); // ally-built buff zone
+
+      return mod;
+    })
+    .reduce((a, b) => a + b, 0);
+
   let damage = 5 / 3; // Base damage
 
   // Damage from ATK
@@ -22,7 +57,7 @@ export const calculateDamage = (
   );
 
   // Damage from skill mods
-  damage *= skillTotalMods;
+  damage *= totalMods;
 
   // Damage from CRT
   damage *= (
@@ -63,5 +98,6 @@ export const calculateDamage = (
     lowest: damage * 0.95,
     expected: damage,
     highest: damage * 1.05,
+    totalMods: totalMods,
   };
 };

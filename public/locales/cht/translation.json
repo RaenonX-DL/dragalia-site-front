@@ -37,6 +37,7 @@
         "punisher_others": "其他特攻 (%)",
         "other": "其它",
         "other_element_bonus": "屬性增傷 (%)",
+        "other_hp": "HP (%)",
         "target": "目標相關",
         "target_element": "屬性",
         "target_affliction": "異常狀態",
@@ -64,7 +65,7 @@
         "buff_zone_ally": "當前所在由隊友建立的 Buff 區域內的數量。",
         "ex": "後台 EX 被動。屬性增傷 (皮亞尼)、降攻 / 降防特攻 (龍絆日李弗)、爆擊傷害 (萬聖慕慕、情人女僕斧) 請直接輸入至對應區塊內。",
         "crt": "泛指所有和爆擊相關的參數。",
-        "crt_rate": "爆擊機率。",
+        "crt_rate": "爆擊機率。注意，如果超靈感有勾選的話，無論此項數值為何，計算過程都會直接認定絕對爆擊。",
         "crt_damage": "爆擊傷害提升率。遊戲內所計算的 1.7x 爆擊增傷已經計算在內。",
         "skill": "泛指所有和技能傷害有關的參數。",
         "skill_buff": "任務中，下方 Buff 列所顯示的技能增傷。此項目上限值為 200%。注意，貓的技能傷害 +180% 屬於此類別。",
@@ -74,9 +75,13 @@
         "punisher_others": "其他特攻，例如異常狀態特攻 (護符)、OD 特攻、降攻 / 降防特攻 (龍絆日李弗) 都屬於此類別。",
         "other": "泛指所有未歸類的增傷手段，例如屬性增傷。",
         "other_element_bonus": "其它屬性增傷。皮亞尼、波賽頓．勇的屬性增傷屬於此類別。",
-        "target": "泛指所有和目標相關的參數",
+        "other_hp": "當前血量。",
+        "target": "泛指所有和目標相關的參數。",
         "target_element": "目標的屬性。",
         "target_affliction": "目標當前擁有的異常狀態。",
+        "target_state": {
+          "title": "目標當前的狀態。"
+        },
         "target_def_down": "對目標有效的降防。任務中，Boss 血條上方可以查看。",
         "target_def": "目標基礎防禦。通常為 10；光牙為 15 (2020/12/20)。",
         "target_def_bk": "BK 時，目標的防禦變動係數。通常為 0.6；暗牙、絕牙為 0.8 (BSK 1.25)。",
@@ -89,7 +94,11 @@
         "cancelable": "此技能可於 {{cancelTime}} 秒後取消。",
         "stackable": "可堆疊",
         "unstackable": "不可疊",
-        "affliction": "於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)"
+        "affliction": "於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)",
+        "buff_count": "Buff 數增傷",
+        "buff_zone": "Buff 區域數增傷",
+        "crisis_up": "低血增傷",
+        "crisis_down": "滿血增傷"
       },
       "search": "搜尋"
     },

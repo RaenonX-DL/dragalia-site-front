@@ -11,6 +11,19 @@ export type AfflictionUnit = {
 }
 
 
+export type BuffCountBoost = {
+  each: number,
+  inEffect: number,
+  limit: number,
+}
+
+
+export type BuffZoneBoost = {
+  self: number,
+  ally: number,
+}
+
+
 export type AttackingSkillData = {
   uniqueHash: string,
   condition: Array<number>,
@@ -27,9 +40,11 @@ export type AttackingSkillData = {
     sharable: boolean,
     ssCost: number,
     ssSp: number,
-    totalModsMax: number,
     modsMax: Array<number>,
+    crisisMax: Array<number>,
     hitsMax: number,
     afflictions: Array<AfflictionUnit>,
+    buffCountBoost: Array<BuffCountBoost>,
+    buffZoneBoost: BuffZoneBoost,
   }
 }

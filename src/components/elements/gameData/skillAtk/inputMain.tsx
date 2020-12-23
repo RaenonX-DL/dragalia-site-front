@@ -56,6 +56,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     punishersBkPct: 0,
     punishersOtherPct: 20,
     otherElemBonusPct: 0,
+    otherCurrentHpPct: 100,
     targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
     targetAfflictionCodes: [],
     targetDefBase: 10,

@@ -29,6 +29,7 @@ export type InputData = {
   punishersBkPct: number,
   punishersOtherPct: number,
   otherElemBonusPct: number,
+  otherCurrentHpPct: number,
   targetElemCondCode: number,
   targetAfflictionCodes: Array<number>,
   targetDefBase: number,
@@ -178,10 +179,10 @@ export const SectionPunisher = ({inputData, fnUpdateInputDataValue}: SectionProp
       titleLabel={'game.skill_atk.name.punisher'}
       descriptionLabel={'game.skill_atk.desc.punisher'}/>
     <NumericalInput
-      titleLabel={'game.skill_atk.name.punisher_bk'} descriptionLabel={'game.skill_atk.punisher_bk'}
+      titleLabel={'game.skill_atk.name.punisher_bk'} descriptionLabel={'game.skill_atk.desc.punisher_bk'}
       defaultValue={inputData.punishersBkPct} name="punishersBkPct" onChange={fnUpdateInputDataValue}/>
     <NumericalInput
-      titleLabel={'game.skill_atk.name.punisher_others'} descriptionLabel={'game.skill_atk.punisher_others'}
+      titleLabel={'game.skill_atk.name.punisher_others'} descriptionLabel={'game.skill_atk.desc.punisher_others'}
       defaultValue={inputData.punishersOtherPct} name="punishersOtherPct" onChange={fnUpdateInputDataValue}/>
   </>
 );
@@ -192,8 +193,12 @@ export const SectionOther = ({inputData, fnUpdateInputDataValue}: SectionPropsWi
       titleLabel={'game.skill_atk.name.other'}
       descriptionLabel={'game.skill_atk.desc.other'}/>
     <NumericalInput
-      titleLabel={'game.skill_atk.name.other_element_bonus'} descriptionLabel={'game.skill_atk.other_element_bonus'}
+      titleLabel={'game.skill_atk.name.other_element_bonus'}
+      descriptionLabel={'game.skill_atk.desc.other_element_bonus'}
       defaultValue={inputData.otherElemBonusPct} name="otherElemBonusPct" onChange={fnUpdateInputDataValue}/>
+    <NumericalInput
+      titleLabel={'game.skill_atk.name.other_hp'} descriptionLabel={'game.skill_atk.desc.other_hp'}
+      defaultValue={inputData.otherCurrentHpPct} name="otherCurrentHpPct" onChange={fnUpdateInputDataValue}/>
   </>
 );
 
@@ -254,14 +259,14 @@ export const SectionTarget = (props: SectionTargetProps) => {
           groupName="targetStateCode" onChangeWrap={fnUpdateInputDataRadio}/>
       </div>
       <NumericalInput
-        titleLabel={'game.skill_atk.name.target_def_down'} descriptionLabel={'game.skill_atk.target_def_down'}
+        titleLabel={'game.skill_atk.name.target_def_down'} descriptionLabel={'game.skill_atk.desc.target_def_down'}
         maxValue={50}
         defaultValue={inputData.targetDefDownPct} name="targetDefDownPct" onChange={fnUpdateInputDataValue}/>
       <NumericalInput
-        titleLabel={'game.skill_atk.name.target_def'} descriptionLabel={'game.skill_atk.target_def'}
+        titleLabel={'game.skill_atk.name.target_def'} descriptionLabel={'game.skill_atk.desc.target_def'}
         defaultValue={inputData.targetDefBase} name="targetDefBase" onChange={fnUpdateInputDataValue}/>
       <NumericalInput
-        titleLabel={'game.skill_atk.name.target_def_bk'} descriptionLabel={'game.skill_atk.target_def_bk'}
+        titleLabel={'game.skill_atk.name.target_def_bk'} descriptionLabel={'game.skill_atk.desc.target_def_bk'}
         defaultValue={inputData.targetDefBkRate} name="targetDefBkRate" onChange={fnUpdateInputDataValue}/>
     </>
   );

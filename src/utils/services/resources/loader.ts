@@ -1,7 +1,7 @@
 import {ResourcePaths} from './paths';
 import {AllConditionEnums, CategorizedConditionEnums, ElementEnums} from './types/enums';
 import {ElementBonus} from './types/misc';
-import {AttackingSkillData} from './types/skill';
+import {AttackingSkillData} from './types/skillAtk';
 
 /**
  * Class to load the resources.

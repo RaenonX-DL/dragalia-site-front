@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Badge, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {DepotPaths} from '../../../../utils/services/resources';
@@ -49,7 +49,7 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
 
   const SkillInfo = () => (
     <>
-      <span className="h5">{`${(atkSkillEntry.skill.totalModsMax * 100).toFixed(0)}%`}</span>
+      <span className="h5">{`${(calculatedData.skillDamage.totalMods * 100).toFixed(0)}%`}</span>
       <br/>
       <small>{atkSkillEntry.skill.hitsMax}&nbsp;HIT</small>
     </>
@@ -81,10 +81,10 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
             const conditionEnum = allConditionEnums[String(conditionCode)];
 
             return (
-              <>
+              <React.Fragment key={idx}>
                 {idx > 0 && ' '}
-                <Badge key={idx} variant={conditionEnum?.colorTheme}>{conditionEnum?.trans[i18n.language]}</Badge>
-              </>
+                <Badge variant={conditionEnum?.colorTheme}>{conditionEnum?.trans[i18n.language]}</Badge>
+              </React.Fragment>
             );
           })
         }
@@ -96,34 +96,89 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
     <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height='0.5rem' displayText={false}/>
   );
 
-  const Affliction = () => (
-    <>
-      {
-        atkSkillEntry.skill.afflictions
-          .filter((item, idx, arr) => (
-            arr.findIndex((afflictionUnit) => afflictionUnit.statusIcon === item.statusIcon) === idx
-          ))
-          .map((affliction: AfflictionUnit, index: number) => (
-            <p key={index}>
-              <img
-                src={DepotPaths.getAfflictionIconURL(affliction.statusIcon)}
-                alt={affliction.statusIcon} style={{width: '1.5rem'}}/>&nbsp;
-              {t('game.skill_atk.entry.affliction',
+  const Affliction = () => {
+    if (atkSkillEntry.skill.afflictions.length === 0) {
+      return <></>;
+    }
+
+    return (
+      <Col lg>
+        {
+          atkSkillEntry.skill.afflictions
+            .filter((item, idx, arr) => (
+              arr.findIndex((afflictionUnit) => afflictionUnit.statusIcon === item.statusIcon) === idx
+            ))
+            .map((affliction: AfflictionUnit, index: number) => (
+              <p key={index}>
+                <img
+                  src={DepotPaths.getAfflictionIconURL(affliction.statusIcon)}
+                  alt={affliction.statusIcon} style={{width: '1.5rem'}}/>&nbsp;
+                {t('game.skill_atk.entry.affliction',
+                  {
+                    afflictionTime: affliction.actionTime.toFixed(2),
+                    afflictionProbabilityPct: affliction.probabilityPct,
+                    afflictionDuration: affliction.duration,
+                  })}&nbsp;
                 {
-                  afflictionTime: affliction.actionTime.toFixed(2),
-                  afflictionProbabilityPct: affliction.probabilityPct,
-                  afflictionDuration: affliction.duration,
-                })}&nbsp;
-              {
-                affliction.stackable ?
-                  <Badge variant="success">{t('game.skill_atk.entry.stackable')}</Badge> :
-                  <Badge variant="danger">{t('game.skill_atk.entry.unstackable')}</Badge>
-              }
-            </p>
-          ))
-      }
-    </>
-  );
+                  affliction.stackable ?
+                    <Badge variant="success">{t('game.skill_atk.entry.stackable')}</Badge> :
+                    <Badge variant="danger">{t('game.skill_atk.entry.unstackable')}</Badge>
+                }
+              </p>
+            ))
+        }
+      </Col>
+    );
+  };
+
+  const Badges = () => {
+    let badges: Array<ReactNode> = [];
+
+    // Buff count boost available
+    if (atkSkillEntry.skill.buffCountBoost.some((data) => data.each > 0)) {
+      badges = badges.concat([
+        <Badge key="buffCount" variant="primary">{t('game.skill_atk.entry.buff_count')}</Badge>,
+      ]);
+    }
+
+    // Buff zone boost available
+    if (atkSkillEntry.skill.buffZoneBoost.self > 0 || atkSkillEntry.skill.buffZoneBoost.ally > 0) {
+      badges = badges.concat([
+        <Badge key="buffZoneSelf" variant="primary">{t('game.skill_atk.entry.buff_zone')}</Badge>,
+      ]);
+    }
+
+    // Crisis mods available
+    if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data > 1)) {
+      badges = badges.concat([
+        <Badge key="crisisUp" variant="danger">{t('game.skill_atk.entry.crisis_up')}</Badge>,
+      ]);
+    }
+    if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data < 1)) {
+      badges = badges.concat([
+        <Badge key="crisisDown" variant="danger">{t('game.skill_atk.entry.crisis_down')}</Badge>,
+      ]);
+    }
+
+    // -- Early terminate if no special badge
+    if (badges.length === 0) {
+      return <></>;
+    }
+
+    return (
+      <Col lg className="text-left text-lg-right my-auto">
+        {
+          badges
+            .map((badge: ReactNode, index: number) => (
+              <React.Fragment key={index}>
+                {index > 0 && ' '}
+                {badge}
+              </React.Fragment>
+            ))
+        }
+      </Col>
+    );
+  };
   // endregion
 
   return (
@@ -149,9 +204,8 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
         </Col>
       </Row>
       <Row>
-        <Col>
-          <Affliction/>
-        </Col>
+        <Affliction/>
+        <Badges/>
       </Row>
     </div>
   );

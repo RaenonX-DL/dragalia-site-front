@@ -61,7 +61,7 @@ export const AttackingSkillOutput = (props: OutputProps) => {
     );
 
     // Calculate skill damage
-    const skillDamage = calculateDamage(inputData, entry.skill.totalModsMax, charaElementRate);
+    const skillDamage = calculateDamage(inputData, entry, charaElementRate);
     // endregion
 
     return {skillDamage, skillEntry: entry};
@@ -75,8 +75,7 @@ export const AttackingSkillOutput = (props: OutputProps) => {
           .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected)
           .map((calculatedData: CalculatedData, index: number) => (
             <AttackingSkillEntry
-              inputData={inputData} calculatedData={calculatedData} allConditionEnums={allConditionEnums}
-              key={index}/>
+              inputData={inputData} calculatedData={calculatedData} allConditionEnums={allConditionEnums} key={index}/>
           ))
       }
     </>
