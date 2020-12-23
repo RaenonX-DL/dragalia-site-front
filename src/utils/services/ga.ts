@@ -1,3 +1,5 @@
+import {InputData} from '../../components/elements/gameData/skillAtk/inputSection';
+
 /**
  * Google Analytics custom event name.
  */
@@ -6,6 +8,7 @@ export class GAEvent {
   static LOGIN = 'login';
   static ANCHOR = 'anchor';
   static PAGE_VIEW = 'page_view';
+  static DAMAGE_CALCULATOR = 'damage_calc';
 }
 
 /**
@@ -40,6 +43,22 @@ export class GoogleAnalytics {
       {
         'method': method,
         'success': success,
+      },
+    );
+  }
+
+  /**
+   * Record the event of an user performed a search using damage calculator.
+   *
+   * @param {string} action action performed on the damage calculator
+   * @param {InputData} inputData data input used for calculating the damage
+   */
+  static damageCalc(action: 'search', inputData: InputData) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.DAMAGE_CALCULATOR,
+      {
+        'action': action,
+        ...inputData,
       },
     );
   }

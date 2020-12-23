@@ -11,7 +11,7 @@ import {
   AnalysisNewChara,
   AnalysisNewDragon,
   AnalysisPage,
-  AttackingSkillList,
+  AttackingSkillPage,
   Constructing,
   Home,
   QuestEdit,
@@ -85,7 +85,7 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
       </Route>
 
       <Route exact path={Path.SKILL_ATK}>
-        <AttackingSkillList fnSetTitle={updatePageTitle}/>
+        <AttackingSkillPage fnSetTitle={updatePageTitle}/>
       </Route>
       <Route exact path={Path.SKILL_SUP}>
         <Constructing fnSetTitle={updatePageTitle}/>

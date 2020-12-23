@@ -1,6 +1,7 @@
 import React, {Suspense} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {
   AllConditionEnums,
@@ -39,18 +40,14 @@ type SkillIdentifierInfoState = {
 }
 
 
-export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
-
-  if (fnSetTitle) {
-    fnSetTitle(t('pages.name.game_data.skill_atk'));
-  }
-
+export const AttackingSkillList = () => {
   // region Input data forwarder
   const [inputDataForward, setInputDataForward] = React.useState<InputData>();
   const entryCol = React.useRef<HTMLDivElement>(null);
 
   const processData = (inputData: InputData) => () => {
+    GoogleAnalytics.damageCalc('search', inputData);
+
     const topLocation = (
       (entryCol.current?.offsetTop || 0) -
       (document.getElementById(titleNavBarId)?.offsetHeight || 0)
@@ -164,4 +161,17 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
       </Col>
     </Row>
   );
+};
+
+
+export const AttackingSkillPage = ({fnSetTitle}: PageProps) => {
+  const {t} = useTranslation();
+
+  if (fnSetTitle) {
+    fnSetTitle(t('pages.name.game_data.skill_atk'));
+  }
+
+  // Add a layer of DOM to prevent fnSetTitle being called multiple times,
+  // causing page view event to be sent multiple times
+  return <AttackingSkillList/>;
 };
