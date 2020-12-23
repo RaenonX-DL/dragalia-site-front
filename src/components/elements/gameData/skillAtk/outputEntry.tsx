@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {Badge, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {DepotPaths} from '../../../../utils/services/resources';
-import {AfflictionUnit, AllConditionEnums} from '../../../../utils/services/resources/types';
+import {AfflictionUnit, AllConditionEnums, SkillIdentifierInfo} from '../../../../utils/services/resources/types';
 import {DistributionBar} from '../../charts';
 import {OverlayTooltip} from '../../express';
 
@@ -14,10 +14,13 @@ type SkillEntryProps = {
   inputData?: InputData,
   calculatedData: CalculatedData,
   allConditionEnums: AllConditionEnums,
+  skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 
-export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnums}: SkillEntryProps) => {
+export const AttackingSkillEntry = (props: SkillEntryProps) => {
+  const {inputData, calculatedData, allConditionEnums, skillIdentifierInfo} = props;
+
   const {t, i18n} = useTranslation();
 
   const atkSkillEntry = calculatedData.skillEntry;
@@ -41,7 +44,13 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
 
   const SkillName = () => (
     <>
-      <span className="h5">{atkSkillEntry.skill.identifiers.join(' / ')}</span>
+      <span className="h5">
+        {
+          atkSkillEntry.skill.identifiers
+            .map((identifier) => skillIdentifierInfo[identifier].trans[i18n.language])
+            .join(' / ')
+        }
+      </span>
       <br/>
       <small>{atkSkillEntry.skill.name[i18n.language]}</small>
     </>
@@ -150,8 +159,15 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
 
     // Crisis mods available
     if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data > 1)) {
+      const tooltipText = t(
+        'game.skill_atk.entry.crisis_up_desc',
+        {maxRate: Math.max(...atkSkillEntry.skill.crisisMax).toFixed(2)},
+      );
+
       badges = badges.concat([
-        <Badge key="crisisUp" variant="danger">{t('game.skill_atk.entry.crisis_up')}</Badge>,
+        <OverlayTooltip key="crisisUp" text={tooltipText}>
+          <Badge variant="danger">{t('game.skill_atk.entry.crisis_up')}</Badge>
+        </OverlayTooltip>,
       ]);
     }
     if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data < 1)) {
@@ -187,10 +203,10 @@ export const AttackingSkillEntry = ({inputData, calculatedData, allConditionEnum
         <Col xs="auto" sm="auto" className="mr-2">
           <ImageIcon/>
         </Col>
-        <Col xs="auto" sm="auto" className="my-auto">
+        <Col className="my-auto">
           <SkillName/>
         </Col>
-        <Col className="text-right my-auto">
+        <Col xs="auto" sm="auto" className="text-right my-auto">
           <SkillInfo/>
         </Col>
         <Col className="text-center my-auto" lg={5}>

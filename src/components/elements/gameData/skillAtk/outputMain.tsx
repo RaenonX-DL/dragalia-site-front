@@ -1,6 +1,11 @@
 import React from 'react';
 import {calculateDamage, CalculateDamageReturn} from '../../../../utils/game';
-import {AllConditionEnums, AttackingSkillData, ElementBonusData} from '../../../../utils/services/resources/types';
+import {
+  AllConditionEnums,
+  AttackingSkillData,
+  ElementBonusData,
+  SkillIdentifierInfo,
+} from '../../../../utils/services/resources/types';
 
 import {InputData} from './inputSection';
 import {AttackingSkillEntry} from './outputEntry';
@@ -38,11 +43,12 @@ type OutputProps = {
   elementBonusData: ElementBonusData,
   atkSkillEntries: Array<AttackingSkillData>,
   allConditionEnums: AllConditionEnums,
+  skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 
 export const AttackingSkillOutput = (props: OutputProps) => {
-  const {inputData, elementBonusData, atkSkillEntries, allConditionEnums} = props;
+  const {inputData, elementBonusData, atkSkillEntries, allConditionEnums, skillIdentifierInfo} = props;
 
   // Early termination on no input
   if (!inputData) {
@@ -75,7 +81,8 @@ export const AttackingSkillOutput = (props: OutputProps) => {
           .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected)
           .map((calculatedData: CalculatedData, index: number) => (
             <AttackingSkillEntry
-              inputData={inputData} calculatedData={calculatedData} allConditionEnums={allConditionEnums} key={index}/>
+              key={index} inputData={inputData} calculatedData={calculatedData}
+              allConditionEnums={allConditionEnums} skillIdentifierInfo={skillIdentifierInfo}/>
           ))
       }
     </>

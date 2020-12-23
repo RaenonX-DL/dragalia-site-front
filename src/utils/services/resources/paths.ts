@@ -11,6 +11,7 @@ export class ResourcePaths {
 
   static SKILLS_DIR = ResourcePaths.ROOT + '/skills';
   static SKILLS_ATK = ResourcePaths.SKILLS_DIR + '/attacking.json';
+  static SKILLS_IDENTIFIERS = ResourcePaths.SKILLS_DIR + '/identifiers.json';
 
   static MISC_DIR = ResourcePaths.ROOT + '/misc';
   static MISC_ELEM_BONUS = ResourcePaths.MISC_DIR + '/elementBonus.json';

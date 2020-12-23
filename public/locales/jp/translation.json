@@ -98,6 +98,7 @@
         "buff_count": "Buff 數增傷",
         "buff_zone": "Buff 區域數增傷",
         "crisis_up": "低血增傷",
+        "crisis_up_desc": "最多增傷 {{maxRate}} 倍",
         "crisis_down": "滿血增傷"
       },
       "search": "搜尋"

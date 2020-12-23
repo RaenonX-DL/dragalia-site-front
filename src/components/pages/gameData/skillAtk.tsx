@@ -2,7 +2,12 @@ import React, {Suspense} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {ResourceLoader} from '../../../utils/services/resources';
-import {AllConditionEnums, AttackingSkillData, ElementBonusData} from '../../../utils/services/resources/types';
+import {
+  AllConditionEnums,
+  AttackingSkillData,
+  ElementBonusData,
+  SkillIdentifierInfo,
+} from '../../../utils/services/resources/types';
 import {PageLoading} from '../../elements';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
 import {titleNavBarId} from '../../elements/posts/pageAnchor';
@@ -25,6 +30,12 @@ type AttackingSkillEntryState = {
 type AllConditionEnumState = {
   fetched: boolean,
   allConditionEnums: AllConditionEnums,
+}
+
+
+type SkillIdentifierInfoState = {
+  fetched: boolean,
+  skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 
@@ -73,6 +84,48 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
   }
   // endregion
 
+  // region Condition enums & fetch
+  const [allConditionEnumState, setAllConditionEnumState] = React.useState<AllConditionEnumState>({
+    fetched: false,
+    allConditionEnums: {},
+  });
+
+  // Fetch data
+  if (!allConditionEnumState.fetched) {
+    ResourceLoader.getEnumAllConditions((data) => {
+      setAllConditionEnumState({
+        ...allConditionEnumState,
+        fetched: true,
+        allConditionEnums: data,
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the resources of all condition enums.', e);
+      });
+  }
+  // endregion
+
+  // region Attacking skill entries & fetch
+  const [skillIdentifierInfoState, setSkillIdentifierInfoState] = React.useState<SkillIdentifierInfoState>({
+    fetched: false,
+    skillIdentifierInfo: {},
+  });
+
+  // Fetch data
+  if (!skillIdentifierInfoState.fetched) {
+    ResourceLoader.getSkillIdentifierInfo((data) => {
+      setSkillIdentifierInfoState({
+        ...skillIdentifierInfoState,
+        fetched: true,
+        skillIdentifierInfo: data,
+      });
+    })
+      .catch((e) => {
+        console.warn('Failed to fetch the skill identifier info.', e);
+      });
+  }
+  // endregion
+
   // region Attacking skill entries & fetch
   const [attackingSkillEntryState, setAttackingSkillEntryState] = React.useState<AttackingSkillEntryState>({
     fetched: false,
@@ -94,27 +147,6 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
   }
   // endregion
 
-  // region Attacking skill entries & fetch
-  const [allConditionEnumState, setAllConditionEnumState] = React.useState<AllConditionEnumState>({
-    fetched: false,
-    allConditionEnums: {},
-  });
-
-  // Fetch data
-  if (!allConditionEnumState.fetched) {
-    ResourceLoader.getEnumAllConditions((data) => {
-      setAllConditionEnumState({
-        ...allConditionEnumState,
-        fetched: true,
-        allConditionEnums: data,
-      });
-    })
-      .catch((e) => {
-        console.warn('Failed to fetch the resources of all condition enums.', e);
-      });
-  }
-  // endregion
-
   return (
     <Row>
       <Col lg={4} className="rounded bg-black-32 p-3 mb-3">
@@ -126,6 +158,7 @@ export const AttackingSkillList = ({fnSetTitle}: PageProps) => {
             inputData={inputDataForward}
             allConditionEnums={allConditionEnumState.allConditionEnums}
             elementBonusData={elementBonusState.elementBonusData}
+            skillIdentifierInfo={skillIdentifierInfoState.skillIdentifierInfo}
             atkSkillEntries={attackingSkillEntryState.atkSkillEntries}/>
         </Suspense>
       </Col>

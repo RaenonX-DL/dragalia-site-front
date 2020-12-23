@@ -1,7 +1,12 @@
 import {ResourcePaths} from './paths';
-import {AllConditionEnums, CategorizedConditionEnums, ElementEnums} from './types/enums';
-import {ElementBonus} from './types/misc';
-import {AttackingSkillData} from './types/skillAtk';
+import {
+  AllConditionEnums,
+  AttackingSkillData,
+  CategorizedConditionEnums,
+  ElementBonus,
+  ElementEnums,
+  SkillIdentifierInfo,
+} from './types';
 
 /**
  * Class to load the resources.
@@ -57,6 +62,19 @@ export class ResourceLoader {
     callback?: (attackingSkillData: Array<AttackingSkillData>) => void,
   ): Promise<Array<AttackingSkillData>> {
     return ResourceLoader.fetchResources<Array<AttackingSkillData>>(ResourcePaths.SKILLS_ATK, callback);
+  }
+
+  /**
+   * Get the skill identifier info.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<AttackingSkillData>>} promise after the callback
+   */
+  static getSkillIdentifierInfo(
+    callback?: (skillIdentifierInfo: SkillIdentifierInfo) => void,
+  ): Promise<SkillIdentifierInfo> {
+    return ResourceLoader.fetchResources<SkillIdentifierInfo>(ResourcePaths.SKILLS_IDENTIFIERS, callback);
   }
 
   // endregion
