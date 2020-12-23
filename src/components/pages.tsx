@@ -2,7 +2,7 @@ import {About} from './pages/about';
 
 import {Constructing} from './pages/constructing';
 
-import {AttackingSkillList} from './pages/gameData/skillAtk';
+import {AttackingSkillPage} from './pages/gameData/skillAtk';
 import {Home} from './pages/home';
 import {AnalysisEdit} from './pages/posts/analysis/edit';
 
@@ -19,6 +19,6 @@ export {
   Home, About,
   QuestList, QuestNew, QuestPage, QuestEdit,
   AnalysisList, AnalysisNewChara, AnalysisNewDragon, AnalysisPage, AnalysisEdit,
-  AttackingSkillList,
+  AttackingSkillPage,
   Constructing,
 };
