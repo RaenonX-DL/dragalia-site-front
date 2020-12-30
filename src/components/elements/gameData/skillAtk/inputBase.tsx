@@ -1,7 +1,7 @@
 import React, {ChangeEventHandler} from 'react';
-import {Col, Form, Row} from 'react-bootstrap';
+import {Col, Form, Image, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
-import {EnumEntry} from '../../../../utils/services/resources';
+import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 
 import {OverlayPopover} from '../../express';
 
@@ -70,19 +70,27 @@ type InlineChecksProps = TitledProps & {
   onChange: ChangeEventHandler<HTMLInputElement>,
   type?: 'checkbox' | 'radio' | 'switch',
   groupName?: string,
+  imageUrl?: string,
   id?: string,
   checked?: boolean
 }
 
 
 export const InlineChecks = (props: InlineChecksProps) => {
-  const {titleLabel, type = 'checkbox', groupName = '', id, checked, onChange} = props;
+  const {titleLabel, type = 'checkbox', groupName = '', imageUrl, id, checked, onChange} = props;
 
   const {t} = useTranslation();
 
+  let label;
+  if (imageUrl) {
+    label = <Image src={imageUrl} style={{height: '1.5rem'}}/>;
+  } else {
+    label = t(titleLabel);
+  }
+
   return (
     <Form.Check
-      inline label={t(titleLabel)} type={type} name={groupName} id={id || titleLabel}
+      inline label={label} type={type} name={groupName} id={id || titleLabel}
       checked={checked} onChange={onChange}/>
   );
 };
@@ -139,6 +147,7 @@ export const EnumResourceChecks = (props: EnumChecksProps) => {
             <InlineChecks
               id={`${groupName}${enumEntry.name}`} key={enumEntry.name} type={type} groupName={groupName}
               titleLabel={enumEntry.trans[i18n.language] || enumEntry.name}
+              imageUrl={enumEntry.imagePath ? DepotPaths.getImageURL(enumEntry.imagePath) : undefined}
               onChange={onChange(enumEntry.code)} checked={isChecked && isChecked(enumEntry.code)}/>
           );
         })

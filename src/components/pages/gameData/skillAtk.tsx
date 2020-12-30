@@ -101,7 +101,7 @@ export const AttackingSkillList = () => {
   }
   // endregion
 
-  // region Attacking skill entries & fetch
+  // region Skill identifier info & fetch
   const [skillIdentifierInfoState, setSkillIdentifierInfoState] = React.useState<SkillIdentifierInfoState>({
     fetched: false,
     skillIdentifierInfo: {},

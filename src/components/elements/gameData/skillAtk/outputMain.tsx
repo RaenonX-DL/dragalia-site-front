@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../../constants/config';
 import {calculateDamage, CalculateDamageReturn} from '../../../../utils/game';
@@ -60,13 +60,9 @@ const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
   const {t} = useTranslation();
 
   return (
-    <div className="rounded bg-black-32 p-2 mb-2">
-      <Row noGutters>
-        <Col>
-          {t('game.skill_atk.warning.truncated', {displayed, returned})}
-        </Col>
-      </Row>
-    </div>
+    <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
+      {t('game.skill_atk.warning.truncated', {displayed, returned})}
+    </Alert>
   );
 };
 

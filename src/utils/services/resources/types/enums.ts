@@ -4,6 +4,7 @@ import {MultiLangText} from './text';
 export type EnumEntry = {
   name: string,
   code: number,
+  imagePath: string | null,
   trans: MultiLangText
 }
 
