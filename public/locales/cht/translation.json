@@ -124,7 +124,10 @@
         "other_data": "屬性增傷 +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
       },
       "collapse": "摺疊/展開",
-      "search": "搜尋"
+      "search": "搜尋",
+      "warning": {
+        "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
+      }
     },
     "tools": {
       "title_self": "遊戲工具",
