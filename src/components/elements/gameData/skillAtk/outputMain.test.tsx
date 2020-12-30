@@ -21,6 +21,7 @@ const inputDataTemplate: InputData = {
   punishersBkPct: 0,
   punishersOtherPct: 0,
   otherElemBonusPct: 0,
+  otherCurrentHpPct: 0,
   targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
   targetAfflictionCodes: [],
   targetDefBase: 0,

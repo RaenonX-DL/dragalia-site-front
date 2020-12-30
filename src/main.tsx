@@ -97,9 +97,6 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
 
       {/* Tools */}
 
-      <Route exact path={Path.DMG_CALC}>
-        <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
       <Route exact path={Path.ROTATION_CALC}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </Route>

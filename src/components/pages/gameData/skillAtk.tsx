@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {GoogleAnalytics} from '../../../utils/services/ga';
@@ -9,7 +9,6 @@ import {
   ElementBonusData,
   SkillIdentifierInfo,
 } from '../../../utils/services/resources/types';
-import {PageLoading} from '../../elements';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
 import {titleNavBarId} from '../../elements/posts/pageAnchor';
 
@@ -102,7 +101,7 @@ export const AttackingSkillList = () => {
   }
   // endregion
 
-  // region Attacking skill entries & fetch
+  // region Skill identifier info & fetch
   const [skillIdentifierInfoState, setSkillIdentifierInfoState] = React.useState<SkillIdentifierInfoState>({
     fetched: false,
     skillIdentifierInfo: {},
@@ -150,14 +149,12 @@ export const AttackingSkillList = () => {
         <AttackingSkillInput onSearchRequested={processData}/>
       </Col>
       <Col ref={entryCol} lg={8}>
-        <Suspense fallback={<PageLoading/>}>
-          <AttackingSkillOutput
-            inputData={inputDataForward}
-            allConditionEnums={allConditionEnumState.allConditionEnums}
-            elementBonusData={elementBonusState.elementBonusData}
-            skillIdentifierInfo={skillIdentifierInfoState.skillIdentifierInfo}
-            atkSkillEntries={attackingSkillEntryState.atkSkillEntries}/>
-        </Suspense>
+        <AttackingSkillOutput
+          inputData={inputDataForward}
+          allConditionEnums={allConditionEnumState.allConditionEnums}
+          elementBonusData={elementBonusState.elementBonusData}
+          skillIdentifierInfo={skillIdentifierInfoState.skillIdentifierInfo}
+          atkSkillEntries={attackingSkillEntryState.atkSkillEntries}/>
       </Col>
     </Row>
   );

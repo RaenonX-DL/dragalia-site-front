@@ -1,4 +1,7 @@
 import React from 'react';
+import {Alert} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
+import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../../constants/config';
 import {calculateDamage, CalculateDamageReturn} from '../../../../utils/game';
 import {
   AllConditionEnums,
@@ -47,6 +50,23 @@ type OutputProps = {
 }
 
 
+type TruncatedEntryProps = {
+  displayed: number,
+  returned: number,
+}
+
+
+const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
+  const {t} = useTranslation();
+
+  return (
+    <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
+      {t('game.skill_atk.warning.truncated', {displayed, returned})}
+    </Alert>
+  );
+};
+
+
 export const AttackingSkillOutput = (props: OutputProps) => {
   const {inputData, elementBonusData, atkSkillEntries, allConditionEnums, skillIdentifierInfo} = props;
 
@@ -59,32 +79,43 @@ export const AttackingSkillOutput = (props: OutputProps) => {
   const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
 
   // Calculate entries
-  const calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered.map((entry: AttackingSkillData) => {
-    // Element bonus rate
-    const charaElementRate = elementBonusData.getElementBonus(
-      String(entry.chara.element),
-      String(inputData.targetElemCondCode),
+  let calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered
+    .map((entry: AttackingSkillData) => {
+      // Element bonus rate
+      const charaElementRate = elementBonusData.getElementBonus(
+        String(entry.chara.element),
+        String(inputData.targetElemCondCode),
+      );
+
+      // Calculate skill damage
+      const skillDamage = calculateDamage(inputData, entry, charaElementRate);
+      // endregion
+
+      return {skillDamage, skillEntry: entry};
+    })
+    .filter((calcData) => calcData.skillDamage.expected > 0)
+    .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected);
+
+  const entries: Array<React.ReactElement> = [];
+
+  // Check over-length
+  if (calculatedEntries.length > PAGE_ATK_SKILL_MAX_ENTRIES) {
+    entries.push(
+      <TruncatedWarningEntry displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={calculatedEntries.length} key={-1}/>,
+    );
+    calculatedEntries = calculatedEntries.slice(0, PAGE_ATK_SKILL_MAX_ENTRIES);
+  }
+
+  // Add transformed entries
+  entries
+    .push(
+      ...calculatedEntries
+        .map((calculatedData: CalculatedData, index: number) => (
+          <AttackingSkillEntry
+            key={index} inputData={inputData} calculatedData={calculatedData}
+            allConditionEnums={allConditionEnums} skillIdentifierInfo={skillIdentifierInfo}/>
+        )),
     );
 
-    // Calculate skill damage
-    const skillDamage = calculateDamage(inputData, entry, charaElementRate);
-    // endregion
-
-    return {skillDamage, skillEntry: entry};
-  });
-
-  return (
-    <>
-      {
-        calculatedEntries
-          .filter((calcData) => calcData.skillDamage.expected > 0)
-          .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected)
-          .map((calculatedData: CalculatedData, index: number) => (
-            <AttackingSkillEntry
-              key={index} inputData={inputData} calculatedData={calculatedData}
-              allConditionEnums={allConditionEnums} skillIdentifierInfo={skillIdentifierInfo}/>
-          ))
-      }
-    </>
-  );
+  return <>{entries}</>;
 };

@@ -25,6 +25,16 @@ export class DepotPaths {
   static ROOT = process.env.REACT_APP_DEPOT_ROOT;
 
   /**
+   * Get the URL of the image.
+   *
+   * @param {string} imagePath path of the image originated from the image directory
+   * @return {string} URL of the image
+   */
+  static getImageURL(imagePath: string) {
+    return `${DepotPaths.ROOT}/assets/_gluonresources/resources/images${imagePath}`;
+  }
+
+  /**
    * Get the large character icon URL.
    *
    * @param {string} imageName name of the image without the extension
