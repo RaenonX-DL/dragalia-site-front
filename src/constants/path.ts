@@ -36,7 +36,6 @@ export default class Path {
 
   // Tools
 
-  static DMG_CALC = '/damage';
   static ROTATION_CALC = '/rotations';
 
   // Not game related

@@ -101,11 +101,33 @@
         "crisis_up_desc": "最多增傷 {{maxRate}} 倍",
         "crisis_down": "滿血增傷"
       },
+      "summary": {
+        "atk": "攻擊 - {{atkVal}}",
+        "atk_data": "表攻: {{atkInGame}} / 被動: +{{atkConditionalPct}}% / Buff: +{{atkBuffPct}}%",
+        "buff": "Buff",
+        "buff_data": "數量: {{buffCount}} / 區域: {{buffZoneSelf}} (自己) {{buffZoneAlly}} (隊友)",
+        "ex": "EX",
+        "ex_blade": "刀",
+        "ex_wand": "法",
+        "ex_none": "(無)",
+        "crt": "爆擊 - {{crtVal}}",
+        "crt_inspired": "超靈感",
+        "crt_rate": "爆擊率 {{crtRate}} %",
+        "crt_damage": "爆擊傷害 +{{crtDamage}} %",
+        "skill": "技能 - {{skillVal}}",
+        "skill_passive": "被動 +{{skillPassivePct}}%",
+        "skill_buff": "Buff +{{skillBuffPct}}%",
+        "skill_energized": "超活力",
+        "punisher": "特攻 - {{punisherVal}}",
+        "punisher_data": "BK 特攻 {{punishersBkPct}}% / 其他特攻 {{punishersOtherPct}}%",
+        "other": "其它",
+        "other_data": "屬性增傷 +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
+      },
+      "collapse": "ズームイン/アウト",
       "search": "搜尋"
     },
     "tools": {
       "title_self": "ゲーム用のツール",
-      "damage": "ダメージ計算",
       "rotation": "ルーティン計算"
     }
   },
