@@ -96,10 +96,16 @@
         "unstackable": "Unstackable",
         "affliction": "For {{afflictionTime}} s ({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)",
         "buff_count": "Buff Counts",
+        "buff_count_desc_capped": "+{{each}}% of the total mod for each buff; Capped at {{limit}}%",
+        "buff_count_desc_uncapped": "+{{each}}% of the total mod for each buff; Uncapped",
+        "buff_zone_desc": "{{selfBoost}}% mod for each self-built area / {{allyBoost}}% mod for each ally-built area",
         "buff_zone": "Buff Zone",
+        "dispel": "Dispel",
+        "dispel_desc": "At {{dispelTiming}} sec",
         "crisis_up": "Crisis Scaling",
-        "crisis_up_desc": "Max {{maxRate}} x",
-        "crisis_down": "Stamina Scaling"
+        "crisis_up_desc": "Max {{maxRate}}x",
+        "crisis_down": "Stamina Scaling",
+        "crisis_down_desc": "{{maxRate}}x at the lowest HP"
       },
       "summary": {
         "atk": "STR - {{atkVal}}",

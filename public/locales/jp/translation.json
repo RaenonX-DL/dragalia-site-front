@@ -96,10 +96,16 @@
         "unstackable": "不可疊",
         "affliction": "於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)",
         "buff_count": "Buff 數增傷",
+        "buff_count_desc_capped": "+{{each}}% of the total mod for each buff; Capped at {{limit}}%",
+        "buff_count_desc_uncapped": "+{{each}}% of the total mod for each buff; Uncapped",
         "buff_zone": "Buff 區域數增傷",
+        "buff_zone_desc": "{{selfBoost}}% mod for each self-built area / {{allyBoost}}% mod for each ally-built area",
+        "dispel": "Dispel",
+        "dispel_desc": "At {{dispelTiming}} sec",
         "crisis_up": "低血增傷",
         "crisis_up_desc": "最多增傷 {{maxRate}} 倍",
-        "crisis_down": "滿血增傷"
+        "crisis_down": "滿血增傷",
+        "crisis_down_desc": "最低血時 {{maxRate}} 倍"
       },
       "summary": {
         "atk": "攻擊 - {{atkVal}}",

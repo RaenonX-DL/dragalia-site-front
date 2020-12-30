@@ -67,6 +67,8 @@ const attackingSkillDataTemplate: AttackingSkillData = {
       self: 0,
       ally: 0,
     },
+    dispelMax: false,
+    dispelTimingMax: [],
   },
 };
 
