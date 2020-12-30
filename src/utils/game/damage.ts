@@ -15,7 +15,6 @@ const calculateModOnCrisis = (originalMod: number, crisisMod: number, currentHpR
 };
 
 
-// TEST: test the damage calculation accuracy
 export const calculateDamage = (
   inputData: InputData, attackingSkillData: AttackingSkillData, charaElementRate: number,
 ): CalculateDamageReturn => {
