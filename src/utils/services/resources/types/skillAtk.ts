@@ -46,5 +46,7 @@ export type AttackingSkillData = {
     afflictions: Array<AfflictionUnit>,
     buffCountBoost: Array<BuffCountBoost>,
     buffZoneBoost: BuffZoneBoost,
+    dispelMax: boolean,
+    dispelTimingMax: Array<number>,
   }
 }

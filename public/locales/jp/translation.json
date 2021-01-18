@@ -96,10 +96,16 @@
         "unstackable": "不可疊",
         "affliction": "於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)",
         "buff_count": "Buff 數增傷",
+        "buff_count_desc_capped": "+{{each}}% of the total mod for each buff; Capped at {{limit}}%",
+        "buff_count_desc_uncapped": "+{{each}}% of the total mod for each buff; Uncapped",
         "buff_zone": "Buff 區域數增傷",
+        "buff_zone_desc": "{{selfBoost}}% mod for each self-built area / {{allyBoost}}% mod for each ally-built area",
+        "dispel": "Dispel",
+        "dispel_desc": "At {{dispelTiming}} sec",
         "crisis_up": "低血增傷",
         "crisis_up_desc": "最多增傷 {{maxRate}} 倍",
-        "crisis_down": "滿血增傷"
+        "crisis_down": "滿血增傷",
+        "crisis_down_desc": "最低血時 {{maxRate}} 倍"
       },
       "summary": {
         "atk": "攻擊 - {{atkVal}}",
@@ -127,7 +133,7 @@
       "search": "搜尋"
     },
     "tools": {
-      "title_self": "ゲーム用のツール",
+      "title_self": "他のツール",
       "rotation": "ルーティン計算"
     }
   },
@@ -177,7 +183,7 @@
   },
   "posts": {
     "analysis": {
-      "title_self": "キャラ、ドラゴン評価",
+      "title_self": "ユニット評価",
       "force_strike": "バーストアタック",
       "keywords": "キーワード",
       "normal_attack": "通常殴り",
@@ -211,8 +217,8 @@
     "info": {
       "title_self": "本ページの情報",
       "id": "ID",
-      "last_modified": "最後の編集した日期",
-      "published": "発表した日期",
+      "last_modified": "{{datetime}} に最後の編集した",
+      "published": "{{datetime}} に発表した",
       "title": "お題",
       "view_count": "ご覽回數"
     },
@@ -241,7 +247,7 @@
       "title_self": "他の文章"
     },
     "quest": {
-      "title_self": "高難易度クエストの攻略",
+      "title_self": "クエスト攻略",
       "addendum": "記事",
       "builds": "配置",
       "character": "キャラ",

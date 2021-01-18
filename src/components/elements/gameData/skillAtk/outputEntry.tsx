@@ -145,15 +145,56 @@ export const AttackingSkillEntry = (props: SkillEntryProps) => {
 
     // Buff count boost available
     if (atkSkillEntry.skill.buffCountBoost.some((data) => data.each > 0)) {
+      const maxEachPct = Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.each)) * 100;
+
+      let tooltipText;
+      if (atkSkillEntry.skill.buffCountBoost.some((data) => data.limit != 0)) {
+        tooltipText = t(
+          'game.skill_atk.entry.buff_count_desc_capped',
+          {
+            each: maxEachPct,
+            limit: Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.limit)) * 100,
+          },
+        );
+      } else {
+        tooltipText = t('game.skill_atk.entry.buff_count_desc_uncapped', {each: maxEachPct});
+      }
+
       badges = badges.concat([
-        <Badge key="buffCount" variant="primary">{t('game.skill_atk.entry.buff_count')}</Badge>,
+        <OverlayTooltip key="buffCount" text={tooltipText}>
+          <Badge key="buffCount" variant="primary">{t('game.skill_atk.entry.buff_count')}</Badge>
+        </OverlayTooltip>,
       ]);
     }
 
     // Buff zone boost available
     if (atkSkillEntry.skill.buffZoneBoost.self > 0 || atkSkillEntry.skill.buffZoneBoost.ally > 0) {
+      const tooltipText = t(
+        'game.skill_atk.entry.buff_zone_desc',
+        {
+          selfBoost: atkSkillEntry.skill.buffZoneBoost.self * 100,
+          allyBoost: atkSkillEntry.skill.buffZoneBoost.ally * 100,
+        },
+      );
+
       badges = badges.concat([
-        <Badge key="buffZoneSelf" variant="primary">{t('game.skill_atk.entry.buff_zone')}</Badge>,
+        <OverlayTooltip key="buffZone" text={tooltipText}>
+          <Badge key="buffZone" variant="primary">{t('game.skill_atk.entry.buff_zone')}</Badge>
+        </OverlayTooltip>,
+      ]);
+    }
+
+    // Buff dispel available
+    if (atkSkillEntry.skill.dispelMax) {
+      const tooltipText = t(
+        'game.skill_atk.entry.dispel_desc',
+        {dispelTiming: atkSkillEntry.skill.dispelTimingMax[0].toFixed(2)},
+      );
+
+      badges = badges.concat([
+        <OverlayTooltip key="dispel" text={tooltipText}>
+          <Badge key="dispel" variant="orange">{t('game.skill_atk.entry.dispel')}</Badge>
+        </OverlayTooltip>,
       ]);
     }
 
@@ -171,8 +212,15 @@ export const AttackingSkillEntry = (props: SkillEntryProps) => {
       ]);
     }
     if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data < 1)) {
+      const tooltipText = t(
+        'game.skill_atk.entry.crisis_down_desc',
+        {maxRate: Math.max(...atkSkillEntry.skill.crisisMax).toFixed(2)},
+      );
+
       badges = badges.concat([
-        <Badge key="crisisDown" variant="danger">{t('game.skill_atk.entry.crisis_down')}</Badge>,
+        <OverlayTooltip key="crisisDown" text={tooltipText}>
+          <Badge key="crisisDown" variant="danger">{t('game.skill_atk.entry.crisis_down')}</Badge>
+        </OverlayTooltip>,
       ]);
     }
 

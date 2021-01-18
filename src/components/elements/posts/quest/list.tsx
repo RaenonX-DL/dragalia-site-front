@@ -1,11 +1,46 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Badge, Card, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
 import {QuestPostListEntry} from '../../../../utils/services/api';
 
 
 type linkGenerator = (id: number | string) => string;
+
+
+type PostEntryProps = {
+  post: QuestPostListEntry,
+  linkGenerator: linkGenerator
+};
+
+
+const PostEntry = ({post, linkGenerator}: PostEntryProps) => {
+  const {t} = useTranslation();
+
+  return (
+    <Card>
+      <Card.Body>
+        <Row>
+          <Col><h4><Badge variant="primary">#{post.seqId}</Badge></h4></Col>
+          <Col className="text-right">
+            {t('posts.info.view_count')}:&nbsp;<span className="h4"><code>{post.viewCount}</code></span>
+          </Col>
+        </Row>
+        <Row>
+          <Col><h5><a href={linkGenerator(post.seqId)}>{post.title}</a></h5></Col>
+        </Row>
+        <Row>
+          <Col lg={6} className="text-center">
+            {t('posts.info.last_modified', {datetime: post.modified})}
+          </Col>
+          <Col lg={6} className="text-center">
+            {t('posts.info.published', {datetime: post.published})}
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  );
+};
 
 
 type PostListProps = {
@@ -15,34 +50,17 @@ type PostListProps = {
 
 
 export const QuestPostList = ({posts, linkGenerator}: PostListProps) => {
-  const {t} = useTranslation();
-
   return (
-    <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          <th className="text-center">{t('posts.info.id')}</th>
-          <th className="text-center w-25">{t('posts.info.title')}</th>
-          <th className="text-center">{t('posts.info.view_count')}</th>
-          <th className="text-center">{t('posts.info.last_modified')}</th>
-          <th className="text-center">{t('posts.info.published')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          posts.map((post) => {
-            return (
-              <tr key={post.seqId.toString() + post.lang}>
-                <td className="text-center">#{post.seqId}</td>
-                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.title}</a></td>
-                <td className="text-right">{post.viewCount}</td>
-                <td className="text-center">{post.modified}</td>
-                <td className="text-center">{post.published}</td>
-              </tr>
-            );
-          })
-        }
-      </tbody>
-    </Table>
+    <Row>
+      {
+        posts.map((post) => {
+          return (
+            <Col lg={12} key={post.seqId.toString() + post.lang} className="mb-3">
+              <PostEntry post={post} linkGenerator={linkGenerator}/>
+            </Col>
+          );
+        })
+      }
+    </Row>
   );
 };

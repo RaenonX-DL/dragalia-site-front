@@ -96,10 +96,16 @@
         "unstackable": "不可疊",
         "affliction": "於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)",
         "buff_count": "Buff 數增傷",
+        "buff_count_desc_capped": "每一 Buff 最多 +{{each}}% 總倍率；上限 {{limit}}%",
+        "buff_count_desc_uncapped": "每一 Buff 最多 +{{each}}% 總倍率；無上限",
         "buff_zone": "Buff 區域數增傷",
+        "buff_zone_desc": "每 1 自建區域數倍率 +{{selfBoost}}% / 每 1 友建區域數倍率 +{{allyBoost}}%",
+        "dispel": "消 Buff",
+        "dispel_desc": "於 {{dispelTiming}} 秒",
         "crisis_up": "低血增傷",
         "crisis_up_desc": "最多增傷 {{maxRate}} 倍",
-        "crisis_down": "滿血增傷"
+        "crisis_down": "滿血增傷",
+        "crisis_down_desc": "最低血時 {{maxRate}} 倍"
       },
       "summary": {
         "atk": "攻擊 - {{atkVal}}",
@@ -214,8 +220,8 @@
     "info": {
       "title_self": "貼文資訊",
       "id": "ID",
-      "last_modified": "最後修改時間",
-      "published": "發布時間",
+      "last_modified": "最後修改於 {{datetime}}",
+      "published": "發布於 {{datetime}}",
       "title": "標題",
       "view_count": "瀏覽次數"
     },

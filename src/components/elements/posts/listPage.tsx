@@ -59,6 +59,7 @@ export const PostListPage = (props: QuestListPageProps) => {
 
   const onPageClick = (page: number) => {
     fetchPostList((page - 1) * limit);
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
 
   const fetchPostList = (startIdx?: number) => {
