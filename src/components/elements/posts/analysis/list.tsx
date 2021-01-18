@@ -1,11 +1,62 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Badge, Card, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
 import {AnalysisPostListEntry, AnalysisPostType} from '../../../../utils/services/api';
 
 
 type linkGenerator = (id: number | string) => string;
+
+
+type PostEntryProps = {
+  post: AnalysisPostListEntry,
+  linkGenerator: linkGenerator
+};
+
+
+const getPostTypeName = (type: AnalysisPostType) => {
+  const {t} = useTranslation();
+
+  if (type === AnalysisPostType.CHARACTER) {
+    return t('posts.analysis.type.character');
+  } else if (type === AnalysisPostType.DRAGON) {
+    return t('posts.analysis.type.dragon');
+  } else {
+    return t('posts.analysis.type.uncategorized');
+  }
+};
+
+
+const PostEntry = ({post, linkGenerator}: PostEntryProps) => {
+  const {t} = useTranslation();
+
+  return (
+    <Card>
+      <Card.Body>
+        <Row>
+          <Col className="mb-2">
+            <span className="h4"><Badge variant="success">{getPostTypeName(post.type)}</Badge></span>&nbsp;
+            <span className="h4"><Badge variant="success">#{post.seqId}</Badge></span>
+          </Col>
+          <Col className="text-right">
+            {t('posts.info.view_count')}:&nbsp;<span className="h4"><code>{post.viewCount}</code></span>
+          </Col>
+        </Row>
+        <Row>
+          <Col><h5><a href={linkGenerator(post.seqId)}>{post.unitName}</a></h5></Col>
+        </Row>
+        <Row>
+          <Col lg={6} className="text-center">
+            {t('posts.info.last_modified', {datetime: post.modified})}
+          </Col>
+          <Col lg={6} className="text-center">
+            {t('posts.info.published', {datetime: post.published})}
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  );
+};
 
 
 type PostListProps = {
@@ -15,46 +66,17 @@ type PostListProps = {
 
 
 export const AnalysisPostList = ({posts, linkGenerator}: PostListProps) => {
-  const {t} = useTranslation();
-
-  const translateType = (type: AnalysisPostType) => {
-    if (type === AnalysisPostType.CHARACTER) {
-      return t('posts.analysis.type.character');
-    } else if (type === AnalysisPostType.DRAGON) {
-      return t('posts.analysis.type.dragon');
-    } else {
-      return t('posts.analysis.type.uncategorized');
-    }
-  };
-
   return (
-    <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          <th className="text-center">{t('posts.info.id')}</th>
-          <th className="text-center">{t('posts.analysis.unit_type')}</th>
-          <th className="text-center w-25">{t('posts.analysis.unit_name')}</th>
-          <th className="text-center">{t('posts.info.view_count')}</th>
-          <th className="text-center">{t('posts.info.last_modified')}</th>
-          <th className="text-center">{t('posts.info.published')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          posts.map((post) => {
-            return (
-              <tr key={post.seqId.toString() + post.lang}>
-                <td className="text-center">#{post.seqId}</td>
-                <td className="text-center">{translateType(post.type)}</td>
-                <td className="no-line-break"><a href={linkGenerator(post.seqId)}>{post.unitName}</a></td>
-                <td className="text-right">{post.viewCount}</td>
-                <td className="text-center">{post.modified}</td>
-                <td className="text-center">{post.published}</td>
-              </tr>
-            );
-          })
-        }
-      </tbody>
-    </Table>
+    <Row>
+      {
+        posts.map((post) => {
+          return (
+            <Col lg={12} key={post.seqId.toString() + post.lang} className="mb-3">
+              <PostEntry post={post} linkGenerator={linkGenerator}/>
+            </Col>
+          );
+        })
+      }
+    </Row>
   );
 };

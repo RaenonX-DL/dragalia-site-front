@@ -133,7 +133,7 @@
       "search": "搜尋"
     },
     "tools": {
-      "title_self": "ゲーム用のツール",
+      "title_self": "他のツール",
       "rotation": "ルーティン計算"
     }
   },
@@ -183,7 +183,7 @@
   },
   "posts": {
     "analysis": {
-      "title_self": "キャラ、ドラゴン評価",
+      "title_self": "ユニット評価",
       "force_strike": "バーストアタック",
       "keywords": "キーワード",
       "normal_attack": "通常殴り",
@@ -217,8 +217,8 @@
     "info": {
       "title_self": "本ページの情報",
       "id": "ID",
-      "last_modified": "最後の編集した日期",
-      "published": "発表した日期",
+      "last_modified": "{{datetime}} に最後の編集した",
+      "published": "{{datetime}} に発表した",
       "title": "お題",
       "view_count": "ご覽回數"
     },
@@ -247,7 +247,7 @@
       "title_self": "他の文章"
     },
     "quest": {
-      "title_self": "高難易度クエストの攻略",
+      "title_self": "クエスト攻略",
       "addendum": "記事",
       "builds": "配置",
       "character": "キャラ",

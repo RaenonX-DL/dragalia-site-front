@@ -94,7 +94,7 @@
         "cancelable": "This skill can be canceled after {{cancelTime}} seconds.",
         "stackable": "Stackable",
         "unstackable": "Unstackable",
-        "affliction": "For {{afflictionTime}} s ({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)",
+        "affliction": "At {{afflictionTime}} s ({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)",
         "buff_count": "Buff Counts",
         "buff_count_desc_capped": "+{{each}}% of the total mod for each buff; Capped at {{limit}}%",
         "buff_count_desc_uncapped": "+{{each}}% of the total mod for each buff; Uncapped",
@@ -217,8 +217,8 @@
     "info": {
       "title_self": "Post Information",
       "id": "ID",
-      "last_modified": "Last Modified",
-      "published": "Published",
+      "last_modified": "Last Modified at {{datetime}}",
+      "published": "Published at {{datetime}} ",
       "title": "Title",
       "view_count": "View Count"
     },
