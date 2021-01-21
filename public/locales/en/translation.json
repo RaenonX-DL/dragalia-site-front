@@ -130,7 +130,10 @@
         "other_data": "Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
       },
       "collapse": "Collapse/Expand",
-      "search": "Search"
+      "search": "Search",
+      "warning": {
+        "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
+      }
     },
     "tools": {
       "title_self": "Game Tools",

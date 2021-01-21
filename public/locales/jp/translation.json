@@ -135,6 +135,9 @@
     "tools": {
       "title_self": "他のツール",
       "rotation": "ルーティン計算"
+    },
+    "warning": {
+      "truncated": "項目が多過ぎるため、一部だけ展示されてます。({{displayed}} 表示中 / 全 {{returned}})。第{{displayed}}個項目の以後の結果も欲しいという方は検索範囲を指定してください。"
     }
   },
   "google_signin": {
