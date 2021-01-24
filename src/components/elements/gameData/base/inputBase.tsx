@@ -1,9 +1,10 @@
 import React, {ChangeEventHandler} from 'react';
-import {Col, Form, Image, Row} from 'react-bootstrap';
+import {ButtonGroup, Col, Form, Image, Row, ToggleButton} from 'react-bootstrap';
+import {ButtonVariant} from 'react-bootstrap/types';
 import {useTranslation} from 'react-i18next';
 import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 
-import {OverlayPopover} from '../../express';
+import {OverlayPopover, OverlayTooltip} from '../../express';
 
 type TitledProps = {
   titleLabel: string,
@@ -68,7 +69,8 @@ export const NumericalInput = (props: NumericalInputProps) => {
 
 type InlineChecksProps = TitledProps & {
   onChange: ChangeEventHandler<HTMLInputElement>,
-  type?: 'checkbox' | 'radio' | 'switch',
+  type?: 'checkbox' | 'radio',
+  variant?: ButtonVariant,
   groupName?: string,
   imageUrl?: string,
   id?: string,
@@ -78,21 +80,47 @@ type InlineChecksProps = TitledProps & {
 
 
 export const InlineChecks = (props: InlineChecksProps) => {
-  const {titleLabel, type = 'checkbox', groupName = '', imageUrl, id, checked, onChange, imageHeight} = props;
+  const {
+    titleLabel,
+    type = 'checkbox',
+    variant = 'outline-secondary',
+    groupName = '',
+    imageUrl,
+    id,
+    checked,
+    onChange,
+    imageHeight,
+  } = props;
 
   const {t} = useTranslation();
 
   let label;
   if (imageUrl) {
-    label = <Image src={imageUrl} style={{height: imageHeight || '1.5rem'}}/>;
+    label = (
+      <OverlayTooltip text={t(titleLabel)}>
+        <Image src={imageUrl} style={{height: imageHeight || '1.5rem'}}/>
+      </OverlayTooltip>
+    );
   } else {
-    label = t(titleLabel);
+    label = <span className="text-light">{t(titleLabel)}</span>;
   }
 
+  console.log(label);
+
   return (
-    <Form.Check
-      inline label={label} type={type} name={groupName} id={id || titleLabel} checked={checked} onChange={onChange}
-      style={{height: imageHeight || '1.5rem'}}/>
+    <ButtonGroup toggle className="m-1">
+      <ToggleButton
+        type={type}
+        variant={variant}
+        checked={checked}
+        onChange={onChange}
+        name={groupName}
+        id={id || titleLabel}
+        value="1"
+      >
+        {label}
+      </ToggleButton>
+    </ButtonGroup>
   );
 };
 
@@ -128,7 +156,7 @@ export const RadioChecks = ({labels, groupName, onChangeWrap, checkedCode}: Radi
 
 type EnumChecksProps = {
   enumEntries: Array<EnumEntry>,
-  type: 'checkbox' | 'radio' | 'switch',
+  type: 'checkbox' | 'radio',
   onChange: (code: number) => ChangeEventHandler<HTMLInputElement>,
   groupName?: string,
   isChecked?: (code: number) => boolean,

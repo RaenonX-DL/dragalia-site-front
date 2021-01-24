@@ -32,8 +32,8 @@ div.footer {
   height: 15vh;
 }
 
-.no-line-break {
-  white-space: nowrap;
+div.btn-group-toggle > label.btn.active {
+  background-color: #00bd54 !important;
 }
 
 /* endregion */
