@@ -3,7 +3,7 @@
     "data": {
       "title_self": "Game Data",
       "title_active": "Active",
-      "title_cex": "Chained Co-ability",
+      "title_ex": "Co-ability / CCA",
       "title_others": "Others",
       "title_passive": "Passive",
       "title_print": "Wyrmprints",
@@ -130,10 +130,7 @@
         "other_data": "Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
       },
       "collapse": "Collapse/Expand",
-      "search": "Search",
-      "warning": {
-        "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
-      }
+      "search": "Search"
     },
     "tools": {
       "title_self": "Game Tools",
@@ -156,7 +153,10 @@
     "in_use": "Currently in-use"
   },
   "message": {
-    "page_nav": "Are you sure to leave this page?"
+    "warning": {
+      "page_nav": "Are you sure to leave this page?",
+      "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
+    }
   },
   "misc": {
     "add": "Add",
@@ -178,6 +178,7 @@
       "site": "DL Info by OM",
       "suffix": " | DL Info by OM",
       "game_data": {
+        "ex": "Co-ab / CCA search",
         "skill_atk": "Attacking skills"
       }
     },

@@ -72,26 +72,27 @@ type InlineChecksProps = TitledProps & {
   groupName?: string,
   imageUrl?: string,
   id?: string,
-  checked?: boolean
+  checked?: boolean,
+  imageHeight?: string,
 }
 
 
 export const InlineChecks = (props: InlineChecksProps) => {
-  const {titleLabel, type = 'checkbox', groupName = '', imageUrl, id, checked, onChange} = props;
+  const {titleLabel, type = 'checkbox', groupName = '', imageUrl, id, checked, onChange, imageHeight} = props;
 
   const {t} = useTranslation();
 
   let label;
   if (imageUrl) {
-    label = <Image src={imageUrl} style={{height: '1.5rem'}}/>;
+    label = <Image src={imageUrl} style={{height: imageHeight || '1.5rem'}}/>;
   } else {
     label = t(titleLabel);
   }
 
   return (
     <Form.Check
-      inline label={label} type={type} name={groupName} id={id || titleLabel}
-      checked={checked} onChange={onChange}/>
+      inline label={label} type={type} name={groupName} id={id || titleLabel} checked={checked} onChange={onChange}
+      style={{height: imageHeight || '1.5rem'}}/>
   );
 };
 
@@ -130,12 +131,13 @@ type EnumChecksProps = {
   type: 'checkbox' | 'radio' | 'switch',
   onChange: (code: number) => ChangeEventHandler<HTMLInputElement>,
   groupName?: string,
-  isChecked?: (code: number) => boolean
+  isChecked?: (code: number) => boolean,
+  imageHeight?: string,
 }
 
 
 export const EnumResourceChecks = (props: EnumChecksProps) => {
-  const {enumEntries, type, onChange, groupName = '', isChecked} = props;
+  const {enumEntries, type, onChange, groupName = '', isChecked, imageHeight} = props;
 
   const {i18n} = useTranslation();
 
@@ -148,6 +150,7 @@ export const EnumResourceChecks = (props: EnumChecksProps) => {
               id={`${groupName}${enumEntry.name}`} key={enumEntry.name} type={type} groupName={groupName}
               titleLabel={enumEntry.trans[i18n.language] || enumEntry.name}
               imageUrl={enumEntry.imagePath ? DepotPaths.getImageURL(enumEntry.imagePath) : undefined}
+              imageHeight={imageHeight}
               onChange={onChange(enumEntry.code)} checked={isChecked && isChecked(enumEntry.code)}/>
           );
         })

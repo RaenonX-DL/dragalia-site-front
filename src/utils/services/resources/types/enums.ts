@@ -26,3 +26,9 @@ export type CategorizedConditionEnums = {
 export type ElementEnums = {
   elemental: Array<EnumEntry>,
 }
+
+
+export type ExBuffParams = {
+  exBuffParam: Array<EnumEntry>,
+  chainedExBuffParam: Array<EnumEntry>,
+}

@@ -36,8 +36,8 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
             </LinkContainer>
             <NavDropdown title={t('game.data.title_self')} id="collapsible-nav-dropdown">
               <NavDropdown.Header>{t('game.data.title_passive')}</NavDropdown.Header>
-              <LinkContainer to={Path.CEX}>
-                <NavDropdown.Item>{t('game.data.title_cex')}</NavDropdown.Item>
+              <LinkContainer to={Path.EX}>
+                <NavDropdown.Item>{t('game.data.title_ex')}</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to={Path.PRINT}>
                 <NavDropdown.Item>{t('game.data.title_print')}</NavDropdown.Item>

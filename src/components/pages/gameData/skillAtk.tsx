@@ -1,6 +1,7 @@
 import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {scrollToTop} from '../../../utils/misc';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {
@@ -10,7 +11,6 @@ import {
   SkillIdentifierInfo,
 } from '../../../utils/services/resources/types';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
-import {titleNavBarId} from '../../elements/posts/pageAnchor';
 
 import {PageProps} from '../base';
 
@@ -47,12 +47,7 @@ export const AttackingSkillList = () => {
   const processData = (inputData: InputData) => () => {
     GoogleAnalytics.damageCalc('search', inputData);
 
-    const topLocation = (
-      (entryCol.current?.offsetTop || 0) -
-      (document.getElementById(titleNavBarId)?.offsetHeight || 0)
-    );
-
-    window.scrollTo({top: topLocation, left: 0, behavior: 'smooth'});
+    scrollToTop(entryCol);
 
     // This function is expensive, scroll first
     setInputDataForward(inputData);
@@ -169,6 +164,6 @@ export const AttackingSkillPage = ({fnSetTitle}: PageProps) => {
   }
 
   // Add a layer of DOM to prevent fnSetTitle being called multiple times,
-  // causing page view event to be sent multiple times
+  // which sends page view event multiple times
   return <AttackingSkillList/>;
 };

@@ -9,7 +9,7 @@ import {
   RadioChecks,
   SectionSubTitle,
   SectionTitle,
-} from './inputBase';
+} from '../base/inputBase';
 
 export type InputData = {
   atkInGame: number,
@@ -128,7 +128,7 @@ export const SectionCrt = (props: SectionPropsWithNum & SectionPropsWithCheck) =
 
   return (
     <>
-      < SectionTitle
+      <SectionTitle
         titleLabel={'game.skill_atk.name.crt'}
         descriptionLabel={'game.skill_atk.desc.crt'}
       />

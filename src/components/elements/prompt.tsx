@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {Prompt as RouterPrompt} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import {Prompt as RouterPrompt} from 'react-router-dom';
 
 
 const onBeforeUnload = (e) => {
@@ -21,7 +21,7 @@ export const Prompt = ({display = true, text}: PromptProps) => {
   const {t} = useTranslation();
 
   if (!text) {
-    text = t('message.page_nav');
+    text = t('message.warning.page_nav');
   }
 
   // Using event listener of `beforeunload` for close/reload

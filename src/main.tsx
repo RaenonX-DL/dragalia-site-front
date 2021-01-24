@@ -13,6 +13,7 @@ import {
   AnalysisPage,
   AttackingSkillPage,
   Constructing,
+  ExAbilityPage,
   Home,
   QuestEdit,
   QuestList,
@@ -77,8 +78,8 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
 
       {/* In-game data */}
 
-      <Route exact path={Path.CEX}>
-        <Constructing fnSetTitle={updatePageTitle}/>
+      <Route exact path={Path.EX}>
+        <ExAbilityPage fnSetTitle={updatePageTitle}/>
       </Route>
       <Route exact path={Path.PRINT}>
         <Constructing fnSetTitle={updatePageTitle}/>

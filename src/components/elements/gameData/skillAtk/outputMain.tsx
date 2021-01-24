@@ -61,7 +61,7 @@ const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
 
   return (
     <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
-      {t('game.skill_atk.warning.truncated', {displayed, returned})}
+      {t('message.warning.truncated', {displayed, returned})}
     </Alert>
   );
 };

@@ -5,6 +5,7 @@ import {
   CategorizedConditionEnums,
   ElementBonus,
   ElementEnums,
+  ExBuffParams,
   SkillIdentifierInfo,
 } from './types';
 
@@ -46,6 +47,19 @@ export class ResourceLoader {
    */
   static getEnumElements(callback?: (elementEnums: ElementEnums) => void): Promise<ElementEnums> {
     return ResourceLoader.fetchResources<ElementEnums>(ResourcePaths.ENUMS_ELEMENTS, callback);
+  }
+
+  /**
+   * Get the EX/CEX buff parameter enums.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<ExBuffParams>>} promise after the callback
+   */
+  static getEnumExBuffParameters(
+    callback?: (categorizedConditionEnums: ExBuffParams) => void,
+  ): Promise<ExBuffParams> {
+    return ResourceLoader.fetchResources<ExBuffParams>(ResourcePaths.ENUMS_EX_PARAMS, callback);
   }
 
   // endregion

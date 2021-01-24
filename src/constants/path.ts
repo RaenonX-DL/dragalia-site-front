@@ -26,7 +26,7 @@ export default class Path {
 
   // In-game data
 
-  static CEX = '/cex';
+  static EX = '/ex';
   static PRINT = '/print';
 
   static SKILL_ATK = '/skill/atk';

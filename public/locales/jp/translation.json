@@ -3,7 +3,7 @@
     "data": {
       "title_self": "ゲーム情報",
       "title_active": "スキル",
-      "title_cex": "リンクEXアビリティ",
+      "title_ex": "EX / リンクEX",
       "title_others": "他の情報",
       "title_passive": "アビリティ",
       "title_print": "護符",
@@ -135,9 +135,6 @@
     "tools": {
       "title_self": "他のツール",
       "rotation": "ルーティン計算"
-    },
-    "warning": {
-      "truncated": "項目が多過ぎるため、一部だけ展示されてます。({{displayed}} 表示中 / 全 {{returned}})。第{{displayed}}個項目の以後の結果も欲しいという方は検索範囲を指定してください。"
     }
   },
   "google_signin": {
@@ -156,7 +153,10 @@
     "in_use": "使用中"
   },
   "message": {
-    "page_nav": "このページ閉じますか？"
+    "warning": {
+      "page_nav": "このページ閉じますか？",
+      "truncated": "項目が多過ぎるため、一部だけ展示されてます。({{displayed}} 表示中 / 全 {{returned}})。第{{displayed}}個項目の以後の結果も欲しいという方は検索範囲を指定してください。"
+    }
   },
   "misc": {
     "add": "追加",
@@ -178,6 +178,7 @@
       "site": "ドラガリ攻略サイト by OM",
       "suffix": " | ドラガリ攻略サイト by OM",
       "game_data": {
+        "ex": "TBA",
         "skill_atk": "TBA"
       }
     },

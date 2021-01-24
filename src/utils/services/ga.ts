@@ -1,4 +1,5 @@
-import {InputData} from '../../components/elements/gameData/skillAtk/inputSection';
+import {InputData as ExInputData} from '../../components/elements/gameData/ex/inputSection';
+import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/inputSection';
 
 /**
  * Google Analytics custom event name.
@@ -9,6 +10,7 @@ export class GAEvent {
   static ANCHOR = 'anchor';
   static PAGE_VIEW = 'page_view';
   static DAMAGE_CALCULATOR = 'damage_calc';
+  static ABILITY_SEARCH = 'ability_search';
 }
 
 /**
@@ -53,9 +55,25 @@ export class GoogleAnalytics {
    * @param {string} action action performed on the damage calculator
    * @param {InputData} inputData data input used for calculating the damage
    */
-  static damageCalc(action: 'search', inputData: InputData) {
+  static damageCalc(action: 'search', inputData: AtkInputData) {
     GoogleAnalytics.sendEvent(
       GAEvent.DAMAGE_CALCULATOR,
+      {
+        'action': action,
+        ...inputData,
+      },
+    );
+  }
+
+  /**
+   * Record the event of an user performed an ability search.
+   *
+   * @param {string} action action performed of the ability search
+   * @param {InputData} inputData data input used for searching the ability
+   */
+  static abilitySearch(action: 'EX' | 'Character' | 'Wyrmprint', inputData: ExInputData) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.ABILITY_SEARCH,
       {
         'action': action,
         ...inputData,

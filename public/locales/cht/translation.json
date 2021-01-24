@@ -3,13 +3,25 @@
     "data": {
       "title_self": "遊戲資訊",
       "title_active": "主動技能",
-      "title_cex": "CEX",
+      "title_ex": "EX / CEX",
       "title_others": "其他",
       "title_passive": "被動技能",
       "title_print": "護符",
       "title_skill_atk": "攻擊技能",
       "title_skill_sup": "支援技能",
       "title_story": "故事"
+    },
+    "ex": {
+      "name": {
+        "filter_element": "屬性",
+        "filter_ex_buff_param": "EX 加成參數",
+        "filter_chained_ex_buff_param": "CEX 加成參數"
+      },
+      "desc": {
+        "filter_element": "如果複選屬性，例如: 火、風，則所有火屬性角色或風屬性角色的條目將會被列入，否則略過。如果沒有選擇任何屬性，將會顯示所有條目。",
+        "filter_ex_buff_param": "如果沒有選擇任何參數，將會顯示所有條目。",
+        "filter_chained_ex_buff_param": "如果沒有選擇任何參數，將會顯示所有條目。"
+      }
     },
     "skill_atk": {
       "name": {
@@ -130,10 +142,7 @@
         "other_data": "屬性增傷 +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
       },
       "collapse": "摺疊/展開",
-      "search": "搜尋",
-      "warning": {
-        "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
-      }
+      "search": "搜尋"
     },
     "tools": {
       "title_self": "遊戲工具",
@@ -156,7 +165,10 @@
     "in_use": "目前使用中"
   },
   "message": {
-    "page_nav": "確定要離開本頁面嗎？"
+    "warning": {
+      "page_nav": "確定要離開本頁面嗎？",
+      "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
+    }
   },
   "misc": {
     "add": "新增",
@@ -178,6 +190,7 @@
       "site": "龍絆攻略站 by OM",
       "suffix": " | 龍絆攻略站 by OM",
       "game_data": {
+        "ex": "EX / CEX 查詢",
         "skill_atk": "攻擊技能表"
       }
     },
