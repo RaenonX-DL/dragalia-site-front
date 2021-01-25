@@ -163,6 +163,9 @@ const InputSummary = ({inputData}: InputSummaryProps) => {
             },
           )
         }
+        {
+          inputData.filterSharedOnly && <><br/>{t('game.skill_atk.summary.shared_only')}</>
+        }
       </p>
     </>
   );
@@ -293,6 +296,7 @@ const InputComponent = ({collapsed, inputData, setInputData}: InputComponentProp
       <SectionFilter
         inputData={inputData} conditionEnums={inputConditionEnums.conditionEnums}
         elementEnums={inputElementEnums.elementEnums}
+        fnUpdateInputDataCheck={updateInputDataCheck}
         fnUpdateInputDataCheckMulti={updateInputDataCheckEnumMulti}/>
     </>
   );
@@ -319,17 +323,17 @@ type InputProps = {
 export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   const {t} = useTranslation();
 
-  const [collapsed, setCollapsed] = React.useState(false);
+  const [collapsed, setCollapsed] = React.useState(true);
 
   const [inputData, setInputData] = React.useState<InputData>({
-    atkInGame: 5000,
+    atkInGame: 7000,
     atkConditionalPct: 20,
-    atkBuffPct: 0,
+    atkBuffPct: 30,
     buffCount: 0,
     buffZoneSelf: 0,
     buffZoneAlly: 0,
-    exBlade: false,
-    exWand: false,
+    exBlade: true,
+    exWand: true,
     criticalRatePct: 4,
     criticalDamagePct: 0,
     criticalInspired: false,
@@ -348,6 +352,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     targetStateCode: ConditionCodes.NONE,
     filterElementCode: [],
     filterAfflictionCondCode: [],
+    filterSharedOnly: false,
   });
 
   const onCollapseClicked = () => {

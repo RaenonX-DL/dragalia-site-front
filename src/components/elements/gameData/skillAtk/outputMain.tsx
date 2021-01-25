@@ -19,6 +19,11 @@ export type CalculatedData = {
 
 
 export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<AttackingSkillData>) => {
+  // Filter shared skill only if set
+  if (inputData.filterSharedOnly) {
+    atkSkillEntries = atkSkillEntries.filter((entry) => entry.skill.sharable);
+  }
+
   // Filter element if specified
   if (inputData.filterElementCode.length > 0) {
     atkSkillEntries = atkSkillEntries

@@ -30,6 +30,7 @@ const inputDataTemplate: InputData = {
   targetStateCode: ConditionCodes.NONE,
   filterElementCode: [],
   filterAfflictionCondCode: [],
+  filterSharedOnly: false,
 };
 
 it('checks if the promise is returning data', async () => {
@@ -44,6 +45,15 @@ it('checks if all entries are returned when no filter is applicable', async () =
     .then((data) => {
       data = filterSkillEntries(inputDataTemplate, data);
       expect(data.length).toBeGreaterThan(0);
+    });
+});
+
+it('checks if SS only filtering is working correctly', async () => {
+  await ResourceLoader.getAttackingSkillEntries((data) => data)
+    .then((data) => {
+      const dataFiltered = filterSkillEntries({...inputDataTemplate, filterSharedOnly: true}, data);
+      expect(dataFiltered.length).toBeGreaterThan(0);
+      expect(dataFiltered.map((entry) => entry.skill.sharable)).not.toContain(false);
     });
 });
 

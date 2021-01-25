@@ -1,4 +1,5 @@
 import React, {ChangeEventHandler} from 'react';
+import {Form} from 'react-bootstrap';
 import {ConditionCodes} from '../../../../constants/gameData';
 import {CategorizedConditionEnums, ElementEnums} from '../../../../utils/services/resources/types';
 
@@ -38,6 +39,7 @@ export type InputData = {
   targetStateCode: ConditionCodes.NONE | ConditionCodes.TARGET_STATE_BK | ConditionCodes.TARGET_STATE_OD,
   filterElementCode: Array<number>,
   filterAfflictionCondCode: Array<number>,
+  filterSharedOnly: boolean,
 }
 
 type SectionProps = {
@@ -272,11 +274,16 @@ export const SectionTarget = (props: SectionTargetProps) => {
   );
 };
 
-type SectionFilterProps = SectionPropsWithCheckMulti & SectionPropsWithCondEnums & SectionPropsWithElemEnums;
+type SectionFilterProps =
+  SectionPropsWithCheck &
+  SectionPropsWithCheckMulti &
+  SectionPropsWithCondEnums &
+  SectionPropsWithElemEnums;
 
 export const SectionFilter = (props: SectionFilterProps) => {
   const {
     inputData,
+    fnUpdateInputDataCheck,
     fnUpdateInputDataCheckMulti,
     conditionEnums,
     elementEnums,
@@ -301,6 +308,14 @@ export const SectionFilter = (props: SectionFilterProps) => {
         enumEntries={conditionEnums.afflictions}
         type="checkbox" groupName="filterAfflictionCondCode" onChange={fnUpdateInputDataCheckMulti}
         isChecked={(code: number) => inputData.filterAfflictionCondCode.includes(code)}/>
+      <SectionSubTitle
+        titleLabel={'game.skill_atk.name.filter_other'}
+        descriptionLabel={'game.skill_atk.desc.filter_other'}/>
+      <Form.Group className="mb-3 text-center">
+        <InlineChecks
+          titleLabel={'game.skill_atk.name.filter_shared_only'} onChange={fnUpdateInputDataCheck}
+          groupName="filterSharedOnly" checked={inputData.filterSharedOnly}/>
+      </Form.Group>
     </>
   );
 };
