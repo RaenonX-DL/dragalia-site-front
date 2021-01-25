@@ -1,9 +1,9 @@
 import React, {ChangeEventHandler} from 'react';
-import {useTranslation} from 'react-i18next';
 import {Col, Form, Row} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
+import {MarkdownInput} from '../../markdown/input';
 
 import {Markdown} from '../../markdown/main';
-import {MarkdownInput} from '../../markdown/input';
 import {PageAnchor} from '../pageAnchor';
 
 
@@ -104,7 +104,7 @@ export const AnalysisSkillOutput = (props: AnalysisSkillOutputProps) => {
         </Col>
         {
           (rotations || tips) &&
-            <Col lg={6}>
+            <Col lg={tips ? 6 : 12}>
               {
                 rotations &&
                   <>
