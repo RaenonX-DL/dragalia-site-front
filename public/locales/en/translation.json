@@ -13,27 +13,27 @@
     },
     "ex": {
       "name": {
-        "filter_element": "角色屬性",
-        "filter_ex_buff_param": "EX 加成參數",
-        "filter_chained_ex_buff_param": "CEX 加成參數",
-        "ex_ability": "EX 效果",
-        "chained_ex_ability": "CEX 效果"
+        "filter_element": "Element",
+        "filter_ex_buff_param": "Co-ab Buff Parameter",
+        "filter_chained_ex_buff_param": "CCA Buff Parameter",
+        "ex_ability": "Co-ability",
+        "chained_ex_ability": "Chain Co-ability"
       },
       "desc": {
-        "filter_element": "如果複選屬性，例如: 火、風，則所有火屬性角色或風屬性角色的條目將會被列入，否則略過。如果沒有選擇任何屬性，將會顯示所有條目。",
-        "filter_ex_buff_param": "如果複選條件，則顯示符合任一條件的條目。如果沒有選擇任何參數，將會顯示所有條目。",
-        "filter_chained_ex_buff_param": "如果複選條件，則顯示符合任一條件的條目。如果沒有選擇任何參數，將會顯示所有條目。",
-        "ex_ability": "同效果在隊伍內不可重複。套用效果範圍皆為全隊，並且不限受益者屬性。",
-        "chained_ex_ability": "又稱連鎖 EX。預設套用效果範圍皆為全隊，然而，通常會有目標屬性限制。和 EX 不同的是，CEX 的效果可以重複。"
+        "filter_element": "If multiple elements are selected, such as flame and wind, then all flame and wind units will be listed. If no elements are selected, then all will be listed.",
+        "filter_ex_buff_param": "If multiple co-abilities are selected, then anything that matches a selected co-abilities will be listed. If none are selected, then all will be listed.",
+        "filter_chained_ex_buff_param": "If multiple CCA are selected, then anything that matches a selected CCA will be listed. If none are selected, then all will be listed.",
+        "ex_ability": "Multiples of the same co-ability will not stack. Applies to the whole party and is not restircted by element.",
+        "chained_ex_ability": "Also known as CCA. Applies to the whole party, but is generally restricted by element. Unlike co-abilities, CCAs of the same effect will stack."
       },
       "badge": {
-        "info_cooldown": "冷卻 {{cooldownSec}} 秒",
-        "info_duration_count": "可用 {{durationCount}} 次",
-        "info_duration_sec": "持續 {{durationSec}} 秒",
-        "info_max_occurrences": "最多 {{maxOccurrences}} 次",
-        "info_max_stack_count": "最多 {{maxStackCount}} 層",
-        "info_probability_pct": "{{probabilityPct}}% 機率",
-        "info_target_action": "目標行為: {{targetAction}}"
+        "info_cooldown": "Cooldown {{cooldownSec}} secs",
+        "info_duration_count": "Usable {{durationCount}} times",
+        "info_duration_sec": "Lasts {{durationSec}} secs",
+        "info_max_occurrences": "Max {{maxOccurrences}} times",
+        "info_max_stack_count": "Max {{maxStackCount}} stacks",
+        "info_probability_pct": "{{probabilityPct}}% chance",
+        "info_target_action": "Target action: {{targetAction}}"
       }
     },
     "skill_atk": {
@@ -78,8 +78,8 @@
         "filter": "Filter",
         "filter_element": "Element",
         "filter_affliction": "Affliction",
-        "filter_other": "其他",
-        "filter_shared_only": "限定共享技"
+        "filter_other": "Other",
+        "filter_shared_only": "Shared Skill Only"
       },
       "desc": {
         "atk": "Any parameter that relates to strength",
@@ -115,7 +115,7 @@
         "filter": "If any filter is selected, then the parameters that apply will be listed, otherwise they will be skipped.",
         "filter_element": "If multiple elements are selected, such as flame and wind, then all flame and wind characters’ skills will be listed, otherwise they will be skipped.",
         "filter_affliction": "If multiple afflictions are selected, such as poison and burn, then anything that applies poison or burn will be listed, otherwise they will be skipped. Note: This filters for skills that apply afflictions, not ones that have affliction punishers.",
-        "filter_other": "其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。"
+        "filter_other": "Other filter options. If Shared Skill Only is selected, then when filtering and calculating, only shared skills will be considered and displayed."
       },
       "entry": {
         "not_cancelable": "This skill is not cancelable",
@@ -183,7 +183,7 @@
   },
   "message": {
     "warning": {
-      "page_nav": "Are you sure to leave this page?",
+      "page_nav": "Are you sure you want to leave this page?",
       "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
     }
   },
