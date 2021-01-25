@@ -11,6 +11,31 @@
       "title_skill_sup": "Skill (Support)",
       "title_story": "Story"
     },
+    "ex": {
+      "name": {
+        "filter_element": "角色屬性",
+        "filter_ex_buff_param": "EX 加成參數",
+        "filter_chained_ex_buff_param": "CEX 加成參數",
+        "ex_ability": "EX 效果",
+        "chained_ex_ability": "CEX 效果"
+      },
+      "desc": {
+        "filter_element": "如果複選屬性，例如: 火、風，則所有火屬性角色或風屬性角色的條目將會被列入，否則略過。如果沒有選擇任何屬性，將會顯示所有條目。",
+        "filter_ex_buff_param": "如果複選條件，則顯示符合任一條件的條目。如果沒有選擇任何參數，將會顯示所有條目。",
+        "filter_chained_ex_buff_param": "如果複選條件，則顯示符合任一條件的條目。如果沒有選擇任何參數，將會顯示所有條目。",
+        "ex_ability": "同效果在隊伍內不可重複。套用效果範圍皆為全隊，並且不限受益者屬性。",
+        "chained_ex_ability": "又稱連鎖 EX。預設套用效果範圍皆為全隊，然而，通常會有目標屬性限制。和 EX 不同的是，CEX 的效果可以重複。"
+      },
+      "badge": {
+        "info_cooldown": "冷卻 {{cooldownSec}} 秒",
+        "info_duration_count": "可用 {{durationCount}} 次",
+        "info_duration_sec": "持續 {{durationSec}} 秒",
+        "info_max_occurrences": "最多 {{maxOccurrences}} 次",
+        "info_max_stack_count": "最多 {{maxStackCount}} 層",
+        "info_probability_pct": "{{probabilityPct}}% 機率",
+        "info_target_action": "目標行為: {{targetAction}}"
+      }
+    },
     "skill_atk": {
       "name": {
         "atk": "STR",
