@@ -207,8 +207,8 @@
       "site": "DL Info by OM",
       "suffix": " | DL Info by OM",
       "game_data": {
-        "ex": "Co-ab / CCA search",
-        "skill_atk": "Attacking skills"
+        "ex": "Co-ab / CCA lookup",
+        "skill_atk": "Attacking skill lookup"
       }
     },
     "constructing": "Under construction. Will announce upon completion somewhere.\n\n### Completed before email notification system has been completed\n\nWe will announce it in social media (Reddit, FB groups, etc.).\n\n### Completed after the email notification system has been implemented\n\nUsers who logged in before or signed up for the email list will receive an email about the new release.",

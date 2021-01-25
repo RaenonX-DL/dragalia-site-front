@@ -97,7 +97,7 @@ export const ExAbilityPage = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
 
   if (fnSetTitle) {
-    fnSetTitle(t('pages.name.game_data.skill_atk'));
+    fnSetTitle(t('pages.name.game_data.ex'));
   }
 
   // Add a layer of DOM to prevent fnSetTitle being called multiple times,

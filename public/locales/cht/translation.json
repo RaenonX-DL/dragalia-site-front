@@ -208,7 +208,7 @@
       "suffix": " | 龍絆攻略站 by OM",
       "game_data": {
         "ex": "EX / CEX 查詢",
-        "skill_atk": "攻擊技能表"
+        "skill_atk": "攻擊技能查詢"
       }
     },
     "constructing": "網頁/功能建置中。建置完畢後會公布。\n\n### Email 通知系統完成前\n\n會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n### Email 通知系統完成後\n\n有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。",
