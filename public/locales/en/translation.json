@@ -77,7 +77,9 @@
         "target_def_bk": "BK Def Reduction",
         "filter": "Filter",
         "filter_element": "Element",
-        "filter_affliction": "Affliction"
+        "filter_affliction": "Affliction",
+        "filter_other": "其他",
+        "filter_shared_only": "限定共享技"
       },
       "desc": {
         "atk": "Any parameter that relates to strength",
@@ -112,7 +114,8 @@
         "target_def_bk": "Target’s def reduction during break state. Usual 0.6; Tartarus and LVolk are 0.8 (BSK 1.25)",
         "filter": "If any filter is selected, then the parameters that apply will be listed, otherwise they will be skipped.",
         "filter_element": "If multiple elements are selected, such as flame and wind, then all flame and wind characters’ skills will be listed, otherwise they will be skipped.",
-        "filter_affliction": "If multiple afflictions are selected, such as poison and burn, then anything that applies poison or burn will be listed, otherwise they will be skipped. Note: This filters for skills that apply afflictions, not ones that have affliction punishers."
+        "filter_affliction": "If multiple afflictions are selected, such as poison and burn, then anything that applies poison or burn will be listed, otherwise they will be skipped. Note: This filters for skills that apply afflictions, not ones that have affliction punishers.",
+        "filter_other": "其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。"
       },
       "entry": {
         "not_cancelable": "This skill is not cancelable",
@@ -152,7 +155,8 @@
         "punisher": "Punisher - {{punisherVal}}",
         "punisher_data": "BK {{punishersBkPct}}% / Other {{punishersOtherPct}}%",
         "other": "Others",
-        "other_data": "Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%"
+        "other_data": "Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%",
+        "shared_only": "Shared Skill Only"
       },
       "collapse": "Collapse/Expand",
       "search": "Search"
