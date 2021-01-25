@@ -2,6 +2,7 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import {Button, Collapse} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {ConditionCodes} from '../../../../constants/gameData';
+import {scrollToTop} from '../../../../utils/misc';
 import {CategorizedConditionEnums, ElementEnums, ResourceLoader} from '../../../../utils/services/resources';
 
 import {
@@ -352,7 +353,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   const onCollapseClicked = () => {
     setCollapsed(!collapsed);
 
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    scrollToTop();
   };
 
   return (

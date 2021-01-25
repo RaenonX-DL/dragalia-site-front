@@ -1,3 +1,4 @@
+import {CharaData} from './common/chara';
 import {MultiLangText} from './text';
 
 
@@ -27,11 +28,7 @@ export type BuffZoneBoost = {
 export type AttackingSkillData = {
   uniqueHash: string,
   condition: Array<number>,
-  chara: {
-    iconName: string,
-    name: MultiLangText,
-    element: number,
-  },
+  chara: CharaData,
   skill: {
     identifiers: Array<string>,
     internalId: number,

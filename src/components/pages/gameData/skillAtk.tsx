@@ -1,16 +1,16 @@
 import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
+import {scrollToTop} from '../../../utils/misc';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {
-  AllConditionEnums,
   AttackingSkillData,
+  ConditionEnumMap,
   ElementBonusData,
   SkillIdentifierInfo,
 } from '../../../utils/services/resources/types';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
-import {titleNavBarId} from '../../elements/posts/pageAnchor';
 
 import {PageProps} from '../base';
 
@@ -27,9 +27,9 @@ type AttackingSkillEntryState = {
 }
 
 
-type AllConditionEnumState = {
+type ConditionEnumState = {
   fetched: boolean,
-  allConditionEnums: AllConditionEnums,
+  conditionEnums: ConditionEnumMap,
 }
 
 
@@ -47,12 +47,7 @@ export const AttackingSkillList = () => {
   const processData = (inputData: InputData) => () => {
     GoogleAnalytics.damageCalc('search', inputData);
 
-    const topLocation = (
-      (entryCol.current?.offsetTop || 0) -
-      (document.getElementById(titleNavBarId)?.offsetHeight || 0)
-    );
-
-    window.scrollTo({top: topLocation, left: 0, behavior: 'smooth'});
+    scrollToTop(entryCol);
 
     // This function is expensive, scroll first
     setInputDataForward(inputData);
@@ -81,9 +76,9 @@ export const AttackingSkillList = () => {
   // endregion
 
   // region Condition enums & fetch
-  const [allConditionEnumState, setAllConditionEnumState] = React.useState<AllConditionEnumState>({
+  const [allConditionEnumState, setAllConditionEnumState] = React.useState<ConditionEnumState>({
     fetched: false,
-    allConditionEnums: {},
+    conditionEnums: {},
   });
 
   // Fetch data
@@ -92,7 +87,7 @@ export const AttackingSkillList = () => {
       setAllConditionEnumState({
         ...allConditionEnumState,
         fetched: true,
-        allConditionEnums: data,
+        conditionEnums: data,
       });
     })
       .catch((e) => {
@@ -151,7 +146,7 @@ export const AttackingSkillList = () => {
       <Col ref={entryCol} lg={8}>
         <AttackingSkillOutput
           inputData={inputDataForward}
-          allConditionEnums={allConditionEnumState.allConditionEnums}
+          allConditionEnums={allConditionEnumState.conditionEnums}
           elementBonusData={elementBonusState.elementBonusData}
           skillIdentifierInfo={skillIdentifierInfoState.skillIdentifierInfo}
           atkSkillEntries={attackingSkillEntryState.atkSkillEntries}/>
@@ -169,6 +164,6 @@ export const AttackingSkillPage = ({fnSetTitle}: PageProps) => {
   }
 
   // Add a layer of DOM to prevent fnSetTitle being called multiple times,
-  // causing page view event to be sent multiple times
+  // which sends page view event multiple times
   return <AttackingSkillList/>;
 };

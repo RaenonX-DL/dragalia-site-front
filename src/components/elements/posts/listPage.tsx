@@ -3,6 +3,7 @@ import {Alert} from 'react-bootstrap';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import {useTranslation} from 'react-i18next';
 import {useLocation} from 'react-router-dom';
+import {scrollToTop} from '../../../utils/misc';
 import {PostListEntry, PostListResponse} from '../../../utils/services/api';
 
 import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../../elements';
@@ -59,7 +60,7 @@ export const PostListPage = (props: QuestListPageProps) => {
 
   const onPageClick = (page: number) => {
     fetchPostList((page - 1) * limit);
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    scrollToTop();
   };
 
   const fetchPostList = (startIdx?: number) => {

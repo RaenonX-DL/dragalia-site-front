@@ -1,14 +1,12 @@
 import React from 'react';
-import {Alert} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
-import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../../constants/config';
 import {calculateDamage, CalculateDamageReturn} from '../../../../utils/game';
 import {
-  AllConditionEnums,
   AttackingSkillData,
+  ConditionEnumMap,
   ElementBonusData,
   SkillIdentifierInfo,
 } from '../../../../utils/services/resources/types';
+import {overLengthWarningCheck} from '../utils';
 
 import {InputData} from './inputSection';
 import {AttackingSkillEntry} from './outputEntry';
@@ -45,26 +43,9 @@ type OutputProps = {
   inputData?: InputData,
   elementBonusData: ElementBonusData,
   atkSkillEntries: Array<AttackingSkillData>,
-  allConditionEnums: AllConditionEnums,
+  allConditionEnums: ConditionEnumMap,
   skillIdentifierInfo: SkillIdentifierInfo,
 }
-
-
-type TruncatedEntryProps = {
-  displayed: number,
-  returned: number,
-}
-
-
-const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
-  const {t} = useTranslation();
-
-  return (
-    <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
-      {t('game.skill_atk.warning.truncated', {displayed, returned})}
-    </Alert>
-  );
-};
 
 
 export const AttackingSkillOutput = (props: OutputProps) => {
@@ -79,7 +60,7 @@ export const AttackingSkillOutput = (props: OutputProps) => {
   const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
 
   // Calculate entries
-  let calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered
+  const calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered
     .map((entry: AttackingSkillData) => {
       // Element bonus rate
       const charaElementRate = elementBonusData.getElementBonus(
@@ -99,11 +80,9 @@ export const AttackingSkillOutput = (props: OutputProps) => {
   const entries: Array<React.ReactElement> = [];
 
   // Check over-length
-  if (calculatedEntries.length > PAGE_ATK_SKILL_MAX_ENTRIES) {
-    entries.push(
-      <TruncatedWarningEntry displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={calculatedEntries.length} key={-1}/>,
-    );
-    calculatedEntries = calculatedEntries.slice(0, PAGE_ATK_SKILL_MAX_ENTRIES);
+  const warning = overLengthWarningCheck(calculatedEntries);
+  if (warning !== null) {
+    entries.push(warning);
   }
 
   // Add transformed entries
@@ -113,7 +92,7 @@ export const AttackingSkillOutput = (props: OutputProps) => {
         .map((calculatedData: CalculatedData, index: number) => (
           <AttackingSkillEntry
             key={index} inputData={inputData} calculatedData={calculatedData}
-            allConditionEnums={allConditionEnums} skillIdentifierInfo={skillIdentifierInfo}/>
+            conditionEnumMap={allConditionEnums} skillIdentifierInfo={skillIdentifierInfo}/>
         )),
     );
 

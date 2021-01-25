@@ -9,7 +9,7 @@ import {
   RadioChecks,
   SectionSubTitle,
   SectionTitle,
-} from './inputBase';
+} from '../base/inputBase';
 
 export type InputData = {
   atkInGame: number,
@@ -128,7 +128,7 @@ export const SectionCrt = (props: SectionPropsWithNum & SectionPropsWithCheck) =
 
   return (
     <>
-      < SectionTitle
+      <SectionTitle
         titleLabel={'game.skill_atk.name.crt'}
         descriptionLabel={'game.skill_atk.desc.crt'}
       />
@@ -247,7 +247,7 @@ export const SectionTarget = (props: SectionTargetProps) => {
         titleLabel={'game.skill_atk.name.target_affliction'}
         descriptionLabel={'game.skill_atk.desc.target_affliction'}/>
       <EnumResourceChecks
-        enumEntries={conditionEnums.afflictions} type="switch" groupName="targetAfflictionCodes"
+        enumEntries={conditionEnums.afflictions} type="checkbox" groupName="targetAfflictionCodes"
         onChange={fnUpdateInputDataCheckMulti}
         isChecked={(code: number) => inputData.targetAfflictionCodes.includes(code)}/>
       <SectionSubTitle
@@ -292,14 +292,14 @@ export const SectionFilter = (props: SectionFilterProps) => {
         descriptionLabel={'game.skill_atk.desc.filter_element'}/>
       <EnumResourceChecks
         enumEntries={elementEnums.elemental}
-        type="switch" groupName="filterElementCode" onChange={fnUpdateInputDataCheckMulti}
+        type="checkbox" groupName="filterElementCode" onChange={fnUpdateInputDataCheckMulti}
         isChecked={(code: number) => inputData.filterElementCode.includes(code)}/>
       <SectionSubTitle
         titleLabel={'game.skill_atk.name.filter_affliction'}
         descriptionLabel={'game.skill_atk.desc.filter_affliction'}/>
       <EnumResourceChecks
         enumEntries={conditionEnums.afflictions}
-        type="switch" groupName="filterAfflictionCondCode" onChange={fnUpdateInputDataCheckMulti}
+        type="checkbox" groupName="filterAfflictionCondCode" onChange={fnUpdateInputDataCheckMulti}
         isChecked={(code: number) => inputData.filterAfflictionCondCode.includes(code)}/>
     </>
   );
