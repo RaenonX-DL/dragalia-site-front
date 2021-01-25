@@ -5,8 +5,8 @@ import {scrollToTop} from '../../../utils/misc';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {
-  AllConditionEnums,
   AttackingSkillData,
+  ConditionEnumMap,
   ElementBonusData,
   SkillIdentifierInfo,
 } from '../../../utils/services/resources/types';
@@ -27,9 +27,9 @@ type AttackingSkillEntryState = {
 }
 
 
-type AllConditionEnumState = {
+type ConditionEnumState = {
   fetched: boolean,
-  allConditionEnums: AllConditionEnums,
+  conditionEnums: ConditionEnumMap,
 }
 
 
@@ -76,9 +76,9 @@ export const AttackingSkillList = () => {
   // endregion
 
   // region Condition enums & fetch
-  const [allConditionEnumState, setAllConditionEnumState] = React.useState<AllConditionEnumState>({
+  const [allConditionEnumState, setAllConditionEnumState] = React.useState<ConditionEnumState>({
     fetched: false,
-    allConditionEnums: {},
+    conditionEnums: {},
   });
 
   // Fetch data
@@ -87,7 +87,7 @@ export const AttackingSkillList = () => {
       setAllConditionEnumState({
         ...allConditionEnumState,
         fetched: true,
-        allConditionEnums: data,
+        conditionEnums: data,
       });
     })
       .catch((e) => {
@@ -146,7 +146,7 @@ export const AttackingSkillList = () => {
       <Col ref={entryCol} lg={8}>
         <AttackingSkillOutput
           inputData={inputDataForward}
-          allConditionEnums={allConditionEnumState.allConditionEnums}
+          allConditionEnums={allConditionEnumState.conditionEnums}
           elementBonusData={elementBonusState.elementBonusData}
           skillIdentifierInfo={skillIdentifierInfoState.skillIdentifierInfo}
           atkSkillEntries={attackingSkillEntryState.atkSkillEntries}/>

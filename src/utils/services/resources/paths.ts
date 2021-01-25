@@ -4,7 +4,11 @@
 export class ResourcePaths {
   static ROOT = process.env.REACT_APP_RESOURCE_ROOT;
 
+  static ABILITY_DIR = ResourcePaths.ROOT + '/abilities';
+  static ABILITY_EX = ResourcePaths.ABILITY_DIR + '/ex.json';
+
   static ENUMS_DIR = ResourcePaths.ROOT + '/enums';
+  static ENUMS_BUFF_PARAM = ResourcePaths.ENUMS_DIR + '/buffParam.json';
   static ENUMS_CONDITIONS = ResourcePaths.ENUMS_DIR + '/conditions.json';
   static ENUMS_CONDITIONS_ALL = ResourcePaths.ENUMS_DIR + '/allCondition.json';
   static ENUMS_ELEMENTS = ResourcePaths.ENUMS_DIR + '/elements.json';

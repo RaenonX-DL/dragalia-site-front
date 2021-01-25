@@ -23,7 +23,7 @@ type InputProps = {
 }
 
 
-export const ExInput = ({onSearchRequested}: InputProps) => {
+export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   const {t} = useTranslation();
 
   const [inputData, setInputData] = React.useState<InputData>({

@@ -105,8 +105,6 @@ export const InlineChecks = (props: InlineChecksProps) => {
     label = <span className="text-light">{t(titleLabel)}</span>;
   }
 
-  console.log(label);
-
   return (
     <ButtonGroup toggle className="m-1">
       <ToggleButton

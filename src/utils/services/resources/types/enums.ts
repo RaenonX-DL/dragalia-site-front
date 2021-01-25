@@ -14,12 +14,17 @@ export type ConditionEnumEntry = EnumEntry & {
 };
 
 
-export type AllConditionEnums = Record<string, ConditionEnumEntry>;
+export type ConditionEnumMap = Record<string, ConditionEnumEntry>;
 
 
 export type CategorizedConditionEnums = {
   afflictions: Array<EnumEntry>,
   elements: Array<EnumEntry>,
+}
+
+
+export type BuffParamEnums = {
+  unit: Array<EnumEntry>,
 }
 
 

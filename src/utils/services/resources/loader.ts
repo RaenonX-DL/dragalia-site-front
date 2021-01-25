@@ -1,10 +1,12 @@
 import {ResourcePaths} from './paths';
 import {
-  AllConditionEnums,
   AttackingSkillData,
+  BuffParamEnums,
   CategorizedConditionEnums,
+  ConditionEnumMap,
   ElementBonus,
   ElementEnums,
+  ExAbilityDataEntry,
   ExBuffParams,
   SkillIdentifierInfo,
 } from './types';
@@ -13,7 +15,36 @@ import {
  * Class to load the resources.
  */
 export class ResourceLoader {
+  // region Ability
+  /**
+   * Get the EX ability data of each playable character.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<ExAbilityDataEntry>>} promise after the callback
+   */
+  static getAbilityEx(
+    callback?: (exAbilityDataEntries: Array<ExAbilityDataEntry>) => void,
+  ): Promise<Array<ExAbilityDataEntry>> {
+    return ResourceLoader.fetchResources<Array<ExAbilityDataEntry>>(ResourcePaths.ABILITY_EX, callback);
+  }
+
+  // endregion
+
   // region Enums
+  /**
+   * Get the buff parameter enums.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<ENUMS_BUFF_PARAM>>} promise after the callback
+   */
+  static getEnumBuffParam(
+    callback?: (categorizedConditionEnums: BuffParamEnums) => void,
+  ): Promise<BuffParamEnums> {
+    return ResourceLoader.fetchResources<BuffParamEnums>(ResourcePaths.ENUMS_BUFF_PARAM, callback);
+  }
+
   /**
    * Get the categorized condition enums.
    *
@@ -34,8 +65,8 @@ export class ResourceLoader {
    * @param {function?} callback function to be called after fetching the resource
    * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
    */
-  static getEnumAllConditions(callback?: (allConditionEnums: AllConditionEnums) => void): Promise<AllConditionEnums> {
-    return ResourceLoader.fetchResources<AllConditionEnums>(ResourcePaths.ENUMS_CONDITIONS_ALL, callback);
+  static getEnumAllConditions(callback?: (allConditionEnums: ConditionEnumMap) => void): Promise<ConditionEnumMap> {
+    return ResourceLoader.fetchResources<ConditionEnumMap>(ResourcePaths.ENUMS_CONDITIONS_ALL, callback);
   }
 
   /**

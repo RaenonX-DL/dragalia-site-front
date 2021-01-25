@@ -2,9 +2,10 @@ import React, {ReactNode} from 'react';
 import {Badge, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {DepotPaths} from '../../../../utils/services/resources';
-import {AfflictionUnit, AllConditionEnums, SkillIdentifierInfo} from '../../../../utils/services/resources/types';
+import {AfflictionUnit, ConditionEnumMap, SkillIdentifierInfo} from '../../../../utils/services/resources/types';
 import {DistributionBar} from '../../charts';
 import {OverlayTooltip} from '../../express';
+import {ConditionBadges} from '../common/condition';
 
 import {InputData} from './inputSection';
 import {CalculatedData} from './outputMain';
@@ -13,13 +14,13 @@ import {CalculatedData} from './outputMain';
 type SkillEntryProps = {
   inputData?: InputData,
   calculatedData: CalculatedData,
-  allConditionEnums: AllConditionEnums,
+  conditionEnumMap: ConditionEnumMap,
   skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 
 export const AttackingSkillEntry = (props: SkillEntryProps) => {
-  const {inputData, calculatedData, allConditionEnums, skillIdentifierInfo} = props;
+  const {inputData, calculatedData, conditionEnumMap, skillIdentifierInfo} = props;
 
   const {t, i18n} = useTranslation();
 
@@ -81,25 +82,6 @@ export const AttackingSkillEntry = (props: SkillEntryProps) => {
       </Row>
     );
   };
-
-  const SkillCondition = () => (
-    <Row>
-      <Col>
-        {
-          calculatedData.skillEntry.condition.map((conditionCode, idx: number) => {
-            const conditionEnum = allConditionEnums[String(conditionCode)];
-
-            return (
-              <React.Fragment key={idx}>
-                {idx > 0 && ' '}
-                <Badge variant={conditionEnum?.colorTheme}>{conditionEnum?.trans[i18n.language]}</Badge>
-              </React.Fragment>
-            );
-          })
-        }
-      </Col>
-    </Row>
-  );
 
   const DamageDistribution = () => (
     <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height='0.5rem' displayText={false}/>
@@ -259,7 +241,7 @@ export const AttackingSkillEntry = (props: SkillEntryProps) => {
         </Col>
         <Col className="text-center my-auto" lg={5}>
           <SkillDamage/>
-          <SkillCondition/>
+          <ConditionBadges conditionCodes={calculatedData.skillEntry.condition} conditionEnums={conditionEnumMap}/>
         </Col>
       </Row>
       <Row className="text-center">
