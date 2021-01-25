@@ -2,15 +2,29 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Courier New',
     monospace;
 }
 
@@ -19,12 +33,12 @@ img {
   max-height: 100%;
 }
 
-p, ul {
-  margin: 0.5rem !important;
+p,
+ul {
+  margin: 0.5rem;
 }
 
 /* endregion */
-
 
 /* region Selective styling */
 
@@ -33,13 +47,13 @@ div.footer {
 }
 
 div.btn-group-toggle > label.btn.active {
-  background-color: #c6c6c6 !important;
+  background-color: #c6c6c6;
 }
 
 /* endregion */
 
-
 /* region Youtube Embed */
+
 /* https://www.ankursheel.com/blog/full-width-you-tube-video-embed */
 
 div.youtube-embed {

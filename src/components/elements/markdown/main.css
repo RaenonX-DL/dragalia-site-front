@@ -1,58 +1,66 @@
-.markdown-body h1, .markdown-body h2, .markdown-body h3,
-.markdown-body h4, .markdown-body h5, .markdown-body h6 {
-    color: skyblue;
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: skyblue;
 }
 
 .markdown-body pre {
-    background-color: #151515;
-    color: #00ff00;
-    padding: 10px;
-    border-radius: 0.25rem;
+  background-color: #151515;
+  color: #0f0;
+  padding: 10px;
+  border-radius: 0.25rem;
 }
 
 .markdown-body table {
-    display: table;
-    width: 100%;
-    margin-bottom: 1rem;
-    border: 0;
-    color: #FFFFFF;
-    background-color: #0e0e0e;
-    border-collapse: collapse;
-    border-spacing: 2px;
+  display: table;
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 0;
+  color: #fff;
+  background-color: #0e0e0e;
+  border-collapse: collapse;
+  border-spacing: 2px;
 }
 
 .markdown-body blockquote {
-    background-color: #222222;
-    border-radius: 10px;
-    color: #CCCCCC;
+  background-color: #222;
+  border-radius: 10px;
+  color: #ccc;
 }
 
 .markdown-body strong {
-    color: #BBBBFF;
+  color: #bbf;
 }
 
-.markdown-body table, .markdown-body thead, .markdown-body th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+.markdown-body table,
+.markdown-body thead,
+.markdown-body th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
 }
 
-.markdown-body th, .markdown-body td {
-    padding: 0.75rem;
-    border: 1px solid #454d55;
+.markdown-body th,
+.markdown-body td {
+  padding: 0.75rem;
+  border: 1px solid #454d55;
 }
 
-.markdown-body thead th, .markdown-body tbody td {
-    border-bottom-width: 2px;
+.markdown-body thead th,
+.markdown-body tbody td {
+  border-bottom-width: 2px;
 }
 
 .markdown-body tbody tr:nth-of-type(odd) {
-    background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .markdown-body tbody tr:hover {
-    background-color: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
 }
 
 .markdown-body tbody tr:hover:nth-of-type(odd) {
-    background-color: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
 }
