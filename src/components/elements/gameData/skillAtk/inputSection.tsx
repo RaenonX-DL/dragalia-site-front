@@ -10,7 +10,7 @@ import {
   RadioChecks,
   SectionSubTitle,
   SectionTitle,
-} from '../base/inputBase';
+} from '../common/element';
 
 export type InputData = {
   atkInGame: number,

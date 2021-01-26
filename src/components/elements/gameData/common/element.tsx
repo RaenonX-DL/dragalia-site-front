@@ -6,6 +6,10 @@ import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 
 import {OverlayPopover, OverlayTooltip} from '../../express';
 
+// Style sheet override
+import './element.css';
+
+
 type TitledProps = {
   titleLabel: string,
 }
