@@ -61,7 +61,7 @@ export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: Outp
     .push(
       ...exAbilityData
         .map((exAbilityData: ExAbilityDataEntry, index: number) => (
-          <Col key={index} xs={6}>
+          <Col key={index} lg={6}>
             <ExAbilityEntry entry={exAbilityData} conditionEnums={conditionEnums}/>
           </Col>
         )),

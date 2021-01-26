@@ -1,7 +1,7 @@
 import React, {ChangeEventHandler} from 'react';
 import {ElementEnums, ExBuffParams} from '../../../../utils/services/resources/types';
 
-import {EnumResourceChecks, SectionTitle} from '../base/inputBase';
+import {EnumResourceChecks, SectionTitle} from '../common/element';
 
 export type InputData = {
   filterElementCode: Array<number>,

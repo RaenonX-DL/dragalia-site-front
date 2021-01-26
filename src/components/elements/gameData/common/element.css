@@ -1,0 +1,5 @@
+/* Override the entry button behavior */
+
+div.btn-group-toggle > label.btn-outline-secondary:hover {
+  background-color: #000;
+}
