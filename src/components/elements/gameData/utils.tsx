@@ -33,7 +33,7 @@ const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
 export const overLengthWarningCheck = (entries: Array<any>) => {
   if (entries.length > PAGE_ATK_SKILL_MAX_ENTRIES) {
     const originalLength = entries.length;
-    entries.splice(0, PAGE_ATK_SKILL_MAX_ENTRIES);
+    entries.splice(PAGE_ATK_SKILL_MAX_ENTRIES);
     return <TruncatedWarningEntry displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={originalLength} key={-1}/>;
   }
 
