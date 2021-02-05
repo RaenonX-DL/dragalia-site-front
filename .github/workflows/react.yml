@@ -3,7 +3,7 @@ name: Node CI
 on: [push]
 
 env:
-  REACT_APP_API_ROOT: http://dl-back.raenonx.cc
+  REACT_APP_API_ROOT: https://dl-back.raenonx.cc
   REACT_APP_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
   REACT_APP_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
 

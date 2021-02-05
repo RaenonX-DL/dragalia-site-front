@@ -111,9 +111,11 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
                       src={DepotPaths.getImageURL(effectUnit.parameter.imagePath)}
                       alt={effectUnit.parameter.name[i18n.language]} style={{height: '2rem'}}/>
                   </OverlayTooltip>
-                  <span className="align-middle">
-                    &nbsp;{rate.toFixed(0)}&nbsp;{effectUnit.paramUnit.name[i18n.language]}
-                  </span>
+                  <OverlayTooltip text={rate.toString()}>
+                    <span className="align-middle">
+                      &nbsp;{rate.toFixed(0)}&nbsp;{effectUnit.paramUnit.name[i18n.language]}
+                    </span>
+                  </OverlayTooltip>
                 </Col>
               </Row>
               <Row>
