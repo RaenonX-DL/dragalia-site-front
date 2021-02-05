@@ -1,6 +1,6 @@
 {
   "name": "dragalia-posts-site-front",
-  "version": "1.5.0",
+  "version": "1.7.5",
   "engines": {
     "node": "12.x"
   },
@@ -37,10 +37,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint src --ext .ts,.tsx",
+    "lint:md": "remark .",
     "lint:fix": "eslint src --fix --ext .ts,.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
   },
   "browserslist": {
     "production": [
@@ -60,6 +66,9 @@
     "eslint": "^7.12.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.21.5",
+    "remark-lint": "^8.0.0",
+    "remark-cli": "^9.0.0",
+    "remark-preset-lint-recommended": "^5.0.0",
     "stylelint": "^13.9.0",
     "stylelint-config-standard": "^20.0.0"
   }
