@@ -214,7 +214,7 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
     );
   } else {
     const fnSendFetchRequest = () =>
-      ApiRequestSender.analysisPostGet(getGoogleUid() || '', pid.toString(), i18n.language, true);
+      ApiRequestSender.analysisPostGet(getGoogleUid() || '', pid, i18n.language, true);
 
     return (
       <FetchPost

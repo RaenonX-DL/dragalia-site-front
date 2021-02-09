@@ -124,7 +124,7 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
     );
   } else {
     const fnSendFetchRequest = () =>
-      ApiRequestSender.questPostGet(getGoogleUid() || '', pid.toString(), i18n.language, true);
+      ApiRequestSender.questPostGet(getGoogleUid() || '', pid, i18n.language, true);
 
     return (
       <FetchPost
