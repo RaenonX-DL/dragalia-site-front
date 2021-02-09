@@ -25,20 +25,20 @@
     "react"
   ],
   "rules": {
-    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "max-len": [
-      2,
-      {
-        "code": 120
-      }
-    ],
     "indent": [
       "error",
       2,
       {
         "MemberExpression": 1
       }
-    ]
+    ],
+    "max-len": [
+      2,
+      {
+        "code": 120
+      }
+    ],
+    "no-unused-vars": "off"
   }
 }

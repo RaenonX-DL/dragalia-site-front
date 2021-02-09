@@ -253,11 +253,13 @@ export default class ApiRequestSender {
    * Base method to send an API request.
    *
    * @param {string} method http method
-   * @param {string} endpoint destination to send the request
+   * @param {string} endpoint destination to send the request - this should be endpoint only, not the full URL
    * @param {any} payload payload to be used
    * @return {Promise<T>} promise returned from `fetch`
    */
   private static sendRequest<T>(method: 'GET' | 'POST', endpoint: string, payload): Promise<T> {
+    endpoint = ApiEndPoints.getFullUrl(endpoint);
+
     console.log(`[API] Sending ${method} request to ${endpoint}`);
 
     if (method === 'GET') {
