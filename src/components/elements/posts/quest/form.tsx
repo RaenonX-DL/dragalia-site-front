@@ -42,7 +42,7 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
   };
 
   // region States and event handlers
-  const [postId, setPostId] = React.useState(post?.seqId.toString() || '');
+  const [postId, setPostId] = React.useState(post?.seqId);
   const onPostIdChanged = (e) => {
     setPostId(e.target.value);
     checkAvailability(e.target.value, langCode);
@@ -243,20 +243,20 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
 
     if (post) {
       promise = fnSendRequest<QuestPostEditPayload>({
-        google_uid: getGoogleUid() || '',
-        seq_id: post.seqId,
+        googleUid: getGoogleUid() || '',
+        seqId: post.seqId,
         title: title,
         lang: langCode,
         general: generalInfo,
         video: video,
         positional: positionInfo,
         addendum: addendum,
-        modify_note: modifyNote,
+        modifyNote: modifyNote,
       });
     } else {
       promise = fnSendRequest<QuestPostPublishPayload>({
-        google_uid: getGoogleUid() || '',
-        seq_id: postId || undefined,
+        googleUid: getGoogleUid() || '',
+        seqId: postId || undefined,
         title: title,
         lang: langCode,
         general: generalInfo,

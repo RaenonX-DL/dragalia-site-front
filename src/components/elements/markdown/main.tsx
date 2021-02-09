@@ -2,9 +2,9 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
-import {renderers} from './renderers';
-
 import './main.css';
+
+import {renderers} from './renderers';
 
 export const Markdown: React.FunctionComponent = ({children}: any) => {
   return (

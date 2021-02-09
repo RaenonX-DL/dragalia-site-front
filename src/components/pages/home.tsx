@@ -1,8 +1,8 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {Markdown} from '../elements';
 
 import {PageProps} from './base';
-import {Markdown} from '../elements';
 
 export const Home = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();

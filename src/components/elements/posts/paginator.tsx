@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router';
 import {Pagination} from 'react-bootstrap';
+import {useHistory} from 'react-router';
 
 
 type PaginatorParams = {

@@ -1,0 +1,4 @@
+[submodule "dragalia-site-api-definition"]
+	path = src/api-def
+	url = https://github.com/RaenonX-DL/dragalia-site-api-definition
+	branch = main
