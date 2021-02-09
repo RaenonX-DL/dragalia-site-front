@@ -2,7 +2,7 @@
   "name": "dragalia-posts-site-front",
   "version": "1.7.5",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "private": true,
   "dependencies": {
