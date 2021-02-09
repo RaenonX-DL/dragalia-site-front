@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Path from '../../../../constants/path';
-import {AnalysisPostListEntry, ApiRequestSender} from '../../../../utils/services/api';
+import {AnalysisListEntry, ApiRequestSender} from '../../../../utils/services/api';
 import {AnalysisPostList, PostListPage} from '../../../elements';
 
 import {PageProps} from '../../base';
@@ -20,7 +20,7 @@ export const AnalysisList = ({fnSetTitle}: PageProps) => {
       fnGetPostListJsx={
         (posts) =>
           <AnalysisPostList
-            posts={posts as Array<AnalysisPostListEntry>}
+            posts={posts as Array<AnalysisListEntry>}
             linkGenerator={(id) => Path.getAnalysis(id)}/>
       }
       title={title} currentUrl={Path.ANALYSIS_LIST}

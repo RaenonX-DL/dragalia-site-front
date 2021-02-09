@@ -1,20 +1,16 @@
-import {
-  AnalysisPostGetSuccessResponse,
-  CharacterAnalysisPost,
-  DragonAnalysisPost,
-} from '../../../../utils/services/api';
+import {AnalysisGetSuccessResponse, CharacterAnalysis, DragonAnalysis} from '../../../../api-def/api';
 import {PostFetchStatus} from '../fetch';
 
 
-export interface AnalysisPostFetchStatus extends PostFetchStatus {
-  post: AnalysisPostGetSuccessResponse | null
+export type AnalysisPostFetchStatus = PostFetchStatus & {
+  post: AnalysisGetSuccessResponse | null
 }
 
 
-export interface CharacterAnalysisPostFetchStatus extends AnalysisPostFetchStatus {
-  post: CharacterAnalysisPost | null
+export type CharacterAnalysisPostFetchStatus = AnalysisPostFetchStatus & {
+  post: CharacterAnalysis | null
 }
 
-export interface DragonAnalysisPostFetchStatus extends AnalysisPostFetchStatus {
-  post: DragonAnalysisPost | null
+export type DragonAnalysisPostFetchStatus = AnalysisPostFetchStatus & {
+  post: DragonAnalysis | null
 }

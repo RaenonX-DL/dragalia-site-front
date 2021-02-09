@@ -1,19 +1,11 @@
-import ApiEndPoints from './endpoints';
-import {
-  CharaAnalysisPostEditPayload,
-  CharaAnalysisPostPublishPayload,
-  DragonAnalysisPostEditPayload,
-  DragonAnalysisPostPublishPayload,
-  QuestPostEditPayload,
-  QuestPostPublishPayload,
-} from './requestPayload';
+import * as api from '../../../api-def/api';
+import {getFullApiUrl} from './endpoints';
 import ApiRequestPayloadMaker from './requestPayloadMaker';
-import * as Response from './response';
 
 /**
  * Class for sending an API request.
  */
-export default class ApiRequestSender {
+export class ApiRequestSender {
   // region User controls
 
   /**
@@ -23,10 +15,10 @@ export default class ApiRequestSender {
    * @param {string} googleEmail Google email of the logged in user
    * @return {Promise<UserLoginResponse>} promise returned from `fetch`
    */
-  static userLogin(googleUid: string, googleEmail: string): Promise<Response.UserLoginResponse> {
-    return ApiRequestSender.sendRequest<Response.UserLoginResponse>(
+  static userLogin(googleUid: string, googleEmail: string): Promise<api.UserLoginResponse> {
+    return ApiRequestSender.sendRequest<api.UserLoginResponse>(
       'POST',
-      ApiEndPoints.USER_LOGIN,
+      api.ApiEndPoints.USER_LOGIN,
       ApiRequestPayloadMaker.userLogin(googleUid, googleEmail),
     );
   }
@@ -40,17 +32,17 @@ export default class ApiRequestSender {
    * Get a quest post using its sequential ID.
    *
    * @param {string} googleUid Google UID of the logged in user
-   * @param {string} seqId sequential ID of the post to get
+   * @param {number} seqId sequential ID of the post to get
    * @param {string} langCode language code of the post to get
    * @param {boolean} increaseCount if the post view count should be increased or not
    * @return {Promise<QuestPostGetSuccessResponse>} promise returned from `fetch`
    */
   static questPostGet(
-    googleUid: string, seqId: string, langCode: string, increaseCount?: boolean):
-    Promise<Response.QuestPostGetSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.QuestPostGetSuccessResponse>(
+    googleUid: string, seqId: number, langCode: string, increaseCount?: boolean):
+    Promise<api.QuestPostGetSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.QuestPostGetSuccessResponse>(
       'GET',
-      ApiEndPoints.POST_QUEST_GET,
+      api.ApiEndPoints.POST_QUEST_GET,
       ApiRequestPayloadMaker.questPostGet(googleUid, seqId, langCode, increaseCount),
     );
   }
@@ -65,10 +57,10 @@ export default class ApiRequestSender {
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
   static questPostList(
-    googleUid: string, langCode: string, start: number, limit: number): Promise<Response.QuestPostListResponse> {
-    return ApiRequestSender.sendRequest<Response.QuestPostListResponse>(
+    googleUid: string, langCode: string, start: number, limit: number): Promise<api.QuestPostListResponse> {
+    return ApiRequestSender.sendRequest<api.QuestPostListResponse>(
       'GET',
-      ApiEndPoints.POST_QUEST_LIST,
+      api.ApiEndPoints.POST_QUEST_LIST,
       ApiRequestPayloadMaker.questPostList(googleUid, langCode, start, limit),
     );
   }
@@ -79,10 +71,10 @@ export default class ApiRequestSender {
    * @param {QuestPostEditPayload} payload payload for publishing a post
    * @return {Promise<QuestPostPublishSuccessResponse>} promise returned from `fetch`
    */
-  static questPostPublish(payload: QuestPostPublishPayload): Promise<Response.QuestPostPublishSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.QuestPostPublishSuccessResponse>(
+  static questPostPublish(payload: api.QuestPostPublishPayload): Promise<api.QuestPostPublishSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.QuestPostPublishSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_QUEST_PUBLISH,
+      api.ApiEndPoints.POST_QUEST_PUBLISH,
       payload,
     );
   }
@@ -93,10 +85,10 @@ export default class ApiRequestSender {
    * @param {QuestPostEditPayload} payload payload for editing a quest post
    * @return {Promise<QuestPostEditSuccessResponse>} promise returned from `fetch`
    */
-  static questPostEdit(payload: QuestPostEditPayload): Promise<Response.QuestPostEditSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.QuestPostEditSuccessResponse>(
+  static questPostEdit(payload: api.QuestPostEditPayload): Promise<api.QuestPostEditSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.QuestPostEditSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_QUEST_EDIT,
+      api.ApiEndPoints.POST_QUEST_EDIT,
       payload,
     );
   }
@@ -110,10 +102,10 @@ export default class ApiRequestSender {
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
   static questPostIdCheck(
-    googleUid: string, seqId: number | null, langCode: string): Promise<Response.QuestPostIdCheckResponse> {
-    return ApiRequestSender.sendRequest<Response.QuestPostIdCheckResponse>(
+    googleUid: string, seqId: number | null, langCode: string): Promise<api.QuestPostIdCheckResponse> {
+    return ApiRequestSender.sendRequest<api.QuestPostIdCheckResponse>(
       'GET',
-      ApiEndPoints.POST_QUEST_ID_CHECK,
+      api.ApiEndPoints.POST_QUEST_ID_CHECK,
       ApiRequestPayloadMaker.questPostIdCheck(googleUid, seqId, langCode),
     );
   }
@@ -126,14 +118,14 @@ export default class ApiRequestSender {
   /**
    * Send a character analysis post publish request.
    *
-   * @param {CharaAnalysisPostPublishPayload} payload payload of a character analysis post
+   * @param {CharaAnalysisPublishPayload} payload payload of a character analysis post
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
   static analysisPostPublishChara(
-    payload: CharaAnalysisPostPublishPayload): Promise<Response.CharaAnalysisPublishSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.CharaAnalysisPublishSuccessResponse>(
+    payload: api.CharaAnalysisPublishPayload): Promise<api.CharaAnalysisPublishSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.CharaAnalysisPublishSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_ANALYSIS_PUBLISH_CHARA,
+      api.ApiEndPoints.POST_ANALYSIS_PUBLISH_CHARA,
       payload,
     );
   }
@@ -141,14 +133,14 @@ export default class ApiRequestSender {
   /**
    * Send a dragon analysis post publish request.
    *
-   * @param {DragonAnalysisPostPublishPayload} payload payload of a character analysis post
+   * @param {DragonAnalysisPublishPayload} payload payload of a character analysis post
    * @return {Promise<DragonAnalysisPublishSuccessResponse>} promise returned from `fetch`
    */
   static analysisPostPublishDragon(
-    payload: DragonAnalysisPostPublishPayload): Promise<Response.DragonAnalysisPublishSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.DragonAnalysisPublishSuccessResponse>(
+    payload: api.DragonAnalysisPublishPayload): Promise<api.DragonAnalysisPublishSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.DragonAnalysisPublishSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_ANALYSIS_PUBLISH_DRAGON,
+      api.ApiEndPoints.POST_ANALYSIS_PUBLISH_DRAGON,
       payload,
     );
   }
@@ -160,13 +152,13 @@ export default class ApiRequestSender {
    * @param {string} langCode language code of the posts
    * @param {number} start starting index of the posts
    * @param {number} limit maximum count of the data to be returned
-   * @return {Promise<AnalysisPostListResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisListResponse>} promise returned from `fetch`
    */
   static analysisPostList(
-    googleUid: string, langCode: string, start: number, limit: number): Promise<Response.AnalysisPostListResponse> {
-    return ApiRequestSender.sendRequest<Response.AnalysisPostListResponse>(
+    googleUid: string, langCode: string, start: number, limit: number): Promise<api.AnalysisListResponse> {
+    return ApiRequestSender.sendRequest<api.AnalysisListResponse>(
       'GET',
-      ApiEndPoints.POST_ANALYSIS_LIST,
+      api.ApiEndPoints.POST_ANALYSIS_LIST,
       ApiRequestPayloadMaker.analysisPostList(googleUid, langCode, start, limit),
     );
   }
@@ -175,24 +167,24 @@ export default class ApiRequestSender {
    * Get an analysis post using its sequential ID.
    *
    * @param {string} googleUid Google UID of the logged in user
-   * @param {string} seqId sequential ID of the post to get
+   * @param {number} seqId sequential ID of the post to get
    * @param {string} langCode language code of the post to get
    * @param {boolean} increaseCount if the post view count should be increased or not
-   * @return {Promise<AnalysisPostGetSuccessResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisGetSuccessResponse>} promise returned from `fetch`
    */
   static analysisPostGet(
-    googleUid: string, seqId: string, langCode: string, increaseCount?: boolean):
-    Promise<Response.CharacterAnalysisPost | Response.DragonAnalysisPost> {
-    return ApiRequestSender.sendRequest<Response.AnalysisPostGetSuccessResponse>(
+    googleUid: string, seqId: number, langCode: string, increaseCount?: boolean):
+    Promise<api.CharacterAnalysis | api.DragonAnalysis> {
+    return ApiRequestSender.sendRequest<api.AnalysisGetSuccessResponse>(
       'GET',
-      ApiEndPoints.POST_ANALYSIS_GET,
+      api.ApiEndPoints.POST_ANALYSIS_GET,
       ApiRequestPayloadMaker.analysisPostGet(googleUid, seqId, langCode, increaseCount),
     )
       .then((response) => {
-        if (response.type === Response.AnalysisPostType.CHARACTER) {
-          return (response as Response.CharacterAnalysisPost);
-        } else if (response.type === Response.AnalysisPostType.DRAGON) {
-          return (response as Response.DragonAnalysisPost);
+        if (response.type === api.AnalysisType.CHARACTER) {
+          return (response as api.CharacterAnalysis);
+        } else if (response.type === api.AnalysisType.DRAGON) {
+          return (response as api.DragonAnalysis);
         } else {
           throw new Error('Unknown post type');
         }
@@ -202,14 +194,14 @@ export default class ApiRequestSender {
   /**
    * Send a character analysis post edit request.
    *
-   * @param {CharaAnalysisPostEditPayload} payload payload for editing a character analysis post
-   * @return {Promise<AnalysisPostEditSuccessResponse>} promise returned from `fetch`
+   * @param {CharaAnalysisEditPayload} payload payload for editing a character analysis post
+   * @return {Promise<AnalysisEditSuccessResponse>} promise returned from `fetch`
    */
   static analysisPostEditChara(
-    payload: CharaAnalysisPostEditPayload): Promise<Response.AnalysisPostEditSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.AnalysisPostEditSuccessResponse>(
+    payload: api.CharaAnalysisEditPayload): Promise<api.AnalysisEditSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.AnalysisEditSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_ANALYSIS_EDIT_CHARA,
+      api.ApiEndPoints.POST_ANALYSIS_EDIT_CHARA,
       payload,
     );
   }
@@ -217,14 +209,14 @@ export default class ApiRequestSender {
   /**
    * Send a dragon analysis post edit request.
    *
-   * @param {DragonAnalysisPostEditPayload} payload payload for editing a dragon analysis post
-   * @return {Promise<AnalysisPostEditSuccessResponse>} promise returned from `fetch`
+   * @param {DragonAnalysisEditPayload} payload payload for editing a dragon analysis post
+   * @return {Promise<AnalysisEditSuccessResponse>} promise returned from `fetch`
    */
   static analysisPostEditDragon(
-    payload: DragonAnalysisPostEditPayload): Promise<Response.AnalysisPostEditSuccessResponse> {
-    return ApiRequestSender.sendRequest<Response.AnalysisPostEditSuccessResponse>(
+    payload: api.DragonAnalysisEditPayload): Promise<api.AnalysisEditSuccessResponse> {
+    return ApiRequestSender.sendRequest<api.AnalysisEditSuccessResponse>(
       'POST',
-      ApiEndPoints.POST_ANALYSIS_EDIT_DRAGON,
+      api.ApiEndPoints.POST_ANALYSIS_EDIT_DRAGON,
       payload,
     );
   }
@@ -235,13 +227,13 @@ export default class ApiRequestSender {
    * @param {string} googleUid current Google UID
    * @param {number | null} seqId title of the post
    * @param {string} langCode language code of the analysis post
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisIdCheckResponse>} promise returned from `fetch`
    */
   static analysisPostIdCheck(
-    googleUid: string, seqId: number | null, langCode: string): Promise<Response.AnalysisPostIdCheckResponse> {
-    return ApiRequestSender.sendRequest<Response.AnalysisPostIdCheckResponse>(
+    googleUid: string, seqId: number | null, langCode: string): Promise<api.AnalysisIdCheckResponse> {
+    return ApiRequestSender.sendRequest<api.AnalysisIdCheckResponse>(
       'GET',
-      ApiEndPoints.POST_ANALYSIS_ID_CHECK,
+      api.ApiEndPoints.POST_ANALYSIS_ID_CHECK,
       ApiRequestPayloadMaker.analysisPostIdCheck(googleUid, seqId, langCode),
     );
   }
@@ -258,7 +250,7 @@ export default class ApiRequestSender {
    * @return {Promise<T>} promise returned from `fetch`
    */
   private static sendRequest<T>(method: 'GET' | 'POST', endpoint: string, payload): Promise<T> {
-    endpoint = ApiEndPoints.getFullUrl(endpoint);
+    endpoint = getFullApiUrl(endpoint);
 
     console.log(`[API] Sending ${method} request to ${endpoint}`);
 

@@ -23,7 +23,7 @@ export const PostModificationNotes = ({modifyNote}: PostModificationNotesProps) 
         {
           modifyNote.map((modNote) => {
             return (
-              <tr key={modNote.timestamp}>
+              <tr key={modNote.timestamp.toLocaleDateString()}>
                 <td className="no-line-break text-center">{modNote.timestamp}</td>
                 <td className="no-line-break">{modNote.note}</td>
               </tr>

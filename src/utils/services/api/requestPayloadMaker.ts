@@ -1,4 +1,4 @@
-import * as Payload from './requestPayload';
+import * as Payload from '../../../api-def/api';
 
 
 /**
@@ -16,8 +16,8 @@ export default class ApiRequestPayloadMaker {
    */
   static userLogin(googleUid: string, googleEmail: string): Payload.UserLoginPayload {
     return {
-      google_uid: googleUid,
-      google_email: googleEmail,
+      googleUid: googleUid,
+      googleEmail: googleEmail,
     };
   }
 
@@ -30,18 +30,18 @@ export default class ApiRequestPayloadMaker {
    * Make a payload for getting a single quest post.
    *
    * @param {string} googleUid Google UID of the logged in user
-   * @param {string} seqId sequential ID of the post to get
+   * @param {number} seqId sequential ID of the post to get
    * @param {string} langCode language code of the post to get
    * @param {boolean} increaseCount if the post view count should be increased or not
    * @return {QuestPostGetPayload} payload object
    */
   static questPostGet(
-    googleUid: string, seqId: string, langCode: string, increaseCount: boolean = true): Payload.QuestPostGetPayload {
+    googleUid: string, seqId: number, langCode: string, increaseCount: boolean = true): Payload.QuestPostGetPayload {
     return {
-      google_uid: googleUid,
-      seq_id: seqId,
+      googleUid: googleUid,
+      seqId: seqId,
       lang: langCode,
-      inc_count: increaseCount,
+      incCount: increaseCount,
     };
   }
 
@@ -57,8 +57,8 @@ export default class ApiRequestPayloadMaker {
   static questPostList(
     googleUid: string, langCode: string, start: number, limit: number): Payload.QuestPostListPayload {
     return {
-      google_uid: googleUid,
-      lang_code: langCode,
+      googleUid: googleUid,
+      langCode: langCode,
       start: start,
       limit: limit,
     };
@@ -75,13 +75,13 @@ export default class ApiRequestPayloadMaker {
    * @return {QuestPostIdCheckPayload} payload object
    */
   static questPostIdCheck(googleUid: string, seqId: number | null, langCode: string): Payload.QuestPostIdCheckPayload {
-    const ret = {
-      google_uid: googleUid,
+    const ret: Payload.QuestPostIdCheckPayload = {
+      googleUid: googleUid,
       lang: langCode,
     };
 
     if (seqId) {
-      ret['seq_id'] = seqId;
+      ret.seqId = seqId;
     }
 
     return ret;
@@ -99,13 +99,13 @@ export default class ApiRequestPayloadMaker {
    * @param {string} langCode language code of the posts
    * @param {number} start starting index of the posts
    * @param {number} limit maximum count of the data to be returned
-   * @return {QuestPostListPayload} payload object
+   * @return {AnalysisListPayload} payload object
    */
   static analysisPostList(
-    googleUid: string, langCode: string, start: number, limit: number): Payload.AnalysisPostListPayload {
+    googleUid: string, langCode: string, start: number, limit: number): Payload.AnalysisListPayload {
     return {
-      google_uid: googleUid,
-      lang_code: langCode,
+      googleUid: googleUid,
+      langCode: langCode,
       start: start,
       limit: limit,
     };
@@ -115,18 +115,18 @@ export default class ApiRequestPayloadMaker {
    * Make a payload for getting a single analysis post.
    *
    * @param {string} googleUid Google UID of the logged in user
-   * @param {string} seqId sequential ID of the post to get
+   * @param {number} seqId sequential ID of the post to get
    * @param {string} langCode language code of the post to get
    * @param {boolean} increaseCount if the post view count should be increased or not
-   * @return {AnalysisPostGetPayload} payload object
+   * @return {AnalysisGetPayload} payload object
    */
   static analysisPostGet(
-    googleUid: string, seqId: string, langCode: string, increaseCount: boolean = true): Payload.AnalysisPostGetPayload {
+    googleUid: string, seqId: number, langCode: string, increaseCount: boolean = true): Payload.AnalysisGetPayload {
     return {
-      google_uid: googleUid,
-      seq_id: seqId,
+      googleUid: googleUid,
+      seqId: seqId,
       lang: langCode,
-      inc_count: increaseCount,
+      incCount: increaseCount,
     };
   }
 
@@ -141,14 +141,14 @@ export default class ApiRequestPayloadMaker {
    * @return {QuestPostIdCheckPayload} payload object
    */
   static analysisPostIdCheck(
-    googleUid: string, seqId: number | null, langCode: string): Payload.AnalysisPostIdCheckPayload {
-    const ret = {
-      google_uid: googleUid,
+    googleUid: string, seqId: number | null, langCode: string): Payload.AnalysisIdCheckPayload {
+    const ret: Payload.AnalysisIdCheckPayload = {
+      googleUid: googleUid,
       lang: langCode,
     };
 
     if (seqId) {
-      ret['seq_id'] = seqId;
+      ret.seqId = seqId;
     }
 
     return ret;

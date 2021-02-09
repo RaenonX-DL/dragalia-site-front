@@ -1,12 +1,7 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
-import {
-  AnalysisPostType,
-  ApiRequestSender,
-  CharacterAnalysisPost,
-  DragonAnalysisPost,
-} from '../../../../utils/services/api';
+import {AnalysisType, ApiRequestSender, CharacterAnalysis, DragonAnalysis} from '../../../../utils/services/api';
 import {
   AnalysisPostFetchStatus,
   AnalysisPostFormChara,
@@ -33,24 +28,24 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
   if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
     const fetchedPost = fetchStatus.post;
 
-    if (fetchedPost.type === AnalysisPostType.CHARACTER) {
+    if (fetchedPost.type === AnalysisType.CHARACTER) {
       // Character
 
       fnSetTitle(t('pages.name.analysis_new_chara'));
 
       return (
         <AnalysisPostFormChara
-          post={fetchedPost as CharacterAnalysisPost}
+          post={fetchedPost as CharacterAnalysis}
           fnSendRequest={(payload) => ApiRequestSender.analysisPostEditChara(payload)}/>
       );
-    } else if (fetchedPost.type === AnalysisPostType.DRAGON) {
+    } else if (fetchedPost.type === AnalysisType.DRAGON) {
       // Dragon
 
       fnSetTitle(t('pages.name.analysis_new_dragon'));
 
       return (
         <AnalysisPostFormDragon
-          post={fetchedPost as DragonAnalysisPost}
+          post={fetchedPost as DragonAnalysis}
           fnSendRequest={(payload) => ApiRequestSender.analysisPostEditDragon(payload)}/>
       );
     } else {

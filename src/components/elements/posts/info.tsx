@@ -19,11 +19,11 @@ export const PostInfo = ({post}: PostInfoProps) => {
       <PageAnchor name="post-info" type="h3" text={t('posts.info.title_self')} className="mb-3"/>
       <Row>
         <Col lg={4} className="pr-lg-2">
-          <InfoCard title={t('posts.info.last_modified')} content={post.modified}/>
+          <InfoCard title={t('posts.info.last_modified')} content={post.modified.toLocaleDateString()}/>
           <div className="d-lg-none mb-3"/>
         </Col>
         <Col lg={4} className="px-lg-2">
-          <InfoCard title={t('posts.info.published')} content={post.published}/>
+          <InfoCard title={t('posts.info.published')} content={post.published.toLocaleDateString()}/>
           <div className="d-lg-none mb-3"/>
         </Col>
         <Col lg={4} className="pl-lg-2">

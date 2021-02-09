@@ -2,15 +2,10 @@ import React from 'react';
 import {Button, Col, Form, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {Redirect} from 'react-router-dom';
+import {CharacterAnalysis, CharacterSkill, DragonAnalysis, PostUpdateSuccessResponse} from '../../../../api-def/api';
 import {SUPPORTED_LANG, SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 import Path from '../../../../constants/path';
-import {
-  ApiRequestSender,
-  CharacterAnalysisPost,
-  CharacterSkill,
-  DragonAnalysisPost,
-  PostUpdateSuccessResponse,
-} from '../../../../utils/services/api';
+import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {ExpressModal} from '../../express';
 
 import {getGoogleUid} from '../../googleSignin';
@@ -434,7 +429,7 @@ const AnalysisPostPartialFormDragon = (props: AnalysisPostPartialFormDragonProps
 // region Character analysis form
 
 type AnalysisPostFormCharaProps = {
-  post?: CharacterAnalysisPost | null,
+  post?: CharacterAnalysis | null,
   fnSendRequest: (payload) => Promise<PostUpdateSuccessResponse>
 }
 
@@ -574,7 +569,7 @@ export const AnalysisPostFormChara = ({post, fnSendRequest}: AnalysisPostFormCha
 // region Dragon analysis form
 
 type AnalysisPostFormDragonProps = {
-  post?: DragonAnalysisPost | null,
+  post?: DragonAnalysis | null,
   fnSendRequest: (payload) => Promise<PostUpdateSuccessResponse>
 }
 

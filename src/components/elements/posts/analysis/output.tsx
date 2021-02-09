@@ -4,12 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
 import {SUPPORTED_LANG_NAME} from '../../../../constants/lang';
 import Path from '../../../../constants/path';
-import {
-  AnalysisPostType,
-  ApiRequestSender,
-  CharacterAnalysisPost,
-  DragonAnalysisPost,
-} from '../../../../utils/services/api';
+import {AnalysisType, ApiRequestSender, CharacterAnalysis, DragonAnalysis} from '../../../../utils/services/api';
 
 import {
   AnalysisPostFetchStatus,
@@ -80,7 +75,7 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
         {
           status.post.otherLangs.map((langCode) => (
             <li key={langCode}>
-              <Alert.Link href={Path.getAnalysis((status.post as CharacterAnalysisPost).seqId) + `?lang=${langCode}`}>
+              <Alert.Link href={Path.getAnalysis((status.post as CharacterAnalysis).seqId) + `?lang=${langCode}`}>
                 {SUPPORTED_LANG_NAME.get(langCode)}
               </Alert.Link>
             </li>
@@ -134,10 +129,10 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
 
     let sectionSpecific = <></>;
 
-    if (status.post.type === AnalysisPostType.CHARACTER) {
-      sectionSpecific = <AnalysisPostPartialOutputChara post={status.post as CharacterAnalysisPost}/>;
-    } else if (status.post.type === AnalysisPostType.DRAGON) {
-      sectionSpecific = <AnalysisPostPartialOutputDragon post={status.post as DragonAnalysisPost}/>;
+    if (status.post.type === AnalysisType.CHARACTER) {
+      sectionSpecific = <AnalysisPostPartialOutputChara post={status.post as CharacterAnalysis}/>;
+    } else if (status.post.type === AnalysisType.DRAGON) {
+      sectionSpecific = <AnalysisPostPartialOutputDragon post={status.post as DragonAnalysis}/>;
     } else {
       setStatus({
         ...status,
@@ -231,7 +226,7 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
 
 
 type AnalysisPostPartialOutputCharaProps = {
-  post: CharacterAnalysisPost
+  post: CharacterAnalysis
 }
 
 
@@ -282,7 +277,7 @@ const AnalysisPostPartialOutputChara = ({post}: AnalysisPostPartialOutputCharaPr
 
 
 type AnalysisPostPartialOutputDragonProps = {
-  post: DragonAnalysisPost
+  post: DragonAnalysis
 }
 
 

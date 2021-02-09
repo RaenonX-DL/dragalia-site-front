@@ -1,25 +1,24 @@
 import React from 'react';
 import {Badge, Card, Col, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
-
-import {AnalysisPostListEntry, AnalysisPostType} from '../../../../utils/services/api';
+import {AnalysisListEntry, AnalysisType} from '../../../../api-def/api';
 
 
 type linkGenerator = (id: number | string) => string;
 
 
 type PostEntryProps = {
-  post: AnalysisPostListEntry,
+  post: AnalysisListEntry,
   linkGenerator: linkGenerator
 };
 
 
-const getPostTypeName = (type: AnalysisPostType) => {
+const getPostTypeName = (type: AnalysisType) => {
   const {t} = useTranslation();
 
-  if (type === AnalysisPostType.CHARACTER) {
+  if (type === AnalysisType.CHARACTER) {
     return t('posts.analysis.type.character');
-  } else if (type === AnalysisPostType.DRAGON) {
+  } else if (type === AnalysisType.DRAGON) {
     return t('posts.analysis.type.dragon');
   } else {
     return t('posts.analysis.type.uncategorized');
@@ -60,7 +59,7 @@ const PostEntry = ({post, linkGenerator}: PostEntryProps) => {
 
 
 type PostListProps = {
-  posts: Array<AnalysisPostListEntry>,
+  posts: Array<AnalysisListEntry>,
   linkGenerator: linkGenerator
 };
 
