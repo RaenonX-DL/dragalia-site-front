@@ -26,7 +26,7 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
   const handleSubmit = (payload) => ApiRequestSender.questPostEdit(payload);
 
   const fnSendFetchRequest = () =>
-    ApiRequestSender.questPostGet(getGoogleUid() || '', pid.toString(), i18n.language, false);
+    ApiRequestSender.questPostGet(getGoogleUid() || '', pid, i18n.language, false);
 
   return (
     <>
