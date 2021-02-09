@@ -5,8 +5,8 @@
     "node": true
   },
   "extends": [
-    "plugin:react/recommended",
-    "google"
+    "google",
+    "plugin:react/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -40,5 +40,10 @@
       }
     ],
     "no-unused-vars": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

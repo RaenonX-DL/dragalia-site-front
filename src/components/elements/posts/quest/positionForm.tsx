@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler} from 'react';
-import {useTranslation} from 'react-i18next';
 import {Col, Form, Row} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
 
 import {MarkdownInput} from '../../markdown/input';
 

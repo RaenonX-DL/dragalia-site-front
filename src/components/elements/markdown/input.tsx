@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler} from 'react';
-import {useTranslation} from 'react-i18next';
 import {Tab, Tabs} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
 
 import {Markdown} from './main';
 

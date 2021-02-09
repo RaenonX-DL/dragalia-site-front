@@ -2,8 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {Alert} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {ApiResponseCodes, PostGetSuccessResponse} from '../../../utils/services/api';
-
+import {ApiResponseCode, PostGetSuccessResponse} from '../../../utils/services/api';
 
 export type PostFetchStatus = {
   fetched: boolean,
@@ -43,7 +42,7 @@ export const FetchPost = ({status, fnSetStatus, fnSendFetchRequest}: FetchPostPr
               fetched: true,
               fetchFailed: true,
               failContent: (
-                data.code === ApiResponseCodes.FAILED_POST_NOT_EXISTS ?
+                data.code === ApiResponseCode.FAILED_POST_NOT_EXISTS ?
                   t('posts.manage.post_not_exists') :
                   data.code.toString()
               ),
