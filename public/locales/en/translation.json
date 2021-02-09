@@ -185,6 +185,9 @@
     "warning": {
       "page_nav": "Are you sure you want to leave this page?",
       "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
+    },
+    "info": {
+      "donation": "To provide better UX, the ads are disabled temporarily. Please donate via either https://patreon.com/RaenonX, https://ko-fi.com/RaenonX or https://rnnx.cc/Paypal, thanks!"
     }
   },
   "misc": {

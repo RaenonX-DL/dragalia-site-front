@@ -21,6 +21,7 @@ import {
   QuestPage,
 } from './components/pages';
 import Path from './constants/path';
+import {SiteAlert} from './siteAlert';
 import {GoogleAnalytics} from './utils/services/ga';
 
 
@@ -151,6 +152,8 @@ const PageMain = () => {
   return (
     <>
       <Navigation ref={ref}/>
+
+      <SiteAlert/>
 
       <Container className="p-3">
         <PageContent updatePageTitle={updatePageTitle}/>

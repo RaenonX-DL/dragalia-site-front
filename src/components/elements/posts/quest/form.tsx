@@ -197,7 +197,7 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
     <>
       <h5>{t('posts.manage.modify_note')}</h5>
       <Row>
-        <Col><MarkdownInput onChanged={onModifyNoteChanged} rows={5}/></Col>
+        <Col><MarkdownInput onChanged={onModifyNoteChanged} rows={3}/></Col>
       </Row>
     </>
   );

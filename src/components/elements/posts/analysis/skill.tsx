@@ -52,21 +52,21 @@ export const AnalysisSkillInput = (props: AnalysisSkillInputProps) => {
         <Col lg={4} className="pr-lg-2 mb-2">
           <Form.Label>{t('posts.analysis.skill.info')}</Form.Label>
           <MarkdownInput
-            rows={5} onChanged={onAnyInputChanged(onInfoChanged)} value={info}
+            rows={7} onChanged={onAnyInputChanged(onInfoChanged)} value={info}
             required={required.some((val) => val === 'all' || val === 'info')}
           />
         </Col>
         <Col lg={4} className="px-lg-2 mb-2">
           <Form.Label>{t('posts.analysis.skill.rotations')}</Form.Label>
           <MarkdownInput
-            rows={5} onChanged={onAnyInputChanged(onRotationsChanged)} value={rotations}
+            rows={7} onChanged={onAnyInputChanged(onRotationsChanged)} value={rotations}
             required={required.some((val) => val === 'all' || val === 'rotations')}
           />
         </Col>
         <Col lg={4} className="pl-lg-2 mb-2">
           <Form.Label>{t('posts.analysis.skill.tips')}</Form.Label>
           <MarkdownInput
-            rows={5} onChanged={onAnyInputChanged(onTipsChanged)} value={tips}
+            rows={7} onChanged={onAnyInputChanged(onTipsChanged)} value={tips}
             required={required.some((val) => val === 'all' || val === 'tips')}
           />
         </Col>

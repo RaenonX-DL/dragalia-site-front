@@ -151,14 +151,14 @@ const AnalysisPostFormBase = (props: React.PropsWithChildren<AnalysisPostFormBas
       <Row>
         <Col>
           <h5>{t('posts.analysis.summon_result')}</h5>
-          <MarkdownInput onChanged={onSummonResultChanged} rows={5} value={states.summonResult}/>
+          <MarkdownInput onChanged={onSummonResultChanged} rows={4} value={states.summonResult}/>
         </Col>
       </Row>
       <hr/>
       <Row className="mb-3">
         <Col>
           <h5>{t('posts.analysis.passive')}</h5>
-          <MarkdownInput onChanged={onPassivesChanged} rows={5} value={states.passives}/>
+          <MarkdownInput onChanged={onPassivesChanged} rows={7} value={states.passives}/>
         </Col>
       </Row>
       <Row className="mb-3">
@@ -197,7 +197,7 @@ const AnalysisPostFormBase = (props: React.PropsWithChildren<AnalysisPostFormBas
     <>
       <h5>{t('posts.manage.modify_note')}</h5>
       <Row>
-        <Col><MarkdownInput onChanged={onModifyNoteChanged} rows={5}/></Col>
+        <Col><MarkdownInput onChanged={onModifyNoteChanged} rows={3}/></Col>
       </Row>
     </>
   );
@@ -362,7 +362,7 @@ const AnalysisPostPartialFormChara = (props: AnalysisPostPartialFormCharaProps) 
       <Row>
         <Col>
           <h5>{t('posts.analysis.tips_builds')}</h5>
-          <MarkdownInput onChanged={onTipsBuildsChanged} rows={5} value={states.tipsBuilds}/>
+          <MarkdownInput onChanged={onTipsBuildsChanged} rows={10} value={states.tipsBuilds}/>
         </Col>
       </Row>
     </>
@@ -412,7 +412,7 @@ const AnalysisPostPartialFormDragon = (props: AnalysisPostPartialFormDragonProps
       <Row>
         <Col>
           <h5>{t('posts.analysis.notes_dragon')}</h5>
-          <MarkdownInput onChanged={onNotesChanged} rows={5} value={states.notes}/>
+          <MarkdownInput onChanged={onNotesChanged} rows={10} value={states.notes}/>
         </Col>
       </Row>
 
@@ -421,7 +421,7 @@ const AnalysisPostPartialFormDragon = (props: AnalysisPostPartialFormDragonProps
       <Row>
         <Col>
           <h5>{t('posts.analysis.suitable')}</h5>
-          <MarkdownInput onChanged={onSuitableCharactersChanged} rows={5} value={states.suitableCharacters}/>
+          <MarkdownInput onChanged={onSuitableCharactersChanged} rows={7} value={states.suitableCharacters}/>
         </Col>
       </Row>
     </>
