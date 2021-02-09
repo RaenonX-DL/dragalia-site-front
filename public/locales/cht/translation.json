@@ -185,6 +185,9 @@
     "warning": {
       "page_nav": "確定要離開本頁面嗎？",
       "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
+    },
+    "info": {
+      "donation": "為了提供更好的使用者體驗，網站將暫時撤除廣告。懇請各位使用者至 https://patreon.com/RaenonX 、 https://ko-fi.com/RaenonX 或 https://rnnx.cc/Paypal 捐款，感謝！"
     }
   },
   "misc": {
