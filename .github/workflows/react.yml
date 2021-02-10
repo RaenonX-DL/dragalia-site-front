@@ -6,10 +6,11 @@ env:
   REACT_APP_API_ROOT: https://dl-back.raenonx.cc
   REACT_APP_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
   REACT_APP_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
+  CI: true
 
 jobs:
   build:
-    name: Build & Test
+    name: CI
 
     runs-on: ubuntu-latest
 
@@ -19,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -27,17 +30,12 @@ jobs:
 
       - name: npm ci
         run: npm ci
-        env:
-          CI: true
 
-      - name: npm build
-        run: |
-          npm run build --if-present
-          npm run lint
-        env:
-          CI: true
+      - name: npm run lint
+        run: npm run lint
 
       - name: npm test
         run: npm test
-        env:
-          CI: true
+
+      - name: npm build
+        run: npm run build
