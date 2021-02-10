@@ -11,7 +11,7 @@ const queryStringDetector = {
   lookup(options) {
     let found;
 
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       const query = window.location.search.substring(1);
       const params = query.split('&');
       for (let i = 0; i < params.length; i++) {
@@ -82,7 +82,7 @@ const navigatorDetector = {
   lookup() {
     const found: Array<string> = [];
 
-    if (typeof navigator !== undefined) {
+    if (typeof navigator !== 'undefined') {
       if (navigator.languages) { // chrome only; not an array, so can't use .push.apply instead of iterating
         for (let i=0; i < navigator.languages.length; i++) {
           found.push(navigator.languages[i]);
