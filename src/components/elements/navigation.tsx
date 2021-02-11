@@ -25,6 +25,9 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
           <Nav className="mr-auto">
+            <LinkContainer to={Path.SPECIAL_THANKS}>
+              <Nav.Link>{t('pages.name.thanks')}</Nav.Link>
+            </LinkContainer>
             <LinkContainer to={Path.QUEST_LIST}>
               <Nav.Link>{t('posts.quest.title_self')}</Nav.Link>
             </LinkContainer>

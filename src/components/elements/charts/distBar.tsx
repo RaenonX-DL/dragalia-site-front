@@ -57,14 +57,11 @@ export const DistributionBar = (props: DistributionProps) => {
             return (
               <React.Fragment key={index}>
                 <rect x={leftPct} width={widthPct} height={height} style={{fill: bgColor}}/>
-                {
-                  displayText &&
-                  <text
-                    x={textPct} y="50%" alignmentBaseline="middle" textAnchor="middle"
-                    fill={textColor} fontSize="smaller">
-                    {text}
-                  </text>
-                }
+                <text
+                  x={textPct} y="50%" alignmentBaseline="middle" textAnchor="middle"
+                  fill={textColor} fontSize="smaller">
+                  {text}
+                </text>
               </React.Fragment>
             );
           })
