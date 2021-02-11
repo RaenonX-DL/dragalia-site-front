@@ -1,6 +1,6 @@
 {
-  "name": "dragalia-posts-site-front",
-  "version": "1.7.5",
+  "name": "dragalia-site-front",
+  "version": "1.7.6",
   "engines": {
     "node": "14.x"
   },

@@ -20,6 +20,7 @@ import {
   QuestNew,
   QuestPage,
 } from './components/pages';
+import {SpecialThanks} from './components/pages/thanks';
 import Path from './constants/path';
 import {SiteAlert} from './siteAlert';
 import {GoogleAnalytics} from './utils/services/ga';
@@ -107,6 +108,9 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
 
       <Route exact path={Path.ABOUT}>
         <About fnSetTitle={updatePageTitle}/>
+      </Route>
+      <Route exact path={Path.SPECIAL_THANKS}>
+        <SpecialThanks fnSetTitle={updatePageTitle}/>
       </Route>
     </>
   );

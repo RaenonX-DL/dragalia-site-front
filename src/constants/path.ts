@@ -41,6 +41,7 @@ export default class Path {
   // Not game related
 
   static ABOUT = '/about';
+  static SPECIAL_THANKS = '/thanks';
 
   /**
    * Get the path of a quest info post. ('/quest/:pid')
