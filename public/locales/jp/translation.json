@@ -1,4 +1,7 @@
 {
+  "donation": {
+    "tier_s2": "Tier S-2"
+  },
   "game": {
     "data": {
       "title_self": "ゲーム情報",
@@ -192,6 +195,7 @@
   },
   "misc": {
     "add": "追加",
+    "om_member": "OM 同盟成員",
     "remove": "削除"
   },
   "pages": {
@@ -209,6 +213,7 @@
       "quest_post": "高難易度クエスト攻略",
       "site": "ドラガリ攻略サイト by OM",
       "suffix": " | ドラガリ攻略サイト by OM",
+      "thanks": "ご協力に感謝",
       "game_data": {
         "ex": "TBA",
         "skill_atk": "TBA"
