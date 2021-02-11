@@ -1,4 +1,7 @@
 {
+  "donation": {
+    "tier_s2": "Tier S-2"
+  },
   "game": {
     "data": {
       "title_self": "遊戲資訊",
@@ -192,6 +195,7 @@
   },
   "misc": {
     "add": "新增",
+    "om_member": "OM 同盟成員",
     "remove": "移除"
   },
   "pages": {
@@ -209,6 +213,7 @@
       "quest_post": "高難副本攻略",
       "site": "龍絆攻略站 by OM",
       "suffix": " | 龍絆攻略站 by OM",
+      "thanks": "特別感謝",
       "game_data": {
         "ex": "EX / CEX 查詢",
         "skill_atk": "攻擊技能查詢"
