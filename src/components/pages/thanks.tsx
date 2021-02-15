@@ -34,7 +34,15 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
         </li>
       </ul>
       <hr/>
-      <div>{<Markdown>{t('message.info.donation')}</Markdown>}</div>
+      <div>
+        <h4>{t('message.donation.url')}</h4>
+        {<Markdown>{t('message.donation.info')}</Markdown>}
+        <ul>
+          <li><a href="https://patreon.com/RaenonX" target="_blank" rel="noreferrer">Patreon</a></li>
+          <li><a href="https://ko-fi.com/RaenonX" target="_blank" rel="noreferrer">Ko-Fi</a></li>
+          <li><a href="https://rnnx.cc/Paypal" target="_blank" rel="noreferrer">Paypal</a></li>
+        </ul>
+      </div>
     </>
   );
 };

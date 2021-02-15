@@ -99,6 +99,8 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
           <Markdown>{status.post.summary || 'N/A'}</Markdown>
         </div>
 
+        {status.post.showAds && <AdsInPost/>}
+
         {
           status.post.summonResult &&
           <>
@@ -207,7 +209,6 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
         {sectionGeneralTop}
         {status.post.showAds && <AdsInPost/>}
         {sectionSpecific}
-        {status.post.showAds && <AdsInPost/>}
         {sectionGeneralBottom}
         {status.post.showAds && <AdsInPost/>}
 

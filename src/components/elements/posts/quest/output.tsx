@@ -104,14 +104,14 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
           <Markdown>{status.post.video || 'N/A'}</Markdown>
         </div>
 
+        {status.post.showAds && <AdsInPost/>}
+
         <hr/>
 
         <PageAnchor name="positional" type="h3" text={t('posts.quest.positional')} className="mb-3"/>
         <QuestPositionOutput info={status.post.info}/>
 
         <hr/>
-
-        {status.post.showAds && <AdsInPost/>}
 
         {
           status.post.addendum &&

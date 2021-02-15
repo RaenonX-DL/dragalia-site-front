@@ -7,6 +7,6 @@ export const SiteAlert = () => {
   const {t} = useTranslation();
 
   return (
-    <Alert variant="info"><Markdown>{t('message.info.donation')}</Markdown></Alert>
+    <Alert variant="info"><Markdown>{t('message.info.ads')}</Markdown></Alert>
   );
 };
