@@ -23,6 +23,7 @@ import {
   PostManageBar,
   scrollToAnchor,
 } from '../../../elements';
+import {AdsInPost} from '../../ads';
 
 
 type AnalysisPostOutputProps = {
@@ -204,8 +205,11 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
         {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
 
         {sectionGeneralTop}
+        {status.post.showAds && <AdsInPost/>}
         {sectionSpecific}
+        {status.post.showAds && <AdsInPost/>}
         {sectionGeneralBottom}
+        {status.post.showAds && <AdsInPost/>}
 
         <hr/>
 

@@ -75,6 +75,7 @@ interface PostPublishSuccessResponse extends PostUpdateSuccessResponse {
  */
 export interface PostListResponse extends BaseResponse {
   isAdmin: boolean,
+  showAds: boolean,
   startIdx: number,
   postCount: number,
   posts: Array<unknown>
@@ -85,6 +86,7 @@ export interface PostListResponse extends BaseResponse {
  */
 export interface PostGetSuccessResponse extends BaseResponse {
   isAdmin: boolean,
+  showAds: boolean,
   seqId: string,
   lang: string,
   modified: string,
