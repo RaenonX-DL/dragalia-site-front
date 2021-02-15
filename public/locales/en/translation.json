@@ -1,6 +1,7 @@
 {
   "donation": {
-    "tier_s2": "Tier S-2"
+    "tier_s2": "Tier S-2",
+    "tier_sss": "Tier SSS"
   },
   "game": {
     "data": {
@@ -196,6 +197,7 @@
   "misc": {
     "add": "Add",
     "om_member": "OM Alliance Member",
+    "om_group": "OM Group Member",
     "remove": "Remove"
   },
   "pages": {
