@@ -18,6 +18,7 @@ import {
   QuestPostFetchStatus,
   scrollToAnchor,
 } from '../../../elements';
+import {AdsInPost} from '../../ads';
 
 
 type QuestPostOutputProps = {
@@ -96,10 +97,14 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
 
         <hr/>
 
+        {status.post.showAds && <AdsInPost/>}
+
         <PageAnchor name="video" type="h3" text={t('posts.quest.video')} className="mb-3"/>
         <div className="rounded bg-black-32 p-3">
           <Markdown>{status.post.video || 'N/A'}</Markdown>
         </div>
+
+        {status.post.showAds && <AdsInPost/>}
 
         <hr/>
 
@@ -118,6 +123,8 @@ export const QuestPostOutput = ({fnSetTitle}: QuestPostOutputProps) => {
             <hr/>
           </>
         }
+
+        {status.post.showAds && <AdsInPost/>}
 
         <PostInfo post={status.post}/>
       </>

@@ -23,6 +23,7 @@ import {
   PostManageBar,
   scrollToAnchor,
 } from '../../../elements';
+import {AdsInPost} from '../../ads';
 
 
 type AnalysisPostOutputProps = {
@@ -97,6 +98,8 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
         <div className="rounded bg-black-32 p-3">
           <Markdown>{status.post.summary || 'N/A'}</Markdown>
         </div>
+
+        {status.post.showAds && <AdsInPost/>}
 
         {
           status.post.summonResult &&
@@ -204,8 +207,10 @@ export const AnalysisPostOutput = ({fnSetTitle}: AnalysisPostOutputProps) => {
         {status.post.otherLangs.length > 0 && alertOtherLangAvailable}
 
         {sectionGeneralTop}
+        {status.post.showAds && <AdsInPost/>}
         {sectionSpecific}
         {sectionGeneralBottom}
+        {status.post.showAds && <AdsInPost/>}
 
         <hr/>
 

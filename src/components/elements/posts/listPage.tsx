@@ -7,6 +7,7 @@ import {scrollToTop} from '../../../utils/misc';
 import {PostListEntry, PostListResponse} from '../../../utils/services/api';
 
 import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../../elements';
+import {AdsInPostList} from '../ads';
 
 
 const limit = 25;
@@ -27,6 +28,7 @@ type Status = {
   maxPage: number,
   posts: Array<PostListEntry>,
   isAdmin: boolean,
+  showAds: boolean,
   showAlert: boolean,
   errorContent: string
 }
@@ -45,6 +47,7 @@ export const PostListPage = (props: QuestListPageProps) => {
       maxPage: 1,
       posts: [],
       isAdmin: false,
+      showAds: false,
       showAlert: false,
       errorContent: '',
     },
@@ -81,6 +84,7 @@ export const PostListPage = (props: QuestListPageProps) => {
             maxPage: Math.ceil(data.postCount / limit),
             posts: data.posts as Array<PostListEntry>,
             isAdmin: data.isAdmin,
+            showAds: data.showAds,
             showAlert: false,
           });
         } else if (!data.success && !status.showAlert) {
@@ -114,6 +118,7 @@ export const PostListPage = (props: QuestListPageProps) => {
 
   return (
     <>
+      {status.showAds && <AdsInPostList/>}
       <Jumbotron>
         <h4>{title}</h4>
       </Jumbotron>

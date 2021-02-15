@@ -1,6 +1,7 @@
 {
   "donation": {
-    "tier_s2": "Tier S-2"
+    "tier_s2": "Tier S-2",
+    "tier_sss": "Tier SSS"
   },
   "game": {
     "data": {
@@ -185,17 +186,22 @@
     "in_use": "目前使用中"
   },
   "message": {
+    "donation": {
+      "url": "捐款網址",
+      "info": "只要每個月捐款超過 USD $1 以上，即可**無廣告瀏覽網站**！\n\n如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。"
+    },
     "warning": {
       "page_nav": "確定要離開本頁面嗎？",
       "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
     },
     "info": {
-      "donation": "為了提供更好的使用者體驗，網站將暫時撤除廣告。懇請各位使用者至 https://patreon.com/RaenonX 、 https://ko-fi.com/RaenonX 或 https://rnnx.cc/Paypal 捐款，感謝！"
+      "ads": "每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)"
     }
   },
   "misc": {
     "add": "新增",
     "om_member": "OM 同盟成員",
+    "om_group": "OM 群組成員",
     "remove": "移除"
   },
   "pages": {

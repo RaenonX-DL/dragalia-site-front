@@ -1,6 +1,7 @@
 {
   "donation": {
-    "tier_s2": "Tier S-2"
+    "tier_s2": "Tier S-2",
+    "tier_sss": "Tier SSS"
   },
   "game": {
     "data": {
@@ -185,17 +186,22 @@
     "in_use": "Currently in-use"
   },
   "message": {
+    "donation": {
+      "url": "Donation URLs",
+      "info": "**To browse the website without ads**, just donate USD $1 or more per month!\n\nFor one-time donations via Ko-Fi or Paypal, if the amount is greater than or equal to USD $1, no-ads service is also available counting from the date when the no-ads experience starts.\n\nPlease login to the website using the email address used for the donation for no-ads experience."
+    },
     "warning": {
       "page_nav": "Are you sure you want to leave this page?",
       "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
     },
     "info": {
-      "donation": "To provide better UX, the ads are disabled temporarily. Please donate via either https://patreon.com/RaenonX, https://ko-fi.com/RaenonX or https://rnnx.cc/Paypal, thanks!"
+      "ads": "每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)"
     }
   },
   "misc": {
     "add": "Add",
     "om_member": "OM Alliance Member",
+    "om_group": "OM Group Member",
     "remove": "Remove"
   },
   "pages": {
