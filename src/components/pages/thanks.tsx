@@ -32,6 +32,11 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
           <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
           <Badge variant="orange">{t('misc.om_member')}</Badge>
         </li>
+        <li>
+          Piglet&nbsp;/&nbsp;ピグレット
+          <Badge variant="info">{t('donation.tier_s1')}</Badge>&nbsp;
+          <Badge variant="orange">{t('misc.om_group')}</Badge>
+        </li>
       </ul>
       <hr/>
       <div>

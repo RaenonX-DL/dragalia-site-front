@@ -1,5 +1,6 @@
 {
   "donation": {
+    "tier_s1": "Tier S-1",
     "tier_s2": "Tier S-2",
     "tier_sss": "Tier SSS"
   },
