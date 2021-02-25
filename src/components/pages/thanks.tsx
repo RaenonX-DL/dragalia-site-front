@@ -18,11 +18,6 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
       </h3>
       <ul>
         <li>
-          蔡老師&nbsp;
-          <Badge variant="info">{t('donation.tier_sss')}</Badge>&nbsp;
-          <Badge variant="orange">{t('misc.om_group')}</Badge>
-        </li>
-        <li>
           Andy&nbsp;
           <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
           <Badge variant="orange">{t('misc.om_member')}</Badge>
@@ -36,6 +31,11 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
           Piglet&nbsp;/&nbsp;ピグレット
           <Badge variant="info">{t('donation.tier_s1')}</Badge>&nbsp;
           <Badge variant="orange">{t('misc.om_group')}</Badge>
+        </li>
+        <li>
+          皮皮熊艹&nbsp;
+          <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
+          <Badge variant="orange">{t('misc.om_member')}</Badge>
         </li>
       </ul>
       <hr/>
