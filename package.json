@@ -35,8 +35,7 @@
     "test": "react-scripts test",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:md": "remark .",
-    "lint:fix": "eslint src --fix --ext .ts,.tsx",
-    "heroku-postbuild": "npm install && npm run build"
+    "lint:fix": "eslint src --fix --ext .ts,.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
