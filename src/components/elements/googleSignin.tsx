@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {useGoogleLogin, useGoogleLogout} from 'react-google-login';
 import {useTranslation} from 'react-i18next';
+import Cookies from 'universal-cookie';
 import {GOOGLE_CLIENT_ID} from '../../constants/config';
 import {ApiRequestSender} from '../../utils/services/api';
 import {GoogleAnalytics} from '../../utils/services/ga';
@@ -18,14 +19,32 @@ export type ModalState = {
   message: string
 }
 
+const cookies = new Cookies();
+
 
 /**
- * Get the Google UID if logged in. Returns `null` if not logged in.
+ * Get the Google UID from the storage if logged in. Returns `null` if not logged in.
  *
- * @return {string | null} Google UID if logger in
+ * @return {string | null} Google UID if logged in, `null` otherwise
  */
 export function getGoogleUid(): string | null {
-  return sessionStorage.getItem(STORAGE_KEY);
+  return cookies.get(STORAGE_KEY);
+}
+
+/**
+ * Set the Google UID to the storage.
+ *
+ * @param {string} googleUid Google UID to set.
+ */
+export function setGoogleUid(googleUid: string) {
+  cookies.set(STORAGE_KEY, googleUid);
+}
+
+/**
+ * Remove the Google UID in the storage.
+ */
+export function removeGoogleUid() {
+  cookies.remove(STORAGE_KEY);
 }
 
 
@@ -65,7 +84,7 @@ export const GoogleSigninButton = () => {
 
     sendUserLogin(googleUid, googleEmail);
 
-    sessionStorage.setItem(STORAGE_KEY, googleUid);
+    setGoogleUid(googleUid);
   };
 
   const onLoginFailure = (response) => {
@@ -91,7 +110,7 @@ export const GoogleSigninButton = () => {
   });
 
   const onLogoutSuccess = () => {
-    sessionStorage.removeItem(STORAGE_KEY);
+    removeGoogleUid();
     setLoggedIn(false);
   };
 
