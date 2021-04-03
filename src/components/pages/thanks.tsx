@@ -37,6 +37,10 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
           <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
           <Badge variant="orange">{t('misc.om_member')}</Badge>
         </li>
+        <li>
+          陳泓維&nbsp;
+          <Badge variant="info">{t('donation.tier_s1')}</Badge>
+        </li>
       </ul>
       <hr/>
       <div>
