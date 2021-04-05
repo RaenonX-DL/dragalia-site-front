@@ -12,7 +12,7 @@ import {titleNavBarId} from './posts/pageAnchor';
 type Props = {};
 
 
-export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) => {
+export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, ref) => {
   const {t} = useTranslation();
 
   return (
@@ -77,7 +77,7 @@ export const Navigation = React.forwardRef<HTMLSpanElement, Props>((props, ref) 
       </Navbar>
       <Navbar
         collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
-        <span ref={ref}>{t('pages.name.site')}</span>
+        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>{t('pages.name.site')}</h1>
       </Navbar>
     </>
   );

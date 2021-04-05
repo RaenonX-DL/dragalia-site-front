@@ -120,7 +120,7 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
 const PageMain = () => {
   const {t} = useTranslation();
 
-  const ref = React.useRef<HTMLSpanElement>(null) as React.MutableRefObject<HTMLSpanElement>;
+  const ref = React.useRef<HTMLHeadingElement>(null) as React.MutableRefObject<HTMLHeadingElement>;
   const title = React.useRef<string>(t('pages.name.site'));
 
   const updatePageTitle = (newTitle?: string) => {
