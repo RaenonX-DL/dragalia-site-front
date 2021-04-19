@@ -42,6 +42,7 @@ export const QuestPostForm = ({post, fnSendRequest}: QuestPostFormProps) => {
   };
 
   // region States and event handlers
+  // FIXME: Combine to single state
   const [postId, setPostId] = React.useState(post?.seqId.toString() || '');
   const onPostIdChanged = (e) => {
     setPostId(e.target.value);

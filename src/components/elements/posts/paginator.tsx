@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router';
 import {Pagination} from 'react-bootstrap';
+import {useHistory} from 'react-router';
 
 
 type PaginatorParams = {
   path: string,
   onPageClick: (page: number) => void,
   queryParamGenerator: (page: number) => string, // page starts from 1, excludes '?'
-  initPage?: number,
-  maxPage?: number,
+  initPage: number,
+  maxPage: number,
   disable?: boolean
 }
 
@@ -63,7 +63,7 @@ export const Paginator = (params: PaginatorParams) => {
           .map((i) => <Pagination.Item key={i} active={page === i} disabled={disable}>{i}</Pagination.Item>)
       }
       <Pagination.Next disabled={disable}/>
-      {maxPage && <Pagination.Last disabled={disable}/>}
+      {maxPage > 0 && <Pagination.Last disabled={disable}/>}
     </Pagination>
   );
 };

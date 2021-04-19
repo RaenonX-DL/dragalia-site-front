@@ -128,7 +128,7 @@ export const PostListPage = (props: QuestListPageProps) => {
       <div className="d-flex justify-content-center">
         <Paginator
           path={currentUrl} onPageClick={onPageClick} queryParamGenerator={queryParamGenerator}
-          disable={status.showAlert}
+          disable={status.showAlert || !status.posts.length}
           initPage={Math.max(1, Math.floor(getStartIdxFromUrl() / limit + 1))} maxPage={status.maxPage}/>
       </div>
     </>
