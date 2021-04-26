@@ -1,4 +1,2 @@
-import {DistributionBar} from './charts/distBar';
-import {PointBar} from './charts/pointBar';
-
-export {PointBar, DistributionBar};
+export {DistributionBar} from './charts/distBar';
+export {PointBar} from './charts/pointBar';

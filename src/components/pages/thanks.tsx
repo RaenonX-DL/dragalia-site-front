@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {Badge} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
+
+import {useTranslation} from '../../i18n/utils';
 import {Markdown} from '../elements/markdown/main';
-import {PageProps} from './base';
+import {PageProps} from './props';
 
 export const SpecialThanks = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();

@@ -1,21 +1,21 @@
 import React from 'react';
+
 import {Button, Col, Row} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
 import {LinkContainer} from 'react-router-bootstrap';
 
+import {useTranslation} from '../../../i18n/utils';
+
+type NewButtonEntry = {
+  url: string,
+  title?: string,
+}
 
 export type PostManageBarProps = {
-  newPostUrl: string,
-  newPostTitle?: string,
-  newPostUrl2?: string,
-  newPostTitle2?: string,
+  newButtons: Array<NewButtonEntry>,
   editPostUrl?: string
 }
 
-
-export const PostManageBar = (props: PostManageBarProps) => {
-  const {newPostUrl, newPostTitle, newPostUrl2, newPostTitle2, editPostUrl} = props;
-
+export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => {
   const {t} = useTranslation();
 
   return (
@@ -24,26 +24,19 @@ export const PostManageBar = (props: PostManageBarProps) => {
         {
           editPostUrl &&
             <LinkContainer to={editPostUrl}>
-              <Button variant="outline-info" className="float-right">
+              <Button variant="outline-info" className="float-right ml-2">
                 {t('posts.manage.edit')}
               </Button>
             </LinkContainer>
         }
         {
-          newPostUrl2 &&
-            <LinkContainer to={newPostUrl2}>
-              <Button variant="outline-success" className="float-right mr-2">
-                {newPostTitle2 || t('posts.manage.add')}
+          newButtons.map(({url, title}, idx) => (
+            <LinkContainer to={url} key={idx}>
+              <Button variant="outline-success" className="float-right ml-2">
+                {title || t('posts.manage.add')}
               </Button>
             </LinkContainer>
-        }
-        {
-          newPostUrl &&
-            <LinkContainer to={newPostUrl}>
-              <Button variant="outline-success" className="float-right mr-2">
-                {newPostTitle || t('posts.manage.add')}
-              </Button>
-            </LinkContainer>
+          ))
         }
       </Col>
     </Row>

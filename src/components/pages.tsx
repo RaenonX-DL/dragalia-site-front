@@ -1,26 +1,13 @@
-import {About} from './pages/about';
-
-import {Constructing} from './pages/constructing';
-import {ExAbilityPage} from './pages/gameData/ex';
-
-import {AttackingSkillPage} from './pages/gameData/skillAtk';
-
-import {Home} from './pages/home';
-import {AnalysisEdit} from './pages/posts/analysis/edit';
-
-import {AnalysisList} from './pages/posts/analysis/list';
-import {AnalysisNewChara, AnalysisNewDragon} from './pages/posts/analysis/new';
-import {AnalysisPage} from './pages/posts/analysis/page';
-import {QuestEdit} from './pages/posts/quest/edit';
-
-import {QuestList} from './pages/posts/quest/list';
-import {QuestNew} from './pages/posts/quest/new';
-import {QuestPage} from './pages/posts/quest/page';
-
-export {
-  Home, About,
-  QuestList, QuestNew, QuestPage, QuestEdit,
-  AnalysisList, AnalysisNewChara, AnalysisNewDragon, AnalysisPage, AnalysisEdit,
-  AttackingSkillPage, ExAbilityPage,
-  Constructing,
-};
+export {About} from './pages/about';
+export {Constructing} from './pages/constructing';
+export {ExAbilityPage} from './pages/gameData/ex';
+export {AttackingSkillPage} from './pages/gameData/skillAtk';
+export {Home} from './pages/home';
+export {AnalysisEdit} from './pages/posts/analysis/edit';
+export {AnalysisList} from './pages/posts/analysis/list';
+export {AnalysisNewChara, AnalysisNewDragon} from './pages/posts/analysis/new';
+export {AnalysisPage} from './pages/posts/analysis/page';
+export {QuestEdit} from './pages/posts/quest/edit';
+export {QuestList} from './pages/posts/quest/list';
+export {QuestNew} from './pages/posts/quest/new';
+export {QuestPage} from './pages/posts/quest/page';

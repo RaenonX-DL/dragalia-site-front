@@ -1,5 +1,5 @@
-import {InputData} from '../../components/elements/gameData/skillAtk/inputSection';
-import {ConditionCodes} from '../../constants/gameData';
+import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
+import {ConditionCodes} from '../../const/gameData';
 import {AttackingSkillData} from '../services/resources/types';
 import {calculateDamage, CalculateDamageReturn} from './damage';
 
@@ -31,6 +31,7 @@ const inputDataTemplate: InputData = {
   targetStateCode: ConditionCodes.NONE,
   filterElementCode: [],
   filterAfflictionCondCode: [],
+  filterSharedOnly: false,
 };
 
 

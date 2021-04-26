@@ -1,8 +1,8 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {Markdown} from '../elements/markdown/main';
 
-import {PageProps} from './base';
+import {useTranslation} from '../../i18n/utils';
+import {Markdown} from '../elements/markdown/main';
+import {PageProps} from './props';
 
 export const Constructing = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
@@ -12,6 +12,8 @@ export const Constructing = ({fnSetTitle}: PageProps) => {
   }
 
   return (
-    <Markdown>{t('pages.constructing')}</Markdown>
+    <Markdown>
+      {t('pages.constructing')}
+    </Markdown>
   );
 };

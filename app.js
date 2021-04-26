@@ -1,14 +1,15 @@
 require('dotenv').config();
 
-const express = require('express');
 const fs = require('fs');
 const path = require('path');
+
+const express = require('express');
 const fetch = require('node-fetch');
 const Cookies = require('universal-cookie');
 
 const app = express(); // create express app
 
-// FIXME: User auth sending are hard-coded
+// FIXME: User auth sending (cookie key, target URL) is hard-coded
 
 app.use('/', (req, res, next) => {
   // Check if the request URL ends with `html`, if so, blocks the access
@@ -34,7 +35,7 @@ app.use('/', (req, res, next) => {
     }
 
     const payload = {
-      google_uid: new Cookies(req.headers.cookie).get('X_GOOGLE_UID') || '',
+      googleUid: new Cookies(req.headers.cookie).get('X_GOOGLE_UID') || '',
     };
 
     await fetch(`${process.env.REACT_APP_API_ROOT + '/user/show-ads'}?${new URLSearchParams(payload).toString()}`)

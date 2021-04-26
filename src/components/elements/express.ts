@@ -1,4 +1,2 @@
-import {ExpressModal} from './express/modal';
-import {OverlayPopover, OverlayTooltip} from './express/overlay';
-
-export {ExpressModal, OverlayPopover, OverlayTooltip};
+export {OverlayTooltip} from './common/overlay/tooltip';
+export {OverlayPopover} from './common/overlay/popover';

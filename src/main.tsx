@@ -1,9 +1,9 @@
 import React, {Suspense, useEffect} from 'react';
-import {Container} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
-import {Route} from 'react-router-dom';
-import {Footer, Navigation, PageLoading} from './components/elements';
 
+import {Container} from 'react-bootstrap';
+import {Route} from 'react-router-dom';
+
+import {Footer, Navigation, PageLoading} from './components/elements';
 import {
   About,
   AnalysisEdit,
@@ -21,7 +21,8 @@ import {
   QuestPage,
 } from './components/pages';
 import {SpecialThanks} from './components/pages/thanks';
-import Path from './constants/path';
+import Path from './const/path/definitions';
+import {useTranslation} from './i18n/utils';
 import {SiteAlert} from './siteAlert';
 import {GoogleAnalytics} from './utils/services/ga';
 

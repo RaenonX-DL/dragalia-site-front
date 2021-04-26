@@ -11,8 +11,8 @@ const LANG_CODE_TO_EN = ['en', 'es'];
 const LANG_CODE_TO_JP = ['jp', 'ja'];
 
 
-export const mapToCustomCode = (orgLang: string | undefined) => {
-  if (orgLang === undefined) {
+export const mapToCustomCode = (orgLang?: string | null) => {
+  if (!orgLang) {
     return undefined;
   }
 

@@ -1,38 +1,17 @@
 import React from 'react';
 
+export const isImage = (imageUrl: string) => {
+  return imageUrl.endsWith('.jpeg') ||
+    imageUrl.endsWith('.png') ||
+    imageUrl.endsWith('.jpg') ||
+    imageUrl.endsWith('.gif');
+};
+
 type Props = {
   imageUrl: string,
   alt: string
 }
 
-type States = {}
-
-/**
- * Image element converted from image URL.
- */
-export class ImageInHTML extends React.Component<Props, States> {
-  /**
-   * Check if the URL is an image.
-   *
-   * This *DOES NOT* check if the content of the link is truly the image.
-   * Instead, this only checks its suffix.
-   *
-   * @param {string} imageUrl URL to be checked
-   * @return {boolean} if the URL is an image
-   */
-  static isImage(imageUrl: string): boolean {
-    return imageUrl.endsWith('.jpeg') ||
-      imageUrl.endsWith('.png') ||
-      imageUrl.endsWith('.jpg') ||
-      imageUrl.endsWith('.gif');
-  }
-
-  /**
-   * Render the converted image element.
-   *
-   * @return {JSX} element in JSX
-   */
-  render() {
-    return <a href={this.props.imageUrl}><img className="mb-2" src={this.props.imageUrl} alt={this.props.alt}/></a>;
-  }
-}
+export const ImageInHTML = ({imageUrl, alt}: Props) => {
+  return <a href={imageUrl}><img className="mb-2" src={imageUrl} alt={alt}/></a>;
+};

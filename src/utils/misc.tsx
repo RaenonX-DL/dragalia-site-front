@@ -1,5 +1,6 @@
 import React from 'react';
-import {titleNavBarId} from '../components/elements/posts/pageAnchor';
+
+import {titleNavBarId} from '../components/elements/common/anchor/pageAnchor';
 
 
 export const scrollToTop = <T extends HTMLElement>(refElement?: React.RefObject<T>) => {

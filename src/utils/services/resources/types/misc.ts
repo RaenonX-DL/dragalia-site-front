@@ -1,4 +1,4 @@
-export type ElementBonus = Map<string, Map<string, number>>;
+export type ElementBonus = Record<string, Record<string, number>>;
 
 
 /**
@@ -12,7 +12,7 @@ export class ElementBonusData {
    *
    * @param {ElementBonus} data element bonus data
    */
-  constructor(data: ElementBonus = new Map()) {
+  constructor(data: ElementBonus = {}) {
     this.data = data;
   }
 

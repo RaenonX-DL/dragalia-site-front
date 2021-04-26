@@ -178,6 +178,7 @@
     "login_error": "錯誤碼: {{errorCode}}",
     "login_failed": "登入失敗",
     "login_unknown": "因為不明原因，無法登入。({{error}})",
+    "login_offline_disallowed": "無法使用離線登入。請連至網路後重試。({{code}})",
     "logout": "Google 登出",
     "logout_failed": "登出失敗",
     "logout_unknown": "因為不明原因，無法登出。",
@@ -208,10 +209,12 @@
   "pages": {
     "name": {
       "about": "關於",
-      "analysis_list": "物件評測目錄",
-      "analysis_new_chara": "新物件評測 (角色)",
-      "analysis_new_dragon": "新物件評測 (龍族)",
-      "analysis_post": "物件評測",
+      "analysis_list": "評測目錄",
+      "analysis_new_chara": "新角色評測",
+      "analysis_new_dragon": "新龍族評測",
+      "analysis_edit_chara": "編輯角色評測",
+      "analysis_edit_dragon": "編輯龍族評測",
+      "analysis_post": "評測",
       "home": "首頁",
       "constructing": "建置中",
       "quest_edit": "編輯高難攻略",
@@ -248,6 +251,7 @@
       "ultimate": "大招",
       "videos": "相關影片",
       "error": {
+        "no_post_id": "文章 ID 未指定。",
         "unknown_type": "無法解析貼文種類。"
       },
       "skill": {

@@ -8,8 +8,8 @@ export const normalize = (numbers: Array<number>, padding: number = 0) => {
   });
 };
 
-
-export const accumulate = (numbers: Array<number>) => numbers.map(((sum) => (value) => sum += value)(0));
+export const accumulate = (numbers: Array<number>) =>
+  numbers.map(((sum) => (value: number) => sum += value)(0));
 
 export const varTally = <T>(arr: Array<T>) => {
   const tally: Map<T, number> = new Map();

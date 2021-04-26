@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Markdown} from './main';
 
 export const MarkdownKitchensink = () => {
@@ -38,13 +39,13 @@ Code
 
 ---------------------------------------
 
-This is [an example](http://example.com "Example") link.
+This is [an example](https://example.com "Example") link.
 
-[This link](http://example.com) has no title attr.
+[This link](https://example.com) has no title attr.
 
 This is [an example][id] reference-style link.
 
-[id]: http://example.com "Optional Title"
+[id]: https://example.com "Optional Title"
 
 *single asterisks*
 
@@ -67,7 +68,10 @@ A     | B     | C     | D
 
 https://youtu.be/r3JymUaIIYE
 
-https://i.imgur.com/PBKQ0ZX.jpg`;
+https://i.imgur.com/PBKQ0ZX.jpg
+
+[#A12345]Colored Text[/#]
+`;
 
   return (<Markdown>{data}</Markdown>);
 };

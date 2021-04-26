@@ -1,67 +1,94 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import {useTranslation} from 'react-i18next';
-import {useParams} from 'react-router-dom';
-import {AnalysisType, ApiRequestSender, CharacterAnalysis, DragonAnalysis} from '../../../../utils/services/api';
-import {
-  AnalysisPostFetchStatus,
-  AnalysisPostFormChara,
-  AnalysisPostFormDragon,
-  FetchPost,
-  getGoogleUid,
-  PostFetchStatus,
-} from '../../../elements';
+import React from 'react';
 
-import {PageProps} from '../../base';
+import {useParams} from 'react-router-dom';
+
+import {AnalysisEditParams} from '../../../../const/path/params';
+import {useTranslation} from '../../../../i18n/utils';
+import {
+  AnalysisType,
+  ApiRequestSender,
+  CharacterAnalysis,
+  DragonAnalysis,
+} from '../../../../utils/services/api';
+import {
+  AnalysisFormCharaEdit,
+  AnalysisFormDragonEdit,
+  AnalysisPostFetchStatus,
+  FetchPost,
+} from '../../../elements';
+import {PageProps} from '../../props';
 
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
-  const {t, i18n} = useTranslation();
+  // FIXME: Redirect on no google UID
+  const {t} = useTranslation();
 
-  const {pid} = useParams();
+  const {pid} = useParams<AnalysisEditParams>();
 
   const [fetchStatus, setFetchStatus] = React.useState<AnalysisPostFetchStatus>({
-    fetched: false, fetchFailed: false, failContent: '', post: null,
+    fetched: false,
+    fetchFailed: false,
+    failureMessage: '',
+    post: null,
   });
 
-  const fetchPost = () => ApiRequestSender.analysisPostGet(getGoogleUid() || '', pid, i18n.language, false);
+  if (!pid) {
+    // FIXME: Redirect on no post ID found
+    setFetchStatus({
+      ...fetchStatus,
+      fetched: true,
+      fetchFailed: true,
+      failureMessage: t('posts.analysis.error.no_post_id'),
+    });
+  } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
+    const analysisType = fetchStatus.post.type;
 
-  if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
-    const fetchedPost = fetchStatus.post;
-
-    if (fetchedPost.type === AnalysisType.CHARACTER) {
+    if (analysisType === AnalysisType.CHARACTER) {
       // Character
 
-      fnSetTitle(t('pages.name.analysis_new_chara'));
+      const analysis = fetchStatus.post as CharacterAnalysis;
+      // FIXME: With post ID
+      fnSetTitle(t('pages.name.analysis_edit_chara'));
 
       return (
-        <AnalysisPostFormChara
-          post={fetchedPost as CharacterAnalysis}
-          fnSendRequest={(payload) => ApiRequestSender.analysisPostEditChara(payload)}/>
+        <AnalysisFormCharaEdit
+          initialAnalysis={analysis}
+          fnSendRequest={ApiRequestSender.analysisPostEditChara}
+        />
       );
-    } else if (fetchedPost.type === AnalysisType.DRAGON) {
+    }
+    if (analysisType === AnalysisType.DRAGON) {
       // Dragon
 
-      fnSetTitle(t('pages.name.analysis_new_dragon'));
+      const analysis = fetchStatus.post as DragonAnalysis;
+      // FIXME: With post ID
+      fnSetTitle(t('pages.name.analysis_edit_dragon'));
 
       return (
-        <AnalysisPostFormDragon
-          post={fetchedPost as DragonAnalysis}
-          fnSendRequest={(payload) => ApiRequestSender.analysisPostEditDragon(payload)}/>
+        <AnalysisFormDragonEdit
+          initialAnalysis={analysis}
+          fnSendRequest={ApiRequestSender.analysisPostEditDragon}
+        />
       );
-    } else {
-      // Unknown post type
-
-      setFetchStatus({
-        ...fetchStatus,
-        fetched: true,
-        fetchFailed: true,
-        failContent: t('posts.analysis.error.unknown_type'),
-      });
     }
+    // Unknown post type
+
+    // FIXME: Redirect on unknown type of analysis (w/ global alert)
+    setFetchStatus({
+      ...fetchStatus,
+      fetched: true,
+      fetchFailed: true,
+      failureMessage: t('posts.analysis.error.unknown_type'),
+    });
   }
 
-  return <FetchPost
-    status={fetchStatus}
-    fnSetStatus={setFetchStatus as Dispatch<SetStateAction<PostFetchStatus>>}
-    fnSendFetchRequest={fetchPost}/>;
+  return (
+    <FetchPost
+      status={fetchStatus}
+      fnSetStatus={(newStatus) => setFetchStatus(newStatus)}
+      fnSendFetchRequest={ApiRequestSender.analysisPostGet}
+      seqId={Number(pid)}
+      increaseCount={false}
+    />
+  );
 };

@@ -1,7 +1,9 @@
 import React from 'react';
+
 import {Alert} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
+
 import {Markdown} from './components/elements/markdown/main';
+import {useTranslation} from './i18n/utils';
 
 export const SiteAlert = () => {
   const {t} = useTranslation();

@@ -1,8 +1,8 @@
-import {InputData as ExInputData} from '../../components/elements/gameData/ex/inputSection';
-import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/inputSection';
+import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
+import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
 
 /**
- * Google Analytics custom event name.
+ * Google Analytics event names.
  */
 export class GAEvent {
   static LANG_CHANGE = 'lang_change';
@@ -14,7 +14,7 @@ export class GAEvent {
 }
 
 /**
- * Class for sending custom GA events.
+ * Class for sending GA events.
  */
 export class GoogleAnalytics {
   /**

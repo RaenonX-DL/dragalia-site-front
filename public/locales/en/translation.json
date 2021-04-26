@@ -178,6 +178,7 @@
     "login_error": "Error code: {{errorCode}}",
     "login_failed": "Login failed",
     "login_unknown": "Failed to login for unknown reason. ({{error}})",
+    "login_offline_disallowed": "Offline login is disallowed. Please connect to the internet then try again. ({{code}})",
     "logout": "Google Logout",
     "logout_failed": "Logout failed",
     "logout_unknown": "Failed to logout for unknown reason.",
@@ -208,10 +209,12 @@
   "pages": {
     "name": {
       "about": "About",
-      "analysis_list": "Index of unit analysis",
-      "analysis_new_chara": "New unit analysis post (Character)",
-      "analysis_new_dragon": "New unit analysis post (Dragon)",
-      "analysis_post": "Unit Analysis",
+      "analysis_list": "Index of analysis",
+      "analysis_new_chara": "New character analysis post",
+      "analysis_new_dragon": "New dragon analysis post",
+      "analysis_edit_chara": "Edit character analysis post",
+      "analysis_edit_dragon": "Edit dragon analysis post",
+      "analysis_post": "Analysis",
       "home": "Homepage",
       "constructing": "Under construction",
       "quest_edit": "Edit HDTs/Agitos",
@@ -248,6 +251,7 @@
       "ultimate": "Ultimate",
       "videos": "Related Videos",
       "error": {
+        "no_post_id": "Analysis ID is not specified.",
         "unknown_type": "Unknown post type."
       },
       "skill": {
