@@ -26,6 +26,9 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
   titlePlaceholder,
   fnIdCheck,
 }: FormMetaProps<P, R>) => {
+  // TEST: Form meta
+  //  - Use the tests exist at the backend
+
   const {t} = useTranslation();
 
   const {payload, isPreloaded} = formState;
@@ -36,17 +39,20 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
       .catch(() => setAvailability(false));
   };
 
+  // Check availability on `payload.seqId` or `payload.lang` changed
+  React.useEffect(
+    () => checkAvailability(payload.seqId, payload.lang as SupportedLanguages),
+    [payload.seqId, payload.lang],
+  );
+
   return (
     <Row>
       <Col lg={2}>
         <Form.Control
           className="mb-2" type="number" placeholder={t('posts.info.id')}
           isValid={formState.isIdAvailable} isInvalid={!formState.isIdAvailable}
-          onChange={(e) => {
-            setPayload('seqId', e.target.value);
-            checkAvailability(payload.seqId, payload.lang);
-          }}
-          value={payload.seqId} disabled={isPreloaded}
+          onChange={(e) => setPayload('seqId', e.target.value)}
+          value={payload.seqId || ''} disabled={isPreloaded} min="1"
         />
       </Col>
       <Col lg={7}>
@@ -59,10 +65,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
       <Col lg={3}>
         <Form.Control
           as="select" defaultValue={payload.lang} disabled={isPreloaded}
-          onChange={(e) => {
-            setPayload('lang', e.target.value);
-            checkAvailability(payload.seqId, payload.lang);
-          }}
+          onChange={(e) => setPayload('lang', e.target.value)}
         >
           {
             Object.values(SupportedLanguages).map((lang) => {

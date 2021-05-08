@@ -38,9 +38,10 @@ export const PostFormBase = <P extends PostMetaPayload>({
     return <Redirect to={{pathname: fnGetRedirectPath(redirectId)}}/>;
   }
 
-  const setPayload = (key: keyof P, newValue: string) => {
-    setFormState({...formState, payload: {...formState.payload, [key]: newValue}});
-  };
+  const setPayload = (key: keyof P, newValue: string) => setFormState({
+    ...formState,
+    payload: {...formState.payload, [key]: newValue},
+  });
 
   const setAvailability = (availability: boolean) => setFormState({
     ...formState,
