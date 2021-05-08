@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
+import {useHistory} from 'react-router';
 import {useParams} from 'react-router-dom';
 
 import {PostParams} from '../../../../../const/path/params';
@@ -33,12 +34,14 @@ export const OutputBase = <P extends PostParams, R extends PostGetSuccessRespons
 }: OutputBaseProps<R, S>): JSX.Element => {
   const pid = Number(useParams<P>().pid);
 
-  useEffect(() => {
-    // Only scroll to specified anchor (in URL) if the post fetch succeed
+  const history = useHistory();
+
+  // On `status.fetched` changed, attempt scroll to the anchor
+  React.useEffect(() => {
     if (status.fetched && status.post) {
-      scrollToAnchor();
+      scrollToAnchor(history);
     }
-  });
+  }, [status.fetched]);
 
   fnSetTitle(getTitle(pid));
 

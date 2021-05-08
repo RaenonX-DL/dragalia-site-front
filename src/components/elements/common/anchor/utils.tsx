@@ -1,45 +1,40 @@
+import {History} from 'history';
+
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {titleNavBarId} from './pageAnchor';
 
+export const scrollToAnchor = (history: History) => {
+  const hashIndex = window.location.hash.indexOf('#');
 
-const calcOffsetHeight = (elem: HTMLElement | null | undefined): number => {
-  if (!elem) {
-    return 0;
-  }
-
-  const offset = elem.offsetTop;
-  const parent = elem.offsetParent;
-
-  if (offset == 0 && parent) {
-    return calcOffsetHeight(parent as HTMLElement);
-  }
-  return offset;
-};
-
-export const scrollToAnchor = (hash: string = window.location.hash) => {
-  // Early termination on hash undefined or empty
-  if (!hash) {
+  // Early termination on hash string not found
+  if (hashIndex === -1) {
     return;
   }
 
-  // Get the anchor element and the title element
-  const anchor = document.getElementById(hash.substr(1));
-  const titleNav = document.getElementById(titleNavBarId);
+  const anchorHashId = window.location.hash.substr(hashIndex + 1);
+  const anchorElement = document.getElementById(anchorHashId);
 
-  if (anchor) {
-    const anchorHeight = calcOffsetHeight(anchor);
-
-    // Calculate the offset height of title nav bar
-    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const offsetHeight = (titleNav?.offsetHeight || 0) + rem;
-
-    window.scrollTo({
-      top: anchorHeight - offsetHeight,
-      left: 0,
-      behavior: 'smooth',
-    });
-    history.pushState(null, document.title, hash); // Push history (change URL in address bar without jumping)
+  if (anchorElement) {
+    scrollToElement(anchorElement);
+    history.push(window.location); // Push history (change URL in address bar without jumping)
   }
 
-  GoogleAnalytics.anchor(anchor ? 'navigate' : 'navFailed', hash);
+  GoogleAnalytics.anchor(anchorElement ? 'navigate' : 'navFailed', anchorHashId);
+};
+
+
+export const scrollToElement = (element: HTMLElement) => {
+  const titleNav = document.getElementById(titleNavBarId);
+
+  const anchorHeight = element.getBoundingClientRect().top + window.pageYOffset;
+
+  // Calculate the offset height of title nav bar
+  const remUnit = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const offsetHeight = (titleNav?.offsetHeight || 0) + remUnit;
+
+  window.scrollTo({
+    top: anchorHeight - offsetHeight,
+    left: 0,
+    behavior: 'smooth',
+  });
 };

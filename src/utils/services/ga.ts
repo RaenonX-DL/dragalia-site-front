@@ -87,8 +87,7 @@ export class GoogleAnalytics {
    * There are a few types of `usage`:
    *
    * - `navigate`: the user was navigated to the location of the anchor
-   * - `navFailed`: ~~the anchor was not found in the page, failed to navigate~~
-   *   - Currently not using, needs optimization
+   * - `navFailed`: the anchor was not found in the page, failed to navigate
    * - `click`: the user clicked on the anchor mark (possibly to obtain the link)
    *   - This should also trigger `navigate` since the page will navigate on click.
    *

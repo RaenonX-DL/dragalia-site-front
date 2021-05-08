@@ -15,8 +15,6 @@ type PostInfoProps = {
 export const PostInfo = ({post}: PostInfoProps) => {
   const {t} = useTranslation();
 
-  console.log(post.editNotes);
-
   // FIXME: Moment JS?
   return (
     <>

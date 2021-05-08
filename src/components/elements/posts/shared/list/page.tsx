@@ -72,9 +72,6 @@ export const PostListPage = <R extends PostListResponse>({
       pageLimit,
     )
       .then((data) => {
-        console.log('fetch complete');
-        console.log(data);
-
         if (data.success) {
           setStatus({
             ...status,
@@ -116,9 +113,6 @@ export const PostListPage = <R extends PostListResponse>({
   if (!status.fetched && !status.fetching) {
     onPageClick(status.paginationState.currentPage);
   }
-
-  console.log('rerender');
-  console.log(status);
 
   return (
     <>
