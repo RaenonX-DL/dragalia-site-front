@@ -1,16 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
+import {useBeforeunload} from 'react-beforeunload';
 import {Prompt as RouterPrompt} from 'react-router-dom';
 
 import {useTranslation} from '../../../i18n/utils';
-
-
-const onBeforeUnload = (e: BeforeUnloadEvent) => {
-  // Cancel the event
-  e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-  // Chrome requires returnValue to be set
-  e.returnValue = '';
-};
 
 
 type PromptProps = {
@@ -22,16 +15,7 @@ type PromptProps = {
 export const BeforeUnloadPrompt = ({display = true, text}: PromptProps) => {
   const {t} = useTranslation();
 
-  // Using event listener of `beforeunload` for close/reload
-  window.addEventListener('beforeunload', onBeforeUnload);
-
-  // FIXME: Refresh?
-
-  useEffect(() => {
-    return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
-    };
-  });
+  useBeforeunload((event) => event.preventDefault());
 
   return <RouterPrompt when={display} message={text || t('message.warning.page_nav')}/>;
 };
