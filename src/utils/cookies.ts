@@ -20,12 +20,20 @@ export class CookiesControl {
   }
 
   /**
-   * Set Google UID to cookies.
+   * Set Google UID to cookies, if it's not yet set.
+   *
+   * This returns `true` if the value in cookies is updated.
+   * Otherwise, returns `false.
    *
    * @param {string} googleUid google UID in cookies
+   * @return {boolean} if the value in cookies is updated
    */
-  static setGoogleUid(googleUid: string): void {
+  static setGoogleUid(googleUid: string): boolean {
+    if (CookiesControl.getGoogleUid()) {
+      return false;
+    }
     CookiesControl.setValue(CookiesKeys.GOOGLE_UID, googleUid);
+    return true;
   }
 
   /**

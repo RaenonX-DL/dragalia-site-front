@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useTranslation} from '../../../../../i18n/utils';
 
 type Props = {
   fnSignOut: () => void,
