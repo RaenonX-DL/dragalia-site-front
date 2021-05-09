@@ -4,8 +4,8 @@ import {Redirect} from 'react-router-dom';
 
 import {PostMetaPayload} from '../../../../../api-def/api';
 import {useTranslation} from '../../../../../i18n/utils';
+import {CookiesControl} from '../../../../../utils/cookies';
 import {BeforeUnloadPrompt} from '../../../common/beforeUnloadPrompt';
-import {getGoogleUid} from '../../../common/googleSignin/main';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
@@ -51,7 +51,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!getGoogleUid()) {
+    if (!CookiesControl.getGoogleUid()) {
       setModalState({
         show: true,
         title: t('google_signin.no_uid'),

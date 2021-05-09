@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {useTranslation} from '../../../../i18n/utils';
+import {CookiesControl} from '../../../../utils/cookies';
 import {
   ApiRequestSender,
   generateNewCharaSkill,
@@ -8,7 +9,6 @@ import {
 import {
   AnalysisFormCharaNew,
   AnalysisFormDragonNew,
-  getGoogleUid,
 } from '../../../elements';
 import {PageProps} from '../../props';
 
@@ -21,7 +21,7 @@ export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
   return (
     <AnalysisFormCharaNew
       initialPayload={{
-        googleUid: getGoogleUid() || '',
+        googleUid: CookiesControl.getGoogleUid() || '',
         lang: lang,
         title: '',
         summary: '',
@@ -51,7 +51,7 @@ export const AnalysisNewDragon = ({fnSetTitle}: PageProps) => {
   return (
     <AnalysisFormDragonNew
       initialPayload={{
-        googleUid: getGoogleUid() || '',
+        googleUid: CookiesControl.getGoogleUid() || '',
         lang: lang,
         title: '',
         summary: '',

@@ -4,8 +4,9 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {getParamValue} from '../../../../../const/path/utils';
 import {useTranslation} from '../../../../../i18n/utils';
+import {CookiesControl} from '../../../../../utils/cookies';
 import {FunctionFetchPostList, PostListResponse} from '../../../../../utils/services/api';
-import {getGoogleUid, Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
+import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple} from '../../../common/fetch';
 import {PaginationState} from '../../../common/pagination/types';
@@ -66,7 +67,7 @@ export const PostListPage = <R extends PostListResponse>({
     });
 
     fnFetchList(
-      getGoogleUid() || '',
+      CookiesControl.getGoogleUid() || '',
       lang,
       pageToStartIdx(page, pageLimit),
       pageLimit,

@@ -1,7 +1,6 @@
 export {PageLoading} from './elements/common/loading';
 export {Footer} from './elements/footer';
 export {AdsInPost, AdsInPostList} from './elements/common/ads';
-export {getGoogleUid} from './elements/common/googleSignin/main';
 export {Markdown} from './elements/markdown/main';
 export {Navigation} from './elements/nav/navigation';
 export type {AnalysisPostFetchStatus} from './elements/posts/analysis/fetch';

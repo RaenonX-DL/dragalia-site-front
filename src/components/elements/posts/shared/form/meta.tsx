@@ -3,13 +3,13 @@ import React from 'react';
 import {Col, Form, Row} from 'react-bootstrap';
 
 import {useTranslation} from '../../../../../i18n/utils';
+import {CookiesControl} from '../../../../../utils/cookies';
 import {
   PostMetaPayload,
   SupportedLanguages,
   SupportedLanguageNames,
   PostIdCheckResponse,
 } from '../../../../../utils/services/api';
-import {getGoogleUid} from '../../../common/googleSignin/main';
 import {PostFormControlProps} from './types';
 
 export type FormMetaProps<P extends PostMetaPayload, R extends PostIdCheckResponse> = PostFormControlProps<P> & {
@@ -34,7 +34,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
   const {payload, isPreloaded} = formState;
 
   const checkAvailability = (seqId: number | undefined, langCode: SupportedLanguages) => {
-    fnIdCheck(getGoogleUid() || '', Number(seqId) || null, langCode)
+    fnIdCheck(CookiesControl.getGoogleUid() || '', Number(seqId) || null, langCode)
       .then((data) => setAvailability(data.available))
       .catch(() => setAvailability(false));
   };

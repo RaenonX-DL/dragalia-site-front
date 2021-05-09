@@ -6,32 +6,15 @@ import {
   useGoogleLogin,
   useGoogleLogout,
 } from 'react-google-login';
-import Cookies from 'universal-cookie';
 
 import {GOOGLE_CLIENT_ID} from '../../../../const/config';
 import {useTranslation} from '../../../../i18n/utils';
+import {CookiesControl} from '../../../../utils/cookies';
 import {ApiRequestSender} from '../../../../utils/services/api';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {CommonModal, ModalState} from '../modal';
 import {LoginButton} from './login';
 import {LogoutButton} from './logout';
-
-
-const STORAGE_KEY = 'X_GOOGLE_UID';
-
-const cookies = new Cookies();
-
-export const getGoogleUid = (): string | null => {
-  return cookies.get(STORAGE_KEY);
-};
-
-export const setGoogleUid = (googleUid: string) => {
-  cookies.set(STORAGE_KEY, googleUid);
-};
-
-export const removeGoogleUid = () => {
-  cookies.remove(STORAGE_KEY);
-};
 
 export const GoogleSigninButton = () => {
   const {t} = useTranslation();
@@ -48,7 +31,7 @@ export const GoogleSigninButton = () => {
     ApiRequestSender.userLogin(googleUid, googleEmail)
       .then((data) => {
         setLoggedIn(data.success);
-        setGoogleUid(googleUid);
+        CookiesControl.setGoogleUid(googleUid);
       })
       .catch((error) => {
         setFailedModal({
@@ -100,7 +83,7 @@ export const GoogleSigninButton = () => {
   const {signOut} = useGoogleLogout({
     clientId: GOOGLE_CLIENT_ID,
     onLogoutSuccess: () => {
-      removeGoogleUid();
+      CookiesControl.removeGoogleUid();
       setLoggedIn(false);
     },
     onFailure: () => {

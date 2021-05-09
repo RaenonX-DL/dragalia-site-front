@@ -2,7 +2,7 @@ import React from 'react';
 
 import {DragonAnalysisEditPayload} from '../../../../../api-def/api/post/analysis/payload';
 import {DragonAnalysis} from '../../../../../api-def/api/post/analysis/response';
-import {getGoogleUid} from '../../../common/googleSignin/main';
+import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
@@ -19,7 +19,7 @@ export const AnalysisFormDragonEdit = ({
 }: AnalysisFormDragonEditProps<DragonAnalysisEditPayload>) => {
   const [formState, setFormState] = React.useState<PostFormState<DragonAnalysisEditPayload>>({
     payload: {
-      googleUid: getGoogleUid() || '',
+      googleUid: CookiesControl.getGoogleUid() || '',
       seqId: initialAnalysis.seqId,
       lang: initialAnalysis.lang,
       title: initialAnalysis.title,

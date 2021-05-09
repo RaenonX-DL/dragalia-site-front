@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {CharaAnalysisEditPayload, CharacterAnalysis} from '../../../../../api-def/api';
-import {getGoogleUid} from '../../../common/googleSignin/main';
+import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
@@ -18,7 +18,7 @@ export const AnalysisFormCharaEdit = ({
 }: AnalysisFormCharaEditProps<CharaAnalysisEditPayload>) => {
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
-      googleUid: getGoogleUid() || '',
+      googleUid: CookiesControl.getGoogleUid() || '',
       seqId: initialAnalysis.seqId,
       lang: initialAnalysis.lang,
       title: initialAnalysis.title,

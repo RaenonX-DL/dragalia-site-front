@@ -1,12 +1,13 @@
 import React from 'react';
 
 import {useTranslation} from '../../../../i18n/utils';
+import {CookiesControl} from '../../../../utils/cookies';
 import {
   ApiRequestSender,
   generateNewPositionInfo,
   QuestPostPublishPayload,
 } from '../../../../utils/services/api';
-import {getGoogleUid, QuestPostForm} from '../../../elements';
+import {QuestPostForm} from '../../../elements';
 import {PostFormState} from '../../../elements/posts/shared/form/types';
 import {PageProps} from '../../props';
 
@@ -15,7 +16,7 @@ export const QuestNew = ({fnSetTitle}: PageProps) => {
 
   const [formState, setFormState] = React.useState<PostFormState<QuestPostPublishPayload>>({
     payload: {
-      googleUid: getGoogleUid() || '',
+      googleUid: CookiesControl.getGoogleUid() || '',
       lang: lang,
       title: '',
       video: '',

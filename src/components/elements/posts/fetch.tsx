@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {useTranslation} from '../../../i18n/utils';
+import {CookiesControl} from '../../../utils/cookies';
 import {
   ApiResponseCode,
   PostGetSuccessResponse,
   FunctionFetchPost,
 } from '../../../utils/services/api';
-import {getGoogleUid} from '../common/googleSignin/main';
 import {AlertFetchFailed} from './shared/alert';
 
 export type PostFetchStatus<R extends PostGetSuccessResponse = PostGetSuccessResponse> = {
@@ -35,7 +35,7 @@ export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchS
 
   if (!status.fetched) {
     fnSendFetchRequest(
-      getGoogleUid() || '',
+      CookiesControl.getGoogleUid() || '',
       seqId,
       lang,
       increaseCount,
