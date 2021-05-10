@@ -25,7 +25,7 @@ export const getValidNewPage = (newPage: number, currentPage: number, maxPage: n
 };
 
 export const startIdxToPage = (startIdx: number, pageLimit: number) => {
-  return Math.ceil(startIdx / pageLimit) + 1;
+  return Math.floor(startIdx / pageLimit) + 1;
 };
 
 export const pageToStartIdx = (page: number, pageLimit: number) => {
