@@ -10,7 +10,7 @@ import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple} from '../../../common/fetch';
 import {PaginationState} from '../../../common/pagination/types';
-import {pageToStartIdx, startIdxToPage} from '../../../common/pagination/utils';
+import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../../common/pagination/utils';
 import {AlertFetchListFailed} from '../alert';
 
 
@@ -41,7 +41,7 @@ export const PostListPage = <R extends PostListResponse>({
   const {lang} = useTranslation();
 
   const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
-  const pageLimit = 25;
+  const pageLimit = 1;
 
   const [status, setStatus] = React.useState<Status<R>>(
     {
@@ -80,7 +80,7 @@ export const PostListPage = <R extends PostListResponse>({
               ...status.paginationState,
               currentStart: data.startIdx,
               currentPage: startIdxToPage(data.startIdx, pageLimit),
-              maxPage: startIdxToPage(data.postCount, pageLimit) - 1,
+              maxPage: postCountToMaxPage(data.postCount, pageLimit),
             },
             fetched: true,
             fetching: false,

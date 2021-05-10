@@ -28,6 +28,14 @@ export const startIdxToPage = (startIdx: number, pageLimit: number) => {
   return Math.floor(startIdx / pageLimit) + 1;
 };
 
+export const postCountToMaxPage = (postCount: number, pageLimit: number) => {
+  if (postCount <= 0) {
+    return 0;
+  }
+
+  return startIdxToPage(postCount - 1, pageLimit);
+};
+
 export const pageToStartIdx = (page: number, pageLimit: number) => {
   return (page - 1) * pageLimit;
 };
