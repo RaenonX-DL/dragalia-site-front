@@ -25,16 +25,15 @@ export const Paginator = ({
   getNewQueryParam,
   disable = false,
 }: PaginatorProps) => {
+  // TEST: Paginator
+  //  - Disable on no item
+  //  - Special keys available and behaving correctly
+  //  - Page number shown is correct
+
   const history = useHistory();
 
-  const changePage = (e: React.MouseEvent<HTMLElement>) => {
-    // Get target page
-    const targetPageStr = e.currentTarget.getAttribute('key');
-    if (!targetPageStr) {
-      return;
-    }
-
-    const newPage = getValidNewPage(Number(targetPageStr), state.currentPage, state.maxPage);
+  const changePage = (newPage: number) => () => {
+    newPage = getValidNewPage(newPage, state.currentPage, state.maxPage);
 
     // Prevent duplicated action if the page is unchanged
     if (newPage === state.currentPage) {
@@ -57,14 +56,12 @@ export const Paginator = ({
   return (
     <Pagination>
       <Pagination.First
-        key={SpecialKey.FIRST}
         disabled={disable}
-        onClick={changePage}
+        onClick={changePage(SpecialKey.FIRST)}
       />
       <Pagination.Prev
-        key={SpecialKey.PREV}
         disabled={disable}
-        onClick={changePage}
+        onClick={changePage(SpecialKey.PREV)}
       />
       {
         [
@@ -80,21 +77,19 @@ export const Paginator = ({
               key={i}
               active={state.currentPage === i}
               disabled={disable}
-              onClick={changePage}
+              onClick={changePage(i)}
             >
               {i}
             </Pagination.Item>
           ))
       }
       <Pagination.Next
-        key={SpecialKey.NEXT}
         disabled={disable}
-        onClick={changePage}
+        onClick={changePage(SpecialKey.NEXT)}
       />
       <Pagination.Last
-        key={SpecialKey.LAST}
         disabled={disable || state.maxPage <= 0}
-        onClick={changePage}
+        onClick={changePage(SpecialKey.LAST)}
       />
     </Pagination>
   );

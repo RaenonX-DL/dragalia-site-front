@@ -11,7 +11,7 @@ describe('Pagination utils', () => {
   });
 
   test('get valid of prev at first', () => {
-    expect(getValidNewPage( SpecialKey.PREV, 1, 10)).toBe(1);
+    expect(getValidNewPage(SpecialKey.PREV, 1, 10)).toBe(1);
   });
 
   test('get valid of prev not at first', () => {
@@ -48,6 +48,10 @@ describe('Pagination utils', () => {
 
   test('page of start at 25, limit 25', () => {
     expect(startIdxToPage(25, 25)).toBe(2);
+  });
+
+  test('page of start at 3, limit 1', () => {
+    expect(startIdxToPage(3, 1)).toBe(4);
   });
 
   test('start index of page 1, limit 25', () => {
