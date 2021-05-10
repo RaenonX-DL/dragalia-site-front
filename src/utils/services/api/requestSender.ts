@@ -9,6 +9,7 @@ import {
   AnalysisResponse,
   AnalysisType,
   ApiEndPoints,
+  BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisPublishPayload,
   CharaAnalysisPublishSuccessResponse,
@@ -51,10 +52,7 @@ export class ApiRequestSender {
     return ApiRequestSender.sendRequest<UserLoginResponse, UserLoginPayload>(
       'POST',
       ApiEndPoints.USER_LOGIN,
-      {
-        googleUid: googleUid,
-        googleEmail: googleEmail,
-      },
+      {googleUid, googleEmail},
     );
   }
 
@@ -67,22 +65,17 @@ export class ApiRequestSender {
    *
    * @param {string} googleUid Google UID of the logged in user
    * @param {number} seqId sequential ID of the post to get
-   * @param {SupportedLanguages} langCode language code of the post to get
-   * @param {boolean} increaseCount if the post view count should be increased or not
+   * @param {SupportedLanguages} lang language code of the post to get
+   * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<QuestPostGetSuccessResponse>} promise returned from `fetch`
    */
   static questPostGet(
-    googleUid: string, seqId: number, langCode: SupportedLanguages, increaseCount?: boolean,
+    googleUid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
   ): Promise<QuestPostGetSuccessResponse> {
     return ApiRequestSender.sendRequest<QuestPostGetSuccessResponse, QuestPostGetPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_GET,
-      {
-        googleUid: googleUid,
-        seqId: seqId,
-        lang: langCode,
-        incCount: increaseCount,
-      },
+      {googleUid, seqId, lang, incCount},
     );
   }
 
@@ -101,12 +94,7 @@ export class ApiRequestSender {
     return ApiRequestSender.sendRequest<QuestPostListResponse, QuestPostListPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_LIST,
-      {
-        googleUid: googleUid,
-        langCode: langCode,
-        start: start,
-        limit: limit,
-      },
+      {googleUid, langCode, start, limit},
     );
   }
 
@@ -143,19 +131,15 @@ export class ApiRequestSender {
    *
    * @param {string} googleUid current Google UID
    * @param {number | null} seqId title of the post
-   * @param {SupportedLanguages} langCode language code of the quest post
+   * @param {SupportedLanguages} lang language code of the quest post
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
   static questPostIdCheck(
-    googleUid: string, seqId: number | null, langCode: SupportedLanguages): Promise<QuestPostIdCheckResponse> {
+    googleUid: string, seqId: number | null, lang: SupportedLanguages): Promise<QuestPostIdCheckResponse> {
     return ApiRequestSender.sendRequest<QuestPostIdCheckResponse, QuestPostIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_ID_CHECK,
-      {
-        seqId: seqId || undefined,
-        googleUid: googleUid,
-        lang: langCode,
-      },
+      {seqId: seqId || undefined, googleUid, lang},
     );
   }
 
@@ -210,12 +194,7 @@ export class ApiRequestSender {
     return ApiRequestSender.sendRequest<AnalysisListResponse, AnalysisListPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_LIST,
-      {
-        googleUid: googleUid,
-        langCode: langCode,
-        start: start,
-        limit: limit,
-      },
+      {googleUid, langCode, start, limit},
     );
   }
 
@@ -224,23 +203,18 @@ export class ApiRequestSender {
    *
    * @param {string} googleUid Google UID of the logged in user
    * @param {number} seqId sequential ID of the post to get
-   * @param {SupportedLanguages} langCode language code of the post to get
-   * @param {boolean} increaseCount if the post view count should be increased or not
+   * @param {SupportedLanguages} lang language code of the post to get
+   * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<AnalysisGetSuccessResponse>} promise returned from `fetch`
    */
   static analysisPostGet(
-    googleUid: string, seqId: number, langCode: SupportedLanguages, increaseCount?: boolean,
+    googleUid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
   ):
     Promise<AnalysisResponse> {
     return ApiRequestSender.sendRequest<AnalysisGetSuccessResponse, AnalysisGetPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_GET,
-      {
-        googleUid: googleUid,
-        seqId: seqId,
-        lang: langCode,
-        incCount: increaseCount,
-      },
+      {googleUid, seqId, lang, incCount},
     )
       .then((response) => {
         // Cast the date string to `Date` object because the data sent from the backend is string
@@ -294,20 +268,16 @@ export class ApiRequestSender {
    *
    * @param {string} googleUid current Google UID
    * @param {number | null} seqId title of the post
-   * @param {SupportedLanguages} langCode language code of the analysis post
+   * @param {SupportedLanguages} lang language code of the analysis post
    * @return {Promise<AnalysisIdCheckResponse>} promise returned from `fetch`
    */
   static analysisPostIdCheck(
-    googleUid: string, seqId: number | null, langCode: SupportedLanguages,
+    googleUid: string, seqId: number | null, lang: SupportedLanguages,
   ): Promise<AnalysisIdCheckResponse> {
     return ApiRequestSender.sendRequest<AnalysisIdCheckResponse, AnalysisIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_ID_CHECK,
-      {
-        seqId: seqId || undefined,
-        googleUid: googleUid,
-        lang: langCode,
-      },
+      {seqId: seqId || undefined, googleUid, lang},
     );
   }
 
