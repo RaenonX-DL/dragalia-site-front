@@ -9,11 +9,12 @@ import './main.css';
 
 type Props = {
   children: string,
+  overrideStyle?: boolean,
 }
 
-export const Markdown = ({children}: Props) => {
+export const Markdown = ({children, overrideStyle = true}: Props) => {
   return (
-    <div className="markdown-body">
+    <div className={overrideStyle ? 'markdown-body' : ''}>
       <ReactMarkdown plugins={[gfm]} renderers={renderers}>
         {children}
       </ReactMarkdown>

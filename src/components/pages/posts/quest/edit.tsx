@@ -22,7 +22,7 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
   });
 
   if (!pid) {
-    // FIXME: Redirect on no post ID found
+    // FIXME: Redirect on no post ID found (w/ global alert)
     setFetchStatus({
       ...fetchStatus,
       fetched: true,

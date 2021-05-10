@@ -294,7 +294,8 @@
     },
     "message": {
       "alt_lang": "This post does not have a version in {{langUi}}. Therefore, we're displaying it in {{langPost}}.",
-      "other_lang": "This post is multilingual."
+      "other_lang": "This post is multilingual.",
+      "published": "Post published."
     },
     "misc": {
       "title_self": "Others"

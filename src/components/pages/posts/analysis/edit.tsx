@@ -27,7 +27,6 @@ const titleTranslationName: { [key in AnalysisType]: string } = {
 
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
-  // FIXME: Redirect on no google UID
   const {t} = useTranslation();
 
   const {pid} = useParams<AnalysisEditParams>();
@@ -45,7 +44,6 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
   //  - display unknown post type
 
   if (!pid) {
-    // FIXME: Redirect on no post ID found
     setFetchStatus({
       ...fetchStatus,
       fetched: true,

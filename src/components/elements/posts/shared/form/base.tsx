@@ -4,6 +4,9 @@ import {Redirect} from 'react-router-dom';
 
 import {PostMetaPayload} from '../../../../../api-def/api';
 import {useTranslation} from '../../../../../i18n/utils';
+import {alertDispatchers} from '../../../../../state/alert/dispatchers';
+import {AlertPayloadMaker} from '../../../../../state/alert/express';
+import {useDispatch} from '../../../../../state/store';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {BeforeUnloadPrompt} from '../../../common/beforeUnloadPrompt';
 import {CommonModal, ModalState} from '../../../common/modal';
@@ -25,6 +28,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
   fnGetRedirectPath,
 }: PostFormBaseInternalProps<P>) => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -60,11 +64,13 @@ export const PostFormBase = <P extends PostMetaPayload>({
       return;
     }
 
+    // TEST: Alert displayed after publish
+
     fnSendRequest(formState.payload)
       .then((data) => {
         if (data.success) {
           setRedirectId(data.seqId);
-          // FIXME: Set global alert successfully published
+          dispatch(alertDispatchers.showAlert(AlertPayloadMaker.postPublished(t)));
         } else {
           setModalState({
             show: true,

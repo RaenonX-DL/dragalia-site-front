@@ -294,7 +294,8 @@
     },
     "message": {
       "alt_lang": "本ページは言語が {{langUi}} の版がございませんなので。展示した言語が{{langPost}} の版に変えました。",
-      "other_lang": "本ページが他言語の版もあります。"
+      "other_lang": "本ページが他言語の版もあります。",
+      "published": "文を発表しました。"
     },
     "misc": {
       "title_self": "他の文章"
