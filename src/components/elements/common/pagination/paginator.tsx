@@ -46,7 +46,7 @@ export const Paginator = ({
       search: getNewQueryParam(newPage),
     });
 
-    // Call page lick event
+    // Call page click event
     onPageClick(newPage);
 
     // Scroll to top after changing the page

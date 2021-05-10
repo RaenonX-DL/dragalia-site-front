@@ -41,7 +41,7 @@ export const PostListPage = <R extends PostListResponse>({
   const {lang} = useTranslation();
 
   const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
-  const pageLimit = 1;
+  const pageLimit = 25;
 
   const [status, setStatus] = React.useState<Status<R>>(
     {
@@ -113,6 +113,15 @@ export const PostListPage = <R extends PostListResponse>({
   // Trigger the fetch request if the start index seems to be in the initializing state
   if (!status.fetched && !status.fetching) {
     onPageClick(status.paginationState.currentPage);
+  }
+
+  // TEST: Pagination action
+  //  - Go to paginated page, use paginator once, then try to go back
+
+  // Trigger page click event if the pagination status desync with the URL params
+  // - This occurs when the user try to go to the previous page by `history.back()`
+  if (!status.fetching && status.paginationState.currentStart !== currentStart) {
+    onPageClick(startIdxToPage(currentStart, pageLimit));
   }
 
   return (
