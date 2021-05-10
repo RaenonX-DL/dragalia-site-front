@@ -64,6 +64,7 @@ export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchS
       .catch((error) => {
         fnSetStatus({
           ...status,
+          fetched: true,
           fetchFailed: true,
           failureMessage: error.toString(),
         });

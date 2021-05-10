@@ -253,7 +253,7 @@
       "videos": "Related Videos",
       "error": {
         "no_post_id": "Analysis ID is not specified.",
-        "unknown_type": "Unknown post type."
+        "unknown_type": "Unknown post type - {{analysisType}}."
       },
       "skill": {
         "name": "Skill Name",

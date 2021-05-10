@@ -253,7 +253,7 @@
       "videos": "関する動画",
       "error": {
         "no_post_id": "文章 ID 未指定。",
-        "unknown_type": "文の種類が分別できない。"
+        "unknown_type": "文の種類が分別できない - {{analysisType}}。"
       },
       "skill": {
         "name": "スキルの名前",

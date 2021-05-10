@@ -18,6 +18,13 @@ import {
 } from '../../../elements';
 import {PageProps} from '../../props';
 
+// FIXME: Edit analysis ID check false negative (should always be positive - check passed)
+
+const titleTranslationName: { [key in AnalysisType]: string } = {
+  [AnalysisType.CHARACTER]: 'pages.name.analysis_edit_chara',
+  [AnalysisType.DRAGON]: 'pages.name.analysis_edit_dragon',
+};
+
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
   // FIXME: Redirect on no google UID
@@ -32,6 +39,11 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     post: null,
   });
 
+  // TEST: Post edit form
+  //  - returning character
+  //  - returning dragon
+  //  - display unknown post type
+
   if (!pid) {
     // FIXME: Redirect on no post ID found
     setFetchStatus({
@@ -43,42 +55,35 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
   } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
     const analysisType = fetchStatus.post.type;
 
+    const titleName = titleTranslationName[analysisType];
+
+    if (titleName) {
+      // FIXME: With Post ID
+      fnSetTitle(t(titleName));
+    }
+
     if (analysisType === AnalysisType.CHARACTER) {
-      // Character
-
-      const analysis = fetchStatus.post as CharacterAnalysis;
-      // FIXME: With post ID
-      fnSetTitle(t('pages.name.analysis_edit_chara'));
-
       return (
         <AnalysisFormCharaEdit
-          initialAnalysis={analysis}
+          initialAnalysis={fetchStatus.post as CharacterAnalysis}
           fnSendRequest={ApiRequestSender.analysisPostEditChara}
         />
       );
     }
     if (analysisType === AnalysisType.DRAGON) {
-      // Dragon
-
-      const analysis = fetchStatus.post as DragonAnalysis;
-      // FIXME: With post ID
-      fnSetTitle(t('pages.name.analysis_edit_dragon'));
-
       return (
         <AnalysisFormDragonEdit
-          initialAnalysis={analysis}
+          initialAnalysis={fetchStatus.post as DragonAnalysis}
           fnSendRequest={ApiRequestSender.analysisPostEditDragon}
         />
       );
     }
     // Unknown post type
-
-    // FIXME: Redirect on unknown type of analysis (w/ global alert)
     setFetchStatus({
       ...fetchStatus,
       fetched: true,
       fetchFailed: true,
-      failureMessage: t('posts.analysis.error.unknown_type'),
+      failureMessage: t('posts.analysis.error.unknown_type', {analysisType: AnalysisType[analysisType]}),
     });
   }
 

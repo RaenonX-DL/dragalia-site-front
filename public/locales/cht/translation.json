@@ -253,7 +253,7 @@
       "videos": "相關影片",
       "error": {
         "no_post_id": "文章 ID 未指定。",
-        "unknown_type": "無法解析貼文種類。"
+        "unknown_type": "無法解析貼文種類 - {{analysisType}}。"
       },
       "skill": {
         "name": "技能名稱",

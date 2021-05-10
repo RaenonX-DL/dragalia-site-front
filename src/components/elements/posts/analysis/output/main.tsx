@@ -34,16 +34,12 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       renderOnFetched={(post) => {
         if (post.type === AnalysisType.CHARACTER) {
           return (
-            <AnalysisOutputChara
-              analysis={post as CharacterAnalysis}
-            />
+            <AnalysisOutputChara analysis={post as CharacterAnalysis}/>
           );
         }
         if (post.type === AnalysisType.DRAGON) {
           return (
-            <AnalysisOutputDragon
-              analysis={post as DragonAnalysis}
-            />
+            <AnalysisOutputDragon analysis={post as DragonAnalysis}/>
           );
         }
 
@@ -51,7 +47,7 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
           ...status,
           fetched: true,
           fetchFailed: true,
-          failureMessage: t('posts.analysis.error.unknown_type'),
+          failureMessage: t('posts.analysis.error.unknown_type', {analysisType: AnalysisType[post.type]}),
         });
         return <></>;
       }}
