@@ -6,7 +6,7 @@ import {GoogleSignInProps} from './types';
 
 export const useGoogleLogout = ({
   t,
-  setFailedModal,
+  onFailed,
 }: GoogleSignInProps) => useGoogleLogoutDep({
   clientId: GOOGLE_CLIENT_ID,
   onLogoutSuccess: () => {
@@ -14,7 +14,7 @@ export const useGoogleLogout = ({
     window.location.reload();
   },
   onFailure: () => {
-    setFailedModal({
+    onFailed({
       show: true,
       title: t('google_signin.logout_failed'),
       message: t('google_signin.logout_unknown'),

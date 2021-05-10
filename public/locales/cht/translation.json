@@ -175,7 +175,7 @@
     "no_uid": "無 Google 使用者 ID",
     "no_uid_details": "找不到 Google 使用者 ID。請嘗試重新登入。",
     "login": "Google 登入",
-    "login_error": "錯誤碼: {{errorCode}}",
+    "login_error": "錯誤: {{error}}",
     "login_failed": "登入失敗",
     "login_unknown": "因為不明原因，無法登入。({{error}})",
     "login_offline_disallowed": "無法使用離線登入。請連至網路後重試。({{code}})",
@@ -193,6 +193,7 @@
       "info": "只要每個月捐款超過 USD $1 以上，即可**無廣告瀏覽網站**！\n\n如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。"
     },
     "warning": {
+      "admin_only": "網站管理員才有此頁面的使用權限。",
       "page_nav": "確定要離開本頁面嗎？",
       "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
     },

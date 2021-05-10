@@ -1,8 +1,9 @@
-import {Fallback, TFunction} from 'react-i18next';
-
+import {TFunction} from '../../../../i18n/types';
 import {ModalState} from '../modal';
 
+export type FailureInfo = ModalState;
+
 export type GoogleSignInProps = {
-  t: TFunction<Fallback<string>[] | string>,
-  setFailedModal: (newState: ModalState) => void,
+  t: TFunction,
+  onFailed: (failureInfo: FailureInfo) => void,
 }

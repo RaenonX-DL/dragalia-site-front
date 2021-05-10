@@ -17,7 +17,7 @@ export const GoogleSigninButton = () => {
     message: '',
   });
 
-  const payload = {t, setFailedModal};
+  const payload = {t, onFailed: setFailedModal};
 
   const {signIn} = useGoogleLogin(payload);
   const {signOut} = useGoogleLogout(payload);

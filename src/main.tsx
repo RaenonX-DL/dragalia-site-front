@@ -1,9 +1,15 @@
 import React, {Suspense, useEffect} from 'react';
 
 import {Container} from 'react-bootstrap';
-import {Route} from 'react-router-dom';
 
-import {Footer, Navigation, PageLoading} from './components/elements';
+import {
+  Footer,
+  Navigation,
+  PageLoading,
+  GlobalAlert,
+  AdminRoute,
+  PublicRoute,
+} from './components/elements';
 import {
   About,
   AnalysisEdit,
@@ -24,6 +30,7 @@ import {SpecialThanks} from './components/pages/thanks';
 import Path from './const/path/definitions';
 import {useTranslation} from './i18n/utils';
 import {SiteAlert} from './siteAlert';
+import {ReduxProvider, ReduxProviderProps} from './state/provider';
 import {GoogleAnalytics} from './utils/services/ga';
 
 
@@ -37,82 +44,82 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
     <>
       {/* Home */}
 
-      <Route exact path={Path.HOME}>
+      <PublicRoute path={Path.HOME}>
         <Home fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
       {/* Posts */}
 
-      <Route exact path={Path.QUEST_LIST}>
+      <PublicRoute path={Path.QUEST_LIST}>
         <QuestList fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.QUEST_NEW}>
+      </PublicRoute>
+      <AdminRoute path={Path.QUEST_NEW}>
         <QuestNew fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.QUEST}>
+      </AdminRoute>
+      <PublicRoute path={Path.QUEST}>
         <QuestPage fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.QUEST_EDIT}>
+      </PublicRoute>
+      <AdminRoute path={Path.QUEST_EDIT}>
         <QuestEdit fnSetTitle={updatePageTitle}/>
-      </Route>
+      </AdminRoute>
 
-      <Route exact path={Path.ANALYSIS_LIST}>
+      <PublicRoute path={Path.ANALYSIS_LIST}>
         <AnalysisList fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.ANALYSIS_NEW_CHARA}>
+      </PublicRoute>
+      <AdminRoute path={Path.ANALYSIS_NEW_CHARA}>
         <AnalysisNewChara fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.ANALYSIS_NEW_DRAGON}>
+      </AdminRoute>
+      <AdminRoute path={Path.ANALYSIS_NEW_DRAGON}>
         <AnalysisNewDragon fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.ANALYSIS}>
+      </AdminRoute>
+      <PublicRoute path={Path.ANALYSIS}>
         <AnalysisPage fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.ANALYSIS_EDIT}>
+      </PublicRoute>
+      <AdminRoute path={Path.ANALYSIS_EDIT}>
         <AnalysisEdit fnSetTitle={updatePageTitle}/>
-      </Route>
+      </AdminRoute>
 
-      <Route exact path={Path.MISC_LIST}>
+      <PublicRoute path={Path.MISC_LIST}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.MISC}>
+      </PublicRoute>
+      <PublicRoute path={Path.MISC}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
       {/* In-game data */}
 
-      <Route exact path={Path.EX}>
+      <PublicRoute path={Path.EX}>
         <ExAbilityPage fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.PRINT}>
+      </PublicRoute>
+      <PublicRoute path={Path.PRINT}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
-      <Route exact path={Path.SKILL_ATK}>
+      <PublicRoute path={Path.SKILL_ATK}>
         <AttackingSkillPage fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.SKILL_SUP}>
+      </PublicRoute>
+      <PublicRoute path={Path.SKILL_SUP}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
-      <Route exact path={Path.STORY}>
+      <PublicRoute path={Path.STORY}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
       {/* Tools */}
 
-      <Route exact path={Path.ROTATION_CALC}>
+      <PublicRoute path={Path.ROTATION_CALC}>
         <Constructing fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
 
       {/* Not game related */}
 
-      <Route exact path={Path.ABOUT}>
+      <PublicRoute path={Path.ABOUT}>
         <About fnSetTitle={updatePageTitle}/>
-      </Route>
-      <Route exact path={Path.SPECIAL_THANKS}>
+      </PublicRoute>
+      <PublicRoute path={Path.SPECIAL_THANKS}>
         <SpecialThanks fnSetTitle={updatePageTitle}/>
-      </Route>
+      </PublicRoute>
     </>
   );
 };
@@ -161,6 +168,8 @@ const PageMain = () => {
       <SiteAlert/>
 
       <Container className="p-3">
+        <GlobalAlert/>
+
         <PageContent updatePageTitle={updatePageTitle}/>
       </Container>
 
@@ -169,11 +178,13 @@ const PageMain = () => {
   );
 };
 
-const Main = () => {
+const Main = (props: ReduxProviderProps) => {
   return (
-    <Suspense fallback={<PageLoading/>}>
-      <PageMain/>
-    </Suspense>
+    <ReduxProvider {...props}>
+      <Suspense fallback={<PageLoading/>}>
+        <PageMain/>
+      </Suspense>
+    </ReduxProvider>
   );
 };
 

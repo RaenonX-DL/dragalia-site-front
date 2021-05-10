@@ -6,8 +6,6 @@ export type FetchStatusSimple = {
 }
 
 export type FetchStatus<D> = FetchStatusSimple & {
-  fetched: boolean,
-  fetching: boolean,
   data: D,
 }
 

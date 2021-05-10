@@ -30,6 +30,8 @@ import {
   QuestPostPublishSuccessResponse,
   RequestPayloadBase,
   SupportedLanguages,
+  UserIsAdminPayload,
+  UserIsAdminResponse,
   UserLoginPayload,
   UserLoginResponse,
 } from '../../../api-def/api';
@@ -53,6 +55,20 @@ export class ApiRequestSender {
       'POST',
       ApiEndPoints.USER_LOGIN,
       {googleUid, googleEmail},
+    );
+  }
+
+  /**
+   * Send a user admin privilege check request.
+   *
+   * @param {string} googleUid Google UID of the user yo check
+   * @return {Promise<UserIsAdminResponse>} promise returned from `fetch`
+   */
+  static userIsAdmin(googleUid: string): Promise<UserIsAdminResponse> {
+    return ApiRequestSender.sendRequest<UserIsAdminResponse, UserIsAdminPayload>(
+      'GET',
+      ApiEndPoints.USER_IS_ADMIN,
+      {googleUid},
     );
   }
 
@@ -289,11 +305,11 @@ export class ApiRequestSender {
    * @param {string} method http method
    * @param {string} endpoint destination to send the request - this should be endpoint only, not the full URL
    * @param {RequestPayloadBase} payload payload to be used
-   * @return {Promise<T>} promise returned from `fetch`
+   * @return {Promise<R>} promise returned from `fetch`
    */
-  private static sendRequest<T, P extends RequestPayloadBase>(
+  private static sendRequest<R extends BaseResponse, P extends RequestPayloadBase>(
     method: 'GET' | 'POST', endpoint: string, payload: P,
-  ): Promise<T> {
+  ): Promise<R> {
     endpoint = getFullApiUrl(endpoint);
 
     const initOptionsBase = {
@@ -306,7 +322,7 @@ export class ApiRequestSender {
     if (method === 'GET') {
       return fetch(`${endpoint}?${new URLSearchParams(payload).toString()}`, initOptionsBase)
         .then((response) => response.json())
-        .then((data) => data as T);
+        .then((data) => data as R);
     }
 
     if (method === 'POST') {
@@ -315,7 +331,7 @@ export class ApiRequestSender {
         body: JSON.stringify(payload),
       })
         .then((response) => response.json())
-        .then((data) => data as T);
+        .then((data) => data as R);
     }
 
     throw new Error(`Unhandled method: ${method}`);

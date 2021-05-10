@@ -16,12 +16,12 @@ const isOfflineLogin = (response: any): response is GoogleLoginResponseOffline =
 
 export const useGoogleLogin = ({
   t,
-  setFailedModal,
+  onFailed,
 }: GoogleSignInProps) => useGoogleLoginDep({
   clientId: GOOGLE_CLIENT_ID,
   onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
     if (isOfflineLogin(response)) {
-      setFailedModal({
+      onFailed({
         show: true,
         title: t('google_signin.login_failed'),
         message: t('google_signin.login_offline_disallowed', {code: response.code}),
@@ -44,7 +44,7 @@ export const useGoogleLogin = ({
         }
       })
       .catch((error) => {
-        setFailedModal({
+        onFailed({
           show: true,
           title: t('google_signin.request_failed'),
           message: JSON.stringify(error.toString()),
@@ -54,7 +54,7 @@ export const useGoogleLogin = ({
   onFailure: (error: any) => {
     GoogleAnalytics.login('Google', false);
 
-    setFailedModal({
+    onFailed({
       show: true,
       title: t('google_signin.login_failed'),
       message: t('google_signin.login_error', {error: error.error || '(unknown error)'}),

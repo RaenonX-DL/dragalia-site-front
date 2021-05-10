@@ -26,3 +26,7 @@ export {QuestPostList} from './elements/posts/quest/list/list';
 export {QuestPostOutput} from './elements/posts/quest/output/main';
 export {QuestPositionOutput} from './elements/posts/quest/output/positional';
 export {scrollToAnchor} from './elements/common/anchor/utils';
+export {GlobalAlert} from './elements/common/alert';
+export {AdminRoute} from './elements/route/admin';
+export {PrivateRoute} from './elements/route/private';
+export {PublicRoute} from './elements/route/public';
