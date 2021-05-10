@@ -26,12 +26,14 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
   titlePlaceholder,
   fnIdCheck,
 }: FormMetaProps<P, R>) => {
-  // TEST: Form meta
-  //  - Use the tests exist at the backend
+  // TEST: Form meta validation
+  //  - (Use the tests exist at the backend)
 
   const {t} = useTranslation();
 
-  const {payload, isPreloaded} = formState;
+  const {payload, isPreloaded, isIdAvailable} = formState;
+
+  const isValid = isIdAvailable || isPreloaded;
 
   const checkAvailability = (seqId: number | undefined, langCode: SupportedLanguages) => {
     fnIdCheck(CookiesControl.getGoogleUid() || '', Number(seqId) || null, langCode)
@@ -50,7 +52,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
       <Col lg={2}>
         <Form.Control
           className="mb-2" type="number" placeholder={t('posts.info.id')}
-          isValid={formState.isIdAvailable} isInvalid={!formState.isIdAvailable}
+          isValid={isValid} isInvalid={!isValid}
           onChange={(e) => setPayload('seqId', e.target.value)}
           value={payload.seqId || ''} disabled={isPreloaded} min="1"
         />
