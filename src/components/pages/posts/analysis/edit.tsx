@@ -58,8 +58,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     const titleName = titleTranslationName[analysisType];
 
     if (titleName) {
-      // FIXME: With Post ID
-      fnSetTitle(t(titleName));
+      fnSetTitle(t(titleName, {pid}));
     }
 
     if (analysisType === AnalysisType.CHARACTER) {
