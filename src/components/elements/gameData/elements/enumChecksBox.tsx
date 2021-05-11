@@ -29,7 +29,7 @@ export const EnumChecksBox = <K extends string, T extends { [key in K]: Array<nu
       })}
       isChecked={(code) => inputData[inputKey].includes(code)}
       imageHeight={imageHeight}
-      type="radio"
+      type="checkbox"
     />
   );
 };
