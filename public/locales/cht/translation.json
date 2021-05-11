@@ -195,7 +195,7 @@
     "warning": {
       "admin_only": "網站管理員才有此頁面的使用權限。",
       "page_nav": "確定要離開本頁面嗎？",
-      "truncated": "因條目過多，故只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
+      "truncated": "因條目過多，只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。"
     },
     "info": {
       "ads": "每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)"

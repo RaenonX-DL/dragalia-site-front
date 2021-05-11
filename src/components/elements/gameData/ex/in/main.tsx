@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 
 import {useTranslation} from '../../../../../i18n/utils';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
+import {isNotFetched} from '../../../common/fetch';
 import {SelectionData} from '../types';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
@@ -35,7 +36,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
     },
   });
 
-  if (!selectionData.fetched) {
+  if (isNotFetched(selectionData)) {
     const promiseGetEnum = ResourceLoader.getEnumElements()
       .catch((e) => {
         // FIXME: Send global alert

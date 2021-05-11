@@ -8,7 +8,7 @@ import {CookiesControl} from '../../../../../utils/cookies';
 import {FunctionFetchPostList, PostListResponse} from '../../../../../utils/services/api';
 import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
 import {AdsInPostList} from '../../../common/ads';
-import {FetchStatusSimple} from '../../../common/fetch';
+import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
 import {PaginationState} from '../../../common/pagination/types';
 import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../../common/pagination/utils';
 import {AlertFetchListFailed} from '../alert';
@@ -111,7 +111,7 @@ export const PostListPage = <R extends PostListResponse>({
   };
 
   // Trigger the fetch request if the start index seems to be in the initializing state
-  if (!status.fetched && !status.fetching) {
+  if (isNotFetched(status)) {
     onPageClick(status.paginationState.currentPage);
   }
 

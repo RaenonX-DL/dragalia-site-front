@@ -9,6 +9,10 @@ export type FetchStatus<D> = FetchStatusSimple & {
   data: D,
 }
 
+export const isNotFetched = <T extends FetchStatusSimple>(fetchStatus: T) => {
+  return !fetchStatus.fetched && !fetchStatus.fetching;
+};
+
 export const useFetchStateProcessed = <D, R>(
   initialData: D,
   fnFetch: (callback: (data: R) => void) => Promise<R>,
@@ -22,28 +26,36 @@ export const useFetchStateProcessed = <D, R>(
   });
 
   const fetchFunction = () => {
-    if (!fetchState.fetched) {
+    if (!isNotFetched(fetchState)) {
+      return;
+    }
+
+    setFetchState({
+      ...fetchState,
+      fetching: true,
+    });
+
+    fnFetch((data) => {
       setFetchState({
         ...fetchState,
-        fetching: true,
+        fetched: true,
+        fetching: false,
+        data: fnProcessData(data),
       });
-
-      fnFetch((data) => {
+    })
+      .catch((e) => {
         setFetchState({
           ...fetchState,
           fetched: true,
           fetching: false,
-          data: fnProcessData(data),
         });
-      })
-        .catch((e) => {
-          console.warn(messageOnFetchFailed, e);
-        });
-    }
+        console.warn(messageOnFetchFailed, e);
+      });
   };
 
   return [fetchState, setFetchState, fetchFunction];
 };
+
 
 export const useFetchState = <D>(
   initialData: D,

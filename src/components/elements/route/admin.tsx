@@ -8,7 +8,7 @@ import {AlertPayloadMaker} from '../../../state/alert/express';
 import {useDispatch} from '../../../state/store';
 import {CookiesControl} from '../../../utils/cookies';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
-import {FetchStatus} from '../common/fetch';
+import {FetchStatus, isNotFetched} from '../common/fetch';
 import {LoginPrompt} from '../common/googleSignin/loginPrompt';
 import {RouteProps} from './types';
 
@@ -50,7 +50,7 @@ const AdminRouteRender = ({children}: React.PropsWithChildren<{}>) => {
   }, []);
 
   // Return `children` if the user is admin
-  if (isAdmin.fetched) {
+  if (!isNotFetched(isAdmin)) {
     if (isAdmin.data) {
       return <>{children}</>;
     }

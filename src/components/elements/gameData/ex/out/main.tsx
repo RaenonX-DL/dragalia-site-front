@@ -30,7 +30,7 @@ export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: Outp
   // Check over-length
   const warning = overLengthWarningCheck(exAbilityData);
   if (warning !== null) {
-    entries.push(warning);
+    entries.push(<Col lg={12}>{warning}</Col>);
   }
 
   // Add transformed entries
