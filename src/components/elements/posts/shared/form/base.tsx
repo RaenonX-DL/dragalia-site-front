@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Redirect} from 'react-router-dom';
 
-import {PostMetaPayload} from '../../../../../api-def/api';
+import {ApiResponseCode, PostMetaPayload} from '../../../../../api-def/api';
 import {useTranslation} from '../../../../../i18n/utils';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/express';
@@ -75,7 +75,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
           setModalState({
             show: true,
             title: t('posts.manage.publish_failed'),
-            message: data.code.toString(),
+            message: `${data.code}: ${ApiResponseCode[data.code]}`,
           });
         }
       })
@@ -83,7 +83,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
         setModalState({
           show: true,
           title: t('posts.manage.publish_failed'),
-          message: JSON.stringify(error.toString()),
+          message: JSON.stringify(error),
         });
       });
   };
