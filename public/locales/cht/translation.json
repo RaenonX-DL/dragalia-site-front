@@ -218,7 +218,7 @@
       "analysis_post": "評測",
       "home": "首頁",
       "constructing": "建置中",
-      "quest_edit": "編輯高難攻略",
+      "quest_edit": "編輯高難攻略 #Q{{pid}}",
       "quest_list": "高難副本攻略目錄",
       "quest_new": "新增高難攻略",
       "quest_post": "高難副本攻略",

@@ -3,6 +3,8 @@ import React, {MouseEvent} from 'react';
 import {Button} from 'react-bootstrap';
 
 import {useTranslation} from '../../../../../i18n/utils';
+import {alertDispatchers} from '../../../../../state/alert/dispatchers';
+import {useDispatch} from '../../../../../state/store';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {isNotFetched} from '../../../common/fetch';
 import {SelectionData} from '../types';
@@ -17,6 +19,7 @@ type InputProps = {
 
 export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
 
   const [inputData, setInputData] = React.useState<InputData>({
     filterElementCode: [],
@@ -39,14 +42,20 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   if (isNotFetched(selectionData)) {
     const promiseGetEnum = ResourceLoader.getEnumElements()
       .catch((e) => {
-        // FIXME: Send global alert
-        console.warn('Failed to fetch the element enum resource.', e);
+        dispatch(alertDispatchers.showAlert({
+          show: true,
+          message: `Failed to fetch the element enum resource. (${e.message})`,
+          variant: 'warning',
+        }));
         return selectionData.elementEnums;
       });
     const promiseGetExBuffParams = ResourceLoader.getEnumExBuffParameters()
       .catch((e) => {
-        // FIXME: Send global alert
-        console.warn('Failed to fetch the condition enum resource.', e);
+        dispatch(alertDispatchers.showAlert({
+          show: true,
+          message: `Failed to fetch the condition enum resource. (${e.message})`,
+          variant: 'warning',
+        }));
         return selectionData.exBuffParams;
       });
 

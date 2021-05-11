@@ -22,7 +22,6 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
   });
 
   if (!pid) {
-    // FIXME: Redirect on no post ID found (w/ global alert)
     setFetchStatus({
       ...fetchStatus,
       fetched: true,
@@ -30,8 +29,7 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
       failureMessage: t('posts.analysis.error.no_post_id'),
     });
   } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
-    // FIXME: With post ID
-    fnSetTitle(`#Q${fetchStatus.post.seqId} - ${t('pages.name.quest_edit')}`);
+    fnSetTitle(t('pages.name.quest_edit', {pid: fetchStatus.post.seqId}));
 
     return <QuestEditForm post={fetchStatus.post}/>;
   }

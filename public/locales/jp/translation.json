@@ -218,7 +218,7 @@
       "analysis_post": "評価",
       "home": "ホームページ",
       "constructing": "工事中",
-      "quest_edit": "高難易度クエスト攻略の編集",
+      "quest_edit": "高難易度クエスト攻略の編集 #Q{{pid}}",
       "quest_list": "高難易度クエスト攻略のカタログ",
       "quest_new": "高難易度クエスト攻略の追加",
       "quest_post": "高難易度クエスト攻略",

@@ -218,7 +218,7 @@
       "analysis_post": "Analysis",
       "home": "Homepage",
       "constructing": "Under construction",
-      "quest_edit": "Edit HDTs/Agitos",
+      "quest_edit": "Edit HDTs/Agitos #Q{{pid}}",
       "quest_list": "Index of HDTs/Agitos",
       "quest_new": "New HDTs/Agitos",
       "quest_post": "HDTs/Agitos",
