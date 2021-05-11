@@ -1,5 +1,5 @@
 import {InputData} from '../../components/elements/gameData';
-import {ConditionCodes} from '../../constants/gameData';
+import {ConditionCodes} from '../../const/gameData';
 import {AttackingSkillData} from '../services/resources/types';
 
 export type CalculateDamageReturn = {

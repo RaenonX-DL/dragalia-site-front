@@ -1,21 +1,28 @@
 import React from 'react';
 
+import * as CSS from 'csstype';
+
 import {normalize, varTally} from '../../../utils/calc';
 
 type PointBarProps = {
   dataPoints: Array<number>,
   height?: number,
   radius?: number,
-  color?: string,
+  color?: CSS.Property.Stroke,
   padding?: number,
   displayText?: boolean,
   fixPoints?: number,
 }
 
-
-export const PointBar = (props: PointBarProps) => {
-  const {dataPoints, height = 40, radius = 5, color = 'white', padding = 0.03, displayText = true, fixPoints} = props;
-
+export const PointBar = ({
+  dataPoints,
+  height = 40,
+  radius = 5,
+  color = 'white',
+  padding = 0.03,
+  displayText = true,
+  fixPoints,
+}: PointBarProps) => {
   const dataPointsTally = varTally(dataPoints);
   const dataPointsUnique = dataPoints.filter((item, idx, arr) => arr.indexOf(item) === idx);
 

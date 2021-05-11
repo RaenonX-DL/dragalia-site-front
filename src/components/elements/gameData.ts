@@ -1,6 +1,3 @@
-import {AttackingSkillInput} from './gameData/skillAtk/inputMain';
-import {InputData} from './gameData/skillAtk/inputSection';
-import {AttackingSkillOutput} from './gameData/skillAtk/outputMain';
-
-export type {InputData};
-export {AttackingSkillInput, AttackingSkillOutput};
+export {AttackingSkillInput} from './gameData/skillAtk/in/main';
+export type {InputData} from './gameData/skillAtk/in/types';
+export {AttackingSkillOutput} from './gameData/skillAtk/out/main';

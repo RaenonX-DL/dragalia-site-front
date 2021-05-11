@@ -1,8 +1,8 @@
-import {InputData as ExInputData} from '../../components/elements/gameData/ex/inputSection';
-import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/inputSection';
+import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
+import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
 
 /**
- * Google Analytics custom event name.
+ * Google Analytics event names.
  */
 export class GAEvent {
   static LANG_CHANGE = 'lang_change';
@@ -14,7 +14,7 @@ export class GAEvent {
 }
 
 /**
- * Class for sending custom GA events.
+ * Class for sending GA events.
  */
 export class GoogleAnalytics {
   /**
@@ -87,8 +87,7 @@ export class GoogleAnalytics {
    * There are a few types of `usage`:
    *
    * - `navigate`: the user was navigated to the location of the anchor
-   * - `navFailed`: ~~the anchor was not found in the page, failed to navigate~~
-   *   - Currently not using, needs optimization
+   * - `navFailed`: the anchor was not found in the page, failed to navigate
    * - `click`: the user clicked on the anchor mark (possibly to obtain the link)
    *   - This should also trigger `navigate` since the page will navigate on click.
    *
@@ -129,6 +128,11 @@ export class GoogleAnalytics {
    * @param {Object} parameters parameters of the event
    */
   private static sendEvent(eventName: string, parameters: Object) {
+    // Log GA event instead of sending it if under development
+    if (process.env.NODE_ENV === 'development') {
+      console.debug(eventName, parameters);
+      return;
+    }
     // @ts-ignore
     window.gtag('event', eventName, parameters);
   }

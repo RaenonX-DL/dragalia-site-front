@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {PageProps} from '../../base';
-import {AnalysisPostOutput} from '../../../elements';
+import {AnalysisOutput} from '../../../elements';
+import {PageProps} from '../../props';
 
 export const AnalysisPage = ({fnSetTitle}: PageProps) => {
-  return <AnalysisPostOutput fnSetTitle={fnSetTitle}/>;
+  return <AnalysisOutput fnSetTitle={fnSetTitle}/>;
 };

@@ -2,38 +2,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import {mapToCustomCode} from './langCodeTrans';
 
-
-// region Query String
-
-const queryStringDetector = {
-  name: 'myQueryStringDetector',
-
-  lookup(options) {
-    let found;
-
-    if (typeof window !== 'undefined') {
-      const query = window.location.search.substring(1);
-      const params = query.split('&');
-      for (let i = 0; i < params.length; i++) {
-        const pos = params[i].indexOf('=');
-        if (pos > 0) {
-          const key = params[i].substring(0, pos);
-          if (key === options.lookupQuerystring) {
-            found = params[i].substring(pos + 1);
-          }
-        }
-      }
-    }
-
-    return mapToCustomCode(found);
-  },
-};
-
-// endregion
-
-
-// region Local Storage
-
 let hasLocalStorageSupport: null | boolean = null;
 
 const localStorageAvailable = () => {
@@ -50,49 +18,82 @@ const localStorageAvailable = () => {
   return hasLocalStorageSupport;
 };
 
-const localStorageDetector = {
-  name: 'myLocalStorageDetector',
+export const I18nLanguageDetector = new LanguageDetector(
+  null,
+  {
+    lookupQuerystring: 'lang',
+    order: ['queryStringDetector', 'localStorageDetector', 'navigatorDetector'],
+    caches: ['localStorageDetector'],
+  });
+
+// region Query String Detector
+I18nLanguageDetector.addDetector({
+  name: 'queryStringDetector',
 
   lookup(options) {
     let found;
 
-    if (options.lookupLocalStorage && localStorageAvailable()) {
-      const lng = window.localStorage.getItem(options.lookupLocalStorage);
-      if (lng) found = lng;
+    if (!window) {
+      return;
+    }
+
+    const query = window.location.search.substring(1);
+    const params = query.split('&');
+
+    for (let i = 0; i < params.length; i++) {
+      const pos = params[i].indexOf('=');
+
+      if (pos <= 0) {
+        continue;
+      }
+
+      const key = params[i].substring(0, pos);
+      if (key === options.lookupQuerystring) {
+        found = params[i].substring(pos + 1);
+      }
     }
 
     return mapToCustomCode(found);
   },
-
-  cacheUserLanguage(lng, options) {
-    if (options.lookupLocalStorage && localStorageAvailable()) {
-      window.localStorage.setItem(options.lookupLocalStorage, lng);
-    }
-  },
-};
-
+});
 // endregion
 
+// region Local Storage Detector
+I18nLanguageDetector.addDetector({
+  name: 'localStorageDetector',
 
-// region Navigator
+  lookup(options) {
+    if (!options.lookupLocalStorage || !localStorageAvailable()) {
+      return;
+    }
 
-const navigatorDetector = {
-  name: 'myNavigatorDetector',
+    return mapToCustomCode(window.localStorage.getItem(options.lookupLocalStorage));
+  },
+
+  cacheUserLanguage(lng, options) {
+    if (!options.lookupLocalStorage || !localStorageAvailable()) {
+      return;
+    }
+    window.localStorage.setItem(options.lookupLocalStorage, lng);
+  },
+});
+// endregion
+
+// region Navigator Detector
+I18nLanguageDetector.addDetector({
+  name: 'navigatorDetector',
 
   lookup() {
     const found: Array<string> = [];
 
-    if (typeof navigator !== 'undefined') {
+    if (navigator) {
       if (navigator.languages) { // chrome only; not an array, so can't use .push.apply instead of iterating
-        for (let i=0; i < navigator.languages.length; i++) {
+        for (let i = 0; i < navigator.languages.length; i++) {
           found.push(navigator.languages[i]);
         }
       }
 
       // https://www.programmersought.com/article/12391976286/
-      if (navigator['userLanguage']) {
-        found.push(navigator['userLanguage']);
-      }
       if (navigator.language) {
         found.push(navigator.language);
       }
@@ -100,17 +101,5 @@ const navigatorDetector = {
 
     return found.length > 0 ? mapToCustomCode(found[0]) : undefined;
   },
-};
-
+});
 // endregion
-
-export const I18nLanguageDetector = new LanguageDetector(
-  null,
-  {
-    lookupQuerystring: 'lang',
-    order: ['myQueryStringDetector', 'myLocalStorageDetector', 'myNavigatorDetector'],
-    caches: ['myLocalStorageDetector'],
-  });
-I18nLanguageDetector.addDetector(queryStringDetector);
-I18nLanguageDetector.addDetector(localStorageDetector);
-I18nLanguageDetector.addDetector(navigatorDetector);

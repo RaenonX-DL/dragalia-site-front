@@ -1,5 +1,5 @@
+import {SupportedLanguages} from '../../../../api-def/api';
+
 export type MultiLangText = {
-  cht: string,
-  en: string,
-  jp: string
+  [lang in SupportedLanguages]: string
 }

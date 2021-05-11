@@ -175,9 +175,10 @@
     "no_uid": "No Google user ID",
     "no_uid_details": "Cannot find Google user ID. Please try re-login.",
     "login": "Google Login",
-    "login_error": "Error code: {{errorCode}}",
+    "login_error": "Error: {{error}}",
     "login_failed": "Login failed",
     "login_unknown": "Failed to login for unknown reason. ({{error}})",
+    "login_offline_disallowed": "Offline login is disallowed. Please connect to the internet then try again. ({{code}})",
     "logout": "Google Logout",
     "logout_failed": "Logout failed",
     "logout_unknown": "Failed to logout for unknown reason.",
@@ -192,11 +193,12 @@
       "info": "**To browse the website without ads**, just donate USD $1 or more per month!\n\nFor one-time donations via Ko-Fi or Paypal, if the amount is greater than or equal to USD $1, no-ads service is also available counting from the date when the no-ads experience starts.\n\nPlease login to the website using the email address used for the donation for no-ads experience."
     },
     "warning": {
+      "admin_only": "You must have admin privilege to access this page.",
       "page_nav": "Are you sure you want to leave this page?",
       "truncated": "Due to excessive number of results, results are truncated ({{displayed}} Displayed / {{returned} Available). To display the truncated results, please narrow the search condition."
     },
     "info": {
-      "ads": "每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)"
+      "ads": "Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)"
     }
   },
   "misc": {
@@ -208,13 +210,15 @@
   "pages": {
     "name": {
       "about": "About",
-      "analysis_list": "Index of unit analysis",
-      "analysis_new_chara": "New unit analysis post (Character)",
-      "analysis_new_dragon": "New unit analysis post (Dragon)",
-      "analysis_post": "Unit Analysis",
+      "analysis_list": "Index of analysis",
+      "analysis_new_chara": "New character analysis post",
+      "analysis_new_dragon": "New dragon analysis post",
+      "analysis_edit_chara": "Edit character analysis post #A{{pid}}",
+      "analysis_edit_dragon": "Edit dragon analysis post #A{{pid}}",
+      "analysis_post": "Analysis",
       "home": "Homepage",
       "constructing": "Under construction",
-      "quest_edit": "Edit HDTs/Agitos",
+      "quest_edit": "Edit HDTs/Agitos #Q{{pid}}",
       "quest_list": "Index of HDTs/Agitos",
       "quest_new": "New HDTs/Agitos",
       "quest_post": "HDTs/Agitos",
@@ -248,7 +252,8 @@
       "ultimate": "Ultimate",
       "videos": "Related Videos",
       "error": {
-        "unknown_type": "Unknown post type."
+        "no_post_id": "Analysis ID is not specified.",
+        "unknown_type": "Unknown post type - {{analysisType}}."
       },
       "skill": {
         "name": "Skill Name",
@@ -258,15 +263,14 @@
       },
       "type": {
         "character": "Character",
-        "dragon": "Dragon",
-        "uncategorized": "Uncategorized"
+        "dragon": "Dragon"
       }
     },
     "info": {
       "title_self": "Post Information",
       "id": "ID",
-      "last_modified": "Last Modified at {{datetime}}",
-      "published": "Published at {{datetime}} ",
+      "last_modified": "Last Modified Timestamp",
+      "published": "Published Timestamp",
       "title": "Title",
       "view_count": "View Count"
     },
@@ -289,7 +293,8 @@
     },
     "message": {
       "alt_lang": "This post does not have a version in {{langUi}}. Therefore, we're displaying it in {{langPost}}.",
-      "other_lang": "This post is multilingual."
+      "other_lang": "This post is multilingual.",
+      "published": "Post published."
     },
     "misc": {
       "title_self": "Others"

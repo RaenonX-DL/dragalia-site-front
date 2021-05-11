@@ -1,80 +1,79 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import {Alert} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
+import React from 'react';
 
-import {ApiResponseCodes, PostGetSuccessResponse} from '../../../utils/services/api';
+import {useTranslation} from '../../../i18n/utils';
+import {CookiesControl} from '../../../utils/cookies';
+import {
+  ApiResponseCode,
+  PostGetSuccessResponse,
+  FunctionFetchPost,
+} from '../../../utils/services/api';
+import {AlertFetchFailed} from './shared/alert';
 
-
-export type PostFetchStatus = {
+export type PostFetchStatus<R extends PostGetSuccessResponse = PostGetSuccessResponse> = {
   fetched: boolean,
   fetchFailed: boolean,
-  failContent: string,
-  post: PostGetSuccessResponse | null,
+  failureMessage: string,
+  post: R | null,
 }
 
-
-type FetchPostProps = {
-  status: PostFetchStatus,
-  fnSetStatus: Dispatch<SetStateAction<PostFetchStatus>>,
-  fnSendFetchRequest: () => Promise<PostGetSuccessResponse>
+type FetchPostProps<R extends PostGetSuccessResponse, S extends PostFetchStatus> = {
+  status: S,
+  fnSetStatus: (newStatus: S) => void,
+  fnSendFetchRequest: FunctionFetchPost<R>,
+  seqId: number,
+  increaseCount?: boolean,
 }
 
+export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchStatus<R>>({
+  status,
+  fnSetStatus,
+  fnSendFetchRequest,
+  seqId,
+  increaseCount,
+}: FetchPostProps<R, S>) => {
+  const {t, lang} = useTranslation();
 
-export const FetchPost = ({status, fnSetStatus, fnSendFetchRequest}: FetchPostProps) => {
-  const {t} = useTranslation();
-
-  const fetchPost = () => {
-    fnSendFetchRequest()
+  if (!status.fetched) {
+    fnSendFetchRequest(
+      CookiesControl.getGoogleUid() || '',
+      seqId,
+      lang,
+      increaseCount,
+    )
       .then((data) => {
-        // setting state triggers re-render, re-render triggers API call,
-        // so having a if statement to guard from the re-render and API re-call
-
-        if (!status.fetched) {
-          if (data.success) {
-            fnSetStatus({
-              ...status,
-              fetched: true,
-              fetchFailed: false,
-              post: data,
-            });
-          } else {
-            fnSetStatus({
-              ...status,
-              fetched: true,
-              fetchFailed: true,
-              failContent: (
-                data.code === ApiResponseCodes.FAILED_POST_NOT_EXISTS ?
-                  t('posts.manage.post_not_exists') :
-                  data.code.toString()
-              ),
-            });
-          }
+        if (data.success) {
+          fnSetStatus({
+            ...status,
+            fetched: true,
+            fetchFailed: false,
+            post: data,
+          });
+        } else {
+          fnSetStatus({
+            ...status,
+            fetched: true,
+            fetchFailed: true,
+            failureMessage: (
+              data.code === ApiResponseCode.FAILED_POST_NOT_EXISTS ?
+                t('posts.manage.post_not_exists') :
+                data.code.toString()
+            ),
+          });
         }
       })
       .catch((error) => {
-        // if statement to guard from re-render loop
-        if (!status.fetchFailed) {
-          fnSetStatus({
-            ...status,
-            fetchFailed: true,
-            failContent: error.toString(),
-          });
-        }
+        fnSetStatus({
+          ...status,
+          fetched: true,
+          fetchFailed: true,
+          failureMessage: error.toString(),
+        });
       });
-  };
-
-  const alertFetchFailed = (
-    <Alert variant="danger">{t('posts.manage.fetch_post_failed', {error: status.failContent})}</Alert>
-  );
-
-  // Trigger the fetch request if not yet fetched
-  if (!status.fetched) {
-    fetchPost();
   }
 
   if (status.fetchFailed) {
-    return alertFetchFailed;
-  } else {
-    return <></>;
+    return <AlertFetchFailed failureMessage={status.failureMessage}/>;
   }
+
+  return <></>;
 };

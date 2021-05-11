@@ -1,9 +1,9 @@
-import Color from 'color';
 import React from 'react';
+
+import Color from 'color';
+
 import {accumulate, normalize} from '../../../utils/calc';
-
-import {OverlayTooltip} from '../express/overlay';
-
+import {OverlayTooltip} from '../common/overlay/tooltip';
 
 type DistributionProps = {
   data: Array<number>,
@@ -14,13 +14,14 @@ type DistributionProps = {
   displayAsPct?: boolean,
 }
 
-
-export const DistributionBar = (props: DistributionProps) => {
-  const {
-    data, bgColors = ['#707070', '#505050'], height = '1.5rem',
-    padding = 0.03, displayText = true, displayAsPct = true,
-  } = props;
-
+export const DistributionBar = ({
+  data,
+  bgColors = ['#707070', '#505050'],
+  height = '1.5rem',
+  padding = 0.03,
+  displayText = true,
+  displayAsPct = true,
+}: DistributionProps) => {
   const accumulatedData = accumulate([0].concat(data));
 
   const normalizedAccumulated = normalize(accumulatedData, padding);

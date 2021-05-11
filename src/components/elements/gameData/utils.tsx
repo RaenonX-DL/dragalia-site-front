@@ -1,7 +1,9 @@
 import React from 'react';
+
 import {Alert} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
-import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../constants/config';
+
+import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../const/config';
+import {useTranslation} from '../../../i18n/utils';
 
 
 type TruncatedEntryProps = {
@@ -32,9 +34,8 @@ const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
  */
 export const overLengthWarningCheck = (entries: Array<any>) => {
   if (entries.length > PAGE_ATK_SKILL_MAX_ENTRIES) {
-    const originalLength = entries.length;
     entries.splice(PAGE_ATK_SKILL_MAX_ENTRIES);
-    return <TruncatedWarningEntry displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={originalLength} key={-1}/>;
+    return <TruncatedWarningEntry displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={entries.length}/>;
   }
 
   return null;

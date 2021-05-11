@@ -1,10 +1,10 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import Path from '../../../../constants/path';
-import {AnalysisPostListEntry, ApiRequestSender} from '../../../../utils/services/api';
-import {AnalysisPostList, PostListPage} from '../../../elements';
 
-import {PageProps} from '../../base';
+import Path from '../../../../const/path/definitions';
+import {useTranslation} from '../../../../i18n/utils';
+import {ApiRequestSender} from '../../../../utils/services/api';
+import {AnalysisPostList, PostListPage} from '../../../elements';
+import {PageProps} from '../../props';
 
 
 export const AnalysisList = ({fnSetTitle}: PageProps) => {
@@ -16,19 +16,27 @@ export const AnalysisList = ({fnSetTitle}: PageProps) => {
 
   return (
     <PostListPage
-      fnFetchList={ApiRequestSender.analysisPostList}
-      fnGetPostListJsx={
-        (posts) =>
-          <AnalysisPostList
-            posts={posts as Array<AnalysisPostListEntry>}
-            linkGenerator={(id) => Path.getAnalysis(id)}/>
-      }
-      title={title} currentUrl={Path.ANALYSIS_LIST}
+      title={title}
+      currentUrl={Path.ANALYSIS_LIST}
       postManageBarProps={{
-        newPostUrl: Path.ANALYSIS_NEW_CHARA,
-        newPostTitle: t('posts.manage.add_chara'),
-        newPostUrl2: Path.ANALYSIS_NEW_DRAGON,
-        newPostTitle2: t('posts.manage.add_dragon'),
-      }}/>
+        newButtons: [
+          {
+            url: Path.ANALYSIS_NEW_CHARA,
+            title: t('posts.manage.add_chara'),
+          },
+          {
+            url: Path.ANALYSIS_NEW_DRAGON,
+            title: t('posts.manage.add_dragon'),
+          },
+        ],
+      }}
+      fnFetchList={ApiRequestSender.analysisPostList}
+      renderPostEntries={(response) => (
+        <AnalysisPostList
+          entries={response.posts}
+          generateLink={(postId) => Path.getAnalysis(postId)}
+        />
+      )}
+    />
   );
 };

@@ -1,12 +1,13 @@
 import React, {ChangeEventHandler} from 'react';
-import {useTranslation} from 'react-i18next';
+
 import {Tab, Tabs} from 'react-bootstrap';
 
+import {useTranslation} from '../../../i18n/utils';
 import {Markdown} from './main';
 
 type MarkdownInputProps = {
   rows?: number,
-  onChanged?: ChangeEventHandler<HTMLInputElement>,
+  onChanged?: ChangeEventHandler<HTMLTextAreaElement>,
   value?: string,
   required?: boolean
 };
@@ -16,7 +17,7 @@ export const MarkdownInput = ({rows, onChanged, value = '', required = false}: M
 
   const [content, setContent] = React.useState(value);
 
-  const updateContent = (e) => {
+  const updateContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
 
     if (onChanged) {
@@ -25,18 +26,18 @@ export const MarkdownInput = ({rows, onChanged, value = '', required = false}: M
   };
 
   return (
-    <div>
-      <Tabs defaultActiveKey="markdown">
-        <Tab eventKey="markdown" title={t('posts.manage.md')}>
-          <textarea
-            className="form-control mt-1" rows={rows} onChange={updateContent} required={required} value={content}/>
-        </Tab>
-        <Tab eventKey="preview" title={t('posts.manage.preview')}>
-          <div className="p-3">
-            <Markdown>{content}</Markdown>
-          </div>
-        </Tab>
-      </Tabs>
-    </div>
+    <Tabs defaultActiveKey="markdown">
+      <Tab eventKey="markdown" title={t('posts.manage.md')}>
+        <textarea
+          className="form-control mt-1" rows={rows} onChange={updateContent}
+          required={required} value={content}
+        />
+      </Tab>
+      <Tab eventKey="preview" title={t('posts.manage.preview')}>
+        <div className="p-3">
+          <Markdown>{content}</Markdown>
+        </div>
+      </Tab>
+    </Tabs>
   );
 };

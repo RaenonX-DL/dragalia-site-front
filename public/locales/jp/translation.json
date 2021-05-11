@@ -175,9 +175,10 @@
     "no_uid": "不正確なGoogleアカウント",
     "no_uid_details": "不正確なGoogleアカウント。もう一度ログインしてください。",
     "login": "Googleログイン",
-    "login_error": "エラーコード: {{errorCode}}",
+    "login_error": "エラー: {{error}}",
     "login_failed": "ログイン失敗",
     "login_unknown": "不明なエラーが発生，ログインができない。({{error}})",
+    "login_offline_disallowed": "無法使用離線登入。請連至網路後重試。({{code}})",
     "logout": "Googleログアウト",
     "logout_failed": "ログアウト失敗",
     "logout_unknown": "不明なエラーが発生，ログアウトができない。",
@@ -192,6 +193,7 @@
       "info": "只要每個月捐款超過 USD $1 以上，即可無廣告瀏覽網站！\n\n如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。"
     },
     "warning": {
+      "admin_only": "You must have admin privilege to access this page.",
       "page_nav": "このページ閉じますか？",
       "truncated": "項目が多過ぎるため、一部だけ展示されてます。({{displayed}} 表示中 / 全 {{returned}})。第{{displayed}}個項目の以後の結果も欲しいという方は検索範囲を指定してください。"
     },
@@ -211,10 +213,12 @@
       "analysis_list": "評価のカタログ",
       "analysis_new_chara": "新キャラの評価",
       "analysis_new_dragon": "新ドラゴンの評価",
+      "analysis_edit_chara": "編輯角色評測 #A{{pid}}",
+      "analysis_edit_dragon": "編輯龍族評測 #A{{pid}}",
       "analysis_post": "評価",
       "home": "ホームページ",
       "constructing": "工事中",
-      "quest_edit": "高難易度クエスト攻略の編集",
+      "quest_edit": "高難易度クエスト攻略の編集 #Q{{pid}}",
       "quest_list": "高難易度クエスト攻略のカタログ",
       "quest_new": "高難易度クエスト攻略の追加",
       "quest_post": "高難易度クエスト攻略",
@@ -248,7 +252,8 @@
       "ultimate": "必殺技",
       "videos": "関する動画",
       "error": {
-        "unknown_type": "文の種類が分別できない。"
+        "no_post_id": "文章 ID 未指定。",
+        "unknown_type": "文の種類が分別できない - {{analysisType}}。"
       },
       "skill": {
         "name": "スキルの名前",
@@ -258,15 +263,14 @@
       },
       "type": {
         "character": "キャラ",
-        "dragon": "ドラゴン",
-        "uncategorized": "未定"
+        "dragon": "ドラゴン"
       }
     },
     "info": {
       "title_self": "本ページの情報",
       "id": "ID",
-      "last_modified": "{{datetime}} に最後の編集した",
-      "published": "{{datetime}} に発表した",
+      "last_modified": "最後の編集時間",
+      "published": "発表時間",
       "title": "お題",
       "view_count": "ご覽回數"
     },
@@ -289,7 +293,8 @@
     },
     "message": {
       "alt_lang": "本ページは言語が {{langUi}} の版がございませんなので。展示した言語が{{langPost}} の版に変えました。",
-      "other_lang": "本ページが他言語の版もあります。"
+      "other_lang": "本ページが他言語の版もあります。",
+      "published": "文を発表しました。"
     },
     "misc": {
       "title_self": "他の文章"

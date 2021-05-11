@@ -1,10 +1,10 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import Path from '../../../../constants/path';
-import {ApiRequestSender, QuestPostListEntry} from '../../../../utils/services/api';
-import {PostListPage, QuestPostList} from '../../../elements';
 
-import {PageProps} from '../../base';
+import Path from '../../../../const/path/definitions';
+import {useTranslation} from '../../../../i18n/utils';
+import {ApiRequestSender} from '../../../../utils/services/api';
+import {PostListPage, QuestPostList} from '../../../elements';
+import {PageProps} from '../../props';
 
 
 export const QuestList = ({fnSetTitle}: PageProps) => {
@@ -16,13 +16,18 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
 
   return (
     <PostListPage
+      title={title}
+      currentUrl={Path.QUEST_LIST}
       fnFetchList={ApiRequestSender.questPostList}
-      fnGetPostListJsx={
-        (posts) =>
-          <QuestPostList
-            posts={posts as Array<QuestPostListEntry>}
-            linkGenerator={(id) => Path.getQuest(id)}/>
-      }
-      title={title} currentUrl={Path.QUEST_LIST} postManageBarProps={{newPostUrl: Path.QUEST_NEW}}/>
+      postManageBarProps={{
+        newButtons: [{url: Path.QUEST_NEW}],
+      }}
+      renderPostEntries={(response) => (
+        <QuestPostList
+          entries={response.posts}
+          generateLink={(postId) => Path.getQuest(postId)}
+        />
+      )}
+    />
   );
 };

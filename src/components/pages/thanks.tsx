@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {Badge} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
+
+import {useTranslation} from '../../i18n/utils';
 import {Markdown} from '../elements/markdown/main';
-import {PageProps} from './base';
+import {PageProps} from './props';
 
 export const SpecialThanks = ({fnSetTitle}: PageProps) => {
   const {t} = useTranslation();
@@ -36,6 +38,10 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
           皮皮熊艹&nbsp;
           <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
           <Badge variant="orange">{t('misc.om_member')}</Badge>
+        </li>
+        <li>
+          陳泓維&nbsp;
+          <Badge variant="info">{t('donation.tier_s1')}</Badge>
         </li>
       </ul>
       <hr/>

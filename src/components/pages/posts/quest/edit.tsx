@@ -1,44 +1,46 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Redirect, useParams} from 'react-router-dom';
-import Path from '../../../../constants/path';
+import React from 'react';
+
+import {useParams} from 'react-router-dom';
+
+import {QuestEditParams} from '../../../../const/path/params';
+import {useTranslation} from '../../../../i18n/utils';
 import {ApiRequestSender} from '../../../../utils/services/api';
-
-import {FetchPost, getGoogleUid, PostFetchStatus, QuestPostFetchStatus, QuestPostForm} from '../../../elements';
-
-import {PageProps} from '../../base';
+import {FetchPost, QuestPostFetchStatus} from '../../../elements';
+import {QuestEditForm} from '../../../elements/posts/quest/form/edit';
+import {PageProps} from '../../props';
 
 export const QuestEdit = ({fnSetTitle}: PageProps) => {
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
 
-  const {pid} = useParams();
+  const {pid} = useParams<QuestEditParams>();
 
-  const [status, setStatus] = React.useState<QuestPostFetchStatus>({
-    fetched: false, fetchFailed: false, failContent: '', post: null,
+  const [fetchStatus, setFetchStatus] = React.useState<QuestPostFetchStatus>({
+    fetched: false,
+    fetchFailed: false,
+    failureMessage: '',
+    post: null,
   });
 
-  if (status.post) {
-    fnSetTitle(`#Q${status.post.seqId} - ${t('pages.name.quest_edit')}`);
-  } else {
-    fnSetTitle(t('pages.name.quest_edit'));
+  if (!pid) {
+    setFetchStatus({
+      ...fetchStatus,
+      fetched: true,
+      fetchFailed: true,
+      failureMessage: t('posts.analysis.error.no_post_id'),
+    });
+  } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
+    fnSetTitle(t('pages.name.quest_edit', {pid: fetchStatus.post.seqId}));
+
+    return <QuestEditForm post={fetchStatus.post}/>;
   }
 
-  const handleSubmit = (payload) => ApiRequestSender.questPostEdit(payload);
-
-  const fnSendFetchRequest = () =>
-    ApiRequestSender.questPostGet(getGoogleUid() || '', pid.toString(), i18n.language, false);
-
   return (
-    <>
-      {
-        status.fetched ?
-          status.post ?
-            <QuestPostForm fnSendRequest={handleSubmit} post={status.post}/> :
-            <Redirect to={Path.QUEST_NEW}/> :
-          <FetchPost
-            status={status} fnSetStatus={setStatus as Dispatch<SetStateAction<PostFetchStatus>>}
-            fnSendFetchRequest={fnSendFetchRequest}/>
-      }
-    </>
+    <FetchPost
+      status={fetchStatus}
+      fnSetStatus={(newStatus) => setFetchStatus(newStatus)}
+      fnSendFetchRequest={ApiRequestSender.questPostGet}
+      seqId={Number(pid)}
+      increaseCount={false}
+    />
   );
 };
