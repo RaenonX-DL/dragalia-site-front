@@ -128,6 +128,11 @@ export class GoogleAnalytics {
    * @param {Object} parameters parameters of the event
    */
   private static sendEvent(eventName: string, parameters: Object) {
+    // Log GA event instead of sending it if under development
+    if (process.env.NODE_ENV === 'development') {
+      console.debug(eventName, parameters);
+      return;
+    }
     // @ts-ignore
     window.gtag('event', eventName, parameters);
   }
