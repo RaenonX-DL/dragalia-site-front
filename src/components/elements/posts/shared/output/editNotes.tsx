@@ -4,6 +4,7 @@ import {Table} from 'react-bootstrap';
 
 import {PostEditNote} from '../../../../../api-def/api';
 import {useTranslation} from '../../../../../i18n/utils';
+import {TimeAgo} from '../../../../../utils/timeago';
 
 type PostEditNotesProps = {
   editNotes: Array<PostEditNote>
@@ -24,8 +25,8 @@ export const PostEditNotes = ({editNotes}: PostEditNotesProps) => {
         {
           editNotes.map((editNote) => {
             return (
-              <tr key={editNote.timestamp.toLocaleDateString()}>
-                <td className="no-line-break text-center">{editNote.timestamp}</td>
+              <tr key={editNote.timestampEpoch}>
+                <td className="no-line-break text-center"><TimeAgo epoch={editNote.timestampEpoch}/></td>
                 <td className="no-line-break">{editNote.note}</td>
               </tr>
             );

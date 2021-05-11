@@ -4,6 +4,7 @@ import {Col, Row} from 'react-bootstrap';
 
 import {useTranslation} from '../../../../../i18n/utils';
 import {PostGetSuccessResponse} from '../../../../../utils/services/api';
+import {TimeAgo} from '../../../../../utils/timeago';
 import {InfoCard, PageAnchor, PostEditNotes} from '../../../../elements';
 
 
@@ -11,21 +12,19 @@ type PostInfoProps = {
   post: PostGetSuccessResponse,
 };
 
-
 export const PostInfo = ({post}: PostInfoProps) => {
   const {t} = useTranslation();
 
-  // FIXME: Moment JS?
   return (
     <>
       <PageAnchor name="post-info" type="h3" text={t('posts.info.title_self')} className="mb-3"/>
       <Row>
         <Col lg={4} className="pr-lg-2">
-          <InfoCard title={t('posts.info.last_modified')} content={post.modified.toLocaleString()}/>
+          <InfoCard title={t('posts.info.last_modified')} content={<TimeAgo epoch={post.modifiedEpoch}/>}/>
           <div className="d-lg-none mb-3"/>
         </Col>
         <Col lg={4} className="px-lg-2">
-          <InfoCard title={t('posts.info.published')} content={post.published.toLocaleString()}/>
+          <InfoCard title={t('posts.info.published')} content={<TimeAgo epoch={post.publishedEpoch}/>}/>
           <div className="d-lg-none mb-3"/>
         </Col>
         <Col lg={4} className="pl-lg-2">

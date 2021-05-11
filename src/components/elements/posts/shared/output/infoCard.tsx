@@ -5,7 +5,7 @@ import {Col, Row} from 'react-bootstrap';
 
 type InfoCardProps = {
   title: string,
-  content: string | number,
+  content: string | number | React.ReactNode,
   useCode?: boolean
 }
 

@@ -269,8 +269,8 @@
     "info": {
       "title_self": "貼文資訊",
       "id": "ID",
-      "last_modified": "最後修改於 {{datetime}}",
-      "published": "發布於 {{datetime}}",
+      "last_modified": "最後修改時間",
+      "published": "發布時間",
       "title": "標題",
       "view_count": "瀏覽次數"
     },

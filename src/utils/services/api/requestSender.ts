@@ -233,16 +233,12 @@ export class ApiRequestSender {
       {googleUid, seqId, lang, incCount},
     )
       .then((response) => {
-        // Cast the date string to `Date` object because the data sent from the backend is string
-        response.modified = new Date(response.modified);
-        response.published = new Date(response.published);
-
         if (response.type === AnalysisType.CHARACTER) {
           return (response as CharacterAnalysis);
         } else if (response.type === AnalysisType.DRAGON) {
           return (response as DragonAnalysis);
         } else {
-          throw new Error('Unknown post type');
+          throw new Error(`Unknown post type: ${AnalysisType[response.type]}`);
         }
       });
   }

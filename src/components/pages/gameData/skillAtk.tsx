@@ -3,7 +3,7 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {useTranslation} from '../../../i18n/utils';
-import {scrollToTop} from '../../../utils/misc';
+import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {

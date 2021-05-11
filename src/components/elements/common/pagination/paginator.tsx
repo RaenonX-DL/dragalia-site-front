@@ -3,7 +3,7 @@ import React from 'react';
 import {Pagination} from 'react-bootstrap';
 import {useHistory} from 'react-router';
 
-import {scrollToTop} from '../../../../utils/misc';
+import {scrollToTop} from '../../../../utils/scroll';
 import {PaginationState, SpecialKey} from './types';
 import {getValidNewPage} from './utils';
 

@@ -269,8 +269,8 @@
     "info": {
       "title_self": "Post Information",
       "id": "ID",
-      "last_modified": "Last Modified at {{datetime}}",
-      "published": "Published at {{datetime}} ",
+      "last_modified": "Last Modified Timestamp",
+      "published": "Published Timestamp",
       "title": "Title",
       "view_count": "View Count"
     },

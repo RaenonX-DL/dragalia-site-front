@@ -269,8 +269,8 @@
     "info": {
       "title_self": "本ページの情報",
       "id": "ID",
-      "last_modified": "{{datetime}} に最後の編集した",
-      "published": "{{datetime}} に発表した",
+      "last_modified": "最後の編集時間",
+      "published": "発表時間",
       "title": "お題",
       "view_count": "ご覽回數"
     },

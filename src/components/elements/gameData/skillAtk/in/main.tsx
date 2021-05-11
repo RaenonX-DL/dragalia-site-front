@@ -4,7 +4,7 @@ import {Button, Collapse} from 'react-bootstrap';
 
 import {ConditionCodes} from '../../../../../const/gameData';
 import {useTranslation} from '../../../../../i18n/utils';
-import {scrollToTop} from '../../../../../utils/misc';
+import {scrollToTop} from '../../../../../utils/scroll';
 import {InputParameters} from './params';
 import {InputSummary} from './summary';
 import {InputData} from './types';

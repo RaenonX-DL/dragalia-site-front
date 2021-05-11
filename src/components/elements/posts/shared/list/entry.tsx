@@ -4,6 +4,7 @@ import {Card, Col, Row} from 'react-bootstrap';
 
 import {PostListEntry} from '../../../../../api-def/api';
 import {useTranslation} from '../../../../../i18n/utils';
+import {TimeAgo} from '../../../../../utils/timeago';
 
 
 export type LinkGenerator = (postId: number) => string;
@@ -44,10 +45,10 @@ export const PostEntry = <E extends PostListEntry>({
         </Row>
         <Row>
           <Col lg={6} className="text-center">
-            {t('posts.info.last_modified', {datetime: entry.modified})}
+            {t('posts.info.last_modified')}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
           </Col>
           <Col lg={6} className="text-center">
-            {t('posts.info.published', {datetime: entry.published})}
+            {t('posts.info.published')}:&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
           </Col>
         </Row>
       </Card.Body>
