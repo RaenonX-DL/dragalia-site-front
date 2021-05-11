@@ -3,9 +3,13 @@
 import express from 'express';
 
 import {handleRoot} from './handlers/root';
+import {commonRateLimiter} from './middleware/rateLimit';
 import {PATH_BUILD_DIR} from './paths';
 
 const app = express();
+
+// Middleware
+app.use(commonRateLimiter);
 
 app.use('/', handleRoot);
 app.use('/', express.static(PATH_BUILD_DIR));
