@@ -10,6 +10,7 @@ import {
   SupportedLanguageNames,
   PostIdCheckResponse,
 } from '../../../../../utils/services/api';
+import {DelayedCheckState} from '../../../common/delayedCheck';
 import {isFormStateValid, PostFormControlProps} from './types';
 
 export type FormMetaProps<P extends PostMetaPayload, R extends PostIdCheckResponse> = PostFormControlProps<P> & {
@@ -33,17 +34,35 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
 
   const {payload, isPreloaded} = formState;
 
+  const [checkState, setCheckState] = React.useState<DelayedCheckState>({
+    isChecking: false,
+    checkTimer: null,
+  });
+
   const isValid = isFormStateValid(formState);
 
   const checkAvailability = (seqId: number | undefined, langCode: SupportedLanguages) => {
+    setCheckState({...checkState, isChecking: true});
     fnIdCheck(CookiesControl.getGoogleUid() || '', Number(seqId) || null, langCode)
       .then((data) => setAvailability(data.available))
-      .catch(() => setAvailability(false));
+      .catch(() => setAvailability(false))
+      .finally(() => setCheckState({...checkState, isChecking: false}));
   };
 
   // Check availability on `payload.seqId` or `payload.lang` changed
+  // - `timeout` for delaying the availability check
   React.useEffect(
-    () => checkAvailability(payload.seqId, payload.lang as SupportedLanguages),
+    () => {
+      if (checkState.checkTimer) {
+        clearTimeout(checkState.checkTimer);
+        setCheckState({...checkState, checkTimer: null});
+      }
+
+      const checkTimer = setTimeout(() => {
+        checkAvailability(payload.seqId, payload.lang as SupportedLanguages);
+      }, 1000);
+      setCheckState({...checkState, checkTimer});
+    },
     [payload.seqId, payload.lang],
   );
 
@@ -54,7 +73,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
           className="mb-2" type="number" placeholder={t('posts.info.id')}
           isValid={isValid} isInvalid={!isValid}
           onChange={(e) => setPayload('seqId', e.target.value)}
-          value={payload.seqId || ''} disabled={isPreloaded} min="1"
+          value={payload.seqId || ''} disabled={isPreloaded || checkState.isChecking} min="1"
         />
       </Col>
       <Col lg={7}>
