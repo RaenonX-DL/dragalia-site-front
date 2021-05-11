@@ -263,8 +263,7 @@
       },
       "type": {
         "character": "キャラ",
-        "dragon": "ドラゴン",
-        "uncategorized": "未定"
+        "dragon": "ドラゴン"
       }
     },
     "info": {

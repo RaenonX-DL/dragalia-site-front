@@ -263,8 +263,7 @@
       },
       "type": {
         "character": "Character",
-        "dragon": "Dragon",
-        "uncategorized": "Uncategorized"
+        "dragon": "Dragon"
       }
     },
     "info": {

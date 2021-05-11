@@ -263,8 +263,7 @@
       },
       "type": {
         "character": "角色",
-        "dragon": "龍族",
-        "uncategorized": "未分類"
+        "dragon": "龍族"
       }
     },
     "info": {
