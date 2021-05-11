@@ -22,15 +22,24 @@ const replaceHtmlContent = (html: string, pageMetaResponse: PageMetaResponse): s
 };
 
 
-export const handleRoot = (req: Request, res: Response, next: NextFunction) => {
+const isAccessValid = (req: Request, res: Response, next: NextFunction) => {
   // Check if the request URL ends with `html`, if so, blocks the access
   if (req.url.endsWith('html')) {
     res.status(403).end('403 Forbidden');
-    return;
+    return false;
   }
   // Return page asset files
-  if (req.url.match(/.*(css|js|cjs|txt|ico|png|json)/)) {
+  if (['css', 'js', 'cjs', 'txt', 'ico', 'png', 'json'].some((suffix) => req.url.endsWith(suffix))) {
     next();
+    return false;
+  }
+
+  return true;
+};
+
+
+export const handleRoot = (req: Request, res: Response, next: NextFunction) => {
+  if (!isAccessValid(req, res, next)) {
     return;
   }
 
