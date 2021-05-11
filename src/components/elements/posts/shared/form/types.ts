@@ -57,3 +57,7 @@ export type PostFormBaseProps<P extends PostMetaPayload> = PostFormProps<P> & {
     setAvailability: (availability: boolean) => void,
   ) => React.ReactNode,
 }
+
+export const isFormStateValid = <P extends PostMetaPayload>({isIdAvailable, isPreloaded}: PostFormState<P>) => {
+  return isIdAvailable || isPreloaded;
+};

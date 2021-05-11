@@ -10,7 +10,7 @@ import {
   SupportedLanguageNames,
   PostIdCheckResponse,
 } from '../../../../../utils/services/api';
-import {PostFormControlProps} from './types';
+import {isFormStateValid, PostFormControlProps} from './types';
 
 export type FormMetaProps<P extends PostMetaPayload, R extends PostIdCheckResponse> = PostFormControlProps<P> & {
   titlePlaceholder: string,
@@ -31,9 +31,9 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
 
   const {t} = useTranslation();
 
-  const {payload, isPreloaded, isIdAvailable} = formState;
+  const {payload, isPreloaded} = formState;
 
-  const isValid = isIdAvailable || isPreloaded;
+  const isValid = isFormStateValid(formState);
 
   const checkAvailability = (seqId: number | undefined, langCode: SupportedLanguages) => {
     fnIdCheck(CookiesControl.getGoogleUid() || '', Number(seqId) || null, langCode)

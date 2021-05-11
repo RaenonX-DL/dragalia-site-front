@@ -97,10 +97,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
         <div className="mb-3"/>
         {renderOnPreloaded && renderOnPreloaded(setPayload)}
         <hr/>
-        <FormControl
-          isIdAvailable={formState.isIdAvailable}
-          isPostPreloaded={formState.isPreloaded}
-        />
+        <FormControl formState={formState}/>
       </form>
     </>
   );
