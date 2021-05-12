@@ -8,8 +8,8 @@
   },
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "start:production": "pm2-runtime start pm2.yml --env production",
+    "dev": "react-scripts start",
+    "start": "pm2-runtime start pm2.yml --env production",
     "build": "npm run build:react && npm run build:service",
     "build:react": "react-scripts build",
     "build:service": "tsc --p ./service/tsconfig.json",
