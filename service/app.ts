@@ -1,15 +1,13 @@
-// False positive of `esModuleInterop` not provided
-// @ts-ignore
+import compression from 'compression';
 import express from 'express';
 
 import {handleRoot} from './handlers/root';
-import {commonRateLimiter} from './middleware/rateLimit';
 import {PATH_BUILD_DIR} from './paths';
 
 const app = express();
 
 // Middleware
-app.use(commonRateLimiter);
+app.use(compression());
 
 app.use('/', handleRoot);
 app.use('/', express.static(PATH_BUILD_DIR));
