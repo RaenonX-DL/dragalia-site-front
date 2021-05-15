@@ -1,17 +1,18 @@
-import compression from 'compression';
-import express from 'express';
+import fastify from 'fastify';
 
-import {handleRoot} from './handlers/root';
-import {PATH_BUILD_DIR} from './paths';
+import {mainHandler} from './handler/main';
 
-const app = express();
+const app = fastify({
+  logger: true,
+  connectionTimeout: 20000, // 20 seconds
+});
 
-// Middleware
-app.use(compression());
+// Handle all routes using the same handler
+app.get('/*', mainHandler);
 
-app.use('/', handleRoot);
-app.use('/', express.static(PATH_BUILD_DIR));
-
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`server started on port ${process.env.PORT || 5000}`);
+(async () => {
+  await app.listen(process.env.PORT || 5000, process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost');
+})().catch((err) => {
+  app.log.error(err);
+  process.exit(1);
 });
