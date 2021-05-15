@@ -3,7 +3,7 @@ import React from 'react';
 import {Card, Col, Row} from 'react-bootstrap';
 
 import {PostListEntry} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 
 
@@ -27,7 +27,7 @@ export const PostEntry = <E extends PostListEntry>({
   generateLink,
   renderPostBadges,
 }: PostEntryPropsInternal<E>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Card>
@@ -37,7 +37,7 @@ export const PostEntry = <E extends PostListEntry>({
             {renderPostBadges({entry})}
           </Col>
           <Col className="text-right">
-            {t('posts.info.view_count')}:&nbsp;<span className="h4"><code>{entry.viewCount}</code></span>
+            {t((t) => t.posts.info.viewCount)}:&nbsp;<span className="h4"><code>{entry.viewCount}</code></span>
           </Col>
         </Row>
         <Row>
@@ -45,10 +45,10 @@ export const PostEntry = <E extends PostListEntry>({
         </Row>
         <Row>
           <Col lg={6} className="text-center">
-            {t('posts.info.last_modified')}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
+            {t((t) => t.posts.info.lastModified)}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
           </Col>
           <Col lg={6} className="text-center">
-            {t('posts.info.published')}:&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
+            {t((t) => t.posts.info.published)}:&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
           </Col>
         </Row>
       </Card.Body>

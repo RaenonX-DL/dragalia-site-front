@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
 import {useDispatch} from '../../../../state/store';
 import {useGoogleLogin} from './login';
 
 export const LoginPrompt = () => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
   const dispatch = useDispatch();
 
   const {signIn} = useGoogleLogin({

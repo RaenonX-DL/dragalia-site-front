@@ -1,16 +1,32 @@
-import {i18n} from 'i18next';
-import {useTranslation as useTranslationOfi18n, Namespace, TFunction} from 'react-i18next';
+import {TranslationStruct} from './translations/definition';
+import {GetTranslationFunction, TFunction} from './types';
 
-import {SupportedLanguages} from '../api-def/api/other/lang';
 
-type UseTranslationReturn<N extends Namespace> = {
-  t: TFunction<N>,
-  i18n: i18n,
-  lang: SupportedLanguages,
-};
+export const getTranslationString = (
+  translation: TranslationStruct,
+): TFunction => (
+  getEntryFn: GetTranslationFunction,
+  replacements: { [key in string]: string } = {},
+): string => {
+  const entry = getEntryFn(translation);
 
-export const useTranslation = <N extends Namespace>(): UseTranslationReturn<N> => {
-  const {t, i18n} = useTranslationOfi18n<N>();
+  const replacer = (original: string, key: string) => {
+    const newValue = replacements[key];
 
-  return {t, i18n, lang: i18n.language as SupportedLanguages};
+    if (!newValue) {
+      const errorMessage = `Placeholder of key [${key}] does not exist in string: "${entry}"`;
+
+      if (process.env.NODE_ENV === 'development') {
+        throw new Error(errorMessage);
+      } else {
+        console.warn(errorMessage);
+      }
+
+      return original;
+    }
+
+    return newValue;
+  };
+
+  return entry.replace(/{{(\w+)}}/g, replacer);
 };

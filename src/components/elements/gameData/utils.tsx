@@ -3,7 +3,7 @@ import React from 'react';
 import {Alert} from 'react-bootstrap';
 
 import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../const/config';
-import {useTranslation} from '../../../i18n/utils';
+import {useI18n} from '../../../i18n/hook';
 
 
 type TruncatedEntryProps = {
@@ -13,11 +13,17 @@ type TruncatedEntryProps = {
 
 
 const TruncatedWarningEntry = ({displayed, returned}: TruncatedEntryProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
-      {t('message.warning.truncated', {displayed, returned})}
+      {t(
+        (t) => t.message.warning.truncated,
+        {
+          displayed: displayed.toFixed(0),
+          returned: returned.toFixed(0),
+        },
+      )}
     </Alert>
   );
 };

@@ -16,8 +16,8 @@ export const useGoogleLogout = ({
   onFailure: () => {
     onFailed({
       show: true,
-      title: t('google_signin.logout_failed'),
-      message: t('google_signin.logout_unknown'),
+      title: t((t) => t.googleSignin.logoutFailed),
+      message: t((t) => t.googleSignin.logoutUnknown),
     });
   },
 });

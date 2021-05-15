@@ -1,3 +1,4 @@
+import {SupportedLanguages} from '../../api-def/api/other/lang';
 import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
 import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
 
@@ -21,9 +22,9 @@ export class GoogleAnalytics {
    * Record the event of switching the language.
    *
    * @param {string} oldLang old language
-   * @param {string} newLang new language
+   * @param {SupportedLanguages} newLang new language
    */
-  static languageChange(oldLang: string, newLang: string) {
+  static languageChange(oldLang: string, newLang: SupportedLanguages) {
     GoogleAnalytics.sendEvent(
       GAEvent.LANG_CHANGE,
       {

@@ -2,18 +2,18 @@ import React from 'react';
 
 import {Button} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 
 type Props = {
   fnSignIn: () => void,
 }
 
 export const LoginButton = ({fnSignIn}: Props) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Button variant="outline-success" onClick={fnSignIn}>
-      {t('google_signin.login')}
+      {t((t) => t.googleSignin.login)}
     </Button>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 
 
@@ -29,7 +29,7 @@ export const AnalysisSkillInput = ({
   rotations,
   tips,
 }: AnalysisSkillInputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const inputRows = 7;
 
@@ -41,7 +41,7 @@ export const AnalysisSkillInput = ({
             className="mb-2"
             type="text"
             value={name}
-            placeholder={t('posts.analysis.skill.name')}
+            placeholder={t((t) => t.posts.analysis.skill.name)}
             onChange={(e) => onNameChanged(e.target.value)}
             required
           />
@@ -49,7 +49,7 @@ export const AnalysisSkillInput = ({
       </Row>
       <Row>
         <Col lg className="pr-lg-2 mb-2">
-          <Form.Label>{t('posts.analysis.skill.info')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.analysis.skill.info)}</Form.Label>
           <MarkdownInput
             rows={inputRows}
             value={info}
@@ -58,7 +58,7 @@ export const AnalysisSkillInput = ({
           />
         </Col>
         <Col lg className="px-lg-2 mb-2">
-          <Form.Label>{t('posts.analysis.skill.rotations')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.analysis.skill.rotations)}</Form.Label>
           <MarkdownInput
             rows={inputRows}
             value={rotations}
@@ -67,7 +67,7 @@ export const AnalysisSkillInput = ({
           />
         </Col>
         <Col lg className="pl-lg-2 mb-2">
-          <Form.Label>{t('posts.analysis.skill.tips')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.analysis.skill.tips)}</Form.Label>
           <MarkdownInput
             rows={inputRows}
             value={tips}

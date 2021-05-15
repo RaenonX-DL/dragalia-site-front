@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {AnalysisType, CharacterAnalysis, DragonAnalysis} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PageProps} from '../../../../pages/props';
 import {OutputBase} from '../../shared/output/base';
@@ -11,7 +11,7 @@ import {AnalysisOutputDragon} from './dragon';
 
 
 export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const [status, setStatus] = React.useState<AnalysisPostFetchStatus>(
     {
@@ -28,7 +28,7 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       status={status}
       setStatus={setStatus}
       getTitle={(pid) => (
-        `#A${pid} ${status.post ? status.post.title : t('pages.name.analysis_post')}`
+        `#A${pid} ${status.post ? status.post.title : t((t) => t.pages.name.analysisPost)}`
       )}
       fnSendFetchRequest={ApiRequestSender.analysisPostGet}
       renderOnFetched={(post) => {
@@ -47,7 +47,10 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
           ...status,
           fetched: true,
           fetchFailed: true,
-          failureMessage: t('posts.analysis.error.unknown_type', {analysisType: AnalysisType[post.type]}),
+          failureMessage: t(
+            (t) => t.posts.analysis.error.unknownType,
+            {analysisType: AnalysisType[post.type]},
+          ),
         });
         return <></>;
       }}

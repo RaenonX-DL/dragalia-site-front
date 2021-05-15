@@ -3,14 +3,14 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {AnalysisPayload} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from '../../shared/form/types';
 
 export type FormBottomProps<P extends AnalysisPayload> = PostFormDataProps<P>
 
 export const FormBottom = <P extends AnalysisPayload>({formState, setPayload}: FormBottomProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {payload} = formState;
 
@@ -18,7 +18,7 @@ export const FormBottom = <P extends AnalysisPayload>({formState, setPayload}: F
     <>
       <Row>
         <Col>
-          <h5>{t('posts.analysis.videos')}</h5>
+          <h5>{t((t) => t.posts.analysis.videos)}</h5>
           <MarkdownInput
             onChanged={(e) => setPayload('videos', e.target.value)}
             rows={5} value={payload.videos}
@@ -28,7 +28,7 @@ export const FormBottom = <P extends AnalysisPayload>({formState, setPayload}: F
       <hr/>
       <Row>
         <Col>
-          <h5>{t('posts.analysis.story')}</h5>
+          <h5>{t((t) => t.posts.analysis.story)}</h5>
           <MarkdownInput
             onChanged={(e) => setPayload('story', e.target.value)}
             rows={5} value={payload.story}
@@ -38,7 +38,7 @@ export const FormBottom = <P extends AnalysisPayload>({formState, setPayload}: F
       <hr/>
       <Row>
         <Col>
-          <h5>{t('posts.analysis.keywords')}</h5>
+          <h5>{t((t) => t.posts.analysis.keywords)}</h5>
           <MarkdownInput
             onChanged={(e) => setPayload('keywords', e.target.value)}
             rows={5} value={payload.keywords}

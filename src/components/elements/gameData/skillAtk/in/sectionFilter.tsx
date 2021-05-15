@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Form} from 'react-bootstrap';
 
+import {useI18n} from '../../../../../i18n/hook';
 import {EnumChecksBox} from '../../elements/enumChecksBox';
 import {InlineCheck} from '../../elements/inlineCheck';
 import {SectionSubTitle} from '../../elements/subTitle';
@@ -23,15 +24,17 @@ export const SectionFilter = ({
   elementEnums,
   conditionEnums,
 }: SectionFilterProps) => {
+  const {t} = useI18n();
+
   return (
     <>
       <SectionTitle
-        titleLabel={'game.skill_atk.name.filter'}
-        descriptionLabel={'game.skill_atk.desc.filter'}
+        title={t((t) => t.game.skillAtk.name.filter)}
+        description={t((t) => t.game.skillAtk.desc.filter)}
       />
       <SectionSubTitle
-        titleLabel={'game.skill_atk.name.filter_element'}
-        descriptionLabel={'game.skill_atk.desc.filter_element'}
+        title={t((t) => t.game.skillAtk.name.filterElement)}
+        description={t((t) => t.game.skillAtk.desc.filterElement)}
       />
       <EnumChecksBox
         options={elementEnums.elemental}
@@ -40,8 +43,8 @@ export const SectionFilter = ({
         setInputData={setInputData}
       />
       <SectionSubTitle
-        titleLabel={'game.skill_atk.name.filter_affliction'}
-        descriptionLabel={'game.skill_atk.desc.filter_affliction'}
+        title={t((t) => t.game.skillAtk.name.filterAffliction)}
+        description={t((t) => t.game.skillAtk.desc.filterAffliction)}
       />
       <EnumChecksBox
         options={conditionEnums.afflictions}
@@ -50,12 +53,12 @@ export const SectionFilter = ({
         setInputData={setInputData}
       />
       <SectionSubTitle
-        titleLabel={'game.skill_atk.name.filter_other'}
-        descriptionLabel={'game.skill_atk.desc.filter_other'}
+        title={t((t) => t.game.skillAtk.name.filterOther)}
+        description={t((t) => t.game.skillAtk.desc.filterOther)}
       />
       <Form.Group className="mb-3 text-center">
         <InlineCheck
-          titleLabel={'game.skill_atk.name.filter_shared_only'}
+          title={t((t) => t.game.skillAtk.name.filterSharedOnly)}
           inputData={inputData}
           inputKey="filterSharedOnly"
           setInputData={setInputData}

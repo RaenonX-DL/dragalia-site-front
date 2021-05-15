@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import './bootstrap.css';
 
-// import i18n (needs to be bundled)
-import './i18n';
-
 // Style sheets
 import './index.css';
 

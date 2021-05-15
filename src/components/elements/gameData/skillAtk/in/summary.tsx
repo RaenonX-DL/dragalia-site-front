@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
+import {TranslationStruct} from '../../../../../i18n/translations/definition';
+import {GetTranslationFunction} from '../../../../../i18n/types';
 import {InputData} from './types';
 
 type InputSummaryProps = {
@@ -9,7 +11,7 @@ type InputSummaryProps = {
 
 
 export const InputSummary = ({inputData}: InputSummaryProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const detailClass = 'text-info';
 
@@ -17,7 +19,7 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
     <>
       <h5>{
         t(
-          'game.skill_atk.summary.atk',
+          (t) => t.game.skillAtk.summary.atk,
           {
             atkVal:
               (
@@ -31,44 +33,44 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
       <p className={detailClass}>
         {
           t(
-            'game.skill_atk.summary.atk_data',
+            (t) => t.game.skillAtk.summary.atkData,
             {
-              atkInGame: inputData.atkInGame,
+              atkInGame: inputData.atkInGame.toFixed(0),
               atkConditionalPct: inputData.atkConditionalPct.toFixed(0),
               atkBuffPct: inputData.atkBuffPct.toFixed(0),
             },
           )
         }
       </p>
-      <h5>{t('game.skill_atk.summary.buff')}</h5>
+      <h5>{t((t) => t.game.skillAtk.summary.buff)}</h5>
       <p className={detailClass}>
         {
           t(
-            'game.skill_atk.summary.buff_data',
+            (t) => t.game.skillAtk.summary.buffData,
             {
-              buffCount: inputData.buffCount,
-              buffZoneSelf: inputData.buffZoneSelf,
-              buffZoneAlly: inputData.buffZoneAlly,
+              buffCount: inputData.buffCount.toFixed(0),
+              buffZoneSelf: inputData.buffZoneSelf.toFixed(0),
+              buffZoneAlly: inputData.buffZoneAlly.toFixed(0),
             },
           )
         }
       </p>
-      <h5>{t('game.skill_atk.summary.ex')}</h5>
+      <h5>{t((t) => t.game.skillAtk.summary.ex)}</h5>
       <p className={detailClass}>
         {
           [
-            [inputData.exBlade, 'game.skill_atk.summary.ex_blade'],
-            [inputData.exWand, 'game.skill_atk.summary.ex_wand'],
+            [inputData.exBlade, (t: TranslationStruct) => t.game.skillAtk.summary.exBlade],
+            [inputData.exWand, (t: TranslationStruct) => t.game.skillAtk.summary.exWand],
           ]
             .filter((entry) => entry[0])
-            .map((entry) => t(entry[1] as string))
+            .map((entry) => t(entry[1] as GetTranslationFunction))
             .join(' / ') ||
-          t('game.skill_atk.summary.ex_none')
+          t((t) => t.game.skillAtk.summary.exNone)
         }
       </p>
       <h5>{
         t(
-          'game.skill_atk.summary.crt',
+          (t) => t.game.skillAtk.summary.crt,
           {
             crtVal: (
               1 +
@@ -82,16 +84,16 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
         {
           [
             inputData.criticalInspired ?
-              t('game.skill_atk.summary.crt_inspired') :
-              t('game.skill_atk.summary.crt_rate', {crtRate: inputData.criticalRatePct.toFixed(1)}),
-            t('game.skill_atk.summary.crt_damage', {crtDamage: inputData.criticalDamagePct}),
+              t((t) => t.game.skillAtk.summary.crtInspired) :
+              t((t) => t.game.skillAtk.summary.crtRate, {crtRate: inputData.criticalRatePct.toFixed(1)}),
+            t((t) => t.game.skillAtk.summary.crtDamage, {crtDamage: inputData.criticalDamagePct.toFixed(0)}),
           ]
             .join(' / ')
         }
       </p>
       <h5>{
         t(
-          'game.skill_atk.summary.skill',
+          (t) => t.game.skillAtk.summary.skill,
           {
             skillVal:
               (
@@ -105,9 +107,9 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
       <p className={detailClass}>
         {
           [
-            t('game.skill_atk.summary.skill_passive', {skillPassivePct: inputData.skillPassivePct}),
-            t('game.skill_atk.summary.skill_buff', {skillBuffPct: inputData.skillBuffPct}),
-            inputData.skillEnergized ? t('game.skill_atk.summary.skill_energized') : '',
+            t((t) => t.game.skillAtk.summary.skillPassive, {skillPassivePct: inputData.skillPassivePct.toFixed(0)}),
+            t((t) => t.game.skillAtk.summary.skillBuff, {skillBuffPct: inputData.skillBuffPct.toFixed(0)}),
+            inputData.skillEnergized ? t((t) => t.game.skillAtk.summary.skillEnergized) : '',
           ]
             .filter((str) => str.length > 0)
             .join(' / ')
@@ -115,7 +117,7 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
       </p>
       <h5>{
         t(
-          'game.skill_atk.summary.punisher',
+          (t) => t.game.skillAtk.summary.punisher,
           {
             punisherVal:
               (
@@ -128,27 +130,27 @@ export const InputSummary = ({inputData}: InputSummaryProps) => {
       <p className={detailClass}>
         {
           t(
-            'game.skill_atk.summary.punisher_data',
+            (t) => t.game.skillAtk.summary.punisherData,
             {
-              punishersBkPct: inputData.punishersBkPct,
-              punishersOtherPct: inputData.punishersOtherPct,
+              punishersBkPct: inputData.punishersBkPct.toFixed(0),
+              punishersOtherPct: inputData.punishersOtherPct.toFixed(0),
             },
           )
         }
       </p>
-      <h5>{t('game.skill_atk.summary.other')}</h5>
+      <h5>{t((t) => t.game.skillAtk.summary.other)}</h5>
       <p className={detailClass}>
         {
           t(
-            'game.skill_atk.summary.other_data',
+            (t) => t.game.skillAtk.summary.otherData,
             {
-              otherElemBonusPct: inputData.otherElemBonusPct,
-              otherCurrentHpPct: inputData.otherCurrentHpPct,
+              otherElemBonusPct: inputData.otherElemBonusPct.toFixed(0),
+              otherCurrentHpPct: inputData.otherCurrentHpPct.toFixed(0),
             },
           )
         }
         {
-          inputData.filterSharedOnly && <><br/>{t('game.skill_atk.summary.shared_only')}</>
+          inputData.filterSharedOnly && <><br/>{t((t) => t.game.skillAtk.summary.sharedOnly)}</>
         }
       </p>
     </>

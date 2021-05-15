@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button, Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 
 
 type Props = {
@@ -16,7 +16,7 @@ export const ArrayControl = ({
   onRemoved,
   isRemoveAllowed,
 }: Props) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Row className="mt-2">
@@ -27,14 +27,14 @@ export const ArrayControl = ({
           onClick={onRemoved}
           disabled={isRemoveAllowed()}
         >
-          {t('misc.remove')}
+          {t((t) => t.misc.remove)}
         </Button>
         <Button
           className="d-inline float-right"
           variant="outline-success"
           onClick={onAdded}
         >
-          {t('misc.add')}
+          {t((t) => t.misc.add)}
         </Button>
       </Col>
     </Row>

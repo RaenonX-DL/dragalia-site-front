@@ -4,7 +4,7 @@ import {ChecksBase, ChecksProps} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
 
 type RadioCheckLabel = {
-  label: string,
+  text: string,
   code: number
 }
 
@@ -19,19 +19,21 @@ export const RadioChecks = <K extends string, T extends { [key in K]: number }>(
   return (
     <ChecksBase
       options={options}
-      renderCheckItem={({label, code}: RadioCheckLabel) => (
-        <InlineCheckBase
-          titleLabel={label}
-          groupName={inputKey}
-          type="radio"
-          key={label}
-          onChange={(code) => () => setInputData({
-            ...inputData,
-            [inputKey]: code,
-          })}
-          checked={inputData[inputKey] === code}
-        />
-      )}
+      renderCheckItem={({text, code}: RadioCheckLabel) => {
+        return (
+          <InlineCheckBase
+            title={text}
+            groupName={inputKey}
+            type="radio"
+            key={text}
+            onChange={(code) => () => setInputData({
+              ...inputData,
+              [inputKey]: code,
+            })}
+            checked={inputData[inputKey] === code}
+          />
+        );
+      }}
     />
   );
 };

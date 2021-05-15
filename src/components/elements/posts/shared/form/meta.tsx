@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {
   PostMetaPayload,
@@ -30,7 +30,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
   // TEST: Form meta validation
   //  - (Use the tests exist at the backend)
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {payload, isPreloaded} = formState;
 
@@ -70,7 +70,7 @@ export const FormMeta = <P extends PostMetaPayload, R extends PostIdCheckRespons
     <Row>
       <Col lg={2}>
         <Form.Control
-          className="mb-2" type="number" placeholder={t('posts.info.id')}
+          className="mb-2" type="number" placeholder={t((t) => t.posts.info.id)}
           isValid={isValid} isInvalid={!isValid}
           onChange={(e) => setPayload('seqId', e.target.value)}
           value={payload.seqId || ''} disabled={isPreloaded || checkState.isChecking} min="1"

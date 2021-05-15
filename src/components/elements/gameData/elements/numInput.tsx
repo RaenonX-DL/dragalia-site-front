@@ -2,7 +2,6 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../i18n/utils';
 import {OverlayPopover} from '../../common/overlay/popover';
 import {InputProps} from './props';
 import {DetailedProps} from './types';
@@ -18,8 +17,8 @@ type NumericInputProps<K extends string, T extends { [key in K]: number }> =
 
 
 export const NumericInput = <K extends string, T extends { [key in K]: number }>({
-  titleLabel,
-  descriptionLabel,
+  title,
+  description,
   inputData,
   inputKey,
   setInputData,
@@ -27,16 +26,14 @@ export const NumericInput = <K extends string, T extends { [key in K]: number }>
   maxValue,
   required = true,
 }: NumericInputProps<K, T>) => {
-  const {t} = useTranslation();
-
   if (minValue && maxValue && minValue > maxValue) {
     console.warn(`Min value ${minValue} should not be greater than max value (${maxValue}).`);
   }
 
   return (
     <Row className="mb-3">
-      <OverlayPopover title={t(titleLabel)} content={t(descriptionLabel)}>
-        <Form.Label column className="text-center">{t(titleLabel)}</Form.Label>
+      <OverlayPopover title={title} content={description}>
+        <Form.Label column className="text-center">{title}</Form.Label>
       </OverlayPopover>
       <Col>
         <Form.Control

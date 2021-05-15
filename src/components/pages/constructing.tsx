@@ -1,19 +1,19 @@
 import React from 'react';
 
-import {useTranslation} from '../../i18n/utils';
+import {useI18n} from '../../i18n/hook';
 import {Markdown} from '../elements/markdown/main';
 import {PageProps} from './props';
 
 export const Constructing = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   if (fnSetTitle) {
-    fnSetTitle(t('pages.name.constructing'));
+    fnSetTitle(t((t) => t.pages.name.constructing));
   }
 
   return (
     <Markdown>
-      {t('pages.constructing')}
+      {t((t) => t.pages.constructing)}
     </Markdown>
   );
 };

@@ -23,8 +23,11 @@ export const useGoogleLogin = ({
     if (isOfflineLogin(response)) {
       onFailed({
         show: true,
-        title: t('google_signin.login_failed'),
-        message: t('google_signin.login_offline_disallowed', {code: response.code}),
+        title: t((t) => t.googleSignin.loginFailed),
+        message: t(
+          (t) => t.googleSignin.loginOfflineDisallowed,
+          {code: response.code},
+        ),
       });
       return;
     }
@@ -46,7 +49,7 @@ export const useGoogleLogin = ({
       .catch((error) => {
         onFailed({
           show: true,
-          title: t('google_signin.request_failed'),
+          title: t((t) => t.googleSignin.requestFailed),
           message: JSON.stringify(error.toString()),
         });
       });
@@ -56,8 +59,11 @@ export const useGoogleLogin = ({
 
     onFailed({
       show: true,
-      title: t('google_signin.login_failed'),
-      message: t('google_signin.login_error', {error: error.error || '(unknown error)'}),
+      title: t((t) => t.googleSignin.loginFailed),
+      message: t(
+        (t) => t.googleSignin.loginError,
+        {error: error.error || '(unknown error)'},
+      ),
     });
   },
   onAutoLoadFinished: (loggedIn: boolean) => {

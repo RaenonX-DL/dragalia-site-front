@@ -3,7 +3,7 @@ import React, {MouseEvent} from 'react';
 import {Button, Collapse} from 'react-bootstrap';
 
 import {ConditionCodes} from '../../../../../const/gameData';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {scrollToTop} from '../../../../../utils/scroll';
 import {InputParameters} from './params';
 import {InputSummary} from './summary';
@@ -16,7 +16,7 @@ type InputProps = {
 
 
 export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
 
@@ -72,10 +72,10 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
       <hr/>
       <div className="text-right">
         <Button variant="outline-primary" onClick={onCollapseClicked} className="mr-2">
-          {t('game.skill_atk.collapse')}
+          {t((t) => t.game.skillAtk.collapse)}
         </Button>
         <Button variant="outline-info" onClick={onSearchRequested(inputData)}>
-          {t('game.skill_atk.search')}
+          {t((t) => t.game.skillAtk.search)}
         </Button>
       </div>
     </>

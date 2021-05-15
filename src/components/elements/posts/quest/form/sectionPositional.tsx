@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {PositionalInfo, QuestPostPayload} from '../../../../../api-def/api/post/quest/payload';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {generateNewPositionInfo} from '../../../../../utils/services/api/utils';
 import {ArrayDataForm} from '../../shared/form/array';
 import {PostFormDataProps, PostFormState} from '../../shared/form/types';
@@ -15,7 +15,7 @@ export const FormPositional = <P extends QuestPostPayload>({
   formState,
   setState,
 }: FormPositionalProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {payload} = formState;
 
@@ -31,7 +31,7 @@ export const FormPositional = <P extends QuestPostPayload>({
 
   return (
     <>
-      <h5>{t('posts.quest.positional')}</h5>
+      <h5>{t((t) => t.posts.quest.positional)}</h5>
       <ArrayDataForm
         payload={payload}
         minLength={2}

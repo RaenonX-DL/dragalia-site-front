@@ -2,28 +2,28 @@ import React from 'react';
 
 import {Alert} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 
 type FetchFailedProps = {
   failureMessage: string,
 }
 
 export const AlertFetchFailed = ({failureMessage}: FetchFailedProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Alert variant="danger">
-      {t('posts.manage.fetch_post_failed', {error: failureMessage})}
+      {t((t) => t.posts.manage.fetchPostFailed, {error: failureMessage})}
     </Alert>
   );
 };
 
 export const AlertFetchListFailed = ({failureMessage}: FetchFailedProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Alert variant="danger">{
-      t('posts.manage.fetch_list_failed', {error: failureMessage})
+      t((t) => t.posts.manage.fetchListFailed, {error: failureMessage})
     }</Alert>
   );
 };

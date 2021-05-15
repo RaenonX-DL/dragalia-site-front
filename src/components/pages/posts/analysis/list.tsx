@@ -1,32 +1,32 @@
 import React from 'react';
 
-import Path from '../../../../const/path/definitions';
-import {useTranslation} from '../../../../i18n/utils';
+import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../const/path';
+import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api';
 import {AnalysisPostList, PostListPage} from '../../../elements';
 import {PageProps} from '../../props';
 
 
 export const AnalysisList = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
-  const title = t('pages.name.analysis_list');
+  const title = t((t) => t.pages.name.analysisList);
 
   fnSetTitle(title);
 
   return (
     <PostListPage
       title={title}
-      currentUrl={Path.ANALYSIS_LIST}
+      currentUrl={makeSimplePath(GeneralPath.ANALYSIS_LIST, {lang})}
       postManageBarProps={{
         newButtons: [
           {
-            url: Path.ANALYSIS_NEW_CHARA,
-            title: t('posts.manage.add_chara'),
+            url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+            title: t((t) => t.posts.manage.addChara),
           },
           {
-            url: Path.ANALYSIS_NEW_DRAGON,
-            title: t('posts.manage.add_dragon'),
+            url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+            title: t((t) => t.posts.manage.addDragon),
           },
         ],
       }}
@@ -34,7 +34,7 @@ export const AnalysisList = ({fnSetTitle}: PageProps) => {
       renderPostEntries={(response) => (
         <AnalysisPostList
           entries={response.posts}
-          generateLink={(postId) => Path.getAnalysis(postId)}
+          generateLink={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
         />
       )}
     />

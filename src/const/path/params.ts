@@ -1,7 +1,11 @@
 // Key name corresponds to route lookup expression
-// All value types must be string according to the definition of `useParams()`
+// All value types must be `string` according to the definition of `useParams()`
 
-export type PostParams = {
+export type PathParams = {
+  lang: string,
+}
+
+export type PostParams = PathParams & {
   pid?: string,
 }
 

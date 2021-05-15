@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types/common/ability';
 import {ConditionEnumMap} from '../../../../../utils/services/resources/types/enums';
 import {ExAbilityDataEntry} from '../../../../../utils/services/resources/types/ex';
@@ -14,7 +14,7 @@ export const getAbilityVariantEffectBadges = (
   conditionEnums: ConditionEnumMap,
   skipOccurrences: boolean = false,
 ): Array<React.ReactElement> => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
   const badges = getConditionBadges({
     conditionCodes: entry.conditions,
@@ -24,49 +24,70 @@ export const getAbilityVariantEffectBadges = (
   if (entry.cooldownSec !== 0) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_cooldown', {cooldownSec: entry.cooldownSec})}
+        {t(
+          (t) => t.game.ex.badge.infoCooldown,
+          {cooldownSec: entry.cooldownSec.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (entry.durationCount !== 0) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_duration_count', {durationCount: entry.durationCount})}
+        {t(
+          (t) => t.game.ex.badge.infoDurationCount,
+          {durationCount: entry.durationCount.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (entry.durationSec !== 0) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_duration_sec', {durationSec: entry.durationSec})}
+        {t(
+          (t) => t.game.ex.badge.infoDurationSec,
+          {durationSec: entry.durationSec.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (!skipOccurrences && entry.maxOccurrences !== 0) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_max_occurrences', {maxOccurrences: entry.maxOccurrences})}
+        {t(
+          (t) => t.game.ex.badge.infoMaxOccurrences,
+          {maxOccurrences: entry.maxOccurrences.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (entry.maxStackCount !== 0) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_max_stack_count', {maxStackCount: entry.maxStackCount})}
+        {t(
+          (t) => t.game.ex.badge.infoMaxStackCount,
+          {maxStackCount: entry.maxStackCount.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (entry.probabilityPct !== 0 && entry.probabilityPct !== 100) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_probability_pct', {probabilityPct: entry.probabilityPct})}
+        {t(
+          (t) => t.game.ex.badge.infoProbabilityPct,
+          {probabilityPct: entry.probabilityPct.toFixed(0)},
+        )}
       </Badge>,
     );
   }
   if (entry.targetAction[lang]) {
     badges.push(
       <Badge variant="info">
-        {t('game.ex.badge.info_target_action', {targetAction: entry.targetAction[lang]})}
+        {t(
+          (t) => t.game.ex.badge.infoTargetAction,
+          {targetAction: entry.targetAction[lang]},
+        )}
       </Badge>,
     );
   }

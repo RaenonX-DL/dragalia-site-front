@@ -2,14 +2,14 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useTranslation} from '../../i18n/utils';
+import {useI18n} from '../../i18n/hook';
 import {Markdown} from '../elements/markdown/main';
 import {PageProps} from './props';
 
 export const SpecialThanks = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
-  fnSetTitle(t('pages.name.thanks'));
+  fnSetTitle(t((t) => t.pages.name.thanks));
 
   return (
     <>
@@ -21,33 +21,33 @@ export const SpecialThanks = ({fnSetTitle}: PageProps) => {
       <ul>
         <li>
           Andy&nbsp;
-          <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
-          <Badge variant="orange">{t('misc.om_member')}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           Ellie&nbsp;
-          <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
-          <Badge variant="orange">{t('misc.om_member')}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           Piglet&nbsp;/&nbsp;ピグレット
-          <Badge variant="info">{t('donation.tier_s1')}</Badge>&nbsp;
-          <Badge variant="orange">{t('misc.om_group')}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omGroup)}</Badge>
         </li>
         <li>
           皮皮熊艹&nbsp;
-          <Badge variant="info">{t('donation.tier_s2')}</Badge>&nbsp;
-          <Badge variant="orange">{t('misc.om_member')}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           陳泓維&nbsp;
-          <Badge variant="info">{t('donation.tier_s1')}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>
         </li>
       </ul>
       <hr/>
       <div>
-        <h4>{t('message.donation.url')}</h4>
-        {<Markdown>{t('message.donation.info')}</Markdown>}
+        <h4>{t((t) => t.message.donation.url)}</h4>
+        {<Markdown>{t((t) => t.message.donation.info)}</Markdown>}
         <ul>
           <li><a href="https://patreon.com/RaenonX" target="_blank" rel="noreferrer">Patreon</a></li>
           <li><a href="https://ko-fi.com/RaenonX" target="_blank" rel="noreferrer">Ko-Fi</a></li>

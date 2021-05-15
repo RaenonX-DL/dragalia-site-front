@@ -4,8 +4,10 @@ import {NextFunction, Request, Response} from 'express';
 import fetch from 'node-fetch';
 import Cookies from 'universal-cookie';
 
-import {UserShowAdsResponse} from '../../src/api-def/api';
+import {SupportedLanguages, UserShowAdsResponse} from '../../src/api-def/api';
 import {CookiesKeys} from '../../src/const/cookies';
+import {translations} from '../../src/i18n/translations/main';
+import {getTranslationString} from '../../src/i18n/utils';
 import {ADS_CLIENT, API_PAGE_META} from '../const';
 import {PATH_INDEX_HTML} from '../paths';
 

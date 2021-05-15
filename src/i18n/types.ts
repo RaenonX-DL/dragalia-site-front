@@ -1,3 +1,11 @@
-import {Fallback, TFunction as TFunctionOfi18n} from 'react-i18next';
+import {TranslationStruct} from './translations/definition';
 
-export type TFunction = TFunctionOfi18n<Fallback<string>[] | string>;
+export type LanguageCode = string | undefined;
+
+export type DetectorFunction = () => LanguageCode;
+
+export type Translation = string;
+
+export type GetTranslationFunction = (translation: TranslationStruct) => Translation;
+
+export type TFunction = (getTransFn: GetTranslationFunction, replacements?: { [key in string]: string }) => string;

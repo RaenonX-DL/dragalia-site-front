@@ -3,6 +3,7 @@ import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import alertReducer from './alert/reducer';
+import configReducer from './config/reducer';
 
 // WARNING: DO NOT use redux for Google user ID storage
 // because service cannot access redux contents
@@ -10,6 +11,7 @@ import alertReducer from './alert/reducer';
 
 const reducers = {
   alert: alertReducer,
+  config: configReducer,
 };
 
 const persistConfig = {

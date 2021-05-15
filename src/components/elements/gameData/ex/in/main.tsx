@@ -2,7 +2,7 @@ import React, {MouseEvent} from 'react';
 
 import {Button} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {useDispatch} from '../../../../../state/store';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
@@ -18,7 +18,7 @@ type InputProps = {
 
 
 export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
   const dispatch = useDispatch();
 
   const [inputData, setInputData] = React.useState<InputData>({
@@ -90,7 +90,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
           onClick={onSearchRequested(inputData)}
           disabled={selectionData.fetching}
         >
-          {t('game.skill_atk.search')}
+          {t((t) => t.game.skillAtk.search)}
         </Button>
       </div>
     </div>

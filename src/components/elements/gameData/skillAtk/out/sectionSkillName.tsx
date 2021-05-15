@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {SkillIdentifierInfo} from '../../../../../utils/services/resources/types/skill';
 import {SectionProps} from './props';
 
@@ -9,7 +9,7 @@ type SectionSkillNameProps = SectionProps & {
 }
 
 export const SectionSkillName = ({atkSkillEntry, skillIdentifierInfo}: SectionSkillNameProps) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   return (
     <>

@@ -3,7 +3,7 @@ import React from 'react';
 import {useHistory} from 'react-router';
 import {useParams} from 'react-router-dom';
 
-import {PostParams} from '../../../../../const/path/params';
+import {PostParams} from '../../../../../const/path';
 import {
   FunctionFetchPost,
   PostGetSuccessResponse,

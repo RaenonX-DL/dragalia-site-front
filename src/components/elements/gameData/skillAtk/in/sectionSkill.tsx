@@ -1,27 +1,30 @@
 import React from 'react';
 
+import {useI18n} from '../../../../../i18n/hook';
 import {InlineCheck} from '../../elements/inlineCheck';
 import {NumericInput} from '../../elements/numInput';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps} from './props';
 
 export const SectionSkill = ({inputData, setInputData}: SectionProps) => {
+  const {t} = useI18n();
+
   return (
     <>
       <SectionTitle
-        titleLabel={'game.skill_atk.name.skill'}
-        descriptionLabel={'game.skill_atk.desc.skill'}
+        title={t((t) => t.game.skillAtk.name.skill)}
+        description={t((t) => t.game.skillAtk.desc.skill)}
       />
       <NumericInput
-        titleLabel={'game.skill_atk.name.skill_passive'}
-        descriptionLabel={'game.skill_atk.desc.skill_passive'}
+        title={t((t) => t.game.skillAtk.name.skillPassive)}
+        description={t((t) => t.game.skillAtk.desc.skillPassive)}
         inputData={inputData}
         inputKey="skillPassivePct"
         setInputData={setInputData}
       />
       <NumericInput
-        titleLabel={'game.skill_atk.name.skill_buff'}
-        descriptionLabel={'game.skill_atk.desc.skill_buff'}
+        title={t((t) => t.game.skillAtk.name.skillBuff)}
+        description={t((t) => t.game.skillAtk.desc.skillBuff)}
         inputData={inputData}
         inputKey="skillBuffPct"
         setInputData={setInputData}
@@ -29,7 +32,7 @@ export const SectionSkill = ({inputData, setInputData}: SectionProps) => {
       />
       <div className="text-center">
         <InlineCheck
-          titleLabel={'game.skill_atk.name.skill_energized'}
+          title={t((t) => t.game.skillAtk.name.skillEnergized)}
           inputData={inputData}
           inputKey="skillEnergized"
           setInputData={setInputData}

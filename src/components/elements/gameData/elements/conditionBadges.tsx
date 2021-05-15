@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Badge, Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {ConditionEnumMap} from '../../../../utils/services/resources/types';
 
 
@@ -13,7 +13,7 @@ export type ConditionBadgeProps = {
 
 
 export const getConditionBadges = ({conditionCodes, conditionEnums}: ConditionBadgeProps) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   return conditionCodes.map((conditionCode, idx: number) => {
     const conditionEnum = conditionEnums[String(conditionCode)];

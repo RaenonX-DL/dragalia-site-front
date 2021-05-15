@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Badge, Col} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {AfflictionUnit} from '../../../../../utils/services/resources/types/skillAtk';
 import {SectionProps} from './props';
@@ -13,7 +13,7 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
     return <></>;
   }
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Col lg>
@@ -27,16 +27,16 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
               <img
                 src={DepotPaths.getAfflictionIconURL(affliction.statusIcon)}
                 alt={affliction.statusIcon} style={{width: '1.5rem'}}/>&nbsp;
-              {t('game.skill_atk.entry.affliction',
+              {t((t) => t.game.skillAtk.entry.affliction,
                 {
                   afflictionTime: affliction.actionTime.toFixed(2),
-                  afflictionProbabilityPct: affliction.probabilityPct,
-                  afflictionDuration: affliction.duration,
+                  afflictionProbabilityPct: affliction.probabilityPct.toFixed(0),
+                  afflictionDuration: affliction.duration.toFixed(0),
                 })}&nbsp;
               {
                 affliction.stackable ?
-                  <Badge variant="success">{t('game.skill_atk.entry.stackable')}</Badge> :
-                  <Badge variant="danger">{t('game.skill_atk.entry.unstackable')}</Badge>
+                  <Badge variant="success">{t((t) => t.game.skillAtk.entry.stackable)}</Badge> :
+                  <Badge variant="danger">{t((t) => t.game.skillAtk.entry.unstackable)}</Badge>
               }
             </p>
           ))

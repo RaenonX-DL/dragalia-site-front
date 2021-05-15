@@ -16,7 +16,6 @@ export const EmbeddedYoutubeVideo = ({videoId}: Props) => {
 
   const allowedFeatures = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
 
-  // FIXME: Check if the video preview is in super low quality
   return (
     <div className="youtube-embed mb-2">
       <iframe

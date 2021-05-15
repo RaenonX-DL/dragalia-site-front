@@ -3,7 +3,7 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 
 import {PostEditNote} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 
 type PostEditNotesProps = {
@@ -11,14 +11,14 @@ type PostEditNotesProps = {
 }
 
 export const PostEditNotes = ({editNotes}: PostEditNotesProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Table striped bordered hover responsive="lg" variant="dark">
       <thead>
         <tr>
-          <th className="text-center">{t('posts.manage.modify_time')}</th>
-          <th className="text-center w-75">{t('posts.manage.modify_note')}</th>
+          <th className="text-center">{t((t) => t.posts.manage.modifyTime)}</th>
+          <th className="text-center w-75">{t((t) => t.posts.manage.modifyNote)}</th>
         </tr>
       </thead>
       <tbody>

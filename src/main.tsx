@@ -1,15 +1,9 @@
 import React, {Suspense, useEffect} from 'react';
 
 import {Container} from 'react-bootstrap';
+import {Route} from 'react-router-dom';
 
-import {
-  Footer,
-  Navigation,
-  PageLoading,
-  GlobalAlert,
-  AdminRoute,
-  PublicRoute,
-} from './components/elements';
+import {AdminRoute, Footer, GlobalAlert, Navigation, PageLoading, PublicRoute} from './components/elements';
 import {
   About,
   AnalysisEdit,
@@ -27,8 +21,8 @@ import {
   QuestPage,
 } from './components/pages';
 import {SpecialThanks} from './components/pages/thanks';
-import Path from './const/path/definitions';
-import {useTranslation} from './i18n/utils';
+import {GeneralPath, PostPath} from './const/path';
+import {useI18n} from './i18n/hook';
 import {SiteAlert} from './siteAlert';
 import {ReduxProvider, ReduxProviderProps} from './state/provider';
 import {GoogleAnalytics} from './utils/services/ga';
@@ -41,98 +35,98 @@ type PageContentProps = {
 
 const PageContent = ({updatePageTitle}: PageContentProps) => {
   return (
-    <>
+    <Route path={GeneralPath.ROOT}>
       {/* Home */}
 
-      <PublicRoute path={Path.HOME}>
+      <PublicRoute path={GeneralPath.HOME}>
         <Home fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
       {/* Posts */}
 
-      <PublicRoute path={Path.QUEST_LIST}>
+      <PublicRoute path={GeneralPath.QUEST_LIST}>
         <QuestList fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <AdminRoute path={Path.QUEST_NEW}>
+      <AdminRoute path={GeneralPath.QUEST_NEW}>
         <QuestNew fnSetTitle={updatePageTitle}/>
       </AdminRoute>
-      <PublicRoute path={Path.QUEST}>
+      <PublicRoute path={PostPath.QUEST}>
         <QuestPage fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <AdminRoute path={Path.QUEST_EDIT}>
+      <AdminRoute path={PostPath.QUEST_EDIT}>
         <QuestEdit fnSetTitle={updatePageTitle}/>
       </AdminRoute>
 
-      <PublicRoute path={Path.ANALYSIS_LIST}>
+      <PublicRoute path={GeneralPath.ANALYSIS_LIST}>
         <AnalysisList fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <AdminRoute path={Path.ANALYSIS_NEW_CHARA}>
+      <AdminRoute path={GeneralPath.ANALYSIS_NEW_CHARA}>
         <AnalysisNewChara fnSetTitle={updatePageTitle}/>
       </AdminRoute>
-      <AdminRoute path={Path.ANALYSIS_NEW_DRAGON}>
+      <AdminRoute path={GeneralPath.ANALYSIS_NEW_DRAGON}>
         <AnalysisNewDragon fnSetTitle={updatePageTitle}/>
       </AdminRoute>
-      <PublicRoute path={Path.ANALYSIS}>
+      <PublicRoute path={PostPath.ANALYSIS}>
         <AnalysisPage fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <AdminRoute path={Path.ANALYSIS_EDIT}>
+      <AdminRoute path={PostPath.ANALYSIS_EDIT}>
         <AnalysisEdit fnSetTitle={updatePageTitle}/>
       </AdminRoute>
 
-      <PublicRoute path={Path.MISC_LIST}>
+      <PublicRoute path={GeneralPath.MISC_LIST}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <PublicRoute path={Path.MISC}>
+      <PublicRoute path={PostPath.MISC}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
       {/* In-game data */}
 
-      <PublicRoute path={Path.EX}>
+      <PublicRoute path={GeneralPath.EX}>
         <ExAbilityPage fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <PublicRoute path={Path.PRINT}>
+      <PublicRoute path={GeneralPath.PRINT}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
-      <PublicRoute path={Path.SKILL_ATK}>
+      <PublicRoute path={GeneralPath.SKILL_ATK}>
         <AttackingSkillPage fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <PublicRoute path={Path.SKILL_SUP}>
+      <PublicRoute path={GeneralPath.SKILL_SUP}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
-      <PublicRoute path={Path.STORY}>
+      <PublicRoute path={GeneralPath.STORY}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
       {/* Tools */}
 
-      <PublicRoute path={Path.ROTATION_CALC}>
+      <PublicRoute path={GeneralPath.ROTATION_CALC}>
         <Constructing fnSetTitle={updatePageTitle}/>
       </PublicRoute>
 
       {/* Not game related */}
 
-      <PublicRoute path={Path.ABOUT}>
+      <PublicRoute path={GeneralPath.ABOUT}>
         <About fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <PublicRoute path={Path.SPECIAL_THANKS}>
+      <PublicRoute path={GeneralPath.SPECIAL_THANKS}>
         <SpecialThanks fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-    </>
+    </Route>
   );
 };
 
 
 const PageMain = () => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const ref = React.useRef<HTMLHeadingElement>(null) as React.MutableRefObject<HTMLHeadingElement>;
-  const title = React.useRef<string>(t('pages.name.site'));
+  const title = React.useRef<string>(t((t) => t.pages.name.site));
 
   const updatePageTitle = (newTitle?: string) => {
-    newTitle = newTitle || t('pages.name.site');
+    newTitle = newTitle || t((t) => t.pages.name.site);
 
     if (!newTitle) {
       newTitle = '';
@@ -140,7 +134,7 @@ const PageMain = () => {
 
     // Set the title element and the document title
     title.current = newTitle;
-    document.title = newTitle + t('pages.name.suffix');
+    document.title = newTitle + t((t) => t.pages.name.suffix);
 
     if (ref.current) {
       // Title element linked, set new title to it & record the page title

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {CookiesControl} from '../../../../utils/cookies';
 import {
   ApiRequestSender,
@@ -12,7 +12,7 @@ import {PostFormState} from '../../../elements/posts/shared/form/types';
 import {PageProps} from '../../props';
 
 export const QuestNew = ({fnSetTitle}: PageProps) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
   const [formState, setFormState] = React.useState<PostFormState<QuestPostPublishPayload>>({
     payload: {
@@ -30,7 +30,7 @@ export const QuestNew = ({fnSetTitle}: PageProps) => {
     isPreloaded: false,
   });
 
-  fnSetTitle(t('pages.name.quest_new'));
+  fnSetTitle(t((t) => t.pages.name.questNew));
 
   return (
     <QuestPostForm

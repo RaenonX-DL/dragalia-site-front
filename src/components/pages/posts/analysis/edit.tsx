@@ -2,8 +2,9 @@ import React from 'react';
 
 import {useParams} from 'react-router-dom';
 
-import {AnalysisEditParams} from '../../../../const/path/params';
-import {useTranslation} from '../../../../i18n/utils';
+import {AnalysisEditParams} from '../../../../const/path';
+import {useI18n} from '../../../../i18n/hook';
+import {GetTranslationFunction} from '../../../../i18n/types';
 import {
   AnalysisType,
   ApiRequestSender,
@@ -18,16 +19,14 @@ import {
 } from '../../../elements';
 import {PageProps} from '../../props';
 
-// FIXME: Edit analysis ID check false negative (should always be positive - check passed)
-
-const titleTranslationName: { [key in AnalysisType]: string } = {
-  [AnalysisType.CHARACTER]: 'pages.name.analysis_edit_chara',
-  [AnalysisType.DRAGON]: 'pages.name.analysis_edit_dragon',
+const getTitleTranslationName: { [key in AnalysisType]: GetTranslationFunction } = {
+  [AnalysisType.CHARACTER]: (t) => t.pages.name.analysisEditChara,
+  [AnalysisType.DRAGON]: (t) => t.pages.name.analysisEditDragon,
 };
 
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {pid} = useParams<AnalysisEditParams>();
 
@@ -48,12 +47,12 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       ...fetchStatus,
       fetched: true,
       fetchFailed: true,
-      failureMessage: t('posts.analysis.error.no_post_id'),
+      failureMessage: t((t) => t.posts.analysis.error.noPostId),
     });
   } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
     const analysisType = fetchStatus.post.type;
 
-    const titleName = titleTranslationName[analysisType];
+    const titleName = getTitleTranslationName[analysisType];
 
     if (titleName) {
       fnSetTitle(t(titleName, {pid}));
@@ -80,7 +79,10 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       ...fetchStatus,
       fetched: true,
       fetchFailed: true,
-      failureMessage: t('posts.analysis.error.unknown_type', {analysisType: AnalysisType[analysisType]}),
+      failureMessage: t(
+        (t) => t.posts.analysis.error.unknownType,
+        {analysisType: AnalysisType[analysisType]},
+      ),
     });
   }
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {useTranslation} from '../../i18n/utils';
+import {useI18n} from '../../i18n/hook';
 import {PageProps} from './props';
 
 export const About = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
-  fnSetTitle(t('pages.name.about'));
+  fnSetTitle(t((t) => t.pages.name.about));
 
   return (
     <>

@@ -12,7 +12,7 @@ import jpStrings from 'react-timeago/lib/language-strings/ja';
 import chtStrings from 'react-timeago/lib/language-strings/zh-TW';
 
 import {SupportedLanguages} from '../api-def/api/other/lang';
-import {useTranslation} from '../i18n/utils';
+import {useI18n} from '../i18n/hook';
 
 const formatters: { [lang in SupportedLanguages]: Formatter } = {
   [SupportedLanguages.EN]: buildFormatter(enStrings),
@@ -25,7 +25,7 @@ type TimeAgoProps = {
 }
 
 export const TimeAgo = ({epoch}: TimeAgoProps) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   return <TimeAgoExternal date={epoch} formatter={formatters[lang]}/>;
 };

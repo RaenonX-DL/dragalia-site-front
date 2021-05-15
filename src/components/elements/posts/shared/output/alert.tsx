@@ -3,21 +3,21 @@ import React from 'react';
 import {Alert} from 'react-bootstrap';
 
 import {SupportedLanguageNames, PostGetSuccessResponse} from '../../../../../api-def/api';
-import Path from '../../../../../const/path/definitions';
-import {useTranslation} from '../../../../../i18n/utils';
+import {makePostPath, PostPath} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 
 type AlertProps<R extends PostGetSuccessResponse> = {
   response: R,
 }
 
 export const AlertIsAlternativeLanguage = <R extends PostGetSuccessResponse>({response}: AlertProps<R>) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
   return (
     <Alert variant="warning" className="mt-3">
       {
         t(
-          'posts.message.alt_lang',
+          (t) => t.posts.message.altLang,
           {
             langUi: SupportedLanguageNames[lang],
             langPost: SupportedLanguageNames[response.lang],
@@ -29,17 +29,17 @@ export const AlertIsAlternativeLanguage = <R extends PostGetSuccessResponse>({re
 };
 
 export const AlertOtherLanguageAvailable = <R extends PostGetSuccessResponse>({response}: AlertProps<R>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Alert variant="info" className="mt-3">
-      {t('posts.message.other_lang')}
+      {t((t) => t.posts.message.otherLang)}
       <br/>
       {
-        response.otherLangs.map((langCode) => (
-          <li key={langCode}>
-            <Alert.Link href={Path.getAnalysis(response.seqId) + `?lang=${langCode}`}>
-              {SupportedLanguageNames[langCode]}
+        response.otherLangs.map((lang) => (
+          <li key={lang}>
+            <Alert.Link href={makePostPath(PostPath.ANALYSIS, {lang, pid: response.seqId})}>
+              {SupportedLanguageNames[lang]}
             </Alert.Link>
           </li>
         ))

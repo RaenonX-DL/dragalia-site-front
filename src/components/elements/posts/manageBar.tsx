@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Col, Row} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
-import {useTranslation} from '../../../i18n/utils';
+import {useI18n} from '../../../i18n/hook';
 
 type NewButtonEntry = {
   url: string,
@@ -16,7 +16,7 @@ export type PostManageBarProps = {
 }
 
 export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Row>
@@ -25,7 +25,7 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
           editPostUrl &&
             <LinkContainer to={editPostUrl}>
               <Button variant="outline-info" className="float-right ml-2">
-                {t('posts.manage.edit')}
+                {t((t) => t.posts.manage.edit)}
               </Button>
             </LinkContainer>
         }
@@ -33,7 +33,7 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
           newButtons.map(({url, title}, idx) => (
             <LinkContainer to={url} key={idx}>
               <Button variant="outline-success" className="float-right ml-2">
-                {title || t('posts.manage.add')}
+                {title || t((t) => t.posts.manage.add)}
               </Button>
             </LinkContainer>
           ))

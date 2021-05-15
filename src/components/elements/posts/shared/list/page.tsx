@@ -2,8 +2,8 @@ import React from 'react';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
-import {getParamValue} from '../../../../../const/path/utils';
-import {useTranslation} from '../../../../../i18n/utils';
+import {getParamValue} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {FunctionFetchPostList, PostListResponse} from '../../../../../utils/services/api';
 import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
@@ -38,7 +38,7 @@ export const PostListPage = <R extends PostListResponse>({
   fnFetchList,
   renderPostEntries,
 }: PostListPageProps<R>) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
   const pageLimit = 25;
