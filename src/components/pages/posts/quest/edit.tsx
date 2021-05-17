@@ -2,15 +2,15 @@ import React from 'react';
 
 import {useParams} from 'react-router-dom';
 
-import {QuestEditParams} from '../../../../const/path/params';
-import {useTranslation} from '../../../../i18n/utils';
+import {QuestEditParams} from '../../../../const/path';
+import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api';
 import {FetchPost, QuestPostFetchStatus} from '../../../elements';
 import {QuestEditForm} from '../../../elements/posts/quest/form/edit';
 import {PageProps} from '../../props';
 
 export const QuestEdit = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {pid} = useParams<QuestEditParams>();
 
@@ -26,10 +26,13 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
       ...fetchStatus,
       fetched: true,
       fetchFailed: true,
-      failureMessage: t('posts.analysis.error.no_post_id'),
+      failureMessage: t((t) => t.posts.analysis.error.noPostId),
     });
   } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
-    fnSetTitle(t('pages.name.quest_edit', {pid: fetchStatus.post.seqId}));
+    fnSetTitle(t(
+      (t) => t.meta.inUse.questEdit.title,
+      {title: fetchStatus.post.title},
+    ));
 
     return <QuestEditForm post={fetchStatus.post}/>;
   }

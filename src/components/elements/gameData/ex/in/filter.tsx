@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useI18n} from '../../../../../i18n/hook';
 import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types';
 import {EnumChecksBox} from '../../elements/enumChecksBox';
 import {SectionTitle} from '../../elements/title';
@@ -18,11 +19,13 @@ export const SectionFilter = <D extends InputData>({
   elementEnums,
   exBuffParams,
 }: SectionProps<D>) => {
+  const {t} = useI18n();
+
   return (
     <>
       <SectionTitle
-        titleLabel={'game.ex.name.filter_element'}
-        descriptionLabel={'game.ex.desc.filter_element'}
+        title={t((t) => t.game.ex.name.filterElement)}
+        description={t((t) => t.game.ex.desc.filterElement)}
       />
       <EnumChecksBox
         options={elementEnums.elemental}
@@ -31,8 +34,8 @@ export const SectionFilter = <D extends InputData>({
         setInputData={setInputData}
       />
       <SectionTitle
-        titleLabel={'game.ex.name.filter_ex_buff_param'}
-        descriptionLabel={'game.ex.desc.filter_ex_buff_param'}
+        title={t((t) => t.game.ex.name.filterExBuffParam)}
+        description={t((t) => t.game.ex.desc.filterExBuffParam)}
       />
       <EnumChecksBox
         options={exBuffParams.exBuffParam}
@@ -42,8 +45,8 @@ export const SectionFilter = <D extends InputData>({
         imageHeight="2rem"
       />
       <SectionTitle
-        titleLabel={'game.ex.name.filter_chained_ex_buff_param'}
-        descriptionLabel={'game.ex.desc.filter_chained_ex_buff_param'}
+        title={t((t) => t.game.ex.name.filterChainedExBuffParam)}
+        description={t((t) => t.game.ex.desc.filterChainedExBuffParam)}
       />
       <EnumChecksBox
         options={exBuffParams.chainedExBuffParam}

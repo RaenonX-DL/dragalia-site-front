@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 
 
@@ -27,7 +27,7 @@ export const QuestPositionForm = ({
   rotations = '',
   tips = '',
 }: QuestPositionInputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <div className="rounded bg-black-32 p-3">
@@ -36,7 +36,7 @@ export const QuestPositionForm = ({
           <Form.Control
             className="mb-2"
             type="text" value={positionName}
-            placeholder={t('posts.quest.character')}
+            placeholder={t((t) => t.posts.quest.character)}
             onChange={(e) => onPositionNameChanged(e.target.value)}
             required
           />
@@ -44,7 +44,7 @@ export const QuestPositionForm = ({
       </Row>
       <Row>
         <Col lg={4} className="pr-lg-2 mb-2">
-          <Form.Label>{t('posts.quest.builds')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.quest.builds)}</Form.Label>
           <MarkdownInput
             rows={7} value={builds}
             onChanged={(e) => onBuildsChanged(e.target.value)}
@@ -52,7 +52,7 @@ export const QuestPositionForm = ({
           />
         </Col>
         <Col lg={4} className="px-lg-2 mb-2">
-          <Form.Label>{t('posts.quest.rotations')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.quest.rotations)}</Form.Label>
           <MarkdownInput
             rows={7} value={rotations}
             onChanged={(e) => onRotationsChanged(e.target.value)}
@@ -60,7 +60,7 @@ export const QuestPositionForm = ({
           />
         </Col>
         <Col lg={4} className="pl-lg-2 mb-2">
-          <Form.Label>{t('posts.quest.tips')}</Form.Label>
+          <Form.Label>{t((t) => t.posts.quest.tips)}</Form.Label>
           <MarkdownInput
             rows={7} value={tips}
             onChanged={(e) => onTipsChanged(e.target.value)}

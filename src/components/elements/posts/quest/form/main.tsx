@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Path from '../../../../../const/path/definitions';
-import {useTranslation} from '../../../../../i18n/utils';
+import {makePostPath, PostPath} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender, QuestPostPayload} from '../../../../../utils/services/api';
 import {PostFormBase} from '../../shared/form/base';
 import {FormMeta} from '../../shared/form/meta';
@@ -18,7 +18,7 @@ export const QuestPostForm = <P extends QuestPostPayload>({
   fnSendRequest,
   renderOnPreloaded,
 }: PostFormProps<P>) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
   return (
     <PostFormBase
@@ -32,7 +32,7 @@ export const QuestPostForm = <P extends QuestPostPayload>({
             formState={formState}
             setPayload={setPayload}
             setAvailability={(isIdAvailable) => setFormState({...formState, isIdAvailable})}
-            titlePlaceholder={t('posts.quest.title')}
+            titlePlaceholder={t((t) => t.posts.quest.title)}
             fnIdCheck={ApiRequestSender.questPostIdCheck}
           />
           <hr/>
@@ -44,7 +44,7 @@ export const QuestPostForm = <P extends QuestPostPayload>({
         </>
       )}
       renderOnPreloaded={renderOnPreloaded}
-      fnGetRedirectPath={Path.getAnalysis}
+      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
     />
   );
 };

@@ -1,28 +1,33 @@
 import React from 'react';
 
+import {useI18n} from '../../../../../i18n/hook';
 import {NumericInput} from '../../elements/numInput';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps} from './props';
 
-export const SectionOther = ({inputData, setInputData}: SectionProps) => (
-  <>
-    <SectionTitle
-      titleLabel={'game.skill_atk.name.other'}
-      descriptionLabel={'game.skill_atk.desc.other'}
-    />
-    <NumericInput
-      titleLabel={'game.skill_atk.name.other_element_bonus'}
-      descriptionLabel={'game.skill_atk.desc.other_element_bonus'}
-      inputData={inputData}
-      inputKey="otherElemBonusPct"
-      setInputData={setInputData}
-    />
-    <NumericInput
-      titleLabel={'game.skill_atk.name.other_hp'}
-      descriptionLabel={'game.skill_atk.desc.other_hp'}
-      inputData={inputData}
-      inputKey="otherCurrentHpPct"
-      setInputData={setInputData}
-    />
-  </>
-);
+export const SectionOther = ({inputData, setInputData}: SectionProps) => {
+  const {t} = useI18n();
+
+  return (
+    <>
+      <SectionTitle
+        title={t((t) => t.game.skillAtk.name.other)}
+        description={t((t) => t.game.skillAtk.desc.other)}
+      />
+      <NumericInput
+        title={t((t) => t.game.skillAtk.name.otherElementBonus)}
+        description={t((t) => t.game.skillAtk.desc.otherElementBonus)}
+        inputData={inputData}
+        inputKey="otherElemBonusPct"
+        setInputData={setInputData}
+      />
+      <NumericInput
+        title={t((t) => t.game.skillAtk.name.otherHp)}
+        description={t((t) => t.game.skillAtk.desc.otherHp)}
+        inputData={inputData}
+        inputKey="otherCurrentHpPct"
+        setInputData={setInputData}
+      />
+    </>
+  );
+};

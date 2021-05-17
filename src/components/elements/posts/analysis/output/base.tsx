@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {AnalysisGetSuccessResponse} from '../../../../../api-def/api';
-import Path from '../../../../../const/path/definitions';
-import {useTranslation} from '../../../../../i18n/utils';
+import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost, PostInfo, PostManageBar} from '../../../../elements';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
 import {SectionBottom} from './bottom';
@@ -18,7 +18,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetSuccessResponse>({
   analysis,
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
   return (
     <>
@@ -26,10 +26,16 @@ export const AnalysisOutputBase = <R extends AnalysisGetSuccessResponse>({
         analysis.isAdmin &&
         <PostManageBar
           newButtons={[
-            {url: Path.ANALYSIS_NEW_CHARA, title: t('posts.manage.add_chara')},
-            {url: Path.ANALYSIS_NEW_DRAGON, title: t('posts.manage.add_dragon')},
+            {
+              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+              title: t((t) => t.posts.manage.addChara),
+            },
+            {
+              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+              title: t((t) => t.posts.manage.addDragon),
+            },
           ]}
-          editPostUrl={Path.getAnalysisEdit(analysis.seqId)}
+          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.seqId, lang})}
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}

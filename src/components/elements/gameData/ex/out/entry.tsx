@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {
   ConditionEnumMap,
@@ -19,7 +19,7 @@ type ExAbilityEntryProps = {
 
 
 export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
   // region Entry info
   const charaName = entry.chara.name[lang];
@@ -44,8 +44,8 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
             <Col>
               <ExAbility
                 effectUnits={entry.ex}
-                name={t('game.ex.name.ex_ability')}
-                description={t('game.ex.desc.ex_ability')}
+                name={t((t) => t.game.ex.name.exAbility)}
+                description={t((t) => t.game.ex.desc.exAbility)}
                 conditionEnums={conditionEnums}
                 isEx
               />
@@ -53,8 +53,8 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
             <Col>
               <ExAbility
                 effectUnits={entry.chainedEx}
-                name={t('game.ex.name.chained_ex_ability')}
-                description={t('game.ex.desc.chained_ex_ability')}
+                name={t((t) => t.game.ex.desc.chainedExAbility)}
+                description={t((t) => t.game.ex.desc.chainedExAbility)}
                 conditionEnums={conditionEnums}
               />
             </Col>

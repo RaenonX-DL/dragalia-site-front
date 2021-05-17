@@ -1,31 +1,31 @@
 import React from 'react';
 
-import Path from '../../../../const/path/definitions';
-import {useTranslation} from '../../../../i18n/utils';
+import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../const/path';
+import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api';
 import {PostListPage, QuestPostList} from '../../../elements';
 import {PageProps} from '../../props';
 
 
 export const QuestList = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
-  const title = t('pages.name.quest_list');
+  const title = t((t) => t.meta.inUse.questList.title);
 
   fnSetTitle(title);
 
   return (
     <PostListPage
       title={title}
-      currentUrl={Path.QUEST_LIST}
+      currentUrl={makeSimplePath(GeneralPath.QUEST_LIST, {lang})}
       fnFetchList={ApiRequestSender.questPostList}
       postManageBarProps={{
-        newButtons: [{url: Path.QUEST_NEW}],
+        newButtons: [{url: makeSimplePath(GeneralPath.QUEST_NEW, {lang})}],
       }}
       renderPostEntries={(response) => (
         <QuestPostList
           entries={response.posts}
-          generateLink={(postId) => Path.getQuest(postId)}
+          generateLink={(postId) => makePostPath(PostPath.QUEST, {pid: postId, lang})}
         />
       )}
     />

@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as CSS from 'csstype';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 import {ChecksBase, ChecksPropsDisplay} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
@@ -30,7 +30,7 @@ export const EnumChecks = <K extends string, V, T extends { [key in K]: V }>({
   onChange,
   isChecked,
 }: EnumChecksPropsInternal<K, V, T>) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   return (
     <ChecksBase
@@ -43,7 +43,7 @@ export const EnumChecks = <K extends string, V, T extends { [key in K]: V }>({
             id={`${inputKey}${enumEntry.name}`} key={enumEntry.name}
             type={type}
             groupName={inputKey}
-            titleLabel={enumEntry.trans[lang] || enumEntry.name}
+            title={enumEntry.trans[lang] || enumEntry.name}
             imageUrl={enumEntry.imagePath ? DepotPaths.getImageURL(enumEntry.imagePath) : undefined}
             imageHeight={imageHeight}
             onChange={(checked) => onChange(code, checked && isChecked(code))}

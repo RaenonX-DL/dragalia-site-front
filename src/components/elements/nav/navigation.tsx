@@ -3,70 +3,67 @@ import React from 'react';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
-import Path from '../../../const/path/definitions';
-import {useTranslation} from '../../../i18n/utils';
+import {GeneralPath, makeSimplePath} from '../../../const/path';
+import {useI18n} from '../../../i18n/hook';
+import {LanguageSwitch} from '../../../i18n/switch';
 import {titleNavBarId} from '../common/anchor/pageAnchor';
 import {GoogleSigninButton} from '../common/googleSignin/main';
-import {LanguageSwitch} from './langSwitch';
 
 
 type Props = {};
 
 
 export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, ref) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
-        <LinkContainer to={Path.HOME}>
-          <Navbar.Brand>{t('pages.name.site')}</Navbar.Brand>
+        <LinkContainer to={makeSimplePath(GeneralPath.HOME, {lang})}>
+          <Navbar.Brand>{t((t) => t.meta.inUse.site.title)}</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
           <Nav className="mr-auto">
-            <LinkContainer to={Path.SPECIAL_THANKS}>
-              <Nav.Link>{t('pages.name.thanks')}</Nav.Link>
+            <LinkContainer to={makeSimplePath(GeneralPath.SPECIAL_THANKS, {lang})}>
+              <Nav.Link>{t((t) => t.meta.inUse.thanks.title)}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.QUEST_LIST}>
-              <Nav.Link>{t('posts.quest.title_self')}</Nav.Link>
+            <LinkContainer to={makeSimplePath(GeneralPath.QUEST_LIST, {lang})}>
+              <Nav.Link>{t((t) => t.posts.quest.titleSelf)}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.ANALYSIS_LIST}>
-              <Nav.Link>{t('posts.analysis.title_self')}</Nav.Link>
+            <LinkContainer to={makeSimplePath(GeneralPath.ANALYSIS_LIST, {lang})}>
+              <Nav.Link>{t((t) => t.posts.analysis.titleSelf)}</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={Path.MISC_LIST}>
-              <Nav.Link>{t('posts.misc.title_self')}</Nav.Link>
+            <LinkContainer to={makeSimplePath(GeneralPath.MISC_LIST, {lang})}>
+              <Nav.Link>{t((t) => t.posts.misc.titleSelf)}</Nav.Link>
             </LinkContainer>
-            <NavDropdown title={t('game.data.title_self')} id="collapsible-nav-dropdown">
-              <NavDropdown.Header>{t('game.data.title_passive')}</NavDropdown.Header>
-              <LinkContainer to={Path.EX}>
-                <NavDropdown.Item>{t('game.data.title_ex')}</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to={Path.PRINT}>
-                <NavDropdown.Item>{t('game.data.title_print')}</NavDropdown.Item>
+            <NavDropdown title={t((t) => t.game.data.titleSelf)} id="collapsible-nav-dropdown">
+              <NavDropdown.Header>{t((t) => t.game.data.titlePassive)}</NavDropdown.Header>
+              <LinkContainer to={makeSimplePath(GeneralPath.EX, {lang})}>
+                <NavDropdown.Item>{t((t) => t.game.data.titleEx)}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
-              <NavDropdown.Header>{t('game.data.title_active')}</NavDropdown.Header>
-              <LinkContainer to={Path.SKILL_ATK}>
-                <NavDropdown.Item>{t('game.data.title_skill_atk')}</NavDropdown.Item>
+              <NavDropdown.Header>{t((t) => t.game.data.titleActive)}</NavDropdown.Header>
+              <LinkContainer to={makeSimplePath(GeneralPath.SKILL_ATK, {lang})}>
+                <NavDropdown.Item>{t((t) => t.game.data.titleSkillAtk)}</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to={Path.SKILL_SUP}>
-                <NavDropdown.Item>{t('game.data.title_skill_sup')}</NavDropdown.Item>
+              <LinkContainer to={makeSimplePath(GeneralPath.SKILL_SUP, {lang})}>
+                <NavDropdown.Item>{t((t) => t.game.data.titleSkillSup)}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
-              <NavDropdown.Header>{t('game.data.title_others')}</NavDropdown.Header>
-              <LinkContainer to={Path.STORY}>
-                <NavDropdown.Item>{t('game.data.title_story')}</NavDropdown.Item>
+              <NavDropdown.Header>{t((t) => t.game.data.titleOthers)}</NavDropdown.Header>
+              <LinkContainer to={makeSimplePath(GeneralPath.STORY, {lang})}>
+                <NavDropdown.Item>{t((t) => t.game.data.titleStory)}</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <NavDropdown title={t('game.tools.title_self')} id="collapsible-nav-dropdown">
-              <LinkContainer to={Path.ROTATION_CALC}>
-                <NavDropdown.Item>{t('game.tools.rotation')}</NavDropdown.Item>
+            <NavDropdown title={t((t) => t.game.tools.titleSelf)} id="collapsible-nav-dropdown">
+              <LinkContainer to={makeSimplePath(GeneralPath.ROTATION_CALC, {lang})}>
+                <NavDropdown.Item>{t((t) => t.game.tools.rotation)}</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <LinkContainer to={Path.ABOUT}>
-              <Nav.Link>{t('pages.name.about')}</Nav.Link>
+            <LinkContainer to={makeSimplePath(GeneralPath.ABOUT, {lang})}>
+              <Nav.Link>{t((t) => t.meta.inUse.about.title)}</Nav.Link>
             </LinkContainer>
           </Nav>
           {/* Right part of the navbar */}
@@ -78,7 +75,9 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
       </Navbar>
       <Navbar
         collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
-        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>{t('pages.name.site')}</h1>
+        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
+          {t((t) => t.meta.inUse.site.title)}
+        </h1>
       </Navbar>
     </>
   );

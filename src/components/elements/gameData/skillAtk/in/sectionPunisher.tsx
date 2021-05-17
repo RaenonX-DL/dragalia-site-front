@@ -1,28 +1,33 @@
 import React from 'react';
 
+import {useI18n} from '../../../../../i18n/hook';
 import {NumericInput} from '../../elements/numInput';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps} from './props';
 
-export const SectionPunisher = ({inputData, setInputData}: SectionProps) => (
-  <>
-    <SectionTitle
-      titleLabel={'game.skill_atk.name.punisher'}
-      descriptionLabel={'game.skill_atk.desc.punisher'}
-    />
-    <NumericInput
-      titleLabel={'game.skill_atk.name.punisher_bk'}
-      descriptionLabel={'game.skill_atk.desc.punisher_bk'}
-      inputData={inputData}
-      inputKey="punishersBkPct"
-      setInputData={setInputData}
-    />
-    <NumericInput
-      titleLabel={'game.skill_atk.name.punisher_others'}
-      descriptionLabel={'game.skill_atk.desc.punisher_others'}
-      inputData={inputData}
-      inputKey="punishersOtherPct"
-      setInputData={setInputData}
-    />
-  </>
-);
+export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
+  const {t} = useI18n();
+
+  return (
+    <>
+      <SectionTitle
+        title={t((t) => t.game.skillAtk.name.punisher)}
+        description={t((t) => t.game.skillAtk.desc.punisher)}
+      />
+      <NumericInput
+        title={t((t) => t.game.skillAtk.name.punisherBk)}
+        description={t((t) => t.game.skillAtk.desc.punisherBk)}
+        inputData={inputData}
+        inputKey="punishersBkPct"
+        setInputData={setInputData}
+      />
+      <NumericInput
+        title={t((t) => t.game.skillAtk.name.punisherOthers)}
+        description={t((t) => t.game.skillAtk.desc.punisherOthers)}
+        inputData={inputData}
+        inputKey="punishersOtherPct"
+        setInputData={setInputData}
+      />
+    </>
+  );
+};

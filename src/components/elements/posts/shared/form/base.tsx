@@ -3,7 +3,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 
 import {ApiResponseCode, PostMetaPayload} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/express';
 import {useDispatch} from '../../../../../state/store';
@@ -27,7 +27,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
   renderOnPreloaded,
   fnGetRedirectPath,
 }: PostFormBaseInternalProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
   const dispatch = useDispatch();
 
   const [modalState, setModalState] = React.useState<ModalState>({
@@ -58,8 +58,8 @@ export const PostFormBase = <P extends PostMetaPayload>({
     if (!CookiesControl.getGoogleUid()) {
       setModalState({
         show: true,
-        title: t('google_signin.no_uid'),
-        message: t('google_signin.no_uid_details'),
+        title: t((t) => t.googleSignin.noUid),
+        message: t((t) => t.googleSignin.noUidDetails),
       });
       return;
     }
@@ -74,7 +74,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
         } else {
           setModalState({
             show: true,
-            title: t('posts.manage.publish_failed'),
+            title: t((t) => t.posts.manage.publishFailed),
             message: `${data.code}: ${ApiResponseCode[data.code]}`,
           });
         }
@@ -82,7 +82,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
       .catch((error) => {
         setModalState({
           show: true,
-          title: t('posts.manage.publish_failed'),
+          title: t((t) => t.posts.manage.publishFailed),
           message: JSON.stringify(error),
         });
       });

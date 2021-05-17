@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Col, Row} from 'react-bootstrap';
 
 import {PostMetaPayload} from '../../../../../api-def/api/base/payload';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {isFormStateValid, PostFormState} from './types';
 
 type FormControlProps<P extends PostMetaPayload> = {
@@ -11,13 +11,17 @@ type FormControlProps<P extends PostMetaPayload> = {
 }
 
 export const FormControl = <P extends PostMetaPayload>({formState}: FormControlProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <Row className="mb-6">
       <Col>
         <Button type="submit" className="float-right" disabled={!isFormStateValid(formState)}>
-          {formState.isPreloaded ? t('posts.manage.edit') : t('posts.manage.publish')}
+          {
+            formState.isPreloaded ?
+              t((t) => t.posts.manage.edit) :
+              t((t) => t.posts.manage.publish)
+          }
         </Button>
       </Col>
     </Row>

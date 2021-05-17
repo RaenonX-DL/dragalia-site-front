@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
@@ -11,19 +11,21 @@ export const getBadgesBuffZone = (atkSkillEntry: AttackingSkillData) => {
     return [];
   }
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const tooltipText = t(
-    'game.skill_atk.entry.buff_zone_desc',
+    (t) => t.game.skillAtk.entry.buffZoneDesc,
     {
-      selfBoost: atkSkillEntry.skill.buffZoneBoost.self * 100,
-      allyBoost: atkSkillEntry.skill.buffZoneBoost.ally * 100,
+      selfBoost: (atkSkillEntry.skill.buffZoneBoost.self * 100).toFixed(0),
+      allyBoost: (atkSkillEntry.skill.buffZoneBoost.ally * 100).toFixed(0),
     },
   );
 
   return [
     <OverlayTooltip key="buffZone" text={tooltipText}>
-      <Badge key="buffZone" variant="primary">{t('game.skill_atk.entry.buff_zone')}</Badge>
+      <Badge key="buffZone" variant="primary">
+        {t((t) => t.game.skillAtk.entry.buffZone)}
+      </Badge>
     </OverlayTooltip>,
   ];
 };

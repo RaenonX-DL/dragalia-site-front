@@ -2,25 +2,25 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
   let badges: Array<React.ReactNode> = [];
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   // > 1 crisis mod
   if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data > 1)) {
     const tooltipText = t(
-      'game.skill_atk.entry.crisis_up_desc',
+      (t) => t.game.skillAtk.entry.crisisUpDesc,
       {maxRate: Math.max(...atkSkillEntry.skill.crisisMax).toFixed(2)},
     );
 
     badges = badges.concat([
       <OverlayTooltip key="crisisUp" text={tooltipText}>
-        <Badge variant="danger">{t('game.skill_atk.entry.crisis_up')}</Badge>
+        <Badge variant="danger">{t((t) => t.game.skillAtk.entry.crisisUp)}</Badge>
       </OverlayTooltip>,
     ]);
   }
@@ -28,13 +28,13 @@ export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
   // < 1 crisis mod
   if (atkSkillEntry.skill.crisisMax.some((data) => data !== 0 && data < 1)) {
     const tooltipText = t(
-      'game.skill_atk.entry.crisis_down_desc',
+      (t) => t.game.skillAtk.entry.crisisDownDesc,
       {maxRate: Math.max(...atkSkillEntry.skill.crisisMax).toFixed(2)},
     );
 
     badges = badges.concat([
       <OverlayTooltip key="crisisDown" text={tooltipText}>
-        <Badge key="crisisDown" variant="danger">{t('game.skill_atk.entry.crisis_down')}</Badge>
+        <Badge key="crisisDown" variant="danger">{t((t) => t.game.skillAtk.entry.crisisDown)}</Badge>
       </OverlayTooltip>,
     ]);
   }

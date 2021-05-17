@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {CookiesControl} from '../../../../utils/cookies';
 import {
   ApiRequestSender,
@@ -14,9 +14,9 @@ import {PageProps} from '../../props';
 
 
 export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
-  fnSetTitle(t('pages.name.analysis_new_chara'));
+  fnSetTitle(t((t) => t.meta.inUse.analysisNewChara.title));
 
   return (
     <AnalysisFormCharaNew
@@ -44,9 +44,9 @@ export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
 };
 
 export const AnalysisNewDragon = ({fnSetTitle}: PageProps) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
-  fnSetTitle(t('pages.name.analysis_new_dragon'));
+  fnSetTitle(t((t) => t.meta.inUse.analysisNewDragon.title));
 
   return (
     <AnalysisFormDragonNew

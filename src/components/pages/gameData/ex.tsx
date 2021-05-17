@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../i18n/utils';
+import {useI18n} from '../../../i18n/hook';
 import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources/loader';
@@ -68,10 +68,10 @@ const ExAbilitySkillList = () => {
 
 
 export const ExAbilityPage = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   if (fnSetTitle) {
-    fnSetTitle(t('pages.name.game_data.ex'));
+    fnSetTitle(t((t) => t.meta.inUse.gameData.ex.title));
   }
 
   // Add a layer of DOM to prevent fnSetTitle being called multiple times,

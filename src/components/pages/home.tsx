@@ -1,17 +1,17 @@
 import React from 'react';
 
-import {useTranslation} from '../../i18n/utils';
+import {useI18n} from '../../i18n/hook';
 import {Markdown} from '../elements';
 import {PageProps} from './props';
 
 export const Home = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
-  fnSetTitle(t('pages.name.home'));
+  fnSetTitle(t((t) => t.meta.inUse.home.title));
 
   return (
     <Markdown>
-      {t('pages.welcome')}
+      {t((t) => t.message.info.welcome)}
     </Markdown>
   );
 };

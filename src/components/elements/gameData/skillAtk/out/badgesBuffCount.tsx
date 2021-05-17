@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
@@ -11,26 +11,26 @@ export const getBadgesBuffCount = (atkSkillEntry: AttackingSkillData) => {
     return [];
   }
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const maxEachPct = Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.each)) * 100;
 
   let tooltipText;
   if (atkSkillEntry.skill.buffCountBoost.some((data) => data.limit != 0)) {
     tooltipText = t(
-      'game.skill_atk.entry.buff_count_desc_capped',
+      (t) => t.game.skillAtk.entry.buffCountDescCapped,
       {
-        each: maxEachPct,
-        limit: Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.limit)) * 100,
+        each: maxEachPct.toFixed(0),
+        limit: (Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.limit)) * 100).toFixed(0),
       },
     );
   } else {
-    tooltipText = t('game.skill_atk.entry.buff_count_desc_uncapped', {each: maxEachPct});
+    tooltipText = t((t) => t.game.skillAtk.entry.buffCountDescUncapped, {each: maxEachPct.toFixed(0)});
   }
 
   return [
     <OverlayTooltip key="buffCount" text={tooltipText}>
-      <Badge key="buffCount" variant="primary">{t('game.skill_atk.entry.buff_count')}</Badge>
+      <Badge key="buffCount" variant="primary">{t((t) => t.game.skillAtk.entry.buffCount)}</Badge>
     </OverlayTooltip>,
   ];
 };

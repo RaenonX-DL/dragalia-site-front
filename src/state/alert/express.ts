@@ -8,13 +8,13 @@ export class AlertPayloadMaker {
   /**
    * Payload to show the alert that the page is accessible for admins only.
    *
-   * @param {TFunction} t t-function of react-i18next
+   * @param {TFunction} t t-function to get the translation
    * @return {AlertData} alert payload
    */
   static adminOnly(t: TFunction): AlertData {
     return {
       show: true,
-      message: t('message.warning.admin_only'),
+      message: t((t) => t.message.warning.adminOnly),
       variant: 'danger',
     };
   }
@@ -22,13 +22,13 @@ export class AlertPayloadMaker {
   /**
    * Payload to show the alert that the post has been published.
    *
-   * @param {TFunction} t t-function of react-i18next
+   * @param {TFunction} t t-function to get the translation
    * @return {AlertData} alert payload
    */
   static postPublished(t: TFunction): AlertData {
     return {
       show: true,
-      message: t('posts.message.published'),
+      message: t((t) => t.posts.message.published),
       variant: 'success',
     };
   }

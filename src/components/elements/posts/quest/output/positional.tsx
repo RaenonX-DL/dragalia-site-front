@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {PositionalInfo} from '../../../../../utils/services/api';
 import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
@@ -14,7 +14,7 @@ type OutputProps = {
 
 
 export const QuestPositionOutput = ({info}: OutputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <>
@@ -28,21 +28,21 @@ export const QuestPositionOutput = ({info}: OutputProps) => {
                 </Col>
                 <Col className="d-flex flex-row-reverse">
                   <Accordion.Toggle as={Button} variant="outline-success" eventKey={info.position}>
-                    {t('posts.manage.collapse')}
+                    {t((t) => t.posts.manage.collapse)}
                   </Accordion.Toggle>
                 </Col>
               </Row>
               <Accordion.Collapse eventKey={info.position} className="mt-3">
                 <Row key={info.position}>
                   <Col lg={6}>
-                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.builds')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.builds)}</h5>
                     <Markdown>{info.builds}</Markdown>
                   </Col>
                   <Col lg={6}>
-                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.rotations')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.rotations)}</h5>
                     <Markdown>{info.rotations}</Markdown>
 
-                    <h5 className="text-center pb-2 border-bottom">{t('posts.quest.tips')}</h5>
+                    <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.tips)}</h5>
                     <Markdown>{info.tips}</Markdown>
                   </Col>
                 </Row>

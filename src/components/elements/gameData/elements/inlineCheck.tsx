@@ -12,7 +12,7 @@ type InlineCheckProps<K extends string, T extends { [key in K]: boolean }> =
 
 
 export const InlineCheck = <K extends string, T extends { [key in K]: boolean }>({
-  titleLabel,
+  title,
   inputData,
   inputKey,
   setInputData,
@@ -21,7 +21,7 @@ export const InlineCheck = <K extends string, T extends { [key in K]: boolean }>
   return (
     <InlineCheckBase
       {...props}
-      titleLabel={titleLabel}
+      title={title}
       groupName={inputKey}
       checked={inputData[inputKey]}
       onChange={(checked) => setInputData({...inputData, [inputKey]: checked})}

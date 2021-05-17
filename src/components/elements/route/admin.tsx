@@ -2,7 +2,8 @@ import React from 'react';
 
 import {Route} from 'react-router-dom';
 
-import {useTranslation} from '../../../i18n/utils';
+import {makeRoutePath} from '../../../const/path';
+import {useI18n} from '../../../i18n/hook';
 import {alertDispatchers} from '../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../state/alert/express';
 import {useDispatch} from '../../../state/store';
@@ -18,7 +19,7 @@ const AdminRouteRender = ({children}: React.PropsWithChildren<{}>) => {
   //  - User without admin will have alert displayed instead
   //  - No alert if admin navigate into page
 
-  const {t} = useTranslation();
+  const {t} = useI18n();
   const dispatch = useDispatch();
 
   const [isAdmin, setIsAdmin] = React.useState<FetchStatus<boolean>>({
@@ -64,7 +65,7 @@ const AdminRouteRender = ({children}: React.PropsWithChildren<{}>) => {
 export const AdminRoute = ({path, children}: React.PropsWithChildren<RouteProps>) => {
   return (
     <Route
-      exact path={path}
+      exact path={makeRoutePath(path)}
       render={() => <AdminRouteRender>{children}</AdminRouteRender>}
     />
   );

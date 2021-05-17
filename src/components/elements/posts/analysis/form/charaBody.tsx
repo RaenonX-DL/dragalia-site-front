@@ -3,7 +3,7 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {CharaAnalysisPayload, CharacterSkill} from '../../../../../api-def/api/post/analysis/payload';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {generateNewCharaSkill} from '../../../../../utils/services/api/utils';
 import {MarkdownInput} from '../../../markdown/input';
 import {ArrayDataForm} from '../../shared/form/array';
@@ -20,7 +20,7 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
   setPayload,
   setState,
 }: CharaAnalysisFormProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const {payload} = formState;
 
@@ -38,7 +38,7 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
     <>
       <Row>
         <Col>
-          <h5>{t('posts.analysis.force_strike')}</h5>
+          <h5>{t((t) => t.posts.analysis.forceStrike)}</h5>
           <MarkdownInput
             onChanged={(e) => setPayload('forceStrikes', e.target.value)}
             rows={5} value={payload.forceStrikes}
@@ -72,7 +72,7 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
       <hr/>
       <Row>
         <Col>
-          <h5>{t('posts.analysis.tips_builds')}</h5>
+          <h5>{t((t) => t.posts.analysis.tipsBuilds)}</h5>
           <MarkdownInput
             onChanged={(e) => setPayload('tipsBuilds', e.target.value)}
             rows={10} value={payload.tipsBuilds} required

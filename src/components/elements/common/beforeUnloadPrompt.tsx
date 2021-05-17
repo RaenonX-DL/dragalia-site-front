@@ -3,7 +3,7 @@ import React from 'react';
 import {useBeforeunload} from 'react-beforeunload';
 import {Prompt as RouterPrompt} from 'react-router-dom';
 
-import {useTranslation} from '../../../i18n/utils';
+import {useI18n} from '../../../i18n/hook';
 
 
 type PromptProps = {
@@ -13,9 +13,9 @@ type PromptProps = {
 
 
 export const BeforeUnloadPrompt = ({display = true, text}: PromptProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   useBeforeunload((event) => event.preventDefault());
 
-  return <RouterPrompt when={display} message={text || t('message.warning.page_nav')}/>;
+  return <RouterPrompt when={display} message={text || t((t) => t.message.warning.pageNav)}/>;
 };

@@ -3,18 +3,18 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {PostEditPayload} from '../../../../../api-def/api';
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from './types';
 
 type FormEditNoteProps<P extends PostEditPayload> = PostFormDataProps<P>
 
 export const FormEditNote = <P extends PostEditPayload>({setPayload}: FormEditNoteProps<P>) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   return (
     <>
-      <h5>{t('posts.manage.modify_note')}</h5>
+      <h5>{t((t) => t.posts.manage.modifyNote)}</h5>
       <Row>
         <Col>
           <MarkdownInput

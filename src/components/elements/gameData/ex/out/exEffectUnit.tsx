@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types/common/ability';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
@@ -16,7 +16,7 @@ type ExEffectUnitProps = {
 export const ExEffectUnit = ({
   effectUnit, rate, badges,
 }: ExEffectUnitProps) => {
-  const {lang} = useTranslation();
+  const {lang} = useI18n();
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useTranslation} from '../../../i18n/utils';
+import {useI18n} from '../../../i18n/hook';
 import {CookiesControl} from '../../../utils/cookies';
 import {
   ApiResponseCode,
@@ -31,7 +31,7 @@ export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchS
   seqId,
   increaseCount,
 }: FetchPostProps<R, S>) => {
-  const {t, lang} = useTranslation();
+  const {t, lang} = useI18n();
 
   if (!status.fetched) {
     fnSendFetchRequest(
@@ -55,7 +55,7 @@ export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchS
             fetchFailed: true,
             failureMessage: (
               data.code === ApiResponseCode.FAILED_POST_NOT_EXISTS ?
-                t('posts.manage.post_not_exists') :
+                t((t) => t.posts.manage.postNotExists) :
                 data.code.toString()
             ),
           });

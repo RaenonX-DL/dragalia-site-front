@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useTranslation} from '../../../../i18n/utils';
+import {useI18n} from '../../../../i18n/hook';
 import {CookiesControl} from '../../../../utils/cookies';
 import {CommonModal, ModalState} from '../modal';
 import {LoginButton} from './button/login';
@@ -9,7 +9,7 @@ import {useGoogleLogin} from './login';
 import {useGoogleLogout} from './logout';
 
 export const GoogleSigninButton = () => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const [failedModal, setFailedModal] = React.useState<ModalState>({
     show: false,

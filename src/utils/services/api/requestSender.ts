@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 import {
   AnalysisEditSuccessResponse,
   AnalysisGetPayload,
@@ -18,6 +20,12 @@ import {
   DragonAnalysisEditPayload,
   DragonAnalysisPublishPayload,
   DragonAnalysisPublishSuccessResponse,
+  FailedResponse,
+  PageMetaPayload,
+  PageMetaResponse,
+  PostPageMetaPayload,
+  PostPageMetaResponse,
+  PostType,
   QuestPostEditPayload,
   QuestPostEditSuccessResponse,
   QuestPostGetPayload,
@@ -290,6 +298,48 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.POST_ANALYSIS_ID_CHECK,
       {seqId: seqId || undefined, googleUid, lang},
+    );
+  }
+
+  // endregion
+
+  // region Get page meta
+
+  /**
+   * Send a request to get the post page meta.
+   *
+   * @param {string} googleUid Google UID
+   * @param {SupportedLanguages} lang post language
+   * @param {PostType} postType type of the post
+   * @param {number} pid post ID
+   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getPostMeta(googleUid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
+    return ApiRequestSender.sendRequest<PostPageMetaResponse | FailedResponse, PostPageMetaPayload>(
+      'GET',
+      ApiEndPoints.PAGE_META_POST,
+      {
+        googleUid,
+        lang,
+        postType,
+        postId: pid,
+      },
+    );
+  }
+
+  /**
+   * Send a request to get the generic page meta.
+   *
+   * @param {string} googleUid Google UID
+   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getPageMeta(googleUid: string) {
+    return ApiRequestSender.sendRequest<PageMetaResponse | FailedResponse, PageMetaPayload>(
+      'GET',
+      ApiEndPoints.PAGE_META_GENERAL,
+      {
+        googleUid,
+      },
     );
   }
 

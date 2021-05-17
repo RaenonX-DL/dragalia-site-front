@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {AnalysisPayload} from '../../../../../api-def/api';
-import Path from '../../../../../const/path/definitions';
-import {useTranslation} from '../../../../../i18n/utils';
+import {makePostPath, PostPath} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostFormBase} from '../../shared/form/base';
 import {FormMeta} from '../../shared/form/meta';
@@ -19,7 +19,7 @@ export const AnalysisFormBase = <P extends AnalysisPayload>({
   renderMain,
   renderOnPreloaded,
 }: PostFormBaseProps<P>) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
   return (
     <PostFormBase
@@ -33,7 +33,7 @@ export const AnalysisFormBase = <P extends AnalysisPayload>({
             formState={formState}
             setPayload={setPayload}
             setAvailability={setAvailability}
-            titlePlaceholder={t('posts.analysis.unit_name')}
+            titlePlaceholder={t((t) => t.posts.analysis.unitName)}
             fnIdCheck={ApiRequestSender.analysisPostIdCheck}
           />
           <hr/>
@@ -43,7 +43,7 @@ export const AnalysisFormBase = <P extends AnalysisPayload>({
         </>
       )}
       renderOnPreloaded={renderOnPreloaded}
-      fnGetRedirectPath={Path.getAnalysis}
+      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
     />
   );
 };

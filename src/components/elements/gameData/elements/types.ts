@@ -1,7 +1,7 @@
 export type TitledProps = {
-  titleLabel: string,
+  title: string,
 }
 
 export type DetailedProps = TitledProps & {
-  descriptionLabel: string
+  description: string,
 }

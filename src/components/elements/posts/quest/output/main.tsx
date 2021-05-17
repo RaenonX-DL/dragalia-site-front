@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Path from '../../../../../const/path/definitions';
-import {useTranslation} from '../../../../../i18n/utils';
+import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../../const/path';
+import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api';
 import {
   Markdown,
@@ -21,7 +21,7 @@ import {OutputBase} from '../../shared/output/base';
 
 
 export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
-  const {t} = useTranslation();
+  const {t, lang} = useI18n();
 
   const [status, setStatus] = React.useState<QuestPostFetchStatus>(
     {
@@ -37,8 +37,9 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
       fnSetTitle={fnSetTitle}
       status={status}
       setStatus={setStatus}
-      getTitle={(pid) => (
-        `#Q${pid} ${status.post ? status.post.title : t('pages.name.quest_post')}`
+      getTitle={(pid) => t(
+        (t) => t.meta.inUse.questPost.title,
+        {title: status.post?.title || `#Q${pid}`},
       )}
       fnSendFetchRequest={ApiRequestSender.questPostGet}
       renderOnFetched={(post) => {
@@ -47,32 +48,32 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
             {
               post.isAdmin &&
               <PostManageBar
-                newButtons={[{url: Path.QUEST_NEW}]}
-                editPostUrl={Path.getQuestEdit(post.seqId)}
+                newButtons={[{url: makeSimplePath(GeneralPath.QUEST_NEW, {lang})}]}
+                editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}
               />
             }
             {post.isAltLang && <AlertIsAlternativeLanguage response={post}/>}
             {post.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={post}/>}
 
-            <PageAnchor name="general" type="h3" text={t('posts.quest.general')} className="mb-3"/>
+            <PageAnchor name="general" type="h3" text={t((t) => t.posts.quest.general)} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">
               <Markdown>{post.general}</Markdown>
             </div>
             <hr/>
             {post.showAds && <AdsInPost/>}
-            <PageAnchor name="video" type="h3" text={t('posts.quest.video')} className="mb-3"/>
+            <PageAnchor name="video" type="h3" text={t((t) => t.posts.quest.video)} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">
               <Markdown>{post.video || 'N/A'}</Markdown>
             </div>
             {post.showAds && <AdsInPost/>}
             <hr/>
-            <PageAnchor name="positional" type="h3" text={t('posts.quest.positional')} className="mb-3"/>
+            <PageAnchor name="positional" type="h3" text={t((t) => t.posts.quest.positional)} className="mb-3"/>
             <QuestPositionOutput info={post.positional}/>
             <hr/>
             {
               post.addendum &&
               <>
-                <PageAnchor name="addendum" type="h3" text={t('posts.quest.addendum')} className="mb-3"/>
+                <PageAnchor name="addendum" type="h3" text={t((t) => t.posts.quest.addendum)} className="mb-3"/>
                 <div className="rounded bg-black-32 p-3">
                   <Markdown>{post.addendum}</Markdown>
                 </div>

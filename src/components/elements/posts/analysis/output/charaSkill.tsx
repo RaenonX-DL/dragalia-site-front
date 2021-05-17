@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useTranslation} from '../../../../../i18n/utils';
+import {useI18n} from '../../../../../i18n/hook';
 import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 
@@ -15,7 +15,7 @@ export type AnalysisSkillOutputProps = {
 };
 
 export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkillOutputProps) => {
-  const {t} = useTranslation();
+  const {t} = useI18n();
 
   const hasAllInfo = rotations && tips;
 
@@ -28,7 +28,9 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
       </Row>
       <Row>
         <Col lg={hasAllInfo ? 6 : 12}>
-          <h5 className="text-center pb-2 border-bottom">{t('posts.analysis.skill.info')}</h5>
+          <h5 className="text-center pb-2 border-bottom">
+            {t((t) => t.posts.analysis.skill.info)}
+          </h5>
           <Markdown>{info}</Markdown>
         </Col>
         {
@@ -37,7 +39,9 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
             {
               rotations &&
               <>
-                <h5 className="text-center pb-2 border-bottom">{t('posts.analysis.skill.rotations')}</h5>
+                <h5 className="text-center pb-2 border-bottom">
+                  {t((t) => t.posts.analysis.skill.rotations)}
+                </h5>
                 <Markdown>{rotations}</Markdown>
               </>
             }
@@ -45,7 +49,9 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
             {
               tips &&
               <>
-                <h5 className="text-center pb-2 border-bottom">{t('posts.analysis.skill.tips')}</h5>
+                <h5 className="text-center pb-2 border-bottom">
+                  {t((t) => t.posts.analysis.skill.tips)}
+                </h5>
                 <Markdown>{tips}</Markdown>
               </>
             }

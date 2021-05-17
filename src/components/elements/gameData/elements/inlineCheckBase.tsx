@@ -4,7 +4,6 @@ import * as CSS from 'csstype';
 import {ButtonGroup, Image, ToggleButton} from 'react-bootstrap';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {useTranslation} from '../../../../i18n/utils';
 import {OverlayTooltip} from '../../common/overlay/tooltip';
 import {TitledProps} from './types';
 
@@ -22,7 +21,7 @@ export type InlineCheckBaseProps = TitledProps & {
 
 
 export const InlineCheckBase = ({
-  titleLabel,
+  title,
   type = 'checkbox',
   variant = 'outline-secondary',
   groupName,
@@ -32,17 +31,15 @@ export const InlineCheckBase = ({
   onChange,
   imageHeight,
 }: InlineCheckBaseProps) => {
-  const {t} = useTranslation();
-
   let label;
   if (imageUrl) {
     label = (
-      <OverlayTooltip text={t(titleLabel)}>
+      <OverlayTooltip text={title}>
         <Image src={imageUrl} style={{height: imageHeight || '1.5rem'}}/>
       </OverlayTooltip>
     );
   } else {
-    label = <span className="text-light">{t(titleLabel)}</span>;
+    label = <span className="text-light">{title}</span>;
   }
 
   // Value of `1` is the identifier of that button in a button group.
@@ -55,7 +52,7 @@ export const InlineCheckBase = ({
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         name={groupName}
-        id={id || titleLabel}
+        id={id || title}
         value="1"
       >
         {label}
