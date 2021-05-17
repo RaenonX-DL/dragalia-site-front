@@ -4,7 +4,7 @@ import {useConfigSelector} from '../state/config/selector';
 import {useDispatch} from '../state/store';
 import {translations} from './translations/main';
 import {TFunction} from './types';
-import {getTranslationString} from './utils';
+import {getTFunction} from './utils';
 
 type UseI18nReturn = {
   t: TFunction,
@@ -21,7 +21,7 @@ export const useI18n = (): UseI18nReturn => {
   };
 
   return {
-    t: getTranslationString(translations[lang]),
+    t: getTFunction(translations[lang]),
     lang,
     setLang,
   };

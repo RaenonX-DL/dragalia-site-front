@@ -6,7 +6,7 @@ import {PageProps} from './props';
 export const About = ({fnSetTitle}: PageProps) => {
   const {t} = useI18n();
 
-  fnSetTitle(t((t) => t.pages.name.about));
+  fnSetTitle(t((t) => t.meta.inUse.about.title));
 
   return (
     <>

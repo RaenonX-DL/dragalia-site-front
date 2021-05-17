@@ -10,7 +10,7 @@ import {PageProps} from '../../props';
 export const QuestList = ({fnSetTitle}: PageProps) => {
   const {t, lang} = useI18n();
 
-  const title = t((t) => t.pages.name.questList);
+  const title = t((t) => t.meta.inUse.questList.title);
 
   fnSetTitle(title);
 

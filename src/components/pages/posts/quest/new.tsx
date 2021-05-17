@@ -30,7 +30,7 @@ export const QuestNew = ({fnSetTitle}: PageProps) => {
     isPreloaded: false,
   });
 
-  fnSetTitle(t((t) => t.pages.name.questNew));
+  fnSetTitle(t((t) => t.meta.inUse.questNew.title));
 
   return (
     <QuestPostForm

@@ -13,7 +13,6 @@ export const translation: TranslationStruct = {
       titleEx: 'EX / リンクEX',
       titleOthers: '他の情報',
       titlePassive: 'アビリティ',
-      titlePrint: '護符',
       titleSkillAtk: '攻擊スキル',
       titleSkillSup: 'サポートスキル',
       titleStory: 'ストーリー',
@@ -209,6 +208,12 @@ export const translation: TranslationStruct = {
     },
     info: {
       ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      constructing: 'サイト機能工事中。後で発布する。\n\n' +
+        '### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。' +
+        '\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。',
+      welcome: 'OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n' +
+        '今 **高難易度クエスト攻略、キャラ、ドラゴン評価** は完成してる，ご覧ください。\n\n' +
+        'ページに選択したら說明もついてます。',
     },
   },
   misc: {
@@ -217,35 +222,92 @@ export const translation: TranslationStruct = {
     omGroup: 'OM グループ成員',
     remove: '削除',
   },
-  pages: {
-    name: {
-      about: 'サイトについて',
-      analysisList: '評価のカタログ',
-      analysisNewChara: '新キャラの評価',
-      analysisNewDragon: '新ドラゴンの評価',
-      analysisEditChara: '編輯角色評測 #A{{pid}}',
-      analysisEditDragon: '編輯龍族評測 #A{{pid}}',
-      analysisPost: '評価',
-      home: 'ホームページ',
-      constructing: '工事中',
-      questEdit: '高難易度クエスト攻略の編集 #Q{{pid}}',
-      questList: '高難易度クエスト攻略のカタログ',
-      questNew: '高難易度クエスト攻略の追加',
-      questPost: '高難易度クエスト攻略',
-      site: 'ドラガリ攻略サイト by OM',
-      suffix: ' | ドラガリ攻略サイト by OM',
-      thanks: 'ご協力に感謝',
+  meta: {
+    inUse: {
+      about: {
+        title: 'サイトについて',
+        description: 'description',
+      },
+      analysisList: {
+        title: '評価のカタログ',
+        description: 'description',
+      },
+      analysisNewChara: {
+        title: '新キャラの評価',
+        description: 'description',
+      },
+      analysisNewDragon: {
+        title: '新ドラゴンの評価',
+        description: 'description',
+      },
+      analysisEdit: {
+        title: '編輯評測 - {{title}}',
+        description: 'description',
+      },
+      analysisEditChara: {
+        title: '編輯評測 - {{title}}',
+        description: 'description',
+      },
+      analysisEditDragon: {
+        title: '編輯評測 - {{title}}',
+        description: 'description',
+      },
+      analysisPost: {
+        title: '評価',
+        description: 'description',
+      },
+      home: {
+        title: 'ホームページ',
+        description: 'description',
+      },
+      questEdit: {
+        title: '高難易度クエスト攻略の編集 #Q{{pid}}',
+        description: 'description',
+      },
+      questList: {
+        title: '高難易度クエスト攻略のカタログ',
+        description: 'description',
+      },
+      questNew: {
+        title: '高難易度クエスト攻略の追加',
+        description: 'description',
+      },
+      questPost: {
+        title: '高難易度クエスト攻略',
+        description: 'description',
+      },
+      site: {
+        title: 'ドラガリ攻略サイト by OM',
+        description: 'description',
+      },
+      thanks: {
+        title: 'ご協力に感謝',
+        description: 'description',
+      },
       gameData: {
-        ex: 'TBA',
-        skillAtk: 'TBA',
+        ex: {
+          title: 'TBA',
+          description: 'description',
+        },
+        skillAtk: {
+          title: 'TBA',
+          description: 'description',
+        },
       },
     },
-    constructing: 'サイト機能工事中。後で発布する。\n\n' +
-      '### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。' +
-      '\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。',
-    welcome: 'OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n' +
-      '今 **高難易度クエスト攻略、キャラ、ドラゴン評価** は完成してる，ご覧ください。\n\n' +
-      'ページに選択したら說明もついてます。',
+    error: {
+      404: {
+        title: '頁面不存在',
+        description: 'description',
+      },
+    },
+    temp: {
+      constructing: {
+        title: '工事中',
+        description: 'description',
+      },
+    },
+    suffix: ' | ドラガリ攻略サイト by OM',
   },
   posts: {
     analysis: {

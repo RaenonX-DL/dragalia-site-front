@@ -13,7 +13,6 @@ export const translation: TranslationStruct = {
       titleEx: 'Co-ability / CCA',
       titleOthers: 'Others',
       titlePassive: 'Passive',
-      titlePrint: 'Wyrmprints',
       titleSkillAtk: 'Skill (Attack)',
       titleSkillSup: 'Skill (Support)',
       titleStory: 'Story',
@@ -235,6 +234,17 @@ export const translation: TranslationStruct = {
     },
     info: {
       ads: 'Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)',
+      constructing: 'Under construction. ' +
+        'Will announce upon completion somewhere.\n\n' +
+        '### Completed before email notification system has been completed\n\n' +
+        'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
+        '### Completed after the email notification system has been implemented\n\n' +
+        'Users who logged in before or signed up for the email list will receive an email about the new release.',
+      welcome: 'Welcome to the DL info website constructed and maintained ' +
+        'by the members of the alliance - Oasis of the Maniacs!\n\n' +
+        'Most of the pages and the features are still under construction.\n\n' +
+        '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
+        'Head to the pages/functions which are still under construction to get more details.',
     },
   },
   misc: {
@@ -243,40 +253,92 @@ export const translation: TranslationStruct = {
     omGroup: 'OM Group Member',
     remove: 'Remove',
   },
-  pages: {
-    name: {
-      about: 'About',
-      analysisList: 'Index of analysis',
-      analysisNewChara: 'New character analysis post',
-      analysisNewDragon: 'New dragon analysis post',
-      analysisEditChara: 'Edit character analysis post #A{{pid}}',
-      analysisEditDragon: 'Edit dragon analysis post #A{{pid}}',
-      analysisPost: 'Analysis',
-      home: 'Homepage',
-      constructing: 'Under construction',
-      questEdit: 'Edit HDTs/Agitos #Q{{pid}}',
-      questList: 'Index of HDTs/Agitos',
-      questNew: 'New HDTs/Agitos',
-      questPost: 'HDTs/Agitos',
-      site: 'DL Info by OM',
-      suffix: ' | DL Info by OM',
-      thanks: 'Special Thanks',
+  meta: {
+    inUse: {
+      about: {
+        title: 'About',
+        description: 'Information about this website.',
+      },
+      analysisList: {
+        title: 'Index of analysis',
+        description: 'List of character/dragon analyses.',
+      },
+      analysisNewChara: {
+        title: 'New character analysis',
+        description: 'Page for new character analysis.',
+      },
+      analysisNewDragon: {
+        title: 'New dragon analysis',
+        description: 'Page for dragon character analysis.',
+      },
+      analysisEdit: {
+        title: 'Edit analysis - {{title}}',
+        description: 'Page for editing the analysis #A{{pid}}',
+      },
+      analysisEditChara: {
+        title: 'Edit analysis - {{title}}',
+        description: 'Page for editing the analysis #A{{pid}}',
+      },
+      analysisEditDragon: {
+        title: 'Edit analysis - {{title}}',
+        description: 'Page for editing the analysis #A{{pid}}',
+      },
+      analysisPost: {
+        title: '{{title}}',
+        description: '{{description}}',
+      },
+      home: {
+        title: 'Homepage',
+        description: 'Homepage of DL info website by OM.',
+      },
+      questEdit: {
+        title: 'Edit quest guide - {{title}}',
+        description: 'Page for editing a quest guide.',
+      },
+      questList: {
+        title: 'Index of quest guides',
+        description: 'Index page of the quest guides.',
+      },
+      questNew: {
+        title: 'New quest guide',
+        description: 'Page for a new High-Difficulty quest guide.',
+      },
+      questPost: {
+        title: '{{title}}',
+        description: '{{description}}',
+      },
+      site: {
+        title: 'DL Info by OM',
+        description: 'Dragalia Lost info website by OM.',
+      },
+      thanks: {
+        title: 'Special Thanks',
+        description: 'List of contributors of this website.',
+      },
       gameData: {
-        ex: 'Co-ab / CCA lookup',
-        skillAtk: 'Attacking skill lookup',
+        ex: {
+          title: 'Co-ab / CCA lookup',
+          description: 'Page to search for all Co-abilities/Chained Co-abilities in the game.',
+        },
+        skillAtk: {
+          title: 'Attacking skill lookup',
+          description: 'Page to search for all attacking skills in the game.',
+        },
       },
     },
-    constructing: 'Under construction. ' +
-      'Will announce upon completion somewhere.\n\n' +
-      '### Completed before email notification system has been completed\n\n' +
-      'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
-      '### Completed after the email notification system has been implemented\n\n' +
-      'Users who logged in before or signed up for the email list will receive an email about the new release.',
-    welcome: 'Welcome to the DL info website constructed and maintained ' +
-      'by the members of the alliance - Oasis of the Maniacs!\n\n' +
-      'Most of the pages and the features are still under construction.\n\n' +
-      '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
-      'Head to the pages/functions which are still under construction to get more details.',
+    error: {
+      404: {
+        title: 'Page not exists',
+        description: 'The page does not exist.',
+      },
+    },
+    temp: {
+      constructing: {
+        title: 'Under construction',
+        description: 'The page is currently under construction.',
+      },
+    },
+    suffix: ' | DL Info by OM',
   },
   posts: {
     analysis: {

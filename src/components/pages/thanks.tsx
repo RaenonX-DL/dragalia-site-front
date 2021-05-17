@@ -9,7 +9,7 @@ import {PageProps} from './props';
 export const SpecialThanks = ({fnSetTitle}: PageProps) => {
   const {t} = useI18n();
 
-  fnSetTitle(t((t) => t.pages.name.thanks));
+  fnSetTitle(t((t) => t.meta.inUse.thanks.title));
 
   return (
     <>

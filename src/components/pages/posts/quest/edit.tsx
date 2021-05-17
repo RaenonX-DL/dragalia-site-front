@@ -30,8 +30,8 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
     });
   } else if (fetchStatus.fetched && !fetchStatus.fetchFailed && fetchStatus.post) {
     fnSetTitle(t(
-      (t) => t.pages.name.questEdit,
-      {pid: fetchStatus.post.seqId.toFixed(0)},
+      (t) => t.meta.inUse.questEdit.title,
+      {title: fetchStatus.post.title},
     ));
 
     return <QuestEditForm post={fetchStatus.post}/>;

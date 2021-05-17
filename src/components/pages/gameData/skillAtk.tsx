@@ -96,7 +96,7 @@ export const AttackingSkillPage = ({fnSetTitle}: PageProps) => {
   const {t} = useI18n();
 
   if (fnSetTitle) {
-    fnSetTitle(t((t) => t.pages.name.gameData.skillAtk));
+    fnSetTitle(t((t) => t.meta.inUse.gameData.skillAtk.title));
   }
 
   // Add a layer of DOM to prevent fnSetTitle being called multiple times,

@@ -28,7 +28,10 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       status={status}
       setStatus={setStatus}
       getTitle={(pid) => (
-        `#A${pid} ${status.post ? status.post.title : t((t) => t.pages.name.analysisPost)}`
+        t(
+          (t) => t.meta.inUse.analysisPost.title,
+          {title: status.post?.title || `#A${pid}`},
+        )
       )}
       fnSendFetchRequest={ApiRequestSender.analysisPostGet}
       renderOnFetched={(post) => {

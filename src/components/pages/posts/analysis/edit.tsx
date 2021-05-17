@@ -20,8 +20,8 @@ import {
 import {PageProps} from '../../props';
 
 const getTitleTranslationName: { [key in AnalysisType]: GetTranslationFunction } = {
-  [AnalysisType.CHARACTER]: (t) => t.pages.name.analysisEditChara,
-  [AnalysisType.DRAGON]: (t) => t.pages.name.analysisEditDragon,
+  [AnalysisType.CHARACTER]: (t) => t.meta.inUse.analysisEditChara.title,
+  [AnalysisType.DRAGON]: (t) => t.meta.inUse.analysisEditDragon.title,
 };
 
 
@@ -55,7 +55,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     const titleName = getTitleTranslationName[analysisType];
 
     if (titleName) {
-      fnSetTitle(t(titleName, {pid}));
+      fnSetTitle(t(titleName, {title: fetchStatus.post.title}));
     }
 
     if (analysisType === AnalysisType.CHARACTER) {

@@ -6,7 +6,7 @@ import alertReducer from './alert/reducer';
 import configReducer from './config/reducer';
 
 // WARNING: DO NOT use redux for Google user ID storage
-// because service cannot access redux contents
+// because server cannot access redux contents
 // while it requires the user ID to get the correct page meta.
 
 const reducers = {

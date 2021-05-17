@@ -13,7 +13,6 @@ export const translation: TranslationStruct = {
       titleEx: 'EX / CEX',
       titleOthers: '其他',
       titlePassive: '被動技能',
-      titlePrint: '護符',
       titleSkillAtk: '攻擊技能',
       titleSkillSup: '支援技能',
       titleStory: '故事',
@@ -209,6 +208,14 @@ export const translation: TranslationStruct = {
     },
     info: {
       ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      constructing: '網頁/功能建置中。建置完畢後公布。\n\n' +
+        '### Email 通知系統完成前\n\n' +
+        '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
+        '### Email 通知系統完成後\n\n' +
+        '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
+      welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
+        '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
+        '點選建置中的頁面可以查看相關說明。',
     },
   },
   misc: {
@@ -217,37 +224,92 @@ export const translation: TranslationStruct = {
     omGroup: 'OM 群組成員',
     remove: '移除',
   },
-  pages: {
-    name: {
-      about: '關於',
-      analysisList: '評測目錄',
-      analysisNewChara: '新角色評測',
-      analysisNewDragon: '新龍族評測',
-      analysisEditChara: '編輯角色評測 #A{{pid}}',
-      analysisEditDragon: '編輯龍族評測 #A{{pid}}',
-      analysisPost: '評測',
-      home: '首頁',
-      constructing: '建置中',
-      questEdit: '編輯高難攻略 #Q{{pid}}',
-      questList: '高難副本攻略目錄',
-      questNew: '新增高難攻略',
-      questPost: '高難副本攻略',
-      site: '龍絆攻略站 by OM',
-      suffix: ' | 龍絆攻略站 by OM',
-      thanks: '特別感謝',
+  meta: {
+    inUse: {
+      about: {
+        title: '關於',
+        description: '關於本網站的介紹頁面。',
+      },
+      analysisList: {
+        title: '評測目錄',
+        description: '角色、龍族評測目錄。',
+      },
+      analysisNewChara: {
+        title: '新角色評測',
+        description: '新角色評測編輯頁面。',
+      },
+      analysisNewDragon: {
+        title: '新龍族評測',
+        description: '新龍族評測編輯頁面。',
+      },
+      analysisEdit: {
+        title: '編輯評測 - {{title}}',
+        description: '評測 #A{{pid}} 的編輯頁面。',
+      },
+      analysisEditChara: {
+        title: '編輯評測 - {{title}}',
+        description: '評測 #A{{pid}} 的編輯頁面。',
+      },
+      analysisEditDragon: {
+        title: '編輯評測 - {{title}}',
+        description: '評測 #A{{pid}} 的編輯頁面。',
+      },
+      analysisPost: {
+        title: '{{title}}',
+        description: '{{description}}',
+      },
+      home: {
+        title: '首頁',
+        description: 'OM 龍絆攻略網首頁。',
+      },
+      questEdit: {
+        title: '編輯攻略 - {{title}}',
+        description: '評測 #Q{{pid}} 的編輯頁面。',
+      },
+      questList: {
+        title: '高難副本攻略目錄',
+        description: '各龍絆高難副本的攻略目錄頁面。',
+      },
+      questNew: {
+        title: '新增高難攻略',
+        description: '高難副本攻略的新增頁面。',
+      },
+      questPost: {
+        title: '{{title}}',
+        description: '{{description}}',
+      },
+      site: {
+        title: 'OM 龍絆攻略站',
+        description: '由 OM 製作的失落龍絆攻略網。',
+      },
+      thanks: {
+        title: '特別感謝',
+        description: '協助本網站建置的清單。',
+      },
       gameData: {
-        ex: 'EX / CEX 查詢',
-        skillAtk: '攻擊技能查詢',
+        ex: {
+          title: 'EX / CEX 搜尋',
+          description: 'EX / CEX 搜尋頁面。',
+        },
+        skillAtk: {
+          title: '攻擊技能搜尋',
+          description: '各攻擊技能資訊搜尋頁面。',
+        },
       },
     },
-    constructing: '網頁/功能建置中。建置完畢後會公布。\n\n' +
-      '### Email 通知系統完成前\n\n' +
-      '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
-      '### Email 通知系統完成後\n\n' +
-      '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
-    welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
-      '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
-      '點選建置中的頁面可以查看相關說明。',
+    error: {
+      404: {
+        title: '頁面不存在',
+        description: '此頁面不存在。',
+      },
+    },
+    temp: {
+      constructing: {
+        title: '建置中',
+        description: '網頁建置中。',
+      },
+    },
+    suffix: ' | 龍絆攻略站 by OM',
   },
   posts: {
     analysis: {

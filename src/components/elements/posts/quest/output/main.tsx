@@ -37,10 +37,9 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
       fnSetTitle={fnSetTitle}
       status={status}
       setStatus={setStatus}
-      getTitle={(pid) => (
-        `#Q${pid} ${status.post ?
-          status.post.title :
-          t((t) => t.pages.name.questPost)}`
+      getTitle={(pid) => t(
+        (t) => t.meta.inUse.questPost.title,
+        {title: status.post?.title || `#Q${pid}`},
       )}
       fnSendFetchRequest={ApiRequestSender.questPostGet}
       renderOnFetched={(post) => {

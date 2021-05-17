@@ -1,7 +1,7 @@
 import {generatePath, useLocation} from 'react-router-dom';
 
-import {SupportedLanguages} from '../../api-def/api/other/lang';
-import {GeneralPath, Path, PostPath} from './definitions';
+import {SupportedLanguages} from '../api-def/api/other/lang';
+import {GeneralPath, PagePath, PathRoot, PostPath} from '../const/path/definitions';
 
 export const getParamValue = (paramName: string, defaultValue?: string): string | undefined => {
   const location = useLocation();
@@ -13,11 +13,11 @@ type PathArgs = {
   lang: SupportedLanguages,
 }
 
-const makePath = (path: Path) => {
-  return `${GeneralPath.ROOT}${path}`;
+const makePath = (path: PagePath) => {
+  return `${PathRoot}${path}`;
 };
 
-export const makeRoutePath = (path: Path) => {
+export const makeRoutePath = (path: PagePath) => {
   return makePath(path);
 };
 

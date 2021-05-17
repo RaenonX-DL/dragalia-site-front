@@ -8,12 +8,12 @@ export const Constructing = ({fnSetTitle}: PageProps) => {
   const {t} = useI18n();
 
   if (fnSetTitle) {
-    fnSetTitle(t((t) => t.pages.name.constructing));
+    fnSetTitle(t((t) => t.meta.temp.constructing.title));
   }
 
   return (
     <Markdown>
-      {t((t) => t.pages.constructing)}
+      {t((t) => t.message.info.constructing)}
     </Markdown>
   );
 };

@@ -20,14 +20,14 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
         <LinkContainer to={makeSimplePath(GeneralPath.HOME, {lang})}>
-          <Navbar.Brand>{t((t) => t.pages.name.site)}</Navbar.Brand>
+          <Navbar.Brand>{t((t) => t.meta.inUse.site.title)}</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
           <Nav className="mr-auto">
             <LinkContainer to={makeSimplePath(GeneralPath.SPECIAL_THANKS, {lang})}>
-              <Nav.Link>{t((t) => t.pages.name.thanks)}</Nav.Link>
+              <Nav.Link>{t((t) => t.meta.inUse.thanks.title)}</Nav.Link>
             </LinkContainer>
             <LinkContainer to={makeSimplePath(GeneralPath.QUEST_LIST, {lang})}>
               <Nav.Link>{t((t) => t.posts.quest.titleSelf)}</Nav.Link>
@@ -42,9 +42,6 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
               <NavDropdown.Header>{t((t) => t.game.data.titlePassive)}</NavDropdown.Header>
               <LinkContainer to={makeSimplePath(GeneralPath.EX, {lang})}>
                 <NavDropdown.Item>{t((t) => t.game.data.titleEx)}</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to={makeSimplePath(GeneralPath.PRINT, {lang})}>
-                <NavDropdown.Item>{t((t) => t.game.data.titlePrint)}</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider/>
               <NavDropdown.Header>{t((t) => t.game.data.titleActive)}</NavDropdown.Header>
@@ -66,7 +63,7 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
               </LinkContainer>
             </NavDropdown>
             <LinkContainer to={makeSimplePath(GeneralPath.ABOUT, {lang})}>
-              <Nav.Link>{t((t) => t.pages.name.about)}</Nav.Link>
+              <Nav.Link>{t((t) => t.meta.inUse.about.title)}</Nav.Link>
             </LinkContainer>
           </Nav>
           {/* Right part of the navbar */}
@@ -78,7 +75,9 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
       </Navbar>
       <Navbar
         collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
-        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>{t((t) => t.pages.name.site)}</h1>
+        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
+          {t((t) => t.meta.inUse.site.title)}
+        </h1>
       </Navbar>
     </>
   );

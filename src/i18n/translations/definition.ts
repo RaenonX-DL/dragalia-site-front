@@ -1,3 +1,8 @@
+export type PageMetaTranslations = {
+  title: string,
+  description: string,
+}
+
 export type TranslationStruct = {
   donation: {
     tierS1: string,
@@ -11,7 +16,6 @@ export type TranslationStruct = {
       titleEx: string,
       titleOthers: string,
       titlePassive: string,
-      titlePrint: string,
       titleSkillAtk: string,
       titleSkillSup: string,
       titleStory: string,
@@ -199,6 +203,8 @@ export type TranslationStruct = {
     },
     info: {
       ads: string,
+      constructing: string,
+      welcome: string,
     },
   },
   misc: {
@@ -207,31 +213,35 @@ export type TranslationStruct = {
     omGroup: string,
     remove: string,
   },
-  pages: {
-    name: {
-      about: string,
-      analysisList: string,
-      analysisNewChara: string,
-      analysisNewDragon: string,
-      analysisEditChara: string,
-      analysisEditDragon: string,
-      analysisPost: string,
-      home: string,
-      constructing: string,
-      questEdit: string,
-      questList: string,
-      questNew: string,
-      questPost: string,
-      site: string,
-      suffix: string,
-      thanks: string,
+  meta: {
+    inUse: {
+      about: PageMetaTranslations,
+      analysisList: PageMetaTranslations,
+      analysisNewChara: PageMetaTranslations,
+      analysisNewDragon: PageMetaTranslations,
+      analysisEdit: PageMetaTranslations,
+      analysisEditChara: PageMetaTranslations,
+      analysisEditDragon: PageMetaTranslations,
+      analysisPost: PageMetaTranslations,
+      home: PageMetaTranslations,
+      questEdit: PageMetaTranslations,
+      questList: PageMetaTranslations,
+      questNew: PageMetaTranslations,
+      questPost: PageMetaTranslations,
+      site: PageMetaTranslations,
+      thanks: PageMetaTranslations,
       gameData: {
-        ex: string,
-        skillAtk: string,
+        ex: PageMetaTranslations,
+        skillAtk: PageMetaTranslations,
       },
     },
-    constructing: string,
-    welcome: string,
+    error: {
+      404: PageMetaTranslations,
+    }
+    temp: {
+      constructing: PageMetaTranslations,
+    },
+    suffix: string,
   },
   posts: {
     analysis: {

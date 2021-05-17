@@ -1,12 +1,12 @@
-import {TranslationStruct} from './translations/definition';
-import {GetTranslationFunction, TFunction} from './types';
+import {PageMetaTranslations, TranslationStruct} from './translations/definition';
+import {GetTranslationFunction, InterpolateParams, TFunction} from './types';
 
 
-export const getTranslationString = (
+export const getTFunction = (
   translation: TranslationStruct,
 ): TFunction => (
   getEntryFn: GetTranslationFunction,
-  replacements: { [key in string]: string } = {},
+  replacements: InterpolateParams = {},
 ): string => {
   const entry = getEntryFn(translation);
 
@@ -29,4 +29,22 @@ export const getTranslationString = (
   };
 
   return entry.replace(/{{(\w+)}}/g, replacer);
+};
+
+
+export const getMetaTFunction = (
+  translation: TranslationStruct,
+): TFunction<PageMetaTranslations> => (
+  getEntryFn: GetTranslationFunction<PageMetaTranslations>,
+  replacements: InterpolateParams = {},
+): PageMetaTranslations => {
+  const t = getTFunction(translation);
+
+  return {
+    title: (
+      t((t) => getEntryFn(t).title, replacements) +
+      t((t) => t.meta.suffix)
+    ),
+    description: t((t) => getEntryFn(t).description, replacements),
+  };
 };

@@ -1,6 +1,6 @@
 apps:
   - name: 'dragalia-site-front'
-    script: './dist/service/app.js'
+    script: './dist/server/app.js'
     instances: 6
     env:
       NODE_ENV: 'development'

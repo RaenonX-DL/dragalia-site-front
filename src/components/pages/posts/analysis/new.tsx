@@ -16,7 +16,7 @@ import {PageProps} from '../../props';
 export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
   const {t, lang} = useI18n();
 
-  fnSetTitle(t((t) => t.pages.name.analysisNewChara));
+  fnSetTitle(t((t) => t.meta.inUse.analysisNewChara.title));
 
   return (
     <AnalysisFormCharaNew
@@ -46,7 +46,7 @@ export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
 export const AnalysisNewDragon = ({fnSetTitle}: PageProps) => {
   const {t, lang} = useI18n();
 
-  fnSetTitle(t((t) => t.pages.name.analysisNewDragon));
+  fnSetTitle(t((t) => t.meta.inUse.analysisNewDragon.title));
 
   return (
     <AnalysisFormDragonNew

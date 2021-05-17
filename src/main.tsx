@@ -21,7 +21,7 @@ import {
   QuestPage,
 } from './components/pages';
 import {SpecialThanks} from './components/pages/thanks';
-import {GeneralPath, PostPath} from './const/path';
+import {GeneralPath, PathRoot, PostPath} from './const/path';
 import {useI18n} from './i18n/hook';
 import {SiteAlert} from './siteAlert';
 import {ReduxProvider, ReduxProviderProps} from './state/provider';
@@ -35,7 +35,7 @@ type PageContentProps = {
 
 const PageContent = ({updatePageTitle}: PageContentProps) => {
   return (
-    <Route path={GeneralPath.ROOT}>
+    <Route path={PathRoot}>
       {/* Home */}
 
       <PublicRoute path={GeneralPath.HOME}>
@@ -85,9 +85,6 @@ const PageContent = ({updatePageTitle}: PageContentProps) => {
       <PublicRoute path={GeneralPath.EX}>
         <ExAbilityPage fnSetTitle={updatePageTitle}/>
       </PublicRoute>
-      <PublicRoute path={GeneralPath.PRINT}>
-        <Constructing fnSetTitle={updatePageTitle}/>
-      </PublicRoute>
 
       <PublicRoute path={GeneralPath.SKILL_ATK}>
         <AttackingSkillPage fnSetTitle={updatePageTitle}/>
@@ -123,10 +120,10 @@ const PageMain = () => {
   const {t} = useI18n();
 
   const ref = React.useRef<HTMLHeadingElement>(null) as React.MutableRefObject<HTMLHeadingElement>;
-  const title = React.useRef<string>(t((t) => t.pages.name.site));
+  const title = React.useRef<string>(t((t) => t.meta.inUse.site.title));
 
   const updatePageTitle = (newTitle?: string) => {
-    newTitle = newTitle || t((t) => t.pages.name.site);
+    newTitle = newTitle || t((t) => t.meta.inUse.site.title);
 
     if (!newTitle) {
       newTitle = '';
@@ -134,7 +131,7 @@ const PageMain = () => {
 
     // Set the title element and the document title
     title.current = newTitle;
-    document.title = newTitle + t((t) => t.pages.name.suffix);
+    document.title = newTitle + t((t) => t.meta.suffix);
 
     if (ref.current) {
       // Title element linked, set new title to it & record the page title

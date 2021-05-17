@@ -10,10 +10,11 @@
   "scripts": {
     "dev": "react-scripts start",
     "start": "pm2-runtime start pm2.yml --env production",
-    "build": "npm run build:react && npm run build:service",
+    "build": "npm run build:react && npm run build:server",
     "build:react": "react-scripts build",
-    "build:service": "tsc --p ./service/tsconfig.json",
+    "build:server": "tsc --p ./server/tsconfig.json",
     "test": "react-scripts test",
+    "test:server": "jest --config ./server/jest.config.ts",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:md": "remark .",
     "lint:fix": "eslint src --fix --ext .ts,.tsx"
@@ -74,11 +75,22 @@
     "remark-lint": "^8.0.0",
     "remark-preset-lint-recommended": "^5.0.0",
     "stylelint": "^13.12.0",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-standard": "^20.0.0",
+    "ts-node": "^9.1.1",
+    "ts-jest": "^26.5.6"
   },
   "remarkConfig": {
     "plugins": [
       "remark-preset-lint-recommended"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./src/**/*.(ts|tsx)",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "clover"
     ]
   },
   "browserslist": {

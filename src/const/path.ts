@@ -1,3 +1,3 @@
-export * from './path/utils';
+export * from '../utils/path';
 export * from './path/params';
 export * from './path/definitions';

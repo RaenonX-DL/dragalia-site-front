@@ -10,7 +10,7 @@ import {PageProps} from '../../props';
 export const AnalysisList = ({fnSetTitle}: PageProps) => {
   const {t, lang} = useI18n();
 
-  const title = t((t) => t.pages.name.analysisList);
+  const title = t((t) => t.meta.inUse.analysisList.title);
 
   fnSetTitle(title);
 

@@ -7,11 +7,11 @@ import {PageProps} from './props';
 export const Home = ({fnSetTitle}: PageProps) => {
   const {t} = useI18n();
 
-  fnSetTitle(t((t) => t.pages.name.home));
+  fnSetTitle(t((t) => t.meta.inUse.home.title));
 
   return (
     <Markdown>
-      {t((t) => t.pages.welcome)}
+      {t((t) => t.message.info.welcome)}
     </Markdown>
   );
 };
