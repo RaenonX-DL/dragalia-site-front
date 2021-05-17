@@ -35,10 +35,10 @@ jobs:
         run: npm run lint
 
       - name: npm test (React)
-        run: npm test -- --coverage
+        run: npm run test -- --coverage
 
       - name: npm test (Server)
-        run: npm test:server
+        run: npm run test:server
 
       - name: npm build
         run: npm run build
