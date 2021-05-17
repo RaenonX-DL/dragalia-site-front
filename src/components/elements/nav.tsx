@@ -3,11 +3,11 @@ import React from 'react';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
-import {GeneralPath, makeSimplePath} from '../../../const/path';
-import {useI18n} from '../../../i18n/hook';
-import {LanguageSwitch} from '../../../i18n/switch';
-import {titleNavBarId} from '../common/anchor/pageAnchor';
-import {GoogleSigninButton} from '../common/googleSignin/main';
+import {GeneralPath, makeSimplePath} from '../../const/path';
+import {useI18n} from '../../i18n/hook';
+import {LanguageSwitch} from '../../i18n/switch';
+import {titleNavBarId} from './common/anchor/pageAnchor';
+import {GoogleSigninButton} from './common/googleSignin/main';
 
 
 type Props = {};

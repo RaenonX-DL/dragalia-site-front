@@ -22,6 +22,7 @@ import {
 } from './components/pages';
 import {SpecialThanks} from './components/pages/thanks';
 import {GeneralPath, PathRoot, PostPath} from './const/path';
+import {LanguageHandle} from './i18n/handle';
 import {useI18n} from './i18n/hook';
 import {SiteAlert} from './siteAlert';
 import {ReduxProvider, ReduxProviderProps} from './state/provider';
