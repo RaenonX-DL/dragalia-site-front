@@ -32,3 +32,4 @@ yarn-error.log*
 # misc
 .DS_Store
 .wakatime-project
+src/react-app-env.d.ts
