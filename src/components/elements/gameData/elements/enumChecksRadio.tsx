@@ -21,7 +21,7 @@ export const EnumChecksRadio = <K extends string, T extends { [key in K]: number
       inputData={inputData}
       inputKey={inputKey}
       options={options}
-      onChange={(code) => () => setInputData({
+      onChange={(code) => setInputData({
         ...inputData,
         [inputKey]: code,
       })}
