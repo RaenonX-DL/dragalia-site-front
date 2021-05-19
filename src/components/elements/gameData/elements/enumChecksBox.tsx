@@ -21,7 +21,7 @@ export const EnumChecksBox = <K extends string, T extends { [key in K]: Array<nu
       inputData={inputData}
       inputKey={inputKey}
       options={options}
-      onChange={(code, checked) => () => setInputData({
+      onChange={(code, checked) => setInputData({
         ...inputData,
         [inputKey]: checked ?
           inputData[inputKey].concat([code]) :
