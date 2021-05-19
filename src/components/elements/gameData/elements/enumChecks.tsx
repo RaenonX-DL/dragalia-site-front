@@ -17,7 +17,7 @@ export type EnumChecksProps<K extends string, V, T extends { [key in K]: V }> =
 type EnumChecksPropsInternal<K extends string, V, T extends { [key in K]: V }> =
   EnumChecksProps<K, V, T> & {
   type: 'checkbox' | 'radio',
-  onChange: (code: number, checked: boolean) => () => void,
+  onChange: (code: number, checked: boolean) => void,
   isChecked: (code: number) => boolean,
 }
 
@@ -46,7 +46,7 @@ export const EnumChecks = <K extends string, V, T extends { [key in K]: V }>({
             title={enumEntry.trans[lang] || enumEntry.name}
             imageUrl={enumEntry.imagePath ? DepotPaths.getImageURL(enumEntry.imagePath) : undefined}
             imageHeight={imageHeight}
-            onChange={(checked) => onChange(code, checked && isChecked(code))}
+            onChange={(checked) => onChange(code, checked)}
             checked={isChecked(enumEntry.code)}
           />
         );

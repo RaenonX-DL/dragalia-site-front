@@ -1,3 +1,5 @@
+import {generatePath} from 'react-router-dom';
+
 import {
   ApiResponseCode,
   PageMetaResponse,
@@ -11,7 +13,7 @@ import {translation as translationCHT} from '../../../src/i18n/translations/cht/
 import {translation as translationEN} from '../../../src/i18n/translations/en/translation';
 import {translations} from '../../../src/i18n/translations/main';
 import {getTFunction} from '../../../src/i18n/utils';
-import {makePostPath, makeSimplePath} from '../../../src/utils/path';
+import {makePostPath, makeSimplePath} from '../../../src/utils/path/make';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {getTranslations} from './main';
 
@@ -63,20 +65,29 @@ describe('Get meta translations', () => {
     expect(meta.description).toBe(translationCHT.meta.inUse.home.description);
   });
 
-  it('returns correct meta for analysis', async () => {
+  it('patches default language to general path', async () => {
+    const meta = await getTranslations(
+      '',
+      GeneralPath.HOME,
+    );
+
+    expect(meta.title).toBe(translationCHT.meta.inUse.home.title + translationCHT.meta.suffix);
+    expect(meta.description).toBe(translationCHT.meta.inUse.home.description);
+  });
+
+  it('patches default language to post path', async () => {
     const pid = 37;
-    const lang = SupportedLanguages.CHT;
 
     const meta = await getTranslations(
       '',
-      makePostPath(PostPath.ANALYSIS, {pid, lang}),
+      generatePath(PostPath.ANALYSIS, {pid: 37}),
     );
 
     expect(meta.title)
       .toBe(
         getTFunction(translationCHT)(
           (t) => t.meta.inUse.analysisPost.title,
-          {title: getTitle(pid, lang)},
+          {title: getTitle(pid, SupportedLanguages.CHT)},
         ) +
         translationCHT.meta.suffix,
       );
@@ -87,10 +98,34 @@ describe('Get meta translations', () => {
       ));
   });
 
+  it('returns correct meta for analysis', async () => {
+    const pid = 37;
+    const lang = SupportedLanguages.EN;
+
+    const meta = await getTranslations(
+      '',
+      makePostPath(PostPath.ANALYSIS, {pid, lang}),
+    );
+
+    expect(meta.title)
+      .toBe(
+        getTFunction(translationEN)(
+          (t) => t.meta.inUse.analysisPost.title,
+          {title: getTitle(pid, lang)},
+        ) +
+        translationEN.meta.suffix,
+      );
+    expect(meta.description)
+      .toBe(getTFunction(translationEN)(
+        (t) => t.meta.inUse.analysisPost.description,
+        {description: getDescription(pid)},
+      ));
+  });
+
   it('returns 404 for URL without lang', async () => {
     const meta = await getTranslations(
       '',
-      '/',
+      '/i-am-invalid',
     );
 
     expect(meta.title).toBe(translationCHT.meta.error['404'].title + translationCHT.meta.suffix);

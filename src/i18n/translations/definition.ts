@@ -202,9 +202,12 @@ export type TranslationStruct = {
       truncated: string,
     },
     info: {
-      ads: string,
       constructing: string,
       welcome: string,
+    },
+    alert: {
+      ads: string,
+      migration: string,
     },
   },
   misc: {

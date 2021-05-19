@@ -1,4 +1,8 @@
-export const PathRoot = '/:lang';
+import {SupportedLanguages} from '../../api-def/api/other/lang';
+
+const langsRegex = Object.values(SupportedLanguages).join('|');
+
+export const PathRoot = `/:lang(${langsRegex})`;
 
 export enum PostPath {
   QUEST = `/quest/:pid(\\d+)`,

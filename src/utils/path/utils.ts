@@ -1,18 +1,25 @@
 import {match} from 'react-router';
 import {matchPath} from 'react-router-dom';
 
-import {ApiResponseCode, FailedResponse, SupportedLanguages} from '../../../src/api-def/api';
-import {allActualPaths, isPostPath, PagePath, PathRoot, toNeutralPath} from '../../../src/const/path/definitions';
-import {isMatchPostParams, PathParams} from '../../../src/const/path/params';
-import {mapToSupportedLang} from '../../../src/i18n/langCode';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+import {ApiResponseCode, FailedResponse, SupportedLanguages} from '../../api-def/api';
+import {allActualPaths, isPostPath, PagePath, PathRoot, toNeutralPath} from '../../const/path/definitions';
+import {isMatchPostParams, PathParams} from '../../const/path/params';
+import {mapToSupportedLang} from '../../i18n/langCode';
+import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
 
 
-export const getLangFromUrl = (url: string): SupportedLanguages => {
+export const getLangFromUrl = <T = SupportedLanguages>(url: string, onNotFound?: () => T): SupportedLanguages | T => {
   const langMatch = matchPath<PathParams>(url, PathRoot);
 
-  return mapToSupportedLang(langMatch ? langMatch.params.lang : null);
+  if (!langMatch) {
+    if (onNotFound) {
+      return onNotFound();
+    }
+    return mapToSupportedLang(null);
+  }
+
+  return mapToSupportedLang(langMatch.params.lang);
 };
 
 type NeutralPathReturn = {
@@ -26,7 +33,7 @@ export const getNeutralPathFromUrl = (url: string): NeutralPathReturn => {
     exact: true,
   });
 
-  // No matching path - 404 page
+  // No matching path
   if (!match) {
     return {match, path: null};
   }

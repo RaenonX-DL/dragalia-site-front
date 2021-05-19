@@ -233,7 +233,6 @@ export const translation: TranslationStruct = {
         'To display the truncated results, please narrow the search condition.',
     },
     info: {
-      ads: 'Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)',
       constructing: 'Under construction. ' +
         'Will announce upon completion somewhere.\n\n' +
         '### Completed before email notification system has been completed\n\n' +
@@ -245,6 +244,11 @@ export const translation: TranslationStruct = {
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
+    },
+    alert: {
+      ads: 'Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)',
+      migration: 'The website is currently under a infrastructure renovation. ' +
+        'Please contact me via any SNS if you consistently encounter any problem, thanks!',
     },
   },
   misc: {

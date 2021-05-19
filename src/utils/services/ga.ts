@@ -10,6 +10,7 @@ export class GAEvent {
   static LOGIN = 'login';
   static ANCHOR = 'anchor';
   static PAGE_VIEW = 'page_view';
+  static PAGE_VIEW_FAILED = 'page_view_failed';
   static DAMAGE_CALCULATOR = 'damage_calc';
   static ABILITY_SEARCH = 'ability_search';
 }
@@ -109,15 +110,30 @@ export class GoogleAnalytics {
   /**
    * Record the event of a page view.
    *
-   * @param {Location} location location object
+   * @param {string} path page view path
    */
-  static pageView(location: Location) {
+  static pageView(path: string) {
     GoogleAnalytics.sendEvent(
       GAEvent.PAGE_VIEW,
       {
-        'page_location': location.href,
         'page_title': document.title,
-        'page_path': location.pathname,
+        'page_path': path,
+      },
+    );
+  }
+
+  /**
+   * Record the event of a failed page view.
+   *
+   * @param {string} reason reason of the failure
+   * @param {string} path page path that causes the failure
+   */
+  static pageViewFailed(reason: 'not_found', path: string) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.PAGE_VIEW_FAILED,
+      {
+        'reason': reason,
+        'page_path': path,
       },
     );
   }
@@ -128,13 +144,17 @@ export class GoogleAnalytics {
    * @param {string} eventName name of the event
    * @param {Object} parameters parameters of the event
    */
-  private static sendEvent(eventName: string, parameters: Object) {
+  private static sendEvent(eventName: string, parameters: { [key in string]: any }) {
     // Log GA event instead of sending it if under development
     if (process.env.NODE_ENV === 'development') {
       console.debug(eventName, parameters);
       return;
     }
-    // @ts-ignore
-    window.gtag('event', eventName, parameters);
+
+    if ((window as any).gtag) {
+      // Defined in `index.html`
+      // @ts-ignore
+      window.gtag('event', eventName, parameters);
+    }
   }
 }

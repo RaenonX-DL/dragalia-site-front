@@ -53,7 +53,7 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
             <Col>
               <ExAbility
                 effectUnits={entry.chainedEx}
-                name={t((t) => t.game.ex.desc.chainedExAbility)}
+                name={t((t) => t.game.ex.name.chainedExAbility)}
                 description={t((t) => t.game.ex.desc.chainedExAbility)}
                 conditionEnums={conditionEnums}
               />

@@ -1,7 +1,7 @@
 import {SupportedLanguages} from '../../../src/api-def/api/other/lang';
 import {ApiResponseCode} from '../../../src/api-def/api/responseCode';
 import {GeneralPath} from '../../../src/const/path/definitions';
-import {makeSimplePath} from '../../../src/utils/path';
+import {makeSimplePath} from '../../../src/utils/path/make';
 import {ADS_CLIENT} from '../../const';
 import * as utils from '../../utils/meta/main';
 import {replaceHtmlContent} from './html';

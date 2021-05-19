@@ -207,7 +207,6 @@ export const translation: TranslationStruct = {
         '如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。',
     },
     info: {
-      ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
       constructing: '網頁/功能建置中。建置完畢後公布。\n\n' +
         '### Email 通知系統完成前\n\n' +
         '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
@@ -216,6 +215,10 @@ export const translation: TranslationStruct = {
       welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
+    },
+    alert: {
+      ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      migration: '目前網站基礎正在翻新中。使用過程中若有任何持續問題，請到各大 SNS 上聯繫我，感謝！',
     },
   },
   misc: {
