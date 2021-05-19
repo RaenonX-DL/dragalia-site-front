@@ -6,7 +6,7 @@ import {PathParams} from '../const/path/params';
 import {useI18n} from './hook';
 import {mapToSupportedLang} from './langCode';
 
-export const LanguageHandle = () => {
+export const LanguageHandler = () => {
   const {lang, setLang} = useI18n();
 
   const {lang: pathLang} = useParams<PathParams>();

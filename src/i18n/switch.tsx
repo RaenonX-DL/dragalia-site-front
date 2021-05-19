@@ -5,7 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
 import {GeneralPath} from '../const/path/definitions';
-import {makeSimplePath} from '../utils/path';
+import {makeSimplePath} from '../utils/path/make';
 import {GoogleAnalytics} from '../utils/services/ga';
 import {useI18n} from './hook';
 

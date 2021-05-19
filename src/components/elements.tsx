@@ -1,4 +1,3 @@
-export {PageLoading} from './elements/common/loading';
 export {Footer} from './elements/footer';
 export {AdsInPost, AdsInPostList} from './elements/common/ads';
 export {Markdown} from './elements/markdown/main';
@@ -30,3 +29,4 @@ export {GlobalAlert} from './elements/common/alert';
 export {AdminRoute} from './elements/route/admin';
 export {PrivateRoute} from './elements/route/private';
 export {PublicRoute} from './elements/route/public';
+export {RouteRestHandler} from './elements/route/rest';

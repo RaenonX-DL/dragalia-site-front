@@ -3,7 +3,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 
 import {CookiesControl} from '../../../utils/cookies';
-import {makeRoutePath} from '../../../utils/path';
+import {makeRoutePath} from '../../../utils/path/make';
 import {LoginPrompt} from '../common/googleSignin/loginPrompt';
 import {RouteProps} from './types';
 

@@ -1,6 +1,6 @@
+import {isMetaResponseFailure} from '../../../src/utils/path/utils';
 import {ADS_CLIENT} from '../../const';
 import {getTranslations} from '../../utils/meta/main';
-import {isMetaResponseFailure} from '../../utils/meta/urlUtils';
 
 
 export const replaceHtmlContent = async (googleUid: string, currentUrl: string, html: string): Promise<string> => {

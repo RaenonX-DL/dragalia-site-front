@@ -1,5 +1,5 @@
-import {PostType} from '../../../src/api-def/api';
-import {PostPath} from '../../../src/const/path/definitions';
+import {PostType} from '../../api-def/api';
+import {PostPath} from '../../const/path/definitions';
 
 export const pathPostType: {[path in PostPath]: PostType} = {
   [PostPath.QUEST]: PostType.QUEST,
