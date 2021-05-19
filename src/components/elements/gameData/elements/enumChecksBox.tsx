@@ -21,12 +21,22 @@ export const EnumChecksBox = <K extends string, T extends { [key in K]: Array<nu
       inputData={inputData}
       inputKey={inputKey}
       options={options}
-      onChange={(code, checked) => setInputData({
-        ...inputData,
-        [inputKey]: checked ?
-          inputData[inputKey].concat([code]) :
-          inputData[inputKey].filter((dataCode) => dataCode !== code),
-      })}
+      onChange={(code, checked) => {
+        console.log(code, checked);
+        const n = {
+          ...inputData,
+          [inputKey]: checked ?
+            inputData[inputKey].concat([code]) :
+            inputData[inputKey].filter((dataCode) => dataCode !== code),
+        };
+        console.log(n);
+        setInputData({
+          ...inputData,
+          [inputKey]: checked ?
+            inputData[inputKey].concat([code]) :
+            inputData[inputKey].filter((dataCode) => dataCode !== code),
+        });
+      }}
       isChecked={(code) => inputData[inputKey].includes(code)}
       imageHeight={imageHeight}
       type="checkbox"

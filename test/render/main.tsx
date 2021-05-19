@@ -27,17 +27,17 @@ export const waitForPaint = async (wrapper: ReactWrapper) => {
 type RenderOptions = {
   preloadState?: PartialReduxState,
   waitToPaint?: boolean,
+  route?: string,
 }
 
 export const render = async (
-  route: string,
   jsxElement: JSX.Element,
   options?: RenderOptions,
 ) => {
   const store = createStore(options?.preloadState);
 
   const app = mount(
-    <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter initialEntries={[options?.route || '']}>
       <ReduxProvider persist={false} reduxStore={store}>
         {jsxElement}
       </ReduxProvider>
@@ -51,9 +51,11 @@ export const render = async (
   return {app, store};
 };
 
+type RenderAppOptions = Pick<RenderOptions, 'preloadState' | 'waitToPaint'>;
+
 export const renderApp = async (
   route: string,
-  options?: RenderOptions,
+  options?: RenderAppOptions,
 ): Promise<RenderReturns> => {
-  return render(route, <Main/>, options);
+  return render(<Main/>, {...options, route});
 };

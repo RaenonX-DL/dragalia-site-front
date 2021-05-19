@@ -10,21 +10,16 @@ import {makePostPath, makeSimplePath} from './utils/path/make';
 import {GoogleAnalytics} from './utils/services/ga';
 
 describe('Page browsing behavior', () => {
-  let pageViewFunction: jest.SpyInstance;
-  let pageViewFailedFunction: jest.SpyInstance;
-
   // According to gtag doc, parameter `page_path` for page view must start with `/`
   // Reference: https://developers.google.com/analytics/devguides/collection/gtagjs/pages#default_behavior
+
+  let pageViewFunction: jest.SpyInstance;
+  let pageViewFailedFunction: jest.SpyInstance;
 
   beforeEach(() => {
     // Somehow `beforeAll` will invalidate the implementations of `mockImplementation`
     pageViewFunction = jest.spyOn(GoogleAnalytics, 'pageView');
-    pageViewFailedFunction = jest.spyOn(GoogleAnalytics, 'pageViewFailed')
-      .mockImplementation((_, path) => console.log(path));
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
+    pageViewFailedFunction = jest.spyOn(GoogleAnalytics, 'pageViewFailed');
   });
 
   test('general path with language rendered', async () => {
