@@ -4,7 +4,8 @@ import {mount, ReactWrapper} from 'enzyme';
 import {act} from 'react-dom/test-utils';
 import {MemoryRouter} from 'react-router-dom';
 
-import Main from '../../src/main';
+import {Main} from '../../src/main';
+import {ReduxProvider} from '../../src/state/provider';
 import {PartialReduxState} from '../../src/state/state';
 import {createStore} from '../../src/state/store';
 import {RenderReturns} from './types';
@@ -28,15 +29,18 @@ type RenderOptions = {
   waitToPaint?: boolean,
 }
 
-export const renderApp = async (
+export const render = async (
   route: string,
+  jsxElement: JSX.Element,
   options?: RenderOptions,
-): Promise<RenderReturns> => {
+) => {
   const store = createStore(options?.preloadState);
 
   const app = mount(
     <MemoryRouter initialEntries={[route]}>
-      <Main persist={false} reduxStore={store}/>
+      <ReduxProvider persist={false} reduxStore={store}>
+        {jsxElement}
+      </ReduxProvider>
     </MemoryRouter>,
   );
 
@@ -45,4 +49,11 @@ export const renderApp = async (
   }
 
   return {app, store};
+};
+
+export const renderApp = async (
+  route: string,
+  options?: RenderOptions,
+): Promise<RenderReturns> => {
+  return render(route, <Main/>, options);
 };

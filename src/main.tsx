@@ -7,11 +7,10 @@ import {Footer, GlobalAlert, Navigation} from './components/elements';
 import {useI18n} from './i18n/hook';
 import {PageContent} from './pages/main';
 import {SiteAlert} from './siteAlert';
-import {ReduxProvider, ReduxProviderProps} from './state/provider';
 import {GoogleAnalytics} from './utils/services/ga';
 
 
-const PageMain = () => {
+export const Main = () => {
   const {t} = useI18n();
   const location = useLocation();
 
@@ -62,13 +61,3 @@ const PageMain = () => {
     </>
   );
 };
-
-const Main = (props: ReduxProviderProps) => {
-  return (
-    <ReduxProvider {...props}>
-      <PageMain/>
-    </ReduxProvider>
-  );
-};
-
-export default Main;
