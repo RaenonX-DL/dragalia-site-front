@@ -51,7 +51,7 @@ export const SectionFilter = <D extends InputData>({
       <EnumChecksBox
         options={exBuffParams.chainedExBuffParam}
         inputData={inputData}
-        inputKey="filterExBuffParamCode"
+        inputKey="filterChainedExBuffParamCode"
         setInputData={setInputData}
         imageHeight="2rem"
       />
