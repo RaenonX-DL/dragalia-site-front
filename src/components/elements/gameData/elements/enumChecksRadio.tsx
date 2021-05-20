@@ -21,10 +21,15 @@ export const EnumChecksRadio = <K extends string, T extends { [key in K]: number
       inputData={inputData}
       inputKey={inputKey}
       options={options}
-      onChange={(code) => setInputData({
-        ...inputData,
-        [inputKey]: code,
-      })}
+      onChange={(code, checked) => {
+        if (!checked) {
+          return;
+        }
+        setInputData({
+          ...inputData,
+          [inputKey]: code,
+        });
+      }}
       isChecked={(code) => inputData[inputKey] === code}
       imageHeight={imageHeight}
       type="radio"

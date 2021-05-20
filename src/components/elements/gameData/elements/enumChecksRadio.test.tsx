@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {act} from '@testing-library/react';
 import {ReactWrapper} from 'enzyme';
 import {ToggleButton} from 'react-bootstrap';
 
@@ -57,7 +58,9 @@ describe('Enum checks as radio', () => {
   const clickFirstButton = (app: ReactWrapper) => {
     const enumButton = app.find(ToggleButton).at(0).find('input').first();
     expect(enumButton.exists()).toBeTruthy();
-    enumButton.simulate('change', {target: {checked: !(data.enum === 1)}});
+    act(() => {
+      enumButton.simulate('change', {target: {checked: !(data.enum === 1)}});
+    });
   };
 
   let data: {enum: number};
@@ -88,7 +91,7 @@ describe('Enum checks as radio', () => {
 
     clickFirstButton(app);
 
-    expect(setData).toHaveBeenCalledTimes(1);
+    expect(setData).toHaveBeenCalledTimes(0);
     expect(data).toStrictEqual({enum: 1});
   });
 });

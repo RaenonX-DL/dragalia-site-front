@@ -3,7 +3,7 @@ import React from 'react';
 import {ChecksBase, ChecksProps} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
 
-type RadioCheckLabel = {
+export type RadioCheckLabel = {
   text: string,
   code: number
 }
@@ -26,10 +26,15 @@ export const RadioChecks = <K extends string, T extends { [key in K]: number }>(
             groupName={inputKey}
             type="radio"
             key={text}
-            onChange={(code) => () => setInputData({
-              ...inputData,
-              [inputKey]: code,
-            })}
+            onChange={(checked) => {
+              if (!checked) {
+                return;
+              }
+              setInputData({
+                ...inputData,
+                [inputKey]: code,
+              });
+            }}
             checked={inputData[inputKey] === code}
           />
         );
