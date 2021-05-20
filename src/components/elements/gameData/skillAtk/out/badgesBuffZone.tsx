@@ -7,11 +7,11 @@ import {AttackingSkillData} from '../../../../../utils/services/resources/types/
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesBuffZone = (atkSkillEntry: AttackingSkillData) => {
+  const {t} = useI18n();
+
   if (!atkSkillEntry.skill.buffZoneBoost.self && !atkSkillEntry.skill.buffZoneBoost.ally) {
     return [];
   }
-
-  const {t} = useI18n();
 
   const tooltipText = t(
     (t) => t.game.skillAtk.entry.buffZoneDesc,
