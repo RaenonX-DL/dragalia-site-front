@@ -5,7 +5,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {EnumChecksBox} from '../../elements/enumChecksBox';
 import {EnumChecksRadio} from '../../elements/enumChecksRadio';
 import {NumericInput} from '../../elements/numInput';
-import {RadioChecks} from '../../elements/radio';
+import {RadioCheckLabel, RadioChecks} from '../../elements/radio';
 import {SectionSubTitle} from '../../elements/subTitle';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps, SectionPropsCondEnums} from './props';
@@ -19,7 +19,7 @@ export const SectionTarget = ({
 }: SectionTargetProps) => {
   const {t} = useI18n();
 
-  const stateLabels = [
+  const stateLabels: Array<RadioCheckLabel> = [
     {
       text: t((t) => t.game.skillAtk.name.targetState.none),
       code: ConditionCodes.NONE,

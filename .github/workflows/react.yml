@@ -9,8 +9,8 @@ env:
   CI: true
 
 jobs:
-  build:
-    name: CI
+  test:
+    name: Tests
 
     runs-on: ubuntu-latest
 
@@ -39,6 +39,34 @@ jobs:
 
       - name: npm test (Server)
         run: npm run test:server
+
+      - name: Send Coverage report
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: server/clover.xml, coverage/clover.xml
+
+  build:
+    name: Test build
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: npm ci
+        run: npm ci
 
       - name: npm build
         run: npm run build

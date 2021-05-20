@@ -10,11 +10,8 @@ const config: Config.InitialOptions = {
   // Coverage
   collectCoverage: true,
   collectCoverageFrom: [
-    './server/**/*.ts',
-    // Node environment files
-    '!**/node_modules/**',
-    // React app files
-    '!./src/**/*.ts',
+    // All files in the children directory of the current directory
+    './**/*.ts',
   ],
   coverageDirectory: '.',
   coverageReporters: ['clover'],

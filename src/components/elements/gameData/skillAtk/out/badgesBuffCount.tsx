@@ -7,11 +7,11 @@ import {AttackingSkillData} from '../../../../../utils/services/resources/types/
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesBuffCount = (atkSkillEntry: AttackingSkillData) => {
+  const {t} = useI18n();
+
   if (!atkSkillEntry.skill.buffCountBoost.some((data) => data.each > 0)) {
     return [];
   }
-
-  const {t} = useI18n();
 
   const maxEachPct = Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.each)) * 100;
 

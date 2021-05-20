@@ -25,7 +25,7 @@ export const ArrayControl = ({
           className="d-inline float-right ml-2"
           variant="outline-danger"
           onClick={onRemoved}
-          disabled={isRemoveAllowed()}
+          disabled={!isRemoveAllowed()}
         >
           {t((t) => t.misc.remove)}
         </Button>

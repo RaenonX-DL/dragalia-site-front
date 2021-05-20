@@ -4,6 +4,7 @@
 [![front-site-status]][front-site]
 [![front-ci]][front-ci-link]
 [![front-cq-badge]][front-cq-link]
+[![front-coverage-badge]][front-cq-link]
 [![front-lgtm-alert-badge]][front-lgtm-alert-link]
 [![front-lgtm-quality-badge]][front-lgtm-quality-link]
 [![front-time-badge]][front-time-link]
@@ -41,6 +42,7 @@ where stores the dumped game assets.
 [front-site-status]: https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fdl.raenonx.cc
 [front-cq-link]: https://www.codacy.com/gh/RaenonX-DL/dragalia-site-front/dashboard
 [front-cq-badge]: https://app.codacy.com/project/badge/Grade/83fa9f649f2e4001b848fc978642ea68
+[front-coverage-badge]: https://app.codacy.com/project/badge/Coverage/83fa9f649f2e4001b848fc978642ea68
 [front-ci]: https://github.com/RaenonX-DL/dragalia-site-front/workflows/Node%20CI/badge.svg
 [front-ci-link]: https://github.com/RaenonX-DL/dragalia-site-front/actions?query=workflow%3A%22Node+CI%22
 [front-time-link]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front
