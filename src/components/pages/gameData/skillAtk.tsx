@@ -78,7 +78,7 @@ export const AttackingSkillList = () => {
           }}
         />
       </Col>
-      <Col ref={entryCol} lg={8}>
+      <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
         <AttackingSkillOutput
           inputData={inputDataForward}
           allConditionEnums={conditionEnums.data}
