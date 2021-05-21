@@ -22,7 +22,6 @@ export const OverlayBase = ({
 }: Props) => {
   return (
     <OverlayTrigger
-      delay={6000}
       placement="auto"
       trigger={trigger}
       overlay={overlay}
