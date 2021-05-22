@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {ToggleButton} from 'react-bootstrap';
+import {fireEvent, screen} from '@testing-library/react';
 
-import {renderMount} from '../../../../../test/render/main';
+import {renderReact} from '../../../../../test/render/main';
 import {RadioCheckLabel, RadioChecks} from './radio';
 
 describe('Radio checks', () => {
@@ -32,7 +32,7 @@ describe('Radio checks', () => {
   it('preloads the selection', async () => {
     inputData = {selected: 2};
 
-    const {app} = await renderMount(
+    await renderReact(
       <RadioChecks
         options={options}
         inputData={inputData}
@@ -41,16 +41,15 @@ describe('Radio checks', () => {
       />,
     );
 
-    const enumButton = app.find(ToggleButton).at(1).find('input').first();
-    expect(enumButton.exists()).toBeTruthy();
-    expect(enumButton.props().checked).toBeTruthy();
+    const toggleInput = screen.getByTestId('check 2').children[0];
+    expect(toggleInput).toHaveAttribute('checked');
     expect(setInputDataFunc).toHaveBeenCalledTimes(0);
   });
 
   test('selecting another option changes the state', async () => {
     inputData = {selected: 2};
 
-    const {app} = await renderMount(
+    await renderReact(
       <RadioChecks
         options={options}
         inputData={inputData}
@@ -59,9 +58,8 @@ describe('Radio checks', () => {
       />,
     );
 
-    const enumButton = app.find(ToggleButton).at(0).find('input').first();
-    expect(enumButton.exists()).toBeTruthy();
-    enumButton.simulate('change', {target: {checked: true}});
+    const enumButton = screen.getByText('check 1');
+    fireEvent.click(enumButton);
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(1);
     expect(inputData).toStrictEqual({selected: 1});

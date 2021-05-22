@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {Button} from 'react-bootstrap';
+import {fireEvent, screen} from '@testing-library/react';
 
-import {renderMount} from '../../../../../../test/render/main';
+import {renderReact} from '../../../../../../test/render/main';
 import {PostMetaPayload, SupportedLanguages} from '../../../../../api-def/api';
+import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {ArrayDataForm} from './array';
-import {ArrayControl} from './arrayControl';
 
 describe('Array data form', () => {
   type Enum = {
@@ -46,7 +46,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await renderMount(
+    await renderReact(
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -58,12 +58,13 @@ describe('Array data form', () => {
       />,
     );
 
-    expect(app.find(ArrayControl).find(Button).at(0).props().disabled).toBe(true);
+    const removeButton = screen.getByText(translationEN.misc.remove);
+    expect(removeButton).toHaveAttribute('disabled');
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
   });
 
-  it('blocks the data removal if > min length', async () => {
+  it('allows the data removal if > min length', async () => {
     payload = {
       googleUid: 'uid',
       lang: SupportedLanguages.CHT,
@@ -81,7 +82,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await renderMount(
+    await renderReact(
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -93,7 +94,8 @@ describe('Array data form', () => {
       />,
     );
 
-    expect(app.find(ArrayControl).find(Button).at(0).props().disabled).toBe(false);
+    const removeButton = screen.getByText(translationEN.misc.remove);
+    expect(removeButton).not.toHaveAttribute('disabled');
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(3);
   });
@@ -113,7 +115,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await renderMount(
+    await renderReact(
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -125,9 +127,8 @@ describe('Array data form', () => {
       />,
     );
 
-    const addButton = app.find(ArrayControl).find(Button).at(1).find('button').first();
-    expect(addButton.exists()).toBeTruthy();
-    addButton.simulate('click');
+    const addButton = screen.getByText(translationEN.misc.add);
+    fireEvent.click(addButton);
 
     expect(payload.enums.length).toBe(3);
     expect(setArrayFunc).toHaveBeenCalledTimes(1);

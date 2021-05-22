@@ -1,14 +1,11 @@
 import React from 'react';
 
-import {ReactWrapper} from 'enzyme';
-import {ToggleButton} from 'react-bootstrap';
+import {fireEvent, screen} from '@testing-library/react';
 
-import {renderMount} from '../../../../../test/render/main';
+import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api/other/lang';
 import {EnumEntry} from '../../../../utils/services/resources/types/enums';
 import {EnumChecksBox} from './enumChecksBox';
-
-// TEST: Text if image not exists, otherwise text
 
 describe('Enum check boxes as checkboxes', () => {
   const enums: Array<EnumEntry> = [
@@ -42,28 +39,41 @@ describe('Enum check boxes as checkboxes', () => {
         [SupportedLanguages.JP]: 'JP 3',
       },
     },
+    {
+      name: '#4',
+      code: 4,
+      imagePath: null,
+      trans: {
+        [SupportedLanguages.CHT]: 'CHT 4',
+        [SupportedLanguages.EN]: 'EN 4',
+        [SupportedLanguages.JP]: 'JP 4',
+      },
+    },
   ];
 
+  const clickFirstButton = () => {
+    const enumButton = screen.getByAltText('enum#1');
+    fireEvent.click(enumButton);
+  };
 
-  const CheckWrapper = ({data}: {data: {enum: Array<number>}}) => {
-    return (
+  const clickSecondButton = () => {
+    const enumButton = screen.getByAltText('enum#2');
+    fireEvent.click(enumButton);
+  };
+
+  let data: {enum: Array<number>};
+  let setData: jest.Mock<void, [typeof data]>;
+
+  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
+    rerenderFunc(
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />
+      />,
     );
   };
-
-  const clickFirstButton = (app: ReactWrapper) => {
-    const enumButton = app.find(ToggleButton).at(0).find('input').first();
-    expect(enumButton.exists()).toBeTruthy();
-    enumButton.simulate('change', {target: {checked: !data.enum.includes(1)}});
-  };
-
-  let data: {enum: Array<number>};
-  let setData: jest.Mock<void, [typeof data]>;
 
   beforeEach(() => {
     data = {'enum': []};
@@ -76,41 +86,100 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can check single item', async () => {
     data = {'enum': [] as Array<number>};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+    await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
 
-    clickFirstButton(app);
+    clickFirstButton();
 
     expect(setData).toHaveBeenCalledTimes(1);
     expect(data).toStrictEqual({enum: [1]});
   });
 
   it('can cancel checking single item', async () => {
-    data = {'enum': [1]};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+    const {rerender} = await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
 
-    clickFirstButton(app);
+    clickFirstButton();
+    invokeRerender(rerender);
+    clickFirstButton();
 
-    expect(setData).toHaveBeenCalledTimes(1);
+    expect(setData).toHaveBeenCalledTimes(2);
     expect(data).toStrictEqual({enum: []});
   });
 
   it('can check multiple items', async () => {
-    data = {'enum': [2]};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+    const {rerender} = await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
 
-    clickFirstButton(app);
+    clickFirstButton();
+    invokeRerender(rerender);
+    clickSecondButton();
 
-    expect(setData).toHaveBeenCalledTimes(1);
-    expect(data).toStrictEqual({enum: [2, 1]});
+    expect(setData).toHaveBeenCalledTimes(2);
+    expect(data).toStrictEqual({enum: [1, 2]});
   });
 
-  it('can cancel multiple items', async () => {
-    data = {'enum': [1, 2, 3]};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+  it('can cancel checking multiple items', async () => {
+    const {rerender} = await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
 
-    clickFirstButton(app);
+    clickFirstButton();
+    invokeRerender(rerender);
+    clickSecondButton();
+    invokeRerender(rerender);
+    clickFirstButton();
 
-    expect(setData).toHaveBeenCalledTimes(1);
-    expect(data).toStrictEqual({enum: [2, 3]});
+    expect(setData).toHaveBeenCalledTimes(3);
+    expect(data).toStrictEqual({enum: [2]});
+  });
+
+  it('shows text if the image URL is not available', async () => {
+    await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
+
+    expect(screen.getByText('EN 4')).toBeInTheDocument();
+  });
+
+  it('shows image if the image URL is available', async () => {
+    await renderReact(
+      <EnumChecksBox
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
+
+    expect(screen.getByAltText('enum#3')).toBeInTheDocument();
   });
 });

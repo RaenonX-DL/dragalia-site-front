@@ -1,14 +1,17 @@
-import {RenderResult} from '@testing-library/react';
-import {ReactWrapper} from 'enzyme';
+import React from 'react';
 
+import {RenderResult} from '@testing-library/react';
+
+import {PartialReduxState} from '../../src/state/state';
 import {ReduxStore} from '../../src/state/store';
 
-export type RenderReturns = {
-  app: ReactWrapper,
-  store: ReduxStore,
+export type RenderOptions = {
+  preloadState?: PartialReduxState,
+  route?: string,
 }
 
-export type RenderReactReturns = {
+export type RenderReturns = {
   app: RenderResult,
+  rerender: (element: React.ReactElement) => void,
   store: ReduxStore,
 }

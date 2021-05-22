@@ -53,6 +53,7 @@ export const InlineCheckBase = ({
         onChange={(e) => onChange(e.target.checked)}
         name={groupName}
         id={id || title}
+        data-testid={id || title}
         value="1"
       >
         {label}

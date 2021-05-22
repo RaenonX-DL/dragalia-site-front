@@ -1,10 +1,8 @@
 import React from 'react';
 
-import {act} from '@testing-library/react';
-import {ReactWrapper} from 'enzyme';
-import {ToggleButton} from 'react-bootstrap';
+import {fireEvent, screen} from '@testing-library/react';
 
-import {renderMount} from '../../../../../test/render/main';
+import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api/other/lang';
 import {EnumEntry} from '../../../../utils/services/resources/types/enums';
 import {EnumChecksRadio} from './enumChecksRadio';
@@ -41,8 +39,17 @@ describe('Enum checks as radio', () => {
         [SupportedLanguages.JP]: 'JP 3',
       },
     },
+    {
+      name: '#4',
+      code: 4,
+      imagePath: null,
+      trans: {
+        [SupportedLanguages.CHT]: 'CHT 4',
+        [SupportedLanguages.EN]: 'EN 4',
+        [SupportedLanguages.JP]: 'JP 4',
+      },
+    },
   ];
-
 
   const CheckWrapper = ({data}: {data: {enum: number}}) => {
     return (
@@ -55,12 +62,20 @@ describe('Enum checks as radio', () => {
     );
   };
 
-  const clickFirstButton = (app: ReactWrapper) => {
-    const enumButton = app.find(ToggleButton).at(0).find('input').first();
-    expect(enumButton.exists()).toBeTruthy();
-    act(() => {
-      enumButton.simulate('change', {target: {checked: !(data.enum === 1)}});
-    });
+  const clickFirstButton = () => {
+    const enumButton = screen.getByAltText('enum#1');
+    fireEvent.click(enumButton);
+  };
+
+  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
+    rerenderFunc(
+      <EnumChecksRadio
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
   };
 
   let data: {enum: number};
@@ -77,9 +92,9 @@ describe('Enum checks as radio', () => {
 
   it('can check single item', async () => {
     data = {'enum': 2};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+    await renderReact(<CheckWrapper data={data}/>);
 
-    clickFirstButton(app);
+    clickFirstButton();
 
     expect(setData).toHaveBeenCalledTimes(1);
     expect(data).toStrictEqual({enum: 1});
@@ -87,11 +102,38 @@ describe('Enum checks as radio', () => {
 
   it('does not change the selection if selected the same', async () => {
     data = {'enum': 1};
-    const {app} = await renderMount(<CheckWrapper data={data}/>);
+    const {rerender} = await renderReact(<CheckWrapper data={data}/>);
 
-    clickFirstButton(app);
+    clickFirstButton();
+    invokeRerender(rerender);
 
     expect(setData).toHaveBeenCalledTimes(0);
     expect(data).toStrictEqual({enum: 1});
+  });
+
+  it('shows text if the image URL is not available', async () => {
+    await renderReact(
+      <EnumChecksRadio
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
+
+    expect(screen.getByText('EN 4')).toBeInTheDocument();
+  });
+
+  it('shows image if the image URL is available', async () => {
+    await renderReact(
+      <EnumChecksRadio
+        options={enums}
+        inputData={data}
+        inputKey="enum"
+        setInputData={setData}
+      />,
+    );
+
+    expect(screen.getByAltText('enum#3')).toBeInTheDocument();
   });
 });

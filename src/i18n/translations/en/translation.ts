@@ -239,7 +239,7 @@ export const translation: TranslationStruct = {
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
       welcome: 'Welcome to the DL info website constructed and maintained ' +
-        'by the members of the alliance - Oasis of the Maniacs!\n\n' +
+        'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
