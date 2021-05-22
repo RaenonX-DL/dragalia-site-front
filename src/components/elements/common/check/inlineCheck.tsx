@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {InputProps} from '../props';
+import {TitledProps} from '../types';
 import {InlineCheckBase, InlineCheckBaseProps} from './inlineCheckBase';
-import {InputProps} from './props';
-import {TitledProps} from './types';
 
 
 type InlineCheckProps<K extends string, T extends { [key in K]: boolean }> =

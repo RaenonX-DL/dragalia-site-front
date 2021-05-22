@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {OverlayPopover} from '../../common/overlay/popover';
-import {DetailedProps} from './types';
+import {DetailedProps} from '../../common/types';
 
 export const SectionSubTitle = ({title, description}: DetailedProps) => {
   return (

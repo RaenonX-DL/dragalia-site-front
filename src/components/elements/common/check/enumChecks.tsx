@@ -4,8 +4,8 @@ import * as CSS from 'csstype';
 
 import {useI18n} from '../../../../i18n/hook';
 import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
-import {InlineCheckBase} from '../../gameData/elements/inlineCheckBase';
 import {ChecksBase, ChecksPropsDisplay} from './checksBase';
+import {InlineCheckBase} from './inlineCheckBase';
 
 
 export type EnumChecksProps<K extends string, V, T extends { [key in K]: V }> =

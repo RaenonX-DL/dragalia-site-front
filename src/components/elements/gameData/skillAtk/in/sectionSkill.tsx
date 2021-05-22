@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {useI18n} from '../../../../../i18n/hook';
-import {InlineCheck} from '../../elements/inlineCheck';
-import {NumericInput} from '../../elements/numInput';
+import {InlineCheck} from '../../../common/check/inlineCheck';
+import {NumericInput} from '../../../common/input/numeric';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps} from './props';
 

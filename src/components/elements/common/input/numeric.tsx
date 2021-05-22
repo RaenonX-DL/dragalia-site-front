@@ -2,9 +2,9 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {OverlayPopover} from '../../common/overlay/popover';
-import {InputProps} from './props';
-import {DetailedProps} from './types';
+import {OverlayPopover} from '../overlay/popover';
+import {InputProps} from '../props';
+import {DetailedProps} from '../types';
 
 
 type NumericInputProps<K extends string, T extends { [key in K]: number }> =

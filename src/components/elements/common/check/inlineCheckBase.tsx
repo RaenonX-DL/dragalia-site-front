@@ -4,8 +4,8 @@ import * as CSS from 'csstype';
 import {ButtonGroup, Image, ToggleButton} from 'react-bootstrap';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {OverlayTooltip} from '../../common/overlay/tooltip';
-import {TitledProps} from './types';
+import {OverlayTooltip} from '../overlay/tooltip';
+import {TitledProps} from '../types';
 
 
 export type InlineCheckBaseProps = TitledProps & {

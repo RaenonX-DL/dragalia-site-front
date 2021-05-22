@@ -5,7 +5,7 @@ import {Button, Col, Form} from 'react-bootstrap';
 import {useI18n} from '../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types/enums';
-import {EnumChecksBox} from '../../../../common/enum/enumChecksBox';
+import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
 import {InputData} from './types';
 
