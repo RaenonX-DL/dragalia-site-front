@@ -3,14 +3,13 @@ import React from 'react';
 import {Badge, Col, Row} from 'react-bootstrap';
 
 import {useI18n} from '../../../../i18n/hook';
-import {ConditionEnumMap} from '../../../../utils/services/resources';
+import {ConditionEnumMap} from '../../../../utils/services/resources/types';
 
 
 export type ConditionBadgeProps = {
   conditionCodes: Array<number>,
   conditionEnums: ConditionEnumMap,
 }
-
 
 export const getConditionBadges = ({conditionCodes, conditionEnums}: ConditionBadgeProps) => {
   const {lang} = useI18n();
@@ -23,7 +22,6 @@ export const getConditionBadges = ({conditionCodes, conditionEnums}: ConditionBa
     );
   });
 };
-
 
 export const ConditionBadges = ({conditionCodes, conditionEnums}: ConditionBadgeProps) => {
   return (

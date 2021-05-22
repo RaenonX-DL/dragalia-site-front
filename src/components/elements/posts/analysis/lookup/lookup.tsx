@@ -2,13 +2,17 @@ import React from 'react';
 
 import {AnalysisLookupInput} from './in/main';
 import {InputData} from './in/types';
+import {AnalysisLookupOutput} from './out/main';
 
 export const AnalysisPostLookup = () => {
-  const onSearchRequested = (data: InputData) => () => {
-    console.log(data);
-  };
+  const [inputForward, setInputForward] = React.useState<InputData>();
 
   return (
-    <AnalysisLookupInput onSearchRequested={onSearchRequested}/>
+    <>
+      <AnalysisLookupInput onSearchRequested={(data) => () => {
+        setInputForward(data);
+      }}/>
+      {inputForward && <AnalysisLookupOutput inputData={inputForward}/>}
+    </>
   );
 };

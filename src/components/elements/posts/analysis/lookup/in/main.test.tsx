@@ -4,6 +4,7 @@ import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
+import {AnalysisType} from '../../../../../../api-def/api/post/analysis/response';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
@@ -103,6 +104,7 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: '',
+      types: [],
       elements: [],
       weaponTypes: [],
     };
@@ -112,18 +114,19 @@ describe('Input of analysis lookup', () => {
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
 
-  it('passes input data with search keyword', async () => {
+  it('passes input data with analysis type', async () => {
     await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
-    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
+    const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
+    fireEvent.click(characterButton);
 
     clickSearchButton();
 
     const expectedInput: InputData = {
-      keyword: 'test',
+      keyword: '',
+      types: [AnalysisType.CHARACTER],
       elements: [],
       weaponTypes: [],
     };
@@ -143,6 +146,7 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: '',
+      types: [],
       elements: [1],
       weaponTypes: [],
     };
@@ -162,8 +166,29 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: '',
+      types: [],
       elements: [],
       weaponTypes: [2],
+    };
+
+    expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
+  });
+
+  it('passes input data with search keyword', async () => {
+    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+
+    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+
+    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
+    fireEvent.change(searchInput, {target: {value: 'test'}});
+
+    clickSearchButton();
+
+    const expectedInput: InputData = {
+      keyword: 'test',
+      types: [],
+      elements: [],
+      weaponTypes: [],
     };
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
@@ -174,6 +199,8 @@ describe('Input of analysis lookup', () => {
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
+    const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
+    fireEvent.click(characterButton);
     const elemButton = await screen.findByText('elem A EN');
     fireEvent.click(elemButton);
     const weaponButton = await screen.findByText('weapon B EN');
@@ -185,6 +212,7 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: 'test',
+      types: [AnalysisType.CHARACTER],
       elements: [1],
       weaponTypes: [2],
     };

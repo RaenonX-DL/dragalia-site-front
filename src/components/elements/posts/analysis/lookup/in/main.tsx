@@ -7,6 +7,7 @@ import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
+import {AnalysisTypePicker} from './typePicker';
 import {InputData} from './types';
 
 type LookupInputProps = {
@@ -18,6 +19,7 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
 
   const [inputData, setInputData] = React.useState<InputData>({
     keyword: '',
+    types: [],
     elements: [],
     weaponTypes: [],
   });
@@ -48,6 +50,7 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
 
   return (
     <div className="rounded bg-black-32 p-3">
+      <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
       <EnumChecksBox
         options={elemEnums.data.elemental}
         inputData={inputData}
