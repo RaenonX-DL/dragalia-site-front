@@ -18,21 +18,19 @@ const ExAbilitySkillList = () => {
   const [inputDataForward, setInputDataForward] = React.useState<InputData>();
   const entryCol = React.useRef<HTMLDivElement>(null);
 
-  const [
-    exAbility,
-    ,
-    fetchExAbility,
-  ] = useFetchState<Array<ExAbilityDataEntry>>(
+  const {
+    fetchStatus: exAbility,
+    fetchFunction: fetchExAbility,
+  } = useFetchState<Array<ExAbilityDataEntry>>(
     [],
     ResourceLoader.getAbilityEx,
     'Failed to fetch ex ability data.',
   );
 
-  const [
-    conditionEnums,
-    ,
-    fetchConditionEnums,
-  ] = useFetchState<ConditionEnumMap>(
+  const {
+    fetchStatus: conditionEnums,
+    fetchFunction: fetchConditionEnums,
+  } = useFetchState<ConditionEnumMap>(
     {},
     ResourceLoader.getEnumAllConditions,
     'Failed to fetch condition enums.',

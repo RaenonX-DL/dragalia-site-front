@@ -22,22 +22,20 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
     weaponTypes: [],
   });
 
-  const [
-    elemEnums,
-    ,
-    fetchElemEnums,
-  ] = useFetchState<ElementEnums>(
+  const {
+    fetchStatus: elemEnums,
+    fetchFunction: fetchElemEnums,
+  } = useFetchState<ElementEnums>(
     {
       elemental: [],
     },
     ResourceLoader.getEnumElements,
     'Failed to fetch the element enums.',
   );
-  const [
-    weaponTypeEnums,
-    ,
-    fetchWeaponTypeEnums,
-  ] = useFetchState<WeaponTypeEnums>(
+  const {
+    fetchStatus: weaponTypeEnums,
+    fetchFunction: fetchWeaponTypeEnums,
+  } = useFetchState<WeaponTypeEnums>(
     {
       weapon: [],
     },

@@ -23,11 +23,10 @@ type InputParametersProps = InputSectionBaseProps<InputData> & {
 }
 
 export const InputParameters = ({collapsed, inputData, setInputData}: InputParametersProps) => {
-  const [
-    conditionEnums,
-    ,
-    fetchConditionEnums,
-  ] = useFetchState<CategorizedConditionEnums>(
+  const {
+    fetchStatus: conditionEnums,
+    fetchFunction: fetchConditionEnums,
+  } = useFetchState<CategorizedConditionEnums>(
     {
       afflictions: [],
       elements: [],
@@ -36,11 +35,10 @@ export const InputParameters = ({collapsed, inputData, setInputData}: InputParam
     'Failed to fetch the condition enums.',
   );
 
-  const [
-    elemEnums,
-    ,
-    fetchElemEnums,
-  ] = useFetchState<ElementEnums>(
+  const {
+    fetchStatus: elemEnums,
+    fetchFunction: fetchElemEnums,
+  } = useFetchState<ElementEnums>(
     {
       elemental: [],
     },
