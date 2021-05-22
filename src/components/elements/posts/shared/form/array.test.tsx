@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button} from 'react-bootstrap';
 
-import {render} from '../../../../../../test/render/main';
+import {renderMount} from '../../../../../../test/render/main';
 import {PostMetaPayload, SupportedLanguages} from '../../../../../api-def/api';
 import {ArrayDataForm} from './array';
 import {ArrayControl} from './arrayControl';
@@ -46,7 +46,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -81,7 +81,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -113,7 +113,7 @@ describe('Array data form', () => {
       ],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <ArrayDataForm
         payload={payload}
         minLength={2}

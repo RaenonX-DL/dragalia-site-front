@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ChecksBase, ChecksProps} from './checksBase';
+import {ChecksBase, ChecksProps} from '../../common/enum/checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
 
 export type RadioCheckLabel = {

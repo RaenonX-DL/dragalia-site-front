@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {render} from '@testing-library/react';
 import {mount, ReactWrapper} from 'enzyme';
 import {act} from 'react-dom/test-utils';
 import {MemoryRouter} from 'react-router-dom';
@@ -8,7 +9,7 @@ import {Main} from '../../src/main';
 import {ReduxProvider} from '../../src/state/provider';
 import {PartialReduxState} from '../../src/state/state';
 import {createStore} from '../../src/state/store';
-import {RenderReturns} from './types';
+import {RenderReturns, RenderReactReturns} from './types';
 
 /**
  * Wrapper function to wait for the app completed rendering.
@@ -26,11 +27,10 @@ export const waitForPaint = async (wrapper: ReactWrapper) => {
 
 type RenderOptions = {
   preloadState?: PartialReduxState,
-  waitToPaint?: boolean,
   route?: string,
 }
 
-export const render = async (
+export const renderMount = async (
   jsxElement: JSX.Element,
   options?: RenderOptions,
 ) => {
@@ -44,18 +44,33 @@ export const render = async (
     </MemoryRouter>,
   );
 
-  if (!!options?.waitToPaint) {
-    await waitForPaint(app);
-  }
+  await waitForPaint(app);
 
   return {app, store};
 };
 
-type RenderAppOptions = Pick<RenderOptions, 'preloadState' | 'waitToPaint'>;
+export const renderReact = async (
+  jsxElement: JSX.Element,
+  options?: RenderOptions,
+): Promise<RenderReactReturns> => {
+  const store = createStore(options?.preloadState);
+
+  const app = render(
+    <MemoryRouter initialEntries={[options?.route || '']}>
+      <ReduxProvider persist={false} reduxStore={store}>
+        {jsxElement}
+      </ReduxProvider>
+    </MemoryRouter>,
+  );
+
+  return {app, store};
+};
+
+type RenderAppOptions = Pick<RenderOptions, 'preloadState'>;
 
 export const renderApp = async (
   route: string,
   options?: RenderAppOptions,
 ): Promise<RenderReturns> => {
-  return render(<Main/>, {...options, route});
+  return renderMount(<Main/>, {...options, route});
 };

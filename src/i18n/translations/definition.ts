@@ -168,7 +168,6 @@ export type TranslationStruct = {
         sharedOnly: string,
       },
       collapse: string,
-      search: string,
     },
     tools: {
       titleSelf: string,
@@ -215,6 +214,8 @@ export type TranslationStruct = {
     omMember: string,
     omGroup: string,
     remove: string,
+    search: string,
+    searchKeyword: string,
   },
   meta: {
     inUse: {

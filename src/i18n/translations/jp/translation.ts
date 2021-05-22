@@ -170,7 +170,6 @@ export const translation: TranslationStruct = {
         sharedOnly: '只顯示共享技',
       },
       collapse: 'ズームイン/アウト',
-      search: '搜尋',
     },
     tools: {
       titleSelf: '他のツール',
@@ -224,6 +223,8 @@ export const translation: TranslationStruct = {
     omMember: 'OM 同盟成員',
     omGroup: 'OM グループ成員',
     remove: '削除',
+    search: '搜尋',
+    searchKeyword: 'Keyword',
   },
   meta: {
     inUse: {

@@ -3,10 +3,12 @@ import React from 'react';
 import {ReactWrapper} from 'enzyme';
 import {ToggleButton} from 'react-bootstrap';
 
-import {render} from '../../../../../test/render/main';
+import {renderMount} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api/other/lang';
 import {EnumEntry} from '../../../../utils/services/resources/types/enums';
 import {EnumChecksBox} from './enumChecksBox';
+
+// TEST: Text if image not exists, otherwise text
 
 describe('Enum check boxes as checkboxes', () => {
   const enums: Array<EnumEntry> = [
@@ -74,7 +76,7 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can check single item', async () => {
     data = {'enum': [] as Array<number>};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 
@@ -84,7 +86,7 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can cancel checking single item', async () => {
     data = {'enum': [1]};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 
@@ -94,7 +96,7 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can check multiple items', async () => {
     data = {'enum': [2]};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 
@@ -104,7 +106,7 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can cancel multiple items', async () => {
     data = {'enum': [1, 2, 3]};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 

@@ -90,7 +90,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
           onClick={onSearchRequested(inputData)}
           disabled={selectionData.fetching}
         >
-          {t((t) => t.game.skillAtk.search)}
+          {t((t) => t.misc.search)}
         </Button>
       </div>
     </div>

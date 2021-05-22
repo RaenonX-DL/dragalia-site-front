@@ -35,7 +35,7 @@ export const InlineCheckBase = ({
   if (imageUrl) {
     label = (
       <OverlayTooltip text={title}>
-        <Image src={imageUrl} style={{height: imageHeight || '1.5rem'}}/>
+        <Image src={imageUrl} alt={id} style={{height: imageHeight || '1.5rem'}}/>
       </OverlayTooltip>
     );
   } else {

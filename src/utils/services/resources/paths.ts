@@ -12,11 +12,16 @@ export class ResourcePaths {
   static ENUMS_CONDITIONS = ResourcePaths.ENUMS_DIR + '/conditions.json';
   static ENUMS_CONDITIONS_ALL = ResourcePaths.ENUMS_DIR + '/allCondition.json';
   static ENUMS_ELEMENTS = ResourcePaths.ENUMS_DIR + '/elements.json';
+  static ENUMS_WEAPON_TYPES = ResourcePaths.ENUMS_DIR + '/weaponType.json';
   static ENUMS_EX_PARAMS = ResourcePaths.ENUMS_DIR + '/exParam.json';
 
   static SKILLS_DIR = ResourcePaths.ROOT + '/skills';
   static SKILLS_ATK = ResourcePaths.SKILLS_DIR + '/attacking.json';
   static SKILLS_IDENTIFIERS = ResourcePaths.SKILLS_DIR + '/identifiers.json';
+
+  static INFO_DIR = ResourcePaths.ROOT + '/info';
+  static INFO_CHARA = ResourcePaths.INFO_DIR + '/chara.json';
+  static INFO_DRAGON = ResourcePaths.INFO_DIR + '/dragon.json';
 
   static MISC_DIR = ResourcePaths.ROOT + '/misc';
   static MISC_ELEM_BONUS = ResourcePaths.MISC_DIR + '/elementBonus.json';

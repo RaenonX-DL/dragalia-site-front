@@ -15,7 +15,6 @@ type NumericInputProps<K extends string, T extends { [key in K]: number }> =
   maxValue?: number
 }
 
-
 export const NumericInput = <K extends string, T extends { [key in K]: number }>({
   title,
   description,

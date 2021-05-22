@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
+import {EnumChecksBox} from '../../../common/enum/enumChecksBox';
 import {SectionTitle} from '../../elements/title';
 import {InputSectionBaseProps} from '../../props';
 import {InputData} from './types';

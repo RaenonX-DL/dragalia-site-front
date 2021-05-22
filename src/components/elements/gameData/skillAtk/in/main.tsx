@@ -75,7 +75,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
           {t((t) => t.game.skillAtk.collapse)}
         </Button>
         <Button variant="outline-info" onClick={onSearchRequested(inputData)}>
-          {t((t) => t.game.skillAtk.search)}
+          {t((t) => t.misc.search)}
         </Button>
       </div>
     </>

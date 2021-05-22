@@ -4,7 +4,7 @@ import {act} from '@testing-library/react';
 import {ReactWrapper} from 'enzyme';
 import {ToggleButton} from 'react-bootstrap';
 
-import {render} from '../../../../../test/render/main';
+import {renderMount} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api/other/lang';
 import {EnumEntry} from '../../../../utils/services/resources/types/enums';
 import {EnumChecksRadio} from './enumChecksRadio';
@@ -77,7 +77,7 @@ describe('Enum checks as radio', () => {
 
   it('can check single item', async () => {
     data = {'enum': 2};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 
@@ -87,7 +87,7 @@ describe('Enum checks as radio', () => {
 
   it('does not change the selection if selected the same', async () => {
     data = {'enum': 1};
-    const {app} = await render(<CheckWrapper data={data}/>);
+    const {app} = await renderMount(<CheckWrapper data={data}/>);
 
     clickFirstButton(app);
 

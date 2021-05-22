@@ -2,8 +2,8 @@ import React from 'react';
 
 import {ConditionCodes} from '../../../../../const/gameData';
 import {useI18n} from '../../../../../i18n/hook';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
-import {EnumChecksRadio} from '../../elements/enumChecksRadio';
+import {EnumChecksBox} from '../../../common/enum/enumChecksBox';
+import {EnumChecksRadio} from '../../../common/enum/enumChecksRadio';
 import {NumericInput} from '../../elements/numInput';
 import {RadioCheckLabel, RadioChecks} from '../../elements/radio';
 import {SectionSubTitle} from '../../elements/subTitle';

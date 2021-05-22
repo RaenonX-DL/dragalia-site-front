@@ -2,7 +2,7 @@ import React from 'react';
 
 import {ToggleButton} from 'react-bootstrap';
 
-import {render} from '../../../../../test/render/main';
+import {renderMount} from '../../../../../test/render/main';
 import {RadioCheckLabel, RadioChecks} from './radio';
 
 describe('Radio checks', () => {
@@ -32,7 +32,7 @@ describe('Radio checks', () => {
   it('preloads the selection', async () => {
     inputData = {selected: 2};
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <RadioChecks
         options={options}
         inputData={inputData}
@@ -50,7 +50,7 @@ describe('Radio checks', () => {
   test('selecting another option changes the state', async () => {
     inputData = {selected: 2};
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <RadioChecks
         options={options}
         inputData={inputData}

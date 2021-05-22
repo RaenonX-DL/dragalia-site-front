@@ -33,6 +33,11 @@ export type ElementEnums = {
 }
 
 
+export type WeaponTypeEnums = {
+  weapon: Array<EnumEntry>,
+}
+
+
 export type ExBuffParams = {
   exBuffParam: Array<EnumEntry>,
   chainedExBuffParam: Array<EnumEntry>,

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {render} from '../../../../../../test/render/main';
+import {renderMount} from '../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
 import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types/enums';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
+import {EnumChecksBox} from '../../../common/enum/enumChecksBox';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
 
@@ -93,7 +93,7 @@ describe('EX/CEX filter section', () => {
       filterChainedExBuffParamCode: [],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -112,7 +112,7 @@ describe('EX/CEX filter section', () => {
       filterChainedExBuffParamCode: [],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -136,7 +136,7 @@ describe('EX/CEX filter section', () => {
       filterChainedExBuffParamCode: [],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -160,7 +160,7 @@ describe('EX/CEX filter section', () => {
       filterChainedExBuffParamCode: [],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -184,7 +184,7 @@ describe('EX/CEX filter section', () => {
       filterChainedExBuffParamCode: [1],
     };
 
-    const {app} = await render(
+    const {app} = await renderMount(
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}

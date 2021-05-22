@@ -10,6 +10,7 @@ import {
   ExBuffParams,
   SkillIdentifierInfo,
 } from './types';
+import {WeaponTypeEnums} from './types/enums';
 
 /**
  * Class to load the resources.
@@ -78,6 +79,17 @@ export class ResourceLoader {
    */
   static getEnumElements(callback?: (elementEnums: ElementEnums) => void): Promise<ElementEnums> {
     return ResourceLoader.fetchResources<ElementEnums>(ResourcePaths.ENUMS_ELEMENTS, callback);
+  }
+
+  /**
+   * Get the weapon type enums.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<Array<ElementEnums>>} promise after the callback
+   */
+  static getEnumWeaponTypes(callback?: (weaponTypeEnums: WeaponTypeEnums) => void): Promise<WeaponTypeEnums> {
+    return ResourceLoader.fetchResources<WeaponTypeEnums>(ResourcePaths.ENUMS_WEAPON_TYPES, callback);
   }
 
   /**

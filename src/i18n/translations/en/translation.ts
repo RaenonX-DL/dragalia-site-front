@@ -193,7 +193,6 @@ export const translation: TranslationStruct = {
         sharedOnly: 'Shared Skill Only',
       },
       collapse: 'Collapse/Expand',
-      search: 'Search',
     },
     tools: {
       titleSelf: 'Game Tools',
@@ -256,6 +255,8 @@ export const translation: TranslationStruct = {
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
     remove: 'Remove',
+    search: 'Search',
+    searchKeyword: 'Keyword',
   },
   meta: {
     inUse: {
