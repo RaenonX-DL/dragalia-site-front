@@ -1,5 +1,4 @@
-import {MultiLangText} from './text';
-
+import {ConditionEnumEntry, EnumEntry} from '../enum';
 
 export type EnumEntry = {
   name: string,
@@ -9,34 +8,24 @@ export type EnumEntry = {
 }
 
 
-export type ConditionEnumEntry = EnumEntry & {
-  colorTheme: string
-};
-
-
 export type ConditionEnumMap = Record<string, ConditionEnumEntry>;
-
 
 export type CategorizedConditionEnums = {
   afflictions: Array<EnumEntry>,
   elements: Array<EnumEntry>,
 }
 
-
 export type BuffParamEnums = {
   unit: Array<EnumEntry>,
 }
-
 
 export type ElementEnums = {
   elemental: Array<EnumEntry>,
 }
 
-
 export type WeaponTypeEnums = {
   weapon: Array<EnumEntry>,
 }
-
 
 export type ExBuffParams = {
   exBuffParam: Array<EnumEntry>,

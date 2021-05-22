@@ -1,4 +1,4 @@
-import {CategorizedConditionEnums, ElementEnums} from '../../../../../utils/services/resources/types/enums';
+import {CategorizedConditionEnums, ElementEnums} from '../../../../../utils/services/resources/types';
 import {InputSectionBaseProps} from '../../props';
 import {InputData} from './types';
 

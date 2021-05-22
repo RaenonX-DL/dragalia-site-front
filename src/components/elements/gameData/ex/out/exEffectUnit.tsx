@@ -4,7 +4,7 @@ import {Col, Row} from 'react-bootstrap';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
-import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types/common/ability';
+import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 type ExEffectUnitProps = {

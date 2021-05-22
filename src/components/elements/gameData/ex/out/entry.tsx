@@ -6,14 +6,14 @@ import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {
   ConditionEnumMap,
-  ExAbilityDataEntry,
+  CharaExAbilityDataEntry,
 } from '../../../../../utils/services/resources/types';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {ExAbility} from './exUnit';
 
 
 type ExAbilityEntryProps = {
-  entry: ExAbilityDataEntry
+  entry: CharaExAbilityDataEntry
   conditionEnums: ConditionEnumMap,
 }
 

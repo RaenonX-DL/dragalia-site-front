@@ -1,4 +1,4 @@
-import {MultiLangText} from '../text';
+import {MultiLangText} from './text';
 
 export type CharaData = {
   iconName: string,

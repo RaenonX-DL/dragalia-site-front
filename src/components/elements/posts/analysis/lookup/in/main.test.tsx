@@ -6,7 +6,7 @@ import {renderReact} from '../../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
-import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types/enums';
+import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
 import {AnalysisLookupInput} from './main';
 import {InputData} from './types';
 

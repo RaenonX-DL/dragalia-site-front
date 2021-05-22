@@ -1,6 +1,15 @@
-import {CharaData} from './common/chara';
-import {MultiLangText} from './text';
+import {SkillDataBase, SkillEntryBase} from './common/skill';
 
+export type BuffCountBoost = {
+  each: number,
+  inEffect: number,
+  limit: number,
+}
+
+export type BuffFieldBoost = {
+  self: number,
+  ally: number,
+}
 
 export type AfflictionUnit = {
   statusConditionCode: number,
@@ -11,39 +20,17 @@ export type AfflictionUnit = {
   stackable: boolean
 }
 
-
-export type BuffCountBoost = {
-  each: number,
-  inEffect: number,
-  limit: number,
+export type AttackingSkillInfo = SkillDataBase & {
+  modsMax: Array<number>,
+  crisisMax: Array<number>,
+  hitsMax: number,
+  afflictions: Array<AfflictionUnit>,
+  buffCountBoost: Array<BuffCountBoost>,
+  buffZoneBoost: BuffFieldBoost,
+  dispelMax: boolean,
+  dispelTimingMax: Array<number>
 }
 
-
-export type BuffZoneBoost = {
-  self: number,
-  ally: number,
-}
-
-
-export type AttackingSkillData = {
-  uniqueHash: string,
-  condition: Array<number>,
-  chara: CharaData,
-  skill: {
-    identifiers: Array<string>,
-    internalId: number,
-    name: MultiLangText,
-    spMax: number,
-    sharable: boolean,
-    ssCost: number,
-    ssSp: number,
-    modsMax: Array<number>,
-    crisisMax: Array<number>,
-    hitsMax: number,
-    afflictions: Array<AfflictionUnit>,
-    buffCountBoost: Array<BuffCountBoost>,
-    buffZoneBoost: BuffZoneBoost,
-    dispelMax: boolean,
-    dispelTimingMax: Array<number>,
-  }
+export type AttackingSkillData = SkillEntryBase & {
+  skill: AttackingSkillInfo
 }

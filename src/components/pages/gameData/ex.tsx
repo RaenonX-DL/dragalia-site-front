@@ -6,7 +6,7 @@ import {useI18n} from '../../../i18n/hook';
 import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources/loader';
-import {ConditionEnumMap, ExAbilityDataEntry} from '../../../utils/services/resources/types';
+import {ConditionEnumMap, CharaExAbilityDataEntry} from '../../../utils/services/resources/types';
 import {useFetchState} from '../../elements/common/fetch';
 import {ExAbilityInput} from '../../elements/gameData/ex/in/main';
 import {InputData} from '../../elements/gameData/ex/in/types';
@@ -21,7 +21,7 @@ const ExAbilitySkillList = () => {
   const {
     fetchStatus: exAbility,
     fetchFunction: fetchExAbility,
-  } = useFetchState<Array<ExAbilityDataEntry>>(
+  } = useFetchState<Array<CharaExAbilityDataEntry>>(
     [],
     ResourceLoader.getAbilityEx,
     'Failed to fetch ex ability data.',

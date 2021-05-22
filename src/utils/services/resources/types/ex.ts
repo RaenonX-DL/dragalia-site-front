@@ -1,9 +1,8 @@
-import {AbilityVariantEffectUnitData} from './common/ability';
 import {CharaData} from './common/chara';
+import {AbilityVariantEffectUnitData} from './common/effectAbility';
 
-
-export type ExAbilityDataEntry = {
-  chainedEx: Array<AbilityVariantEffectUnitData>,
-  ex: Array<AbilityVariantEffectUnitData>,
+export type CharaExAbilityDataEntry = {
   chara: CharaData,
+  ex: Array<AbilityVariantEffectUnitData>,
+  chainedEx: Array<AbilityVariantEffectUnitData>,
 }

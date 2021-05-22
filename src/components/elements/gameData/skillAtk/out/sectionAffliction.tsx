@@ -4,7 +4,7 @@ import {Badge, Col} from 'react-bootstrap';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {DepotPaths} from '../../../../../utils/services/resources/paths';
-import {AfflictionUnit} from '../../../../../utils/services/resources/types/skillAtk';
+import {AfflictionUnit} from '../../../../../utils/services/resources/types';
 import {SectionProps} from './props';
 
 

@@ -8,7 +8,8 @@ import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {
   AttackingSkillData,
-  ConditionEnumMap, ElementBonus,
+  ConditionEnumMap,
+  ElementBonus,
   ElementBonusData,
   SkillIdentifierInfo,
 } from '../../../utils/services/resources/types';

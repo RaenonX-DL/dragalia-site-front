@@ -6,11 +6,11 @@ import {
   ConditionEnumMap,
   ElementBonus,
   ElementEnums,
-  ExAbilityDataEntry,
+  CharaExAbilityDataEntry,
   ExBuffParams,
   SkillIdentifierInfo,
 } from './types';
-import {WeaponTypeEnums} from './types/enums';
+import {WeaponTypeEnums} from './types/export/enums';
 
 /**
  * Class to load the resources.
@@ -22,12 +22,12 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ExAbilityDataEntry>>} promise after the callback
+   * @return {Promise<Array<CharaExAbilityDataEntry>>} promise after the callback
    */
   static getAbilityEx(
-    callback?: (exAbilityDataEntries: Array<ExAbilityDataEntry>) => void,
-  ): Promise<Array<ExAbilityDataEntry>> {
-    return ResourceLoader.fetchResources<Array<ExAbilityDataEntry>>(ResourcePaths.ABILITY_EX, callback);
+    callback?: (exAbilityDataEntries: Array<CharaExAbilityDataEntry>) => void,
+  ): Promise<Array<CharaExAbilityDataEntry>> {
+    return ResourceLoader.fetchResources<Array<CharaExAbilityDataEntry>>(ResourcePaths.ABILITY_EX, callback);
   }
 
   // endregion

@@ -37,7 +37,6 @@ describe('Page browsing behavior', () => {
     const path = GeneralPath.HOME;
     await renderApp(path);
 
-    screen.debug();
     expect(screen.getAllByText(/OM/).length).toBe(3);
     expect(pageViewFunction).toHaveBeenCalledTimes(1);
 

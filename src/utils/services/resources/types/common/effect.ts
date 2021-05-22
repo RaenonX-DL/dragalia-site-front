@@ -1,5 +1,4 @@
-import {MultiLangText} from '../text';
-
+import {MultiLangText} from './text';
 
 export type EffectUnitDataBase = {
   status: MultiLangText,
@@ -22,14 +21,4 @@ export type EffectUnitDataBase = {
   durationSec: number,
   maxStackCount: number,
   stackable: boolean
-}
-
-
-export type AbilityVariantEffectUnitData = EffectUnitDataBase & {
-  sourceAbilityId: number,
-  conditions: Array<number>,
-  cooldownSec: number,
-  maxOccurrences: number,
-  rateMax: number,
-  targetAction: MultiLangText,
 }
