@@ -42,10 +42,10 @@ export type PostFormProps<P extends PostMetaPayload> = PostFormFetchProps<P> & {
   renderMain?: (
     setPayload: (key: keyof P, newValue: string) => void,
     setAvailability: (availability: boolean) => void,
-  ) => React.ReactNode,
+  ) => React.ReactElement,
   renderOnPreloaded?: (
     setPayload: (key: keyof P, newValue: string) => void,
-  ) => React.ReactNode,
+  ) => React.ReactElement,
 }
 
 /**
@@ -55,7 +55,7 @@ export type PostFormBaseProps<P extends PostMetaPayload> = PostFormProps<P> & {
   renderMain: (
     setPayload: (key: keyof P, newValue: string) => void,
     setAvailability: (availability: boolean) => void,
-  ) => React.ReactNode,
+  ) => React.ReactElement,
 }
 
 export const isFormStateValid = <P extends PostMetaPayload>({isIdAvailable, isPreloaded}: PostFormState<P>) => {

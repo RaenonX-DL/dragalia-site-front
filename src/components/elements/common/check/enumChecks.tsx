@@ -6,6 +6,7 @@ import {useI18n} from '../../../../i18n/hook';
 import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 import {ChecksBase, ChecksPropsDisplay} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
+import {CheckType} from './types';
 
 
 export type EnumChecksProps<K extends string, V, T extends { [key in K]: V }> =
@@ -13,14 +14,12 @@ export type EnumChecksProps<K extends string, V, T extends { [key in K]: V }> =
   imageHeight?: CSS.Property.Height<string | number>,
 }
 
-
 type EnumChecksPropsInternal<K extends string, V, T extends { [key in K]: V }> =
   EnumChecksProps<K, V, T> & {
-  type: 'checkbox' | 'radio',
+  type: CheckType,
   onChange: (code: number, checked: boolean) => void,
   isChecked: (code: number) => boolean,
 }
-
 
 export const EnumChecks = <K extends string, V, T extends { [key in K]: V }>({
   options,

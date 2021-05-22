@@ -13,7 +13,7 @@ type CharaAnalysisFormProps<P extends PostMetaPayload, E> = {
   renderEntries: (
     element: E,
     onChangeHandler: (key: keyof E) => (newValue: string) => void,
-  ) => React.ReactNode,
+  ) => React.ReactElement,
 }
 
 

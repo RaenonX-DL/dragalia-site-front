@@ -6,12 +6,13 @@ import {ButtonVariant} from 'react-bootstrap/types';
 
 import {OverlayTooltip} from '../overlay/tooltip';
 import {TitledProps} from '../types';
+import {CheckType} from './types';
 
 
 export type InlineCheckBaseProps = TitledProps & {
   onChange: (checked: boolean) => void,
   groupName: string,
-  type?: 'checkbox' | 'radio',
+  type?: CheckType,
   variant?: ButtonVariant,
   imageUrl?: string,
   id?: string,
@@ -53,8 +54,8 @@ export const InlineCheckBase = ({
         onChange={(e) => onChange(e.target.checked)}
         name={groupName}
         id={id || title}
-        data-testid={id || title}
         value="1"
+        data-testid={id || title}
       >
         {label}
       </ToggleButton>

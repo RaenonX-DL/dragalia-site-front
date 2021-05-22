@@ -19,7 +19,7 @@ export type ChecksProps<E, K extends string, V, T extends { [key in K]: V }> = C
 
 export type ChecksBaseProps<E> = {
   options: Array<E>,
-  renderCheckItem: (entry: E) => React.ReactNode,
+  renderCheckItem: (entry: E) => React.ReactElement,
 }
 
 

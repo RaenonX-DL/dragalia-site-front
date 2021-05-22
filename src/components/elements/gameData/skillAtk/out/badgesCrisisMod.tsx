@@ -7,7 +7,7 @@ import {AttackingSkillData} from '../../../../../utils/services/resources/types'
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
-  let badges: Array<React.ReactNode> = [];
+  let badges: Array<React.ReactElement> = [];
 
   const {t} = useI18n();
 

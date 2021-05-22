@@ -21,7 +21,7 @@ type OutputBaseProps<R extends PostGetSuccessResponse, S extends PostFetchStatus
   setStatus: (newStatus: S) => void,
   getTitle: (postId: number) => string,
   fnSendFetchRequest: FunctionFetchPost<R>,
-  renderOnFetched: (post: R) => React.ReactNode,
+  renderOnFetched: (post: R) => React.ReactElement,
 }
 
 export const OutputBase = <P extends PostParams, R extends PostGetSuccessResponse, S extends PostFetchStatus<R>>({

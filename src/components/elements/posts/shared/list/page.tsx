@@ -28,7 +28,7 @@ type PostListPageProps<R extends PostListResponse> = {
   currentUrl: string,
   postManageBarProps: PostManageBarProps,
   fnFetchList: FunctionFetchPostList<R>,
-  renderPostEntries: (response: R) => React.ReactNode,
+  renderPostEntries: (response: R) => React.ReactElement,
 }
 
 export const PostListPage = <R extends PostListResponse>({

@@ -15,7 +15,7 @@ export type PostEntryBadgesProps<E extends PostListEntry> = {
 
 export type PostEntryProps<E extends PostListEntry> = {
   generateLink: LinkGenerator,
-  renderPostBadges: (badgesProps: PostEntryBadgesProps<E>) => React.ReactNode,
+  renderPostBadges: (badgesProps: PostEntryBadgesProps<E>) => React.ReactElement,
 };
 
 type PostEntryPropsInternal<E extends PostListEntry> = PostEntryProps<E> & {

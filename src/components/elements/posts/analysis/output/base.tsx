@@ -10,7 +10,7 @@ import {SectionTop} from './top';
 
 type AnalysisOutputBaseProps<R extends AnalysisGetSuccessResponse> = {
   analysis: R,
-  renderBody: (post: R) => React.ReactNode,
+  renderBody: (post: R) => React.ReactElement,
 }
 
 
