@@ -334,6 +334,7 @@ export const translation: TranslationStruct = {
       error: {
         noPostId: '文章 ID 未指定。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
+        unavailable: 'Analysis Unavailable',
       },
       skill: {
         name: 'スキルの名前',
@@ -352,7 +353,7 @@ export const translation: TranslationStruct = {
       lastModified: '最後の編集時間',
       published: '発表時間',
       title: 'お題',
-      viewCount: 'ご覽回數',
+      viewCount: 'ご覽 {{count}} 回',
     },
     manage: {
       add: '文を追加する',

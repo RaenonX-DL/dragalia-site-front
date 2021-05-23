@@ -336,6 +336,7 @@ export const translation: TranslationStruct = {
       error: {
         noPostId: '文章 ID 未指定。',
         unknownType: '無法解析貼文種類 - {{analysisType}}。',
+        unavailable: '無相關評測',
       },
       skill: {
         name: '技能名稱',
@@ -354,7 +355,7 @@ export const translation: TranslationStruct = {
       lastModified: '最後修改時間',
       published: '發布時間',
       title: '標題',
-      viewCount: '瀏覽次數',
+      viewCount: '瀏覽 {{count}} 次',
     },
     manage: {
       add: '新增貼文',

@@ -366,6 +366,7 @@ export const translation: TranslationStruct = {
       error: {
         noPostId: 'Analysis ID is not specified.',
         unknownType: 'Unknown post type - {{analysisType}}.',
+        unavailable: 'Analysis Unavailable',
       },
       skill: {
         name: 'Skill Name',
@@ -384,7 +385,7 @@ export const translation: TranslationStruct = {
       lastModified: 'Last Modified Timestamp',
       published: 'Published Timestamp',
       title: 'Title',
-      viewCount: 'View Count',
+      viewCount: 'Viewed {{count}} times',
     },
     manage: {
       add: 'New Post',

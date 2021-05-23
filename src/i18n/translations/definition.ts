@@ -268,6 +268,7 @@ export type TranslationStruct = {
       error: {
         noPostId: string,
         unknownType: string,
+        unavailable: string,
       },
       skill: {
         name: string,
