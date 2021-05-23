@@ -21,7 +21,7 @@ type FetchStateReturns<D> = {
 
 export const useFetchStateProcessed = <D, R>(
   initialData: D,
-  fnFetch: (callback: (data: R) => void) => Promise<R>,
+  fnFetch: (callback?: (data: R) => void) => Promise<R>,
   messageOnFetchFailed: string,
   fnProcessData: (response: R) => D,
 ): FetchStateReturns<D> => {
@@ -41,14 +41,15 @@ export const useFetchStateProcessed = <D, R>(
       fetching: true,
     });
 
-    fnFetch((data) => {
-      setFetchStatus({
-        ...fetchStatus,
-        fetched: true,
-        fetching: false,
-        data: fnProcessData(data),
-      });
-    })
+    fnFetch()
+      .then((data) => {
+        setFetchStatus({
+          ...fetchStatus,
+          fetched: true,
+          fetching: false,
+          data: fnProcessData(data),
+        });
+      })
       .catch((e) => {
         setFetchStatus({
           ...fetchStatus,
@@ -65,7 +66,7 @@ export const useFetchStateProcessed = <D, R>(
 
 export const useFetchState = <D>(
   initialData: D,
-  fnFetch: (callback: (data: D) => void) => Promise<D>,
+  fnFetch: (callback?: (data: D) => void) => Promise<D>,
   messageOnFetchFailed: string,
 ): FetchStateReturns<D> => {
   return useFetchStateProcessed(initialData, fnFetch, messageOnFetchFailed, (data) => data);
