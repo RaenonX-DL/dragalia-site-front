@@ -51,7 +51,17 @@ export class DepotPaths {
    * @return {string} URL of the large character icon
    */
   static getCharaIconURL(imageName: string) {
-    return `${DepotPaths.ROOT}/assets/_gluonresources/resources/images/icon/chara/l/${imageName}.png`;
+    return DepotPaths.getImageURL(`/icon/chara/l/${imageName}.png`);
+  }
+
+  /**
+   * Get the large dragon icon URL.
+   *
+   * @param {string} imageName name of the image without the extension
+   * @return {string} URL of the large dragon icon
+   */
+  static getDragonIconURL(imageName: string) {
+    return DepotPaths.getImageURL(`/icon/dragon/l/${imageName}.png`);
   }
 
   /**
@@ -61,6 +71,6 @@ export class DepotPaths {
    * @return {string} URL of the status icon image
    */
   static getAfflictionIconURL(statusIcon: string) {
-    return `${DepotPaths.ROOT}/assets/_gluonresources/resources/images/icon/status/${statusIcon}.png`;
+    return DepotPaths.getImageURL(`/icon/status/${statusIcon}.png`);
   }
 }
