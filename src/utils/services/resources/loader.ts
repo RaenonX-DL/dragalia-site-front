@@ -9,6 +9,8 @@ import {
   CharaExAbilityDataEntry,
   ExBuffParams,
   SkillIdentifierInfo,
+  CharaInfo,
+  DragonInfo,
 } from './types';
 import {WeaponTypeEnums} from './types/export/enums';
 
@@ -38,7 +40,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ENUMS_BUFF_PARAM>>} promise after the callback
+   * @return {Promise<BuffParamEnums>} promise after the callback
    */
   static getEnumBuffParam(
     callback?: (categorizedConditionEnums: BuffParamEnums) => void,
@@ -51,7 +53,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
+   * @return {Promise<CategorizedConditionEnums>} promise after the callback
    */
   static getEnumCategorizedConditions(
     callback?: (categorizedConditionEnums: CategorizedConditionEnums) => void,
@@ -64,7 +66,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
+   * @return {Promise<ConditionEnumMap>} promise after the callback
    */
   static getEnumAllConditions(callback?: (allConditionEnums: ConditionEnumMap) => void): Promise<ConditionEnumMap> {
     return ResourceLoader.fetchResources<ConditionEnumMap>(ResourcePaths.ENUMS_CONDITIONS_ALL, callback);
@@ -75,7 +77,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ElementEnums>>} promise after the callback
+   * @return {Promise<ElementEnums>} promise after the callback
    */
   static getEnumElements(callback?: (elementEnums: ElementEnums) => void): Promise<ElementEnums> {
     return ResourceLoader.fetchResources<ElementEnums>(ResourcePaths.ENUMS_ELEMENTS, callback);
@@ -86,7 +88,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ElementEnums>>} promise after the callback
+   * @return {Promise<WeaponTypeEnums>} promise after the callback
    */
   static getEnumWeaponTypes(callback?: (weaponTypeEnums: WeaponTypeEnums) => void): Promise<WeaponTypeEnums> {
     return ResourceLoader.fetchResources<WeaponTypeEnums>(ResourcePaths.ENUMS_WEAPON_TYPES, callback);
@@ -97,7 +99,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ExBuffParams>>} promise after the callback
+   * @return {Promise<ExBuffParams>} promise after the callback
    */
   static getEnumExBuffParameters(
     callback?: (categorizedConditionEnums: ExBuffParams) => void,
@@ -132,6 +134,31 @@ export class ResourceLoader {
     callback?: (skillIdentifierInfo: SkillIdentifierInfo) => void,
   ): Promise<SkillIdentifierInfo> {
     return ResourceLoader.fetchResources<SkillIdentifierInfo>(ResourcePaths.SKILLS_IDENTIFIERS, callback);
+  }
+
+  // endregion
+
+  // region Unit info
+  /**
+   * Get the character info data.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<CharaInfo>} promise after the callback
+   */
+  static getCharacterInfo(callback?: (elementBonusData: CharaInfo) => void): Promise<CharaInfo> {
+    return ResourceLoader.fetchResources<CharaInfo>(ResourcePaths.INFO_CHARA, callback);
+  }
+
+  /**
+   * Get the dragon info data.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<DragonInfo>} promise after the callback
+   */
+  static getDragonInfo(callback?: (elementBonusData: DragonInfo) => void): Promise<DragonInfo> {
+    return ResourceLoader.fetchResources<DragonInfo>(ResourcePaths.INFO_DRAGON, callback);
   }
 
   // endregion
