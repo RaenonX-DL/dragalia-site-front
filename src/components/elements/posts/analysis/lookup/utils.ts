@@ -1,4 +1,4 @@
-import {AnalysisListEntry, UnitType} from '../../../../../api-def/api';
+import {UnitType} from '../../../../../api-def/api';
 import {DepotPaths} from '../../../../../utils/services/resources';
 import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoDataBase} from '../../../../../utils/services/resources/types';
 import {InputData} from './in/types';
@@ -61,6 +61,6 @@ const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = 
   [UnitType.DRAGON]: DepotPaths.getDragonIconURL,
 };
 
-export const getImageURL = (unitInfo: UnitInfo<AnalysisListEntry | null>) => {
+export const getImageURL = (unitInfo: UnitInfo) => {
   return fnGetImageURL[unitInfo.unitType](unitInfo.iconName);
 };

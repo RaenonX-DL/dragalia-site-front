@@ -238,6 +238,7 @@ export const translation: TranslationStruct = {
         'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
+      fetching: 'Fetching...',
       welcome: 'Welcome to the DL info website constructed and maintained ' +
         'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
         'Most of the pages and the features are still under construction.\n\n' +

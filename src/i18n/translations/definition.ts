@@ -202,6 +202,7 @@ export type TranslationStruct = {
     },
     info: {
       constructing: string,
+      fetching: string,
       welcome: string,
     },
     alert: {

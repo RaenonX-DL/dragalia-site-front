@@ -49,7 +49,7 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
   fetchElemEnums();
 
   return (
-    <div className="rounded bg-black-32 p-3">
+    <div className="rounded bg-black-32 p-3 mb-3">
       <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
       <EnumChecksBox
         options={elemEnums.data.elemental}
