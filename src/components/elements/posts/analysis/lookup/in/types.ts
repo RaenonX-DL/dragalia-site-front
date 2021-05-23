@@ -1,8 +1,8 @@
-import {AnalysisType} from '../../../../../../api-def/api';
+import {UnitType} from '../../../../../../api-def/api';
 
 export type InputData = {
   keyword: string,
-  types: Array<AnalysisType>,
+  types: Array<UnitType>,
   elements: Array<number>,
   weaponTypes: Array<number>,
 }

@@ -9,7 +9,7 @@ import {
   AnalysisListPayload,
   AnalysisListResponse,
   AnalysisResponse,
-  AnalysisType,
+  UnitType,
   ApiEndPoints,
   BaseResponse,
   CharaAnalysisEditPayload,
@@ -241,12 +241,12 @@ export class ApiRequestSender {
       {googleUid, seqId, lang, incCount},
     )
       .then((response) => {
-        if (response.type === AnalysisType.CHARACTER) {
+        if (response.type === UnitType.CHARACTER) {
           return (response as CharacterAnalysis);
-        } else if (response.type === AnalysisType.DRAGON) {
+        } else if (response.type === UnitType.DRAGON) {
           return (response as DragonAnalysis);
         } else {
-          throw new Error(`Unknown post type: ${AnalysisType[response.type]}`);
+          throw new Error(`Unknown post type: ${UnitType[response.type]}`);
         }
       });
   }

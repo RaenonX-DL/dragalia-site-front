@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AnalysisType} from '../../../../../../api-def/api';
+import {UnitType} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {CustomBoxes} from '../../../../common/check/customBox';
 import {CheckEntry} from '../../../../common/check/types';
@@ -17,11 +17,11 @@ export const AnalysisTypePicker = ({inputData, setInputData}: TypePickerProps) =
   const analysisTypes: Array<CheckEntry> = [
     {
       text: t((t) => t.posts.analysis.type.character),
-      code: AnalysisType.CHARACTER,
+      code: UnitType.CHARACTER,
     },
     {
       text: t((t) => t.posts.analysis.type.dragon),
-      code: AnalysisType.DRAGON,
+      code: UnitType.DRAGON,
     },
   ];
 

@@ -6,7 +6,7 @@ import {AnalysisEditParams} from '../../../../const/path';
 import {useI18n} from '../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../i18n/types';
 import {
-  AnalysisType,
+  UnitType,
   ApiRequestSender,
   CharacterAnalysis,
   DragonAnalysis,
@@ -19,9 +19,9 @@ import {
 } from '../../../elements';
 import {PageProps} from '../../props';
 
-const getTitleTranslationName: { [key in AnalysisType]: GetTranslationFunction } = {
-  [AnalysisType.CHARACTER]: (t) => t.meta.inUse.analysisEditChara.title,
-  [AnalysisType.DRAGON]: (t) => t.meta.inUse.analysisEditDragon.title,
+const getTitleTranslationName: { [key in UnitType]: GetTranslationFunction } = {
+  [UnitType.CHARACTER]: (t) => t.meta.inUse.analysisEditChara.title,
+  [UnitType.DRAGON]: (t) => t.meta.inUse.analysisEditDragon.title,
 };
 
 
@@ -58,7 +58,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       fnSetTitle(t(titleName, {title: fetchStatus.post.title}));
     }
 
-    if (analysisType === AnalysisType.CHARACTER) {
+    if (analysisType === UnitType.CHARACTER) {
       return (
         <AnalysisFormCharaEdit
           initialAnalysis={fetchStatus.post as CharacterAnalysis}
@@ -66,7 +66,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
         />
       );
     }
-    if (analysisType === AnalysisType.DRAGON) {
+    if (analysisType === UnitType.DRAGON) {
       return (
         <AnalysisFormDragonEdit
           initialAnalysis={fetchStatus.post as DragonAnalysis}
@@ -81,7 +81,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       fetchFailed: true,
       failureMessage: t(
         (t) => t.posts.analysis.error.unknownType,
-        {analysisType: AnalysisType[analysisType]},
+        {analysisType: UnitType[analysisType]},
       ),
     });
   }

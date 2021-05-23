@@ -3,8 +3,7 @@ import React from 'react';
 import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
-import {AnalysisType} from '../../../../../../api-def/api/post/analysis/response';
+import {SupportedLanguages, UnitType} from '../../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
@@ -126,7 +125,7 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: '',
-      types: [AnalysisType.CHARACTER],
+      types: [UnitType.CHARACTER],
       elements: [],
       weaponTypes: [],
     };
@@ -212,7 +211,7 @@ describe('Input of analysis lookup', () => {
 
     const expectedInput: InputData = {
       keyword: 'test',
-      types: [AnalysisType.CHARACTER],
+      types: [UnitType.CHARACTER],
       elements: [1],
       weaponTypes: [2],
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AnalysisType, CharacterAnalysis, DragonAnalysis} from '../../../../../api-def/api';
+import {UnitType, CharacterAnalysis, DragonAnalysis} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PageProps} from '../../../../pages/props';
@@ -35,12 +35,12 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       )}
       fnSendFetchRequest={ApiRequestSender.analysisPostGet}
       renderOnFetched={(post) => {
-        if (post.type === AnalysisType.CHARACTER) {
+        if (post.type === UnitType.CHARACTER) {
           return (
             <AnalysisOutputChara analysis={post as CharacterAnalysis}/>
           );
         }
-        if (post.type === AnalysisType.DRAGON) {
+        if (post.type === UnitType.DRAGON) {
           return (
             <AnalysisOutputDragon analysis={post as DragonAnalysis}/>
           );
@@ -52,7 +52,7 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
           fetchFailed: true,
           failureMessage: t(
             (t) => t.posts.analysis.error.unknownType,
-            {analysisType: AnalysisType[post.type]},
+            {analysisType: UnitType[post.type]},
           ),
         });
         return <></>;
