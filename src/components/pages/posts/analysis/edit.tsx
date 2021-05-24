@@ -2,21 +2,13 @@ import React from 'react';
 
 import {useParams} from 'react-router-dom';
 
+import {CharaAnalysisContent, DragonAnalysisContent, UnitType} from '../../../../api-def/api';
 import {AnalysisEditParams} from '../../../../const/path';
 import {useI18n} from '../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../i18n/types';
-import {
-  UnitType,
-  ApiRequestSender,
-  CharacterAnalysis,
-  DragonAnalysis,
-} from '../../../../utils/services/api';
-import {
-  AnalysisFormCharaEdit,
-  AnalysisFormDragonEdit,
-  AnalysisPostFetchStatus,
-  FetchPost,
-} from '../../../elements';
+import {ApiRequestSender} from '../../../../utils/services/api';
+import {useUnitInfo} from '../../../../utils/services/resources/unitInfo';
+import {AnalysisFormCharaEdit, AnalysisFormDragonEdit, AnalysisPostFetchStatus, FetchPost} from '../../../elements';
 import {PageProps} from '../../props';
 
 const getTitleTranslationName: { [key in UnitType]: GetTranslationFunction } = {
@@ -26,7 +18,7 @@ const getTitleTranslationName: { [key in UnitType]: GetTranslationFunction } = {
 
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   const {pid} = useParams<AnalysisEditParams>();
 
@@ -36,6 +28,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     failureMessage: '',
     post: null,
   });
+  const {unitInfoMap} = useUnitInfo();
 
   // TEST: Post edit form
   //  - returning character
@@ -55,13 +48,16 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     const titleName = getTitleTranslationName[analysisType];
 
     if (titleName) {
-      fnSetTitle(t(titleName, {title: fetchStatus.post.title}));
+      fnSetTitle(t(
+        titleName,
+        {title: unitInfoMap.get(fetchStatus.post.unitId)?.name[lang] || fetchStatus.post.unitId.toString()},
+      ));
     }
 
     if (analysisType === UnitType.CHARACTER) {
       return (
         <AnalysisFormCharaEdit
-          initialAnalysis={fetchStatus.post as CharacterAnalysis}
+          initialAnalysis={fetchStatus.post as CharaAnalysisContent}
           fnSendRequest={ApiRequestSender.analysisPostEditChara}
         />
       );
@@ -69,7 +65,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     if (analysisType === UnitType.DRAGON) {
       return (
         <AnalysisFormDragonEdit
-          initialAnalysis={fetchStatus.post as DragonAnalysis}
+          initialAnalysis={fetchStatus.post as DragonAnalysisContent}
           fnSendRequest={ApiRequestSender.analysisPostEditDragon}
         />
       );

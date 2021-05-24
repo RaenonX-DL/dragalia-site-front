@@ -4,13 +4,14 @@ import {Col, Form} from 'react-bootstrap';
 
 import {
   ApiResponseCode,
-  BaseResponse, PostListEntry,
+  BaseResponse,
+  SequencedPostInfo,
   SupportedLanguages,
   UnitType,
   UserIsAdminResponse,
 } from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {ResourceLoader} from '../../../../../../utils/services/resources';
+import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
 import {useFetchState} from '../../../../common/fetch';
 import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
@@ -20,7 +21,7 @@ type AnalysisLookupOutputProps = {
   inputData: InputData,
 }
 
-export type AnalysisLookupEntry = Omit<PostListEntry, 'title'> & {
+export type AnalysisLookupEntry = Omit<SequencedPostInfo, 'title'> & {
   type: UnitType,
   unitId: number,
 }
@@ -68,22 +69,7 @@ const fetchAnalysisMetaApi = (
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
   const {lang} = useI18n();
 
-  const {
-    fetchStatus: charaInfo,
-    fetchFunction: fetchCharaInfo,
-  } = useFetchState(
-    [],
-    ResourceLoader.getCharacterInfo,
-    'Failed to fetch character info.',
-  );
-  const {
-    fetchStatus: dragonInfo,
-    fetchFunction: fetchDragonInfo,
-  } = useFetchState(
-    [],
-    ResourceLoader.getDragonInfo,
-    'Failed to fetch dragon info.',
-  );
+  const {charaInfo, dragonInfo} = useUnitInfo();
   const {
     fetchStatus: analysisMeta,
     fetchFunction: fetchAnalysisMeta,
@@ -98,16 +84,14 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     'Failed to fetch analysis meta.',
   );
 
-  fetchCharaInfo();
-  fetchDragonInfo();
   fetchAnalysisMeta();
 
   // FIXME: Latest 3 at the top
 
-  const unitInfo = getUnitInfo(inputData, charaInfo.data, dragonInfo.data);
+  const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
   // Split to prioritize the units that have analysis
-  const unitInfoHasAnalysis = unitInfo.filter((info) => info.id in analysisMeta.data.analyses);
-  const unitInfoNoAnalysis = unitInfo.filter((info) => !(info.id in analysisMeta.data.analyses));
+  const unitInfoHasAnalysis = unitInfoFiltered.filter((info) => info.id in analysisMeta.data.analyses);
+  const unitInfoNoAnalysis = unitInfoFiltered.filter((info) => !(info.id in analysisMeta.data.analyses));
 
   return (
     <Form.Row>
