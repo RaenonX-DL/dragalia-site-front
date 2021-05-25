@@ -2,15 +2,14 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useI18n} from '../../../../../../i18n/hook';
-import {UnitInfo} from '../types';
-import {getImageURL} from '../utils';
+import {UnitInfoData} from '../../../../../../api-def/resources';
+import {UnitIcon} from '../../../../gameData/unitIcon';
 import {AnalysisEntryAvailable} from './entryAvailable';
 import {AnalysisEntryUnavailable} from './entryUnavailable';
 import {AnalysisLookupEntry} from './main';
 
 export type AnalysisEntryCommonProps = {
-  unitInfo: UnitInfo,
+  unitInfo: UnitInfoData,
 }
 
 type AnalysisEntryProps = AnalysisEntryCommonProps & {
@@ -19,16 +18,10 @@ type AnalysisEntryProps = AnalysisEntryCommonProps & {
 }
 
 export const AnalysisEntry = ({unitInfo, analysisMeta, isFetchingMeta}: AnalysisEntryProps) => {
-  const {lang} = useI18n();
-
   return (
     <Row noGutters className="rounded bg-black-32 p-2">
       <Col xs="auto" className="mr-2">
-        <img
-          alt={unitInfo.name[lang]}
-          src={getImageURL(unitInfo)}
-          style={{height: '4rem'}}
-        />
+        <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
       </Col>
       <Col>
         {

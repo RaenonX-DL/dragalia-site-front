@@ -1,14 +1,20 @@
 import {UnitType} from '../../../../../api-def/api';
-import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoDataBase, DepotPaths} from '../../../../../api-def/resources';
+import {
+  CharaInfo,
+  CharaInfoData,
+  DragonInfo,
+  UnitInfoDataBase,
+  DepotPaths,
+  UnitInfoData,
+} from '../../../../../api-def/resources';
 import {InputData} from './in/types';
-import {UnitInfo} from './types';
 
 export const getUnitInfo = (
   inputData: InputData,
   charaInfo: CharaInfo,
   dragonInfo: DragonInfo,
-): Array<UnitInfo> => {
-  const ret: Array<UnitInfo> = [];
+): Array<UnitInfoData> => {
+  const ret: Array<UnitInfoData> = [];
 
   const isUnitElementMatch = (unit: UnitInfoDataBase) => (
     !inputData.elements.length || inputData.elements.includes(unit.element)
@@ -34,7 +40,7 @@ export const getUnitInfo = (
         .filter((chara) => (
           isUnitElementMatch(chara) && isUnitWeaponMatch(chara) && isUnitNameMatch(chara)
         ))
-        .map((info) => ({...info, unitType: UnitType.CHARACTER, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.CHARACTER, analysisMeta: null})),
     );
   }
   // Add dragons
@@ -48,7 +54,7 @@ export const getUnitInfo = (
     ret.push(
       ...dragonInfo
         .filter((chara) => isUnitElementMatch(chara) && isUnitNameMatch(chara))
-        .map((info) => ({...info, unitType: UnitType.DRAGON, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.DRAGON, analysisMeta: null})),
     );
   }
 
@@ -60,6 +66,6 @@ const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = 
   [UnitType.DRAGON]: DepotPaths.getDragonIconURL,
 };
 
-export const getImageURL = (unitInfo: UnitInfo) => {
-  return fnGetImageURL[unitInfo.unitType](unitInfo.iconName);
+export const getImageURL = (unitInfo: UnitInfoData) => {
+  return fnGetImageURL[unitInfo.type](unitInfo.iconName);
 };

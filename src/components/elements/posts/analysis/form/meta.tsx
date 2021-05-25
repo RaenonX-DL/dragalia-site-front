@@ -2,13 +2,12 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {AnalysisMeta} from '../../../../../api-def/api/post/analysis/elements';
-import {PostMeta} from '../../../../../api-def/api/post/base/elements/common';
-import {DepotPaths} from '../../../../../api-def/resources/paths';
+import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
+import {UnitIcon} from '../../../gameData/unitIcon';
 import {useFormMeta} from '../../shared/form/meta/hook';
 import {FormMetaLangPicker} from '../../shared/form/meta/lang';
 import {PostFormControlProps} from '../../shared/form/types';
@@ -61,12 +60,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
           {
             unitInfo &&
             <Col xs="auto">
-              <img
-                src={DepotPaths.getCharaIconURL(unitInfo.iconName)}
-                alt={unitInfo.id.toString()}
-                className="ml-1"
-                style={{height: '2.5rem'}}
-              />
+              <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '2.5rem'}}/>
             </Col>
           }
         </Row>

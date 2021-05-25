@@ -1,8 +1,7 @@
 import {SupportedLanguages, UnitType} from '../../../../../api-def/api';
-import {DepotPaths, CharaInfo, DragonInfo} from '../../../../../api-def/resources';
+import {DepotPaths, CharaInfo, DragonInfo, UnitInfoData} from '../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from './in/types';
-import {UnitInfo} from './types';
 import {getImageURL, getUnitInfo} from './utils';
 
 describe('Get unit info from input data', () => {
@@ -269,8 +268,8 @@ describe('Get image URL by type', () => {
     [SupportedLanguages.JP]: 'name JP',
   };
 
-  const unitInfo: UnitInfo = {
-    unitType: UnitType.CHARACTER,
+  const unitInfo: UnitInfoData = {
+    type: UnitType.CHARACTER,
     name,
     iconName: 'icon',
     id: 11100000,
@@ -286,7 +285,7 @@ describe('Get image URL by type', () => {
   });
 
   it('gets dragon image URL', () => {
-    expect(getImageURL({...unitInfo, unitType: UnitType.DRAGON, iconName: 'iconDragon'}))
+    expect(getImageURL({...unitInfo, type: UnitType.DRAGON, iconName: 'iconDragon'}))
       .toBe(DepotPaths.getDragonIconURL('iconDragon'));
   });
 });

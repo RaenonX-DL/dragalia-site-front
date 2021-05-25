@@ -2,7 +2,8 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {DepotPaths,
+import {
+  DepotPaths,
   ConditionEnumMap,
   CharaExAbilityDataEntry,
 } from '../../../../../api-def/resources';
@@ -20,12 +21,9 @@ type ExAbilityEntryProps = {
 export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => {
   const {t, lang} = useI18n();
 
-  // region Entry info
   const charaName = entry.chara.name[lang];
   const charaIconURL = DepotPaths.getCharaIconURL(entry.chara.iconName);
-  // endregion
 
-  // region Sections
   const ImageIcon = () => (
     <OverlayTooltip text={charaName}>
       <img src={charaIconURL} alt={charaName} style={{height: '4rem'}}/>
