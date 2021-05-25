@@ -52,7 +52,7 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
         <Form.Control
           className="mb-2" type="number" placeholder={t((t) => t.posts.info.id)}
           isValid={isValid} isInvalid={!isValid}
-          onChange={(e) => setPayload('seqId', e.target.value)}
+          onChange={(e) => setPayload('seqId', +e.target.value)}
           value={payload.seqId || ''} disabled={isPreloaded || isChecking} min="1"
         />
       </Col>

@@ -44,7 +44,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     return <Redirect to={{pathname: fnGetRedirectPath(redirectId)}}/>;
   }
 
-  const setPayload = (key: keyof P, newValue: string) => setFormState({
+  const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
     ...formState,
     payload: {...formState.payload, [key]: newValue},
   });

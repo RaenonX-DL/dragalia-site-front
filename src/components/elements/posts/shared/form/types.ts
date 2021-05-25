@@ -11,12 +11,14 @@ export type PostFormState<P extends PostMeta> = {
   isPreloaded: boolean,
 }
 
+export type PostFormSetPayloadFunc<P> = <K extends keyof P>(key: K, newValue: P[K]) => void
+
 /**
  * Props of a post form section that only contains payload data.
  */
 export type PostFormDataProps<P extends PostMeta> = {
   formState: PostFormState<P>,
-  setPayload: (key: keyof P, newValue: string) => void,
+  setPayload: PostFormSetPayloadFunc<P>,
 }
 
 /**
@@ -40,11 +42,11 @@ export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = Post
   formState: PostFormState<P>,
   setFormState: React.Dispatch<React.SetStateAction<PostFormState<P>>>,
   renderMain?: (
-    setPayload: (key: keyof P, newValue: string) => void,
+    setPayload: PostFormSetPayloadFunc<P>,
     setAvailability: (availability: boolean) => void,
   ) => React.ReactElement,
   renderOnPreloaded?: (
-    setPayload: (key: keyof P, newValue: string) => void,
+    setPayload: PostFormSetPayloadFunc<P>,
   ) => React.ReactElement,
 }
 
@@ -53,7 +55,7 @@ export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = Post
  */
 export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = PostFormProps<P, R> & {
   renderMain: (
-    setPayload: (key: keyof P, newValue: string) => void,
+    setPayload: PostFormSetPayloadFunc<P>,
     setAvailability: (availability: boolean) => void,
   ) => React.ReactElement,
 }

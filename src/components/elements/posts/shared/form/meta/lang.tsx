@@ -11,7 +11,7 @@ export const FormMetaLangPicker = <P extends PostMeta>({formState, setPayload}: 
   return (
     <Form.Control
       as="select" defaultValue={payload.lang} disabled={isPreloaded} data-testid="langSelect"
-      onChange={(e) => setPayload('lang', e.target.value)}
+      onChange={(e) => setPayload('lang', e.target.value as SupportedLanguages)}
     >
       {
         Object.values(SupportedLanguages).map((lang) => {
