@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AnalysisEditResponse, DragonAnalysisContent, DragonAnalysisEditPayload} from '../../../../../api-def/api';
+import {AnalysisEditResponse, DragonAnalysisBody, DragonAnalysisEditPayload} from '../../../../../api-def/api';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
@@ -10,7 +10,7 @@ import {DragonAnalysisForm} from './dragonBody';
 
 type AnalysisFormDragonEditProps<P extends DragonAnalysisEditPayload, R extends AnalysisEditResponse> =
   PostFormFetchProps<P, R> & {
-  initialAnalysis: DragonAnalysisContent,
+  initialAnalysis: DragonAnalysisBody,
 }
 
 export const AnalysisFormDragonEdit = ({

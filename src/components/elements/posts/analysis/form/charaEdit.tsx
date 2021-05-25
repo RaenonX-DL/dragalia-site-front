@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {CharaAnalysisEditPayload, CharaAnalysisContent, AnalysisEditResponse} from '../../../../../api-def/api';
+import {CharaAnalysisEditPayload, CharaAnalysisBody, AnalysisEditResponse} from '../../../../../api-def/api';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
@@ -10,7 +10,7 @@ import {CharaAnalysisForm} from './charaBody';
 
 type AnalysisFormCharaEditProps<P extends CharaAnalysisEditPayload, R extends AnalysisEditResponse> =
   PostFormFetchProps<P, R> & {
-  initialAnalysis: CharaAnalysisContent,
+  initialAnalysis: CharaAnalysisBody,
 }
 
 export const AnalysisFormCharaEdit = ({

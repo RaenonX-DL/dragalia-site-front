@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useParams} from 'react-router-dom';
 
-import {CharaAnalysisContent, DragonAnalysisContent, UnitType} from '../../../../api-def/api';
+import {CharaAnalysisBody, DragonAnalysisBody, UnitType} from '../../../../api-def/api';
 import {AnalysisEditParams} from '../../../../const/path';
 import {useI18n} from '../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../i18n/types';
@@ -57,7 +57,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     if (analysisType === UnitType.CHARACTER) {
       return (
         <AnalysisFormCharaEdit
-          initialAnalysis={fetchStatus.post as CharaAnalysisContent}
+          initialAnalysis={fetchStatus.post as CharaAnalysisBody}
           fnSendRequest={ApiRequestSender.analysisPostEditChara}
         />
       );
@@ -65,7 +65,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     if (analysisType === UnitType.DRAGON) {
       return (
         <AnalysisFormDragonEdit
-          initialAnalysis={fetchStatus.post as DragonAnalysisContent}
+          initialAnalysis={fetchStatus.post as DragonAnalysisBody}
           fnSendRequest={ApiRequestSender.analysisPostEditDragon}
         />
       );
