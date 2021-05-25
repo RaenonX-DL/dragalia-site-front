@@ -9,9 +9,11 @@ export const AnalysisPostLookup = () => {
 
   return (
     <>
-      <AnalysisLookupInput onSearchRequested={(data) => () => {
-        setInputForward(data);
-      }}/>
+      <AnalysisLookupInput
+        onSearchRequested={(data) => () => {
+          setInputForward(data);
+        }}
+      />
       {inputForward && <AnalysisLookupOutput inputData={inputForward}/>}
     </>
   );
