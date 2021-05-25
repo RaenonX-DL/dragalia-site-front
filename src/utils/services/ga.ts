@@ -1,18 +1,37 @@
-import {SupportedLanguages} from '../../api-def/api';
+import {SupportedLanguages, UnitType} from '../../api-def/api';
+import {Element, Weapon} from '../../api-def/resources';
 import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
 import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
+import {InputData as AnalysisInput} from '../../components/elements/posts/analysis/lookup/in/types';
 
-/**
- * Google Analytics event names.
- */
-export class GAEvent {
-  static LANG_CHANGE = 'lang_change';
-  static LOGIN = 'login';
-  static ANCHOR = 'anchor';
-  static PAGE_VIEW = 'page_view';
-  static PAGE_VIEW_FAILED = 'page_view_failed';
-  static DAMAGE_CALCULATOR = 'damage_calc';
-  static ABILITY_SEARCH = 'ability_search';
+enum GAEvent {
+  LANG_CHANGE = 'lang_change',
+  LOGIN = 'login',
+  ANCHOR = 'anchor',
+  PAGE_VIEW = 'page_view',
+  PAGE_VIEW_FAILED = 'page_view_failed',
+  DAMAGE_CALCULATOR = 'damage_calc',
+  ABILITY_SEARCH = 'ability_search',
+  ANALYSIS_LOOKUP = 'analysis_lookup',
+}
+
+enum GAParameter {
+  UNIT_CHARA = 'unit_chara',
+  UNIT_DRAGON = 'unit_dragon',
+  ELEM_FLAME = 'elem_flame',
+  ELEM_WATER = 'elem_water',
+  ELEM_WIND = 'elem_wind',
+  ELEM_LIGHT = 'elem_light',
+  ELEM_SHADOW = 'elem_shadow',
+  WEAPON_SWORD = 'weapon_sword',
+  WEAPON_BLADE = 'weapon_blade',
+  WEAPON_DAGGER = 'weapon_dagger',
+  WEAPON_AXE = 'weapon_axe',
+  WEAPON_LANCE = 'weapon_lance',
+  WEAPON_BOW = 'weapon_bow',
+  WEAPON_WAND = 'weapon_wand',
+  WEAPON_STAFF = 'weapon_staff',
+  WEAPON_MANACASTER = 'weapon_manacaster',
 }
 
 /**
@@ -103,6 +122,36 @@ export class GoogleAnalytics {
         'usage': usage,
         'hash': anchorHash,
         'path': window.location.href,
+      },
+    );
+  }
+
+  /**
+   * Record the event of an analysis lookup.
+   *
+   * @param {AnalysisInput} inputData input used to perform an analysis lookup
+   */
+  static analysisLookup(inputData: AnalysisInput) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.ANALYSIS_LOOKUP,
+      {
+        'keyword': inputData.keyword,
+        [GAParameter.UNIT_CHARA]: inputData.types.includes(UnitType.CHARACTER),
+        [GAParameter.UNIT_DRAGON]: inputData.types.includes(UnitType.DRAGON),
+        [GAParameter.ELEM_FLAME]: inputData.elements.includes(Element.FLAME),
+        [GAParameter.ELEM_WATER]: inputData.elements.includes(Element.WATER),
+        [GAParameter.ELEM_WIND]: inputData.elements.includes(Element.WIND),
+        [GAParameter.ELEM_LIGHT]: inputData.elements.includes(Element.LIGHT),
+        [GAParameter.ELEM_SHADOW]: inputData.elements.includes(Element.SHADOW),
+        [GAParameter.WEAPON_SWORD]: inputData.elements.includes(Weapon.SWORD),
+        [GAParameter.WEAPON_BLADE]: inputData.elements.includes(Weapon.BLADE),
+        [GAParameter.WEAPON_DAGGER]: inputData.elements.includes(Weapon.DAGGER),
+        [GAParameter.WEAPON_AXE]: inputData.elements.includes(Weapon.AXE),
+        [GAParameter.WEAPON_LANCE]: inputData.elements.includes(Weapon.LANCE),
+        [GAParameter.WEAPON_BOW]: inputData.elements.includes(Weapon.BOW),
+        [GAParameter.WEAPON_WAND]: inputData.elements.includes(Weapon.WAND),
+        [GAParameter.WEAPON_STAFF]: inputData.elements.includes(Weapon.STAFF),
+        [GAParameter.WEAPON_MANACASTER]: inputData.elements.includes(Weapon.MANACASTER),
       },
     );
   }
