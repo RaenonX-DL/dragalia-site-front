@@ -21,7 +21,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -38,7 +38,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -60,7 +60,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -82,7 +82,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(dragonInfo.map((dragon) => dragon.id));
   });
@@ -95,7 +95,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -112,7 +112,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [1],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -129,7 +129,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [1, 3],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -146,7 +146,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -166,7 +166,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -183,7 +183,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [1],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -200,7 +200,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [1, 3],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       charaInfo
@@ -217,7 +217,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       dragonInfo
@@ -234,7 +234,7 @@ describe('Get unit info from input data', () => {
       weaponTypes: [],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       dragonInfo
@@ -251,13 +251,38 @@ describe('Get unit info from input data', () => {
       weaponTypes: [1, 3],
     };
 
-    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id).sort();
 
     expect(unitIds).toStrictEqual(
       dragonInfo
         .filter((dragon) => [1, 5].includes(dragon.element))
         .map((dragon) => dragon.id),
     );
+  });
+
+  it('sorts by type, rarity 5-3, element, then weapon', async () => {
+    const inputData: InputData = {
+      keyword: '',
+      types: [],
+      elements: [],
+      weaponTypes: [],
+    };
+
+    const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+
+    const expectedOrder = [
+      // Chara
+      10450103, 10550103, 10550104, 10750104, // R5 Flame
+      10350204, 10450204, 10650203, 10850202, // R5 Water
+      10150304, 10250303, 10550304, 10850302, // R5 Wind
+      10150404, 10550405, 10650402, 10850402, // R5 Light
+      10150503, 10350504, 10350505, 10750505, // R5 Shadow
+      10340203, // R4 Water Chara
+      // Dragon
+      20050116, 20050315, 20050414, // R5
+    ];
+
+    expect(unitIds.filter((unitId) => expectedOrder.includes(unitId))).toStrictEqual(expectedOrder);
   });
 });
 

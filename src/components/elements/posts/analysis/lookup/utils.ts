@@ -2,10 +2,10 @@ import {UnitType} from '../../../../../api-def/api';
 import {
   CharaInfo,
   CharaInfoData,
-  DragonInfo,
-  UnitInfoDataBase,
   DepotPaths,
+  DragonInfo,
   UnitInfoData,
+  UnitInfoDataBase,
 } from '../../../../../api-def/resources';
 import {InputData} from './in/types';
 
@@ -58,7 +58,16 @@ export const getUnitInfo = (
     );
   }
 
-  return ret;
+  const isInfoChara = (info: any): info is CharaInfoData => {
+    return info.type === UnitType.CHARACTER;
+  };
+
+  return ret.sort((a, b) => (
+    a.type - b.type || // Type ASC (CHARA -> DRAGON)
+    b.rarity - a.rarity || // Rarity DESC (5 -> 3)
+    a.element - b.element || // Elem ASC (FLAME -> SHADOW)
+    (isInfoChara(a) && isInfoChara(b) ? a.weapon - b.weapon : 0) // Weapon ASC if chara (SWORD -> MANACASTER)
+  ));
 };
 
 const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = {
