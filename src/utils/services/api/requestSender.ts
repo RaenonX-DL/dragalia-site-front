@@ -340,7 +340,7 @@ export class ApiRequestSender {
    * @param {RequestPayloadBase} payload payload to be used
    * @return {Promise<R>} promise returned from `fetch`
    */
-  private static sendRequest<R extends BaseResponse, P extends RequestPayloadBase>(
+  static sendRequest<R extends BaseResponse, P extends RequestPayloadBase>(
     method: 'GET' | 'POST', endpoint: string, payload: P,
   ): Promise<R> {
     endpoint = getFullApiUrl(endpoint);

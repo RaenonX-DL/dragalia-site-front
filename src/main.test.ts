@@ -2,11 +2,12 @@ import {screen} from '@testing-library/react';
 import * as router from 'react-router-dom';
 
 import {renderApp} from '../test/render/main';
-import {SupportedLanguages} from './api-def/api';
+import {ApiResponseCode, SupportedLanguages} from './api-def/api';
 import {GeneralPath, PostPath} from './const/path/definitions';
 import {translation as translationCHT} from './i18n/translations/cht/translation';
 import {translation as translationEN} from './i18n/translations/en/translation';
 import {makePostPath, makeSimplePath} from './utils/path/make';
+import {ApiRequestSender} from './utils/services/api/requestSender';
 import {GoogleAnalytics} from './utils/services/ga';
 
 describe('Page browsing behavior', () => {
@@ -19,6 +20,10 @@ describe('Page browsing behavior', () => {
   beforeEach(() => {
     pageViewFunction = jest.spyOn(GoogleAnalytics, 'pageView');
     pageViewFailedFunction = jest.spyOn(GoogleAnalytics, 'pageViewFailed');
+    jest.spyOn(ApiRequestSender, 'sendRequest').mockImplementation(async () => Promise.resolve({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    }));
   });
 
   test('general path with language rendered', async () => {
