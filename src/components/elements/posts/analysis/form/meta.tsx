@@ -36,7 +36,6 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   const {payload, isPreloaded} = formState;
 
   const unitInfo = unitInfoMap.get(payload.unitId);
-  console.log(payload.unitId, unitInfo);
 
   return (
     <Form.Row>

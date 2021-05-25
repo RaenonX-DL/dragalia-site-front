@@ -2,32 +2,61 @@ import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 
-import {renderReact} from '../../../../../../../test/render/main';
+import {renderReact} from '../../../../../../test/render/main';
 import {
+  AnalysisMeta,
   ApiResponseCode,
   OptionalSequencedPostMeta,
   PostIdCheckResponse,
   SupportedLanguages,
-} from '../../../../../../api-def/api';
-import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {PostFormState} from '../types';
-import {FormSequencedMeta} from './sequenced';
+  UnitType,
+} from '../../../../../api-def/api';
+import {UnitInfoMap} from '../../../../../api-def/resources';
+import * as resources from '../../../../../api-def/resources/utils/unitInfo';
+import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
+import {PostFormState} from '../../shared/form/types';
+import {FormAnalysisMeta} from './meta';
 
-describe('Sequenced form meta input', () => {
-  type SetPayloadFuncArgs<K extends keyof OptionalSequencedPostMeta> = [K, OptionalSequencedPostMeta[K]]
 
-  let state: PostFormState<OptionalSequencedPostMeta>;
-  let setPayload: jest.Mock<void, SetPayloadFuncArgs<keyof OptionalSequencedPostMeta>>;
+describe('Analysis form meta input', () => {
+  type SetPayloadFuncArgs<K extends keyof AnalysisMeta> = [K, AnalysisMeta[K]]
+
+  let state: PostFormState<AnalysisMeta>;
+  let setPayload: jest.Mock<void, SetPayloadFuncArgs<keyof AnalysisMeta>>;
   let setAvailability: jest.Mock<void, [boolean]>;
-  const titlePlaceholder = 'Title';
-  let fnIdCheck: jest.Mock<Promise<PostIdCheckResponse>, [string, number | null, SupportedLanguages]>;
+  let fnIdCheck: jest.SpyInstance<Promise<PostIdCheckResponse>, [string, number, SupportedLanguages]>;
+  let fnToUnitInfoMap: jest.SpyInstance;
+
+  const name = {
+    [SupportedLanguages.CHT]: 'cht',
+    [SupportedLanguages.EN]: 'en',
+    [SupportedLanguages.JP]: 'jp',
+  };
+  const unitInfoMap: UnitInfoMap = new Map([
+    [
+      10950102,
+      {
+        type: UnitType.CHARACTER,
+        name,
+        iconName: 'icon',
+        id: 10950102,
+        element: 0,
+        rarity: 6,
+        cvEn: name,
+        cvJp: name,
+        releaseEpoch: 0,
+      },
+    ],
+  ]);
 
   beforeEach(() => {
     jest.useFakeTimers();
+
     state = {
       payload: {
         lang: SupportedLanguages.CHT,
-        title: 'Some title',
+        unitId: 10950101,
       },
       isIdAvailable: false,
       isPreloaded: false,
@@ -37,12 +66,13 @@ describe('Sequenced form meta input', () => {
       state.payload[key] = value;
     });
     setAvailability = jest.fn().mockImplementation((availability) => state.isIdAvailable = availability);
-    fnIdCheck = jest.fn().mockImplementation(async () => ({
+    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisPostIdCheck').mockImplementation(async () => ({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: true,
       isAdmin: true,
     }));
+    fnToUnitInfoMap = jest.spyOn(resources, 'toUnitInfoMap').mockImplementation(() => unitInfoMap);
   });
 
   afterEach(() => {
@@ -52,30 +82,44 @@ describe('Sequenced form meta input', () => {
 
   const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
     rerenderFunc(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
   };
 
-  it('shows the valid mark upon passing the check', async () => {
+  it('blocks entering string unit ID', async () => {
     const {rerender} = await renderReact(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    fireEvent.change(idField, {target: {value: 577}});
+    fireEvent.change(idField, {target: {value: 'string'}});
     invokeRerender(rerender);
 
+    expect(state.payload.unitId).toBe(10950101);
+  });
+
+  it('shows the valid mark and the unit icon upon passing the check', async () => {
+    const {rerender} = await renderReact(
+      <FormAnalysisMeta
+        formState={state}
+        setPayload={setPayload}
+        setAvailability={setAvailability}
+      />,
+    );
+    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
+    fireEvent.change(idField, {target: {value: 10950102}});
+    invokeRerender(rerender);
+
+    await waitFor(() => {
+      expect(fnToUnitInfoMap).toHaveBeenCalled();
+    });
     act(() => {
       jest.runTimersToTime(1100);
     });
@@ -84,11 +128,12 @@ describe('Sequenced form meta input', () => {
       invokeRerender(rerender);
       expect(idField).toHaveClass('is-valid');
     });
+    screen.getByAltText(name[SupportedLanguages.EN]);
   });
 
   it('shows the invalid mark upon failing the check', async () => {
     setAvailability = jest.fn().mockImplementation(() => state.isIdAvailable = false);
-    fnIdCheck = jest.fn().mockImplementation(async () => ({
+    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisPostIdCheck').mockImplementation(async () => ({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: false,
@@ -96,12 +141,10 @@ describe('Sequenced form meta input', () => {
     }));
 
     const {rerender} = await renderReact(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
@@ -118,14 +161,12 @@ describe('Sequenced form meta input', () => {
     });
   });
 
-  it('starts checking 1 sec later after the last seq ID change', async () => {
+  it('starts checking 1 sec later after the last unit ID change', async () => {
     const {rerender} = await renderReact(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
@@ -139,35 +180,12 @@ describe('Sequenced form meta input', () => {
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
 
-  it('starts checking 1 sec later after the last title change', async () => {
-    const {rerender} = await renderReact(
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />,
-    );
-    const titleField = screen.getByPlaceholderText(titlePlaceholder);
-    fireEvent.change(titleField, {target: {value: 'Another Title'}});
-    invokeRerender(rerender);
-
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
-  });
-
   it('starts checking 1 sec later after the last lang change', async () => {
     const {rerender} = await renderReact(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
     const langField = screen.getByTestId('langSelect');
@@ -183,12 +201,10 @@ describe('Sequenced form meta input', () => {
 
   it('does not start the check within 1 sec of the change', async () => {
     const {rerender} = await renderReact(
-      <FormSequencedMeta
+      <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
       />,
     );
     const langField = screen.getByTestId('langSelect');
