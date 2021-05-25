@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../api-def/api/other/lang';
+import {SupportedLanguages} from '../api-def/api';
 import {configDispatchers} from '../state/config/dispatchers';
 import {useConfigSelector} from '../state/config/selector';
 import {useDispatch} from '../state/store';

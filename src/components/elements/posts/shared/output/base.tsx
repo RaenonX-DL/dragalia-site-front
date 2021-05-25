@@ -3,11 +3,9 @@ import React from 'react';
 import {useHistory} from 'react-router';
 import {useParams} from 'react-router-dom';
 
+import {PostGetResponse} from '../../../../../api-def/api';
 import {PostParams} from '../../../../../const/path';
-import {
-  FunctionFetchPost,
-  PostGetSuccessResponse,
-} from '../../../../../utils/services/api';
+import {FunctionFetchPost} from '../../../../../utils/services/api';
 import {
   FetchPost,
   PostFetchStatus,
@@ -16,7 +14,7 @@ import {
 import {PageProps} from '../../../../pages/props';
 
 
-type OutputBaseProps<R extends PostGetSuccessResponse, S extends PostFetchStatus<R>> = PageProps & {
+type OutputBaseProps<R extends PostGetResponse, S extends PostFetchStatus<R>> = PageProps & {
   status: S,
   setStatus: (newStatus: S) => void,
   getTitle: (postId: number) => string,
@@ -24,7 +22,7 @@ type OutputBaseProps<R extends PostGetSuccessResponse, S extends PostFetchStatus
   renderOnFetched: (post: R) => React.ReactElement,
 }
 
-export const OutputBase = <P extends PostParams, R extends PostGetSuccessResponse, S extends PostFetchStatus<R>>({
+export const OutputBase = <P extends PostParams, R extends PostGetResponse, S extends PostFetchStatus<R>>({
   fnSetTitle,
   status,
   setStatus,

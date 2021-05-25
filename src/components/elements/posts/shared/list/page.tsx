@@ -2,10 +2,11 @@ import React from 'react';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
+import {SequencedPostListResponse} from '../../../../../api-def/api';
 import {getParamValue} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../utils/cookies';
-import {FunctionFetchPostList, PostListResponse} from '../../../../../utils/services/api';
+import {FunctionFetchPostList} from '../../../../../utils/services/api';
 import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
@@ -14,7 +15,7 @@ import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../../commo
 import {AlertFetchListFailed} from '../alert';
 
 
-type Status<R extends PostListResponse> = FetchStatusSimple & {
+type Status<R extends SequencedPostListResponse> = FetchStatusSimple & {
   paginationState: PaginationState,
   isAdmin: boolean,
   showAds: boolean,
@@ -23,7 +24,7 @@ type Status<R extends PostListResponse> = FetchStatusSimple & {
   response?: R,
 }
 
-type PostListPageProps<R extends PostListResponse> = {
+type PostListPageProps<R extends SequencedPostListResponse> = {
   title: string,
   currentUrl: string,
   postManageBarProps: PostManageBarProps,
@@ -31,7 +32,7 @@ type PostListPageProps<R extends PostListResponse> = {
   renderPostEntries: (response: R) => React.ReactElement,
 }
 
-export const PostListPage = <R extends PostListResponse>({
+export const PostListPage = <R extends SequencedPostListResponse>({
   title,
   currentUrl,
   postManageBarProps,
@@ -85,7 +86,6 @@ export const PostListPage = <R extends PostListResponse>({
             fetched: true,
             fetching: false,
             isAdmin: data.isAdmin,
-            showAds: data.showAds,
             showAlert: false,
             response: data,
           });

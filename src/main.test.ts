@@ -2,7 +2,7 @@ import {screen} from '@testing-library/react';
 import * as router from 'react-router-dom';
 
 import {renderApp} from '../test/render/main';
-import {SupportedLanguages} from './api-def/api/other/lang';
+import {SupportedLanguages} from './api-def/api';
 import {GeneralPath, PostPath} from './const/path/definitions';
 import {translation as translationCHT} from './i18n/translations/cht/translation';
 import {translation as translationEN} from './i18n/translations/en/translation';

@@ -1,6 +1,6 @@
+import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {ConditionCodes} from '../../const/gameData';
-import {AttackingSkillData} from '../services/resources/types';
 import {calculateDamage, CalculateDamageReturn} from './damage';
 
 

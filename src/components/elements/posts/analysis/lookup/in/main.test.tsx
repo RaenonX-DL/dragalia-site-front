@@ -4,9 +4,9 @@ import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../../../../api-def/api';
+import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
-import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
 import {AnalysisLookupInput} from './main';
 import {InputData} from './types';
 

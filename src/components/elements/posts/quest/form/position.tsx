@@ -1,17 +1,17 @@
 import React from 'react';
 
-import {PositionalInfo, QuestPostPayload} from '../../../../../api-def/api/post/quest/payload';
+import {PositionalInfo, QuestPostPublishPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {generateNewPositionInfo} from '../../../../../utils/services/api/utils';
 import {ArrayDataForm} from '../../shared/form/array';
 import {PostFormDataProps, PostFormState} from '../../shared/form/types';
-import {QuestPositionForm} from './positionalForm';
+import {QuestPositionUnit} from './positionUnit';
 
-type FormPositionalProps<P extends QuestPostPayload> = Pick<PostFormDataProps<P>, 'formState'> & {
+type FormPositionalProps<P extends QuestPostPublishPayload> = Pick<PostFormDataProps<P>, 'formState'> & {
   setState: (newState: PostFormState<P>) => void,
 }
 
-export const FormPositional = <P extends QuestPostPayload>({
+export const FormPositional = <P extends QuestPostPublishPayload>({
   formState,
   setState,
 }: FormPositionalProps<P>) => {
@@ -41,7 +41,7 @@ export const FormPositional = <P extends QuestPostPayload>({
         generateNewElement={generateNewPositionInfo}
         renderEntries={(posInfo, onChange) => (
           <div className="mt-2">
-            <QuestPositionForm
+            <QuestPositionUnit
               positionName={posInfo.position}
               builds={posInfo.builds}
               rotations={posInfo.rotations}

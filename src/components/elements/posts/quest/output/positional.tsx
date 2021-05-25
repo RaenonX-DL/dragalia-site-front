@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
+import {PositionalInfo} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {PositionalInfo} from '../../../../../utils/services/api';
 import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 

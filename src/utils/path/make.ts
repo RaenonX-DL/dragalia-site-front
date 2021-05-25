@@ -1,6 +1,6 @@
 import {generatePath, useLocation} from 'react-router-dom';
 
-import {SupportedLanguages} from '../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../api-def/api';
 import {GeneralPath, PagePath, PathRoot, PostPath} from '../../const/path/definitions';
 import {getLangFromUrl} from './utils';
 

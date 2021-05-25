@@ -1,22 +1,19 @@
 import React from 'react';
 
+import {PostGetResponse, ApiResponseCode} from '../../../api-def/api';
 import {useI18n} from '../../../i18n/hook';
 import {CookiesControl} from '../../../utils/cookies';
-import {
-  ApiResponseCode,
-  PostGetSuccessResponse,
-  FunctionFetchPost,
-} from '../../../utils/services/api';
+import {FunctionFetchPost} from '../../../utils/services/api';
 import {AlertFetchFailed} from './shared/alert';
 
-export type PostFetchStatus<R extends PostGetSuccessResponse = PostGetSuccessResponse> = {
+export type PostFetchStatus<R extends PostGetResponse = PostGetResponse> = {
   fetched: boolean,
   fetchFailed: boolean,
   failureMessage: string,
   post: R | null,
 }
 
-type FetchPostProps<R extends PostGetSuccessResponse, S extends PostFetchStatus> = {
+type FetchPostProps<R extends PostGetResponse, S extends PostFetchStatus> = {
   status: S,
   fnSetStatus: (newStatus: S) => void,
   fnSendFetchRequest: FunctionFetchPost<R>,
@@ -24,7 +21,7 @@ type FetchPostProps<R extends PostGetSuccessResponse, S extends PostFetchStatus>
   increaseCount?: boolean,
 }
 
-export const FetchPost = <R extends PostGetSuccessResponse, S extends PostFetchStatus<R>>({
+export const FetchPost = <R extends PostGetResponse, S extends PostFetchStatus<R>>({
   status,
   fnSetStatus,
   fnSendFetchRequest,

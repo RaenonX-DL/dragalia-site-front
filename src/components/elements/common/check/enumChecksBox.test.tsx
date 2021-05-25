@@ -3,8 +3,8 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../api-def/api/other/lang';
-import {EnumEntry} from '../../../../utils/services/resources/types';
+import {SupportedLanguages} from '../../../../api-def/api';
+import {EnumEntry} from '../../../../api-def/resources';
 import {EnumChecksBox} from './enumChecksBox';
 
 describe('Enum check boxes as checkboxes', () => {

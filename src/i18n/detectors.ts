@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../api-def/api/other/lang';
+import {SupportedLanguages} from '../api-def/api';
 import {DEFAULT_LANG, mapToSupportedLang} from './langCode';
 import {DetectorFunction} from './types';
 

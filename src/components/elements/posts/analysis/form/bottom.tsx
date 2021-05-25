@@ -2,14 +2,14 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {AnalysisPayload} from '../../../../../api-def/api';
+import {AnalysisBody} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from '../../shared/form/types';
 
-export type FormBottomProps<P extends AnalysisPayload> = PostFormDataProps<P>
+export type FormBottomProps<P extends AnalysisBody> = PostFormDataProps<P>
 
-export const FormBottom = <P extends AnalysisPayload>({formState, setPayload}: FormBottomProps<P>) => {
+export const FormBottom = <P extends AnalysisBody>({formState, setPayload}: FormBottomProps<P>) => {
   const {t} = useI18n();
 
   const {payload} = formState;

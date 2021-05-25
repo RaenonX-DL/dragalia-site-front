@@ -17,7 +17,7 @@ export type QuestPositionInputProps = {
   tips: string
 };
 
-export const QuestPositionForm = ({
+export const QuestPositionUnit = ({
   onPositionNameChanged,
   onBuildsChanged,
   onRotationsChanged,

@@ -2,12 +2,12 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
-import {useI18n} from '../../../../../i18n/hook';
 import {
   AbilityVariantEffectUnitData,
   CharaExAbilityDataEntry,
   ConditionEnumMap,
-} from '../../../../../utils/services/resources/types';
+} from '../../../../../api-def/resources';
+import {useI18n} from '../../../../../i18n/hook';
 import {getConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 

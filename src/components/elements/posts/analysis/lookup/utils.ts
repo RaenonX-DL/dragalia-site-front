@@ -1,6 +1,5 @@
 import {UnitType} from '../../../../../api-def/api';
-import {DepotPaths} from '../../../../../utils/services/resources';
-import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoDataBase} from '../../../../../utils/services/resources/types';
+import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoDataBase, DepotPaths} from '../../../../../api-def/resources';
 import {InputData} from './in/types';
 import {UnitInfo} from './types';
 

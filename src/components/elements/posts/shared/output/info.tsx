@@ -2,14 +2,14 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {PostGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {PostGetSuccessResponse} from '../../../../../utils/services/api';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {InfoCard, PageAnchor, PostEditNotes} from '../../../../elements';
 
 
 type PostInfoProps = {
-  post: PostGetSuccessResponse,
+  post: PostGetResponse,
 };
 
 export const PostInfo = ({post}: PostInfoProps) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 
+import {QuestPostPublishPayload} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {CookiesControl} from '../../../../utils/cookies';
 import {
   ApiRequestSender,
   generateNewPositionInfo,
-  QuestPostPublishPayload,
 } from '../../../../utils/services/api';
 import {QuestPostForm} from '../../../elements';
 import {PostFormState} from '../../../elements/posts/shared/form/types';

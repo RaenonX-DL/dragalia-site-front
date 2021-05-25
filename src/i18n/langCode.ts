@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../api-def/api/other/lang';
+import {SupportedLanguages} from '../api-def/api';
 
 export const DEFAULT_LANG = SupportedLanguages.CHT;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AnalysisGetSuccessResponse} from '../../../../../api-def/api';
+import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost, PostInfo, PostManageBar} from '../../../../elements';
@@ -8,13 +8,13 @@ import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../sha
 import {SectionBottom} from './bottom';
 import {SectionTop} from './top';
 
-type AnalysisOutputBaseProps<R extends AnalysisGetSuccessResponse> = {
+type AnalysisOutputBaseProps<R extends AnalysisGetResponse> = {
   analysis: R,
   renderBody: (post: R) => React.ReactElement,
 }
 
 
-export const AnalysisOutputBase = <R extends AnalysisGetSuccessResponse>({
+export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   analysis,
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
@@ -35,17 +35,17 @@ export const AnalysisOutputBase = <R extends AnalysisGetSuccessResponse>({
               title: t((t) => t.posts.manage.addDragon),
             },
           ]}
-          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.seqId, lang})}
+          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {lang, pid: analysis.unitId})}
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}
-      {analysis.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={analysis}/>}
+      {analysis.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={analysis} pid={analysis.unitId}/>}
 
       <SectionTop analysis={analysis}/>
-      {analysis.showAds && <AdsInPost/>}
+      <AdsInPost/>
       {renderBody(analysis)}
       <SectionBottom analysis={analysis}/>
-      {analysis.showAds && <AdsInPost/>}
+      <AdsInPost/>
 
       <hr/>
 

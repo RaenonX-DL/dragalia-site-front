@@ -1,15 +1,10 @@
 import React from 'react';
 
+import {UnitType} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {CookiesControl} from '../../../../utils/cookies';
-import {
-  ApiRequestSender,
-  generateNewCharaSkill,
-} from '../../../../utils/services/api';
-import {
-  AnalysisFormCharaNew,
-  AnalysisFormDragonNew,
-} from '../../../elements';
+import {ApiRequestSender, generateNewCharaSkill} from '../../../../utils/services/api';
+import {AnalysisFormCharaNew, AnalysisFormDragonNew} from '../../../elements';
 import {PageProps} from '../../props';
 
 
@@ -23,9 +18,10 @@ export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
       initialPayload={{
         googleUid: CookiesControl.getGoogleUid() || '',
         lang: lang,
-        title: '',
+        type: UnitType.CHARACTER,
+        unitId: 0,
         summary: '',
-        summon: '',
+        summonResult: '',
         passives: '',
         normalAttacks: '',
         forceStrikes: '',
@@ -53,9 +49,10 @@ export const AnalysisNewDragon = ({fnSetTitle}: PageProps) => {
       initialPayload={{
         googleUid: CookiesControl.getGoogleUid() || '',
         lang: lang,
-        title: '',
+        type: UnitType.DRAGON,
+        unitId: 0,
         summary: '',
-        summon: '',
+        summonResult: '',
         passives: '',
         normalAttacks: '',
         ultimate: '',

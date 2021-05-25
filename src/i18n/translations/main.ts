@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../api-def/api';
 import {translation as translationCHT} from './cht/translation';
 import {TranslationStruct} from './definition';
 import {translation as translationEN} from './en/translation';

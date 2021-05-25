@@ -2,17 +2,17 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useI18n} from '../../../i18n/hook';
-import {scrollToTop} from '../../../utils/scroll';
-import {GoogleAnalytics} from '../../../utils/services/ga';
-import {ResourceLoader} from '../../../utils/services/resources';
 import {
   AttackingSkillData,
   ConditionEnumMap,
   ElementBonus,
   ElementBonusData,
   SkillIdentifierInfo,
-} from '../../../utils/services/resources/types';
+} from '../../../api-def/resources';
+import {useI18n} from '../../../i18n/hook';
+import {scrollToTop} from '../../../utils/scroll';
+import {GoogleAnalytics} from '../../../utils/services/ga';
+import {ResourceLoader} from '../../../utils/services/resources';
 import {useFetchState, useFetchStateProcessed} from '../../elements/common/fetch';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
 import {PageProps} from '../props';

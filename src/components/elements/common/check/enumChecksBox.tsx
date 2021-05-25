@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {EnumEntry} from '../../../../utils/services/resources/types';
+import {EnumEntry} from '../../../../api-def/resources';
 import {ChecksProps} from './checksBase';
 import {EnumChecks, EnumChecksProps} from './enumChecks';
 

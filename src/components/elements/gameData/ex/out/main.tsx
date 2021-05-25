@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../utils/services/resources/types';
+import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
 import {overLengthWarningCheck} from '../../utils';
 import {InputData} from '../in/types';
 import {ExAbilityEntry} from './entry';

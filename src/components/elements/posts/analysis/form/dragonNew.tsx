@@ -1,18 +1,18 @@
 import React from 'react';
 
-import {DragonAnalysisPublishPayload} from '../../../../../api-def/api';
+import {AnalysisPublishResponse, DragonAnalysisPublishPayload} from '../../../../../api-def/api';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
 import {DragonAnalysisForm} from './dragonBody';
 
-type AnalysisFormDragonNewProps<P extends DragonAnalysisPublishPayload> =
-  PostFormFetchProps<P> & {
+type AnalysisFormDragonNewProps<P extends DragonAnalysisPublishPayload, R extends AnalysisPublishResponse> =
+  PostFormFetchProps<P, R> & {
   initialPayload: P,
 }
 
-export const AnalysisFormDragonNew = <P extends DragonAnalysisPublishPayload>({
+export const AnalysisFormDragonNew = <P extends DragonAnalysisPublishPayload, R extends AnalysisPublishResponse>({
   initialPayload, fnSendRequest,
-}: AnalysisFormDragonNewProps<P>) => {
+}: AnalysisFormDragonNewProps<P, R>) => {
   const [formState, setFormState] = React.useState<PostFormState<P>>({
     payload: initialPayload,
     isIdAvailable: true,

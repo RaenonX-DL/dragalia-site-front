@@ -1,8 +1,13 @@
 import React from 'react';
 
-import {UnitType, CharacterAnalysis, DragonAnalysis} from '../../../../../api-def/api';
+import {
+  UnitType,
+  CharaAnalysisGetResponse,
+  DragonAnalysisGetResponse,
+} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
+import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
 import {PageProps} from '../../../../pages/props';
 import {OutputBase} from '../../shared/output/base';
 import {AnalysisPostFetchStatus} from '../fetch';
@@ -11,7 +16,7 @@ import {AnalysisOutputDragon} from './dragon';
 
 
 export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   const [status, setStatus] = React.useState<AnalysisPostFetchStatus>(
     {
@@ -21,6 +26,7 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       failureMessage: '',
     },
   );
+  const {getUnitName} = useUnitInfo();
 
   return (
     <OutputBase
@@ -30,19 +36,24 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
       getTitle={(pid) => (
         t(
           (t) => t.meta.inUse.analysisPost.title,
-          {title: status.post?.title || `#A${pid}`},
+          {
+            title:
+              status.post ?
+                getUnitName(status.post.unitId, lang) || status.post.unitId.toString() :
+                `#${pid}`,
+          },
         )
       )}
       fnSendFetchRequest={ApiRequestSender.analysisPostGet}
       renderOnFetched={(post) => {
         if (post.type === UnitType.CHARACTER) {
           return (
-            <AnalysisOutputChara analysis={post as CharacterAnalysis}/>
+            <AnalysisOutputChara analysis={post as CharaAnalysisGetResponse}/>
           );
         }
         if (post.type === UnitType.DRAGON) {
           return (
-            <AnalysisOutputDragon analysis={post as DragonAnalysis}/>
+            <AnalysisOutputDragon analysis={post as DragonAnalysisGetResponse}/>
           );
         }
 

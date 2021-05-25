@@ -2,16 +2,16 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {PostListEntry} from '../../../../../api-def/api';
+import {SequencedPostInfo} from '../../../../../api-def/api';
 import {PostEntry, PostEntryProps} from './entry';
 
 
-type PostListProps<E extends PostListEntry> = PostEntryProps<E> & {
+type PostListProps<E extends SequencedPostInfo> = PostEntryProps<E> & {
   entries: Array<E>,
 };
 
 
-export const PostList = <E extends PostListEntry>({entries, ...props}: PostListProps<E>) => {
+export const PostList = <E extends SequencedPostInfo>({entries, ...props}: PostListProps<E>) => {
   return (
     <Row>
       {

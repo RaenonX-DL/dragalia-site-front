@@ -1,6 +1,6 @@
+import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/elements/gameData';
 import {ConditionCodes} from '../../const/gameData';
-import {AttackingSkillData} from '../services/resources/types';
 
 export type CalculateDamageReturn = {
   lowest: number,

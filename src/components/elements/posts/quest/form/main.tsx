@@ -1,23 +1,30 @@
 import React from 'react';
 
+import {
+  QuestPostEditResponse,
+  QuestPostPublishPayload,
+  QuestPostPublishResponse,
+} from '../../../../../api-def/api';
 import {makePostPath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
-import {ApiRequestSender, QuestPostPayload} from '../../../../../utils/services/api';
+import {ApiRequestSender} from '../../../../../utils/services/api';
 import {PostFormBase} from '../../shared/form/base';
-import {FormMeta} from '../../shared/form/meta';
+import {FormSequencedMeta} from '../../shared/form/meta/sequenced';
+import {FormNotes} from '../../shared/form/notes';
 import {PostFormProps} from '../../shared/form/types';
-import {FormAddendum} from './sectionAddendum';
-import {FormGeneralInfo} from './sectionGeneral';
-import {FormHeader} from './sectionHeader';
-import {FormPositional} from './sectionPositional';
+import {FormAddendum} from './addendum';
+import {FormGeneralInfo} from './general';
+import {FormPositional} from './position';
 
 
-export const QuestPostForm = <P extends QuestPostPayload>({
+type QuestPostWriteResponse = QuestPostEditResponse | QuestPostPublishResponse;
+
+export const QuestPostForm = <P extends QuestPostPublishPayload, R extends QuestPostWriteResponse>({
   formState,
   setFormState,
   fnSendRequest,
   renderOnPreloaded,
-}: PostFormProps<P>) => {
+}: PostFormProps<P, R>) => {
   const {t, lang} = useI18n();
 
   return (
@@ -27,8 +34,8 @@ export const QuestPostForm = <P extends QuestPostPayload>({
       fnSendRequest={fnSendRequest}
       renderMain={(setPayload) => (
         <>
-          <FormHeader/>
-          <FormMeta
+          <FormNotes/>
+          <FormSequencedMeta
             formState={formState}
             setPayload={setPayload}
             setAvailability={(isIdAvailable) => setFormState({...formState, isIdAvailable})}
@@ -45,6 +52,7 @@ export const QuestPostForm = <P extends QuestPostPayload>({
       )}
       renderOnPreloaded={renderOnPreloaded}
       fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
+      fnGetRedirectId={(response) => response.seqId}
     />
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {CharaAnalysisEditPayload, CharacterAnalysis} from '../../../../../api-def/api';
+import {CharaAnalysisEditPayload, CharaAnalysisContent, AnalysisEditResponse} from '../../../../../api-def/api';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
@@ -8,30 +8,18 @@ import {AnalysisFormBase} from './base';
 import {CharaAnalysisForm} from './charaBody';
 
 
-type AnalysisFormCharaEditProps<P extends CharaAnalysisEditPayload> =
-  PostFormFetchProps<P> & {
-  initialAnalysis: CharacterAnalysis,
+type AnalysisFormCharaEditProps<P extends CharaAnalysisEditPayload, R extends AnalysisEditResponse> =
+  PostFormFetchProps<P, R> & {
+  initialAnalysis: CharaAnalysisContent,
 }
 
 export const AnalysisFormCharaEdit = ({
   initialAnalysis, fnSendRequest,
-}: AnalysisFormCharaEditProps<CharaAnalysisEditPayload>) => {
+}: AnalysisFormCharaEditProps<CharaAnalysisEditPayload, AnalysisEditResponse>) => {
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
+      ...initialAnalysis,
       googleUid: CookiesControl.getGoogleUid() || '',
-      seqId: initialAnalysis.seqId,
-      lang: initialAnalysis.lang,
-      title: initialAnalysis.title,
-      summary: initialAnalysis.summary,
-      summon: initialAnalysis.summonResult,
-      passives: initialAnalysis.passives,
-      normalAttacks: initialAnalysis.normalAttacks,
-      forceStrikes: initialAnalysis.forceStrikes,
-      skills: initialAnalysis.skills,
-      tipsBuilds: initialAnalysis.tipsBuilds,
-      videos: initialAnalysis.videos,
-      story: initialAnalysis.story,
-      keywords: initialAnalysis.keywords,
       editNote: '',
     },
     isIdAvailable: true,

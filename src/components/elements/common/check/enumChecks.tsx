@@ -2,8 +2,8 @@ import React from 'react';
 
 import * as CSS from 'csstype';
 
+import {DepotPaths, EnumEntry} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
-import {DepotPaths, EnumEntry} from '../../../../utils/services/resources';
 import {ChecksBase, ChecksPropsDisplay} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
 import {CheckType} from './types';

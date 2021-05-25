@@ -2,15 +2,15 @@ import React from 'react';
 
 import {Alert} from 'react-bootstrap';
 
-import {SupportedLanguageNames, PostGetSuccessResponse} from '../../../../../api-def/api';
+import {SupportedLanguageNames, PostGetResponse} from '../../../../../api-def/api';
 import {makePostPath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 
-type AlertProps<R extends PostGetSuccessResponse> = {
+type AlertProps<R extends PostGetResponse> = {
   response: R,
 }
 
-export const AlertIsAlternativeLanguage = <R extends PostGetSuccessResponse>({response}: AlertProps<R>) => {
+export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}: AlertProps<R>) => {
   const {t, lang} = useI18n();
 
   return (
@@ -28,7 +28,11 @@ export const AlertIsAlternativeLanguage = <R extends PostGetSuccessResponse>({re
   );
 };
 
-export const AlertOtherLanguageAvailable = <R extends PostGetSuccessResponse>({response}: AlertProps<R>) => {
+type AlertOtherLangProps<R extends PostGetResponse> = AlertProps<R> & {
+  pid: number,
+}
+
+export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({response, pid}: AlertOtherLangProps<R>) => {
   const {t} = useI18n();
 
   return (
@@ -38,7 +42,7 @@ export const AlertOtherLanguageAvailable = <R extends PostGetSuccessResponse>({r
       {
         response.otherLangs.map((lang) => (
           <li key={lang}>
-            <Alert.Link href={makePostPath(PostPath.ANALYSIS, {lang, pid: response.seqId})}>
+            <Alert.Link href={makePostPath(PostPath.ANALYSIS, {lang, pid})}>
               {SupportedLanguageNames[lang]}
             </Alert.Link>
           </li>

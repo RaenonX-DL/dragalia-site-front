@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Collapse} from 'react-bootstrap';
 
+import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
-import {CategorizedConditionEnums, ElementEnums} from '../../../../../utils/services/resources/types';
 import {useFetchState} from '../../../common/fetch';
 import {InputSectionBaseProps} from '../../props';
 import {SectionAtk} from './sectionAtk';

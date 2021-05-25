@@ -2,27 +2,27 @@ import React from 'react';
 
 import {Card, Col, Row} from 'react-bootstrap';
 
-import {PostListEntry} from '../../../../../api-def/api';
+import {SequencedPostInfo} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 
 
 export type LinkGenerator = (postId: number) => string;
 
-export type PostEntryBadgesProps<E extends PostListEntry> = {
+export type PostEntryBadgesProps<E extends SequencedPostInfo> = {
   entry: E,
 }
 
-export type PostEntryProps<E extends PostListEntry> = {
+export type PostEntryProps<E extends SequencedPostInfo> = {
   generateLink: LinkGenerator,
   renderPostBadges: (badgesProps: PostEntryBadgesProps<E>) => React.ReactElement,
 };
 
-type PostEntryPropsInternal<E extends PostListEntry> = PostEntryProps<E> & {
+type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
   entry: E,
 };
 
-export const PostEntry = <E extends PostListEntry>({
+export const PostEntry = <E extends SequencedPostInfo>({
   entry,
   generateLink,
   renderPostBadges,

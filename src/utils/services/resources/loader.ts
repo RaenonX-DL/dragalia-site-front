@@ -1,18 +1,21 @@
-import {ResourcePaths} from './paths';
 import {
   AttackingSkillData,
   BuffParamEnums,
   CategorizedConditionEnums,
+  CharaExAbilityDataEntry,
+  CharaInfo,
   ConditionEnumMap,
+  DragonInfo,
   ElementBonus,
   ElementEnums,
-  CharaExAbilityDataEntry,
   ExBuffParams,
+  ResourcePaths,
   SkillIdentifierInfo,
-  CharaInfo,
-  DragonInfo,
-} from './types';
-import {WeaponTypeEnums} from './types/export/enums';
+  WeaponTypeEnums,
+} from '../../../api-def/resources';
+
+// TEST: Ensure that the fetched data won't have `undefined`,
+//  which may caused by a definition mismatch between the parser and these type definitions.
 
 /**
  * Class to load the resources.

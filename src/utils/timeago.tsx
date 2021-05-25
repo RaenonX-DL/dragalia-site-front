@@ -9,7 +9,7 @@ import enStrings from 'react-timeago/lib/language-strings/en';
 // @ts-ignore
 import jpStrings from 'react-timeago/lib/language-strings/ja';
 
-import {SupportedLanguages} from '../api-def/api/other/lang';
+import {SupportedLanguages} from '../api-def/api';
 import {useI18n} from '../i18n/hook';
 
 const chtStrings = {

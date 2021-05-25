@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {AnalysisGetSuccessResponse} from '../../../../../api-def/api';
+import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../common/ads';
 import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 import {SectionProps} from './props';
 
-export const SectionTop = <R extends AnalysisGetSuccessResponse>({analysis}: SectionProps<R>) => {
+export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionProps<R>) => {
   const {t} = useI18n();
 
   return (
@@ -20,7 +20,7 @@ export const SectionTop = <R extends AnalysisGetSuccessResponse>({analysis}: Sec
       <div className="rounded bg-black-32 p-3">
         <Markdown>{analysis.summary || 'N/A'}</Markdown>
       </div>
-      {analysis.showAds && <AdsInPost/>}
+      <AdsInPost/>
       {
         analysis.summonResult &&
         <>

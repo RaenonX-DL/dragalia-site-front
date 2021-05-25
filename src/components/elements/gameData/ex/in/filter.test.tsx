@@ -3,8 +3,8 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
-import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types';
+import {SupportedLanguages} from '../../../../../api-def/api';
+import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
 

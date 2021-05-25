@@ -2,9 +2,9 @@ import React, {MouseEvent} from 'react';
 
 import {Button, Col, Form} from 'react-bootstrap';
 
+import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
-import {ElementEnums, WeaponTypeEnums} from '../../../../../../utils/services/resources/types';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
 import {AnalysisTypePicker} from './typePicker';

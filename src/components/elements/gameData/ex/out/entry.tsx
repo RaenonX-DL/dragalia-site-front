@@ -2,12 +2,11 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useI18n} from '../../../../../i18n/hook';
-import {DepotPaths} from '../../../../../utils/services/resources/paths';
-import {
+import {DepotPaths,
   ConditionEnumMap,
   CharaExAbilityDataEntry,
-} from '../../../../../utils/services/resources/types';
+} from '../../../../../api-def/resources';
+import {useI18n} from '../../../../../i18n/hook';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {ExAbility} from './exUnit';
 

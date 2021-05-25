@@ -1,14 +1,14 @@
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
-import {PostGetSuccessResponse, PostListResponse} from '../../../api-def/api/post/base/response';
+import {SupportedLanguages, PostGetResponse, SequencedPostListResponse} from '../../../api-def/api';
 
-export type FunctionFetchPostList<R extends PostListResponse> = (
+
+export type FunctionFetchPostList<R extends SequencedPostListResponse> = (
   googleUid: string,
   langCode: SupportedLanguages,
   start: number,
   limit: number,
 ) => Promise<R>
 
-export type FunctionFetchPost<R extends PostGetSuccessResponse> = (
+export type FunctionFetchPost<R extends PostGetResponse> = (
   googleUid: string,
   seqId: number,
   langCode: SupportedLanguages,

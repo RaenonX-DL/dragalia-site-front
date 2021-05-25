@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Badge, Col, Row} from 'react-bootstrap';
 
+import {ConditionEnumMap} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
-import {ConditionEnumMap} from '../../../../utils/services/resources/types';
 
 
 export type ConditionBadgeProps = {

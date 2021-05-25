@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../api-def/api';
 import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
 import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {PostMetaPayload, SupportedLanguages} from '../../../../../api-def/api';
+import {PostMeta, SupportedLanguages} from '../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {ArrayDataForm} from './array';
 
@@ -12,7 +12,7 @@ describe('Array data form', () => {
     code: string,
   }
 
-  type Payload = PostMetaPayload & {
+  type Payload = PostMeta & {
     enums: Array<Enum>,
   }
 
@@ -33,9 +33,7 @@ describe('Array data form', () => {
 
   it('blocks the data removal if < min length', async () => {
     payload = {
-      googleUid: 'uid',
       lang: SupportedLanguages.CHT,
-      title: 'title',
       enums: [
         {
           code: 'enum 1',
@@ -66,9 +64,7 @@ describe('Array data form', () => {
 
   it('allows the data removal if > min length', async () => {
     payload = {
-      googleUid: 'uid',
       lang: SupportedLanguages.CHT,
-      title: 'title',
       enums: [
         {
           code: 'enum 1',
@@ -102,9 +98,7 @@ describe('Array data form', () => {
 
   it('adds data after clicking add', async () => {
     payload = {
-      googleUid: 'uid',
       lang: SupportedLanguages.CHT,
-      title: 'title',
       enums: [
         {
           code: 'enum 1',

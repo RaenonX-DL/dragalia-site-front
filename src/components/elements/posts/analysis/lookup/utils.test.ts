@@ -1,6 +1,6 @@
 import {SupportedLanguages, UnitType} from '../../../../../api-def/api';
-import {DepotPaths, ResourceLoader} from '../../../../../utils/services/resources';
-import {CharaInfo, DragonInfo} from '../../../../../utils/services/resources/types';
+import {DepotPaths, CharaInfo, DragonInfo} from '../../../../../api-def/resources';
+import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from './in/types';
 import {UnitInfo} from './types';
 import {getImageURL, getUnitInfo} from './utils';
@@ -279,7 +279,6 @@ describe('Get image URL by type', () => {
     cvEn: name,
     cvJp: name,
     releaseEpoch: 0,
-    analysisMeta: null,
   };
 
   it('gets character image URL', () => {

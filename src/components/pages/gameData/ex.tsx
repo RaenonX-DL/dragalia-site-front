@@ -2,11 +2,11 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {ConditionEnumMap, CharaExAbilityDataEntry} from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
 import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources/loader';
-import {ConditionEnumMap, CharaExAbilityDataEntry} from '../../../utils/services/resources/types';
 import {useFetchState} from '../../elements/common/fetch';
 import {ExAbilityInput} from '../../elements/gameData/ex/in/main';
 import {InputData} from '../../elements/gameData/ex/in/types';
