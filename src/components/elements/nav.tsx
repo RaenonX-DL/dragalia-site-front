@@ -18,7 +18,7 @@ export const Navigation = React.forwardRef<HTMLHeadingElement, Props>((props, re
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" variant="dark" style={{zIndex: 1000}}>
+      <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
         <LinkContainer to={makeSimplePath(GeneralPath.HOME, {lang})}>
           <Navbar.Brand>{t((t) => t.meta.inUse.site.title)}</Navbar.Brand>
         </LinkContainer>
