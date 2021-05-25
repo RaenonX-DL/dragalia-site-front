@@ -2,10 +2,10 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {AnalysisLookupEntry} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../../utils/timeago';
 import {AnalysisEntryCommonProps} from './entry';
-import {AnalysisLookupEntry} from './main';
 
 type AnalysisEntryAvailableProps = AnalysisEntryCommonProps & {
   analysisMeta: AnalysisLookupEntry,

@@ -4,9 +4,10 @@ import {
   AnalysisEditResponse,
   AnalysisGetPayload, AnalysisGetResponse,
   AnalysisIdCheckPayload,
-  AnalysisIdCheckResponse, AnalysisPublishResponse,
+  AnalysisIdCheckResponse, AnalysisLookupPayload, AnalysisLookupResponse, AnalysisPublishResponse,
   AnalysisResponse,
-  ApiEndPoints, ApiResponseCode,
+  ApiEndPoints,
+  ApiResponseCode,
   BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisGetResponse,
@@ -206,6 +207,21 @@ export class ApiRequestSender {
       'POST',
       ApiEndPoints.POST_ANALYSIS_PUBLISH_DRAGON,
       payload,
+    );
+  }
+
+  /**
+   * Send a analysis lookup info request
+   *
+   * @param {string} googleUid Google UID to use for getting the analysis lookup
+   * @param {SupportedLanguages} lang language to use for getting the analysis info
+   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   */
+  static analysisLookup(googleUid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
+    return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
+      'GET',
+      ApiEndPoints.POST_ANALYSIS_LOOKUP,
+      {googleUid, lang},
     );
   }
 

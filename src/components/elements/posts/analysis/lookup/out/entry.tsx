@@ -2,11 +2,11 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {AnalysisLookupEntry} from '../../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../../api-def/resources';
 import {UnitIcon} from '../../../../gameData/unitIcon';
 import {AnalysisEntryAvailable} from './entryAvailable';
 import {AnalysisEntryUnavailable} from './entryUnavailable';
-import {AnalysisLookupEntry} from './main';
 
 export type AnalysisEntryCommonProps = {
   unitInfo: UnitInfoData,
