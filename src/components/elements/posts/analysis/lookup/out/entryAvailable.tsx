@@ -3,7 +3,9 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {AnalysisLookupEntry} from '../../../../../../api-def/api';
+import {PostPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
+import {makePostPath} from '../../../../../../utils/path/make';
 import {TimeAgo} from '../../../../../../utils/timeago';
 import {AnalysisEntryCommonProps} from './entry';
 
@@ -18,7 +20,12 @@ export const AnalysisEntryAvailable = ({unitInfo, analysisMeta}: AnalysisEntryAv
     <>
       <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
         <Col className="mr-2">
-          <a className="h6">{unitInfo.name[lang]}</a>
+          <a
+            className="h6"
+            href={makePostPath(PostPath.ANALYSIS, {lang, pid: unitInfo.id})}
+          >
+            {unitInfo.name[lang]}
+          </a>
         </Col>
         <Col xs="auto" className="text-right text-muted">
           <small>
