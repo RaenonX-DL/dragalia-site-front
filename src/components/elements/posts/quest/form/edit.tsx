@@ -32,7 +32,7 @@ export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) 
     <QuestPostForm
       formState={formState}
       setFormState={setFormState}
-      fnSendRequest={ApiRequestSender.questPostEdit}
+      fnSendRequest={ApiRequestSender.questEdit}
       renderOnPreloaded={(setPayload) => (
         <PostEditCommon
           formState={formState}

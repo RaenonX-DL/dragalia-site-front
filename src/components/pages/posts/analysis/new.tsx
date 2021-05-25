@@ -34,7 +34,7 @@ export const AnalysisNewChara = ({fnSetTitle}: PageProps) => {
         story: '',
         keywords: '',
       }}
-      fnSendRequest={ApiRequestSender.analysisPostPublishChara}
+      fnSendRequest={ApiRequestSender.analysisPublishChara}
     />
   );
 };
@@ -62,7 +62,7 @@ export const AnalysisNewDragon = ({fnSetTitle}: PageProps) => {
         story: '',
         keywords: '',
       }}
-      fnSendRequest={ApiRequestSender.analysisPostPublishDragon}
+      fnSendRequest={ApiRequestSender.analysisPublishDragon}
     />
   );
 };

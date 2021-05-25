@@ -40,7 +40,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
             setPayload={setPayload}
             setAvailability={(isIdAvailable) => setFormState({...formState, isIdAvailable})}
             titlePlaceholder={t((t) => t.posts.quest.title)}
-            fnIdCheck={ApiRequestSender.questPostIdCheck}
+            fnIdCheck={ApiRequestSender.questIdCheck}
           />
           <hr/>
           <FormGeneralInfo formState={formState} setPayload={setPayload}/>

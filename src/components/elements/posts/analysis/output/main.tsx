@@ -44,7 +44,7 @@ export const AnalysisOutput = ({fnSetTitle}: PageProps) => {
           },
         )
       )}
-      fnSendFetchRequest={ApiRequestSender.analysisPostGet}
+      fnSendFetchRequest={ApiRequestSender.analysisGet}
       renderOnFetched={(post) => {
         if (post.type === UnitType.CHARACTER) {
           return (

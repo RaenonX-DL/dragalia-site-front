@@ -58,7 +58,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       return (
         <AnalysisFormCharaEdit
           initialAnalysis={fetchStatus.post as CharaAnalysisBody}
-          fnSendRequest={ApiRequestSender.analysisPostEditChara}
+          fnSendRequest={ApiRequestSender.analysisEditChara}
         />
       );
     }
@@ -66,7 +66,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       return (
         <AnalysisFormDragonEdit
           initialAnalysis={fetchStatus.post as DragonAnalysisBody}
-          fnSendRequest={ApiRequestSender.analysisPostEditDragon}
+          fnSendRequest={ApiRequestSender.analysisEditDragon}
         />
       );
     }
@@ -86,7 +86,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     <FetchPost
       status={fetchStatus}
       fnSetStatus={(newStatus) => setFetchStatus(newStatus)}
-      fnSendFetchRequest={ApiRequestSender.analysisPostGet}
+      fnSendFetchRequest={ApiRequestSender.analysisGet}
       seqId={Number(pid)}
       increaseCount={false}
     />

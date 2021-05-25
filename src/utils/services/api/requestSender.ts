@@ -99,7 +99,7 @@ export class ApiRequestSender {
    * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
    */
-  static questPostGet(
+  static questGet(
     googleUid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
   ): Promise<QuestPostGetResponse> {
     return ApiRequestSender.sendRequest<QuestPostGetResponse, QuestPostGetPayload>(
@@ -118,7 +118,7 @@ export class ApiRequestSender {
    * @param {number} limit maximum count of the data to be returned
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
-  static questPostList(
+  static questList(
     googleUid: string, lang: SupportedLanguages, start: number, limit: number,
   ): Promise<QuestPostListResponse> {
     return ApiRequestSender.sendRequest<QuestPostListResponse, QuestPostListPayload>(
@@ -134,7 +134,7 @@ export class ApiRequestSender {
    * @param {QuestPostEditPayload} payload payload for publishing a post
    * @return {Promise<QuestPostPublishResponse>} promise returned from `fetch`
    */
-  static questPostPublish(payload: QuestPostPublishPayload): Promise<QuestPostPublishResponse> {
+  static questPublish(payload: QuestPostPublishPayload): Promise<QuestPostPublishResponse> {
     return ApiRequestSender.sendRequest<QuestPostPublishResponse, QuestPostPublishPayload>(
       'POST',
       ApiEndPoints.POST_QUEST_PUBLISH,
@@ -148,7 +148,7 @@ export class ApiRequestSender {
    * @param {QuestPostEditPayload} payload payload for editing a quest post
    * @return {Promise<QuestPostEditResponse>} promise returned from `fetch`
    */
-  static questPostEdit(payload: QuestPostEditPayload): Promise<QuestPostEditResponse> {
+  static questEdit(payload: QuestPostEditPayload): Promise<QuestPostEditResponse> {
     return ApiRequestSender.sendRequest<QuestPostEditResponse, QuestPostEditPayload>(
       'POST',
       ApiEndPoints.POST_QUEST_EDIT,
@@ -164,7 +164,7 @@ export class ApiRequestSender {
    * @param {SupportedLanguages} lang language code of the quest post
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
-  static questPostIdCheck(
+  static questIdCheck(
     googleUid: string, seqId: number | null, lang: SupportedLanguages): Promise<QuestPostIdCheckResponse> {
     return ApiRequestSender.sendRequest<QuestPostIdCheckResponse, QuestPostIdCheckPayload>(
       'GET',
@@ -175,7 +175,7 @@ export class ApiRequestSender {
 
   // endregion
 
-  // region Analysis posts
+  // region Analyses
 
   /**
    * Send a character analysis post publish request.
@@ -183,7 +183,7 @@ export class ApiRequestSender {
    * @param {CharaAnalysisPublishPayload} payload payload of a character analysis post
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
-  static analysisPostPublishChara(
+  static analysisPublishChara(
     payload: CharaAnalysisPublishPayload,
   ): Promise<AnalysisPublishResponse> {
     return ApiRequestSender.sendRequest<AnalysisPublishResponse, CharaAnalysisPublishPayload>(
@@ -199,7 +199,7 @@ export class ApiRequestSender {
    * @param {DragonAnalysisPublishPayload} payload payload of a character analysis post
    * @return {Promise<AnalysisPublishResponse>} promise returned from `fetch`
    */
-  static analysisPostPublishDragon(
+  static analysisPublishDragon(
     payload: DragonAnalysisPublishPayload,
   ): Promise<AnalysisPublishResponse> {
     return ApiRequestSender.sendRequest<AnalysisPublishResponse, DragonAnalysisPublishPayload>(
@@ -218,7 +218,7 @@ export class ApiRequestSender {
    * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<AnalysisGetResponse>} promise returned from `fetch`
    */
-  static analysisPostGet(
+  static analysisGet(
     googleUid: string, unitId: number, lang: SupportedLanguages, incCount?: boolean,
   ):
     Promise<AnalysisResponse> {
@@ -244,7 +244,7 @@ export class ApiRequestSender {
    * @param {CharaAnalysisEditPayload} payload payload for editing a character analysis post
    * @return {Promise<AnalysisEditResponse>} promise returned from `fetch`
    */
-  static analysisPostEditChara(
+  static analysisEditChara(
     payload: CharaAnalysisEditPayload,
   ): Promise<AnalysisEditResponse> {
     return ApiRequestSender.sendRequest<AnalysisEditResponse, CharaAnalysisEditPayload>(
@@ -260,7 +260,7 @@ export class ApiRequestSender {
    * @param {DragonAnalysisEditPayload} payload payload for editing a dragon analysis post
    * @return {Promise<AnalysisEditResponse>} promise returned from `fetch`
    */
-  static analysisPostEditDragon(
+  static analysisEditDragon(
     payload: DragonAnalysisEditPayload,
   ): Promise<AnalysisEditResponse> {
     return ApiRequestSender.sendRequest<AnalysisEditResponse, DragonAnalysisEditPayload>(
@@ -278,7 +278,7 @@ export class ApiRequestSender {
    * @param {SupportedLanguages} lang language code of the analysis post
    * @return {Promise<AnalysisIdCheckResponse>} promise returned from `fetch`
    */
-  static analysisPostIdCheck(
+  static analysisIdCheck(
     googleUid: string, unitId: number, lang: SupportedLanguages,
   ): Promise<AnalysisIdCheckResponse> {
     return ApiRequestSender.sendRequest<AnalysisIdCheckResponse, AnalysisIdCheckPayload>(

@@ -18,7 +18,7 @@ export const QuestList = ({fnSetTitle}: PageProps) => {
     <PostListPage
       title={title}
       currentUrl={makeSimplePath(GeneralPath.QUEST_LIST, {lang})}
-      fnFetchList={ApiRequestSender.questPostList}
+      fnFetchList={ApiRequestSender.questList}
       postManageBarProps={{
         newButtons: [{url: makeSimplePath(GeneralPath.QUEST_NEW, {lang})}],
       }}

@@ -41,7 +41,7 @@ export const QuestEdit = ({fnSetTitle}: PageProps) => {
     <FetchPost
       status={fetchStatus}
       fnSetStatus={(newStatus) => setFetchStatus(newStatus)}
-      fnSendFetchRequest={ApiRequestSender.questPostGet}
+      fnSendFetchRequest={ApiRequestSender.questGet}
       seqId={Number(pid)}
       increaseCount={false}
     />

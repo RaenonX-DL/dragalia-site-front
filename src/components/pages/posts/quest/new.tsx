@@ -36,7 +36,7 @@ export const QuestNew = ({fnSetTitle}: PageProps) => {
     <QuestPostForm
       formState={formState}
       setFormState={setFormState}
-      fnSendRequest={ApiRequestSender.questPostPublish}
+      fnSendRequest={ApiRequestSender.questPublish}
     />
   );
 };

@@ -27,7 +27,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      ApiRequestSender.analysisPostIdCheck(CookiesControl.getGoogleUid() || '', payload.unitId, payload.lang)
+      ApiRequestSender.analysisIdCheck(CookiesControl.getGoogleUid() || '', payload.unitId, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.unitId, payload.lang],
   });

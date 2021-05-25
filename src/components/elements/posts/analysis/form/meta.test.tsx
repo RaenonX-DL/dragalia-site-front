@@ -66,7 +66,7 @@ describe('Analysis form meta input', () => {
       state.payload[key] = value;
     });
     setAvailability = jest.fn().mockImplementation((availability) => state.isIdAvailable = availability);
-    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisPostIdCheck').mockImplementation(async () => ({
+    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisIdCheck').mockImplementation(async () => ({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: true,
@@ -133,7 +133,7 @@ describe('Analysis form meta input', () => {
 
   it('shows the invalid mark upon failing the check', async () => {
     setAvailability = jest.fn().mockImplementation(() => state.isIdAvailable = false);
-    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisPostIdCheck').mockImplementation(async () => ({
+    fnIdCheck = jest.spyOn(ApiRequestSender, 'analysisIdCheck').mockImplementation(async () => ({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: false,
