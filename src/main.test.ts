@@ -32,7 +32,9 @@ describe('Page browsing behavior', () => {
 
     // 1 for navbar, 1 for nav title,
     expect(screen.getAllByText(/OM/).length).toBeGreaterThanOrEqual(2);
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -44,7 +46,9 @@ describe('Page browsing behavior', () => {
     await renderApp(path);
 
     expect(screen.getAllByText(/OM/).length).toBe(3);
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -85,7 +89,9 @@ describe('Page browsing behavior', () => {
 
     expect(screen.getByText(translationEN.meta.error['404'].description)).toBeInTheDocument();
     expect(pageViewFunction).toHaveBeenCalledTimes(0);
-    expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    });
     expect(pageViewFailedFunction).toHaveBeenCalledWith('not_found', path);
   });
 
@@ -95,7 +101,9 @@ describe('Page browsing behavior', () => {
 
     expect(screen.getByText(translationCHT.meta.error['404'].description)).toBeInTheDocument();
     expect(pageViewFunction).toHaveBeenCalledTimes(0);
-    expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    });
     expect(pageViewFailedFunction).toHaveBeenCalledWith('not_found', path);
   });
 });
