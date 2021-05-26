@@ -195,8 +195,8 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: '捐款網址',
-      info: '只要每個月捐款超過 USD $1 以上，即可**無廣告瀏覽網站**！\n\n' +
-        '如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n' +
+      info: '使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。' +
+        '有效期為無廣告開始日起一個月內。\n\n' +
         '捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。',
     },
     warning: {
@@ -217,7 +217,7 @@ export const translation: TranslationStruct = {
         '點選建置中的頁面可以查看相關說明。',
     },
     alert: {
-      ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      ads: '每月捐款支持 OM 與我 (RaenonX) 以外，還可以無廣告瀏覽網站！[詳情請點此](/thanks)',
       migration: '目前網站基礎正在翻新中。使用過程中若有任何持續問題，請到各大 SNS 上聯繫我，感謝！',
     },
   },

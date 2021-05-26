@@ -218,11 +218,9 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: 'Donation URLs',
-      info: '**To browse the website without ads**, just donate USD $1 or more per month!\n\n' +
-        'For one-time donations via Ko-Fi or Paypal, ' +
-        'if the amount is greater than or equal to USD $1, ' +
-        'no-ads service is also available counting from the date when the no-ads experience starts.\n\n' +
-        'Please login to the website using the email address used for the donation for no-ads experience.',
+      info: '**Thanks for your donation!**\n\n' +
+        'One-time donations over USD $1 via Ko-Fi or Paypal also benefits from ads-free experience for a month.\n\n' +
+        'Please login to the website using the email address used for the donation.',
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
