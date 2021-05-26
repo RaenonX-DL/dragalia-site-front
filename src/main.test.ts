@@ -30,7 +30,8 @@ describe('Page browsing behavior', () => {
     const path = makeSimplePath(GeneralPath.HOME, {lang: SupportedLanguages.CHT});
     await renderApp(path);
 
-    expect(screen.getAllByText(/OM/).length).toBe(3);
+    // 1 for navbar, 1 for nav title,
+    expect(screen.getAllByText(/OM/).length).toBeGreaterThanOrEqual(2);
     expect(pageViewFunction).toHaveBeenCalledTimes(1);
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];

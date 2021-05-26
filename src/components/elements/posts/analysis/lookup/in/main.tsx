@@ -2,13 +2,10 @@ import React, {MouseEvent} from 'react';
 
 import {Button, Col, Form} from 'react-bootstrap';
 
-import {AnalysisLookupLandingResponse} from '../../../../../../api-def/api';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../../utils/cookies';
 import {makeSimplePath} from '../../../../../../utils/path/make';
-import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
@@ -17,10 +14,11 @@ import {AnalysisTypePicker} from './typePicker';
 import {InputData} from './types';
 
 type LookupInputProps = {
+  isAdmin: boolean,
   onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
 }
 
-export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
+export const AnalysisLookupInput = ({isAdmin, onSearchRequested}: LookupInputProps) => {
   const {t, lang} = useI18n();
 
   const [inputData, setInputData] = React.useState<InputData>({
@@ -50,22 +48,13 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
     ResourceLoader.getEnumWeaponTypes,
     'Failed to fetch the weapon type enums.',
   );
-  const {
-    fetchStatus: lookupLanding,
-    fetchFunction: fetchLookupLanding,
-  } = useFetchState<AnalysisLookupLandingResponse | null>(
-    null,
-    () => ApiRequestSender.analysisLookupLanding(CookiesControl.getGoogleUid() || '', lang),
-    'Failed to fetch the weapon type enums.',
-  );
 
   fetchWeaponTypeEnums();
   fetchElemEnums();
-  fetchLookupLanding();
 
   return (
     <>
-      <div className="rounded bg-black-32 p-3 mb-3">
+      <div className="rounded bg-black-32 p-3 mb-2">
         <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
         <EnumChecksBox
           options={elemEnums.data.elemental}
@@ -101,8 +90,8 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
         </Form.Row>
       </div>
       {
-        lookupLanding.data?.isAdmin &&
-        <div className="mb-3">
+        isAdmin &&
+        <div className="mb-2">
           <PostManageBar
             newButtons={[
               {

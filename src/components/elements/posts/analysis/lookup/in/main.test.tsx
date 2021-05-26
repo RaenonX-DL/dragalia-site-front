@@ -1,18 +1,14 @@
 import React from 'react';
 
-import {fireEvent, screen, waitFor} from '@testing-library/react';
+import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {
-  AnalysisLookupEntry,
-  AnalysisLookupLandingResponse,
-  ApiResponseCode,
   SupportedLanguages,
   UnitType,
 } from '../../../../../../api-def/api';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {AnalysisLookupInput} from './main';
 import {InputData} from './types';
@@ -66,40 +62,12 @@ describe('Input of analysis lookup', () => {
       },
     ],
   };
-  const landingAnalysisEntries: Array<AnalysisLookupEntry> = [
-    {
-      type: UnitType.CHARACTER,
-      unitId: 10950101,
-      lang: SupportedLanguages.CHT,
-      viewCount: 107,
-      modifiedEpoch: 5000000,
-      publishedEpoch: 900000,
-    },
-    {
-      type: UnitType.CHARACTER,
-      unitId: 10950102,
-      lang: SupportedLanguages.CHT,
-      viewCount: 207,
-      modifiedEpoch: 5000000,
-      publishedEpoch: 900000,
-    },
-    {
-      type: UnitType.CHARACTER,
-      unitId: 10850103,
-      lang: SupportedLanguages.CHT,
-      viewCount: 307,
-      modifiedEpoch: 5000000,
-      publishedEpoch: 900000,
-    },
-  ];
 
   let onSearchRequested: jest.Mock<() => void, [InputData]>;
   let getEnumElements: jest.SpyInstance<Promise<ElementEnums>,
     [callback?: (elementEnums: ElementEnums) => void]>;
   let getEnumWeaponType: jest.SpyInstance<Promise<WeaponTypeEnums>,
     [callback?: (weaponTypeEnums: WeaponTypeEnums) => void]>;
-  let fetchLandingInfo: jest.SpyInstance<Promise<AnalysisLookupLandingResponse>,
-    [string, SupportedLanguages]>;
 
   const clickSearchButton = () => {
     const searchButton = screen.getByText(translationEN.misc.search);
@@ -124,31 +92,21 @@ describe('Input of analysis lookup', () => {
         }
         return weaponEnums;
       });
-    fetchLandingInfo = jest
-      .spyOn(ApiRequestSender, 'analysisLookupLanding')
-      .mockImplementation(async () => ({
-        code: ApiResponseCode.SUCCESS,
-        success: true,
-        isAdmin: true,
-        analyses: landingAnalysisEntries,
-      }));
   });
 
   it('fetches required enums on load', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
     expect(getEnumWeaponType).toHaveBeenCalledTimes(1);
   });
 
-  it('fetches landing info on load', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
-
-    expect(fetchLandingInfo).toHaveBeenCalledTimes(1);
-  });
-
   it('passes empty input data if no condition specified', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     const expectedInput: InputData = {
       keyword: '',
@@ -163,7 +121,9 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with analysis type', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
@@ -183,7 +143,9 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with elements', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
@@ -203,7 +165,9 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with weapon types', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
@@ -223,7 +187,9 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with search keyword', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
@@ -243,7 +209,9 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with multiple conditions', async () => {
-    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>);
+    });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
@@ -266,5 +234,13 @@ describe('Input of analysis lookup', () => {
     };
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
+  });
+
+  it('shows post manage bar if the user is an admin', async () => {
+    await act(async () => {
+      await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin/>);
+    });
+
+    screen.getByText(translationEN.posts.manage.addChara);
   });
 });

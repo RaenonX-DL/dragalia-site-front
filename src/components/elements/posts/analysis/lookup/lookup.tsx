@@ -6,9 +6,9 @@ import {CookiesControl} from '../../../../../utils/cookies';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {useFetchState} from '../../../common/fetch';
+import {AnalysisLookupLanding} from './in/landing';
 import {AnalysisLookupInput} from './in/main';
 import {InputData} from './in/types';
-import {AnalysisLookupLanding} from './landing';
 import {AnalysisLookupOutput} from './out/main';
 
 export const AnalysisPostLookup = () => {

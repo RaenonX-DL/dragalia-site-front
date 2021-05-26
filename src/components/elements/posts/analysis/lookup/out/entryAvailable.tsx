@@ -9,11 +9,16 @@ import {makePostPath} from '../../../../../../utils/path/make';
 import {TimeAgo} from '../../../../../../utils/timeago';
 import {AnalysisEntryCommonProps} from './entry';
 
-type AnalysisEntryAvailableProps = AnalysisEntryCommonProps & {
+export type AnalysisEntryAvailableProps = AnalysisEntryCommonProps & {
   analysisMeta: AnalysisLookupEntry,
+  simplified?: boolean,
 }
 
-export const AnalysisEntryAvailable = ({unitInfo, analysisMeta}: AnalysisEntryAvailableProps) => {
+export const AnalysisEntryAvailable = ({
+  unitInfo,
+  analysisMeta,
+  simplified = true,
+}: AnalysisEntryAvailableProps) => {
   const {t, lang} = useI18n();
 
   return (
@@ -27,24 +32,30 @@ export const AnalysisEntryAvailable = ({unitInfo, analysisMeta}: AnalysisEntryAv
             {unitInfo.name[lang]}
           </a>
         </Col>
-        <Col xs="auto" className="text-right text-muted">
-          <small>
-            {t(
-              (t) => t.posts.info.viewCount,
-              {count: analysisMeta.viewCount.toString()},
-            )}
-          </small>
-        </Col>
+        {
+          !simplified &&
+          <Col xs="auto" className="text-right text-muted">
+            <small>
+              {t(
+                (t) => t.posts.info.viewCount,
+                {count: analysisMeta.viewCount.toString()},
+              )}
+            </small>
+          </Col>
+        }
       </Row>
       <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
         <Col className="text-center">
           {t((t) => t.posts.info.lastModified)}:&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
         </Col>
-        <Col className="text-center d-none d-lg-block">
-          {t((t) => t.posts.info.published)}:&nbsp;
-          <TimeAgo epoch={analysisMeta.publishedEpoch}/>
-        </Col>
+        {
+          !simplified &&
+          <Col className="text-center d-none d-lg-block">
+            {t((t) => t.posts.info.published)}:&nbsp;
+            <TimeAgo epoch={analysisMeta.publishedEpoch}/>
+          </Col>
+        }
       </Row>
     </>
   );
