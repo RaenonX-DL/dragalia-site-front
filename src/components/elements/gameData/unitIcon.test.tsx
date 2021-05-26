@@ -36,7 +36,7 @@ describe('Unit info icon', () => {
       releaseEpoch: 0,
     };
 
-    await renderReact(<UnitIcon unitInfo={unitInfo}/>);
+    await renderReact(() => <UnitIcon unitInfo={unitInfo}/>);
 
     screen.getByAltText(name[SupportedLanguages.EN]); // This fails if the image does not exist on screen
     expect(getImageUrlFunc).toHaveBeenCalledTimes(1);

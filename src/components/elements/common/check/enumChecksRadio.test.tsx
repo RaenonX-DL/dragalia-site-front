@@ -67,17 +67,6 @@ describe('Enum checks as radio', () => {
     fireEvent.click(enumButton);
   };
 
-  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
-    rerenderFunc(
-      <EnumChecksRadio
-        options={enums}
-        inputData={data}
-        inputKey="enum"
-        setInputData={setData}
-      />,
-    );
-  };
-
   let data: {enum: number};
   let setData: jest.Mock<void, [typeof data]>;
 
@@ -92,7 +81,7 @@ describe('Enum checks as radio', () => {
 
   it('can check single item', async () => {
     data = {'enum': 2};
-    await renderReact(<CheckWrapper data={data}/>);
+    await renderReact(() => <CheckWrapper data={data}/>);
 
     clickFirstButton();
 
@@ -102,37 +91,37 @@ describe('Enum checks as radio', () => {
 
   it('does not change the selection if selected the same', async () => {
     data = {'enum': 1};
-    const {rerender} = await renderReact(<CheckWrapper data={data}/>);
+    const {rerender} = await renderReact(() => <CheckWrapper data={data}/>);
 
     clickFirstButton();
-    invokeRerender(rerender);
+    rerender();
 
     expect(setData).toHaveBeenCalledTimes(0);
     expect(data).toStrictEqual({enum: 1});
   });
 
   it('shows text if the image URL is not available', async () => {
-    await renderReact(
+    await renderReact(() => (
       <EnumChecksRadio
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     expect(screen.getByText('EN 4')).toBeInTheDocument();
   });
 
   it('shows image if the image URL is available', async () => {
-    await renderReact(
+    await renderReact(() => (
       <EnumChecksRadio
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     expect(screen.getByAltText('enum#3')).toBeInTheDocument();
   });

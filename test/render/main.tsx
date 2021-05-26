@@ -23,32 +23,32 @@ const RenderWrapper = ({options, store, children}: React.PropsWithChildren<Wrapp
   );
 };
 
-export const renderReact = async (
-  reactElement: React.ReactElement,
+export const renderReact = (
+  getReactElement: () => React.ReactElement,
   options?: RenderOptions,
-): Promise<RenderReturns> => {
+): RenderReturns => {
   const store = createStore(options?.preloadState);
 
   const app = render(
     <RenderWrapper options={options} store={store}>
-      {reactElement}
+      {getReactElement()}
     </RenderWrapper>,
   );
 
-  const rerender = (elem: React.ReactElement) => {
+  const rerender = () => {
     app.rerender(
       <RenderWrapper options={options} store={store}>
-        {elem}
+        {getReactElement()}
       </RenderWrapper>,
     );
   };
 
-  return {app, rerender, store};
+  return {rerender, store};
 };
 
 export const renderApp = async (
   route: string,
   options?: RenderOptions,
 ): Promise<RenderReturns> => {
-  return renderReact(<Main/>, {...options, route});
+  return renderReact(() => <Main/>, {...options, route});
 };

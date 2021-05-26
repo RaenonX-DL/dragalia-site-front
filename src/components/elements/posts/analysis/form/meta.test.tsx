@@ -80,42 +80,32 @@ describe('Analysis form meta input', () => {
     jest.useRealTimers();
   });
 
-  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
-    rerenderFunc(
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />,
-    );
-  };
-
   it('blocks entering string unit ID', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 'string'}});
-    invokeRerender(rerender);
+    rerender();
 
     expect(state.payload.unitId).toBe(10950101);
   });
 
   it('shows the valid mark and the unit icon upon passing the check', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 10950102}});
-    invokeRerender(rerender);
+    rerender();
 
     await waitFor(() => {
       expect(fnToUnitInfoMap).toHaveBeenCalled();
@@ -125,7 +115,7 @@ describe('Analysis form meta input', () => {
     });
     await waitFor(() => {
       expect(setAvailability).toHaveBeenCalledWith(true);
-      invokeRerender(rerender);
+      rerender();
       expect(idField).toHaveClass('is-valid');
     });
     screen.getByAltText(name[SupportedLanguages.EN]);
@@ -140,35 +130,35 @@ describe('Analysis form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
     });
     await waitFor(() => {
       expect(setAvailability).toHaveBeenCalledWith(false);
-      invokeRerender(rerender);
+      rerender();
       expect(idField).toHaveClass('is-invalid');
     });
   });
 
   it('starts checking 1 sec later after the last unit ID change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     invokeRerender(rerender);
@@ -181,16 +171,16 @@ describe('Analysis form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
@@ -200,16 +190,16 @@ describe('Analysis form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
-      />,
-    );
+      />
+    ));
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(100);

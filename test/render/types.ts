@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {RenderResult} from '@testing-library/react';
-
 import {PartialReduxState} from '../../src/state/state';
 import {ReduxStore} from '../../src/state/store';
 
@@ -11,7 +9,6 @@ export type RenderOptions = {
 }
 
 export type RenderReturns = {
-  app: RenderResult,
-  rerender: (element: React.ReactElement) => void,
+  rerender: (element?: React.ReactElement) => void,
   store: ReduxStore,
 }

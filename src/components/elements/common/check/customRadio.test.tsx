@@ -33,14 +33,14 @@ describe('Radio checks', () => {
   it('preloads the selection', async () => {
     inputData = {selected: 2};
 
-    await renderReact(
+    await renderReact(() => (
       <CustomRadios
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const toggleInput = screen.getByTestId('check 2').children[0];
     expect(toggleInput).toHaveAttribute('checked');
@@ -50,14 +50,14 @@ describe('Radio checks', () => {
   test('selecting another option changes the state', async () => {
     inputData = {selected: 2};
 
-    await renderReact(
+    await renderReact(() => (
       <CustomRadios
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const enumButton = screen.getByText('check 1');
     fireEvent.click(enumButton);
@@ -73,26 +73,7 @@ describe('Radio checks', () => {
     };
     setInputDataFunc = jest.fn().mockImplementation((newData) => inputData = newData);
 
-    const invokeRerender = (rerender: (element: React.ReactElement) => void) => {
-      rerender(
-        <>
-          <CustomRadios
-            options={options}
-            inputData={inputData}
-            inputKey="selected"
-            setInputData={setInputDataFunc}
-          />
-          <CustomRadios
-            options={options}
-            inputData={inputData}
-            inputKey="another"
-            setInputData={setInputDataFunc}
-          />
-        </>,
-      );
-    };
-
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <>
         <CustomRadios
           options={options}
@@ -106,8 +87,8 @@ describe('Radio checks', () => {
           inputKey="another"
           setInputData={setInputDataFunc}
         />
-      </>,
-    );
+      </>
+    ));
 
     const enum1Buttons = screen.getAllByText('check 1');
     expect(enum1Buttons.length).toBe(2);
@@ -115,9 +96,9 @@ describe('Radio checks', () => {
     expect(enum2Buttons.length).toBe(2);
 
     fireEvent.click(enum1Buttons[0]);
-    invokeRerender(rerender);
+    rerender();
     fireEvent.click(enum2Buttons[1]);
-    invokeRerender(rerender);
+    rerender();
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(2);
     expect(inputData).toStrictEqual({selected: 1, another: 2});

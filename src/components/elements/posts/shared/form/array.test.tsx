@@ -44,7 +44,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(
+    await renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -53,8 +53,8 @@ describe('Array data form', () => {
         updateElementValue={updateElemValueFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
-      />,
-    );
+      />
+    ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     expect(removeButton).toHaveAttribute('disabled');
@@ -78,7 +78,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(
+    await renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -87,8 +87,8 @@ describe('Array data form', () => {
         updateElementValue={updateElemValueFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
-      />,
-    );
+      />
+    ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     expect(removeButton).not.toHaveAttribute('disabled');
@@ -109,7 +109,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(
+    await renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -118,8 +118,8 @@ describe('Array data form', () => {
         updateElementValue={updateElemValueFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
-      />,
-    );
+      />
+    ));
 
     const addButton = screen.getByText(translationEN.misc.add);
     fireEvent.click(addButton);

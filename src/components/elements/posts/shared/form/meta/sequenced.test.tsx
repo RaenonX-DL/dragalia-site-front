@@ -50,38 +50,26 @@ describe('Sequenced form meta input', () => {
     jest.useRealTimers();
   });
 
-  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
-    rerenderFunc(
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />,
-    );
-  };
-
   it('shows the valid mark upon passing the check', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
     });
     await waitFor(() => {
       expect(setAvailability).toHaveBeenCalledWith(true);
-      invokeRerender(rerender);
+      rerender();
       expect(idField).toHaveClass('is-valid');
     });
   });
@@ -95,42 +83,42 @@ describe('Sequenced form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
     });
     await waitFor(() => {
       expect(setAvailability).toHaveBeenCalledWith(false);
-      invokeRerender(rerender);
+      rerender();
       expect(idField).toHaveClass('is-invalid');
     });
   });
 
   it('starts checking 1 sec later after the last seq ID change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
@@ -140,18 +128,18 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last title change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     fireEvent.change(titleField, {target: {value: 'Another Title'}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
@@ -161,18 +149,18 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(1100);
@@ -182,18 +170,18 @@ describe('Sequenced form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
         setAvailability={setAvailability}
         titlePlaceholder={titlePlaceholder}
         fnIdCheck={fnIdCheck}
-      />,
-    );
+      />
+    ));
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
-    invokeRerender(rerender);
+    rerender();
 
     act(() => {
       jest.runTimersToTime(100);

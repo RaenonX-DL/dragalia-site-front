@@ -83,17 +83,6 @@ describe('EX/CEX filter section', () => {
     ],
   };
 
-  const invokeRerender = (rerender: (elem: React.ReactElement) => void) => {
-    rerender(
-      <SectionFilter
-        inputData={inputData}
-        setInputData={setInputData}
-        elementEnums={elementEnums}
-        exBuffParams={exBuffParams}
-      />,
-    );
-  };
-
   beforeEach(() => {
     setInputData = jest.fn().mockImplementation((newData) => inputData = newData);
     inputData = {
@@ -104,25 +93,25 @@ describe('EX/CEX filter section', () => {
   });
 
   it('renders the filter section', async () => {
-    await renderReact(
+    await renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
   });
 
   it('can filter by element', async () => {
-    await renderReact(
+    await renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
     const elemCheck = screen.getByAltText('filterElementCodeelem 1');
     fireEvent.click(elemCheck);
@@ -132,14 +121,14 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by EX parameter', async () => {
-    await renderReact(
+    await renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
     const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
     fireEvent.click(exCheck);
@@ -149,14 +138,14 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by CEX parameter', async () => {
-    await renderReact(
+    await renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
     const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
     fireEvent.click(cexCheck);
@@ -166,24 +155,24 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by multiple conditions', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
     const elemCheck = screen.getByAltText('filterElementCodeelem 2');
     fireEvent.click(elemCheck);
-    invokeRerender(rerender);
+    rerender();
     const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
     fireEvent.click(exCheck);
-    invokeRerender(rerender);
+    rerender();
     const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
     fireEvent.click(cexCheck);
-    invokeRerender(rerender);
+    rerender();
 
     expect(setInputData).toHaveBeenCalledTimes(3);
     expect(inputData.filterElementCode).toStrictEqual([2]);

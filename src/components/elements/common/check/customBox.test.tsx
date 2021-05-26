@@ -33,14 +33,14 @@ describe('Checkboxes', () => {
   it('preloads the selection', async () => {
     inputData = {selected: [2, 3]};
 
-    await renderReact(
+    await renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const toggleInput = screen.getByTestId('check 2').children[0];
     expect(toggleInput).toHaveAttribute('checked');
@@ -50,14 +50,14 @@ describe('Checkboxes', () => {
   it('deselect an option', async () => {
     inputData = {selected: [2]};
 
-    await renderReact(
+    await renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const enumButton = screen.getByText('check 2');
     fireEvent.click(enumButton);
@@ -69,25 +69,18 @@ describe('Checkboxes', () => {
   it('can select multiple options', async () => {
     inputData = {selected: []};
 
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const enum1Button = screen.getByText('check 1');
     fireEvent.click(enum1Button);
-    rerender(
-      <CustomBoxes
-        options={options}
-        inputData={inputData}
-        inputKey="selected"
-        setInputData={setInputDataFunc}
-      />,
-    );
+    rerender();
     const enum2Button = screen.getByText('check 2');
     fireEvent.click(enum2Button);
 
@@ -98,14 +91,14 @@ describe('Checkboxes', () => {
   test('selecting an option add it to the state', async () => {
     inputData = {selected: [2]};
 
-    await renderReact(
+    await renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
         inputKey="selected"
         setInputData={setInputDataFunc}
-      />,
-    );
+      />
+    ));
 
     const enumButton = screen.getByText('check 1');
     fireEvent.click(enumButton);

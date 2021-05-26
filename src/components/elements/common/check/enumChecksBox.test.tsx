@@ -64,17 +64,6 @@ describe('Enum check boxes as checkboxes', () => {
   let data: {enum: Array<number>};
   let setData: jest.Mock<void, [typeof data]>;
 
-  const invokeRerender = (rerenderFunc: (element: React.ReactElement) => void) => {
-    rerenderFunc(
-      <EnumChecksBox
-        options={enums}
-        inputData={data}
-        inputKey="enum"
-        setInputData={setData}
-      />,
-    );
-  };
-
   beforeEach(() => {
     data = {'enum': []};
     setData = jest.fn().mockImplementation((newData) => data = newData);
@@ -86,14 +75,14 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can check single item', async () => {
     data = {'enum': [] as Array<number>};
-    await renderReact(
+    await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     clickFirstButton();
 
@@ -102,17 +91,17 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can cancel checking single item', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     clickFirstButton();
-    invokeRerender(rerender);
+    rerender();
     clickFirstButton();
 
     expect(setData).toHaveBeenCalledTimes(2);
@@ -120,17 +109,17 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can check multiple items', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     clickFirstButton();
-    invokeRerender(rerender);
+    rerender();
     clickSecondButton();
 
     expect(setData).toHaveBeenCalledTimes(2);
@@ -138,19 +127,19 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can cancel checking multiple items', async () => {
-    const {rerender} = await renderReact(
+    const {rerender} = await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     clickFirstButton();
-    invokeRerender(rerender);
+    rerender();
     clickSecondButton();
-    invokeRerender(rerender);
+    rerender();
     clickFirstButton();
 
     expect(setData).toHaveBeenCalledTimes(3);
@@ -158,27 +147,27 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('shows text if the image URL is not available', async () => {
-    await renderReact(
+    await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     expect(screen.getByText('EN 4')).toBeInTheDocument();
   });
 
   it('shows image if the image URL is available', async () => {
-    await renderReact(
+    await renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
         inputKey="enum"
         setInputData={setData}
-      />,
-    );
+      />
+    ));
 
     expect(screen.getByAltText('enum#3')).toBeInTheDocument();
   });
