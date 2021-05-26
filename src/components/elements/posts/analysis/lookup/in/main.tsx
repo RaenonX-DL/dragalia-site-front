@@ -2,7 +2,7 @@ import React, {MouseEvent} from 'react';
 
 import {Button, Col, Form} from 'react-bootstrap';
 
-import {UserIsAdminResponse} from '../../../../../../api-def/api';
+import {AnalysisLookupLandingResponse} from '../../../../../../api-def/api';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
@@ -51,17 +51,17 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
     'Failed to fetch the weapon type enums.',
   );
   const {
-    fetchStatus: isUserAdminData,
-    fetchFunction: fetchUserAdmin,
-  } = useFetchState<UserIsAdminResponse | null>(
+    fetchStatus: lookupLanding,
+    fetchFunction: fetchLookupLanding,
+  } = useFetchState<AnalysisLookupLandingResponse | null>(
     null,
-    () => ApiRequestSender.userIsAdmin(CookiesControl.getGoogleUid()),
+    () => ApiRequestSender.analysisLookupLanding(CookiesControl.getGoogleUid() || '', lang),
     'Failed to fetch the weapon type enums.',
   );
 
   fetchWeaponTypeEnums();
   fetchElemEnums();
-  fetchUserAdmin();
+  fetchLookupLanding();
 
   return (
     <>
@@ -101,7 +101,7 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
         </Form.Row>
       </div>
       {
-        isUserAdminData.data?.isAdmin &&
+        lookupLanding.data?.isAdmin &&
         <div className="mb-3">
           <PostManageBar
             newButtons={[

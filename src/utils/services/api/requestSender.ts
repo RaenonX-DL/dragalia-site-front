@@ -2,9 +2,14 @@ import fetch from 'node-fetch';
 
 import {
   AnalysisEditResponse,
-  AnalysisGetPayload, AnalysisGetResponse,
+  AnalysisGetPayload,
+  AnalysisGetResponse,
   AnalysisIdCheckPayload,
-  AnalysisIdCheckResponse, AnalysisLookupPayload, AnalysisLookupResponse, AnalysisPublishResponse,
+  AnalysisIdCheckResponse,
+  AnalysisLookupLandingPayload, AnalysisLookupLandingResponse,
+  AnalysisLookupPayload,
+  AnalysisLookupResponse,
+  AnalysisPublishResponse,
   AnalysisResponse,
   ApiEndPoints,
   ApiResponseCode,
@@ -211,7 +216,7 @@ export class ApiRequestSender {
   }
 
   /**
-   * Send a analysis lookup info request
+   * Send an analysis lookup info request.
    *
    * @param {string} googleUid Google UID to use for getting the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
@@ -221,6 +226,21 @@ export class ApiRequestSender {
     return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_LOOKUP,
+      {googleUid, lang},
+    );
+  }
+
+  /**
+   * Send an analysis lookup info request on landing.
+   *
+   * @param {string} googleUid Google UID to use for getting the analysis lookup
+   * @param {SupportedLanguages} lang language to use for getting the analysis info
+   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   */
+  static analysisLookupLanding(googleUid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
+    return ApiRequestSender.sendRequest<AnalysisLookupLandingResponse, AnalysisLookupLandingPayload>(
+      'GET',
+      ApiEndPoints.POST_ANALYSIS_LOOKUP_LANDING,
       {googleUid, lang},
     );
   }

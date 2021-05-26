@@ -3,9 +3,16 @@ import React from 'react';
 import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
-import {SupportedLanguages, UnitType} from '../../../../../../api-def/api';
+import {
+  AnalysisLookupEntry,
+  AnalysisLookupLandingResponse,
+  ApiResponseCode,
+  SupportedLanguages,
+  UnitType,
+} from '../../../../../../api-def/api';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
+import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {AnalysisLookupInput} from './main';
 import {InputData} from './types';
@@ -59,12 +66,40 @@ describe('Input of analysis lookup', () => {
       },
     ],
   };
+  const landingAnalysisEntries: Array<AnalysisLookupEntry> = [
+    {
+      type: UnitType.CHARACTER,
+      unitId: 10950101,
+      lang: SupportedLanguages.CHT,
+      viewCount: 107,
+      modifiedEpoch: 5000000,
+      publishedEpoch: 900000,
+    },
+    {
+      type: UnitType.CHARACTER,
+      unitId: 10950102,
+      lang: SupportedLanguages.CHT,
+      viewCount: 207,
+      modifiedEpoch: 5000000,
+      publishedEpoch: 900000,
+    },
+    {
+      type: UnitType.CHARACTER,
+      unitId: 10850103,
+      lang: SupportedLanguages.CHT,
+      viewCount: 307,
+      modifiedEpoch: 5000000,
+      publishedEpoch: 900000,
+    },
+  ];
 
   let onSearchRequested: jest.Mock<() => void, [InputData]>;
   let getEnumElements: jest.SpyInstance<Promise<ElementEnums>,
     [callback?: (elementEnums: ElementEnums) => void]>;
   let getEnumWeaponType: jest.SpyInstance<Promise<WeaponTypeEnums>,
     [callback?: (weaponTypeEnums: WeaponTypeEnums) => void]>;
+  let fetchLandingInfo: jest.SpyInstance<Promise<AnalysisLookupLandingResponse>,
+    [string, SupportedLanguages]>;
 
   const clickSearchButton = () => {
     const searchButton = screen.getByText(translationEN.misc.search);
@@ -89,6 +124,14 @@ describe('Input of analysis lookup', () => {
         }
         return weaponEnums;
       });
+    fetchLandingInfo = jest
+      .spyOn(ApiRequestSender, 'analysisLookupLanding')
+      .mockImplementation(async () => ({
+        code: ApiResponseCode.SUCCESS,
+        success: true,
+        isAdmin: true,
+        analyses: landingAnalysisEntries,
+      }));
   });
 
   it('fetches required enums on load', async () => {
@@ -96,6 +139,12 @@ describe('Input of analysis lookup', () => {
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
     expect(getEnumWeaponType).toHaveBeenCalledTimes(1);
+  });
+
+  it('fetches landing info on load', async () => {
+    await renderReact(<AnalysisLookupInput onSearchRequested={onSearchRequested}/>);
+
+    expect(fetchLandingInfo).toHaveBeenCalledTimes(1);
   });
 
   it('passes empty input data if no condition specified', async () => {
