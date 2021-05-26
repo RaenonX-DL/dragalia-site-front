@@ -93,6 +93,13 @@ describe('Analysis form meta input', () => {
     rerender();
 
     expect(state.payload.unitId).toBe(10950101);
+    act(() => {
+      jest.runTimersToTime(1100);
+    });
+    await waitFor(() => {
+      rerender();
+      expect(state.payload.unitId).toBe(10950101);
+    });
   });
 
   it('shows the valid mark and the unit icon upon passing the check', async () => {
@@ -161,13 +168,13 @@ describe('Analysis form meta input', () => {
     ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
-    invokeRerender(rerender);
+    rerender();
 
-    act(() => {
+    await waitFor(() => {
       jest.runTimersToTime(1100);
+      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(fnIdCheck).toHaveBeenCalledTimes(1);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
@@ -182,11 +189,11 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    act(() => {
+    await waitFor(() => {
       jest.runTimersToTime(1100);
+      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(fnIdCheck).toHaveBeenCalledTimes(1);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
 
   it('does not start the check within 1 sec of the change', async () => {
@@ -201,10 +208,10 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    act(() => {
+    await waitFor(() => {
       jest.runTimersToTime(100);
+      expect(setPayload).toHaveBeenCalledTimes(1);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });
 });

@@ -123,8 +123,10 @@ describe('Sequenced form meta input', () => {
     act(() => {
       jest.runTimersToTime(1100);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('starts checking 1 sec later after the last title change', async () => {
@@ -144,8 +146,10 @@ describe('Sequenced form meta input', () => {
     act(() => {
       jest.runTimersToTime(1100);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
@@ -165,8 +169,10 @@ describe('Sequenced form meta input', () => {
     act(() => {
       jest.runTimersToTime(1100);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
-    expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(fnIdCheck).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('does not start the check within 1 sec of the change', async () => {
@@ -186,7 +192,9 @@ describe('Sequenced form meta input', () => {
     act(() => {
       jest.runTimersToTime(100);
     });
-    expect(setPayload).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(setPayload).toHaveBeenCalledTimes(1);
+    });
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });
 });

@@ -46,9 +46,9 @@ export const renderReact = (
   return {rerender, store};
 };
 
-export const renderApp = async (
+export const renderApp = (
   route: string,
   options?: RenderOptions,
-): Promise<RenderReturns> => {
+): RenderReturns => {
   return renderReact(() => <Main/>, {...options, route});
 };

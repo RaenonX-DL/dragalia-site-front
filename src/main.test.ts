@@ -1,4 +1,4 @@
-import {screen} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import * as router from 'react-router-dom';
 
 import {renderApp} from '../test/render/main';
@@ -53,10 +53,12 @@ describe('Page browsing behavior', () => {
 
   test('post path with language rendered', async () => {
     const path = makePostPath(PostPath.ANALYSIS, {pid: 1, lang: SupportedLanguages.CHT});
-    await renderApp(path);
+    renderApp(path);
 
     expect(screen.queryByText(translationCHT.meta.error['404'].description)).not.toBeInTheDocument();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -65,10 +67,12 @@ describe('Page browsing behavior', () => {
 
   test('post path without language redirected and rendered', async () => {
     const path = router.generatePath(PostPath.ANALYSIS, {pid: 1});
-    await renderApp(path);
+    renderApp(path);
 
     expect(screen.queryByText(translationEN.meta.error['404'].description)).not.toBeInTheDocument();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -77,7 +81,7 @@ describe('Page browsing behavior', () => {
 
   test('non-existent page without language should return 404', async () => {
     const path = '/aa';
-    await renderApp(path);
+    renderApp(path);
 
     expect(screen.getByText(translationEN.meta.error['404'].description)).toBeInTheDocument();
     expect(pageViewFunction).toHaveBeenCalledTimes(0);
