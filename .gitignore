@@ -33,3 +33,4 @@ yarn-error.log*
 .DS_Store
 .wakatime-project
 src/react-app-env.d.ts
+newrelic_agent.log
