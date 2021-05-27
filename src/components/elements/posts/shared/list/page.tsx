@@ -42,7 +42,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   const {lang} = useI18n();
 
   const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
-  const pageLimit = 25;
+  const pageLimit = 10;
 
   const [status, setStatus] = React.useState<Status<R>>(
     {
