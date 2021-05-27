@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
 
 import {CookiesKeys} from '../const/cookies';
+import {GeneralPath} from '../const/path/definitions';
 
 const cookies = new Cookies();
 
@@ -62,7 +63,7 @@ export class CookiesControl {
    * @private
    */
   private static setValue(key: CookiesKeys, value: string): void {
-    cookies.set(key, value);
+    cookies.set(key, value, {path: GeneralPath.HOME});
   }
 
   /**
@@ -72,6 +73,6 @@ export class CookiesControl {
    * @private
    */
   private static removeValue(key: CookiesKeys): void {
-    cookies.remove(key);
+    cookies.remove(key, {path: GeneralPath.HOME});
   }
 }

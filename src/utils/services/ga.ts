@@ -59,14 +59,21 @@ export class GoogleAnalytics {
    *
    * @param {string} method method used for login
    * @param {boolean} success if the login succeed
+   * @param {string} errorName name of the error
    */
-  static login(method: string = 'Google', success: boolean = true) {
+  static login(method: string = 'Google', success: boolean, errorName?: string) {
+    const params: Record<string, string | boolean> = {
+      'method': method,
+      'success': success,
+    };
+
+    if (errorName) {
+      params['error_name'] = errorName;
+    }
+
     GoogleAnalytics.sendEvent(
       GAEvent.LOGIN,
-      {
-        'method': method,
-        'success': success,
-      },
+      params,
     );
   }
 
