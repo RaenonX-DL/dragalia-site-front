@@ -33,7 +33,7 @@ describe('Checkboxes', () => {
   it('preloads the selection', async () => {
     inputData = {selected: [2, 3]};
 
-    await renderReact(() => (
+    renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
@@ -50,7 +50,7 @@ describe('Checkboxes', () => {
   it('deselect an option', async () => {
     inputData = {selected: [2]};
 
-    await renderReact(() => (
+    renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
@@ -69,7 +69,7 @@ describe('Checkboxes', () => {
   it('can select multiple options', async () => {
     inputData = {selected: []};
 
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}
@@ -91,7 +91,7 @@ describe('Checkboxes', () => {
   test('selecting an option add it to the state', async () => {
     inputData = {selected: [2]};
 
-    await renderReact(() => (
+    renderReact(() => (
       <CustomBoxes
         options={options}
         inputData={inputData}

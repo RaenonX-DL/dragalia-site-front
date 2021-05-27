@@ -33,7 +33,7 @@ describe('Radio checks', () => {
   it('preloads the selection', async () => {
     inputData = {selected: 2};
 
-    await renderReact(() => (
+    renderReact(() => (
       <CustomRadios
         options={options}
         inputData={inputData}
@@ -50,7 +50,7 @@ describe('Radio checks', () => {
   test('selecting another option changes the state', async () => {
     inputData = {selected: 2};
 
-    await renderReact(() => (
+    renderReact(() => (
       <CustomRadios
         options={options}
         inputData={inputData}
@@ -73,7 +73,7 @@ describe('Radio checks', () => {
     };
     setInputDataFunc = jest.fn().mockImplementation((newData) => inputData = newData);
 
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <>
         <CustomRadios
           options={options}

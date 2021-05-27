@@ -66,7 +66,7 @@ describe('Analysis output (Character)', () => {
   it('renders correctly if no alt lang', async () => {
     fnGetAnalysis.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <AnalysisOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -98,7 +98,7 @@ describe('Analysis output (Character)', () => {
       otherLangs: [SupportedLanguages.CHT],
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <AnalysisOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -130,7 +130,7 @@ describe('Analysis output (Character)', () => {
       editNotes: [],
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <AnalysisOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -161,7 +161,7 @@ describe('Analysis output (Character)', () => {
       isAdmin: true,
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <AnalysisOutput fnSetTitle={() => void 0}/>
       ));
     });

@@ -81,7 +81,7 @@ describe('Enum checks as radio', () => {
 
   it('can check single item', async () => {
     data = {'enum': 2};
-    await renderReact(() => <CheckWrapper data={data}/>);
+    renderReact(() => <CheckWrapper data={data}/>);
 
     clickFirstButton();
 
@@ -91,7 +91,7 @@ describe('Enum checks as radio', () => {
 
   it('does not change the selection if selected the same', async () => {
     data = {'enum': 1};
-    const {rerender} = await renderReact(() => <CheckWrapper data={data}/>);
+    const {rerender} = renderReact(() => <CheckWrapper data={data}/>);
 
     clickFirstButton();
     rerender();
@@ -101,7 +101,7 @@ describe('Enum checks as radio', () => {
   });
 
   it('shows text if the image URL is not available', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <EnumChecksRadio
         options={enums}
         inputData={data}
@@ -114,7 +114,7 @@ describe('Enum checks as radio', () => {
   });
 
   it('shows image if the image URL is available', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <EnumChecksRadio
         options={enums}
         inputData={data}

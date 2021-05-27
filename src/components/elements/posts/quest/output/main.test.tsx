@@ -66,7 +66,7 @@ describe('Quest post output', () => {
   it('renders correctly if no alt lang', async () => {
     fnGetQuestPost.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <QuestPostOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -94,7 +94,7 @@ describe('Quest post output', () => {
       otherLangs: [SupportedLanguages.CHT],
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <QuestPostOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -122,7 +122,7 @@ describe('Quest post output', () => {
       editNotes: [],
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <QuestPostOutput fnSetTitle={() => void 0}/>
       ));
     });
@@ -149,7 +149,7 @@ describe('Quest post output', () => {
       isAdmin: true,
     }));
     await act(async () => {
-      await renderReact(() => (
+      renderReact(() => (
         <QuestPostOutput fnSetTitle={() => void 0}/>
       ));
     });

@@ -36,7 +36,7 @@ describe('Analysis lookup top section upon landing', () => {
   ];
 
   it('shows analyses on fetched', async () => {
-    await renderReact(() => <AnalysisLookupLanding analyses={analyses}/>);
+    renderReact(() => <AnalysisLookupLanding analyses={analyses}/>);
 
     await waitFor(() => {
       screen.getByText('Gala Leonidas');

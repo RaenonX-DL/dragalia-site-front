@@ -93,7 +93,7 @@ describe('EX/CEX filter section', () => {
   });
 
   it('renders the filter section', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -104,7 +104,7 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by element', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -121,7 +121,7 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by EX parameter', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -138,7 +138,7 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by CEX parameter', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
@@ -155,7 +155,7 @@ describe('EX/CEX filter section', () => {
   });
 
   it('can filter by multiple conditions', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}

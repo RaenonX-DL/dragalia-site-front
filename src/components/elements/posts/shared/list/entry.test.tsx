@@ -27,7 +27,7 @@ describe('Post list entry', () => {
   });
 
   it('renders correctly', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <PostEntry
         generateLink={generateLink}
         renderPostBadges={renderPostBadges}

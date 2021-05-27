@@ -81,7 +81,7 @@ describe('Analysis form meta input', () => {
   });
 
   it('blocks entering string unit ID', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
@@ -103,7 +103,7 @@ describe('Analysis form meta input', () => {
   });
 
   it('shows the valid mark and the unit icon upon passing the check', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
@@ -137,7 +137,7 @@ describe('Analysis form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
@@ -159,7 +159,7 @@ describe('Analysis form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last unit ID change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
@@ -178,7 +178,7 @@ describe('Analysis form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}
@@ -197,7 +197,7 @@ describe('Analysis form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormAnalysisMeta
         formState={state}
         setPayload={setPayload}

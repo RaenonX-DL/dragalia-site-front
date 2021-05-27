@@ -75,7 +75,7 @@ describe('Enum check boxes as checkboxes', () => {
 
   it('can check single item', async () => {
     data = {'enum': [] as Array<number>};
-    await renderReact(() => (
+    renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
@@ -91,7 +91,7 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can cancel checking single item', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
@@ -109,7 +109,7 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can check multiple items', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
@@ -127,7 +127,7 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('can cancel checking multiple items', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
@@ -147,7 +147,7 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('shows text if the image URL is not available', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}
@@ -160,7 +160,7 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('shows image if the image URL is available', async () => {
-    await renderReact(() => (
+    renderReact(() => (
       <EnumChecksBox
         options={enums}
         inputData={data}

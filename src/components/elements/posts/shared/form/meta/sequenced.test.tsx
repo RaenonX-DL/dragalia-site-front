@@ -51,7 +51,7 @@ describe('Sequenced form meta input', () => {
   });
 
   it('shows the valid mark upon passing the check', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
@@ -83,7 +83,7 @@ describe('Sequenced form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
@@ -107,7 +107,7 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last seq ID change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
@@ -130,7 +130,7 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last title change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
@@ -153,7 +153,7 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}
@@ -176,7 +176,7 @@ describe('Sequenced form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = await renderReact(() => (
+    const {rerender} = renderReact(() => (
       <FormSequencedMeta
         formState={state}
         setPayload={setPayload}

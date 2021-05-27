@@ -44,7 +44,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(() => (
+    renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -78,7 +78,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(() => (
+    renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
@@ -109,7 +109,7 @@ describe('Array data form', () => {
       ],
     };
 
-    await renderReact(() => (
+    renderReact(() => (
       <ArrayDataForm
         payload={payload}
         minLength={2}
