@@ -37,7 +37,7 @@ export const AnalysisPostLookup = () => {
           setInputForward(data);
         }}
       />
-      {inputForward && <AnalysisLookupOutput inputData={inputForward}/>}
+      <AnalysisLookupOutput inputData={inputForward}/>
     </>
   );
 };
