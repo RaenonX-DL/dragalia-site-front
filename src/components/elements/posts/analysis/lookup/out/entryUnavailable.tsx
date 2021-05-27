@@ -16,7 +16,7 @@ export const AnalysisEntryUnavailable = ({unitInfo, isFetchingMeta}: AnalysisEnt
     <>
       <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
         <Col className="mr-2">
-          <h6 className="text-muted">{unitInfo.name[lang]}</h6>
+          <span className="h6 text-muted">{unitInfo.name[lang]}</span>
         </Col>
       </Row>
       <Row noGutters className="align-items-center" style={{height: '1.5rem'}}>

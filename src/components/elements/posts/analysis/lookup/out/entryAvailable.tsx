@@ -17,7 +17,7 @@ export type AnalysisEntryAvailableProps = AnalysisEntryCommonProps & {
 export const AnalysisEntryAvailable = ({
   unitInfo,
   analysisMeta,
-  simplified = true,
+  simplified = false,
 }: AnalysisEntryAvailableProps) => {
   const {t, lang} = useI18n();
 

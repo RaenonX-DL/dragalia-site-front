@@ -12,7 +12,7 @@ export type AnalysisEntryCommonProps = {
   unitInfo: UnitInfoData,
 }
 
-type AnalysisEntryProps = AnalysisEntryCommonProps & AnalysisEntryAvailableProps & {
+type AnalysisEntryProps = AnalysisEntryCommonProps & Omit<AnalysisEntryAvailableProps, 'analysisMeta'> & {
   analysisMeta?: AnalysisLookupEntry,
   isFetchingMeta: boolean,
 }
