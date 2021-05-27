@@ -337,6 +337,7 @@ export const translation: TranslationStruct = {
       videos: '相關影片',
       error: {
         noPostId: '文章 ID 未指定。',
+        noResult: '查無結果。請修改條件後重新搜尋。',
         unknownType: '無法解析貼文種類 - {{analysisType}}。',
         unavailable: '無相關評測',
       },

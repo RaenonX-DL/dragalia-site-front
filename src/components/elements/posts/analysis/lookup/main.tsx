@@ -29,6 +29,7 @@ export const AnalysisPostLookup = () => {
   return (
     <>
       <AnalysisLookupLanding analyses={lookupLanding.data?.analyses || []}/>
+      <hr/>
       <AnalysisLookupInput
         isAdmin={lookupLanding.data?.isAdmin || false}
         onSearchRequested={(data) => () => {

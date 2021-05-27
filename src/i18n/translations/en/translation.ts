@@ -365,6 +365,7 @@ export const translation: TranslationStruct = {
       videos: 'Related Videos',
       error: {
         noPostId: 'Analysis ID is not specified.',
+        noResult: 'No matching results. Please verify your searching condition.',
         unknownType: 'Unknown post type - {{analysisType}}.',
         unavailable: 'Analysis Unavailable',
       },

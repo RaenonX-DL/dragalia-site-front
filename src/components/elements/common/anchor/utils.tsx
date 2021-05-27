@@ -24,6 +24,7 @@ export const scrollToAnchor = (history: History) => {
 
 
 export const scrollToElement = (element: HTMLElement) => {
+  // FIXME: possible duplicate of `scrollToTop`?
   const titleNav = document.getElementById(titleNavBarId);
 
   const anchorHeight = element.getBoundingClientRect().top + window.pageYOffset;

@@ -269,6 +269,7 @@ export type TranslationStruct = {
       videos: string,
       error: {
         noPostId: string,
+        noResult: string,
         unknownType: string,
         unavailable: string,
       },

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {useI18n} from '../../../../i18n/hook';
-import {AnalysisPostLookup} from '../../../elements/posts/analysis/lookup/lookup';
+import {AnalysisPostLookup} from '../../../elements/posts/analysis/lookup/main';
 import {PageProps} from '../../props';
 
 

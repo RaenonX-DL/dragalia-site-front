@@ -10,10 +10,14 @@ import {
 import {InputData} from './in/types';
 
 export const getUnitInfo = (
-  inputData: InputData,
+  inputData: InputData | undefined,
   charaInfo: CharaInfo,
   dragonInfo: DragonInfo,
 ): Array<UnitInfoData> => {
+  if (!inputData) {
+    return [];
+  }
+
   const ret: Array<UnitInfoData> = [];
 
   const isUnitElementMatch = (unit: UnitInfoDataBase) => (

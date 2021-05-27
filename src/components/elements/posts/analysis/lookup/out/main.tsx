@@ -18,7 +18,7 @@ type AnalysisLookupOutputProps = {
 }
 
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
-  const {lang} = useI18n();
+  const {t, lang} = useI18n();
 
   const rowElem = React.useRef<HTMLDivElement>(null);
 
@@ -37,6 +37,11 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     'Failed to fetch analysis meta.',
   );
 
+  // Scroll after input data has changed
+  React.useEffect(() => {
+    scrollToTop(rowElem);
+  }, [inputData]);
+
   fetchAnalysisMeta();
 
   const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
@@ -44,8 +49,12 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
   const unitInfoHasAnalysis = unitInfoFiltered.filter((info) => info.id in analysisMeta.data.analyses);
   const unitInfoNoAnalysis = unitInfoFiltered.filter((info) => !(info.id in analysisMeta.data.analyses));
 
-  if (unitInfoFiltered.length) {
-    scrollToTop(rowElem);
+  if (inputData && charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
+    return (
+      <h5 className="text-danger text-center">
+        {t((t) => t.posts.analysis.error.noResult)}
+      </h5>
+    );
   }
 
   return (
