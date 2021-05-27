@@ -26,8 +26,8 @@ export const PostEditNotes = ({editNotes}: PostEditNotesProps) => {
           editNotes.map((editNote) => {
             return (
               <tr key={editNote.timestampEpoch}>
-                <td className="no-line-break text-center"><TimeAgo epoch={editNote.timestampEpoch}/></td>
-                <td className="no-line-break">{editNote.note}</td>
+                <td className="text-center"><TimeAgo epoch={editNote.timestampEpoch}/></td>
+                <td>{editNote.note}</td>
               </tr>
             );
           })

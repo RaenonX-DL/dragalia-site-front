@@ -2,10 +2,12 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
+import {
+  AbilityVariantEffectUnitData,
+  CharaExAbilityDataEntry,
+  ConditionEnumMap,
+} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types/common/ability';
-import {ConditionEnumMap} from '../../../../../utils/services/resources/types/enums';
-import {ExAbilityDataEntry} from '../../../../../utils/services/resources/types/ex';
 import {getConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 
@@ -95,7 +97,7 @@ export const getAbilityVariantEffectBadges = (
   return badges;
 };
 
-export const filterExAbilityData = (exAbilityData: Array<ExAbilityDataEntry>, inputData: InputData) => {
+export const filterExAbilityData = (exAbilityData: Array<CharaExAbilityDataEntry>, inputData: InputData) => {
   return exAbilityData.filter((entry) => {
     if (inputData.filterElementCode.length > 0 && !inputData.filterElementCode.includes(entry.chara.element)) {
       return false;

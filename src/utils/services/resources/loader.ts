@@ -1,15 +1,21 @@
-import {ResourcePaths} from './paths';
 import {
   AttackingSkillData,
   BuffParamEnums,
   CategorizedConditionEnums,
+  CharaExAbilityDataEntry,
+  CharaInfo,
   ConditionEnumMap,
+  DragonInfo,
   ElementBonus,
   ElementEnums,
-  ExAbilityDataEntry,
   ExBuffParams,
+  ResourcePaths,
   SkillIdentifierInfo,
-} from './types';
+  WeaponTypeEnums,
+} from '../../../api-def/resources';
+
+// TEST: Ensure that the fetched data won't have `undefined`,
+//  which may caused by a definition mismatch between the parser and these type definitions.
 
 /**
  * Class to load the resources.
@@ -21,12 +27,12 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ExAbilityDataEntry>>} promise after the callback
+   * @return {Promise<Array<CharaExAbilityDataEntry>>} promise after the callback
    */
   static getAbilityEx(
-    callback?: (exAbilityDataEntries: Array<ExAbilityDataEntry>) => void,
-  ): Promise<Array<ExAbilityDataEntry>> {
-    return ResourceLoader.fetchResources<Array<ExAbilityDataEntry>>(ResourcePaths.ABILITY_EX, callback);
+    callback?: (exAbilityDataEntries: Array<CharaExAbilityDataEntry>) => void,
+  ): Promise<Array<CharaExAbilityDataEntry>> {
+    return ResourceLoader.fetchResources<Array<CharaExAbilityDataEntry>>(ResourcePaths.ABILITY_EX, callback);
   }
 
   // endregion
@@ -37,7 +43,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ENUMS_BUFF_PARAM>>} promise after the callback
+   * @return {Promise<BuffParamEnums>} promise after the callback
    */
   static getEnumBuffParam(
     callback?: (categorizedConditionEnums: BuffParamEnums) => void,
@@ -50,7 +56,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
+   * @return {Promise<CategorizedConditionEnums>} promise after the callback
    */
   static getEnumCategorizedConditions(
     callback?: (categorizedConditionEnums: CategorizedConditionEnums) => void,
@@ -63,7 +69,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<CategorizedConditionEnums>>} promise after the callback
+   * @return {Promise<ConditionEnumMap>} promise after the callback
    */
   static getEnumAllConditions(callback?: (allConditionEnums: ConditionEnumMap) => void): Promise<ConditionEnumMap> {
     return ResourceLoader.fetchResources<ConditionEnumMap>(ResourcePaths.ENUMS_CONDITIONS_ALL, callback);
@@ -74,10 +80,21 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ElementEnums>>} promise after the callback
+   * @return {Promise<ElementEnums>} promise after the callback
    */
   static getEnumElements(callback?: (elementEnums: ElementEnums) => void): Promise<ElementEnums> {
     return ResourceLoader.fetchResources<ElementEnums>(ResourcePaths.ENUMS_ELEMENTS, callback);
+  }
+
+  /**
+   * Get the weapon type enums.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<WeaponTypeEnums>} promise after the callback
+   */
+  static getEnumWeaponTypes(callback?: (weaponTypeEnums: WeaponTypeEnums) => void): Promise<WeaponTypeEnums> {
+    return ResourceLoader.fetchResources<WeaponTypeEnums>(ResourcePaths.ENUMS_WEAPON_TYPES, callback);
   }
 
   /**
@@ -85,7 +102,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<Array<ExBuffParams>>} promise after the callback
+   * @return {Promise<ExBuffParams>} promise after the callback
    */
   static getEnumExBuffParameters(
     callback?: (categorizedConditionEnums: ExBuffParams) => void,
@@ -120,6 +137,31 @@ export class ResourceLoader {
     callback?: (skillIdentifierInfo: SkillIdentifierInfo) => void,
   ): Promise<SkillIdentifierInfo> {
     return ResourceLoader.fetchResources<SkillIdentifierInfo>(ResourcePaths.SKILLS_IDENTIFIERS, callback);
+  }
+
+  // endregion
+
+  // region Unit info
+  /**
+   * Get the character info data.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<CharaInfo>} promise after the callback
+   */
+  static getCharacterInfo(callback?: (elementBonusData: CharaInfo) => void): Promise<CharaInfo> {
+    return ResourceLoader.fetchResources<CharaInfo>(ResourcePaths.INFO_CHARA, callback);
+  }
+
+  /**
+   * Get the dragon info data.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<DragonInfo>} promise after the callback
+   */
+  static getDragonInfo(callback?: (elementBonusData: DragonInfo) => void): Promise<DragonInfo> {
+    return ResourceLoader.fetchResources<DragonInfo>(ResourcePaths.INFO_DRAGON, callback);
   }
 
   // endregion

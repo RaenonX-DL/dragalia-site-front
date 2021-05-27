@@ -2,8 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {AbilityVariantEffectUnitData} from '../../../../../utils/services/resources/types/common/ability';
-import {ConditionEnumMap} from '../../../../../utils/services/resources/types/enums';
+import {AbilityVariantEffectUnitData, ConditionEnumMap} from '../../../../../api-def/resources';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {ExEffectUnit} from './exEffectUnit';
 import {getAbilityVariantEffectBadges} from './utils';

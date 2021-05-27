@@ -1,5 +1,4 @@
-import {SupportedLanguages} from '../../../src/api-def/api/other/lang';
-import {ApiResponseCode} from '../../../src/api-def/api/responseCode';
+import {SupportedLanguages, ApiResponseCode} from '../../../src/api-def/api';
 import {GeneralPath} from '../../../src/const/path/definitions';
 import {makeSimplePath} from '../../../src/utils/path/make';
 import {ADS_CLIENT} from '../../const';

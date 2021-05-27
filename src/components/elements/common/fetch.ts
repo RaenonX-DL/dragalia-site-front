@@ -13,39 +13,46 @@ export const isNotFetched = <T extends FetchStatusSimple>(fetchStatus: T) => {
   return !fetchStatus.fetched && !fetchStatus.fetching;
 };
 
+type FetchStateReturns<D> = {
+  fetchStatus: FetchStatus<D>,
+  fetchFunction: () => void,
+  setFetchStatus: Dispatch<SetStateAction<FetchStatus<D>>>,
+}
+
 export const useFetchStateProcessed = <D, R>(
   initialData: D,
-  fnFetch: (callback: (data: R) => void) => Promise<R>,
+  fnFetch: (callback?: (data: R) => void) => Promise<R>,
   messageOnFetchFailed: string,
   fnProcessData: (response: R) => D,
-): [FetchStatus<D>, Dispatch<SetStateAction<FetchStatus<D>>>, () => void] => {
-  const [fetchState, setFetchState] = React.useState<FetchStatus<D>>({
+): FetchStateReturns<D> => {
+  const [fetchStatus, setFetchStatus] = React.useState<FetchStatus<D>>({
     fetched: false,
     fetching: false,
     data: initialData,
   });
 
   const fetchFunction = () => {
-    if (!isNotFetched(fetchState)) {
+    if (!isNotFetched(fetchStatus)) {
       return;
     }
 
-    setFetchState({
-      ...fetchState,
+    setFetchStatus({
+      ...fetchStatus,
       fetching: true,
     });
 
-    fnFetch((data) => {
-      setFetchState({
-        ...fetchState,
-        fetched: true,
-        fetching: false,
-        data: fnProcessData(data),
-      });
-    })
+    fnFetch()
+      .then((data) => {
+        setFetchStatus({
+          ...fetchStatus,
+          fetched: true,
+          fetching: false,
+          data: fnProcessData(data),
+        });
+      })
       .catch((e) => {
-        setFetchState({
-          ...fetchState,
+        setFetchStatus({
+          ...fetchStatus,
           fetched: true,
           fetching: false,
         });
@@ -53,14 +60,14 @@ export const useFetchStateProcessed = <D, R>(
       });
   };
 
-  return [fetchState, setFetchState, fetchFunction];
+  return {fetchStatus, fetchFunction, setFetchStatus};
 };
 
 
 export const useFetchState = <D>(
   initialData: D,
-  fnFetch: (callback: (data: D) => void) => Promise<D>,
+  fnFetch: (callback?: (data: D) => void) => Promise<D>,
   messageOnFetchFailed: string,
-): [FetchStatus<D>, Dispatch<SetStateAction<FetchStatus<D>>>, () => void] => {
+): FetchStateReturns<D> => {
   return useFetchStateProcessed(initialData, fnFetch, messageOnFetchFailed, (data) => data);
 };

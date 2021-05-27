@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
+import {EnumChecksBox} from '../../../common/check/enumChecksBox';
 import {SectionTitle} from '../../elements/title';
 import {InputSectionBaseProps} from '../../props';
 import {InputData} from './types';

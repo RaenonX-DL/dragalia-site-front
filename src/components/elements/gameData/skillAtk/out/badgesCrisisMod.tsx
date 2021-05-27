@@ -2,12 +2,12 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
+import {AttackingSkillData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
-  let badges: Array<React.ReactNode> = [];
+  let badges: Array<React.ReactElement> = [];
 
   const {t} = useI18n();
 

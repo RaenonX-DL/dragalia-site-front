@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {ConditionEnumMap, SkillIdentifierInfo} from '../../../../../utils/services/resources/types';
+import {ConditionEnumMap, SkillIdentifierInfo} from '../../../../../api-def/resources';
 import {DistributionBar} from '../../../charts';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';

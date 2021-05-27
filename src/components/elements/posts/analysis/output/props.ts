@@ -1,6 +1,6 @@
-import {AnalysisGetSuccessResponse} from '../../../../../api-def/api';
+import {AnalysisGetResponse} from '../../../../../api-def/api';
 
 
-export type SectionProps<R extends AnalysisGetSuccessResponse> = {
+export type SectionProps<R extends AnalysisGetResponse> = {
   analysis: R,
 }

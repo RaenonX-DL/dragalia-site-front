@@ -2,8 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {ConditionEnumMap} from '../../../../../utils/services/resources/types/enums';
-import {ExAbilityDataEntry} from '../../../../../utils/services/resources/types/ex';
+import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
 import {overLengthWarningCheck} from '../../utils';
 import {InputData} from '../in/types';
 import {ExAbilityEntry} from './entry';
@@ -11,7 +10,7 @@ import {filterExAbilityData} from './utils';
 
 
 export type OutputProps = {
-  exAbilityData: Array<ExAbilityDataEntry>,
+  exAbilityData: Array<CharaExAbilityDataEntry>,
   conditionEnums: ConditionEnumMap,
   inputData?: InputData,
 }
@@ -37,7 +36,7 @@ export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: Outp
   entries
     .push(
       ...exAbilityData
-        .map((exAbilityData: ExAbilityDataEntry, index: number) => (
+        .map((exAbilityData: CharaExAbilityDataEntry, index: number) => (
           <Col key={index} lg={6}>
             <ExAbilityEntry entry={exAbilityData} conditionEnums={conditionEnums}/>
           </Col>

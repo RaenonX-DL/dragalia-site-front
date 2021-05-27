@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {DragonAnalysis} from '../../../../../api-def/api';
+import {DragonAnalysisGetResponse} from '../../../../../api-def/api';
 import {AnalysisOutputBase} from './base';
 import {AnalysisOutputDragonBody} from './dragonBody';
 import {SectionProps} from './props';
 
-export const AnalysisOutputDragon = ({analysis}: SectionProps<DragonAnalysis>) => (
+export const AnalysisOutputDragon = ({analysis}: SectionProps<DragonAnalysisGetResponse>) => (
   <AnalysisOutputBase
     analysis={analysis}
-    renderBody={(analyais) => <AnalysisOutputDragonBody analysis={analyais}/>}
+    renderBody={(analysis) => <AnalysisOutputDragonBody analysis={analysis}/>}
   />
 );

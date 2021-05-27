@@ -2,11 +2,11 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {ConditionEnumMap, CharaExAbilityDataEntry} from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
 import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources/loader';
-import {ConditionEnumMap, ExAbilityDataEntry} from '../../../utils/services/resources/types';
 import {useFetchState} from '../../elements/common/fetch';
 import {ExAbilityInput} from '../../elements/gameData/ex/in/main';
 import {InputData} from '../../elements/gameData/ex/in/types';
@@ -18,21 +18,19 @@ const ExAbilitySkillList = () => {
   const [inputDataForward, setInputDataForward] = React.useState<InputData>();
   const entryCol = React.useRef<HTMLDivElement>(null);
 
-  const [
-    exAbility,
-    ,
-    fetchExAbility,
-  ] = useFetchState<Array<ExAbilityDataEntry>>(
+  const {
+    fetchStatus: exAbility,
+    fetchFunction: fetchExAbility,
+  } = useFetchState<Array<CharaExAbilityDataEntry>>(
     [],
     ResourceLoader.getAbilityEx,
     'Failed to fetch ex ability data.',
   );
 
-  const [
-    conditionEnums,
-    ,
-    fetchConditionEnums,
-  ] = useFetchState<ConditionEnumMap>(
+  const {
+    fetchStatus: conditionEnums,
+    fetchFunction: fetchConditionEnums,
+  } = useFetchState<ConditionEnumMap>(
     {},
     ResourceLoader.getEnumAllConditions,
     'Failed to fetch condition enums.',

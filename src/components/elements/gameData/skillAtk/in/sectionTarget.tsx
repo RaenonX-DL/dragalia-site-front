@@ -2,10 +2,11 @@ import React from 'react';
 
 import {ConditionCodes} from '../../../../../const/gameData';
 import {useI18n} from '../../../../../i18n/hook';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
-import {EnumChecksRadio} from '../../elements/enumChecksRadio';
-import {NumericInput} from '../../elements/numInput';
-import {RadioCheckLabel, RadioChecks} from '../../elements/radio';
+import {CustomRadios} from '../../../common/check/customRadio';
+import {EnumChecksBox} from '../../../common/check/enumChecksBox';
+import {EnumChecksRadio} from '../../../common/check/enumChecksRadio';
+import {CheckEntry} from '../../../common/check/types';
+import {NumericInput} from '../../../common/input/numeric';
 import {SectionSubTitle} from '../../elements/subTitle';
 import {SectionTitle} from '../../elements/title';
 import {SectionProps, SectionPropsCondEnums} from './props';
@@ -19,7 +20,7 @@ export const SectionTarget = ({
 }: SectionTargetProps) => {
   const {t} = useI18n();
 
-  const stateLabels: Array<RadioCheckLabel> = [
+  const stateLabels: Array<CheckEntry> = [
     {
       text: t((t) => t.game.skillAtk.name.targetState.none),
       code: ConditionCodes.NONE,
@@ -65,7 +66,7 @@ export const SectionTarget = ({
         description={t((t) => t.game.skillAtk.desc.targetState.title)}
       />
       <div className="text-center mb-3">
-        <RadioChecks
+        <CustomRadios
           options={stateLabels}
           inputKey="targetStateCode"
           inputData={inputData}

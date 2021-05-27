@@ -1,4 +1,4 @@
-import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
+import {AttackingSkillData} from '../../../../../api-def/resources';
 
 export type SectionProps = {
   atkSkillEntry: AttackingSkillData

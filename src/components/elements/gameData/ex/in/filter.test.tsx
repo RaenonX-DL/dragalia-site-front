@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {render} from '../../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
-import {ElementEnums, ExBuffParams} from '../../../../../utils/services/resources/types/enums';
-import {EnumChecksBox} from '../../elements/enumChecksBox';
+import {fireEvent, screen} from '@testing-library/react';
+
+import {renderReact} from '../../../../../../test/render/main';
+import {SupportedLanguages} from '../../../../../api-def/api';
+import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
 
@@ -84,120 +85,96 @@ describe('EX/CEX filter section', () => {
 
   beforeEach(() => {
     setInputData = jest.fn().mockImplementation((newData) => inputData = newData);
+    inputData = {
+      filterElementCode: [],
+      filterExBuffParamCode: [],
+      filterChainedExBuffParamCode: [],
+    };
   });
 
   it('renders the filter section', async () => {
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [],
-      filterChainedExBuffParamCode: [],
-    };
-
-    const {app} = await render(
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
-
-    expect(app.find(SectionFilter).exists()).toBeTruthy();
+      />
+    ));
   });
 
   it('can filter by element', async () => {
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [],
-      filterChainedExBuffParamCode: [],
-    };
-
-    const {app} = await render(
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
-    const elemChecks = app.find(EnumChecksBox).at(0).find('input').at(0);
-    expect(elemChecks.exists()).toBeTruthy();
-    elemChecks.simulate('change', {target: {checked: true}});
+    const elemCheck = screen.getByAltText('filterElementCodeelem 1');
+    fireEvent.click(elemCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterElementCode).toStrictEqual([1]);
   });
 
   it('can filter by EX parameter', async () => {
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [],
-      filterChainedExBuffParamCode: [],
-    };
-
-    const {app} = await render(
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
-    const elemChecks = app.find(EnumChecksBox).at(1).find('input').at(0);
-    expect(elemChecks.exists()).toBeTruthy();
-    elemChecks.simulate('change', {target: {checked: true}});
+    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
+    fireEvent.click(exCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterExBuffParamCode).toStrictEqual([1]);
   });
 
   it('can filter by CEX parameter', async () => {
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [],
-      filterChainedExBuffParamCode: [],
-    };
-
-    const {app} = await render(
+    renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
-    const elemChecks = app.find(EnumChecksBox).at(2).find('input').at(0);
-    expect(elemChecks.exists()).toBeTruthy();
-    elemChecks.simulate('change', {target: {checked: true}});
+    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
+    fireEvent.click(cexCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterChainedExBuffParamCode).toStrictEqual([1]);
   });
 
   it('can filter by multiple conditions', async () => {
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [1],
-      filterChainedExBuffParamCode: [1],
-    };
-
-    const {app} = await render(
+    const {rerender} = renderReact(() => (
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
         exBuffParams={exBuffParams}
-      />,
-    );
+      />
+    ));
 
-    const elemChecks = app.find(EnumChecksBox).at(0).find('input').at(1);
-    expect(elemChecks.exists()).toBeTruthy();
-    elemChecks.simulate('change', {target: {checked: true}});
+    const elemCheck = screen.getByAltText('filterElementCodeelem 2');
+    fireEvent.click(elemCheck);
+    rerender();
+    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
+    fireEvent.click(exCheck);
+    rerender();
+    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
+    fireEvent.click(cexCheck);
+    rerender();
 
-    expect(setInputData).toHaveBeenCalledTimes(1);
+    expect(setInputData).toHaveBeenCalledTimes(3);
     expect(inputData.filterElementCode).toStrictEqual([2]);
     expect(inputData.filterExBuffParamCode).toStrictEqual([1]);
     expect(inputData.filterChainedExBuffParamCode).toStrictEqual([1]);

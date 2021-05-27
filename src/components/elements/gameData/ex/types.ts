@@ -1,4 +1,4 @@
-import {ElementEnums, ExBuffParams} from '../../../../utils/services/resources/types/enums';
+import {ElementEnums, ExBuffParams} from '../../../../api-def/resources';
 import {FetchStatusSimple} from '../../common/fetch';
 
 export type SelectionData = FetchStatusSimple & {

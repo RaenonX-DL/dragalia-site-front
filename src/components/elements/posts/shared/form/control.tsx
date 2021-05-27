@@ -2,15 +2,15 @@ import React from 'react';
 
 import {Button, Col, Row} from 'react-bootstrap';
 
-import {PostMetaPayload} from '../../../../../api-def/api/base/payload';
+import {PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {isFormStateValid, PostFormState} from './types';
 
-type FormControlProps<P extends PostMetaPayload> = {
+type FormControlProps<P extends PostMeta> = {
   formState: PostFormState<P>,
 }
 
-export const FormControl = <P extends PostMetaPayload>({formState}: FormControlProps<P>) => {
+export const FormControl = <P extends PostMeta>({formState}: FormControlProps<P>) => {
   const {t} = useI18n();
 
   return (

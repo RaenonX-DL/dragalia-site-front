@@ -170,7 +170,6 @@ export const translation: TranslationStruct = {
         sharedOnly: '只顯示共享技',
       },
       collapse: 'ズームイン/アウト',
-      search: '搜尋',
     },
     tools: {
       titleSelf: '他のツール',
@@ -180,11 +179,12 @@ export const translation: TranslationStruct = {
   googleSignin: {
     noUid: '不正確なGoogleアカウント',
     noUidDetails: '不正確なGoogleアカウント。もう一度ログインしてください。',
+    notLoaded: 'Loading failed. Please try enabling 3rd-party cookies then try again.',
     login: 'Googleログイン',
-    loginError: 'エラー: {{error}}',
+    loginError: 'エラー: {{error}} - {{details}}',
     loginFailed: 'ログイン失敗',
     loginUnknown: '不明なエラーが発生，ログインができない。({{error}})',
-    loginOfflineDisallowed: '無法使用離線登入。請連至網路後重試。({{code}})',
+    loginOfflineDisallowed: '離線登入已禁用。請洽網站管理員。',
     logout: 'Googleログアウト',
     logoutFailed: 'ログアウト失敗',
     logoutUnknown: '不明なエラーが発生，ログアウトができない。',
@@ -196,8 +196,8 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: '捐款網址',
-      info: '只要每個月捐款超過 USD $1 以上，即可無廣告瀏覽網站！\n\n' +
-        '如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n' +
+      info: '感謝您的捐款！如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。' +
+        '有效期為無廣告開始日起一個月內。\n\n' +
         '捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。',
     },
     warning: {
@@ -210,12 +210,13 @@ export const translation: TranslationStruct = {
       constructing: 'サイト機能工事中。後で発布する。\n\n' +
         '### メール通知システムが完成する前は\n\n各SNSの上発表する (例: 掲示板、Facebook 、LINE…など) 。' +
         '\n\n### メール通知システム完成後\n\nログインした者や，通知機能登録した者は新機能について、メールに送ります。',
+      fetching: '獲取資料中...',
       welcome: 'OM製作のドラガリ攻略サイトへようこそ！大部分の機能や、ページやまた工事中なので，よろしくお願い致します。\n\n' +
         '今 **高難易度クエスト攻略、キャラ、ドラゴン評価** は完成してる，ご覧ください。\n\n' +
         'ページに選択したら說明もついてます。',
     },
     alert: {
-      ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      ads: '每月捐款支持 OM 與我 (RaenonX) 以外，還可以無廣告瀏覽網站！[詳情請點此](/thanks)',
       migration: '目前網站基礎正在翻新中。使用過程中若有任何持續問題，請到各大 SNS 上聯繫我，感謝！',
     },
   },
@@ -224,6 +225,8 @@ export const translation: TranslationStruct = {
     omMember: 'OM 同盟成員',
     omGroup: 'OM グループ成員',
     remove: '削除',
+    search: '搜尋',
+    searchKeyword: 'Keyword',
   },
   meta: {
     inUse: {
@@ -256,8 +259,8 @@ export const translation: TranslationStruct = {
         description: 'description',
       },
       analysisPost: {
-        title: '評価',
-        description: 'description',
+        title: '【評価】{{title}}',
+        description: '{{description}}',
       },
       home: {
         title: 'ホームページ',
@@ -332,7 +335,9 @@ export const translation: TranslationStruct = {
       videos: '関する動画',
       error: {
         noPostId: '文章 ID 未指定。',
+        noResult: '查無結果。請修改條件後重新搜尋。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
+        unavailable: 'Analysis Unavailable',
       },
       skill: {
         name: 'スキルの名前',
@@ -348,10 +353,11 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '本ページの情報',
       id: 'ID',
-      lastModified: '最後の編集時間',
-      published: '発表時間',
+      lastModified: '最後編集は',
+      published: '発表は',
       title: 'お題',
-      viewCount: 'ご覽回數',
+      viewCount: 'ご覽回数',
+      viewCountComplete: 'ご覽 {{count}} 回',
     },
     manage: {
       add: '文を追加する',

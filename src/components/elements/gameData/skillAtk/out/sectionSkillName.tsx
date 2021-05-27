@@ -1,7 +1,7 @@
 import React from 'react';
 
+import {SkillIdentifierInfo} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {SkillIdentifierInfo} from '../../../../../utils/services/resources/types/skill';
 import {SectionProps} from './props';
 
 type SectionSkillNameProps = SectionProps & {

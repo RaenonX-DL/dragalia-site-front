@@ -2,14 +2,14 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {AnalysisPayload} from '../../../../../api-def/api';
+import {AnalysisBody} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from '../../shared/form/types';
 
-export type FormTopProps<P extends AnalysisPayload> = PostFormDataProps<P>
+export type FormTopProps<P extends AnalysisBody> = PostFormDataProps<P>
 
-export const FormTop = <P extends AnalysisPayload>({
+export const FormTop = <P extends AnalysisBody>({
   formState, setPayload,
 }: FormTopProps<P>) => {
   const {t} = useI18n();
@@ -32,8 +32,8 @@ export const FormTop = <P extends AnalysisPayload>({
         <Col>
           <h5>{t((t) => t.posts.analysis.summonResult)}</h5>
           <MarkdownInput
-            onChanged={(e) => setPayload('summon', e.target.value)}
-            rows={4} value={payload.summon}
+            onChanged={(e) => setPayload('summonResult', e.target.value)}
+            rows={4} value={payload.summonResult}
           />
         </Col>
       </Row>

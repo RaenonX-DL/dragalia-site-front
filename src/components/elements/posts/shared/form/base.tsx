@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Redirect} from 'react-router-dom';
 
-import {ApiResponseCode, PostMetaPayload} from '../../../../../api-def/api';
+import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/express';
@@ -14,19 +14,21 @@ import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
 
 
-type PostFormBaseInternalProps<P extends PostMetaPayload> = PostFormBaseProps<P> & {
+type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> = PostFormBaseProps<P, R> & {
   fnGetRedirectPath: (redirectId: number) => string,
+  fnGetRedirectId: (response: R) => number,
 }
 
 
-export const PostFormBase = <P extends PostMetaPayload>({
+export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   formState,
   setFormState,
   fnSendRequest,
   renderMain,
   renderOnPreloaded,
   fnGetRedirectPath,
-}: PostFormBaseInternalProps<P>) => {
+  fnGetRedirectId,
+}: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
 
@@ -42,7 +44,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
     return <Redirect to={{pathname: fnGetRedirectPath(redirectId)}}/>;
   }
 
-  const setPayload = (key: keyof P, newValue: string) => setFormState({
+  const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
     ...formState,
     payload: {...formState.payload, [key]: newValue},
   });
@@ -69,7 +71,7 @@ export const PostFormBase = <P extends PostMetaPayload>({
     fnSendRequest(formState.payload)
       .then((data) => {
         if (data.success) {
-          setRedirectId(data.seqId);
+          setRedirectId(fnGetRedirectId(data));
           dispatch(alertDispatchers.showAlert(AlertPayloadMaker.postPublished(t)));
         } else {
           setModalState({

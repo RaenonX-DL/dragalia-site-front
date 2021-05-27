@@ -4,7 +4,7 @@ export {ExAbilityPage} from './pages/gameData/ex';
 export {AttackingSkillPage} from './pages/gameData/skillAtk';
 export {Home} from './pages/home';
 export {AnalysisEdit} from './pages/posts/analysis/edit';
-export {AnalysisList} from './pages/posts/analysis/list';
+export {AnalysisLookup} from './pages/posts/analysis/lookup';
 export {AnalysisNewChara, AnalysisNewDragon} from './pages/posts/analysis/new';
 export {AnalysisPage} from './pages/posts/analysis/page';
 export {QuestEdit} from './pages/posts/quest/edit';

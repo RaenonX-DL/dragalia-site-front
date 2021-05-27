@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {DragonAnalysis} from '../../../../../api-def/api';
+import {DragonAnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {Markdown} from '../../../markdown/main';
 import {SectionProps} from './props';
 
 
-export const AnalysisOutputDragonBody = ({analysis}: SectionProps<DragonAnalysis>) => {
+export const AnalysisOutputDragonBody = ({analysis}: SectionProps<DragonAnalysisGetResponse>) => {
   const {t} = useI18n();
 
   return (

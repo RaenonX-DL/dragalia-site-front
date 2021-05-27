@@ -193,7 +193,6 @@ export const translation: TranslationStruct = {
         sharedOnly: 'Shared Skill Only',
       },
       collapse: 'Collapse/Expand',
-      search: 'Search',
     },
     tools: {
       titleSelf: 'Game Tools',
@@ -203,11 +202,12 @@ export const translation: TranslationStruct = {
   googleSignin: {
     noUid: 'No Google user ID',
     noUidDetails: 'Cannot find Google user ID. Please try re-login.',
+    notLoaded: 'Failed to load. Please try enabling 3rd-party cookies then try again.',
     login: 'Google Login',
-    loginError: 'Error: {{error}}',
+    loginError: 'Error: {{error}} - {{details}}',
     loginFailed: 'Login failed',
     loginUnknown: 'Failed to login for unknown reason. ({{error}})',
-    loginOfflineDisallowed: 'Offline login is disallowed. Please connect to the internet then try again. ({{code}})',
+    loginOfflineDisallowed: 'Offline login is disallowed. Please contact the website admin.',
     logout: 'Google Logout',
     logoutFailed: 'Logout failed',
     logoutUnknown: 'Failed to logout for unknown reason.',
@@ -219,11 +219,9 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: 'Donation URLs',
-      info: '**To browse the website without ads**, just donate USD $1 or more per month!\n\n' +
-        'For one-time donations via Ko-Fi or Paypal, ' +
-        'if the amount is greater than or equal to USD $1, ' +
-        'no-ads service is also available counting from the date when the no-ads experience starts.\n\n' +
-        'Please login to the website using the email address used for the donation for no-ads experience.',
+      info: '**Thanks for your donation!**\n\n' +
+        'One-time donations over USD $1 via Ko-Fi or Paypal also benefits from ads-free experience for a month.\n\n' +
+        'Please login to the website using the email address used for the donation.',
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
@@ -239,8 +237,9 @@ export const translation: TranslationStruct = {
         'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
+      fetching: 'Fetching...',
       welcome: 'Welcome to the DL info website constructed and maintained ' +
-        'by the members of the alliance - Oasis of the Maniacs!\n\n' +
+        'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
@@ -256,6 +255,8 @@ export const translation: TranslationStruct = {
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
     remove: 'Remove',
+    search: 'Search',
+    searchKeyword: 'Keyword',
   },
   meta: {
     inUse: {
@@ -288,7 +289,7 @@ export const translation: TranslationStruct = {
         description: 'Page for editing the analysis #A{{pid}}',
       },
       analysisPost: {
-        title: '{{title}}',
+        title: '【Analysis】{{title}}',
         description: '{{description}}',
       },
       home: {
@@ -364,7 +365,9 @@ export const translation: TranslationStruct = {
       videos: 'Related Videos',
       error: {
         noPostId: 'Analysis ID is not specified.',
+        noResult: 'No matching results. Please verify your searching condition.',
         unknownType: 'Unknown post type - {{analysisType}}.',
+        unavailable: 'Analysis Unavailable',
       },
       skill: {
         name: 'Skill Name',
@@ -380,10 +383,11 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: 'Post Information',
       id: 'ID',
-      lastModified: 'Last Modified Timestamp',
-      published: 'Published Timestamp',
+      lastModified: 'Last Modified',
+      published: 'Published',
       title: 'Title',
       viewCount: 'View Count',
+      viewCountComplete: 'Viewed {{count}} times',
     },
     manage: {
       add: 'New Post',

@@ -1,12 +1,13 @@
+import {screen, waitFor} from '@testing-library/react';
 import * as router from 'react-router-dom';
 
 import {renderApp} from '../test/render/main';
-import {SupportedLanguages} from './api-def/api/other/lang';
-import {AnalysisOutput} from './components/elements';
-import {Home} from './components/pages';
-import {Error404} from './components/pages/404';
+import {ApiResponseCode, SupportedLanguages} from './api-def/api';
 import {GeneralPath, PostPath} from './const/path/definitions';
+import {translation as translationCHT} from './i18n/translations/cht/translation';
+import {translation as translationEN} from './i18n/translations/en/translation';
 import {makePostPath, makeSimplePath} from './utils/path/make';
+import {ApiRequestSender} from './utils/services/api/requestSender';
 import {GoogleAnalytics} from './utils/services/ga';
 
 describe('Page browsing behavior', () => {
@@ -17,18 +18,23 @@ describe('Page browsing behavior', () => {
   let pageViewFailedFunction: jest.SpyInstance;
 
   beforeEach(() => {
-    // Somehow `beforeAll` will invalidate the implementations of `mockImplementation`
     pageViewFunction = jest.spyOn(GoogleAnalytics, 'pageView');
     pageViewFailedFunction = jest.spyOn(GoogleAnalytics, 'pageViewFailed');
+    jest.spyOn(ApiRequestSender, 'sendRequest').mockImplementation(async () => Promise.resolve({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    }));
   });
 
   test('general path with language rendered', async () => {
     const path = makeSimplePath(GeneralPath.HOME, {lang: SupportedLanguages.CHT});
-    const {app} = await renderApp(path);
+    await renderApp(path);
 
-    expect(app.find(Home).exists()).toBeTruthy();
-    expect(app.find(Error404).exists()).toBeFalsy();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    // 1 for navbar, 1 for nav title,
+    expect(screen.getAllByText(/OM/).length).toBeGreaterThanOrEqual(2);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -37,11 +43,12 @@ describe('Page browsing behavior', () => {
 
   test('general path without language redirected and rendered', async () => {
     const path = GeneralPath.HOME;
-    const {app} = await renderApp(path);
+    await renderApp(path);
 
-    expect(app.find(Home).exists()).toBeTruthy();
-    expect(app.find(Error404).exists()).toBeFalsy();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    expect(screen.getAllByText(/OM/).length).toBe(3);
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -50,11 +57,12 @@ describe('Page browsing behavior', () => {
 
   test('post path with language rendered', async () => {
     const path = makePostPath(PostPath.ANALYSIS, {pid: 1, lang: SupportedLanguages.CHT});
-    const {app} = await renderApp(path);
+    renderApp(path);
 
-    expect(app.find(AnalysisOutput).exists()).toBeTruthy();
-    expect(app.find(Error404).exists()).toBeFalsy();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText(translationCHT.meta.error['404'].description)).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -63,11 +71,12 @@ describe('Page browsing behavior', () => {
 
   test('post path without language redirected and rendered', async () => {
     const path = router.generatePath(PostPath.ANALYSIS, {pid: 1});
-    const {app} = await renderApp(path);
+    renderApp(path);
 
-    expect(app.find(AnalysisOutput).exists()).toBeTruthy();
-    expect(app.find(Error404).exists()).toBeFalsy();
-    expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText(translationEN.meta.error['404'].description)).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(pageViewFunction).toHaveBeenCalledTimes(1);
+    });
 
     const viewFuncArg0 = pageViewFunction.mock.calls[0][0];
     expect(viewFuncArg0.startsWith('/')).toBeTruthy();
@@ -76,21 +85,25 @@ describe('Page browsing behavior', () => {
 
   test('non-existent page without language should return 404', async () => {
     const path = '/aa';
-    const {app} = await renderApp(path);
+    renderApp(path);
 
-    expect(app.find(Error404).exists()).toBeTruthy();
+    expect(screen.getByText(translationEN.meta.error['404'].description)).toBeInTheDocument();
     expect(pageViewFunction).toHaveBeenCalledTimes(0);
-    expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    });
     expect(pageViewFailedFunction).toHaveBeenCalledWith('not_found', path);
   });
 
   test('non-existent page with language should return 404', async () => {
     const path = `/${SupportedLanguages.CHT}/aa`;
-    const {app} = await renderApp(path);
+    await renderApp(path);
 
-    expect(app.find(Error404).exists()).toBeTruthy();
+    expect(screen.getByText(translationCHT.meta.error['404'].description)).toBeInTheDocument();
     expect(pageViewFunction).toHaveBeenCalledTimes(0);
-    expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(pageViewFailedFunction).toHaveBeenCalledTimes(1);
+    });
     expect(pageViewFailedFunction).toHaveBeenCalledWith('not_found', path);
   });
 });

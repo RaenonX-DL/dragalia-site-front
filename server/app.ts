@@ -5,6 +5,9 @@ import {isAppOnHeroku} from './utils/init/heroku';
 import {initHerokuNginx} from './utils/init/herokuNginx';
 import {initHttp} from './utils/init/http';
 
+// Start New Relic APM
+require('newrelic');
+
 const app = fastify({
   logger: true,
   connectionTimeout: 20000, // 20 seconds

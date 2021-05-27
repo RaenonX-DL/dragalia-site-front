@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {DragonAnalysisEditPayload} from '../../../../../api-def/api/post/analysis/payload';
-import {DragonAnalysis} from '../../../../../api-def/api/post/analysis/response';
+import {AnalysisEditResponse, DragonAnalysisBody, DragonAnalysisEditPayload} from '../../../../../api-def/api';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
@@ -9,30 +8,18 @@ import {AnalysisFormBase} from './base';
 import {DragonAnalysisForm} from './dragonBody';
 
 
-type AnalysisFormDragonEditProps<P extends DragonAnalysisEditPayload> =
-  PostFormFetchProps<P> & {
-  initialAnalysis: DragonAnalysis,
+type AnalysisFormDragonEditProps<P extends DragonAnalysisEditPayload, R extends AnalysisEditResponse> =
+  PostFormFetchProps<P, R> & {
+  initialAnalysis: DragonAnalysisBody,
 }
 
 export const AnalysisFormDragonEdit = ({
   initialAnalysis, fnSendRequest,
-}: AnalysisFormDragonEditProps<DragonAnalysisEditPayload>) => {
+}: AnalysisFormDragonEditProps<DragonAnalysisEditPayload, AnalysisEditResponse>) => {
   const [formState, setFormState] = React.useState<PostFormState<DragonAnalysisEditPayload>>({
     payload: {
+      ...initialAnalysis,
       googleUid: CookiesControl.getGoogleUid() || '',
-      seqId: initialAnalysis.seqId,
-      lang: initialAnalysis.lang,
-      title: initialAnalysis.title,
-      summary: initialAnalysis.summary,
-      summon: initialAnalysis.summonResult,
-      passives: initialAnalysis.passives,
-      normalAttacks: initialAnalysis.normalAttacks,
-      ultimate: initialAnalysis.ultimate,
-      notes: initialAnalysis.notes,
-      suitableCharacters: initialAnalysis.suitableCharacters,
-      videos: initialAnalysis.videos,
-      story: initialAnalysis.story,
-      keywords: initialAnalysis.keywords,
       editNote: '',
     },
     isIdAvailable: true,

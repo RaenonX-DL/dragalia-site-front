@@ -7,7 +7,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from '../../shared/form/types';
 
-export const DragonAnalysisForm = ({formState, setPayload}: PostFormDataProps<DragonAnalysisPayload>) => {
+export const DragonAnalysisForm = <P extends DragonAnalysisPayload>({formState, setPayload}: PostFormDataProps<P>) => {
   const {t} = useI18n();
 
   const {payload} = formState;

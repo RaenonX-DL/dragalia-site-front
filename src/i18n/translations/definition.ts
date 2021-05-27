@@ -168,7 +168,6 @@ export type TranslationStruct = {
         sharedOnly: string,
       },
       collapse: string,
-      search: string,
     },
     tools: {
       titleSelf: string,
@@ -178,6 +177,7 @@ export type TranslationStruct = {
   googleSignin: {
     noUid: string,
     noUidDetails: string,
+    notLoaded: string,
     login: string,
     loginError: string,
     loginFailed: string,
@@ -203,6 +203,7 @@ export type TranslationStruct = {
     },
     info: {
       constructing: string,
+      fetching: string,
       welcome: string,
     },
     alert: {
@@ -215,6 +216,8 @@ export type TranslationStruct = {
     omMember: string,
     omGroup: string,
     remove: string,
+    search: string,
+    searchKeyword: string,
   },
   meta: {
     inUse: {
@@ -266,7 +269,9 @@ export type TranslationStruct = {
       videos: string,
       error: {
         noPostId: string,
+        noResult: string,
         unknownType: string,
+        unavailable: string,
       },
       skill: {
         name: string,
@@ -286,6 +291,7 @@ export type TranslationStruct = {
       published: string,
       title: string,
       viewCount: string,
+      viewCountComplete: string,
     },
     manage: {
       add: string,

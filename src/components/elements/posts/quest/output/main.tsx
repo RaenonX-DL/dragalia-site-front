@@ -41,7 +41,7 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
         (t) => t.meta.inUse.questPost.title,
         {title: status.post?.title || `#Q${pid}`},
       )}
-      fnSendFetchRequest={ApiRequestSender.questPostGet}
+      fnSendFetchRequest={ApiRequestSender.questGet}
       renderOnFetched={(post) => {
         return (
           <>
@@ -53,19 +53,19 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
               />
             }
             {post.isAltLang && <AlertIsAlternativeLanguage response={post}/>}
-            {post.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={post}/>}
+            {post.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={post} pid={post.seqId}/>}
 
             <PageAnchor name="general" type="h3" text={t((t) => t.posts.quest.general)} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">
               <Markdown>{post.general}</Markdown>
             </div>
             <hr/>
-            {post.showAds && <AdsInPost/>}
+            <AdsInPost/>
             <PageAnchor name="video" type="h3" text={t((t) => t.posts.quest.video)} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">
               <Markdown>{post.video || 'N/A'}</Markdown>
             </div>
-            {post.showAds && <AdsInPost/>}
+            <AdsInPost/>
             <hr/>
             <PageAnchor name="positional" type="h3" text={t((t) => t.posts.quest.positional)} className="mb-3"/>
             <QuestPositionOutput info={post.positional}/>
@@ -80,7 +80,7 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
                 <hr/>
               </>
             }
-            {post.showAds && <AdsInPost/>}
+            <AdsInPost/>
             <PostInfo post={post}/>
           </>
         );

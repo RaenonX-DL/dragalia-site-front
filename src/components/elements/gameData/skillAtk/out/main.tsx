@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {calculateDamage, CalculateDamageReturn} from '../../../../../utils/game';
 import {
   AttackingSkillData,
   ConditionEnumMap,
   ElementBonusData,
   SkillIdentifierInfo,
-} from '../../../../../utils/services/resources/types';
+} from '../../../../../api-def/resources';
+import {calculateDamage, CalculateDamageReturn} from '../../../../../utils/game';
 import {overLengthWarningCheck} from '../../utils';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';

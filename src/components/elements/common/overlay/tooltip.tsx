@@ -10,11 +10,13 @@ type TooltipProps = OverlayCommonProps & {
 }
 
 export const OverlayTooltip = ({text, children}: TooltipProps) => (
-  <OverlayBase overlay={(props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {text}
-    </Tooltip>
-  )}>
+  <OverlayBase
+    overlay={(props) => (
+      <Tooltip id="button-tooltip" {...props}>
+        {text}
+      </Tooltip>
+    )}
+  >
     {children}
   </OverlayBase>
 );

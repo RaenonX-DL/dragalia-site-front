@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {CharacterAnalysis} from '../../../../../api-def/api/post/analysis/response';
+import {CharaAnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
@@ -10,7 +10,7 @@ import {AnalysisSkillOutput} from './charaSkill';
 import {SectionProps} from './props';
 
 
-export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharacterAnalysis>) => {
+export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGetResponse>) => {
   const {t} = useI18n();
 
   return (

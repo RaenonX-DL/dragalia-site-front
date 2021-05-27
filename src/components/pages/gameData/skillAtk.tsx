@@ -2,16 +2,17 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
+import {
+  AttackingSkillData,
+  ConditionEnumMap,
+  ElementBonus,
+  ElementBonusData,
+  SkillIdentifierInfo,
+} from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
 import {scrollToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
-import {
-  AttackingSkillData,
-  ConditionEnumMap, ElementBonus,
-  ElementBonusData,
-  SkillIdentifierInfo,
-} from '../../../utils/services/resources/types';
 import {useFetchState, useFetchStateProcessed} from '../../elements/common/fetch';
 import {AttackingSkillInput, AttackingSkillOutput, InputData} from '../../elements/gameData';
 import {PageProps} from '../props';
@@ -21,39 +22,35 @@ export const AttackingSkillList = () => {
   const [inputDataForward, setInputDataForward] = React.useState<InputData>();
   const entryCol = React.useRef<HTMLDivElement>(null);
 
-  const [
-    elementBonuses,
-    ,
-    fetchElementBonuses,
-  ] = useFetchStateProcessed<ElementBonusData, ElementBonus>(
+  const {
+    fetchStatus: elementBonuses,
+    fetchFunction: fetchElementBonuses,
+  } = useFetchStateProcessed<ElementBonusData, ElementBonus>(
     new ElementBonusData(),
     ResourceLoader.getElementBonusData,
     'Failed to fetch element bonus data.',
     (response) => new ElementBonusData(response),
   );
-  const [
-    conditionEnums,
-    ,
-    fetchConditionEnums,
-  ] = useFetchState<ConditionEnumMap>(
+  const {
+    fetchStatus: conditionEnums,
+    fetchFunction: fetchConditionEnums,
+  } = useFetchState<ConditionEnumMap>(
     {},
     ResourceLoader.getEnumAllConditions,
     'Failed to fetch condition enums.',
   );
-  const [
-    skillIdentifiers,
-    ,
-    fetchSkillIdentifiers,
-  ] = useFetchState<SkillIdentifierInfo>(
+  const {
+    fetchStatus: skillIdentifiers,
+    fetchFunction: fetchSkillIdentifiers,
+  } = useFetchState<SkillIdentifierInfo>(
     {},
     ResourceLoader.getSkillIdentifierInfo,
     'Failed to fetch skill identifiers.',
   );
-  const [
-    attackingSkillEntries,
-    ,
-    fetchAttackingSkillEntries,
-  ] = useFetchState<Array<AttackingSkillData>>(
+  const {
+    fetchStatus: attackingSkillEntries,
+    fetchFunction: fetchAttackingSkillEntries,
+  } = useFetchState<Array<AttackingSkillData>>(
     [],
     ResourceLoader.getAttackingSkillEntries,
     'Failed to fetch attacking skill entries.',
@@ -78,7 +75,7 @@ export const AttackingSkillList = () => {
           }}
         />
       </Col>
-      <Col ref={entryCol} lg={8}>
+      <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
         <AttackingSkillOutput
           inputData={inputDataForward}
           allConditionEnums={conditionEnums.data}

@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Badge} from 'react-bootstrap';
 
+import {AttackingSkillData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {AttackingSkillData} from '../../../../../utils/services/resources/types/skillAtk';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 export const getBadgesDispel = (atkSkillEntry: AttackingSkillData) => {

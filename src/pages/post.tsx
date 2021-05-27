@@ -2,9 +2,9 @@ import React from 'react';
 
 import {AdminRoute} from '../components/elements/route/admin';
 import {PublicRoute} from '../components/elements/route/public';
+import {AnalysisLookup} from '../components/pages';
 import {Constructing} from '../components/pages/constructing';
 import {AnalysisEdit} from '../components/pages/posts/analysis/edit';
-import {AnalysisList} from '../components/pages/posts/analysis/list';
 import {AnalysisNewChara, AnalysisNewDragon} from '../components/pages/posts/analysis/new';
 import {AnalysisPage} from '../components/pages/posts/analysis/page';
 import {QuestEdit} from '../components/pages/posts/quest/edit';
@@ -31,7 +31,7 @@ export const PageContentPost = ({updatePageTitle}: PageContentProps) => {
       </AdminRoute>
 
       <PublicRoute path={GeneralPath.ANALYSIS_LIST}>
-        <AnalysisList fnSetTitle={updatePageTitle}/>
+        <AnalysisLookup fnSetTitle={updatePageTitle}/>
       </PublicRoute>
       <AdminRoute path={GeneralPath.ANALYSIS_NEW_CHARA}>
         <AnalysisNewChara fnSetTitle={updatePageTitle}/>

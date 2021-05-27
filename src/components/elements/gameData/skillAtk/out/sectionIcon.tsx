@@ -1,7 +1,7 @@
 import React from 'react';
 
+import {DepotPaths} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {SectionProps} from './props';
 

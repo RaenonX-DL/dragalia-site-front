@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {PostMetaPayload} from '../../../../../api-def/api';
+import {PostMeta} from '../../../../../api-def/api';
 import {ArrayControl} from './arrayControl';
 
-type CharaAnalysisFormProps<P extends PostMetaPayload, E> = {
+type CharaAnalysisFormProps<P extends PostMeta, E> = {
   payload: P,
   minLength: number,
   getArray: (payload: P) => Array<E>,
@@ -13,11 +13,11 @@ type CharaAnalysisFormProps<P extends PostMetaPayload, E> = {
   renderEntries: (
     element: E,
     onChangeHandler: (key: keyof E) => (newValue: string) => void,
-  ) => React.ReactNode,
+  ) => React.ReactElement,
 }
 
 
-export const ArrayDataForm = <P extends PostMetaPayload, E>({
+export const ArrayDataForm = <P extends PostMeta, E>({
   payload,
   minLength,
   getArray,

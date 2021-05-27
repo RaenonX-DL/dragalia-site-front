@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {CharaAnalysisPayload, CharacterSkill} from '../../../../../api-def/api/post/analysis/payload';
+import {CharaAnalysisPayload, CharacterSkill} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {generateNewCharaSkill} from '../../../../../utils/services/api/utils';
 import {MarkdownInput} from '../../../markdown/input';

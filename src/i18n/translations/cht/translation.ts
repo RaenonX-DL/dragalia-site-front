@@ -170,7 +170,6 @@ export const translation: TranslationStruct = {
         sharedOnly: '只顯示共享技',
       },
       collapse: '摺疊/展開',
-      search: '搜尋',
     },
     tools: {
       titleSelf: '遊戲工具',
@@ -180,15 +179,16 @@ export const translation: TranslationStruct = {
   googleSignin: {
     noUid: '無 Google 使用者 ID',
     noUidDetails: '找不到 Google 使用者 ID。請嘗試重新登入。',
+    notLoaded: '載入失敗，請嘗試啟用第三方 Cookies 後重試。',
     login: 'Google 登入',
-    loginError: '錯誤: {{error}}',
+    loginError: '錯誤: {{error}} - {{details}}',
     loginFailed: '登入失敗',
     loginUnknown: '因為不明原因，無法登入。({{error}})',
-    loginOfflineDisallowed: '無法使用離線登入。請連至網路後重試。({{code}})',
+    loginOfflineDisallowed: '離線登入已禁用。請洽網站管理員。',
     logout: 'Google 登出',
     logoutFailed: '登出失敗',
     logoutUnknown: '因為不明原因，無法登出。',
-    requestFailed: '無法傳送登入請求',
+    requestFailed: '登入請求傳送失敗',
   },
   lang: {
     inUse: '目前使用中',
@@ -196,8 +196,8 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: '捐款網址',
-      info: '只要每個月捐款超過 USD $1 以上，即可**無廣告瀏覽網站**！\n\n' +
-        '如果使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。有效期為無廣告開始日起一個月內。\n\n' +
+      info: '使用 Ko-Fi 或是 Paypal 一次性捐款者，只要捐款超過 $1，一樣可以享有無廣告瀏覽。' +
+        '有效期為無廣告開始日起一個月內。\n\n' +
         '捐款後，請使用捐款時所使用的 Email 信箱登入網站，以利開啟無廣告服務。',
     },
     warning: {
@@ -212,12 +212,13 @@ export const translation: TranslationStruct = {
         '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
         '### Email 通知系統完成後\n\n' +
         '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
+      fetching: '獲取資料中...',
       welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
     },
     alert: {
-      ads: '每個月捐款超過 USD $1 即可無廣告瀏覽網站！[詳情請點此](/thanks)',
+      ads: '每月捐款支持 OM 與我 (RaenonX) 以外，還可以無廣告瀏覽網站！[詳情請點此](/thanks)',
       migration: '目前網站基礎正在翻新中。使用過程中若有任何持續問題，請到各大 SNS 上聯繫我，感謝！',
     },
   },
@@ -226,6 +227,8 @@ export const translation: TranslationStruct = {
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
     remove: '移除',
+    search: '搜尋',
+    searchKeyword: '關鍵字',
   },
   meta: {
     inUse: {
@@ -258,7 +261,7 @@ export const translation: TranslationStruct = {
         description: '評測 #A{{pid}} 的編輯頁面。',
       },
       analysisPost: {
-        title: '{{title}}',
+        title: '【評測】{{title}}',
         description: '{{description}}',
       },
       home: {
@@ -334,7 +337,9 @@ export const translation: TranslationStruct = {
       videos: '相關影片',
       error: {
         noPostId: '文章 ID 未指定。',
+        noResult: '查無結果。請修改條件後重新搜尋。',
         unknownType: '無法解析貼文種類 - {{analysisType}}。',
+        unavailable: '無相關評測',
       },
       skill: {
         name: '技能名稱',
@@ -350,10 +355,11 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '貼文資訊',
       id: 'ID',
-      lastModified: '最後修改時間',
-      published: '發布時間',
+      lastModified: '最後修改於',
+      published: '發布於',
       title: '標題',
       viewCount: '瀏覽次數',
+      viewCountComplete: '瀏覽 {{count}} 次',
     },
     manage: {
       add: '新增貼文',

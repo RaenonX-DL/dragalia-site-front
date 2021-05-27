@@ -2,18 +2,18 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {useI18n} from '../../../../../i18n/hook';
-import {DepotPaths} from '../../../../../utils/services/resources/paths';
 import {
+  DepotPaths,
   ConditionEnumMap,
-  ExAbilityDataEntry,
-} from '../../../../../utils/services/resources/types';
+  CharaExAbilityDataEntry,
+} from '../../../../../api-def/resources';
+import {useI18n} from '../../../../../i18n/hook';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {ExAbility} from './exUnit';
 
 
 type ExAbilityEntryProps = {
-  entry: ExAbilityDataEntry
+  entry: CharaExAbilityDataEntry
   conditionEnums: ConditionEnumMap,
 }
 
@@ -21,12 +21,9 @@ type ExAbilityEntryProps = {
 export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => {
   const {t, lang} = useI18n();
 
-  // region Entry info
   const charaName = entry.chara.name[lang];
   const charaIconURL = DepotPaths.getCharaIconURL(entry.chara.iconName);
-  // endregion
 
-  // region Sections
   const ImageIcon = () => (
     <OverlayTooltip text={charaName}>
       <img src={charaIconURL} alt={charaName} style={{height: '4rem'}}/>

@@ -2,31 +2,23 @@ import React from 'react';
 
 import {useParams} from 'react-router-dom';
 
+import {CharaAnalysisBody, DragonAnalysisBody, UnitType} from '../../../../api-def/api';
 import {AnalysisEditParams} from '../../../../const/path';
 import {useI18n} from '../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../i18n/types';
-import {
-  AnalysisType,
-  ApiRequestSender,
-  CharacterAnalysis,
-  DragonAnalysis,
-} from '../../../../utils/services/api';
-import {
-  AnalysisFormCharaEdit,
-  AnalysisFormDragonEdit,
-  AnalysisPostFetchStatus,
-  FetchPost,
-} from '../../../elements';
+import {ApiRequestSender} from '../../../../utils/services/api';
+import {useUnitInfo} from '../../../../utils/services/resources/unitInfo';
+import {AnalysisFormCharaEdit, AnalysisFormDragonEdit, AnalysisPostFetchStatus, FetchPost} from '../../../elements';
 import {PageProps} from '../../props';
 
-const getTitleTranslationName: { [key in AnalysisType]: GetTranslationFunction } = {
-  [AnalysisType.CHARACTER]: (t) => t.meta.inUse.analysisEditChara.title,
-  [AnalysisType.DRAGON]: (t) => t.meta.inUse.analysisEditDragon.title,
+const getTitleTranslationName: { [key in UnitType]: GetTranslationFunction } = {
+  [UnitType.CHARACTER]: (t) => t.meta.inUse.analysisEditChara.title,
+  [UnitType.DRAGON]: (t) => t.meta.inUse.analysisEditDragon.title,
 };
 
 
 export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   const {pid} = useParams<AnalysisEditParams>();
 
@@ -36,6 +28,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     failureMessage: '',
     post: null,
   });
+  const {unitInfoMap} = useUnitInfo();
 
   // TEST: Post edit form
   //  - returning character
@@ -55,22 +48,25 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     const titleName = getTitleTranslationName[analysisType];
 
     if (titleName) {
-      fnSetTitle(t(titleName, {title: fetchStatus.post.title}));
+      fnSetTitle(t(
+        titleName,
+        {title: unitInfoMap.get(fetchStatus.post.unitId)?.name[lang] || fetchStatus.post.unitId.toString()},
+      ));
     }
 
-    if (analysisType === AnalysisType.CHARACTER) {
+    if (analysisType === UnitType.CHARACTER) {
       return (
         <AnalysisFormCharaEdit
-          initialAnalysis={fetchStatus.post as CharacterAnalysis}
-          fnSendRequest={ApiRequestSender.analysisPostEditChara}
+          initialAnalysis={fetchStatus.post as CharaAnalysisBody}
+          fnSendRequest={ApiRequestSender.analysisEditChara}
         />
       );
     }
-    if (analysisType === AnalysisType.DRAGON) {
+    if (analysisType === UnitType.DRAGON) {
       return (
         <AnalysisFormDragonEdit
-          initialAnalysis={fetchStatus.post as DragonAnalysis}
-          fnSendRequest={ApiRequestSender.analysisPostEditDragon}
+          initialAnalysis={fetchStatus.post as DragonAnalysisBody}
+          fnSendRequest={ApiRequestSender.analysisEditDragon}
         />
       );
     }
@@ -81,7 +77,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       fetchFailed: true,
       failureMessage: t(
         (t) => t.posts.analysis.error.unknownType,
-        {analysisType: AnalysisType[analysisType]},
+        {analysisType: UnitType[analysisType]},
       ),
     });
   }
@@ -90,7 +86,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
     <FetchPost
       status={fetchStatus}
       fnSetStatus={(newStatus) => setFetchStatus(newStatus)}
-      fnSendFetchRequest={ApiRequestSender.analysisPostGet}
+      fnSendFetchRequest={ApiRequestSender.analysisGet}
       seqId={Number(pid)}
       increaseCount={false}
     />
