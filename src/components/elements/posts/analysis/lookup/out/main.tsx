@@ -14,7 +14,7 @@ import {getUnitInfo} from '../utils';
 import {AnalysisEntry} from './entry';
 
 type AnalysisLookupOutputProps = {
-  inputData: InputData,
+  inputData: InputData | undefined,
 }
 
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
@@ -42,6 +42,10 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     scrollToTop(rowElem);
   }, [inputData]);
 
+  if (!inputData) {
+    return <></>;
+  }
+
   fetchAnalysisMeta();
 
   const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
@@ -49,7 +53,7 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
   const unitInfoHasAnalysis = unitInfoFiltered.filter((info) => info.id in analysisMeta.data.analyses);
   const unitInfoNoAnalysis = unitInfoFiltered.filter((info) => !(info.id in analysisMeta.data.analyses));
 
-  if (inputData && charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
+  if (charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
     return (
       <h5 className="text-danger text-center">
         {t((t) => t.posts.analysis.error.noResult)}

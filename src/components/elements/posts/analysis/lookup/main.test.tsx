@@ -95,7 +95,7 @@ describe('Analysis lookup page', () => {
       expect(fnGetLookup).toHaveBeenCalledTimes(1);
     });
     await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(1);
+      expect(fnScroll).toHaveBeenCalledTimes(2);
       expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
     });
   });
@@ -121,7 +121,7 @@ describe('Analysis lookup page', () => {
       expect(fnGetLookup).toHaveBeenCalledTimes(1);
     });
     await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(1);
+      expect(fnScroll).toHaveBeenCalledTimes(2);
     });
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
@@ -147,7 +147,7 @@ describe('Analysis lookup page', () => {
       expect(fnGetLookup).toHaveBeenCalledTimes(1);
     });
     await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(1);
+      expect(fnScroll).toHaveBeenCalledTimes(2);
     });
     expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
 
@@ -164,6 +164,9 @@ describe('Analysis lookup page', () => {
 
     await waitFor(async () => {
       expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    });
+    await waitFor(async () => {
+      expect(fnScroll).toHaveBeenCalledTimes(3);
     });
     await waitFor(async () => {
       expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
@@ -310,7 +313,7 @@ describe('Analysis lookup page', () => {
 
     await waitFor(() => {
       expect(fnGetLookup).toHaveBeenCalledTimes(1);
-      expect(fnScroll).toHaveBeenCalledTimes(1);
+      expect(fnScroll).toHaveBeenCalledTimes(2);
       expect(screen.queryByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument();
     });
     const errorText = screen.getByText(translationEN.posts.analysis.error.noResult);
