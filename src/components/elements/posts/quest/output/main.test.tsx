@@ -27,7 +27,7 @@ describe('Quest post output', () => {
     video: 'video',
     positional: [
       {
-        position: 'position',
+        position: 'pst',
         builds: 'builds',
         rotations: 'rotations',
         tips: 'tips',
@@ -77,7 +77,7 @@ describe('Quest post output', () => {
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
-    expect(screen.getAllByText(/position/).length).toBeGreaterThan(0);
+    expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
     expect(screen.getByText(/tips/)).toBeInTheDocument();
@@ -86,7 +86,6 @@ describe('Quest post output', () => {
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });
-
 
   it('renders correctly if has alt lang', async () => {
     fnGetQuestPost.mockImplementationOnce(async () => ({
@@ -106,7 +105,7 @@ describe('Quest post output', () => {
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
-    expect(screen.getAllByText(/position/).length).toBeGreaterThan(0);
+    expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
     expect(screen.getByText(/tips/)).toBeInTheDocument();
@@ -114,7 +113,7 @@ describe('Quest post output', () => {
     expect(screen.getByText(/edit note/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).toBeInTheDocument();
-    expect(screen.queryAllByText(new RegExp(`${chtName}`)).length).toBeGreaterThan(0);
+    expect(screen.queryAllByText(new RegExp(`${chtName}`)).length).toBe(2);
   });
 
   it('renders correctly if no edit notes', async () => {
@@ -134,7 +133,7 @@ describe('Quest post output', () => {
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
-    expect(screen.getAllByText(/position/).length).toBeGreaterThan(0);
+    expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
     expect(screen.getByText(/tips/)).toBeInTheDocument();
@@ -163,7 +162,7 @@ describe('Quest post output', () => {
     expect(screen.getByText(translationEN.posts.manage.edit)).toBeInTheDocument();
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
-    expect(screen.getAllByText(/position/).length).toBeGreaterThan(0);
+    expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
     expect(screen.getByText(/tips/)).toBeInTheDocument();

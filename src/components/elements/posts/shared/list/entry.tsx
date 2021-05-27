@@ -37,7 +37,7 @@ export const PostEntry = <E extends SequencedPostInfo>({
         </Col>
         <Col className="text-right">
           <span className="h6 text-muted">
-            {t((t) => t.posts.info.viewCount, {count: entry.viewCount.toString()})}
+            {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
           </span>
         </Col>
       </Row>

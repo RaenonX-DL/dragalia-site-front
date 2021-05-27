@@ -39,10 +39,7 @@ export const PostInfo = ({post}: PostInfoProps) => {
         </Col>
         <Col lg={4} className="pl-lg-2">
           <InfoCard
-            title={
-              t((t) => t.posts.info.viewCount,
-                {count: post.viewCount.toString()},
-              )}
+            title={t((t) => t.posts.info.viewCount)}
             content={post.viewCount}
           />
           <div className="d-lg-none mb-3"/>

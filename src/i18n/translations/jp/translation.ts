@@ -259,8 +259,8 @@ export const translation: TranslationStruct = {
         description: 'description',
       },
       analysisPost: {
-        title: '評価',
-        description: 'description',
+        title: '【評価】{{title}}',
+        description: '{{description}}',
       },
       home: {
         title: 'ホームページ',
@@ -355,7 +355,8 @@ export const translation: TranslationStruct = {
       lastModified: '最後編集は',
       published: '発表は',
       title: 'お題',
-      viewCount: 'ご覽 {{count}} 回',
+      viewCount: 'ご覽回数',
+      viewCountComplete: 'ご覽 {{count}} 回',
     },
     manage: {
       add: '文を追加する',

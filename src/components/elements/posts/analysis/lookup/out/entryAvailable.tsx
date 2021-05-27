@@ -37,7 +37,7 @@ export const AnalysisEntryAvailable = ({
           <Col xs="auto" className="text-right text-muted">
             <small>
               {t(
-                (t) => t.posts.info.viewCount,
+                (t) => t.posts.info.viewCountComplete,
                 {count: analysisMeta.viewCount.toString()},
               )}
             </small>

@@ -289,7 +289,7 @@ export const translation: TranslationStruct = {
         description: 'Page for editing the analysis #A{{pid}}',
       },
       analysisPost: {
-        title: '{{title}}',
+        title: '【Analysis】{{title}}',
         description: '{{description}}',
       },
       home: {
@@ -385,7 +385,8 @@ export const translation: TranslationStruct = {
       lastModified: 'Last Modified',
       published: 'Published',
       title: 'Title',
-      viewCount: 'Viewed {{count}} times',
+      viewCount: 'View Count',
+      viewCountComplete: 'Viewed {{count}} times',
     },
     manage: {
       add: 'New Post',

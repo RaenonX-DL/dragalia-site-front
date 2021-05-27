@@ -261,7 +261,7 @@ export const translation: TranslationStruct = {
         description: '評測 #A{{pid}} 的編輯頁面。',
       },
       analysisPost: {
-        title: '{{title}}',
+        title: '【評測】{{title}}',
         description: '{{description}}',
       },
       home: {
@@ -357,7 +357,8 @@ export const translation: TranslationStruct = {
       lastModified: '最後修改於',
       published: '發布於',
       title: '標題',
-      viewCount: '瀏覽 {{count}} 次',
+      viewCount: '瀏覽次數',
+      viewCountComplete: '瀏覽 {{count}} 次',
     },
     manage: {
       add: '新增貼文',
