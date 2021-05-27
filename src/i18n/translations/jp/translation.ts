@@ -352,8 +352,8 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '本ページの情報',
       id: 'ID',
-      lastModified: '最後の編集時間',
-      published: '発表時間',
+      lastModified: '最後編集は',
+      published: '発表は',
       title: 'お題',
       viewCount: 'ご覽 {{count}} 回',
     },

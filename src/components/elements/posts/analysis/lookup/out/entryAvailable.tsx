@@ -46,13 +46,13 @@ export const AnalysisEntryAvailable = ({
       </Row>
       <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
         <Col className="text-center">
-          {t((t) => t.posts.info.lastModified)}:&nbsp;
+          {t((t) => t.posts.info.lastModified)}&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
         </Col>
         {
           !simplified &&
           <Col className="text-center d-none d-lg-block">
-            {t((t) => t.posts.info.published)}:&nbsp;
+            {t((t) => t.posts.info.published)}&nbsp;
             <TimeAgo epoch={analysisMeta.publishedEpoch}/>
           </Col>
         }

@@ -382,8 +382,8 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: 'Post Information',
       id: 'ID',
-      lastModified: 'Last Modified Timestamp',
-      published: 'Published Timestamp',
+      lastModified: 'Last Modified',
+      published: 'Published',
       title: 'Title',
       viewCount: 'Viewed {{count}} times',
     },

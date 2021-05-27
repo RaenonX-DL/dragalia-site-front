@@ -354,8 +354,8 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '貼文資訊',
       id: 'ID',
-      lastModified: '最後修改時間',
-      published: '發布時間',
+      lastModified: '最後修改於',
+      published: '發布於',
       title: '標題',
       viewCount: '瀏覽 {{count}} 次',
     },
