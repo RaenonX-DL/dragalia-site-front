@@ -71,7 +71,7 @@ describe('Analysis lookup page', () => {
   };
 
   beforeEach(() => {
-    fnScroll = jest.spyOn(scrollUtils, 'scrollToTop').mockImplementation(() => void 0);
+    fnScroll = jest.spyOn(scrollUtils, 'scrollRefToTop').mockImplementation(() => void 0);
     fnGetLookup = jest.spyOn(ApiRequestSender, 'analysisLookup');
     fnGetLookupLanding = jest.spyOn(ApiRequestSender, 'analysisLookupLanding')
       .mockImplementation(async () => lookupLandingResponse);

@@ -3,9 +3,14 @@ import React from 'react';
 import {titleNavBarId} from '../components/elements/common/anchor/pageAnchor';
 
 
-export const scrollToTop = <T extends HTMLElement>(refElement?: React.RefObject<T>) => {
+export const scrollRefToTop = <T extends HTMLElement>(refElement?: React.RefObject<T>) => {
+  scrollElementToTop(refElement?.current);
+};
+
+export const scrollElementToTop = (element?: HTMLElement | null) => {
+  // FIXME: possible duplicate of `scrollToTop`?
   const topLocation = (
-    (refElement?.current?.offsetTop || 0) -
+    (element?.offsetTop || 0) -
     (document.getElementById(titleNavBarId)?.offsetHeight || 0)
   );
 
