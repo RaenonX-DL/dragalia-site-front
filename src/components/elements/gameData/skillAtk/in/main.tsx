@@ -4,7 +4,7 @@ import {Button, Collapse} from 'react-bootstrap';
 
 import {ConditionCodes} from '../../../../../const/gameData';
 import {useI18n} from '../../../../../i18n/hook';
-import {scrollToTop} from '../../../../../utils/scroll';
+import {scrollRefToTop} from '../../../../../utils/scroll';
 import {InputParameters} from './params';
 import {InputSummary} from './summary';
 import {InputData} from './types';
@@ -53,7 +53,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   const onCollapseClicked = () => {
     setCollapsed(!collapsed);
 
-    scrollToTop();
+    scrollRefToTop();
   };
 
   return (

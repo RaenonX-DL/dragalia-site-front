@@ -4,7 +4,7 @@ import {Col, Row} from 'react-bootstrap';
 
 import {ConditionEnumMap, CharaExAbilityDataEntry} from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
-import {scrollToTop} from '../../../utils/scroll';
+import {scrollRefToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources/loader';
 import {useFetchState} from '../../elements/common/fetch';
@@ -46,7 +46,7 @@ const ExAbilitySkillList = () => {
           onSearchRequested={(inputData: InputData) => () => {
             GoogleAnalytics.abilitySearch('EX', inputData);
 
-            scrollToTop(entryCol);
+            scrollRefToTop(entryCol);
 
             // This function is expensive, scroll first
             setInputDataForward(inputData);

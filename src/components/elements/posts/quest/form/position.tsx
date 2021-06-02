@@ -34,7 +34,7 @@ export const FormPositional = <P extends QuestPostPublishPayload>({
       <h5>{t((t) => t.posts.quest.positional)}</h5>
       <ArrayDataForm
         payload={payload}
-        minLength={2}
+        minLength={1}
         getArray={(payload) => payload.positional}
         setArray={setSkills}
         updateElementValue={(element, key, value) => element[key] = value}

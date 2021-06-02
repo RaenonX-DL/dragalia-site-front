@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
-import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../../const/path';
+import {GeneralPath, makePostPath, makeSimplePath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost, PostInfo, PostManageBar} from '../../../../elements';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
@@ -39,7 +39,10 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}
-      {analysis.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={analysis} pid={analysis.unitId}/>}
+      {
+        analysis.otherLangs.length > 0 &&
+        <AlertOtherLanguageAvailable response={analysis} pid={analysis.unitId} targetPath={PostPath.ANALYSIS}/>
+      }
 
       <SectionTop analysis={analysis}/>
       <AdsInPost/>

@@ -5,7 +5,7 @@ import {Col, Form} from 'react-bootstrap';
 import {ApiResponseCode} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../../utils/cookies';
-import {scrollToTop} from '../../../../../../utils/scroll';
+import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
 import {useFetchState} from '../../../../common/fetch';
@@ -39,7 +39,7 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
 
   // Scroll after input data has changed
   React.useEffect(() => {
-    scrollToTop(rowElem);
+    scrollRefToTop(rowElem);
   }, [inputData]);
 
   if (!inputData) {

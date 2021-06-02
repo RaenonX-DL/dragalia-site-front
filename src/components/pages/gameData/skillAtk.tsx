@@ -10,7 +10,7 @@ import {
   SkillIdentifierInfo,
 } from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
-import {scrollToTop} from '../../../utils/scroll';
+import {scrollRefToTop} from '../../../utils/scroll';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {ResourceLoader} from '../../../utils/services/resources';
 import {useFetchState, useFetchStateProcessed} from '../../elements/common/fetch';
@@ -68,7 +68,7 @@ export const AttackingSkillList = () => {
           onSearchRequested={(inputData: InputData) => () => {
             GoogleAnalytics.damageCalc('search', inputData);
 
-            scrollToTop(entryCol);
+            scrollRefToTop(entryCol);
 
             // This function is expensive, scroll first
             setInputDataForward(inputData);

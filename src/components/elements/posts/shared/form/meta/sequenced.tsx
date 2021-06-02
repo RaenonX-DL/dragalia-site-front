@@ -29,9 +29,6 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   titlePlaceholder,
   fnIdCheck,
 }: FormMetaProps<P, R>) => {
-  // TEST: Form meta validation
-  //  - (Use the tests exist at the backend)
-
   const {t} = useI18n();
 
   const {isValid, isChecking} = useFormMeta({

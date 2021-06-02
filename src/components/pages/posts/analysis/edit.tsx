@@ -33,6 +33,7 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
   // TEST: Post edit form
   //  - returning character
   //  - returning dragon
+  //  - key `viewCount` not included in payload (#124)
   //  - display unknown post type
 
   if (!pid) {
@@ -54,18 +55,52 @@ export const AnalysisEdit = ({fnSetTitle}: PageProps) => {
       ));
     }
 
+    // Explicit expansion to ensure no other properties like `viewCount` from `fetchStatus.post` is included.
+    // These properties from post get should **NOT** be included in edit payload.
     if (analysisType === UnitType.CHARACTER) {
+      const post = fetchStatus.post as CharaAnalysisBody;
+
       return (
         <AnalysisFormCharaEdit
-          initialAnalysis={fetchStatus.post as CharaAnalysisBody}
+          initialAnalysis={{
+            lang: post.lang,
+            unitId: post.unitId,
+            type: post.type,
+            summary: post.summary,
+            summonResult: post.summonResult,
+            passives: post.passives,
+            normalAttacks: post.normalAttacks,
+            tipsBuilds: post.tipsBuilds,
+            forceStrikes: post.forceStrikes,
+            skills: post.skills,
+            videos: post.videos,
+            story: post.story,
+            keywords: post.keywords,
+          }}
           fnSendRequest={ApiRequestSender.analysisEditChara}
         />
       );
     }
     if (analysisType === UnitType.DRAGON) {
+      const post = fetchStatus.post as DragonAnalysisBody;
+
       return (
         <AnalysisFormDragonEdit
-          initialAnalysis={fetchStatus.post as DragonAnalysisBody}
+          initialAnalysis={{
+            lang: post.lang,
+            unitId: post.unitId,
+            type: post.type,
+            summary: post.summary,
+            summonResult: post.summonResult,
+            passives: post.passives,
+            normalAttacks: post.normalAttacks,
+            ultimate: post.ultimate,
+            notes: post.notes,
+            suitableCharacters: post.suitableCharacters,
+            videos: post.videos,
+            story: post.story,
+            keywords: post.keywords,
+          }}
           fnSendRequest={ApiRequestSender.analysisEditDragon}
         />
       );

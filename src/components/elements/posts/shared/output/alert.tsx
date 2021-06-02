@@ -30,9 +30,14 @@ export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}
 
 type AlertOtherLangProps<R extends PostGetResponse> = AlertProps<R> & {
   pid: number,
+  targetPath: PostPath,
 }
 
-export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({response, pid}: AlertOtherLangProps<R>) => {
+export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
+  response,
+  pid,
+  targetPath,
+}: AlertOtherLangProps<R>) => {
   const {t} = useI18n();
 
   return (
@@ -42,7 +47,7 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({response
       {
         response.otherLangs.map((lang) => (
           <li key={lang}>
-            <Alert.Link href={makePostPath(PostPath.ANALYSIS, {lang, pid})}>
+            <Alert.Link href={makePostPath(targetPath, {lang, pid})}>
               {SupportedLanguageNames[lang]}
             </Alert.Link>
           </li>

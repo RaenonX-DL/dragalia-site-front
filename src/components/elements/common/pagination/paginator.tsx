@@ -3,7 +3,7 @@ import React from 'react';
 import {Pagination} from 'react-bootstrap';
 import {useHistory} from 'react-router';
 
-import {scrollToTop} from '../../../../utils/scroll';
+import {scrollRefToTop} from '../../../../utils/scroll';
 import {PaginationState, SpecialKey} from './types';
 import {getValidNewPage} from './utils';
 
@@ -50,7 +50,7 @@ export const Paginator = ({
     onPageClick(newPage);
 
     // Scroll to top after changing the page
-    scrollToTop();
+    scrollRefToTop();
   };
 
   return (

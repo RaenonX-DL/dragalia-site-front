@@ -7,6 +7,7 @@ import {
   ApiResponseCode,
   OptionalSequencedPostMeta,
   PostIdCheckResponse,
+  SupportedLanguageNames,
   SupportedLanguages,
 } from '../../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
@@ -173,6 +174,25 @@ describe('Sequenced form meta input', () => {
       expect(setPayload).toHaveBeenCalledTimes(1);
       expect(fnIdCheck).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it('cannot change language if preloaded', async () => {
+    state.isPreloaded = true;
+
+    const {container, rerender} = renderReact(() => (
+      <FormSequencedMeta
+        formState={state}
+        setPayload={setPayload}
+        setAvailability={setAvailability}
+        titlePlaceholder={titlePlaceholder}
+        fnIdCheck={fnIdCheck}
+      />
+    ));
+    const langField = screen.getByTestId('langSelect');
+    fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
+    rerender();
+
+    expect(container).toHaveTextContent(SupportedLanguageNames[state.payload.lang]);
   });
 
   it('does not start the check within 1 sec of the change', async () => {
