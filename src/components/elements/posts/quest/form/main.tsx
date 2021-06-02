@@ -17,7 +17,7 @@ import {FormGeneralInfo} from './general';
 import {FormPositional} from './position';
 
 
-type QuestPostWriteResponse = QuestPostEditResponse | QuestPostPublishResponse;
+export type QuestPostWriteResponse = QuestPostEditResponse | QuestPostPublishResponse;
 
 export const QuestPostForm = <P extends QuestPostPublishPayload, R extends QuestPostWriteResponse>({
   formState,
@@ -51,7 +51,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
         </>
       )}
       renderOnPreloaded={renderOnPreloaded}
-      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
+      fnGetRedirectPath={(pid) => makePostPath(PostPath.QUEST, {pid, lang})}
       fnGetRedirectId={(response) => response.seqId}
     />
   );

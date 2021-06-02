@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
-import {MemoryRouter} from 'react-router-dom';
+import {createMemoryHistory, MemoryHistory} from 'history';
+import {Router} from 'react-router-dom';
 
 import {Main} from '../../src/main';
 import {ReduxProvider} from '../../src/state/provider';
@@ -11,15 +12,16 @@ import {RenderOptions, RenderReturns} from './types';
 type WrapperProps = {
   store: ReduxStore,
   options?: RenderOptions,
+  history: MemoryHistory,
 }
 
-const RenderWrapper = ({options, store, children}: React.PropsWithChildren<WrapperProps>) => {
+const RenderWrapper = ({history, store, children}: React.PropsWithChildren<WrapperProps>) => {
   return (
-    <MemoryRouter initialEntries={[options?.route || '']}>
+    <Router history={history}>
       <ReduxProvider persist={false} reduxStore={store}>
         {children}
       </ReduxProvider>
-    </MemoryRouter>
+    </Router>
   );
 };
 
@@ -28,22 +30,23 @@ export const renderReact = (
   options?: RenderOptions,
 ): RenderReturns => {
   const store = createStore(options?.preloadState);
+  const history = createMemoryHistory({initialEntries: [options?.route || '']});
 
   const app = render(
-    <RenderWrapper options={options} store={store}>
+    <RenderWrapper history={history} options={options} store={store}>
       {getReactElement()}
     </RenderWrapper>,
   );
 
   const rerender = () => {
     app.rerender(
-      <RenderWrapper options={options} store={store}>
+      <RenderWrapper history={history} options={options} store={store}>
         {getReactElement()}
       </RenderWrapper>,
     );
   };
 
-  return {rerender, store};
+  return {...app, rerender, store, history};
 };
 
 export const renderApp = (
