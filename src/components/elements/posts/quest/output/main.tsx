@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GeneralPath, makeSimplePath, makePostPath, PostPath} from '../../../../../const/path';
+import {GeneralPath, makePostPath, makeSimplePath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api';
 import {
@@ -13,10 +13,7 @@ import {
 } from '../../../../elements';
 import {PageProps} from '../../../../pages/props';
 import {AdsInPost} from '../../../common/ads';
-import {
-  AlertIsAlternativeLanguage,
-  AlertOtherLanguageAvailable,
-} from '../../shared/output/alert';
+import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
 import {OutputBase} from '../../shared/output/base';
 
 
@@ -53,7 +50,10 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
               />
             }
             {post.isAltLang && <AlertIsAlternativeLanguage response={post}/>}
-            {post.otherLangs.length > 0 && <AlertOtherLanguageAvailable response={post} pid={post.seqId}/>}
+            {
+              post.otherLangs.length > 0 &&
+              <AlertOtherLanguageAvailable response={post} pid={post.seqId} targetPath={PostPath.QUEST}/>
+            }
 
             <PageAnchor name="general" type="h3" text={t((t) => t.posts.quest.general)} className="mb-3"/>
             <div className="rounded bg-black-32 p-3">

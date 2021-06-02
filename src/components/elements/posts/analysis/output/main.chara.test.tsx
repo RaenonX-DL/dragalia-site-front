@@ -10,7 +10,9 @@ import {
   SupportedLanguages,
   UnitType,
 } from '../../../../../api-def/api';
+import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {makePostPath} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {AnalysisOutput} from './main';
 
@@ -135,6 +137,29 @@ describe('Analysis output (Character)', () => {
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).toBeInTheDocument();
     expect(screen.queryAllByText(new RegExp(`${chtName}`)).length).toBe(2);
+  });
+
+  it('gives correct link for alt lang redirection', async () => {
+    fnGetAnalysis.mockImplementationOnce(async () => ({
+      ...baseResponse,
+      isAltLang: true,
+      otherLangs: [SupportedLanguages.CHT],
+    }));
+    await act(async () => {
+      renderReact(() => (
+        <AnalysisOutput fnSetTitle={() => void 0}/>
+      ));
+    });
+
+    await waitFor(() => {
+      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
+    });
+
+    const altLangLink = screen.getAllByText(chtName)[0];
+    expect(altLangLink).toHaveAttribute(
+      'href',
+      makePostPath(PostPath.ANALYSIS, {lang: baseResponse.lang, pid: baseResponse.unitId}),
+    );
   });
 
   it('renders correctly if no edit notes', async () => {
