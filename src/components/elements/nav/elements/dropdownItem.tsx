@@ -1,21 +1,18 @@
 import React from 'react';
 
+import Link from 'next/link';
 import {NavDropdown} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
-import {useI18n} from '../../../../i18n/hook';
-import {makeSimplePath} from '../../../../utils/path/make';
 import {NavProps} from './types';
 
 
 export const NavDropdownItem = ({text, path}: NavProps) => {
-  const {lang} = useI18n();
-
+  // FIXME: Check if the nav item is clickable (<Link> works)
   return (
-    <LinkContainer to={makeSimplePath(path, {lang})}>
+    <Link href={path}>
       <NavDropdown.Item>
         {text}
       </NavDropdown.Item>
-    </LinkContainer>
+    </Link>
   );
 };

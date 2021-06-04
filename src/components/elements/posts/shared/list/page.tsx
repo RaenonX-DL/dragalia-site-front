@@ -1,17 +1,18 @@
 import React from 'react';
 
+import {useRouter} from 'next/router';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
-import {getParamValue} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
-import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
+import {Paginator} from '../../../common/pagination/paginator';
 import {PaginationState} from '../../../common/pagination/types';
 import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../../common/pagination/utils';
+import {PostManageBar, PostManageBarProps} from '../../manageBar';
 import {AlertFetchListFailed} from '../alert';
 
 
@@ -40,8 +41,10 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
+  const router = useRouter();
 
-  const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
+  // FIXME: `start` query correctly obtained from URL
+  const currentStart = Math.max(Number(router.query['start']) || 0, 0);
   const pageLimit = 10;
 
   const [status, setStatus] = React.useState<Status<R>>(

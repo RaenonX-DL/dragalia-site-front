@@ -16,5 +16,6 @@ const config: Config.InitialOptions = {
   coverageDirectory: '.',
   coverageReporters: ['clover'],
 };
+
 // noinspection JSUnusedGlobalSymbols
 export default config;

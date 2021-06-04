@@ -1,10 +1,12 @@
 import React from 'react';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
-import {GeneralPath, makePostPath, makeSimplePath, PostPath} from '../../../../../const/path';
+import {GeneralPath, makePostPath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
-import {AdsInPost, PostInfo, PostManageBar} from '../../../../elements';
+import {AdsInPost} from '../../../common/ads';
+import {PostManageBar} from '../../manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
+import {PostInfo} from '../../shared/output/info';
 import {SectionBottom} from './bottom';
 import {SectionTop} from './top';
 
@@ -27,11 +29,11 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
         <PostManageBar
           newButtons={[
             {
-              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+              url: GeneralPath.ANALYSIS_NEW_CHARA,
               title: t((t) => t.posts.manage.addChara),
             },
             {
-              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+              url: GeneralPath.ANALYSIS_NEW_DRAGON,
               title: t((t) => t.posts.manage.addDragon),
             },
           ]}

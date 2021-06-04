@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Redirect} from 'react-router-dom';
+import {useRouter} from 'next/router';
 
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
@@ -8,8 +8,8 @@ import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/utils';
 import {useDispatch} from '../../../../../state/store';
 import {CookiesControl} from '../../../../../utils/cookies';
-import {BeforeUnloadPrompt} from '../../../common/beforeUnloadPrompt';
 import {CommonModal, ModalState} from '../../../common/modal';
+import useNavBlock from '../../../hooks/navBlock';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
 
@@ -31,6 +31,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -39,9 +40,11 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   });
 
   const [redirectId, setRedirectId] = React.useState(-1);
+  useNavBlock();
 
   if (redirectId > 0) {
-    return <Redirect to={{pathname: fnGetRedirectPath(redirectId)}}/>;
+    router.push(fnGetRedirectPath(redirectId)).then(() => void 0);
+    return <></>;
   }
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
@@ -92,7 +95,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 
   return (
     <>
-      <BeforeUnloadPrompt/>
       <CommonModal modalState={modalState} setModalState={setModalState}/>
       <form onSubmit={onSubmit}>
         {renderMain(setPayload, setAvailability)}

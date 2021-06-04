@@ -3,9 +3,9 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Basic Options */
     "target": "es2020",
-    "module": "esnext",
+    "module": "commonjs",
     "esModuleInterop": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "lib": [
       "dom",
       "dom.iterable",
@@ -30,5 +30,8 @@
   "include": [
     "src/",
     "test/"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

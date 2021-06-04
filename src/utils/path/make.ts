@@ -1,14 +1,5 @@
-import {generatePath, useLocation} from 'react-router-dom';
-
 import {SupportedLanguages} from '../../api-def/api';
 import {GeneralPath, PagePath, PathRoot, PostPath} from '../../const/path/definitions';
-import {getLangFromUrl} from './utils';
-
-export const getParamValue = (paramName: string, defaultValue?: string): string | undefined => {
-  const location = useLocation();
-
-  return new URLSearchParams(location.search).get(paramName) || defaultValue;
-};
 
 type PathArgs = {
   lang: SupportedLanguages,
@@ -16,6 +7,12 @@ type PathArgs = {
 
 const makePath = (path: string) => {
   return `${PathRoot}${path}`;
+};
+
+const generatePath = (path: string, args: {[key in string]: string | number}) => {
+  Object.keys(args).forEach((key) => path.replace(`:${key}`, args[key].toString()));
+
+  return path;
 };
 
 export const makeRoutePath = (path: PagePath) => {
@@ -32,13 +29,4 @@ type PostPathArgs = PathArgs & {
 
 export const makePostPath = (path: PostPath, args: PostPathArgs) => {
   return generatePath(makePath(path), args);
-};
-
-export const patchLanguageToPath = (path: string, lang: SupportedLanguages) => {
-  // If language found in path - don't patch
-  if (getLangFromUrl(path, () => null)) {
-    return path;
-  }
-
-  return generatePath(makePath(path), {lang});
 };

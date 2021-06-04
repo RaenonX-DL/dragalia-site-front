@@ -1,23 +1,22 @@
 import React from 'react';
 
+import Link from 'next/link';
 import {NavDropdown} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
 import {GeneralPath} from '../const/path/definitions';
-import {makeSimplePath} from '../utils/path/make';
 import {GoogleAnalytics} from '../utils/services/ga';
 import {useI18n} from './hook';
 
 
+// FIXME: Check if the nav item is clickable (<Link> works)
 export const LanguageSwitch = () => {
-  const {t, lang, setLang} = useI18n();
+  const {t, lang} = useI18n();
 
   const currentLangName = SupportedLanguageNames[lang];
 
   const onLangChanged = (newLang: SupportedLanguages) => () => {
     GoogleAnalytics.languageChange(lang, newLang);
-    setLang(newLang);
   };
 
   return (
@@ -27,11 +26,11 @@ export const LanguageSwitch = () => {
       <NavDropdown.Divider/>
       {
         Object.values(SupportedLanguages).map((newLang) => (
-          <LinkContainer key={newLang} to={makeSimplePath(GeneralPath.HOME, {lang: newLang})}>
+          <Link key={newLang} href={GeneralPath.HOME} locale={newLang}>
             <NavDropdown.Item onClick={onLangChanged(newLang)}>
               {SupportedLanguageNames[newLang]}
             </NavDropdown.Item>
-          </LinkContainer>
+          </Link>
         ))
       }
     </NavDropdown>

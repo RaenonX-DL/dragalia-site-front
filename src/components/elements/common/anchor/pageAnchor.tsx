@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {HashLink} from 'react-router-hash-link';
-
-import {scrollElementToTop} from '../../../../utils/scroll';
-import {GoogleAnalytics} from '../../../../utils/services/ga';
+import Link from 'next/link';
 
 
 export const titleNavBarId = 'nav-title'; // Global element ID for the nav bar title
@@ -13,15 +10,13 @@ type PageAnchorCommonProps = {
 }
 
 const PageAnchorCommon = ({name}: PageAnchorCommonProps) => {
+  // FIXME: Scroll and GA record?
   return (
-    <HashLink
-      smooth
-      to={`#${name}`}
-      onClick={() => GoogleAnalytics.anchor('click', name)}
-      scroll={scrollElementToTop}
+    <Link
+      href={`#${name}`}
     >
       #
-    </HashLink>
+    </Link>
   );
 };
 

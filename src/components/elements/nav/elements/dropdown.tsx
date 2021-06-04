@@ -1,9 +1,8 @@
 import React from 'react';
 
+import {useRouter} from 'next/router';
 import {NavDropdown} from 'react-bootstrap';
-import {useLocation} from 'react-router-dom';
 
-import {getNeutralPathFromUrl} from '../../../../utils/path/utils';
 import {NavDropdownItem} from './dropdownItem';
 import {NavDropdownEntry} from './types';
 
@@ -13,18 +12,18 @@ type Props = {
 }
 
 export const NavDropdownMenu = ({title, items}: Props) => {
-  const location = useLocation();
+  const {pathname} = useRouter();
 
-  const {path: neutralPath} = getNeutralPathFromUrl(location.pathname);
+  // FIXME: Check if `active` is correctly displayed
   let isActive;
-  if (neutralPath) {
+  if (pathname) {
     isActive = items
       .some((item) => {
         if (item.type !== 'item') {
           return false;
         }
 
-        return item.path === neutralPath;
+        return item.path === pathname;
       });
   } else {
     isActive = false;

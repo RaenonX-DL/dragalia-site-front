@@ -4,8 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
 import {renderers} from './renderers';
-
-import './main.css';
+import './main.module.css';
 
 type Props = {
   children: string,

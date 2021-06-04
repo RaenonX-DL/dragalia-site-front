@@ -5,7 +5,9 @@ import {Col, Row} from 'react-bootstrap';
 import {PostGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
-import {InfoCard, PageAnchor, PostEditNotes} from '../../../../elements';
+import {PageAnchor} from '../../../common/anchor/pageAnchor';
+import {PostEditNotes} from './editNotes';
+import {InfoCard} from './infoCard';
 
 
 type PostInfoProps = {

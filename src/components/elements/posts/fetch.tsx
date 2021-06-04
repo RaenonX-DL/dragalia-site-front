@@ -21,6 +21,7 @@ type FetchPostProps<R extends PostGetResponse, S extends PostFetchStatus> = {
   increaseCount?: boolean,
 }
 
+// FIXME: Get post should fetch using `getServerProps`
 export const FetchPost = <R extends PostGetResponse, S extends PostFetchStatus<R>>({
   status,
   fnSetStatus,

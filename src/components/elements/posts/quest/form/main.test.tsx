@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
-import {Route} from 'react-router-dom';
+import {Router} from 'next/router';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -27,6 +27,7 @@ describe('Main quest form', () => {
   };
   let formState: PostFormState<QuestPostEditPayload>;
   let setFormState: jest.Mock;
+  let routeChange: jest.Mock;
 
   beforeEach(() => {
     formState = {
@@ -55,7 +56,13 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
+    routeChange = jest.fn();
+    Router.events.on('routeChangeStart', routeChange);
     jest.spyOn(CookiesControl, 'getGoogleUid').mockImplementation(() => formState.payload.googleUid);
+  });
+
+  afterEach(() => {
+    Router.events.off('routeChangeStart', routeChange);
   });
 
   it('loads the data correctly', async () => {
@@ -340,14 +347,12 @@ describe('Main quest form', () => {
   });
 
   it('redirects to correct location on submit', async () => {
-    const {history, rerender} = renderReact(() => (
-      <Route>
-        <QuestPostForm
-          fnSendRequest={fnSendRequest}
-          formState={formState}
-          setFormState={setFormState}
-        />
-      </Route>
+    const {rerender} = renderReact(() => (
+      <QuestPostForm
+        fnSendRequest={fnSendRequest}
+        formState={formState}
+        setFormState={setFormState}
+      />
     ));
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
@@ -359,8 +364,8 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(history.location.pathname)
-        .toBe(makePostPath(PostPath.QUEST, {pid: response.seqId, lang: SupportedLanguages.EN}));
+      expect(routeChange)
+        .toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId, lang: SupportedLanguages.EN}));
     });
   });
 });

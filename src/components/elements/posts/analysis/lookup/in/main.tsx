@@ -5,7 +5,6 @@ import {Button, Col, Form} from 'react-bootstrap';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
-import {makeSimplePath} from '../../../../../../utils/path/make';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
@@ -19,7 +18,7 @@ type LookupInputProps = {
 }
 
 export const AnalysisLookupInput = ({isAdmin, onSearchRequested}: LookupInputProps) => {
-  const {t, lang} = useI18n();
+  const {t} = useI18n();
 
   const [inputData, setInputData] = React.useState<InputData>({
     keyword: '',
@@ -95,11 +94,11 @@ export const AnalysisLookupInput = ({isAdmin, onSearchRequested}: LookupInputPro
           <PostManageBar
             newButtons={[
               {
-                url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+                url: GeneralPath.ANALYSIS_NEW_CHARA,
                 title: t((t) => t.posts.manage.addChara),
               },
               {
-                url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+                url: GeneralPath.ANALYSIS_NEW_DRAGON,
                 title: t((t) => t.posts.manage.addDragon),
               },
             ]}

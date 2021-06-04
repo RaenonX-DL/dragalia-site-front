@@ -1,20 +1,12 @@
-import {SupportedLanguages} from '../../api-def/api';
-
-const langsRegex = Object.values(SupportedLanguages).join('|');
-
-export const PathRoot = `/:lang(${langsRegex})`;
+export const PathRoot = `/:lang`;
 
 export enum PostPath {
-  QUEST = `/quest/:pid(\\d+)`,
-  QUEST_EDIT = '/quest/:pid(\\d+)/edit',
-  ANALYSIS = '/analysis/:pid(\\d+)',
-  ANALYSIS_EDIT = '/analysis/:pid(\\d+)/edit',
-  MISC = '/misc/:pid(\\d+)',
+  QUEST = `/quest/:pid`,
+  QUEST_EDIT = '/quest/:pid/edit',
+  ANALYSIS = '/analysis/:pid',
+  ANALYSIS_EDIT = '/analysis/:pid/edit',
+  MISC = '/misc/:pid',
 }
-
-export const isPostPath = (url: any): url is PostPath => {
-  return Object.values(PostPath).includes(url);
-};
 
 export enum GeneralPath {
   // Home
@@ -44,16 +36,4 @@ export const allPaths = ([] as Array<PagePath>).concat(
   ),
 );
 
-export const allActualPaths = allPaths.map((path) => `${PathRoot}${path}`);
-
 export type PagePath = PostPath | GeneralPath;
-
-export const toNeutralPath = (path: string): PagePath | null => {
-  if (!path.startsWith(PathRoot)) {
-    return null;
-  }
-
-  path = path.replace(PathRoot, '');
-
-  return allPaths.find((pathToCheck) => pathToCheck === path) || null;
-};

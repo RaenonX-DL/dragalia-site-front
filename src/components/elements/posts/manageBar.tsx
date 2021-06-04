@@ -1,12 +1,13 @@
 import React from 'react';
 
+import Link from 'next/link';
 import {Button, Col, Row} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
+import {PagePath} from '../../../const/path/definitions';
 import {useI18n} from '../../../i18n/hook';
 
 type NewButtonEntry = {
-  url: string,
+  url: PagePath,
   title?: string,
 }
 
@@ -15,27 +16,29 @@ export type PostManageBarProps = {
   editPostUrl?: string
 }
 
+// FIXME: New post button URL with `lang` or not?
 export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => {
   const {t} = useI18n();
 
+  // FIXME: Check if the nav item is clickable (<Link> works)
   return (
     <Row>
       <Col>
         {
           editPostUrl &&
-            <LinkContainer to={editPostUrl}>
+            <Link href={editPostUrl}>
               <Button variant="outline-info" className="float-right ml-2">
                 {t((t) => t.posts.manage.edit)}
               </Button>
-            </LinkContainer>
+            </Link>
         }
         {
           newButtons.map(({url, title}, idx) => (
-            <LinkContainer to={url} key={idx}>
+            <Link href={url} key={idx}>
               <Button variant="outline-success" className="float-right ml-2">
                 {title || t((t) => t.posts.manage.add)}
               </Button>
-            </LinkContainer>
+            </Link>
           ))
         }
       </Col>

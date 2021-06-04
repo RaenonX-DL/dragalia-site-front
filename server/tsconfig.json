@@ -3,9 +3,17 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "../dist/",
-    "noEmit": false
+    "noEmit": false,
+    "allowJs": true,
+    "checkJs": true
   },
   "include": [
-    "./"
+    // All files
+    "./**/*",
+    // No config file
+    "!./**/*.config.*"
+  ],
+  "exclude": [
+    "jest.config.ts"
   ]
 }

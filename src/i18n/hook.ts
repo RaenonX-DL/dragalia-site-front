@@ -1,7 +1,9 @@
+import {useRouter} from 'next/router';
+import Cookies from 'universal-cookie';
+
 import {SupportedLanguages} from '../api-def/api';
-import {configDispatchers} from '../state/config/dispatchers';
-import {useConfigSelector} from '../state/config/selector';
-import {useDispatch} from '../state/store';
+import {CookiesKeys} from '../const/cookies';
+import {DEFAULT_LANG} from './langCode';
 import {translations} from './translations/main';
 import {TFunction} from './types';
 import {getTFunction} from './utils';
@@ -9,20 +11,25 @@ import {getTFunction} from './utils';
 type UseI18nReturn = {
   t: TFunction,
   lang: SupportedLanguages,
-  setLang: (newLang: SupportedLanguages) => void,
 };
 
 export const useI18n = (): UseI18nReturn => {
-  const dispatch = useDispatch();
-  const {lang} = useConfigSelector();
+  // FIXME: Centralize cookie management & set default lang
+  const cookies = new Cookies();
+  let configLang: SupportedLanguages = cookies.get(CookiesKeys.LANG);
+  const {query} = useRouter();
+  const routerLang = query.lang;
 
-  const setLang = (newLang: SupportedLanguages) => {
-    dispatch(configDispatchers.setConfig({lang: newLang}));
-  };
+  if (!configLang || !(configLang in SupportedLanguages)) {
+    configLang = DEFAULT_LANG;
+  }
+  if (configLang !== routerLang) {
+    // FIXME: Set language to cookies
+    cookies.set(CookiesKeys.LANG, configLang);
+  }
 
   return {
-    t: getTFunction(translations[lang]),
-    lang,
-    setLang,
+    t: getTFunction(translations[configLang]),
+    lang: configLang,
   };
 };

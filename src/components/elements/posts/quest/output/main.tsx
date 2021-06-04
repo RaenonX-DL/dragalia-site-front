@@ -1,23 +1,20 @@
 import React from 'react';
 
-import {GeneralPath, makePostPath, makeSimplePath, PostPath} from '../../../../../const/path';
+import {GeneralPath, makePostPath, PostPath} from '../../../../../const/path';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api';
-import {
-  Markdown,
-  PageAnchor,
-  PostInfo,
-  PostManageBar,
-  QuestPositionOutput,
-  QuestPostFetchStatus,
-} from '../../../../elements';
-import {PageProps} from '../../../../pages/props';
 import {AdsInPost} from '../../../common/ads';
+import {PageAnchor} from '../../../common/anchor/pageAnchor';
+import {Markdown} from '../../../markdown/main';
+import {PostManageBar} from '../../manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
 import {OutputBase} from '../../shared/output/base';
+import {PostInfo} from '../../shared/output/info';
+import {QuestPostFetchStatus} from '../fetch';
+import {QuestPositionOutput} from './positional';
 
 
-export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
+export const QuestPostOutput = () => {
   const {t, lang} = useI18n();
 
   const [status, setStatus] = React.useState<QuestPostFetchStatus>(
@@ -31,13 +28,8 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
 
   return (
     <OutputBase
-      fnSetTitle={fnSetTitle}
       status={status}
       setStatus={setStatus}
-      getTitle={(pid) => t(
-        (t) => t.meta.inUse.questPost.title,
-        {title: status.post?.title || `#Q${pid}`},
-      )}
       fnSendFetchRequest={ApiRequestSender.questGet}
       renderOnFetched={(post) => {
         return (
@@ -45,7 +37,7 @@ export const QuestPostOutput = ({fnSetTitle}: PageProps) => {
             {
               post.isAdmin &&
               <PostManageBar
-                newButtons={[{url: makeSimplePath(GeneralPath.QUEST_NEW, {lang})}]}
+                newButtons={[{url: GeneralPath.QUEST_NEW}]}
                 editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}
               />
             }

@@ -1,9 +1,9 @@
-import {History} from 'history';
+import {NextRouter} from 'next/router';
 
 import {scrollElementToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 
-export const scrollToAnchor = (history: History) => {
+export const scrollToAnchor = (fnPushHistory: NextRouter['push']) => {
   const hashIndex = window.location.hash.indexOf('#');
 
   // Early termination on hash string not found
@@ -16,7 +16,7 @@ export const scrollToAnchor = (history: History) => {
 
   if (anchorElement) {
     scrollElementToTop(anchorElement);
-    history.push(window.location); // Push history (change URL in address bar without jumping)
+    fnPushHistory(window.location).then(() => void 0); // Push history (change URL in address bar without jumping)
   }
 
   GoogleAnalytics.anchor(anchorElement ? 'navigate' : 'navFailed', anchorHashId);

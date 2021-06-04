@@ -3,9 +3,9 @@ name: Node CI
 on: [push]
 
 env:
-  REACT_APP_API_ROOT: https://dl-back.raenonx.cc
-  REACT_APP_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
-  REACT_APP_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
+  NEXT_PUBLIC_API_ROOT: https://dl-back.raenonx.cc
+  NEXT_PUBLIC_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
+  NEXT_PUBLIC_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
   CI: true
 
 jobs:
@@ -34,11 +34,8 @@ jobs:
       - name: npm run lint
         run: npm run lint
 
-      - name: npm test (React)
+      - name: npm test
         run: npm run test -- --coverage
-
-      - name: npm test (Server)
-        run: npm run test:server
 
       - name: Send Coverage report
         uses: codacy/codacy-coverage-reporter-action@master

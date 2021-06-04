@@ -1,5 +1,5 @@
 import {AttackingSkillData} from '../../api-def/resources';
-import {InputData} from '../../components/elements/gameData';
+import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {ConditionCodes} from '../../const/gameData';
 
 export type CalculateDamageReturn = {

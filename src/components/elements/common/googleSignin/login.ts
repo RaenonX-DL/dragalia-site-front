@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
@@ -14,81 +15,85 @@ import {GoogleLoginFailedResponse, GoogleSignInProps, isOfflineLogin} from './ty
 export const useGoogleLogin = ({
   t,
   onFailed,
-}: GoogleSignInProps) => useGoogleLoginDep({
-  clientId: GOOGLE_CLIENT_ID,
-  onScriptLoadFailure: (error: any) => {
-    console.error('Failed to load Google Sign-in script', error);
-  },
-  onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    if (isOfflineLogin(response)) {
-      GoogleAnalytics.login('Google', false, 'offline_login_disallowed');
-      onFailed({
-        show: true,
-        title: t((t) => t.googleSignin.loginFailed),
-        message: t((t) => t.googleSignin.loginOfflineDisallowed),
-      });
-      return;
-    }
+}: GoogleSignInProps) => {
+  const router = useRouter();
 
-    GoogleAnalytics.login('Google', true);
-
-    const googleUid = response.getId();
-    const googleEmail = response.getBasicProfile().getEmail();
-
-    ApiRequestSender.userLogin(googleUid, googleEmail)
-      .then((data) => {
-        // Early terminate on API returning failure
-        if (!data.success) {
-          onFailed({
-            show: true,
-            title: t((t) => t.googleSignin.loginFailed),
-            message: t(
-              (t) => t.googleSignin.loginError,
-              {
-                error: data.code.toString(),
-                details: ApiResponseCode[data.code],
-              },
-            ),
-          });
-          return;
-        }
-        if (CookiesControl.setGoogleUid(googleUid)) {
-          window.location.reload();
-        }
-      })
-      .catch((error) => {
+  return useGoogleLoginDep({
+    clientId: GOOGLE_CLIENT_ID,
+    onScriptLoadFailure: (error: any) => {
+      console.error('Failed to load Google Sign-in script', error);
+    },
+    onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+      if (isOfflineLogin(response)) {
+        GoogleAnalytics.login('Google', false, 'offline_login_disallowed');
         onFailed({
           show: true,
-          title: t((t) => t.googleSignin.requestFailed),
-          message: JSON.stringify(error.toString()),
+          title: t((t) => t.googleSignin.loginFailed),
+          message: t((t) => t.googleSignin.loginOfflineDisallowed),
         });
+        return;
+      }
+
+      GoogleAnalytics.login('Google', true);
+
+      const googleUid = response.getId();
+      const googleEmail = response.getBasicProfile().getEmail();
+
+      ApiRequestSender.userLogin(googleUid, googleEmail)
+        .then((data) => {
+          // Early terminate on API returning failure
+          if (!data.success) {
+            onFailed({
+              show: true,
+              title: t((t) => t.googleSignin.loginFailed),
+              message: t(
+                (t) => t.googleSignin.loginError,
+                {
+                  error: data.code.toString(),
+                  details: ApiResponseCode[data.code],
+                },
+              ),
+            });
+            return;
+          }
+          if (CookiesControl.setGoogleUid(googleUid)) {
+            router.reload();
+          }
+        })
+        .catch((error) => {
+          onFailed({
+            show: true,
+            title: t((t) => t.googleSignin.requestFailed),
+            message: JSON.stringify(error.toString()),
+          });
+        });
+    },
+    onFailure: (error: GoogleLoginFailedResponse) => {
+      GoogleAnalytics.login('Google', false, error.error);
+
+      console.error(error);
+
+      // Do not display the error popup if the user blocked 3rd party cookies
+      // because google sign-in will automatically execute upon visiting the website
+      onFailed({
+        show: error.error !== 'idpiframe_initialization_failed',
+        title: t((t) => t.googleSignin.loginFailed),
+        message: t(
+          (t) => t.googleSignin.loginError,
+          {
+            error: error.error || '(unknown error)',
+            details: error.details || 'N/A',
+          },
+        ),
+        loginError: error,
       });
-  },
-  onFailure: (error: GoogleLoginFailedResponse) => {
-    GoogleAnalytics.login('Google', false, error.error);
-
-    console.error(error);
-
-    // Do not display the error popup if the user blocked 3rd party cookies
-    // because google sign-in will automatically execute upon visiting the website
-    onFailed({
-      show: error.error !== 'idpiframe_initialization_failed',
-      title: t((t) => t.googleSignin.loginFailed),
-      message: t(
-        (t) => t.googleSignin.loginError,
-        {
-          error: error.error || '(unknown error)',
-          details: error.details || 'N/A',
-        },
-      ),
-      loginError: error,
-    });
-  },
-  onAutoLoadFinished: (loggedIn: boolean) => {
-    if (loggedIn) {
-      return;
-    }
-    CookiesControl.removeGoogleUid();
-  },
-  isSignedIn: !!CookiesControl.getGoogleUid(),
-});
+    },
+    onAutoLoadFinished: (loggedIn: boolean) => {
+      if (loggedIn) {
+        return;
+      }
+      CookiesControl.removeGoogleUid();
+    },
+    isSignedIn: !!CookiesControl.getGoogleUid(),
+  });
+};

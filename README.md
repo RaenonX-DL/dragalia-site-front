@@ -15,22 +15,22 @@ Frontend of [Dragalia Lost info website by OM][site].
 
 Name | Required/Optional | Description
 :---: | :---: | :---:
-REACT_APP_API_ROOT | Required | Root URL of the backend. This should **not** end with a slash (`/`).
-REACT_APP_RESOURCE_ROOT | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
-REACT_APP_DEPOT_ROOT | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
+NEXT_PUBLIC_API_ROOT | Required | Root URL of the backend. This should **not** end with a slash (`/`).
+NEXT_PUBLIC_RESOURCE_ROOT | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
+NEXT_PUBLIC_DEPOT_ROOT | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
 
-For the [currently deployed website][site], `REACT_APP_API_ROOT` is `https://dl-back.raenonx.cc`.
+For the [current deployed website][site], `NEXT_PUBLIC_API_ROOT` is `https://dl-back.raenonx.cc`.
 
 -   Check https://github.com/RaenonX-DL/dragalia-site-back for the source code.
 
 In general, 
 
-`REACT_APP_RESOURCE_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main`, 
+`NEXT_PUBLIC_RESOURCE_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main`, 
 where stores the parsed data.
 
 -   Check https://github.com/RaenonX-DL/dragalia-site-resources for all available resources.
 
-`REACT_APP_DEPOT_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main`, 
+`NEXT_PUBLIC_DEPOT_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main`, 
 where stores the dumped game assets.
 
 -   Check https://github.com/RaenonX-DL/dragalia-data-depot for all available resources.
