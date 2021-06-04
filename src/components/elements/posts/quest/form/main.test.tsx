@@ -322,8 +322,6 @@ describe('Main quest form', () => {
     });
     rerender();
 
-    screen.debug();
-
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
     expect(fnSendRequest).toHaveBeenCalledWith({
       ...formState.payload,

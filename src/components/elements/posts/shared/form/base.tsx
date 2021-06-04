@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom';
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
-import {AlertPayloadMaker} from '../../../../../state/alert/express';
+import {AlertPayloadMaker} from '../../../../../state/alert/utils';
 import {useDispatch} from '../../../../../state/store';
 import {CookiesControl} from '../../../../../utils/cookies';
 import {BeforeUnloadPrompt} from '../../../common/beforeUnloadPrompt';

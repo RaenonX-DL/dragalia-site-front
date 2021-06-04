@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import {makeRoutePath} from '../../../const/path';
 import {useI18n} from '../../../i18n/hook';
 import {alertDispatchers} from '../../../state/alert/dispatchers';
-import {AlertPayloadMaker} from '../../../state/alert/express';
+import {AlertPayloadMaker} from '../../../state/alert/utils';
 import {useDispatch} from '../../../state/store';
 import {CookiesControl} from '../../../utils/cookies';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';

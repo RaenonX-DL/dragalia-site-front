@@ -8,7 +8,6 @@ export const scrollRefToTop = <T extends HTMLElement>(refElement?: React.RefObje
 };
 
 export const scrollElementToTop = (element?: HTMLElement | null) => {
-  // FIXME: possible duplicate of `scrollToTop`?
   const topLocation = (
     (element?.offsetTop || 0) -
     (document.getElementById(titleNavBarId)?.offsetHeight || 0)
