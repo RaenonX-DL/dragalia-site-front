@@ -5,15 +5,19 @@ import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 import {renderReact} from '../../test/render/main';
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
 import {GeneralPath} from '../const/path/definitions';
+import {CookiesKeys} from '../utils/cookies/keys';
+import * as cookiesUtils from '../utils/cookies/utils';
 import {GoogleAnalytics} from '../utils/services/ga';
 import * as i18nHook from './hook';
 import {LanguageSwitch} from './switch';
 
 describe('Language Switch', () => {
   let gaLangChange: jest.SpyInstance;
+  let setCookies: jest.SpyInstance;
 
   beforeEach(() => {
     gaLangChange = jest.spyOn(GoogleAnalytics, 'languageChange');
+    setCookies = jest.spyOn(cookiesUtils, 'setCookies');
     jest.spyOn(i18nHook, 'useI18n')
       .mockReturnValue({t: () => 'trans', lang: SupportedLanguages.EN});
   });
@@ -79,5 +83,6 @@ describe('Language Switch', () => {
       fireEvent.click(chtLink);
     });
     expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
+    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
   });
 });
