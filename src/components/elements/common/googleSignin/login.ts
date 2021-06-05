@@ -17,7 +17,7 @@ export const useGoogleLogin = ({
   t,
   onFailed,
 }: GoogleSignInProps) => {
-  // FIXME: Text content did not match (console error)
+  // FIXME: [Blocked by Auth Rework] Text content did not match (console error)
   const router = useRouter();
 
   return useGoogleLoginDep({

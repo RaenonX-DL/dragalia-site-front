@@ -1,7 +1,4 @@
-import fastify from 'fastify';
-import next from 'next';
-
-import {nextConfig} from './config';
+import {createApp} from './utils/init';
 import {initHerokuNginx} from './utils/init/herokuNginx';
 import {initHttp} from './utils/init/http';
 import {isAppOnHeroku, isProduction} from './utils/misc';
@@ -11,41 +8,16 @@ if (isProduction()) {
   require('newrelic');
 }
 
-const nextApp = next({
-  dev: !isProduction(),
-  customServer: true,
-  conf: nextConfig,
+(async () => {
+  const {fastifyApp} = await createApp();
+
+  if (!isAppOnHeroku()) {
+    await initHttp(fastifyApp);
+    return;
+  }
+
+  await initHerokuNginx(fastifyApp);
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
 });
-
-nextApp.prepare()
-  .then(async () => {
-    const nextHandler = nextApp.getRequestHandler();
-    const fastifyApp = fastify({
-      logger: isProduction() ?
-        true :
-        {
-          prettyPrint: {
-            translateTime: true,
-          },
-        },
-      connectionTimeout: 20000, // 20 seconds
-      trustProxy: isAppOnHeroku(),
-    });
-
-    // FIXME: Check page list working correctly (contains `start` as params)
-    fastifyApp.all('/*', async (req, res) => {
-      await nextHandler(req.raw, res.raw);
-      res.sent = true;
-    });
-
-    if (!isAppOnHeroku()) {
-      await initHttp(fastifyApp);
-      return;
-    }
-
-    await initHerokuNginx(fastifyApp);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });

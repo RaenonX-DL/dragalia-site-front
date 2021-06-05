@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "test": "jest --config ./src/jest.config.ts --maxWorkers=50%",
+    "test": "jest --config jest.config.ts --maxWorkers=50%",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --fix --ext .ts,.tsx",
     "build": "npm-run-all build:*",

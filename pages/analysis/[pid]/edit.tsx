@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
+import Error from 'next/error';
 import {Alert} from 'react-bootstrap';
 
 import {
   AnalysisResponse,
   CharaAnalysisBody,
   DragonAnalysisBody,
-  SupportedLanguages,
   UnitType,
 } from '../../../src/api-def/api';
 import {AnalysisFormCharaEdit} from '../../../src/components/elements/posts/analysis/form/charaEdit';
@@ -17,18 +17,17 @@ import {useI18n} from '../../../src/i18n/hook';
 import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+import {getServerSidePropsPost} from '../../../src/utils/ssr';
 
 
 type AnalysisEditProps = {
-  response: AnalysisResponse,
+  response?: AnalysisResponse,
 }
 
 export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (context) => {
-  const {pid, lang} = context.query;
-
   const googleUid = getCookies(CookiesKeys.GOOGLE_UID, context.req.cookies);
   if (!googleUid) {
-    // FIXME: Change redirection destination - user not logged in yet
+    // FIXME: [Blocked by Auth Rework] Change redirection destination - user not logged in yet
     return {
       redirect: {
         permanent: false,
@@ -37,17 +36,9 @@ export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (
     };
   }
 
-  const response = await ApiRequestSender.analysisGet(
-    googleUid,
-    Number(pid),
-    lang as SupportedLanguages,
-    false,
-  );
-  // FIXME: Handle post not found
-
   return {
     props: {
-      response,
+      response: await getServerSidePropsPost(context, ApiRequestSender.analysisGet, googleUid),
     },
   };
 };
@@ -60,9 +51,13 @@ const AnalysisEdit = ({response}: AnalysisEditProps) => {
   //  - display unknown post type
   const {t} = useI18n();
 
+  if (!response) {
+    return <Error statusCode={404}/>;
+  }
+
   const analysisType = response.type;
 
-  // Explicit expansion to ensure no other properties like `viewCount` from `fetchStatus.post` is included.
+  // Explicit expansion to ensure no other properties like `viewCount` from `response` is included.
   // These properties from post get should **NOT** be included in edit payload.
   if (analysisType === UnitType.CHARACTER) {
     const post = response as CharaAnalysisBody;

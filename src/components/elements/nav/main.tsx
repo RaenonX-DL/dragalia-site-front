@@ -22,7 +22,6 @@ export const Navigation = () => {
     setTitle(document.title);
   }, []);
 
-  // FIXME: Check if the nav item is clickable (<Link> works)
   return (
     <>
       <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
