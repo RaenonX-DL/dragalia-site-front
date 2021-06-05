@@ -8,12 +8,6 @@
     "checkJs": true
   },
   "include": [
-    // All files
-    "./**/*",
-    // No config file
-    "!./**/*.config.*"
-  ],
-  "exclude": [
-    "jest.config.ts"
+    "./",
   ]
 }

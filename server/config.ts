@@ -12,7 +12,6 @@ export const nextConfig: NextConfig = {
     locales: Object.values(SupportedLanguages),
     defaultLocale: DEFAULT_LANG,
   },
-  pageExtensions: ['page.tsx'],
   // FIXME: Can't view analysis
   // FIXME: Clicking navbar doesn't have default locale prepended
   // FIXME: Redirect non-supported languages - https://nextjs.org/docs/api-reference/next.config.js/redirects

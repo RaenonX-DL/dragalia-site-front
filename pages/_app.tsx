@@ -14,7 +14,6 @@ import '../public/bootstrap.css';
 import '../public/index.css';
 
 // FIXME: Fetch title and description
-// FIXME: REACT_APP_* or NEXT_PUBLIC_*
 const App = ({Component, pageProps}: AppProps) => {
   return (
     <>

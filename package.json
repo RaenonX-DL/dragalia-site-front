@@ -18,7 +18,7 @@
     "build:server": "tsc --p ./server/tsconfig.json",
     "start": "pm2-runtime start pm2.yml --env production"
   },
-  "main": "./dist/main.js",
+  "main": "./dist/server/main.js",
   "dependencies": {
     "@ctrl/react-adsense": "^1.3.1",
     "@reduxjs/toolkit": "^1.5.1",
