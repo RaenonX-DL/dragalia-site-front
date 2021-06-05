@@ -11,6 +11,7 @@ type Props = {
   overrideStyle?: boolean,
 }
 
+// FIXME: Markdown styles not applied
 export const Markdown = ({children, overrideStyle = true}: Props) => {
   return (
     <div className={overrideStyle ? 'markdown-body' : ''}>
