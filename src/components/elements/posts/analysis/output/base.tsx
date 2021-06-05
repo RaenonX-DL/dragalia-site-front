@@ -10,11 +10,11 @@ import {PostInfo} from '../../shared/output/info';
 import {SectionBottom} from './bottom';
 import {SectionTop} from './top';
 
+
 type AnalysisOutputBaseProps<R extends AnalysisGetResponse> = {
   analysis: R,
   renderBody: (post: R) => React.ReactElement,
 }
-
 
 export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   analysis,

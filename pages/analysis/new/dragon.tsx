@@ -8,6 +8,8 @@ import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 
 
+// FIXME: If not admin, redirect
+
 const AnalysisNewDragon = () => {
   const {lang} = useI18n();
 

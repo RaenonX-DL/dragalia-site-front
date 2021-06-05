@@ -9,6 +9,8 @@ import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {generateNewCharaSkill} from '../../../src/utils/services/api/utils';
 
 
+// FIXME: If not admin, redirect
+
 const AnalysisNewChara = () => {
   const {lang} = useI18n();
 

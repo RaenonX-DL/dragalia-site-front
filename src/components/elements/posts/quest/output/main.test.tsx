@@ -1,24 +1,22 @@
 import React from 'react';
 
-import {act, screen, waitFor} from '@testing-library/react';
+import {act, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
   ApiResponseCode,
-  SupportedLanguages,
   QuestPostGetResponse,
   SupportedLanguageNames,
+  SupportedLanguages,
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {makePostPath} from '../../../../../utils/path/make';
-import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {QuestPostOutput} from './main';
 
-describe('Quest post output', () => {
-  let fnGetQuestPost: jest.SpyInstance;
 
-  const baseResponse: QuestPostGetResponse = {
+describe('Quest post output', () => {
+  const postResponse: QuestPostGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
     isAdmin: false,
@@ -61,20 +59,11 @@ describe('Quest post output', () => {
   const otherLangTips = translationEN.posts.message.otherLang;
   const chtName = SupportedLanguageNames[SupportedLanguages.CHT];
 
-  beforeEach(() => {
-    fnGetQuestPost = jest.spyOn(ApiRequestSender, 'questGet');
-  });
-
   it('renders correctly if no alt lang', async () => {
-    fnGetQuestPost.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput/>
+        <QuestPostOutput post={postResponse}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetQuestPost).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
@@ -90,19 +79,14 @@ describe('Quest post output', () => {
   });
 
   it('renders correctly if has alt lang', async () => {
-    fnGetQuestPost.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAltLang: true,
-      otherLangs: [SupportedLanguages.CHT],
-    }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput/>
+        <QuestPostOutput post={{
+          ...postResponse,
+          isAltLang: true,
+          otherLangs: [SupportedLanguages.CHT],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetQuestPost).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
@@ -119,41 +103,31 @@ describe('Quest post output', () => {
   });
 
   it('gives correct link for alt lang redirection', async () => {
-    fnGetQuestPost.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAltLang: true,
-      otherLangs: [SupportedLanguages.CHT],
-    }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput/>
+        <QuestPostOutput post={{
+          ...postResponse,
+          isAltLang: true,
+          otherLangs: [SupportedLanguages.CHT],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetQuestPost).toHaveBeenCalledTimes(1);
     });
 
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.QUEST, {lang: baseResponse.lang, pid: baseResponse.seqId}),
+      makePostPath(PostPath.QUEST, {lang: postResponse.lang, pid: postResponse.seqId}),
     );
   });
 
   it('renders correctly if no edit notes', async () => {
-    fnGetQuestPost.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      editNotes: [],
-    }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput/>
+        <QuestPostOutput post={{
+          ...postResponse,
+          editNotes: [],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetQuestPost).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
@@ -169,18 +143,13 @@ describe('Quest post output', () => {
   });
 
   it('renders correctly for admin', async () => {
-    fnGetQuestPost.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAdmin: true,
-    }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput/>
+        <QuestPostOutput post={{
+          ...postResponse,
+          isAdmin: true,
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetQuestPost).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText(translationEN.posts.manage.add)).toBeInTheDocument();

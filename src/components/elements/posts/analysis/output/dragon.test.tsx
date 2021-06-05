@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {act, screen, waitFor} from '@testing-library/react';
+import {act, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
   ApiResponseCode,
-  CharaAnalysisGetResponse,
+  DragonAnalysisGetResponse,
   SupportedLanguageNames,
   SupportedLanguages,
   UnitType,
@@ -13,33 +13,24 @@ import {
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {makePostPath} from '../../../../../utils/path/make';
-import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
-import {AnalysisOutput} from './main';
+import {AnalysisOutputDragon} from './dragon';
+
 
 describe('Analysis output (Character)', () => {
-  let fnGetAnalysis: jest.SpyInstance;
-
-  const baseResponse: CharaAnalysisGetResponse = {
+  const analysisResponse: DragonAnalysisGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
     isAdmin: false,
     lang: SupportedLanguages.CHT,
-    type: UnitType.CHARACTER,
+    type: UnitType.DRAGON,
     unitId: 10950101,
     summary: 'sum',
     summonResult: 'res',
     passives: 'psv',
     normalAttacks: 'auto',
-    forceStrikes: 'fs',
-    skills: [
-      {
-        name: 'name',
-        info: 'inf',
-        rotations: 'rot',
-        tips: 'tip',
-      },
-    ],
-    tipsBuilds: 'bld',
+    notes: 'not',
+    suitableCharacters: 'suc',
+    ultimate: 'ult',
     videos: 'vid',
     story: 'str',
     keywords: 'kw',
@@ -68,32 +59,20 @@ describe('Analysis output (Character)', () => {
   const otherLangTips = translationEN.posts.message.otherLang;
   const chtName = SupportedLanguageNames[SupportedLanguages.CHT];
 
-  beforeEach(() => {
-    fnGetAnalysis = jest.spyOn(ApiRequestSender, 'analysisGet');
-  });
-
   it('renders correctly if no alt lang', async () => {
-    fnGetAnalysis.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput/>
+        <AnalysisOutputDragon analysis={analysisResponse}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
     expect(screen.getByText('psv')).toBeInTheDocument();
     expect(screen.getByText('auto')).toBeInTheDocument();
-    expect(screen.getByText('fs')).toBeInTheDocument();
-    expect(screen.getByText('name')).toBeInTheDocument();
-    expect(screen.getByText('inf')).toBeInTheDocument();
-    expect(screen.getByText('rot')).toBeInTheDocument();
-    expect(screen.getByText('tip')).toBeInTheDocument();
-    expect(screen.getByText('bld')).toBeInTheDocument();
+    expect(screen.getByText('not')).toBeInTheDocument();
+    expect(screen.getByText('suc')).toBeInTheDocument();
+    expect(screen.getByText('ult')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
@@ -104,31 +83,23 @@ describe('Analysis output (Character)', () => {
   });
 
   it('renders correctly if has alt lang', async () => {
-    fnGetAnalysis.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAltLang: true,
-      otherLangs: [SupportedLanguages.CHT],
-    }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput/>
+        <AnalysisOutputDragon analysis={{
+          ...analysisResponse,
+          isAltLang: true,
+          otherLangs: [SupportedLanguages.CHT],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
     expect(screen.getByText('psv')).toBeInTheDocument();
     expect(screen.getByText('auto')).toBeInTheDocument();
-    expect(screen.getByText('fs')).toBeInTheDocument();
-    expect(screen.getByText('name')).toBeInTheDocument();
-    expect(screen.getByText('inf')).toBeInTheDocument();
-    expect(screen.getByText('rot')).toBeInTheDocument();
-    expect(screen.getByText('tip')).toBeInTheDocument();
-    expect(screen.getByText('bld')).toBeInTheDocument();
+    expect(screen.getByText('not')).toBeInTheDocument();
+    expect(screen.getByText('suc')).toBeInTheDocument();
+    expect(screen.getByText('ult')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
@@ -140,53 +111,40 @@ describe('Analysis output (Character)', () => {
   });
 
   it('gives correct link for alt lang redirection', async () => {
-    fnGetAnalysis.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAltLang: true,
-      otherLangs: [SupportedLanguages.CHT],
-    }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput/>
+        <AnalysisOutputDragon analysis={{
+          ...analysisResponse,
+          isAltLang: true,
+          otherLangs: [SupportedLanguages.CHT],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
     });
 
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.ANALYSIS, {lang: baseResponse.lang, pid: baseResponse.unitId}),
+      makePostPath(PostPath.ANALYSIS, {lang: analysisResponse.lang, pid: analysisResponse.unitId}),
     );
   });
 
   it('renders correctly if no edit notes', async () => {
-    fnGetAnalysis.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      editNotes: [],
-    }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput/>
+        <AnalysisOutputDragon analysis={{
+          ...analysisResponse,
+          editNotes: [],
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
     expect(screen.getByText('psv')).toBeInTheDocument();
     expect(screen.getByText('auto')).toBeInTheDocument();
-    expect(screen.getByText('fs')).toBeInTheDocument();
-    expect(screen.getByText('name')).toBeInTheDocument();
-    expect(screen.getByText('inf')).toBeInTheDocument();
-    expect(screen.getByText('rot')).toBeInTheDocument();
-    expect(screen.getByText('tip')).toBeInTheDocument();
-    expect(screen.getByText('bld')).toBeInTheDocument();
+    expect(screen.getByText('not')).toBeInTheDocument();
+    expect(screen.getByText('suc')).toBeInTheDocument();
+    expect(screen.getByText('ult')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
@@ -197,18 +155,13 @@ describe('Analysis output (Character)', () => {
   });
 
   it('renders correctly for admin', async () => {
-    fnGetAnalysis.mockImplementationOnce(async () => ({
-      ...baseResponse,
-      isAdmin: true,
-    }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput/>
+        <AnalysisOutputDragon analysis={{
+          ...analysisResponse,
+          isAdmin: true,
+        }}/>
       ));
-    });
-
-    await waitFor(() => {
-      expect(fnGetAnalysis).toHaveBeenCalledTimes(1);
     });
 
     expect(screen.getByText(translationEN.posts.manage.addChara)).toBeInTheDocument();
@@ -218,12 +171,9 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('res')).toBeInTheDocument();
     expect(screen.getByText('psv')).toBeInTheDocument();
     expect(screen.getByText('auto')).toBeInTheDocument();
-    expect(screen.getByText('fs')).toBeInTheDocument();
-    expect(screen.getByText('name')).toBeInTheDocument();
-    expect(screen.getByText('inf')).toBeInTheDocument();
-    expect(screen.getByText('rot')).toBeInTheDocument();
-    expect(screen.getByText('tip')).toBeInTheDocument();
-    expect(screen.getByText('bld')).toBeInTheDocument();
+    expect(screen.getByText('not')).toBeInTheDocument();
+    expect(screen.getByText('suc')).toBeInTheDocument();
+    expect(screen.getByText('ult')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();

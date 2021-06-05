@@ -8,16 +8,7 @@ type FetchFailedProps = {
   failureMessage: string,
 }
 
-export const AlertFetchFailed = ({failureMessage}: FetchFailedProps) => {
-  const {t} = useI18n();
-
-  return (
-    <Alert variant="danger">
-      {t((t) => t.posts.manage.fetchPostFailed, {error: failureMessage})}
-    </Alert>
-  );
-};
-
+// FIXME: Get post list should fetch using `getServerProps`
 export const AlertFetchListFailed = ({failureMessage}: FetchFailedProps) => {
   const {t} = useI18n();
 
