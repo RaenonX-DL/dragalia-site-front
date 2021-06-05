@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import next from 'next';
 
+import {nextConfig} from './config';
 import {initHerokuNginx} from './utils/init/herokuNginx';
 import {initHttp} from './utils/init/http';
 import {isAppOnHeroku, isProduction} from './utils/misc';
@@ -13,6 +14,7 @@ if (isProduction()) {
 const nextApp = next({
   dev: !isProduction(),
   customServer: true,
+  conf: nextConfig,
 });
 
 nextApp.prepare()

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
-import {Router} from 'next/router';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -18,6 +17,7 @@ import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
 
+
 describe('Main quest form', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
   const response: QuestPostEditResponse = {
@@ -27,7 +27,6 @@ describe('Main quest form', () => {
   };
   let formState: PostFormState<QuestPostEditPayload>;
   let setFormState: jest.Mock;
-  let routeChange: jest.Mock;
 
   beforeEach(() => {
     formState = {
@@ -56,13 +55,7 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
-    routeChange = jest.fn();
-    Router.events.on('routeChangeStart', routeChange);
     jest.spyOn(CookiesControl, 'getGoogleUid').mockImplementation(() => formState.payload.googleUid);
-  });
-
-  afterEach(() => {
-    Router.events.off('routeChangeStart', routeChange);
   });
 
   it('loads the data correctly', async () => {
@@ -347,13 +340,20 @@ describe('Main quest form', () => {
   });
 
   it('redirects to correct location on submit', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const routerPush = jest.fn();
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {
+        routerOptions: {
+          push: routerPush,
+        },
+      });
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
     act(() => {
@@ -364,7 +364,7 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(routeChange)
+      expect(routerPush)
         .toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId, lang: SupportedLanguages.EN}));
     });
   });

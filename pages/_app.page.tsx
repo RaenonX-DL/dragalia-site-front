@@ -7,7 +7,7 @@ import {Container} from 'react-bootstrap';
 import {GlobalAlert} from '../src/components/elements/common/alert';
 import {Footer} from '../src/components/elements/footer';
 import {Navigation} from '../src/components/elements/nav/main';
-import {SiteAlert} from '../src/siteAlert';
+import {SiteAlert} from '../src/components/pages/siteAlert';
 import {ReduxProvider} from '../src/state/provider';
 
 import '../public/bootstrap.css';

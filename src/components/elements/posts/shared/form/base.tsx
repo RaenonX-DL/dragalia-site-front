@@ -43,6 +43,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   useNavBlock();
 
   if (redirectId > 0) {
+    // FIXME: Redirects IRL?
     router.push(fnGetRedirectPath(redirectId)).then(() => void 0);
     return <></>;
   }

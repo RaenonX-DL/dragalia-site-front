@@ -69,7 +69,7 @@ describe('Quest post output', () => {
     fnGetQuestPost.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput fnSetTitle={() => void 0}/>
+        <QuestPostOutput/>
       ));
     });
 
@@ -97,7 +97,7 @@ describe('Quest post output', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput fnSetTitle={() => void 0}/>
+        <QuestPostOutput/>
       ));
     });
 
@@ -126,7 +126,7 @@ describe('Quest post output', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput fnSetTitle={() => void 0}/>
+        <QuestPostOutput/>
       ));
     });
 
@@ -148,7 +148,7 @@ describe('Quest post output', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput fnSetTitle={() => void 0}/>
+        <QuestPostOutput/>
       ));
     });
 
@@ -175,7 +175,7 @@ describe('Quest post output', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <QuestPostOutput fnSetTitle={() => void 0}/>
+        <QuestPostOutput/>
       ));
     });
 

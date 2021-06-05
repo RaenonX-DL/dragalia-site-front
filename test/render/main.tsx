@@ -1,21 +1,26 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
+import {RouterContext} from 'next/dist/next-server/lib/router-context';
 
 import {ReduxProvider} from '../../src/state/provider';
 import {createStore, ReduxStore} from '../../src/state/store';
+import {makeRouter} from './router';
 import {RenderOptions, RenderReturns} from './types';
+
 
 type WrapperProps = {
   store: ReduxStore,
   options?: RenderOptions,
 }
 
-const RenderWrapper = ({store, children}: React.PropsWithChildren<WrapperProps>) => {
+const RenderWrapper = ({store, options, children}: React.PropsWithChildren<WrapperProps>) => {
   return (
-    <ReduxProvider reduxStore={store}>
-      {children}
-    </ReduxProvider>
+    <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
+      <ReduxProvider reduxStore={store}>
+        {children}
+      </ReduxProvider>
+    </RouterContext.Provider>
   );
 };
 

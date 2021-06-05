@@ -76,7 +76,7 @@ describe('Analysis output (Character)', () => {
     fnGetAnalysis.mockImplementationOnce(async () => baseResponse);
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput fnSetTitle={() => void 0}/>
+        <AnalysisOutput/>
       ));
     });
 
@@ -111,7 +111,7 @@ describe('Analysis output (Character)', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput fnSetTitle={() => void 0}/>
+        <AnalysisOutput/>
       ));
     });
 
@@ -147,7 +147,7 @@ describe('Analysis output (Character)', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput fnSetTitle={() => void 0}/>
+        <AnalysisOutput/>
       ));
     });
 
@@ -169,7 +169,7 @@ describe('Analysis output (Character)', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput fnSetTitle={() => void 0}/>
+        <AnalysisOutput/>
       ));
     });
 
@@ -203,7 +203,7 @@ describe('Analysis output (Character)', () => {
     }));
     await act(async () => {
       renderReact(() => (
-        <AnalysisOutput fnSetTitle={() => void 0}/>
+        <AnalysisOutput/>
       ));
     });
 
