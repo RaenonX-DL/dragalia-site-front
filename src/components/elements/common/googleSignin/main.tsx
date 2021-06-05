@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {useI18n} from '../../../../i18n/hook';
-import {CookiesControl} from '../../../../utils/cookies';
+import {CookiesKeys} from '../../../../utils/cookies/keys';
+import {getCookies} from '../../../../utils/cookies/utils';
 import {CommonModal} from '../modal';
 import {LoginButton} from './button/login';
 import {LogoutButton} from './button/logout';
@@ -35,7 +36,7 @@ export const GoogleSigninButton = () => {
     <>
       <CommonModal modalState={failureInfo} setModalState={setFailureInfo}/>
       {
-        CookiesControl.getGoogleUid() ?
+        getCookies(CookiesKeys.GOOGLE_UID) ?
           <LogoutButton
             fnSignOut={signOut}
             loaded={signOutLoaded}

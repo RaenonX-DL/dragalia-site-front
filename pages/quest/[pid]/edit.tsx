@@ -1,12 +1,15 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
-import Cookies from 'universal-cookie';
+
 
 import {QuestPostGetResponse, SupportedLanguages} from '../../../src/api-def/api';
 import {QuestEditForm} from '../../../src/components/elements/posts/quest/form/edit';
-import {CookiesKeys} from '../../../src/const/cookies';
+import {GeneralPath} from '../../../src/const/path/definitions';
+import {CookiesKeys} from '../../../src/utils/cookies/keys';
+import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+
 
 type QuestEditProps = {
   response: QuestPostGetResponse,
@@ -15,10 +18,19 @@ type QuestEditProps = {
 export const getServerSideProps: GetServerSideProps<QuestEditProps> = async (context) => {
   const {pid, lang} = context.query;
 
-  // FIXME: Centralize cookies obtaining
-  const cookies = new Cookies(context.req.cookies);
+  const googleUid = getCookies(CookiesKeys.GOOGLE_UID, context.req.cookies);
+  if (!googleUid) {
+    // FIXME: Change redirection destination - user not logged in yet
+    return {
+      redirect: {
+        permanent: false,
+        destination: GeneralPath.HOME,
+      },
+    };
+  }
+
   const response = await ApiRequestSender.questGet(
-    cookies.get(CookiesKeys.GOOGLE_UID),
+    googleUid,
     Number(pid),
     lang as SupportedLanguages,
     false,

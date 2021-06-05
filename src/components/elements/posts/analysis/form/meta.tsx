@@ -4,7 +4,8 @@ import {Col, Form, Row} from 'react-bootstrap';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../utils/cookies/utils';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
 import {UnitIcon} from '../../../gameData/unitIcon';
@@ -27,7 +28,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      ApiRequestSender.analysisIdCheck(CookiesControl.getGoogleUid() || '', payload.unitId, payload.lang)
+      ApiRequestSender.analysisIdCheck(getCookies(CookiesKeys.GOOGLE_UID) || '', payload.unitId, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.unitId, payload.lang],
   });

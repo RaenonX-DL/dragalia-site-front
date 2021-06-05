@@ -1,45 +1,49 @@
 import {useRouter} from 'next/router';
-import Cookies from 'universal-cookie';
 
 import {SupportedLanguages} from '../api-def/api';
-import {CookiesKeys} from '../const/cookies';
+import {CookiesKeys} from '../utils/cookies/keys';
+import {getCookies, setCookies} from '../utils/cookies/utils';
 import {DEFAULT_LANG} from './langCode';
 import {translations} from './translations/main';
 import {TFunction} from './types';
 import {getTFunction} from './utils';
+
 
 type UseI18nReturn = {
   t: TFunction,
   lang: SupportedLanguages,
 };
 
-export const useI18n = (): UseI18nReturn => {
-  // FIXME: Centralize cookie management & set default lang
-  // FIXME: Page not reflecting actual lang
-  // TEST: I18n hook
-  //  - No cookies no router: use default and set cookies
-  //  - No cookies has router: use router and set cookies
-  //  - Has cookies has router: no change
-  //  - Has cookies no router: no change (auto-redirect)
-  const cookies = new Cookies();
-  let configLang: SupportedLanguages = cookies.get(CookiesKeys.LANG);
-  const isCookieNotSet = !configLang;
-  const {locale} = useRouter();
-  const routerLang: SupportedLanguages = locale as SupportedLanguages;
+export const useCookiesLang = (): SupportedLanguages | null => {
+  return getCookies<SupportedLanguages>(CookiesKeys.LANG);
+};
 
-  if (!configLang) {
-    configLang = routerLang || DEFAULT_LANG;
-  }
-  if (!(Object.values(SupportedLanguages).some((lang) => lang === configLang))) {
-    configLang = DEFAULT_LANG;
-  }
-  if (isCookieNotSet) {
-    // FIXME: Set language to cookies
-    cookies.set(CookiesKeys.LANG, configLang);
+export const useRouterLang = (): SupportedLanguages => {
+  const {locale} = useRouter();
+  return locale as SupportedLanguages;
+};
+
+export const useI18n = (): UseI18nReturn => {
+  const cookiesLang = useCookiesLang();
+  const routerLang = useRouterLang();
+  let actualLang;
+
+  // Choose the actual lang to use
+  if (!cookiesLang) {
+    actualLang = routerLang || DEFAULT_LANG;
+    // Set language cookies if was not set
+    setCookies(CookiesKeys.LANG, actualLang);
+  } else {
+    actualLang = cookiesLang;
+
+    if (cookiesLang !== routerLang) {
+      setCookies(CookiesKeys.LANG, routerLang);
+      actualLang = routerLang;
+    }
   }
 
   return {
-    t: getTFunction(translations[configLang]),
-    lang: configLang,
+    t: getTFunction(translations[actualLang]),
+    lang: actualLang,
   };
 };

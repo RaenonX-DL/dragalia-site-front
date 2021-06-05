@@ -9,7 +9,8 @@ import {
   SupportedLanguages,
 } from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../../utils/cookies/utils';
 import {PostFormControlProps} from '../types';
 import {useFormMeta} from './hook';
 import {FormMetaLangPicker} from './lang';
@@ -36,7 +37,7 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      fnIdCheck(CookiesControl.getGoogleUid() || '', Number(payload.seqId) || null, payload.lang)
+      fnIdCheck(getCookies(CookiesKeys.GOOGLE_UID) || '', Number(payload.seqId) || null, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.seqId, payload.lang],
   });

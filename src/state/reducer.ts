@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import alertReducer from './alert/reducer';
 
-// FIXME: Check alert still displays
+// FIXME: Check alert is working after update
 const reducers = {
   alert: alertReducer,
 };

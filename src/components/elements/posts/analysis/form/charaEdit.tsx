@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {CharaAnalysisEditPayload, CharaAnalysisBody, AnalysisEditResponse} from '../../../../../api-def/api';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {AnalysisEditResponse, CharaAnalysisBody, CharaAnalysisEditPayload} from '../../../../../api-def/api';
+import {CookiesKeys} from '../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../utils/cookies/utils';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
@@ -19,7 +20,7 @@ export const AnalysisFormCharaEdit = ({
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
       ...initialAnalysis,
-      googleUid: CookiesControl.getGoogleUid() || '',
+      googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
       editNote: '',
     },
     isIdAvailable: true,

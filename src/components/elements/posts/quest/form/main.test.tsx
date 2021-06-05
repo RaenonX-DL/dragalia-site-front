@@ -12,7 +12,7 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {CookiesControl} from '../../../../../utils/cookies';
+import * as cookiesControl from '../../../../../utils/cookies/utils';
 import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
@@ -55,7 +55,7 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
-    jest.spyOn(CookiesControl, 'getGoogleUid').mockImplementation(() => formState.payload.googleUid);
+    jest.spyOn(cookiesControl, 'getCookies').mockImplementation(() => formState.payload.googleUid);
   });
 
   it('loads the data correctly', async () => {

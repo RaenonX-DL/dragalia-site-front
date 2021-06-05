@@ -20,7 +20,7 @@ export type PostManageBarProps = {
 export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => {
   const {t} = useI18n();
 
-  // FIXME: Check if the nav item is clickable (<Link> works)
+  // FIXME: Check if <Link> works
   return (
     <Row>
       <Col>

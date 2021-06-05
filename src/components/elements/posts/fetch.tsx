@@ -2,9 +2,11 @@ import React from 'react';
 
 import {PostGetResponse, ApiResponseCode} from '../../../api-def/api';
 import {useI18n} from '../../../i18n/hook';
-import {CookiesControl} from '../../../utils/cookies';
+import {CookiesKeys} from '../../../utils/cookies/keys';
+import {getCookies} from '../../../utils/cookies/utils';
 import {FunctionFetchPost} from '../../../utils/services/api';
 import {AlertFetchFailed} from './shared/alert';
+
 
 export type PostFetchStatus<R extends PostGetResponse = PostGetResponse> = {
   fetched: boolean,
@@ -33,7 +35,7 @@ export const FetchPost = <R extends PostGetResponse, S extends PostFetchStatus<R
 
   if (!status.fetched) {
     fnSendFetchRequest(
-      CookiesControl.getGoogleUid() || '',
+      getCookies(CookiesKeys.GOOGLE_UID) || '',
       seqId,
       lang,
       increaseCount,

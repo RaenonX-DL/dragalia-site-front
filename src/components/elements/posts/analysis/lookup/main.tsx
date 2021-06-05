@@ -2,7 +2,8 @@ import React from 'react';
 
 import {AnalysisLookupLandingResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../utils/cookies/utils';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {useFetchState} from '../../../common/fetch';
@@ -20,7 +21,7 @@ export const AnalysisPostLookup = () => {
     fetchFunction: fetchLookupLanding,
   } = useFetchState<AnalysisLookupLandingResponse | null>(
     null,
-    () => ApiRequestSender.analysisLookupLanding(CookiesControl.getGoogleUid() || '', lang),
+    () => ApiRequestSender.analysisLookupLanding(getCookies(CookiesKeys.GOOGLE_UID) || '', lang),
     'Failed to fetch the weapon type enums.',
   );
 

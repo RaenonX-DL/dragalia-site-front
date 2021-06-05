@@ -7,7 +7,8 @@ import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/utils';
 import {useDispatch} from '../../../../../state/store';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../utils/cookies/utils';
 import {CommonModal, ModalState} from '../../../common/modal';
 import useNavBlock from '../../../hooks/navBlock';
 import {FormControl} from './control';
@@ -61,7 +62,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!CookiesControl.getGoogleUid()) {
+    if (!getCookies(CookiesKeys.GOOGLE_UID)) {
       setModalState({
         show: true,
         title: t((t) => t.googleSignin.noUid),

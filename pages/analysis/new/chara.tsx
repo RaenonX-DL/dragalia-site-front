@@ -3,7 +3,8 @@ import React from 'react';
 import {UnitType} from '../../../src/api-def/api';
 import {AnalysisFormCharaNew} from '../../../src/components/elements/posts/analysis/form/charaNew';
 import {useI18n} from '../../../src/i18n/hook';
-import {CookiesControl} from '../../../src/utils/cookies';
+import {CookiesKeys} from '../../../src/utils/cookies/keys';
+import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {generateNewCharaSkill} from '../../../src/utils/services/api/utils';
 
@@ -14,7 +15,7 @@ const AnalysisNewChara = () => {
   return (
     <AnalysisFormCharaNew
       initialPayload={{
-        googleUid: CookiesControl.getGoogleUid() || '',
+        googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
         lang: lang,
         type: UnitType.CHARACTER,
         unitId: 0,

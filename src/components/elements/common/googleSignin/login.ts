@@ -7,7 +7,8 @@ import {
 
 import {ApiResponseCode} from '../../../../api-def/api';
 import {GOOGLE_CLIENT_ID} from '../../../../const/config';
-import {CookiesControl} from '../../../../utils/cookies';
+import {CookiesKeys} from '../../../../utils/cookies/keys';
+import {getCookies, removeCookies, setCookies} from '../../../../utils/cookies/utils';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {GoogleLoginFailedResponse, GoogleSignInProps, isOfflineLogin} from './types';
@@ -57,7 +58,7 @@ export const useGoogleLogin = ({
             });
             return;
           }
-          if (CookiesControl.setGoogleUid(googleUid)) {
+          if (setCookies(CookiesKeys.GOOGLE_UID, googleUid)) {
             router.reload();
           }
         })
@@ -93,8 +94,8 @@ export const useGoogleLogin = ({
       if (loggedIn) {
         return;
       }
-      CookiesControl.removeGoogleUid();
+      removeCookies(CookiesKeys.GOOGLE_UID);
     },
-    isSignedIn: !!CookiesControl.getGoogleUid(),
+    isSignedIn: !!getCookies(CookiesKeys.GOOGLE_UID),
   });
 };

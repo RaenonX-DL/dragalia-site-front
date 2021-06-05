@@ -4,7 +4,8 @@ import {Col, Form} from 'react-bootstrap';
 
 import {ApiResponseCode} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../../utils/cookies/utils';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
@@ -12,6 +13,7 @@ import {useFetchState} from '../../../../common/fetch';
 import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
 import {AnalysisEntry} from './entry';
+
 
 type AnalysisLookupOutputProps = {
   inputData: InputData | undefined,
@@ -33,7 +35,7 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
       isAdmin: false,
       analyses: [],
     },
-    () => ApiRequestSender.analysisLookup(CookiesControl.getGoogleUid() || '', lang),
+    () => ApiRequestSender.analysisLookup(getCookies(CookiesKeys.GOOGLE_UID) || '', lang),
     'Failed to fetch analysis meta.',
   );
 

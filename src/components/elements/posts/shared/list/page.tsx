@@ -5,7 +5,8 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {CookiesKeys} from '../../../../../utils/cookies/keys';
+import {getCookies} from '../../../../../utils/cookies/utils';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
@@ -71,7 +72,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
     });
 
     fnFetchList(
-      CookiesControl.getGoogleUid() || '',
+      getCookies(CookiesKeys.GOOGLE_UID) || '',
       lang,
       pageToStartIdx(page, pageLimit),
       pageLimit,

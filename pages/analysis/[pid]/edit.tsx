@@ -2,19 +2,20 @@ import React from 'react';
 
 import {GetServerSideProps} from 'next';
 import {Alert} from 'react-bootstrap';
-import Cookies from 'universal-cookie';
 
 import {
-  UnitType,
+  AnalysisResponse,
   CharaAnalysisBody,
   DragonAnalysisBody,
-  AnalysisResponse,
   SupportedLanguages,
+  UnitType,
 } from '../../../src/api-def/api';
 import {AnalysisFormCharaEdit} from '../../../src/components/elements/posts/analysis/form/charaEdit';
 import {AnalysisFormDragonEdit} from '../../../src/components/elements/posts/analysis/form/dragonEdit';
-import {CookiesKeys} from '../../../src/const/cookies';
+import {GeneralPath} from '../../../src/const/path/definitions';
 import {useI18n} from '../../../src/i18n/hook';
+import {CookiesKeys} from '../../../src/utils/cookies/keys';
+import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 
 
@@ -25,10 +26,19 @@ type AnalysisEditProps = {
 export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (context) => {
   const {pid, lang} = context.query;
 
-  // FIXME: Centralize cookies obtaining
-  const cookies = new Cookies(context.req.cookies);
+  const googleUid = getCookies(CookiesKeys.GOOGLE_UID, context.req.cookies);
+  if (!googleUid) {
+    // FIXME: Change redirection destination - user not logged in yet
+    return {
+      redirect: {
+        permanent: false,
+        destination: GeneralPath.HOME,
+      },
+    };
+  }
+
   const response = await ApiRequestSender.analysisGet(
-    cookies.get(CookiesKeys.GOOGLE_UID),
+    googleUid,
     Number(pid),
     lang as SupportedLanguages,
     false,
