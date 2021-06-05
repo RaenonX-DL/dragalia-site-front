@@ -9,7 +9,7 @@ export const getServerSidePropsPost = async <T extends PostGetResponse>(
   context: GetServerSidePropsContext,
   fnGetPost: FunctionFetchPost<T>,
   googleUid: string,
-): Promise<T | undefined> => {
+): Promise<T | null> => {
   const {pid} = context.query;
 
   try {
@@ -20,6 +20,6 @@ export const getServerSidePropsPost = async <T extends PostGetResponse>(
       false,
     );
   } catch {
-    return undefined;
+    return null;
   }
 };
