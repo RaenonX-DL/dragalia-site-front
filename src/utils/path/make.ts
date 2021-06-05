@@ -1,5 +1,5 @@
 import {SupportedLanguages} from '../../api-def/api';
-import {GeneralPath, PagePath, PathRoot, PostPath} from '../../const/path/definitions';
+import {GeneralPath, PathRoot, PostPath} from '../../const/path/definitions';
 
 type PathArgs = {
   lang: SupportedLanguages,
@@ -9,14 +9,12 @@ const makePath = (path: string) => {
   return `${PathRoot}${path}`;
 };
 
+// FIXME: Remove path utils?
+
 const generatePath = (path: string, args: {[key in string]: string | number}) => {
   Object.keys(args).forEach((key) => path.replace(`:${key}`, args[key].toString()));
 
   return path;
-};
-
-export const makeRoutePath = (path: PagePath) => {
-  return makePath(path);
 };
 
 export const makeSimplePath = (path: GeneralPath, args: PathArgs) => {

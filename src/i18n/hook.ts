@@ -15,6 +15,7 @@ type UseI18nReturn = {
 
 export const useI18n = (): UseI18nReturn => {
   // FIXME: Centralize cookie management & set default lang
+  // FIXME: Page not reflecting actual lang
   // TEST: I18n hook
   //  - No cookies no router: use default and set cookies
   //  - No cookies has router: use router and set cookies

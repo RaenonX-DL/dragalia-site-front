@@ -1,18 +1,16 @@
 import React from 'react';
 
-import Link from 'next/link';
+import {useRouter} from 'next/router';
 import {NavDropdown} from 'react-bootstrap';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
-import {GeneralPath} from '../const/path/definitions';
 import {GoogleAnalytics} from '../utils/services/ga';
 import {useI18n} from './hook';
 
 
-// FIXME: Check if the nav item is clickable (<Link> works)
-// FIXME: Switch language incorrect
 export const LanguageSwitch = () => {
   const {t, lang} = useI18n();
+  const {pathname} = useRouter();
 
   const currentLangName = SupportedLanguageNames[lang];
 
@@ -27,11 +25,12 @@ export const LanguageSwitch = () => {
       <NavDropdown.Divider/>
       {
         Object.values(SupportedLanguages).map((newLang) => (
-          <Link key={newLang} href={GeneralPath.HOME} locale={newLang}>
-            <NavDropdown.Item onClick={onLangChanged(newLang)}>
-              {SupportedLanguageNames[newLang]}
-            </NavDropdown.Item>
-          </Link>
+          <NavDropdown.Item
+            onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
+            key={newLang} href={`/${newLang}${pathname}`}
+          >
+            {SupportedLanguageNames[newLang]}
+          </NavDropdown.Item>
         ))
       }
     </NavDropdown>
