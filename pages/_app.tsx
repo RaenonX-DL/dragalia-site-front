@@ -13,7 +13,7 @@ import {ReduxProvider} from '../src/state/provider';
 import '../public/bootstrap.css';
 import '../public/index.css';
 
-// FIXME: Fetch title and description
+// FIXME: Get title and description - how to force set title/description?
 const App = ({Component, pageProps}: AppProps) => {
   return (
     <>

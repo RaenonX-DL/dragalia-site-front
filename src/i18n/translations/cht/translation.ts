@@ -202,7 +202,6 @@ export const translation: TranslationStruct = {
     },
     warning: {
       adminOnly: '網站管理員才有此頁面的使用權限。',
-      pageNav: '確定要離開本頁面嗎？',
       truncated: '因條目過多，只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。' +
         '如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。',
     },

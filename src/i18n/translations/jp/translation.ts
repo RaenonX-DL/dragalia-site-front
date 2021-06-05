@@ -202,7 +202,6 @@ export const translation: TranslationStruct = {
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
-      pageNav: 'このページ閉じますか？',
       truncated: '検索結果が多過ぎるため、一部だけ表示しています。({{displayed}} 表示中 / 全 {{returned}})。' +
         '第{{displayed}}個目以降の検索結果を見たい場合は検索結果が少なくなるよう再検索してください。',
     },

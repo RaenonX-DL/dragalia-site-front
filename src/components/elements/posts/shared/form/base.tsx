@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
-
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
@@ -10,7 +8,6 @@ import {useDispatch} from '../../../../../state/store';
 import {CookiesKeys} from '../../../../../utils/cookies/keys';
 import {getCookies} from '../../../../../utils/cookies/utils';
 import {CommonModal, ModalState} from '../../../common/modal';
-import useNavBlock from '../../../hooks/navBlock';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
 
@@ -19,7 +16,6 @@ type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> =
   fnGetRedirectPath: (redirectId: number) => string,
   fnGetRedirectId: (response: R) => number,
 }
-
 
 export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   formState,
@@ -32,7 +28,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -40,18 +35,16 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     message: '',
   });
 
-  const [redirectId, setRedirectId] = React.useState(-1);
-  let redirectPath;
-  useNavBlock();
+  React.useEffect(() => {
+    window.onbeforeunload = (e) => {
+      e.preventDefault();
+      return (e.returnValue = '');
+    };
 
-  if (redirectId > 0 && !redirectPath) {
-    // FIXME: Redirects IRL?
-    redirectPath = fnGetRedirectPath(redirectId);
-    // Use `redirectPath` as a lock to prevent duplicated `router.push (async)`
-    // noinspection JSIgnoredPromiseFromCall
-    router.push(redirectPath);
-    return <></>;
-  }
+    return () => {
+      window.onbeforeunload = null;
+    };
+  });
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
     ...formState,
@@ -80,7 +73,8 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     fnSendRequest(formState.payload)
       .then((data) => {
         if (data.success) {
-          setRedirectId(fnGetRedirectId(data));
+          window.onbeforeunload = null;
+          window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
           dispatch(alertDispatchers.showAlert(AlertPayloadMaker.postPublished(t)));
         } else {
           setModalState({

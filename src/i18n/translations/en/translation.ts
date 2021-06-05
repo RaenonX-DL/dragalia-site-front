@@ -225,7 +225,6 @@ export const translation: TranslationStruct = {
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
-      pageNav: 'Are you sure you want to leave this page?',
       truncated: 'Due to excessive number of results, ' +
         'results are truncated ({{displayed}} Displayed / {{returned} Available). ' +
         'To display the truncated results, please narrow the search condition.',

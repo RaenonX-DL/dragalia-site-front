@@ -340,7 +340,10 @@ describe('Main quest form', () => {
   });
 
   it('redirects to correct location on submit', async () => {
-    const routerPush = jest.fn();
+    // @ts-ignore
+    delete window.location;
+    // @ts-ignore
+    window.location = {assign: jest.fn()};
     const {rerender} = renderReact(
       () => (
         <QuestPostForm
@@ -348,12 +351,7 @@ describe('Main quest form', () => {
           formState={formState}
           setFormState={setFormState}
         />
-      ),
-      {
-        routerOptions: {
-          push: routerPush,
-        },
-      });
+      ));
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
     act(() => {
@@ -364,8 +362,8 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(routerPush).toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId}));
+      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId}));
     });
-    expect(routerPush).not.toHaveBeenCalledTimes(2);
+    expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
 });

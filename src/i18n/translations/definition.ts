@@ -198,7 +198,6 @@ export type TranslationStruct = {
     },
     warning: {
       adminOnly: string,
-      pageNav: string,
       truncated: string,
     },
     info: {
