@@ -18,7 +18,6 @@ const config: Config.InitialOptions = {
     './test/jest.setup.ts',
   ],
   // Coverage
-  collectCoverage: true,
   collectCoverageFrom: [
     // All script files in the children directory of the current directory
     './**/*.{js,jsx,ts,tsx}',

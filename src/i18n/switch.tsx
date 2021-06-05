@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {NavDropdown} from 'react-bootstrap';
 
@@ -25,12 +26,13 @@ export const LanguageSwitch = () => {
       <NavDropdown.Divider/>
       {
         Object.values(SupportedLanguages).map((newLang) => (
-          <NavDropdown.Item
-            onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
-            key={newLang} href={`/${newLang}${pathname}`}
-          >
-            {SupportedLanguageNames[newLang]}
-          </NavDropdown.Item>
+          <Link key={newLang} href={pathname} locale={newLang} passHref>
+            <NavDropdown.Item
+              onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
+            >
+              {SupportedLanguageNames[newLang]}
+            </NavDropdown.Item>
+          </Link>
         ))
       }
     </NavDropdown>
