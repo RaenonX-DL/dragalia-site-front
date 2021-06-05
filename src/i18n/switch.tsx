@@ -10,6 +10,7 @@ import {useI18n} from './hook';
 
 
 // FIXME: Check if the nav item is clickable (<Link> works)
+// FIXME: Switch language incorrect
 export const LanguageSwitch = () => {
   const {t, lang} = useI18n();
 

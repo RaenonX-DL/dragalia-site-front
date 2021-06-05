@@ -3,20 +3,35 @@ import {NextConfig} from 'next/dist/next-server/server/config';
 import {SupportedLanguages} from '../src/api-def/api';
 import {DEFAULT_LANG} from '../src/i18n/langCode';
 
+const catchAllLocale = 'catchAll';
+
 export const nextConfig: NextConfig = {
   // Required
   future: {},
   experimental: {},
   // Optional
   i18n: {
-    locales: Object.values(SupportedLanguages),
-    defaultLocale: DEFAULT_LANG,
+    locales: [...Object.values(SupportedLanguages), catchAllLocale],
+    defaultLocale: catchAllLocale,
+  },
+  redirects: async () => {
+    return [
+      {
+        source: `/${catchAllLocale}`,
+        destination: `/${DEFAULT_LANG}`,
+        locale: false,
+        permanent: true,
+      },
+      {
+        source: `/${catchAllLocale}/:slug*`,
+        destination: `/${DEFAULT_LANG}/:slug*`,
+        locale: false,
+        permanent: true,
+      },
+    ];
   },
   // FIXME: Can't view analysis
-  // FIXME: Clicking navbar doesn't have default locale prepended
-  // FIXME: Redirect non-supported languages - https://nextjs.org/docs/api-reference/next.config.js/redirects
-  //  - https://stackoverflow.com/questions/50589686/regex-negative-lookahead-with-named-capture-group
-  //  - (?!en|ch) - https://regex101.com/
+  // FIXME: Redirect according to cookies
   // redirects: async () => {
   //   return [
   //     // if the source, query, and cookie are matched,
@@ -27,11 +42,11 @@ export const nextConfig: NextConfig = {
   //         {
   //           type: 'cookie',
   //           key: 'authorized',
-  //           value: 'true',
+  //           value: '(?<authorized>yes|true)',
   //         },
   //       ],
   //       permanent: false,
-  //       destination: '/another/:path*',
+  //       destination: '/home?authorized=:authorized',
   //     },
   //     // if the header `x-authorized` is present and
   //     // contains a matching value, this redirect will be applied
