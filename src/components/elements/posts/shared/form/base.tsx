@@ -41,11 +41,15 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   });
 
   const [redirectId, setRedirectId] = React.useState(-1);
+  let redirectPath;
   useNavBlock();
 
-  if (redirectId > 0) {
+  if (redirectId > 0 && !redirectPath) {
     // FIXME: Redirects IRL?
-    router.push(fnGetRedirectPath(redirectId)).then(() => void 0);
+    redirectPath = fnGetRedirectPath(redirectId);
+    // Use `redirectPath` as a lock to prevent duplicated `router.push (async)`
+    // noinspection JSIgnoredPromiseFromCall
+    router.push(redirectPath);
     return <></>;
   }
 

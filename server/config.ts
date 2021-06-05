@@ -48,7 +48,6 @@ const redirectsToDefault: Array<Redirect> = [
   },
 ];
 
-// FIXME: Can't view analysis
 export const nextConfig: NextConfig = {
   // Required
   future: {},

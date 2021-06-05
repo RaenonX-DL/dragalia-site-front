@@ -364,8 +364,8 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(routerPush)
-        .toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId, lang: SupportedLanguages.EN}));
+      expect(routerPush).toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId}));
     });
+    expect(routerPush).not.toHaveBeenCalledTimes(2);
   });
 });

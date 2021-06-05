@@ -124,7 +124,7 @@ describe('Analysis output (Character)', () => {
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.ANALYSIS, {lang: analysisResponse.lang, pid: analysisResponse.unitId}),
+      makePostPath(PostPath.ANALYSIS, {pid: analysisResponse.unitId}),
     );
   });
 

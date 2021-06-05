@@ -17,6 +17,7 @@ type PaginatorProps = {
   disable?: boolean
 }
 
+// FIXME: check if paginator is behaving correctly
 export const Paginator = ({
   state,
   path,

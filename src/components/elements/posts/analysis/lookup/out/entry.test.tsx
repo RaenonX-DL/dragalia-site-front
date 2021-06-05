@@ -54,7 +54,7 @@ describe('Analysis lookup entry', () => {
     expect(unitName)
       .toHaveAttribute(
         'href',
-        makePostPath(PostPath.ANALYSIS, {lang: SupportedLanguages.EN, pid: 10950101}),
+        makePostPath(PostPath.ANALYSIS, {pid: 10950101}),
       );
     expect(screen.queryByText(/777/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();

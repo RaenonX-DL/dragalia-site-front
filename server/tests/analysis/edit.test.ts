@@ -1,4 +1,5 @@
 // FIXME: Complete analysis edit request test
+//  - https://github.com/toomuchdesign/next-page-tester
 describe('Analysis edit request', () => {
   it.todo('blocks access for anonymous users');
 

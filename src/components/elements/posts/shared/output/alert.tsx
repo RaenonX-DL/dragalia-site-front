@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Link from 'next/link';
 import {Alert} from 'react-bootstrap';
 
 import {SupportedLanguageNames, PostGetResponse} from '../../../../../api-def/api';
@@ -47,9 +48,11 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
       {
         response.otherLangs.map((lang) => (
           <li key={lang}>
-            <Alert.Link href={makePostPath(targetPath, {lang, pid})}>
-              {SupportedLanguageNames[lang]}
-            </Alert.Link>
+            <Link href={makePostPath(targetPath, {pid})} locale={lang} passHref>
+              <Alert.Link>
+                {SupportedLanguageNames[lang]}
+              </Alert.Link>
+            </Link>
           </li>
         ))
       }

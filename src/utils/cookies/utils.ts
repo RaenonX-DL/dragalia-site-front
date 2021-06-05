@@ -24,17 +24,12 @@ export const getCookies: GetCookies = (key: CookiesKeys, cookiesSource?: Cookies
 };
 
 
-type SetCookies = (key: CookiesKeys, value: string, cookiesSource?: CookiesSource) => boolean;
+type SetCookies = (key: CookiesKeys, value: string, cookiesSource?: CookiesSource) => void;
 
 export const setCookies: SetCookies = (key: CookiesKeys, value: string, cookiesSource?: CookiesSource) => {
   const cookies = getCookiesSource(cookiesSource);
 
-  if (getCookies(key, cookiesSource)) {
-    return false;
-  }
-
   cookies.set(key, value, {path: '/'});
-  return true;
 };
 
 

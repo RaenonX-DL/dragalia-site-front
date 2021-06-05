@@ -58,7 +58,9 @@ export const useGoogleLogin = ({
             });
             return;
           }
-          if (setCookies(CookiesKeys.GOOGLE_UID, googleUid)) {
+          // Avoid repetitive render (reload page - login success - reload page - ....)
+          if (!getCookies(CookiesKeys.GOOGLE_UID)) {
+            setCookies(CookiesKeys.GOOGLE_UID, googleUid);
             router.reload();
           }
         })

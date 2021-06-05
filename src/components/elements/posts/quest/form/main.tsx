@@ -25,7 +25,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
   fnSendRequest,
   renderOnPreloaded,
 }: PostFormProps<P, R>) => {
-  const {t, lang} = useI18n();
+  const {t} = useI18n();
 
   return (
     <PostFormBase
@@ -51,7 +51,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
         </>
       )}
       renderOnPreloaded={renderOnPreloaded}
-      fnGetRedirectPath={(pid) => makePostPath(PostPath.QUEST, {pid, lang})}
+      fnGetRedirectPath={(pid) => makePostPath(PostPath.QUEST, {pid})}
       fnGetRedirectId={(response) => response.seqId}
     />
   );

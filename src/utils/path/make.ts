@@ -1,30 +1,26 @@
 import {SupportedLanguages} from '../../api-def/api';
-import {GeneralPath, PathRoot, PostPath} from '../../const/path/definitions';
+import {PostPath} from '../../const/path/definitions';
 
-type PathArgs = {
-  lang: SupportedLanguages,
-}
+// FIXME: Check usages (makePat should not be necessary)
 
-const makePath = (path: string) => {
-  return `${PathRoot}${path}`;
-};
-
-// FIXME: Remove path utils?
-
-const generatePath = (path: string, args: {[key in string]: string | number}) => {
-  Object.keys(args).forEach((key) => path.replace(`:${key}`, args[key].toString()));
+const generatePath = (path: string, args: { [key in string]: string | number }) => {
+  Object.keys(args).forEach((key) => path = path.replace(`:${key}`, args[key].toString()));
 
   return path;
 };
 
-export const makeSimplePath = (path: GeneralPath, args: PathArgs) => {
-  return generatePath(makePath(path), args);
+export const makeLangSensitivePath = (path: string, lang: SupportedLanguages) => {
+  if (!path.startsWith('/')) {
+    path = '/' + path;
+  }
+
+  return `/${lang}${path}`;
 };
 
-type PostPathArgs = PathArgs & {
+type PostPathArgs = {
   pid: number,
 }
 
 export const makePostPath = (path: PostPath, args: PostPathArgs) => {
-  return generatePath(makePath(path), args);
+  return generatePath(path, args);
 };
