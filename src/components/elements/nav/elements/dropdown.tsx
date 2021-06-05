@@ -14,7 +14,6 @@ type Props = {
 export const NavDropdownMenu = ({title, items}: Props) => {
   const {pathname} = useRouter();
 
-  // FIXME: Check if `active` is correctly displayed
   let isActive;
   if (pathname) {
     isActive = items
