@@ -10,7 +10,7 @@ import {ApiRequestSender} from '../../src/utils/services/api/requestSender';
 import {generateNewPositionInfo} from '../../src/utils/services/api/utils';
 
 
-// FIXME: If not admin, redirect
+// FIXME: [Blocked by Auth Rework] If not admin, redirect
 
 const QuestNew = () => {
   const {lang} = useI18n();

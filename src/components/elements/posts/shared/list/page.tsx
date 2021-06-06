@@ -44,7 +44,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   const {lang} = useI18n();
   const router = useRouter();
 
-  // FIXME: `start` query correctly obtained from URL
   const currentStart = Math.max(Number(router.query['start']) || 0, 0);
   const pageLimit = 10;
 
@@ -121,6 +120,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 
   // TEST: Pagination action
   //  - Go to paginated page, use paginator once, then try to go back
+  //  - Disable on no item
 
   // Trigger page click event if the pagination status desync with the URL params
   // - This occurs when the user try to go to the previous page by `history.back()`

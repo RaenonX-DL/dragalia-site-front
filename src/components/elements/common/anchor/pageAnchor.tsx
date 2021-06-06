@@ -10,7 +10,7 @@ type PageAnchorCommonProps = {
 }
 
 const PageAnchorCommon = ({name}: PageAnchorCommonProps) => {
-  // FIXME: Scroll and GA record?
+  // FIXME: Anchor - Scroll and GA record?
   return (
     <Link
       href={`#${name}`}

@@ -34,7 +34,6 @@ export const createApp = async (): Promise<CreateAppReturn> => {
 
   const nextHandler = nextApp.getRequestHandler();
 
-  // FIXME: Check page list working correctly (contains `start` as params)
   fastifyApp.all('/*', async (req, res) => {
     await nextHandler(req.raw, res.raw);
     res.sent = true;

@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import alertReducer from './alert/reducer';
 
-// FIXME: Check alert is working after update
+// FIXME: Redux persist - alert fadeout on timeout
 const reducers = {
   alert: alertReducer,
 };

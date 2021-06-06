@@ -8,7 +8,6 @@ type FetchFailedProps = {
   failureMessage: string,
 }
 
-// FIXME: Get post list should fetch using `getServerProps`
 export const AlertFetchListFailed = ({failureMessage}: FetchFailedProps) => {
   const {t} = useI18n();
 

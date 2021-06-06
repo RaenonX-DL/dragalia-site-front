@@ -3,6 +3,7 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {Pagination} from 'react-bootstrap';
 
+import {scrollElementToTop} from '../../../../utils/scroll';
 import {PaginationState, SpecialKey} from './types';
 import {getValidNewPage} from './utils';
 
@@ -17,7 +18,6 @@ type PaginatorProps = {
   disable?: boolean
 }
 
-// FIXME: check if paginator is behaving correctly
 export const Paginator = ({
   state,
   path,
@@ -25,11 +25,6 @@ export const Paginator = ({
   getNewQueryParam,
   disable = false,
 }: PaginatorProps) => {
-  // TEST: Paginator
-  //  - Disable on no item
-  //  - Special keys available and behaving correctly
-  //  - Page number shown is correct
-
   const router = useRouter();
 
   const changePage = (newPage: number) => () => {
@@ -56,6 +51,10 @@ export const Paginator = ({
         },
       )
       .then(() => void 0);
+
+    // Scroll to top
+    // `router.push` won't scroll
+    scrollElementToTop();
   };
 
   return (
