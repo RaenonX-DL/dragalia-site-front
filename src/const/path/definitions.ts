@@ -1,10 +1,10 @@
 // Must and only have `pid` as the key
 export enum PostPath {
-  QUEST = `/quest/:pid`,
-  QUEST_EDIT = '/quest/:pid/edit',
-  ANALYSIS = '/analysis/:pid',
-  ANALYSIS_EDIT = '/analysis/:pid/edit',
-  MISC = '/misc/:pid',
+  QUEST = `/quest/[pid]`,
+  QUEST_EDIT = '/quest/[pid]/edit',
+  ANALYSIS = '/analysis/[pid]',
+  ANALYSIS_EDIT = '/analysis/[pid]/edit',
+  MISC = '/misc/[pid]',
 }
 
 export enum GeneralPath {
@@ -36,3 +36,7 @@ export const allPaths = ([] as Array<PagePath>).concat(
 );
 
 export type PagePath = PostPath | GeneralPath;
+
+export const isPagePath = (path: string): path is PagePath => {
+  return allPaths.includes(path as PagePath);
+};
