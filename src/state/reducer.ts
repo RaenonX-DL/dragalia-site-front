@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 import alertReducer from './alert/reducer';
+import storage from './storage';
 
 
 const reducers = {
