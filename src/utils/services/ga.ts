@@ -4,12 +4,10 @@ import {InputData as ExInputData} from '../../components/elements/gameData/ex/in
 import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {InputData as AnalysisInput} from '../../components/elements/posts/analysis/lookup/in/types';
 
+
 enum GAEvent {
   LANG_CHANGE = 'lang_change',
   LOGIN = 'login',
-  ANCHOR = 'anchor',
-  PAGE_VIEW = 'page_view',
-  PAGE_VIEW_FAILED = 'page_view_failed',
   DAMAGE_CALCULATOR = 'damage_calc',
   ABILITY_SEARCH = 'ability_search',
   ANALYSIS_LOOKUP = 'analysis_lookup',
@@ -110,30 +108,6 @@ export class GoogleAnalytics {
   }
 
   /**
-   * Record the event of an user uses the anchor.
-   *
-   * There are a few types of `usage`:
-   *
-   * - `navigate`: the user was navigated to the location of the anchor
-   * - `navFailed`: the anchor was not found in the page, failed to navigate
-   * - `click`: the user clicked on the anchor mark (possibly to obtain the link)
-   *   - This should also trigger `navigate` since the page will navigate on click.
-   *
-   * @param {'navigate' | 'click'} usage how the user uses the anchor
-   * @param {string} anchorHash hash of the anchor
-   */
-  static anchor(usage: 'navigate' | 'navFailed' | 'click', anchorHash: string) {
-    GoogleAnalytics.sendEvent(
-      GAEvent.ANCHOR,
-      {
-        'usage': usage,
-        'hash': anchorHash,
-        'path': window.location.href,
-      },
-    );
-  }
-
-  /**
    * Record the event of an analysis lookup.
    *
    * @param {AnalysisInput} inputData input used to perform an analysis lookup
@@ -159,37 +133,6 @@ export class GoogleAnalytics {
         [GAParameter.WEAPON_WAND]: inputData.weaponTypes.includes(Weapon.WAND),
         [GAParameter.WEAPON_STAFF]: inputData.weaponTypes.includes(Weapon.STAFF),
         [GAParameter.WEAPON_MANACASTER]: inputData.weaponTypes.includes(Weapon.MANACASTER),
-      },
-    );
-  }
-
-  /**
-   * Record the event of a page view.
-   *
-   * @param {string} path page view path
-   */
-  static pageView(path: string) {
-    GoogleAnalytics.sendEvent(
-      GAEvent.PAGE_VIEW,
-      {
-        'page_title': document.title,
-        'page_path': path,
-      },
-    );
-  }
-
-  /**
-   * Record the event of a failed page view.
-   *
-   * @param {string} reason reason of the failure
-   * @param {string} path page path that causes the failure
-   */
-  static pageViewFailed(reason: 'not_found', path: string) {
-    GoogleAnalytics.sendEvent(
-      GAEvent.PAGE_VIEW_FAILED,
-      {
-        'reason': reason,
-        'page_path': path,
       },
     );
   }

@@ -6,8 +6,6 @@ import {DEFAULT_LANG} from '../src/i18n/langCode';
 import {CookiesKeys} from '../src/utils/cookies/keys';
 
 
-// FIXME: GA page view - enable auto-collect?
-
 const catchAllLocale = 'catchAll';
 
 const cookieHasLang: RouteHas = {

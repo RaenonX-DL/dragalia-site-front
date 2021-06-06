@@ -2,6 +2,7 @@ import React from 'react';
 
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 
+
 type Props = {}
 
 /**
@@ -23,7 +24,7 @@ class Document extends NextDocument<Props> {
           <link href="/logo512.png" rel="apple-touch-icon"/>
           <link href="/manifest.json" rel="manifest"/>
 
-          <meta content="#202020" name="theme-color"/>
+          <meta content="#2F4668" name="theme-color"/>
 
           {/*
           manifest.json provides metadata used when your web app is installed on a
@@ -51,9 +52,7 @@ class Document extends NextDocument<Props> {
             function gtag(){dataLayer.push(arguments);}
             
             gtag('js', new Date());
-            gtag('config', 'G-796E69CFJG', {
-              send_page_view: false,
-            });
+            gtag('config', 'G-796E69CFJG');
             `,
           }}/>
         </Head>
