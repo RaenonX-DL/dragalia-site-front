@@ -21,7 +21,7 @@ import {getServerSidePropsPost} from '../../../src/utils/ssr';
 
 
 type AnalysisEditProps = {
-  response?: AnalysisResponse,
+  response: AnalysisResponse | null,
 }
 
 export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (context) => {

@@ -13,7 +13,7 @@ import {getServerSidePropsPost} from '../../../src/utils/ssr';
 
 
 type QuestEditProps = {
-  response?: QuestPostGetResponse,
+  response: QuestPostGetResponse | null,
 }
 
 export const getServerSideProps: GetServerSideProps<QuestEditProps> = async (context) => {
