@@ -3,7 +3,6 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import {useI18n} from '../../../../../i18n/hook';
-import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 
 
@@ -23,7 +22,7 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
     <div className="rounded bg-black-32 p-3">
       <Row>
         <Col>
-          <PageAnchor name={name} type="h3" text={name}/>
+          <h3>{name}</h3>
         </Col>
       </Row>
       <Row>

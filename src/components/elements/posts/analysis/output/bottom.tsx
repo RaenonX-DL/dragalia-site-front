@@ -4,9 +4,9 @@ import {Col, Row} from 'react-bootstrap';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 import {SectionProps} from './props';
+
 
 export const SectionBottom = <R extends AnalysisGetResponse>({analysis}: SectionProps<R>) => {
   const {t} = useI18n();
@@ -19,11 +19,9 @@ export const SectionBottom = <R extends AnalysisGetResponse>({analysis}: Section
           <hr/>
           <Row>
             <Col>
-              <PageAnchor
-                name="videos" type="h4"
-                text={t((t) => t.posts.analysis.videos)}
-                className="mb-3"
-              />
+              <h4 className="mb-3">
+                {t((t) => t.posts.analysis.videos)}
+              </h4>
               <Markdown>{analysis.videos}</Markdown>
             </Col>
           </Row>
@@ -35,11 +33,9 @@ export const SectionBottom = <R extends AnalysisGetResponse>({analysis}: Section
           <hr/>
           <Row>
             <Col>
-              <PageAnchor
-                name="story" type="h4"
-                text={t((t) => t.posts.analysis.story)}
-                className="mb-3"
-              />
+              <h4 className="mb-3">
+                {t((t) => t.posts.analysis.story)}
+              </h4>
               <Markdown>{analysis.story}</Markdown>
             </Col>
           </Row>
@@ -51,11 +47,9 @@ export const SectionBottom = <R extends AnalysisGetResponse>({analysis}: Section
           <hr/>
           <Row>
             <Col>
-              <PageAnchor
-                name="keywords" type="h4"
-                text={t((t) => t.posts.analysis.keywords)}
-                className="mb-3"
-              />
+              <h4 className="mb-3">
+                {t((t) => t.posts.analysis.keywords)}
+              </h4>
               <Markdown>{analysis.keywords}</Markdown>
             </Col>
           </Row>

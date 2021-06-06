@@ -14,6 +14,8 @@ import '../public/bootstrap.css';
 import '../public/index.css';
 
 // FIXME: Get title and description - how to force set title/description?
+//  - Ads script enable/disable
+//  - Set document title at the very beginning
 const App = ({Component, pageProps}: AppProps) => {
   return (
     <>
