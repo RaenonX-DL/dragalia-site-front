@@ -1,8 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+import {AlertData} from './data';
 import {alertDispatchers} from './dispatchers';
 import {ALERT_STATE_NAME, AlertDispatcherName} from './name';
 import {AlertState} from './state';
+
+
+export const alertCloseReducer = (state: AlertData) => {
+  state.message = '';
+  state.show = false;
+};
 
 const initialState: AlertState = {
   message: '',
@@ -22,10 +29,7 @@ const alertSlice = createSlice({
       state.show = true;
     });
     // Action on alert closed
-    builder.addCase(alertDispatchers[AlertDispatcherName.ALERT_CLOSED], (state) => {
-      state.message = '';
-      state.show = false;
-    });
+    builder.addCase(alertDispatchers[AlertDispatcherName.ALERT_CLOSED], alertCloseReducer);
   },
 });
 

@@ -17,7 +17,7 @@ type WrapperProps = {
 const RenderWrapper = ({store, options, children}: React.PropsWithChildren<WrapperProps>) => {
   return (
     <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
-      <ReduxProvider reduxStore={store}>
+      <ReduxProvider persist={false} reduxStore={store}>
         {children}
       </ReduxProvider>
     </RouterContext.Provider>

@@ -16,7 +16,7 @@ export const SiteAlert = () => {
           {t((t) => t.message.alert.ads)}
         </Markdown>
       </Alert>
-      <Alert variant="warning" className="py-0">
+      <Alert variant="warning" className="mb-0 py-0">
         <Markdown>
           {t((t) => t.message.alert.migration)}
         </Markdown>

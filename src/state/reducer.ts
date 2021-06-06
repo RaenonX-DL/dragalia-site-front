@@ -1,10 +1,20 @@
 import {combineReducers} from 'redux';
+import {persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import alertReducer from './alert/reducer';
 
-// FIXME: Redux persist - alert fadeout on timeout
+
 const reducers = {
   alert: alertReducer,
 };
 
-export default combineReducers(reducers);
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  whitelist: Object.keys(reducers),
+};
+
+const rootReducer = combineReducers(reducers);
+
+export default persistReducer(persistConfig, rootReducer);
