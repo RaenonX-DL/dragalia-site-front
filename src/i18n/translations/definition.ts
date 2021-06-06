@@ -1,5 +1,8 @@
-export type PageMetaTranslations = {
+export type PageMetaTitleOnly = {
   title: string,
+}
+
+export type PageMetaTranslations = PageMetaTitleOnly & {
   description: string,
 }
 
@@ -221,10 +224,9 @@ export type TranslationStruct = {
   meta: {
     inUse: {
       about: PageMetaTranslations,
-      analysisList: PageMetaTranslations,
+      analysisIndex: PageMetaTranslations,
       analysisNewChara: PageMetaTranslations,
       analysisNewDragon: PageMetaTranslations,
-      analysisEdit: PageMetaTranslations,
       analysisEditChara: PageMetaTranslations,
       analysisEditDragon: PageMetaTranslations,
       analysisPost: PageMetaTranslations,
@@ -232,7 +234,7 @@ export type TranslationStruct = {
       questEdit: PageMetaTranslations,
       questList: PageMetaTranslations,
       questNew: PageMetaTranslations,
-      questPost: PageMetaTranslations,
+      questPost: PageMetaTitleOnly,
       site: PageMetaTranslations,
       thanks: PageMetaTranslations,
       gameData: {

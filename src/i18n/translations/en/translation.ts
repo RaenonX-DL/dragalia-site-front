@@ -263,33 +263,29 @@ export const translation: TranslationStruct = {
         title: 'About',
         description: 'Information about this website.',
       },
-      analysisList: {
+      analysisIndex: {
         title: 'Index of analysis',
         description: 'List of character/dragon analyses.',
       },
       analysisNewChara: {
         title: 'New character analysis',
-        description: 'Page for new character analysis.',
+        description: 'Page to add a new character analysis.',
       },
       analysisNewDragon: {
         title: 'New dragon analysis',
-        description: 'Page for dragon character analysis.',
-      },
-      analysisEdit: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
+        description: 'Page to add a new dragon analysis.',
       },
       analysisEditChara: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
+        title: 'Edit analysis - {{name}}',
+        description: 'Page to edit the analysis of {{name}}.',
       },
       analysisEditDragon: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
+        title: 'Edit analysis - {{name}}',
+        description: 'Page to edit the analysis of {{name}}.',
       },
       analysisPost: {
-        title: '【Analysis】{{title}}',
-        description: '{{description}}',
+        title: '【Analysis】{{name}}',
+        description: 'Analysis of {{name}}.',
       },
       home: {
         title: 'Homepage',
@@ -297,7 +293,7 @@ export const translation: TranslationStruct = {
       },
       questEdit: {
         title: 'Edit quest guide - {{title}}',
-        description: 'Page for editing a quest guide.',
+        description: 'Page to edit quest guide #Q{{pid}}.',
       },
       questList: {
         title: 'Index of quest guides',
@@ -305,19 +301,18 @@ export const translation: TranslationStruct = {
       },
       questNew: {
         title: 'New quest guide',
-        description: 'Page for a new High-Difficulty quest guide.',
+        description: 'Page to create a new High-Difficulty quest guide.',
       },
       questPost: {
-        title: '{{title}}',
-        description: '{{description}}',
+        title: '【Quest Guide】{{title}}',
       },
       site: {
         title: 'DL Info by OM',
-        description: 'Dragalia Lost info website by OM.',
+        description: 'Dragalia Lost info website by Oasis of the Maniacs.',
       },
       thanks: {
         title: 'Special Thanks',
-        description: 'List of contributors of this website.',
+        description: 'List of the contributors of this website.',
       },
       gameData: {
         ex: {
@@ -342,7 +337,7 @@ export const translation: TranslationStruct = {
         description: 'The page is currently under construction.',
       },
     },
-    suffix: ' | DL Info by OM',
+    suffix: 'DL Info by OM',
   },
   posts: {
     analysis: {

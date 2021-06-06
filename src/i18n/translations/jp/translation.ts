@@ -233,7 +233,7 @@ export const translation: TranslationStruct = {
         title: 'サイトについて',
         description: 'description',
       },
-      analysisList: {
+      analysisIndex: {
         title: '評価のカタログ',
         description: 'description',
       },
@@ -245,41 +245,36 @@ export const translation: TranslationStruct = {
         title: '新ドラゴンの評価',
         description: 'description',
       },
-      analysisEdit: {
-        title: '編輯評測 - {{title}}',
-        description: 'description',
-      },
       analysisEditChara: {
-        title: '編輯評測 - {{title}}',
-        description: 'description',
+        title: '評価の編集 - {{name}}',
+        description: '{{name}}を編集するページ。',
       },
       analysisEditDragon: {
-        title: '編輯評測 - {{title}}',
-        description: 'description',
+        title: '評価の編集 - {{name}}',
+        description: '{{name}}を編集するページ。',
       },
       analysisPost: {
-        title: '【評価】{{title}}',
-        description: '{{description}}',
+        title: '【評価】{{name}}',
+        description: '{{name}}の評価',
       },
       home: {
         title: 'ホームページ',
         description: 'description',
       },
       questEdit: {
-        title: '高難易度クエスト攻略の編集 #Q{{pid}}',
-        description: 'description',
+        title: 'クエスト攻略の編集 #Q{{title}}',
+        description: 'クエスト攻略 #Q{{pid}}の編集ページ。',
       },
       questList: {
-        title: '高難易度クエスト攻略のカタログ',
-        description: 'description',
+        title: 'クエスト攻略カタログ',
+        description: 'クエスト攻略のカタログ。',
       },
       questNew: {
-        title: '高難易度クエスト攻略の追加',
+        title: 'クエスト攻略の追加',
         description: 'description',
       },
       questPost: {
-        title: '高難易度クエスト攻略',
-        description: 'description',
+        title: '【攻略】{{title}}',
       },
       site: {
         title: 'ドラガリ攻略サイト by OM',
@@ -312,7 +307,7 @@ export const translation: TranslationStruct = {
         description: 'description',
       },
     },
-    suffix: ' | ドラガリ攻略サイト by OM',
+    suffix: 'ドラガリ攻略 by OM',
   },
   posts: {
     analysis: {

@@ -233,63 +233,58 @@ export const translation: TranslationStruct = {
     inUse: {
       about: {
         title: '關於',
-        description: '關於本網站的介紹頁面。',
+        description: '關於本網站的介紹。',
       },
-      analysisList: {
+      analysisIndex: {
         title: '評測目錄',
         description: '角色、龍族評測目錄。',
       },
       analysisNewChara: {
         title: '新角色評測',
-        description: '新角色評測編輯頁面。',
+        description: '角色評測新增頁面。',
       },
       analysisNewDragon: {
         title: '新龍族評測',
-        description: '新龍族評測編輯頁面。',
-      },
-      analysisEdit: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
+        description: '龍族評測新增頁面。',
       },
       analysisEditChara: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
+        title: '編輯評測 - {{name}}',
+        description: '{{name}}評測的編輯頁面。',
       },
       analysisEditDragon: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
+        title: '編輯評測 - {{name}}',
+        description: '{{name}}評測的編輯頁面。',
       },
       analysisPost: {
-        title: '【評測】{{title}}',
-        description: '{{description}}',
+        title: '【評測】{{name}}',
+        description: '{{name}}的評測',
       },
       home: {
         title: '首頁',
-        description: 'OM 龍絆攻略網首頁。',
+        description: '歡迎來到 OM 龍絆攻略網！',
       },
       questEdit: {
         title: '編輯攻略 - {{title}}',
-        description: '評測 #Q{{pid}} 的編輯頁面。',
+        description: '攻略 #Q{{pid}} 的編輯頁面。',
       },
       questList: {
-        title: '高難副本攻略目錄',
-        description: '各龍絆高難副本的攻略目錄頁面。',
+        title: '副本攻略目錄',
+        description: '各龍絆副本攻略目錄。',
       },
       questNew: {
-        title: '新增高難攻略',
-        description: '高難副本攻略的新增頁面。',
+        title: '新增副本攻略',
+        description: '副本攻略新增頁面。',
       },
       questPost: {
-        title: '{{title}}',
-        description: '{{description}}',
+        title: '【攻略】{{title}}',
       },
       site: {
         title: 'OM 龍絆攻略站',
-        description: '由 OM 製作的失落龍絆攻略網。',
+        description: '由 Oasis of the Maniacs 共同製作的失落龍絆攻略網。',
       },
       thanks: {
         title: '特別感謝',
-        description: '協助本網站建置的清單。',
+        description: '各方面協助本網站的成員清單。',
       },
       gameData: {
         ex: {
@@ -314,7 +309,7 @@ export const translation: TranslationStruct = {
         description: '網頁建置中。',
       },
     },
-    suffix: ' | 龍絆攻略站 by OM',
+    suffix: '龍絆攻略站 by OM',
   },
   posts: {
     analysis: {
