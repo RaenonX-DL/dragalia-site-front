@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
-import {GeneralPath, makePostPath, PostPath} from '../../../../../const/path';
+import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
+import {makePostPath} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../common/ads';
 import {PostManageBar} from '../../manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';

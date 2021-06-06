@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {AnalysisBody, AnalysisEditResponse, AnalysisPublishResponse} from '../../../../../api-def/api';
-import {makePostPath, PostPath} from '../../../../../const/path';
+import {PostPath} from '../../../../../const/path/definitions';
+import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormBase} from '../../shared/form/base';
 import {PostFormBaseProps} from '../../shared/form/types';
 import {FormBottom} from './bottom';

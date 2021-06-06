@@ -5,8 +5,9 @@ import {
   QuestPostPublishPayload,
   QuestPostPublishResponse,
 } from '../../../../../api-def/api';
-import {makePostPath, PostPath} from '../../../../../const/path';
+import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
+import {makePostPath} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api';
 import {PostFormBase} from '../../shared/form/base';
 import {FormSequencedMeta} from '../../shared/form/meta/sequenced';

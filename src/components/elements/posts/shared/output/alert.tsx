@@ -4,8 +4,10 @@ import Link from 'next/link';
 import {Alert} from 'react-bootstrap';
 
 import {SupportedLanguageNames, PostGetResponse} from '../../../../../api-def/api';
-import {makePostPath, PostPath} from '../../../../../const/path';
+import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
+import {makePostPath} from '../../../../../utils/path/make';
+
 
 type AlertProps<R extends PostGetResponse> = {
   response: R,

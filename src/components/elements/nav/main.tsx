@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import {Nav, Navbar} from 'react-bootstrap';
 
-import {GeneralPath} from '../../../const/path';
+import {GeneralPath} from '../../../const/path/definitions';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
 import {GoogleSigninButton} from '../common/googleSignin/main';
