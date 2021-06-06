@@ -1,20 +1,20 @@
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.mdBody h1,
+.mdBody h2,
+.mdBody h3,
+.mdBody h4,
+.mdBody h5,
+.mdBody h6 {
   color: skyblue;
 }
 
-.markdown-body pre {
+.mdBody pre {
   background-color: #151515;
   color: #0f0;
   padding: 10px;
   border-radius: 0.25rem;
 }
 
-.markdown-body table {
+.mdBody table {
   display: table;
   width: 100%;
   margin-bottom: 1rem;
@@ -25,42 +25,42 @@
   border-spacing: 2px;
 }
 
-.markdown-body blockquote {
+.mdBody blockquote {
   background-color: #222;
   border-radius: 10px;
   color: #ccc;
 }
 
-.markdown-body strong {
+.mdBody strong {
   color: #80b2ff;
 }
 
-.markdown-body table,
-.markdown-body thead,
-.markdown-body th {
+.mdBody table,
+.mdBody thead,
+.mdBody th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
 }
 
-.markdown-body th,
-.markdown-body td {
+.mdBody th,
+.mdBody td {
   padding: 0.75rem;
   border: 1px solid #454d55;
 }
 
-.markdown-body thead th,
-.markdown-body tbody td {
+.mdBody thead th,
+.mdBody tbody td {
   border-bottom-width: 2px;
 }
 
-.markdown-body tbody tr:nth-of-type(odd) {
+.mdBody tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.markdown-body tbody tr:hover {
+.mdBody tbody tr:hover {
   background-color: rgb(50, 50, 50);
 }
 
-.markdown-body tbody tr:hover:nth-of-type(odd) {
+.mdBody tbody tr:hover:nth-of-type(odd) {
   background-color: rgb(50, 50, 50);
 }

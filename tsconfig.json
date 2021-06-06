@@ -11,6 +11,11 @@
       "dom.iterable",
       "esnext"
     ],
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     /* Compiling Options */
     "allowJs": false,
     "removeComments": true,

@@ -12,6 +12,9 @@ extends:
   - plugin:eslint-plugin-import/warnings
   - plugin:eslint-plugin-import/typescript
 
+ignorePatterns:
+  - next-env.d.ts
+
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly

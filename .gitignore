@@ -15,7 +15,6 @@ clover.xml
 
 # production
 .next
-next-env.d.ts
 /dist
 /build
 
@@ -34,5 +33,5 @@ yarn-error.log*
 # misc
 .DS_Store
 .wakatime-project
-src/react-app-env.d.ts
 newrelic_agent.log
+next-env.d.ts

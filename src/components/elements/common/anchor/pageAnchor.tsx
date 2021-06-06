@@ -11,6 +11,9 @@ type PageAnchorCommonProps = {
 
 const PageAnchorCommon = ({name}: PageAnchorCommonProps) => {
   // FIXME: Anchor - Scroll and GA record?
+  //  - https://github.com/RaenonX-DL/dragalia-site-front/issues/75
+  //  - Working correctly but covered by title bar (while it should not)
+  //  - No smooth scrolling
   return (
     <Link
       href={`#${name}`}
