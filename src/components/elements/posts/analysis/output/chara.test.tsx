@@ -20,7 +20,6 @@ describe('Analysis output (Character)', () => {
   const analysisResponse: CharaAnalysisGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
-    isAdmin: false,
     lang: SupportedLanguages.CHT,
     type: UnitType.CHARACTER,
     unitId: 10950101,
@@ -172,12 +171,16 @@ describe('Analysis output (Character)', () => {
 
   it('renders correctly for admin', async () => {
     await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputChara analysis={{
-          ...analysisResponse,
-          isAdmin: true,
-        }}/>
-      ));
+      renderReact(
+        () => (
+          <AnalysisOutputChara analysis={analysisResponse}/>
+        ),
+        {
+          context: {
+            isAdmin: true,
+          },
+        },
+      );
     });
 
     expect(screen.getByText(translationEN.posts.manage.addChara)).toBeInTheDocument();

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {QuestPostGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostPath} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../common/ads';
@@ -18,11 +19,12 @@ type QuestPostOutputProps = {
 
 export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
   const {t} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   return (
     <>
       {
-        post.isAdmin &&
+        context?.isAdmin &&
         <PostManageBar
           newButtons={[{url: GeneralPath.QUEST_NEW}]}
           editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId})}

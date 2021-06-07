@@ -12,6 +12,7 @@ import {AnalysisLookupInput} from './in/main';
 import {InputData} from './in/types';
 import {AnalysisLookupOutput} from './out/main';
 
+
 export const AnalysisPostLookup = () => {
   const {lang} = useI18n();
 
@@ -32,7 +33,6 @@ export const AnalysisPostLookup = () => {
       <AnalysisLookupLanding analyses={lookupLanding.data?.analyses || []}/>
       <hr/>
       <AnalysisLookupInput
-        isAdmin={lookupLanding.data?.isAdmin || false}
         onSearchRequested={(data) => () => {
           GoogleAnalytics.analysisLookup(data);
           setInputForward(data);

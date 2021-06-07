@@ -4,6 +4,7 @@ import {useRouter} from 'next/router';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {CookiesKeys} from '../../../../../utils/cookies/keys';
 import {getCookies} from '../../../../../utils/cookies/utils';
@@ -19,8 +20,6 @@ import {AlertFetchListFailed} from '../alert';
 
 type Status<R extends SequencedPostListResponse> = FetchStatusSimple & {
   paginationState: PaginationState,
-  isAdmin: boolean,
-  showAds: boolean,
   showAlert: boolean,
   errorContent: string
   response?: R,
@@ -43,6 +42,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
   const router = useRouter();
+  const context = React.useContext(AppReactContext);
 
   const currentStart = Math.max(Number(router.query['start']) || 0, 0);
   const pageLimit = 10;
@@ -57,8 +57,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       },
       fetched: false,
       fetching: false,
-      isAdmin: false,
-      showAds: false,
       showAlert: false,
       errorContent: '',
     },
@@ -88,7 +86,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
             },
             fetched: true,
             fetching: false,
-            isAdmin: data.isAdmin,
             showAlert: false,
             response: data,
           });
@@ -130,12 +127,12 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 
   return (
     <>
-      {status.showAds && <AdsInPostList/>}
+      <AdsInPostList/>
       <Jumbotron className="mb-3">
         <h4>{title}</h4>
       </Jumbotron>
       {
-        status.isAdmin &&
+        context?.isAdmin &&
         <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>
       }
       {

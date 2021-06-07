@@ -19,6 +19,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const context = {
     title: 'Title',
     description: 'Description',
+    isAdmin: false,
     showAds: true,
     ...options?.context,
   };

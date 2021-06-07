@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import Link from 'next/link';
 import {Nav, Navbar} from 'react-bootstrap';
@@ -16,7 +16,7 @@ import {NavDropdownUtils} from './utils';
 
 export const Navigation = () => {
   const {t} = useI18n();
-  const context = useContext(AppReactContext);
+  const context = React.useContext(AppReactContext);
 
   return (
     <>

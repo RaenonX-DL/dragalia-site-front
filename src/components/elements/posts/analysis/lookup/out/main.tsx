@@ -32,7 +32,6 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     {
       code: ApiResponseCode.SUCCESS,
       success: true,
-      isAdmin: false,
       analyses: [],
     },
     () => ApiRequestSender.analysisLookup(getCookies(CookiesKeys.GOOGLE_UID) || '', lang),

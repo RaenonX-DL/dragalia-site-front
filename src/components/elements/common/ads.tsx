@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import {Adsense} from '@ctrl/react-adsense';
 
@@ -6,7 +6,7 @@ import {AppReactContext} from '../../../context/app/main';
 
 
 export const AdsInPost = () => {
-  const context = useContext(AppReactContext);
+  const context = React.useContext(AppReactContext);
 
   if (context && !context.showAds) {
     return <></>;
@@ -27,7 +27,7 @@ export const AdsInPost = () => {
 };
 
 export const AdsInPostList = () => {
-  const context = useContext(AppReactContext);
+  const context = React.useContext(AppReactContext);
 
   if (context && !context.showAds) {
     return <></>;

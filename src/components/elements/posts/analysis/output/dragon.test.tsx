@@ -20,7 +20,6 @@ describe('Analysis output (Character)', () => {
   const analysisResponse: DragonAnalysisGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
-    isAdmin: false,
     lang: SupportedLanguages.CHT,
     type: UnitType.DRAGON,
     unitId: 10950101,
@@ -156,12 +155,15 @@ describe('Analysis output (Character)', () => {
 
   it('renders correctly for admin', async () => {
     await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputDragon analysis={{
-          ...analysisResponse,
-          isAdmin: true,
-        }}/>
-      ));
+      renderReact(
+        () => (
+          <AnalysisOutputDragon analysis={analysisResponse}/>
+        ),
+        {
+          context: {
+            isAdmin: true,
+          },
+        });
     });
 
     expect(screen.getByText(translationEN.posts.manage.addChara)).toBeInTheDocument();

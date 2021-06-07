@@ -10,5 +10,6 @@ export type PageHtmlMeta = {
 }
 
 export type PageMeta = PageHtmlMeta & {
+  isAdmin: boolean,
   showAds: boolean,
 }

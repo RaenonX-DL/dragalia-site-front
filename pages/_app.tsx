@@ -75,7 +75,6 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext) as AppInitialProps;
 
-  // FIXME: Get page meta already included showAds and isAdmin
   appProps.pageProps = {
     ...await getPageMeta(appContext),
     isNotFound: appContext.ctx.res?.statusCode === 404,

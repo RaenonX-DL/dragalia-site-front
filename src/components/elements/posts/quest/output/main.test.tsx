@@ -19,7 +19,6 @@ describe('Quest post output', () => {
   const postResponse: QuestPostGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
-    isAdmin: false,
     lang: SupportedLanguages.CHT,
     seqId: 7,
     title: 'title',
@@ -146,12 +145,10 @@ describe('Quest post output', () => {
 
   it('renders correctly for admin', async () => {
     await act(async () => {
-      renderReact(() => (
-        <QuestPostOutput post={{
-          ...postResponse,
-          isAdmin: true,
-        }}/>
-      ));
+      renderReact(
+        () => <QuestPostOutput post={postResponse}/>,
+        {context: {isAdmin: true}},
+      );
     });
 
     expect(screen.getByText(translationEN.posts.manage.add)).toBeInTheDocument();
