@@ -1,25 +1,25 @@
 import {AppContext} from 'next/app';
 
-import {ApiResponseCode, FailedResponse, PageMetaResponse, PostPageMetaResponse} from '../../api-def/api';
-import {GetPageMetaReturn} from './types';
+import {ApiResponseCode, FailedResponse} from '../../api-def/api';
+import {PageHtmlMeta} from './types';
 
 
-export const onNotFound = (context: AppContext, notFoundReturn: GetPageMetaReturn): GetPageMetaReturn => {
+export const onNotFound = (context: AppContext, notFoundHtmlMeta: PageHtmlMeta): PageHtmlMeta => {
   if (context.ctx.res) {
     context.ctx.res.statusCode = 404;
   }
 
-  return notFoundReturn;
+  return notFoundHtmlMeta;
 };
 
 export const onMetaResponseFailed = (
   context: AppContext,
-  metaResponse: PostPageMetaResponse | PageMetaResponse | FailedResponse,
-  notFoundReturn: GetPageMetaReturn,
-): GetPageMetaReturn => {
+  metaResponse: FailedResponse,
+  notFoundHtmlMeta: PageHtmlMeta,
+): PageHtmlMeta => {
   // Post not exists
   if (metaResponse.code === ApiResponseCode.FAILED_POST_NOT_EXISTS) {
-    return onNotFound(context, notFoundReturn);
+    return onNotFound(context, notFoundHtmlMeta);
   }
 
   // Other errors

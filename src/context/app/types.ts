@@ -1,4 +1,3 @@
-export type AppReactContextValue = {
-  title: string,
-  description: string,
-}
+import {PageMeta} from '../../utils/meta/types';
+
+export type AppReactContextValue = PageMeta

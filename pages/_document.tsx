@@ -40,9 +40,6 @@ class Document extends NextDocument<Props> {
 
           {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
 
-          {/* Google AdSense */}
-          <script async data-ad-client="__AD_CLIENT__" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
-
           {/* Global site tag (gtag.js) - Google Analytics */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
           <script dangerouslySetInnerHTML={{

@@ -4,7 +4,11 @@ export const isMetaResponseFailure = (response: BaseResponse): response is Faile
   return !!response.code && response.code !== ApiResponseCode.SUCCESS;
 };
 
-export type GetPageMetaReturn = {
+export type PageHtmlMeta = {
   title: string,
   description: string,
+}
+
+export type PageMeta = PageHtmlMeta & {
+  showAds: boolean,
 }

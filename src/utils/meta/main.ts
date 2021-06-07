@@ -10,10 +10,10 @@ import {getMetaTFunction} from '../../i18n/utils';
 import {onMetaResponseFailed, onNotFound} from './handler';
 import {getPageMetaPromise} from './preprocess';
 import {metaTransFunctions} from './translations';
-import {GetPageMetaReturn, isMetaResponseFailure} from './types';
+import {PageMeta, isMetaResponseFailure} from './types';
 
 
-export const getPageMeta = async (context: AppContext): Promise<GetPageMetaReturn> => {
+export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
   const {locale, pathname} = context.router;
   const lang = !locale || !isSupportedLang(locale) ? DEFAULT_LANG : locale;
 
@@ -22,14 +22,17 @@ export const getPageMeta = async (context: AppContext): Promise<GetPageMetaRetur
 
   // Early return if `pathname` is not a valid page path - consider as 404
   if (!isPagePath(pathname)) {
-    return onNotFound(context, metaTFunc(metaTFuncOnNotFound));
+    return {...onNotFound(context, metaTFunc(metaTFuncOnNotFound)), showAds: true};
   }
 
   const metaResponse = await getPageMetaPromise(lang, context);
 
   if (isMetaResponseFailure(metaResponse)) {
-    return onMetaResponseFailed(context, metaResponse, metaTFunc(metaTFuncOnNotFound));
+    return {...onMetaResponseFailed(context, metaResponse, metaTFunc(metaTFuncOnNotFound)), showAds: true};
   }
 
-  return metaTFunc(metaTransFunctions[pathname], {...metaResponse.params});
+  return {
+    ...metaTFunc(metaTransFunctions[pathname], {...metaResponse.params}),
+    showAds: metaResponse.showAds,
+  };
 };

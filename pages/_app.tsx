@@ -13,15 +13,14 @@ import {AppReactContextValue} from '../src/context/app/types';
 import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
+import {PageMeta} from '../src/utils/meta/types';
 import Error404 from './404';
 
 import '../public/bootstrap.css';
 import '../public/index.css';
 
 
-type PageProps = {
-  title: string,
-  description: string,
+type PageProps = PageMeta & {
   isNotFound: boolean,
 }
 
@@ -33,10 +32,7 @@ type AppInitialProps = NextAppInitialProps & {
 const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
   const {t} = useI18n();
 
-  const appContextValue: AppReactContextValue = {
-    title: pageProps.title,
-    description: pageProps.description,
-  };
+  const appContextValue: AppReactContextValue = {...pageProps};
 
   // Page meta must be obtained here, or page preview won't work
   return (
@@ -49,6 +45,12 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+
+        {/* Google AdSense */}
+        {
+          pageProps.showAds &&
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
+        }
       </Head>
       <AppReactContext.Provider value={appContextValue}>
         <Navigation/>
