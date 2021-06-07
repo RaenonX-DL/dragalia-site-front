@@ -12,7 +12,6 @@ import {
   AnalysisPublishResponse,
   AnalysisResponse,
   ApiEndPoints,
-  ApiResponseCode,
   BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisGetResponse,
@@ -39,8 +38,6 @@ import {
   RequestPayloadBase,
   SupportedLanguages,
   UnitType,
-  UserIsAdminPayload,
-  UserIsAdminResponse,
   UserLoginPayload,
   UserLoginResponse,
 } from '../../../api-def/api';
@@ -64,31 +61,6 @@ export class ApiRequestSender {
       'POST',
       ApiEndPoints.USER_LOGIN,
       {googleUid, googleEmail},
-    );
-  }
-
-  /**
-   * Send a user admin privilege check request.
-   *
-   * This does not send an actual request if `googleUid` is `null`.
-   * Instead, it will directly return a response body indicating that the user is not an admin.
-   *
-   * @param {string | null} googleUid Google UID of the user yo check
-   * @return {Promise<UserIsAdminResponse>} promise returned from `fetch`
-   */
-  static userIsAdmin(googleUid: string | null): Promise<UserIsAdminResponse> {
-    if (!googleUid) {
-      return Promise.resolve({
-        code: ApiResponseCode.SUCCESS,
-        success: true,
-        isAdmin: false,
-      });
-    }
-
-    return ApiRequestSender.sendRequest<UserIsAdminResponse, UserIsAdminPayload>(
-      'GET',
-      ApiEndPoints.USER_IS_ADMIN,
-      {googleUid},
     );
   }
 
