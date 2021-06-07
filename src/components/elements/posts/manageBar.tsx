@@ -6,6 +6,7 @@ import {Button, Col, Row} from 'react-bootstrap';
 import {PagePath} from '../../../const/path/definitions';
 import {useI18n} from '../../../i18n/hook';
 
+
 type NewButtonEntry = {
   url: PagePath,
   title?: string,
@@ -16,17 +17,15 @@ export type PostManageBarProps = {
   editPostUrl?: string
 }
 
-// FIXME: New post button URL with `lang` or not?
 export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => {
   const {t} = useI18n();
 
-  // FIXME: Check if <Link> works
   return (
     <Row>
       <Col>
         {
           editPostUrl &&
-            <Link href={editPostUrl}>
+            <Link href={editPostUrl} passHref>
               <Button variant="outline-info" className="float-right ml-2">
                 {t((t) => t.posts.manage.edit)}
               </Button>
@@ -34,7 +33,7 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
         }
         {
           newButtons.map(({url, title}, idx) => (
-            <Link href={url} key={idx}>
+            <Link href={url} key={idx} passHref>
               <Button variant="outline-success" className="float-right ml-2">
                 {title || t((t) => t.posts.manage.add)}
               </Button>
