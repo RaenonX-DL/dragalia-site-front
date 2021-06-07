@@ -146,7 +146,9 @@ export class GoogleAnalytics {
   private static sendEvent(eventName: string, parameters: { [key in string]: any }) {
     // Log GA event instead of sending it if under development
     if (process.env.NODE_ENV !== 'production') {
-      console.debug(eventName, parameters);
+      if (!process.env.CI) {
+        console.debug(eventName, parameters);
+      }
       return;
     }
 

@@ -14,7 +14,7 @@ export type RenderOptions = {
   context?: Partial<AppReactContextValue>,
 }
 
-export type RenderReturns = RenderResult & {
+export type RenderAppReturns = RenderResult & {
   rerender: (element?: React.ReactElement) => void,
   store: ReduxStore,
 }

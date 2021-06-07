@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
+import {renderHook} from '@testing-library/react-hooks';
 import {RouterContext} from 'next/dist/next-server/lib/router-context';
 
 import {AppReactContext} from '../../src/context/app/main';
 import {ReduxProvider} from '../../src/state/provider';
 import {createStore, ReduxStore} from '../../src/state/store';
 import {makeRouter} from './router';
-import {RenderOptions, RenderReturns} from './types';
+import {RenderOptions, RenderAppReturns} from './types';
 
 
 type WrapperProps = {
@@ -35,10 +36,25 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   );
 };
 
+export const renderReactHook = <T, >(
+  getHook: (...params: any[]) => T,
+  options?: RenderOptions,
+) => {
+  const store = createStore(options?.preloadState);
+
+  return renderHook(
+    getHook,
+    {
+      wrapper: RenderWrapper,
+      initialProps: {options, store},
+    },
+  );
+};
+
 export const renderReact = (
   getReactElement: () => React.ReactElement,
   options?: RenderOptions,
-): RenderReturns => {
+): RenderAppReturns => {
   const store = createStore(options?.preloadState);
 
   const app = render(

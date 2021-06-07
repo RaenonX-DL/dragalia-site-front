@@ -52,15 +52,22 @@ describe('Sequenced form meta input', () => {
   });
 
   it('shows the valid mark upon passing the check', async () => {
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     rerender();
@@ -84,15 +91,22 @@ describe('Sequenced form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     rerender();
@@ -108,15 +122,22 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last seq ID change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     rerender();
@@ -131,15 +152,22 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last title change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     fireEvent.change(titleField, {target: {value: 'Another Title'}});
     rerender();
@@ -154,15 +182,22 @@ describe('Sequenced form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
@@ -179,15 +214,22 @@ describe('Sequenced form meta input', () => {
   it('cannot change language if preloaded', async () => {
     state.isPreloaded = true;
 
-    const {container, rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {container, rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
@@ -196,15 +238,22 @@ describe('Sequenced form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormSequencedMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-        titlePlaceholder={titlePlaceholder}
-        fnIdCheck={fnIdCheck}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormSequencedMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+          titlePlaceholder={titlePlaceholder}
+          fnIdCheck={fnIdCheck}
+        />
+      ),
+      {
+        context: {
+          isAdmin: true,
+        },
+      },
+    );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();

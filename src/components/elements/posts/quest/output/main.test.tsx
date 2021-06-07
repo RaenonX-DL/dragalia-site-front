@@ -114,7 +114,6 @@ describe('Quest post output', () => {
 
     // `Link` element won't contain locale in `href`
     const altLangLink = screen.getAllByText(chtName)[0];
-    screen.debug(altLangLink);
     expect(altLangLink).toHaveAttribute(
       'href',
       makePostPath(PostPath.QUEST, {pid: postResponse.seqId}),
