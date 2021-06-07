@@ -245,11 +245,7 @@ export const translation: TranslationStruct = {
         title: '新ドラゴンの評価',
         description: 'description',
       },
-      analysisEditChara: {
-        title: '評価の編集 - {{name}}',
-        description: '{{name}}を編集するページ。',
-      },
-      analysisEditDragon: {
+      analysisEdit: {
         title: '評価の編集 - {{name}}',
         description: '{{name}}を編集するページ。',
       },
@@ -275,6 +271,7 @@ export const translation: TranslationStruct = {
       },
       questPost: {
         title: '【攻略】{{title}}',
+        description: 'TBA',
       },
       site: {
         title: 'ドラガリ攻略サイト by OM',
@@ -307,7 +304,7 @@ export const translation: TranslationStruct = {
         description: 'description',
       },
     },
-    suffix: 'ドラガリ攻略 by OM',
+    suffix: ' | ドラガリ攻略 by OM',
   },
   posts: {
     analysis: {

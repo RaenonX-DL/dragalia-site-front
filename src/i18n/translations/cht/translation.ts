@@ -247,17 +247,13 @@ export const translation: TranslationStruct = {
         title: '新龍族評測',
         description: '龍族評測新增頁面。',
       },
-      analysisEditChara: {
-        title: '編輯評測 - {{name}}',
-        description: '{{name}}評測的編輯頁面。',
-      },
-      analysisEditDragon: {
+      analysisEdit: {
         title: '編輯評測 - {{name}}',
         description: '{{name}}評測的編輯頁面。',
       },
       analysisPost: {
         title: '【評測】{{name}}',
-        description: '{{name}}的評測',
+        description: '{{summary}}',
       },
       home: {
         title: '首頁',
@@ -265,7 +261,7 @@ export const translation: TranslationStruct = {
       },
       questEdit: {
         title: '編輯攻略 - {{title}}',
-        description: '攻略 #Q{{pid}} 的編輯頁面。',
+        description: '攻略: {{title}} 的編輯頁面。',
       },
       questList: {
         title: '副本攻略目錄',
@@ -277,6 +273,7 @@ export const translation: TranslationStruct = {
       },
       questPost: {
         title: '【攻略】{{title}}',
+        description: '詳情請進入頁面查看。',
       },
       site: {
         title: 'OM 龍絆攻略站',
@@ -309,7 +306,7 @@ export const translation: TranslationStruct = {
         description: '網頁建置中。',
       },
     },
-    suffix: '龍絆攻略站 by OM',
+    suffix: ' | 龍絆攻略站 by OM',
   },
   posts: {
     analysis: {

@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import {CookiesKeys} from './keys';
 
 
-type CookiesSource = NextApiRequestCookies
+type CookiesSource = NextApiRequestCookies | string
 
 const getCookiesSource = (cookiesSource?: CookiesSource) => {
   if (!cookiesSource) {

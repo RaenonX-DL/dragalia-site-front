@@ -65,5 +65,4 @@ class Document extends NextDocument<Props> {
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default Document;

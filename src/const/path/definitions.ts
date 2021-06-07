@@ -7,6 +7,10 @@ export enum PostPath {
   MISC = '/misc/[pid]',
 }
 
+export const isPostPath = (path: string): path is PostPath => {
+  return Object.values(PostPath).some((postPath) => postPath === path);
+};
+
 export enum GeneralPath {
   // Home
   HOME = '/',
@@ -38,5 +42,5 @@ export const allPaths = ([] as Array<PagePath>).concat(
 export type PagePath = PostPath | GeneralPath;
 
 export const isPagePath = (path: string): path is PagePath => {
-  return allPaths.includes(path as PagePath);
+  return allPaths.some((pagePath) => pagePath === path);
 };

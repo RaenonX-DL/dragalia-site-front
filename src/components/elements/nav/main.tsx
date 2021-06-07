@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import Link from 'next/link';
 import {Nav, Navbar} from 'react-bootstrap';
 
 import {GeneralPath} from '../../../const/path/definitions';
+import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
 import {GoogleSigninButton} from '../common/googleSignin/main';
@@ -15,12 +16,7 @@ import {NavDropdownUtils} from './utils';
 
 export const Navigation = () => {
   const {t} = useI18n();
-
-  const [title, setTitle] = React.useState(t((t) => t.meta.inUse.site.title));
-
-  React.useEffect(() => {
-    setTitle(document.title);
-  }, []);
+  const context = useContext(AppReactContext);
 
   return (
     <>
@@ -67,7 +63,7 @@ export const Navigation = () => {
       <Navbar
         collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
         <h1 style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
-          {title}
+          {context?.title}
         </h1>
       </Navbar>
     </>

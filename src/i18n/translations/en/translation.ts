@@ -275,11 +275,7 @@ export const translation: TranslationStruct = {
         title: 'New dragon analysis',
         description: 'Page to add a new dragon analysis.',
       },
-      analysisEditChara: {
-        title: 'Edit analysis - {{name}}',
-        description: 'Page to edit the analysis of {{name}}.',
-      },
-      analysisEditDragon: {
+      analysisEdit: {
         title: 'Edit analysis - {{name}}',
         description: 'Page to edit the analysis of {{name}}.',
       },
@@ -305,6 +301,7 @@ export const translation: TranslationStruct = {
       },
       questPost: {
         title: '【Quest Guide】{{title}}',
+        description: 'Visit for the details.',
       },
       site: {
         title: 'DL Info by OM',
@@ -337,7 +334,7 @@ export const translation: TranslationStruct = {
         description: 'The page is currently under construction.',
       },
     },
-    suffix: 'DL Info by OM',
+    suffix: ' | DL Info by OM',
   },
   posts: {
     analysis: {

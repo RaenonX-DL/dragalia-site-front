@@ -41,10 +41,7 @@ export const getMetaTFunction = (
   const t = getTFunction(translation);
 
   return {
-    title: (
-      t((t) => getEntryFn(t).title, replacements) +
-      t((t) => t.meta.suffix)
-    ),
+    title: t((t) => getEntryFn(t).title, replacements),
     description: t((t) => getEntryFn(t).description, replacements),
   };
 };
