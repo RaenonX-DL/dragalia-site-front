@@ -6,6 +6,7 @@ import {setupServer} from 'msw/node';
 
 import {ResourcePaths} from '../../src/api-def/resources';
 
+
 export const initMockApi = () => {
   const server = setupServer(
     rest.get('*', async (req, res, ctx) => {

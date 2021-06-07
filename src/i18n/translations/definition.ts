@@ -177,16 +177,9 @@ export type TranslationStruct = {
   googleSignin: {
     noUid: string,
     noUidDetails: string,
-    notLoaded: string,
     login: string,
-    loginError: string,
-    loginFailed: string,
-    loginUnknown: string,
-    loginOfflineDisallowed: string,
     logout: string,
-    logoutFailed: string,
-    logoutUnknown: string,
-    requestFailed: string,
+    loading: string,
   },
   lang: {
     inUse: string,

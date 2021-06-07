@@ -179,16 +179,9 @@ export const translation: TranslationStruct = {
   googleSignin: {
     noUid: '無 Google 使用者 ID',
     noUidDetails: '找不到 Google 使用者 ID。請嘗試重新登入。',
-    notLoaded: '載入失敗，請嘗試啟用第三方 Cookies 後重試。',
     login: 'Google 登入',
-    loginError: '錯誤: {{error}} - {{details}}',
-    loginFailed: '登入失敗',
-    loginUnknown: '因為不明原因，無法登入。({{error}})',
-    loginOfflineDisallowed: '離線登入已禁用。請洽網站管理員。',
     logout: 'Google 登出',
-    logoutFailed: '登出失敗',
-    logoutUnknown: '因為不明原因，無法登出。',
-    requestFailed: '登入請求傳送失敗',
+    loading: '讀取中...',
   },
   lang: {
     inUse: '目前使用中',

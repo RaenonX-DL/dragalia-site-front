@@ -1,17 +1,16 @@
 import React from 'react';
 
-import {signOut} from 'next-auth/client';
 import {Button} from 'react-bootstrap';
 
 import {useI18n} from '../../../../../i18n/hook';
 
 
-export const LogoutButton = () => {
+export const LoadingButton = () => {
   const {t} = useI18n();
 
   return (
-    <Button variant="outline-info" onClick={() => signOut()}>
-      {t((t) => t.googleSignin.logout)}
+    <Button variant="outline-secondary" disabled>
+      {t((t) => t.googleSignin.loading)}
     </Button>
   );
 };

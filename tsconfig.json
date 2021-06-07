@@ -22,6 +22,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
     /* Strict Type-Checking Options */
     "strict": true,
     /* Module Resolution Options */
@@ -32,10 +36,6 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true
   },
-  "include": [
-    "src/",
-    "test/"
-  ],
   "exclude": [
     "node_modules"
   ]

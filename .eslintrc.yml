@@ -13,7 +13,7 @@ extends:
   - plugin:eslint-plugin-import/typescript
 
 ignorePatterns:
-  - next-env.d.ts
+  - '*.d.ts'
 
 globals:
   Atomics: readonly

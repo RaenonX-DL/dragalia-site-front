@@ -202,16 +202,9 @@ export const translation: TranslationStruct = {
   googleSignin: {
     noUid: 'No Google user ID',
     noUidDetails: 'Cannot find Google user ID. Please try re-login.',
-    notLoaded: 'Failed to load. Please try enabling 3rd-party cookies then try again.',
     login: 'Google Login',
-    loginError: 'Error: {{error}} - {{details}}',
-    loginFailed: 'Login failed',
-    loginUnknown: 'Failed to login for unknown reason. ({{error}})',
-    loginOfflineDisallowed: 'Offline login is disallowed. Please contact the website admin.',
     logout: 'Google Logout',
-    logoutFailed: 'Logout failed',
-    logoutUnknown: 'Failed to logout for unknown reason.',
-    requestFailed: 'Failed to send login request',
+    loading: 'Loading...',
   },
   lang: {
     inUse: 'Currently in-use',
