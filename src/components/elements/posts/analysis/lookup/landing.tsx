@@ -6,6 +6,7 @@ import {AnalysisLookupEntry} from '../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
 import {AnalysisEntry} from './out/entry';
 
+
 type AnalysisLookupLandingProps = {
   analyses: Array<AnalysisLookupEntry>,
 }

@@ -1,7 +1,7 @@
 import {waitFor} from '@testing-library/react';
-import {renderHook} from '@testing-library/react-hooks';
 import * as nextRouter from 'next/router';
 
+import {renderReactHook} from '../../test/render/main';
 import {makeRouter} from '../../test/render/router';
 import {SupportedLanguages} from '../api-def/api';
 import {CookiesKeys} from '../utils/cookies/keys';
@@ -26,7 +26,7 @@ describe('I18n hook', () => {
     getCookies.mockReturnValueOnce(null);
     useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
 
-    const {result} = renderHook(() => useI18n());
+    const {result} = renderReactHook(() => useI18n());
 
     await waitFor(() => {
       expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);
@@ -40,7 +40,7 @@ describe('I18n hook', () => {
     getCookies.mockReturnValueOnce(SupportedLanguages.JP);
     useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
 
-    const {result} = renderHook(() => useI18n());
+    const {result} = renderReactHook(() => useI18n());
 
     await waitFor(() => {
       expect(result.current.lang).toBe(SupportedLanguages.JP);
@@ -52,7 +52,7 @@ describe('I18n hook', () => {
     getCookies.mockReturnValueOnce(SupportedLanguages.CHT);
     useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
 
-    const {result} = renderHook(() => useI18n());
+    const {result} = renderReactHook(() => useI18n());
 
     await waitFor(() => {
       expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);

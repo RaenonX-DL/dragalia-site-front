@@ -37,13 +37,13 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
 };
 
 export const renderReactHook = <T, >(
-  getHook: (...params: any[]) => T,
+  callback: (...params: any[]) => T,
   options?: RenderOptions,
 ) => {
   const store = createStore(options?.preloadState);
 
   return renderHook(
-    getHook,
+    callback,
     {
       wrapper: RenderWrapper,
       initialProps: {options, store},
