@@ -1,5 +1,6 @@
 import {PostPath} from '../../const/path/definitions';
 
+
 const generatePath = (path: string, args: { [key in string]: string | number }) => {
   Object
     .keys(args)
