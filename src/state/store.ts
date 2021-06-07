@@ -3,9 +3,10 @@ import {useDispatch as useReduxDispatch} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './reducer';
-import {PartialReduxState} from './state';
+import {PreloadedReduxState} from './state';
 
-export const createStore = (preloadedState?: PartialReduxState) => configureStore({
+
+export const createStore = (preloadedState?: PreloadedReduxState) => configureStore({
   reducer: rootReducer,
   devTools: true,
   preloadedState,
