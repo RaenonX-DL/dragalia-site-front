@@ -10,8 +10,8 @@ const Error404 = () => {
 
   return (
     <Row>
-      <Col className="text-center text-danger">
-        <h3>{t((t) => t.meta.error['404'].description)}</h3>
+      <Col className="text-center text-danger p-3">
+        <span className="h2">{t((t) => t.meta.error['404'].description)}</span>
       </Col>
     </Row>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
-import Error from 'next/error';
 
 import {QuestPostGetResponse} from '../../../src/api-def/api';
 import {QuestEditForm} from '../../../src/components/elements/posts/quest/form/edit';
@@ -10,6 +9,7 @@ import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../src/utils/ssr';
+import Error404 from '../../404';
 
 
 type QuestEditProps = {
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps<QuestEditProps> = async (con
 
 const QuestEdit = ({response}: QuestEditProps) => {
   if (!response) {
-    return <Error statusCode={404}/>;
+    return <Error404/>;
   }
 
   return <QuestEditForm post={response}/>;

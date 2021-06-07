@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
-import Error from 'next/error';
 import {Alert} from 'react-bootstrap';
 
 import {
@@ -17,6 +16,7 @@ import {CookiesKeys} from '../../src/utils/cookies/keys';
 import {getCookies} from '../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../src/utils/ssr';
+import Error404 from '../404';
 
 
 type AnalysisPageProps = {
@@ -37,7 +37,7 @@ const AnalysisPage = ({response}: AnalysisPageProps) => {
   const {t} = useI18n();
 
   if (!response) {
-    return <Error statusCode={404}/>;
+    return <Error404/>;
   }
 
   if (response.type === UnitType.CHARACTER) {
