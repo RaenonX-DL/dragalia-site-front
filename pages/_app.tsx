@@ -41,10 +41,7 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         <title>{pageProps.title}{t((t) => t.meta.suffix)}</title>
         <meta content={pageProps.description} name="description"/>
 
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
         {/* Google AdSense */}
         {
