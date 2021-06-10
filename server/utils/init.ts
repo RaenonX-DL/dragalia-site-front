@@ -2,7 +2,6 @@ import fastify, {FastifyInstance} from 'fastify';
 import next from 'next';
 import {NextServer} from 'next/dist/server/next';
 
-import {nextConfig} from '../config';
 import {registerHandlers} from './init/handlers';
 import {isAppOnHeroku, isProduction} from './misc';
 
@@ -16,7 +15,6 @@ export const createApp = async (): Promise<CreateAppReturn> => {
   const nextApp = next({
     dev: !isProduction(),
     customServer: true,
-    conf: nextConfig,
   });
 
   const fastifyApp = fastify({
