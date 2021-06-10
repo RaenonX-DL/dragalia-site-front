@@ -1,3 +1,5 @@
+export const PATH_ROOT = '/[lang]';
+
 // Must and only have `pid` as the key
 export enum PostPath {
   QUEST = `/quest/[pid]`,

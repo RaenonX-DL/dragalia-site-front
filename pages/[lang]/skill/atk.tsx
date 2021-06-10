@@ -2,17 +2,17 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {ConditionEnumMap} from '../../src/api-def/resources/types/export/enums';
-import {ElementBonus, ElementBonusData} from '../../src/api-def/resources/types/export/misc';
-import {AttackingSkillData} from '../../src/api-def/resources/types/skillAtk';
-import {SkillIdentifierInfo} from '../../src/api-def/resources/types/skillIdentifier';
-import {useFetchState, useFetchStateProcessed} from '../../src/components/elements/common/fetch';
-import {AttackingSkillInput} from '../../src/components/elements/gameData/skillAtk/in/main';
-import {InputData} from '../../src/components/elements/gameData/skillAtk/in/types';
-import {AttackingSkillOutput} from '../../src/components/elements/gameData/skillAtk/out/main';
-import {scrollRefToTop} from '../../src/utils/scroll';
-import {GoogleAnalytics} from '../../src/utils/services/ga';
-import {ResourceLoader} from '../../src/utils/services/resources/loader';
+import {ConditionEnumMap} from '../../../src/api-def/resources/types/export/enums';
+import {ElementBonus, ElementBonusData} from '../../../src/api-def/resources/types/export/misc';
+import {AttackingSkillData} from '../../../src/api-def/resources/types/skillAtk';
+import {SkillIdentifierInfo} from '../../../src/api-def/resources/types/skillIdentifier';
+import {useFetchState, useFetchStateProcessed} from '../../../src/components/elements/common/fetch';
+import {AttackingSkillInput} from '../../../src/components/elements/gameData/skillAtk/in/main';
+import {InputData} from '../../../src/components/elements/gameData/skillAtk/in/types';
+import {AttackingSkillOutput} from '../../../src/components/elements/gameData/skillAtk/out/main';
+import {scrollRefToTop} from '../../../src/utils/scroll';
+import {GoogleAnalytics} from '../../../src/utils/services/ga';
+import {ResourceLoader} from '../../../src/utils/services/resources/loader';
 
 
 const AttackingSkillLookup = () => {

@@ -4,9 +4,10 @@ import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../test/render/main';
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
-import {GeneralPath} from '../const/path/definitions';
+import {GeneralPath, PostPath} from '../const/path/definitions';
 import {CookiesKeys} from '../utils/cookies/keys';
 import * as cookiesUtils from '../utils/cookies/utils';
+import {makePostPath} from '../utils/path/make';
 import {GoogleAnalytics} from '../utils/services/ga';
 import * as i18nHook from './hook';
 import {LanguageSwitch} from './switch';
@@ -77,8 +78,35 @@ describe('Language Switch', () => {
     });
 
     const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
-    // `href` has locale IRL, but not in the test.
-    // Clicking the link still change the language.
+    expect(chtLink).toHaveAttribute('href', `/${SupportedLanguages.CHT}${GeneralPath.ABOUT}`);
+    act(() => {
+      fireEvent.click(chtLink);
+    });
+    expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
+    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
+  });
+
+  it('redirects to correct post page', async () => {
+    renderReact(
+      () => <LanguageSwitch/>,
+      {
+        routerOptions: {
+          pathname: PostPath.ANALYSIS,
+          query: {pid: '7'},
+        },
+      },
+    );
+
+    const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
+    act(() => {
+      fireEvent.click(langSwitch);
+    });
+
+    const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
+    expect(chtLink).toHaveAttribute(
+      'href',
+      makePostPath(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.CHT}),
+    );
     act(() => {
       fireEvent.click(chtLink);
     });

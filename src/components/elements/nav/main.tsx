@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Link from 'next/link';
 import {Nav, Navbar} from 'react-bootstrap';
 
 import {GeneralPath} from '../../../const/path/definitions';
@@ -8,6 +7,7 @@ import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
 import {GoogleSigninButton} from '../common/googleSignin/main';
+import {NextLink} from '../common/link';
 import {titleNavBarId} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
@@ -21,11 +21,11 @@ export const Navigation = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
-        <Link href={GeneralPath.HOME}>
+        <NextLink href={GeneralPath.HOME} passHref>
           <Navbar.Brand>
             {t((t) => t.meta.inUse.site.title)}
           </Navbar.Brand>
-        </Link>
+        </NextLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}

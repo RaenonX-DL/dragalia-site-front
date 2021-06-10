@@ -8,15 +8,14 @@ import {
   CharaAnalysisGetResponse,
   DragonAnalysisGetResponse,
   UnitType,
-} from '../../src/api-def/api';
-import {AnalysisOutputChara} from '../../src/components/elements/posts/analysis/output/chara';
-import {AnalysisOutputDragon} from '../../src/components/elements/posts/analysis/output/dragon';
-import {useI18n} from '../../src/i18n/hook';
-import {CookiesKeys} from '../../src/utils/cookies/keys';
-import {getCookies} from '../../src/utils/cookies/utils';
-import {ApiRequestSender} from '../../src/utils/services/api/requestSender';
-import {getServerSidePropsPost} from '../../src/utils/ssr';
-import Error404 from '../404';
+} from '../../../src/api-def/api';
+import {AnalysisOutputChara} from '../../../src/components/elements/posts/analysis/output/chara';
+import {AnalysisOutputDragon} from '../../../src/components/elements/posts/analysis/output/dragon';
+import {useI18n} from '../../../src/i18n/hook';
+import {CookiesKeys} from '../../../src/utils/cookies/keys';
+import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+import {getServerSidePropsPost} from '../../../src/utils/ssr';
+import Error404 from '../../404';
 
 
 type AnalysisPageProps = {

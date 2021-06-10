@@ -18,7 +18,7 @@ type QuestPostOutputProps = {
 }
 
 export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   return (
@@ -27,7 +27,7 @@ export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
         context?.isAdmin &&
         <PostManageBar
           newButtons={[{url: GeneralPath.QUEST_NEW}]}
-          editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId})}
+          editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}
         />
       }
       {post.isAltLang && <AlertIsAlternativeLanguage response={post}/>}

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
@@ -8,6 +7,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {CookiesKeys} from '../../../../../utils/cookies/keys';
 import {getCookies} from '../../../../../utils/cookies/utils';
+import {useNextRouter} from '../../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
 import {AdsInPostList} from '../../../common/ads';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
@@ -41,10 +41,10 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
-  const router = useRouter();
+  const router = useNextRouter();
   const context = React.useContext(AppReactContext);
 
-  const currentStart = Math.max(Number(router.query['start']) || 0, 0);
+  const currentStart = Math.max(Number(router.query.start) || 0, 0);
   const pageLimit = 10;
 
   const [status, setStatus] = React.useState<Status<R>>(

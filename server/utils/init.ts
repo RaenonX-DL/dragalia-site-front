@@ -3,7 +3,9 @@ import next from 'next';
 import {NextServer} from 'next/dist/server/next';
 
 import {nextConfig} from '../config';
+import {registerHandlers} from './init/handlers';
 import {isAppOnHeroku, isProduction} from './misc';
+
 
 type CreateAppReturn = {
   fastifyApp: FastifyInstance,
@@ -25,6 +27,7 @@ export const createApp = async (): Promise<CreateAppReturn> => {
           translateTime: true,
         },
       },
+    ignoreTrailingSlash: true,
     connectionTimeout: 20000, // 20 seconds
     trustProxy: isAppOnHeroku(),
   });
@@ -34,10 +37,7 @@ export const createApp = async (): Promise<CreateAppReturn> => {
 
   const nextHandler = nextApp.getRequestHandler();
 
-  fastifyApp.all('/*', async (req, res) => {
-    await nextHandler(req.raw, res.raw);
-    res.sent = true;
-  });
+  registerHandlers(fastifyApp, nextHandler);
 
   return {nextApp, fastifyApp};
 };

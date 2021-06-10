@@ -1,7 +1,7 @@
 import {GetServerSidePropsContext} from 'next';
 
-import {SupportedLanguages} from '../api-def/api/other/lang';
-import {PostGetResponse} from '../api-def/api/post/base/response/common';
+import {PostGetResponse} from '../api-def/api';
+import {getLangFromQuery} from './path/process';
 import {FunctionFetchPost} from './services/api/types';
 
 
@@ -16,7 +16,7 @@ export const getServerSidePropsPost = async <T extends PostGetResponse>(
     return await fnGetPost(
       googleUid,
       Number(pid),
-      context.locale as SupportedLanguages,
+      getLangFromQuery(context.query),
       false,
     );
   } catch {

@@ -8,16 +8,16 @@ import {
   CharaAnalysisBody,
   DragonAnalysisBody,
   UnitType,
-} from '../../../src/api-def/api';
-import {AnalysisFormCharaEdit} from '../../../src/components/elements/posts/analysis/form/charaEdit';
-import {AnalysisFormDragonEdit} from '../../../src/components/elements/posts/analysis/form/dragonEdit';
-import {GeneralPath} from '../../../src/const/path/definitions';
-import {useI18n} from '../../../src/i18n/hook';
-import {CookiesKeys} from '../../../src/utils/cookies/keys';
-import {getCookies} from '../../../src/utils/cookies/utils';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {getServerSidePropsPost} from '../../../src/utils/ssr';
-import Error404 from '../../404';
+} from '../../../../src/api-def/api';
+import {AnalysisFormCharaEdit} from '../../../../src/components/elements/posts/analysis/form/charaEdit';
+import {AnalysisFormDragonEdit} from '../../../../src/components/elements/posts/analysis/form/dragonEdit';
+import {GeneralPath} from '../../../../src/const/path/definitions';
+import {useI18n} from '../../../../src/i18n/hook';
+import {CookiesKeys} from '../../../../src/utils/cookies/keys';
+import {getCookies} from '../../../../src/utils/cookies/utils';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {getServerSidePropsPost} from '../../../../src/utils/ssr';
+import Error404 from '../../../404';
 
 
 type AnalysisEditProps = {

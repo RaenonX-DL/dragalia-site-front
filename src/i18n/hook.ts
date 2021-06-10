@@ -1,8 +1,8 @@
-import {useRouter} from 'next/router';
-
 import {SupportedLanguages} from '../api-def/api';
 import {CookiesKeys} from '../utils/cookies/keys';
 import {getCookies, setCookies} from '../utils/cookies/utils';
+import {getLangFromQuery} from '../utils/path/process';
+import {useNextRouter} from '../utils/router';
 import {DEFAULT_LANG} from './langCode';
 import {translations} from './translations/main';
 import {TFunction} from './types';
@@ -19,8 +19,8 @@ export const useCookiesLang = (): SupportedLanguages | null => {
 };
 
 export const useRouterLang = (): SupportedLanguages => {
-  const {locale} = useRouter();
-  return locale as SupportedLanguages;
+  const {query} = useNextRouter();
+  return getLangFromQuery(query);
 };
 
 export const useI18n = (): UseI18nReturn => {

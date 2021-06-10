@@ -2,6 +2,7 @@ import React from 'react';
 
 import {AnalysisBody, AnalysisEditResponse, AnalysisPublishResponse} from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
+import {useI18n} from '../../../../../i18n/hook';
 import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormBase} from '../../shared/form/base';
 import {PostFormBaseProps} from '../../shared/form/types';
@@ -17,6 +18,8 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
   renderMain,
   renderOnPreloaded,
 }: PostFormBaseProps<P, R>) => {
+  const {lang} = useI18n();
+
   return (
     <PostFormBase
       formState={formState}
@@ -36,7 +39,7 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
         </>
       )}
       renderOnPreloaded={renderOnPreloaded}
-      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid})}
+      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
       fnGetRedirectId={(response) => response.unitId}
     />
   );

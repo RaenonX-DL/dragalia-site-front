@@ -2,12 +2,13 @@ import {NextRouter} from 'next/router';
 
 import {SupportedLanguages} from '../../src/api-def/api';
 
+
 export const makeRouter = (routerProps?: Partial<NextRouter>): NextRouter => {
   return {
     basePath: '/',
     pathname: '/',
     route: '/',
-    query: {},
+    query: {lang: SupportedLanguages.EN},
     asPath: '/',
     push: jest.fn().mockResolvedValue(true),
     replace: jest.fn().mockResolvedValue(true),
@@ -15,7 +16,7 @@ export const makeRouter = (routerProps?: Partial<NextRouter>): NextRouter => {
     prefetch: () => Promise.resolve(undefined),
     back: jest.fn().mockResolvedValue(true),
     beforePopState: jest.fn().mockResolvedValue(true),
-    locale: SupportedLanguages.EN,
+    locale: undefined,
     locales: undefined,
     defaultLocale: undefined,
     domainLocales: undefined,

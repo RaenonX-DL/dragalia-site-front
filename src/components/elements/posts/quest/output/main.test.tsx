@@ -116,7 +116,7 @@ describe('Quest post output', () => {
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.QUEST, {pid: postResponse.seqId}),
+      makePostPath(PostPath.QUEST, {pid: postResponse.seqId, lang: SupportedLanguages.CHT}),
     );
   });
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {UnitType} from '../../../src/api-def/api';
-import {AnalysisFormDragonNew} from '../../../src/components/elements/posts/analysis/form/dragonNew';
-import {useI18n} from '../../../src/i18n/hook';
-import {CookiesKeys} from '../../../src/utils/cookies/keys';
-import {getCookies} from '../../../src/utils/cookies/utils';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+import {UnitType} from '../../../../src/api-def/api';
+import {AnalysisFormDragonNew} from '../../../../src/components/elements/posts/analysis/form/dragonNew';
+import {useI18n} from '../../../../src/i18n/hook';
+import {CookiesKeys} from '../../../../src/utils/cookies/keys';
+import {getCookies} from '../../../../src/utils/cookies/utils';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 
 
 // FIXME: [Blocked by Auth Rework] If not admin, redirect

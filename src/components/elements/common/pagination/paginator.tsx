@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
 import {Pagination} from 'react-bootstrap';
 
+import {useNextRouter} from '../../../../utils/router';
 import {scrollElementToTop} from '../../../../utils/scroll';
 import {PaginationState, SpecialKey} from './types';
 import {getValidNewPage} from './utils';
@@ -25,7 +25,7 @@ export const Paginator = ({
   getNewQueryParam,
   disable = false,
 }: PaginatorProps) => {
-  const router = useRouter();
+  const router = useNextRouter();
 
   const changePage = (newPage: number) => () => {
     newPage = getValidNewPage(newPage, state.currentPage, state.maxPage);

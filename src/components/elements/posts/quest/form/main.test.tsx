@@ -362,7 +362,10 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(PostPath.QUEST, {pid: response.seqId}));
+      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
+        PostPath.QUEST,
+        {pid: response.seqId, lang: SupportedLanguages.EN},
+      ));
     });
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });

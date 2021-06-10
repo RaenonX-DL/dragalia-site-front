@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
 import {NavDropdown} from 'react-bootstrap';
 
+import {useNextRouter} from '../../../../utils/router';
 import {NavProps} from './types';
 
 
 export const NavDropdownItem = ({text, path}: NavProps) => {
-  const {pathname} = useRouter();
+  const {pathnameNoLang} = useNextRouter();
 
   return (
-    <NavDropdown.Item href={path} className={path === pathname ? 'active' : ''}>
+    <NavDropdown.Item href={path} className={path === pathnameNoLang ? 'active' : ''}>
       {text}
     </NavDropdown.Item>
   );

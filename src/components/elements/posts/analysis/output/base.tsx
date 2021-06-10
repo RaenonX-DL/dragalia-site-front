@@ -22,7 +22,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   analysis,
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   return (
@@ -40,7 +40,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
               title: t((t) => t.posts.manage.addDragon),
             },
           ]}
-          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.unitId})}
+          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.unitId, lang})}
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}

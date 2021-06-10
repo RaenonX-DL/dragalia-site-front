@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {QuestPostPublishPayload} from '../../src/api-def/api';
-import {QuestPostForm} from '../../src/components/elements/posts/quest/form/main';
-import {PostFormState} from '../../src/components/elements/posts/shared/form/types';
-import {useI18n} from '../../src/i18n/hook';
-import {CookiesKeys} from '../../src/utils/cookies/keys';
-import {getCookies} from '../../src/utils/cookies/utils';
-import {ApiRequestSender} from '../../src/utils/services/api/requestSender';
-import {generateNewPositionInfo} from '../../src/utils/services/api/utils';
+import {QuestPostPublishPayload} from '../../../src/api-def/api';
+import {QuestPostForm} from '../../../src/components/elements/posts/quest/form/main';
+import {PostFormState} from '../../../src/components/elements/posts/shared/form/types';
+import {useI18n} from '../../../src/i18n/hook';
+import {CookiesKeys} from '../../../src/utils/cookies/keys';
+import {getCookies} from '../../../src/utils/cookies/utils';
+import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
+import {generateNewPositionInfo} from '../../../src/utils/services/api/utils';
 
 
 // FIXME: [Blocked by Auth Rework] If not admin, redirect

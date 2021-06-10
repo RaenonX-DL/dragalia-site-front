@@ -2,14 +2,14 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {CharaExAbilityDataEntry, ConditionEnumMap} from '../src/api-def/resources';
-import {useFetchState} from '../src/components/elements/common/fetch';
-import {ExAbilityInput} from '../src/components/elements/gameData/ex/in/main';
-import {InputData} from '../src/components/elements/gameData/ex/in/types';
-import {ExAbilityOutput} from '../src/components/elements/gameData/ex/out/main';
-import {scrollRefToTop} from '../src/utils/scroll';
-import {GoogleAnalytics} from '../src/utils/services/ga';
-import {ResourceLoader} from '../src/utils/services/resources/loader';
+import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../src/api-def/resources';
+import {useFetchState} from '../../src/components/elements/common/fetch';
+import {ExAbilityInput} from '../../src/components/elements/gameData/ex/in/main';
+import {InputData} from '../../src/components/elements/gameData/ex/in/types';
+import {ExAbilityOutput} from '../../src/components/elements/gameData/ex/out/main';
+import {scrollRefToTop} from '../../src/utils/scroll';
+import {GoogleAnalytics} from '../../src/utils/services/ga';
+import {ResourceLoader} from '../../src/utils/services/resources/loader';
 
 
 const ExAbilityPage = () => {

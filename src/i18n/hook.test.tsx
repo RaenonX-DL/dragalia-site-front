@@ -24,7 +24,7 @@ describe('I18n hook', () => {
 
   test('(X) cookies (O) router: use router & set cookies', async () => {
     getCookies.mockReturnValueOnce(null);
-    useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
+    useRouter.mockReturnValueOnce(makeRouter({query: {lang: SupportedLanguages.JP}}));
 
     const {result} = renderReactHook(() => useI18n());
 
@@ -38,7 +38,7 @@ describe('I18n hook', () => {
 
   test('(O) cookies (O) router: (same) no change', async () => {
     getCookies.mockReturnValueOnce(SupportedLanguages.JP);
-    useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
+    useRouter.mockReturnValueOnce(makeRouter({query: {lang: SupportedLanguages.JP}}));
 
     const {result} = renderReactHook(() => useI18n());
 
@@ -50,7 +50,7 @@ describe('I18n hook', () => {
 
   test('(O) cookies (O) router: (conflicted) pick router and set', async () => {
     getCookies.mockReturnValueOnce(SupportedLanguages.CHT);
-    useRouter.mockReturnValueOnce(makeRouter({locale: SupportedLanguages.JP}));
+    useRouter.mockReturnValueOnce(makeRouter({query: {lang: SupportedLanguages.JP}}));
 
     const {result} = renderReactHook(() => useI18n());
 

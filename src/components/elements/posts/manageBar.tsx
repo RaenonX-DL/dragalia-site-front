@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Link from 'next/link';
 import {Button, Col, Row} from 'react-bootstrap';
 
 import {PagePath} from '../../../const/path/definitions';
 import {useI18n} from '../../../i18n/hook';
+import {NextLink} from '../common/link';
 
 
 type NewButtonEntry = {
@@ -25,19 +25,19 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
       <Col>
         {
           editPostUrl &&
-            <Link href={editPostUrl} passHref>
+            <NextLink href={editPostUrl} passHref>
               <Button variant="outline-info" className="float-right ml-2">
                 {t((t) => t.posts.manage.edit)}
               </Button>
-            </Link>
+            </NextLink>
         }
         {
           newButtons.map(({url, title}, idx) => (
-            <Link href={url} key={idx} passHref>
+            <NextLink href={url} key={idx} passHref>
               <Button variant="outline-success" className="float-right ml-2">
                 {title || t((t) => t.posts.manage.add)}
               </Button>
-            </Link>
+            </NextLink>
           ))
         }
       </Col>

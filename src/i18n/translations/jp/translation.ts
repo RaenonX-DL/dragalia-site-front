@@ -361,7 +361,7 @@ export const translation: TranslationStruct = {
       publishFailed: '発表失敗',
     },
     message: {
-      altLang: '本ページは言語が {{langUi}} 版がないため、代わりに言語が{{langPost}} 版を表示しています。',
+      altLang: '本ページは言語が {{langUi}} 版がないため、代わりに言語が {{langPost}} 版を表示しています。',
       otherLang: '本ページは他言語版もあります。',
       published: '文を発表しました。',
     },

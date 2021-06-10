@@ -1,10 +1,11 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
 import {NavDropdown} from 'react-bootstrap';
 
+import {useNextRouter} from '../../../../utils/router';
 import {NavDropdownItem} from './dropdownItem';
 import {NavDropdownEntry} from './types';
+
 
 type Props = {
   title: string,
@@ -12,24 +13,13 @@ type Props = {
 }
 
 export const NavDropdownMenu = ({title, items}: Props) => {
-  const {pathname} = useRouter();
-
-  let isActive;
-  if (pathname) {
-    isActive = items
-      .some((item) => {
-        if (item.type !== 'item') {
-          return false;
-        }
-
-        return item.path === pathname;
-      });
-  } else {
-    isActive = false;
-  }
+  const {pathnameNoLang} = useNextRouter();
 
   return (
-    <NavDropdown title={title} id={title} active={isActive}>
+    <NavDropdown
+      title={title} id={title}
+      active={items.some((item) => item.type === 'item' && item.path === pathnameNoLang)}
+    >
       {
         items.map((item, idx) => {
           if (item.type === 'header') {

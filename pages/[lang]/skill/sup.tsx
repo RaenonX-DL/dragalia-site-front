@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Constructing} from '../../src/components/pages/constructing';
+import {Constructing} from '../../../src/components/pages/constructing';
 
 
 const SupportiveSkillLookup = () => {
