@@ -8,13 +8,13 @@ import {FunctionFetchPost} from './services/api/types';
 export const getServerSidePropsPost = async <T extends PostGetResponse>(
   context: GetServerSidePropsContext,
   fnGetPost: FunctionFetchPost<T>,
-  googleUid: string,
+  uid: string,
 ): Promise<T | null> => {
   const {pid} = context.query;
 
   try {
     return await fnGetPost(
-      googleUid,
+      uid,
       Number(pid),
       getLangFromQuery(context.query),
       false,

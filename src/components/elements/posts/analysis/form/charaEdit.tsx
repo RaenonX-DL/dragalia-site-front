@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {AnalysisEditResponse, CharaAnalysisBody, CharaAnalysisEditPayload} from '../../../../../api-def/api';
-import {CookiesKeys} from '../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../utils/cookies/utils';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
@@ -17,10 +17,11 @@ type AnalysisFormCharaEditProps<P extends CharaAnalysisEditPayload, R extends An
 export const AnalysisFormCharaEdit = ({
   initialAnalysis, fnSendRequest,
 }: AnalysisFormCharaEditProps<CharaAnalysisEditPayload, AnalysisEditResponse>) => {
+  const [session] = useSession();
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
       ...initialAnalysis,
-      googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
+      uid: session?.user.id.toString() || '',
       editNote: '',
     },
     isIdAvailable: true,

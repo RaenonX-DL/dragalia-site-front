@@ -1,12 +1,12 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/utils';
 import {useDispatch} from '../../../../../state/store';
-import {CookiesKeys} from '../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../utils/cookies/utils';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
@@ -28,6 +28,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
+  const [session] = useSession();
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -59,11 +60,11 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!getCookies(CookiesKeys.GOOGLE_UID)) {
+    if (!session) {
       setModalState({
         show: true,
-        title: t((t) => t.googleSignin.noUid),
-        message: t((t) => t.googleSignin.noUidDetails),
+        title: t((t) => t.userControl.noUid),
+        message: t((t) => t.userControl.noUidDetails),
       });
       return;
     }

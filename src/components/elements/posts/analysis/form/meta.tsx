@@ -1,11 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
 import {Col, Form, Row} from 'react-bootstrap';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesKeys} from '../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../utils/cookies/utils';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
 import {UnitIcon} from '../../../gameData/unitIcon';
@@ -22,13 +21,14 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   setAvailability,
 }: FormAnalysisMetaProps<P>) => {
   const {t, lang} = useI18n();
+  const [session] = useSession();
 
   const {isValid, isChecking} = useFormMeta({
     formState,
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      ApiRequestSender.analysisIdCheck(getCookies(CookiesKeys.GOOGLE_UID) || '', payload.unitId, payload.lang)
+      ApiRequestSender.analysisIdCheck(session?.user.id.toString() || '', payload.unitId, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.unitId, payload.lang],
   });

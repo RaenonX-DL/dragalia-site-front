@@ -1,26 +1,35 @@
+import {getSession} from 'next-auth/client';
 import {AppContext} from 'next/app';
 
 import {FailedResponse} from '../../api-def/api/base/response';
 import {PageMetaResponse} from '../../api-def/api/meta/general/response';
 import {SupportedLanguages} from '../../api-def/api/other/lang';
 import {isPostPath} from '../../const/path/definitions';
-import {CookiesKeys} from '../cookies/keys';
-import {getCookies} from '../cookies/utils';
 import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
 
 
-export const getPageMetaPromise = (
-  lang: SupportedLanguages, context: AppContext,
-): Promise<PageMetaResponse | FailedResponse> => {
-  const {router, ctx} = context;
-  const {pathname, query} = router;
-  const googleUid = getCookies(CookiesKeys.GOOGLE_UID, ctx.req?.headers.cookie) || '';
+type PageMetaPromiseArgs = {
+  lang: SupportedLanguages,
+  pathnameNoLang: string,
+  context: AppContext,
+}
 
-  let responsePromise = ApiRequestSender.getPageMeta(googleUid);
+export const getPageMetaPromise = async ({
+  lang, pathnameNoLang, context,
+}: PageMetaPromiseArgs): Promise<PageMetaResponse | FailedResponse> => {
+  // FIXME: [Auth] Check next-auth js db handling
+  const uid = (await getSession(context.ctx))?.user?.id.toString() || '';
 
-  if (isPostPath(pathname)) {
-    responsePromise = ApiRequestSender.getPostMeta(googleUid, lang, pathPostType[pathname], Number(query.pid));
+  let responsePromise = ApiRequestSender.getPageMeta(uid);
+
+  if (isPostPath(pathnameNoLang)) {
+    responsePromise = ApiRequestSender.getPostMeta(
+      uid,
+      lang,
+      pathPostType[pathnameNoLang],
+      Number(context.router.query.pid),
+    );
   }
 
   return responsePromise;

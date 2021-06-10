@@ -31,12 +31,3 @@ export const setCookies: SetCookies = (key: CookiesKeys, value: string, cookiesS
 
   cookies.set(key, value, {path: '/'});
 };
-
-
-type RemoveCookies = (key: CookiesKeys, cookiesSource?: CookiesSource) => void;
-
-export const removeCookies: RemoveCookies = (key: CookiesKeys, cookiesSource?: CookiesSource) => {
-  const cookies = getCookiesSource(cookiesSource);
-
-  return cookies.remove(key, {path: '/'});
-};

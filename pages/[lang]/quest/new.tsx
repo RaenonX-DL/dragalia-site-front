@@ -1,11 +1,11 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {QuestPostPublishPayload} from '../../../src/api-def/api';
 import {QuestPostForm} from '../../../src/components/elements/posts/quest/form/main';
 import {PostFormState} from '../../../src/components/elements/posts/shared/form/types';
 import {useI18n} from '../../../src/i18n/hook';
-import {CookiesKeys} from '../../../src/utils/cookies/keys';
-import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {generateNewPositionInfo} from '../../../src/utils/services/api/utils';
 
@@ -14,10 +14,11 @@ import {generateNewPositionInfo} from '../../../src/utils/services/api/utils';
 
 const QuestNew = () => {
   const {lang} = useI18n();
+  const [session] = useSession();
 
   const [formState, setFormState] = React.useState<PostFormState<QuestPostPublishPayload>>({
     payload: {
-      googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
+      uid: session?.user.id.toString() || '',
       lang: lang,
       title: '',
       video: '',

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
+import {getSession} from 'next-auth/client';
 import {Alert} from 'react-bootstrap';
 
 import {
@@ -12,7 +13,6 @@ import {
 import {AnalysisOutputChara} from '../../../src/components/elements/posts/analysis/output/chara';
 import {AnalysisOutputDragon} from '../../../src/components/elements/posts/analysis/output/dragon';
 import {useI18n} from '../../../src/i18n/hook';
-import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../src/utils/ssr';
 import Error404 from '../../404';
@@ -23,11 +23,15 @@ type AnalysisPageProps = {
 }
 
 export const getServerSideProps: GetServerSideProps<AnalysisPageProps> = async (context) => {
-  const googleUid = getCookies(CookiesKeys.GOOGLE_UID, context.req.cookies);
+  const session = await getSession(context);
 
   return {
     props: {
-      response: await getServerSidePropsPost(context, ApiRequestSender.analysisGet, googleUid || ''),
+      response: await getServerSidePropsPost(
+        context,
+        ApiRequestSender.analysisGet,
+        session?.user?.id.toString() || '',
+      ),
     },
   };
 };

@@ -7,7 +7,7 @@ import {LoginButton} from './button/login';
 import {LogoutButton} from './button/logout';
 
 
-export const GoogleSigninButton = () => {
+export const UserControlButton = () => {
   const [session, loading] = useSession();
 
   if (loading) {

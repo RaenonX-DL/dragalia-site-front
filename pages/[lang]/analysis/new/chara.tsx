@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {UnitType} from '../../../../src/api-def/api';
 import {AnalysisFormCharaNew} from '../../../../src/components/elements/posts/analysis/form/charaNew';
 import {useI18n} from '../../../../src/i18n/hook';
-import {CookiesKeys} from '../../../../src/utils/cookies/keys';
-import {getCookies} from '../../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {generateNewCharaSkill} from '../../../../src/utils/services/api/utils';
 
@@ -13,11 +13,12 @@ import {generateNewCharaSkill} from '../../../../src/utils/services/api/utils';
 
 const AnalysisNewChara = () => {
   const {lang} = useI18n();
+  const [session] = useSession();
 
   return (
     <AnalysisFormCharaNew
       initialPayload={{
-        googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
+        uid: session?.user.id.toString() || '',
         lang: lang,
         type: UnitType.CHARACTER,
         unitId: 0,

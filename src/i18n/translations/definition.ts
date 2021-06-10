@@ -174,7 +174,7 @@ export type TranslationStruct = {
       rotation: string,
     },
   },
-  googleSignin: {
+  userControl: {
     noUid: string,
     noUidDetails: string,
     login: string,

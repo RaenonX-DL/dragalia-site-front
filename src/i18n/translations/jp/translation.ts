@@ -176,11 +176,11 @@ export const translation: TranslationStruct = {
       rotation: 'ルーティン計算',
     },
   },
-  googleSignin: {
-    noUid: '該当するGoogleアカウントが見当たりません。',
-    noUidDetails: '該当するGoogleアカウントIDが見当たりません。もう一度ログインし直してください。',
-    login: 'Googleログイン',
-    logout: 'Googleログアウト',
+  userControl: {
+    noUid: '該当するアカウントが見当たりません。',
+    noUidDetails: '該当するアカウントIDが見当たりません。もう一度ログインし直してください。',
+    login: 'ログイン',
+    logout: 'ログアウト',
     loading: '読み込み中...',
   },
   lang: {

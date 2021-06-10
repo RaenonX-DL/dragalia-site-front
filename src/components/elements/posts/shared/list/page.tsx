@@ -1,12 +1,11 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesKeys} from '../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../utils/cookies/utils';
 import {useNextRouter} from '../../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
 import {AdsInPostList} from '../../../common/ads';
@@ -41,6 +40,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
+  const [session] = useSession();
   const router = useNextRouter();
   const context = React.useContext(AppReactContext);
 
@@ -69,7 +69,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
     });
 
     fnFetchList(
-      getCookies(CookiesKeys.GOOGLE_UID) || '',
+      session?.user.id.toString() || '',
       lang,
       pageToStartIdx(page, pageLimit),
       pageLimit,

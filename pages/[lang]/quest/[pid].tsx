@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
+import {getSession} from 'next-auth/client';
 
 import {QuestPostGetResponse} from '../../../src/api-def/api';
 import {QuestPostOutput} from '../../../src/components/elements/posts/quest/output/main';
-import {CookiesKeys} from '../../../src/utils/cookies/keys';
-import {getCookies} from '../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../src/utils/ssr';
 import Error404 from '../../404';
@@ -16,11 +15,11 @@ type QuestPageProps = {
 }
 
 export const getServerSideProps: GetServerSideProps<QuestPageProps> = async (context) => {
-  const googleUid = getCookies(CookiesKeys.GOOGLE_UID, context.req.cookies);
+  const session = await getSession(context);
 
   return {
     props: {
-      response: await getServerSidePropsPost(context, ApiRequestSender.questGet, googleUid || ''),
+      response: await getServerSidePropsPost(context, ApiRequestSender.questGet, session?.user?.id.toString() || ''),
     },
   };
 };

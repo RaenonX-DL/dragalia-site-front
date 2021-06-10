@@ -199,11 +199,11 @@ export const translation: TranslationStruct = {
       rotation: 'Rotations Calculator',
     },
   },
-  googleSignin: {
-    noUid: 'No Google user ID',
-    noUidDetails: 'Cannot find Google user ID. Please try re-login.',
-    login: 'Google Login',
-    logout: 'Google Logout',
+  userControl: {
+    noUid: 'No user ID',
+    noUidDetails: 'User ID not found. Please re-login.',
+    login: 'Login',
+    logout: 'Logout',
     loading: 'Loading...',
   },
   lang: {

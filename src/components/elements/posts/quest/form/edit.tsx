@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {QuestPostEditPayload, QuestPostGetResponse} from '../../../../../api-def/api';
-import {CookiesKeys} from '../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../utils/cookies/utils';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormState} from '../../shared/form/types';
@@ -14,9 +14,11 @@ type Props<R extends QuestPostGetResponse> = {
 }
 
 export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) => {
+  const [session] = useSession();
+
   const [formState, setFormState] = React.useState<PostFormState<QuestPostEditPayload>>({
     payload: {
-      googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
+      uid: session?.user.id.toString() || '',
       seqId: post.seqId,
       lang: post.lang,
       title: post.title,

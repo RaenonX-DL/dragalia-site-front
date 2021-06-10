@@ -6,8 +6,8 @@ import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
-import {GoogleSigninButton} from '../common/googleSignin/main';
 import {NextLink} from '../common/link';
+import {UserControlButton} from '../common/userControl/main';
 import {titleNavBarId} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
@@ -56,7 +56,7 @@ export const Navigation = () => {
           {/* Right part of the navbar */}
           <Nav>
             <LanguageSwitch/>
-            <GoogleSigninButton/>
+            <UserControlButton/>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

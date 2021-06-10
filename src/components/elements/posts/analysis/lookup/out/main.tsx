@@ -1,11 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
 import {Col, Form} from 'react-bootstrap';
 
 import {ApiResponseCode} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesKeys} from '../../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../../utils/cookies/utils';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
@@ -21,6 +20,7 @@ type AnalysisLookupOutputProps = {
 
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
   const {t, lang} = useI18n();
+  const [session] = useSession();
 
   const rowElem = React.useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,7 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
       success: true,
       analyses: [],
     },
-    () => ApiRequestSender.analysisLookup(getCookies(CookiesKeys.GOOGLE_UID) || '', lang),
+    () => ApiRequestSender.analysisLookup(session?.user.id.toString() || '', lang),
     'Failed to fetch analysis meta.',
   );
 

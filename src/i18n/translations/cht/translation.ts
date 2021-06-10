@@ -176,11 +176,11 @@ export const translation: TranslationStruct = {
       rotation: '輪轉計算',
     },
   },
-  googleSignin: {
-    noUid: '無 Google 使用者 ID',
-    noUidDetails: '找不到 Google 使用者 ID。請嘗試重新登入。',
-    login: 'Google 登入',
-    logout: 'Google 登出',
+  userControl: {
+    noUid: '無使用者 ID',
+    noUidDetails: '找不到使用者 ID。請嘗試重新登入。',
+    login: '登入',
+    logout: '登出',
     loading: '讀取中...',
   },
   lang: {

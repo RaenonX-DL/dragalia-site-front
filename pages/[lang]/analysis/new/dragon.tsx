@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
+
 import {UnitType} from '../../../../src/api-def/api';
 import {AnalysisFormDragonNew} from '../../../../src/components/elements/posts/analysis/form/dragonNew';
 import {useI18n} from '../../../../src/i18n/hook';
-import {CookiesKeys} from '../../../../src/utils/cookies/keys';
-import {getCookies} from '../../../../src/utils/cookies/utils';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 
 
@@ -12,11 +12,12 @@ import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender
 
 const AnalysisNewDragon = () => {
   const {lang} = useI18n();
+  const [session] = useSession();
 
   return (
     <AnalysisFormDragonNew
       initialPayload={{
-        googleUid: getCookies(CookiesKeys.GOOGLE_UID) || '',
+        uid: session?.user.id.toString() || '',
         lang: lang,
         type: UnitType.DRAGON,
         unitId: 0,

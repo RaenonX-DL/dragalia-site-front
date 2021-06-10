@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/client';
 import {Col, Form} from 'react-bootstrap';
 
 import {
@@ -9,8 +10,6 @@ import {
   SupportedLanguages,
 } from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesKeys} from '../../../../../../utils/cookies/keys';
-import {getCookies} from '../../../../../../utils/cookies/utils';
 import {PostFormControlProps} from '../types';
 import {useFormMeta} from './hook';
 import {FormMetaLangPicker} from './lang';
@@ -19,7 +18,7 @@ import {FormMetaLangPicker} from './lang';
 export type FormMetaProps<P extends PostMeta, R extends PostIdCheckResponse> = PostFormControlProps<P> & {
   titlePlaceholder: string,
   fnIdCheck: (
-    googleUid: string, seqId: number | null, langCode: SupportedLanguages,
+    uid: string, seqId: number | null, langCode: SupportedLanguages,
   ) => Promise<R>,
 }
 
@@ -31,13 +30,14 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   fnIdCheck,
 }: FormMetaProps<P, R>) => {
   const {t} = useI18n();
+  const [session] = useSession();
 
   const {isValid, isChecking} = useFormMeta({
     formState,
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      fnIdCheck(getCookies(CookiesKeys.GOOGLE_UID) || '', Number(payload.seqId) || null, payload.lang)
+      fnIdCheck(session?.user.id.toString() || '', Number(payload.seqId) || null, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.seqId, payload.lang],
   });
