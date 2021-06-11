@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import * as client from 'next-auth/client';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -12,7 +13,6 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import * as cookiesControl from '../../../../../utils/cookies/utils';
 import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
@@ -34,7 +34,7 @@ describe('Main quest form', () => {
       isPreloaded: true,
       payload: {
         seqId: response.seqId,
-        googleUid: 'googleUid',
+        uid: 'googleUid',
         lang: SupportedLanguages.CHT,
         title: 'ttl',
         general: 'gen',
@@ -55,7 +55,14 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
-    jest.spyOn(cookiesControl, 'getCookies').mockImplementation(() => formState.payload.googleUid);
+    jest.spyOn(client, 'useSession').mockImplementation(() => [
+      ({
+        user: {
+          id: Number(formState.payload.uid),
+        },
+      }),
+      false,
+    ]);
   });
 
   it('loads the data correctly', async () => {

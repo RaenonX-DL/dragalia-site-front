@@ -69,7 +69,7 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
 };
 
 NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  // Call page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext) as AppInitialProps;
 
   appProps.pageProps = {

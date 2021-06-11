@@ -1,11 +1,11 @@
 /* eslint-disable new-cap */
-import NextAuth, {Session, User} from 'next-auth';
-import {Awaitable} from 'next-auth/internals/utils';
+import NextAuth, {NextAuthOptions, Session, User} from 'next-auth';
 import Providers from 'next-auth/providers';
 
 
-const nextAuthApp = NextAuth({
-  // Configure one or more authentication providers
+const nextAuthOptions: NextAuthOptions = {
+  // More providers available
+  // Check https://next-auth.js.org/configuration/providers
   providers: [
     Providers.Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -13,17 +13,23 @@ const nextAuthApp = NextAuth({
     }),
   ],
 
+  // Connect to database for storing customized user data
   database: process.env.AUTH_DATABASE_URL,
 
+  // Auth session encryption key
+  secret: process.env.AUTH_SECRET,
+
   callbacks: {
-    session: (session: Session, user: User): Awaitable<Session> => {
+    // Attach user ID to session
+    // - Type augmented at `types/next-auth/index.d.ts`
+    session: async (session: Session, user: User): Promise<Session> => {
       session.user.id = user.id;
 
-      return Promise.resolve(session);
+      return session;
     },
   },
 
   theme: 'dark',
-});
+};
 
-export default nextAuthApp;
+export default NextAuth(nextAuthOptions);
