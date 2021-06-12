@@ -8,7 +8,7 @@ export const makeRouter = (routerProps?: Partial<NextRouter>): NextRouter => {
     basePath: '/',
     pathname: '/',
     route: '/',
-    query: {lang: SupportedLanguages.EN},
+    query: {lang: routerProps?.locale || SupportedLanguages.EN},
     asPath: '/',
     push: jest.fn().mockResolvedValue(true),
     replace: jest.fn().mockResolvedValue(true),
