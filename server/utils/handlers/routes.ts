@@ -1,4 +1,4 @@
-import {parse} from 'url';
+import {URL} from 'url';
 
 import {FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
 
@@ -6,6 +6,7 @@ import {isSupportedLang} from '../../../src/api-def/api';
 import {DEFAULT_LANG} from '../../../src/i18n/langCode';
 import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {getCookies} from '../../../src/utils/cookies/utils';
+import {urlObjectToLegacy} from '../url';
 import {NextHandler, Server, ServerHasLang} from './types';
 
 
@@ -18,17 +19,12 @@ const getLanguage = (req: FastifyRequest) => {
 };
 
 const handleByNext = async (req: FastifyRequest, res: FastifyReply, nextHandler: NextHandler) => {
-  // FIXME: Deprecated
-  const parsedUrl = parse(req.url, true);
-
-  await nextHandler(
-    req.raw,
-    res.raw,
-    {
-      ...parsedUrl,
-      query: {...parsedUrl.query, lang: getLanguage(req)},
-    },
+  const parsedUrl = urlObjectToLegacy(
+    new URL(req.url, `${req.protocol}://${req.hostname}`),
+    {lang: getLanguage(req)},
   );
+
+  await nextHandler(req.raw, res.raw, parsedUrl);
   res.sent = true;
 };
 

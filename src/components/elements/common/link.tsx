@@ -1,4 +1,4 @@
-import {Url} from 'url';
+import {UrlObject} from 'url';
 
 import React from 'react';
 
@@ -9,7 +9,7 @@ import {SupportedLanguages} from '../../../api-def/api';
 
 type NextLinkProps = {
   locale?: SupportedLanguages,
-  href: string | Url,
+  href: UrlObject | string,
   passHref?: boolean,
 }
 
