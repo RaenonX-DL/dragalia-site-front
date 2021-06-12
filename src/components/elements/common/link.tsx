@@ -1,15 +1,14 @@
-import {UrlObject} from 'url';
-
 import React from 'react';
 
 import Link from 'next/link';
 
 import {SupportedLanguages} from '../../../api-def/api';
+import {NextUrl} from '../../../utils/router';
 
 
 type NextLinkProps = {
   locale?: SupportedLanguages,
-  href: UrlObject | string,
+  href: NextUrl,
   passHref?: boolean,
 }
 

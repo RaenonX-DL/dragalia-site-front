@@ -1,14 +1,37 @@
+import {UrlObject} from 'url';
+
 import {NextRouter, useRouter} from 'next/router';
 
 import {pathnameRemoveLang} from './path/process';
 
 
+export type NextUrl = UrlObject | string;
+
 type UseNextRouterReturn = NextRouter & {
   pathnameNoLang: string,
+  lang: string,
+  push: NextRouter['push'],
 }
 
 export const useNextRouter = (): UseNextRouterReturn => {
   const router = useRouter();
 
-  return {...router, pathnameNoLang: pathnameRemoveLang(router.pathname)};
+  const lang = router.query.lang as string;
+
+  const push: NextRouter['push'] = async (url, as, options) => {
+    if (typeof url !== 'string') {
+      url.pathname = `/${lang}${url.pathname}`;
+    } else {
+      url = `/${lang}${url}`;
+    }
+
+    return router.push(url, as, options);
+  };
+
+  return {
+    ...router,
+    push,
+    pathnameNoLang: pathnameRemoveLang(router.pathname),
+    lang,
+  };
 };
