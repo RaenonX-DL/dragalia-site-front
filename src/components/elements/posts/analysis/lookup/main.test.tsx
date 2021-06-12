@@ -78,7 +78,6 @@ describe('Analysis lookup page', () => {
   });
 
   it('searches and scrolls if found', async () => {
-    // TEST: not-wrapped-in-act warning yields from this test
     fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
@@ -96,7 +95,6 @@ describe('Analysis lookup page', () => {
     });
     await waitFor(async () => {
       expect(fnScroll).toHaveBeenCalledTimes(2);
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
     });
   });
 

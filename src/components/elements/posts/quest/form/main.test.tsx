@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {Session} from 'next-auth';
 import * as client from 'next-auth/client';
 
 import {renderReact} from '../../../../../../test/render/main';
@@ -17,6 +18,9 @@ import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
 
+
+// For mocking `useSession()`
+jest.mock('next-auth/client');
 
 describe('Main quest form', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
@@ -55,14 +59,17 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
-    jest.spyOn(client, 'useSession').mockImplementation(() => [
-      ({
-        user: {
-          id: Number(formState.payload.uid),
-        },
-      }),
-      false,
-    ]);
+
+    // For some reason, `msw` is not working
+    const mockSession: Session = {
+      user: {
+        id: 7,
+      },
+      expires: '1',
+    };
+    jest.spyOn(client, 'useSession').mockImplementation(() => {
+      return [mockSession, false];
+    });
   });
 
   it('loads the data correctly', async () => {
@@ -273,6 +280,11 @@ describe('Main quest form', () => {
   });
 
   it('submits correct payload after edit', async () => {
+    // @ts-ignore
+    delete window.location;
+    // @ts-ignore
+    window.location = {assign: jest.fn()};
+
     const {rerender} = renderReact(() => (
       <QuestPostForm
         fnSendRequest={fnSendRequest}

@@ -7,28 +7,31 @@ import {setupServer} from 'msw/node';
 import {ResourcePaths} from '../../src/api-def/resources';
 
 
-export const initMockApi = () => {
-  const server = setupServer(
-    rest.get('*', async (req, res, ctx) => {
-      const fileContent = fs.readFileSync(
-        path.join(
-          'test',
-          'data',
-          'resources',
-          req.url.href.replace(ResourcePaths.ROOT || '', ''),
-        ),
-        'utf-8',
-      );
-      return res(ctx.json(JSON.parse(fileContent)));
-    }),
-  );
+export const mswServer = setupServer(
+  rest.get('/api/auth/session', async (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
+  rest.get(`${ResourcePaths.ROOT}/*`, async (req, res, ctx) => {
+    const fileContent = fs.readFileSync(
+      path.join(
+        'test',
+        'data',
+        'resources',
+        req.url.href.replace(ResourcePaths.ROOT || '', ''),
+      ),
+      'utf-8',
+    );
+    return res(ctx.json(JSON.parse(fileContent)));
+  }),
+);
 
+export const initMockApi = () => {
   // Enable API mocking
-  beforeAll(() => server.listen());
+  beforeAll(() => mswServer.listen());
 
   // Reset any runtime request handlers added during single test case
-  afterEach(() => server.resetHandlers());
+  afterEach(() => mswServer.resetHandlers());
 
   // Disable API mocking
-  afterAll(() => server.close());
+  afterAll(() => mswServer.close());
 };
