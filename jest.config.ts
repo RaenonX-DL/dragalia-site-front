@@ -9,6 +9,12 @@ const config: Config.InitialOptions = {
     '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)': './test/transformers/file.js',
   },
   resetMocks: true,
+  testMatch: [
+    // Test files
+    './**/*.test.ts?(x)',
+    // No files from hidden cypress folder
+    '!./.cypress/**/*',
+  ],
   // Setup / Teardown
   setupFiles: [
     'dotenv/config',
@@ -20,7 +26,9 @@ const config: Config.InitialOptions = {
   // Coverage
   collectCoverageFrom: [
     // All script files in the children directory of the current directory
-    './**/*.{js,jsx,ts,tsx}',
+    './**/*.ts?(x)',
+    // No test files
+    `!./**/*.(test|spec).ts?(x)`,
     // No type definition files
     '!./**/*.d.ts',
     // No node module files

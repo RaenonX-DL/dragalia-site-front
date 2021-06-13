@@ -69,10 +69,6 @@ describe('Enum check boxes as checkboxes', () => {
     setData = jest.fn().mockImplementation((newData) => data = newData);
   });
 
-  afterEach(() => {
-    data = {'enum': []};
-  });
-
   it('can check single item', async () => {
     data = {'enum': [] as Array<number>};
     renderReact(() => (

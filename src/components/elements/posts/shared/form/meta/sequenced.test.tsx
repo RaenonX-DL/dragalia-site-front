@@ -47,7 +47,6 @@ describe('Sequenced form meta input', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
     jest.useRealTimers();
   });
 

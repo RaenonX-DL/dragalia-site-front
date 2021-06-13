@@ -76,7 +76,6 @@ describe('Analysis form meta input', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
     jest.useRealTimers();
   });
 

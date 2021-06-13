@@ -26,12 +26,13 @@ export const mswServer = setupServer(
 );
 
 export const initMockApi = () => {
-  // Enable API mocking
-  beforeAll(() => mswServer.listen());
+  beforeAll(() => {
+    // Enable API mocking (mock automatically cleared by `jest` so no need to `.close()` here)
+    mswServer.listen();
+  });
 
-  // Reset any runtime request handlers added during single test case
-  afterEach(() => mswServer.resetHandlers());
-
-  // Disable API mocking
-  afterAll(() => mswServer.close());
+  beforeEach(() => {
+    // Reset any runtime request handlers added during single test case
+    mswServer.resetHandlers();
+  });
 };
