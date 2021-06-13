@@ -6,6 +6,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 import {initMockApi} from './init/api';
+import {initMockConsoleBehavior} from './init/console';
 
 
 initMockApi();
+initMockConsoleBehavior();
