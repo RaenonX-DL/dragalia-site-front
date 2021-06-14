@@ -18,10 +18,10 @@ const getLanguage = (req: FastifyRequest) => {
   return getCookies(CookiesKeys.LANG, req.headers.cookie) || DEFAULT_LANG;
 };
 
-const handleByNext = async (req: FastifyRequest, res: FastifyReply, nextHandler: NextHandler) => {
+const handleByNext = async (req: FastifyRequest, res: FastifyReply, nextHandler: NextHandler, bypassed?: boolean) => {
   const parsedUrl = urlObjectToLegacy(
     new URL(req.url, `${req.protocol}://${req.hostname}`),
-    {lang: getLanguage(req)},
+    bypassed ? {} : {lang: getLanguage(req)},
   );
 
   await nextHandler(req.raw, res.raw, parsedUrl);
@@ -37,7 +37,7 @@ export const registerRoutes = (fastifyApp: FastifyInstance, nextHandler: NextHan
   // Catch requests with a single depth
   fastifyApp.all<ServerHasLang>('/:lang', async (req, res) => {
     if (isUrlToBypass(req.url)) {
-      await handleByNext(req, res, nextHandler);
+      await handleByNext(req, res, nextHandler, true);
       return;
     }
     if (!isSupportedLang(req.params.lang)) {
@@ -51,7 +51,7 @@ export const registerRoutes = (fastifyApp: FastifyInstance, nextHandler: NextHan
   // Catch requests with multiple levels
   fastifyApp.all<ServerHasLang>('/:lang/*', async (req, res) => {
     if (isUrlToBypass(req.url)) {
-      await handleByNext(req, res, nextHandler);
+      await handleByNext(req, res, nextHandler, true);
       return;
     }
     if (!isSupportedLang(req.params.lang)) {

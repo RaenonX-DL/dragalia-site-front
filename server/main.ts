@@ -3,6 +3,7 @@ import {initHerokuNginx} from './utils/init/herokuNginx';
 import {initHttp} from './utils/init/http';
 import {isAppOnHeroku, isProduction} from './utils/misc';
 
+
 // Starts New Relic APM
 if (isProduction()) {
   require('newrelic');

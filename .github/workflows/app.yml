@@ -1,0 +1,107 @@
+name: Node CI
+
+on: [ push ]
+
+env:
+  NEXT_PUBLIC_API_ROOT: https://dl-back.raenonx.cc
+  NEXT_PUBLIC_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
+  NEXT_PUBLIC_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
+  NEXTAUTH_URL: http://localhost:5000
+  CI: true
+
+jobs:
+  test:
+    name: Tests
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          # https://github.com/npm/cli/issues/564#issuecomment-743919613
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: npm ci
+        run: npm ci
+
+      - name: npm run lint
+        run: npm run lint
+
+      - name: npm test
+        run: npm run test -- --coverage
+
+      - name: Send Coverage report
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: clover.xml
+
+  build:
+    name: Test production build
+
+    runs-on: ubuntu-latest
+
+    env:
+      # Corresponds to `baseUrl` in `cypress.json`
+      PORT: 5000
+
+    strategy:
+      # DO NOT cancel the others if any test failed
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        node-version: [ 14.x ]
+        browser: [ chrome, firefox ]
+        # Run 3 cypress copies in parallel
+        containers: [ 1, 2, 3 ]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          build: npm run build
+          start: npm run start
+          # Configs
+          browser: ${{ matrix.browser }}
+          record: true
+          parallel: true
+          group: Cypress - ${{ matrix.browser }}
+          cache-key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          # Boot
+          wait-on: 'http://localhost:5000'
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # As recommended by the doc
+          # - https://github.com/cypress-io/github-action#record-test-results-on-cypress-dashboard
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

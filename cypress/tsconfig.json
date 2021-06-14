@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "cypress"
+    ],
+    // It is likely that cypress tests won't import anything
+    "isolatedModules": false
+  },
+  "include": [
+    "../node_modules/cypress",
+    "./**/*.ts"
+  ]
+}
