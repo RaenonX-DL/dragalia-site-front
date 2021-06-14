@@ -1,11 +1,21 @@
 /* eslint-disable new-cap */
-import NextAuth, {NextAuthOptions, Session, User} from 'next-auth';
+import NextAuth, {NextAuthOptions, Session, SignInEventMessage, User} from 'next-auth';
+import {TypeORM} from 'next-auth/adapters';
 import Providers from 'next-auth/providers';
 
+import {UserModel} from '../../../src/models/user';
+import {ensureIndex} from '../../../src/utils/auth';
+
+
+const DATABASE_URL = process.env.AUTH_DATABASE_URL;
+if (!DATABASE_URL) {
+  console.error('Specify `AUTH_DATABASE_URL` in env vars for next-auth database.');
+  process.exit(1);
+}
 
 const nextAuthOptions: NextAuthOptions = {
-  // More providers available
-  // Check https://next-auth.js.org/configuration/providers
+  // Services
+  // - https://next-auth.js.org/configuration/providers
   providers: [
     Providers.Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -13,22 +23,51 @@ const nextAuthOptions: NextAuthOptions = {
     }),
   ],
 
-  // Connect to database for storing customized user data
-  database: process.env.AUTH_DATABASE_URL,
+  session: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hrs
+  },
 
-  // Auth session encryption key
+  // Database connection managements
+  database: DATABASE_URL,
+
+  adapter: TypeORM.Adapter(
+    DATABASE_URL,
+    {
+      // Other models still working as expected
+      // - `typeorm-legacy-adapter` does not allow type augmentation
+      // @ts-ignore
+      models: {
+        User: UserModel,
+      },
+    },
+  ),
+
+  // Security
   secret: process.env.AUTH_SECRET,
 
+  // Event hooks
+  events: {
+    signIn: async (message: SignInEventMessage) => {
+      if (!message.isNewUser) {
+        return;
+      }
+
+      await ensureIndex();
+    },
+  },
+
   callbacks: {
-    // Attach user ID to session
+    // Re-assign `user` to ensure `user` from the database is used in `session`
     // - Type augmented at `types/next-auth/index.d.ts`
     session: async (session: Session, user: User): Promise<Session> => {
-      session.user.id = user.id;
+      session.user = user;
 
       return session;
     },
   },
 
+  // UI customizations
   theme: 'dark',
 };
 

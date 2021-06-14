@@ -18,7 +18,6 @@ type PageMetaPromiseArgs = {
 export const getPageMetaPromise = async ({
   lang, pathnameNoLang, context,
 }: PageMetaPromiseArgs): Promise<PageMetaResponse | FailedResponse> => {
-  // FIXME: [Auth] Check next-auth js db handling
   const uid = (await getSession(context.ctx))?.user?.id.toString() || '';
 
   let responsePromise = ApiRequestSender.getPageMeta(uid);
