@@ -65,7 +65,7 @@ jobs:
 
     env:
       # Corresponds to `baseUrl` in `cypress.json`
-      PORT: 5000
+      PORT: 3000
 
     strategy:
       # DO NOT cancel the others if any test failed
@@ -75,7 +75,7 @@ jobs:
         node-version: [ 14.x ]
         browser: [ chrome, firefox ]
         # Run 3 cypress copies in parallel
-        containers: [ 1, 2, 3 ]
+        containers: [ 1, 2 ]
 
     steps:
       - uses: actions/checkout@v2

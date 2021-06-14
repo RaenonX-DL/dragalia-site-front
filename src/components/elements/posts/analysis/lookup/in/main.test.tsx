@@ -240,7 +240,7 @@ describe('Input of analysis lookup', () => {
     await act(async () => {
       renderReact(
         () => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>),
-        {context: {isAdmin: true}},
+        {user: {isAdmin: true}},
       );
     });
 

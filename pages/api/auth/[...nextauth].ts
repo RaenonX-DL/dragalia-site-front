@@ -3,14 +3,17 @@ import NextAuth, {NextAuthOptions, Session, SignInEventMessage, User} from 'next
 import {TypeORM} from 'next-auth/adapters';
 import Providers from 'next-auth/providers';
 
+import {AUTH_DB} from '../../../src/api-def/models';
 import {UserModel} from '../../../src/models/user';
 import {ensureIndex} from '../../../src/utils/auth';
 
 
-const DATABASE_URL = process.env.AUTH_DATABASE_URL;
+let DATABASE_URL = process.env.AUTH_DATABASE_URL;
 if (!DATABASE_URL) {
   console.error('Specify `AUTH_DATABASE_URL` in env vars for next-auth database.');
   process.exit(1);
+} else {
+  DATABASE_URL = `${DATABASE_URL}${AUTH_DB}`;
 }
 
 const nextAuthOptions: NextAuthOptions = {

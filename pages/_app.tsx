@@ -10,7 +10,6 @@ import {Navigation} from '../src/components/elements/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
 import {AppReactContext} from '../src/context/app/main';
-import {AppReactContextValue} from '../src/context/app/types';
 import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
@@ -33,8 +32,6 @@ type AppInitialProps = NextAppInitialProps & {
 const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
   const {t} = useI18n();
 
-  const appContextValue: AppReactContextValue = {...pageProps};
-
   // Page meta must be obtained here, or page preview won't work
   return (
     <>
@@ -49,11 +46,11 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       </Head>
       {/* Boost the performance as suggested, also bugs possible if not wrapped */}
       {/* https://github.com/nextauthjs/next-auth/discussions/704#discussioncomment-154252 */}
-      <AppReactContext.Provider value={appContextValue}>
-        <Provider session={pageProps.session}>
-          <Navigation/>
-          <SiteAlert/>
+      <Provider session={pageProps.session}>
+        <AppReactContext.Provider value={{...pageProps}}>
           <ReduxProvider>
+            <Navigation/>
+            <SiteAlert/>
             {
               pageProps.isNotFound ?
                 <Error404/> :
@@ -62,10 +59,10 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
                   <Component {...pageProps} />
                 </Container>
             }
+            <Footer/>
           </ReduxProvider>
-          <Footer/>
-        </Provider>
-      </AppReactContext.Provider>
+        </AppReactContext.Provider>
+      </Provider>
     </>
   );
 };

@@ -1,15 +1,9 @@
-import {ObjectId} from 'mongodb';
+import {User as ApiUser} from '../../src/api-def/models';
 
 
 // Must use interface here
 module 'next-auth' {
-  interface User {
-    id: ObjectId,
-    createdAt: Date,
-    updatedAt: Date,
-    isAdmin: boolean,
-    adsFreeExpiry?: Date,
-  }
+  interface User extends ApiUser {}
 
   interface Session {
     user: User,

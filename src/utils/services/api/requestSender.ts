@@ -38,8 +38,6 @@ import {
   RequestPayloadBase,
   SupportedLanguages,
   UnitType,
-  UserLoginPayload,
-  UserLoginResponse,
 } from '../../../api-def/api';
 import {getFullApiUrl} from './utils';
 
@@ -48,25 +46,6 @@ import {getFullApiUrl} from './utils';
  * Class for sending an API request.
  */
 export class ApiRequestSender {
-  // region User controls
-
-  /**
-   * Send a user login request.
-   *
-   * @param {string} uid UID of the logged in user
-   * @param {string} email email of the logged in user
-   * @return {Promise<UserLoginResponse>} promise returned from `fetch`
-   */
-  static userLogin(uid: string, email: string): Promise<UserLoginResponse> {
-    return ApiRequestSender.sendRequest<UserLoginResponse, UserLoginPayload>(
-      'POST',
-      ApiEndPoints.USER_LOGIN,
-      {uid, email},
-    );
-  }
-
-  // endregion
-
   // region Quest posts
 
   /**

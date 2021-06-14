@@ -28,7 +28,10 @@ export const mswServer = setupServer(
 export const initMockApi = () => {
   beforeAll(() => {
     // Enable API mocking (mock automatically cleared by `jest` so no need to `.close()` here)
-    mswServer.listen();
+    mswServer.listen({
+      // Should not send any external requests
+      onUnhandledRequest: 'error',
+    });
   });
 
   beforeEach(() => {

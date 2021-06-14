@@ -1,10 +1,10 @@
 import React, {MouseEvent} from 'react';
 
+import {useSession} from 'next-auth/client';
 import {Button, Col, Form} from 'react-bootstrap';
 
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
-import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
@@ -20,7 +20,7 @@ type LookupInputProps = {
 
 export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
   const {t} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const [session] = useSession();
 
   const [inputData, setInputData] = React.useState<InputData>({
     keyword: '',
@@ -91,7 +91,7 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
         </Form.Row>
       </div>
       {
-        context?.isAdmin &&
+        session?.user.isAdmin &&
         <div className="mb-2">
           <PostManageBar
             newButtons={[

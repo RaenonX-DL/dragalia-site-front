@@ -24,7 +24,6 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const context: AppReactContextValue = {
     title: 'Title',
     description: 'Description',
-    ...options?.context,
   };
 
   const session: Session = {
