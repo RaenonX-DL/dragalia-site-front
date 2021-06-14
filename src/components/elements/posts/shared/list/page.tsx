@@ -4,11 +4,10 @@ import {useSession} from 'next-auth/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
-import {AdsInPostList} from '../../../common/ads';
+import {AdsInPostList} from '../../../common/ads/main';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
 import {Paginator} from '../../../common/pagination/paginator';
 import {PaginationState} from '../../../common/pagination/types';
@@ -42,7 +41,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   const {lang} = useI18n();
   const [session] = useSession();
   const router = useNextRouter();
-  const context = React.useContext(AppReactContext);
 
   const currentStart = Math.max(Number(router.query.start) || 0, 0);
   const pageLimit = 10;
@@ -132,7 +130,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
         <h4>{title}</h4>
       </Jumbotron>
       {
-        context?.isAdmin &&
+        session?.user.isAdmin &&
         <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>
       }
       {

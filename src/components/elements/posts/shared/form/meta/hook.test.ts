@@ -37,7 +37,7 @@ describe('Form meta hook', () => {
         getEffectDependency: (payload) => [payload.lang],
       }),
       {
-        context: {
+        user: {
           isAdmin: false,
         },
       },
@@ -68,7 +68,7 @@ describe('Form meta hook', () => {
         getEffectDependency: (payload) => [payload.lang],
       }),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -94,7 +94,7 @@ describe('Form meta hook', () => {
         getEffectDependency: (payload) => [payload.lang],
       }),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -132,7 +132,7 @@ describe('Form meta hook', () => {
         getEffectDependency: (payload) => [payload.lang],
       }),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },

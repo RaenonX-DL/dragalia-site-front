@@ -2,8 +2,8 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {renderReact} from '../../../../test/render/main';
-import {AdsInPost, AdsInPostList} from './ads';
+import {renderReact} from '../../../../../test/render/main';
+import {AdsInPost, AdsInPostList} from './main';
 
 
 describe('Ads element', () => {
@@ -12,11 +12,6 @@ describe('Ads element', () => {
       () => (
         <AdsInPostList/>
       ),
-      {
-        context: {
-          showAds: true,
-        },
-      },
     );
 
     expect(screen.queryByTestId('ads-post-list')).toBeInTheDocument();
@@ -28,8 +23,8 @@ describe('Ads element', () => {
         <AdsInPostList/>
       ),
       {
-        context: {
-          showAds: false,
+        user: {
+          adsFreeExpiry: new Date(Date.now() + 3600),
         },
       },
     );
@@ -42,11 +37,6 @@ describe('Ads element', () => {
       () => (
         <AdsInPost/>
       ),
-      {
-        context: {
-          showAds: true,
-        },
-      },
     );
 
     expect(screen.queryByTestId('ads-in-post')).toBeInTheDocument();
@@ -58,8 +48,8 @@ describe('Ads element', () => {
         <AdsInPost/>
       ),
       {
-        context: {
-          showAds: false,
+        user: {
+          adsFreeExpiry: new Date(Date.now() + 3600),
         },
       },
     );

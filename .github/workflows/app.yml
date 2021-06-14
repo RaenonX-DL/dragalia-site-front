@@ -6,7 +6,7 @@ env:
   NEXT_PUBLIC_API_ROOT: https://dl-back.raenonx.cc
   NEXT_PUBLIC_RESOURCE_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main
   NEXT_PUBLIC_DEPOT_ROOT: https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main
-  NEXTAUTH_URL: http://localhost:5000
+  NEXTAUTH_URL: http://localhost:3000
   CI: true
 
 jobs:
@@ -99,7 +99,7 @@ jobs:
           group: Cypress - ${{ matrix.browser }}
           cache-key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           # Boot
-          wait-on: 'http://localhost:5000'
+          wait-on: 'http://localhost:3000'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # As recommended by the doc

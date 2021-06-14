@@ -160,7 +160,7 @@ describe('Analysis output (Character)', () => {
           <AnalysisOutputDragon analysis={analysisResponse}/>
         ),
         {
-          context: {
+          user: {
             isAdmin: true,
           },
         });

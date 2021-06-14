@@ -2,9 +2,10 @@ import React from 'react';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {AdsInPost} from '../../../common/ads';
+import {AdsInPost} from '../../../common/ads/main';
 import {Markdown} from '../../../markdown/main';
 import {SectionProps} from './props';
+
 
 export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionProps<R>) => {
   const {t} = useI18n();

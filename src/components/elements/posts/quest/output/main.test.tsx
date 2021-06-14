@@ -146,7 +146,7 @@ describe('Quest post output', () => {
     await act(async () => {
       renderReact(
         () => <QuestPostOutput post={postResponse}/>,
-        {context: {isAdmin: true}},
+        {user: {isAdmin: true}},
       );
     });
 

@@ -8,7 +8,7 @@ module 'next-auth' {
     createdAt: Date,
     updatedAt: Date,
     isAdmin: boolean,
-    adsFreeExpiry: Date,
+    adsFreeExpiry?: Date,
   }
 
   interface Session {

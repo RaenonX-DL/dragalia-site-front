@@ -111,7 +111,7 @@ describe('Analysis form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -152,7 +152,7 @@ describe('Analysis form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -181,7 +181,7 @@ describe('Analysis form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -207,7 +207,7 @@ describe('Analysis form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -233,7 +233,7 @@ describe('Analysis form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },

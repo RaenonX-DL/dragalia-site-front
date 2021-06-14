@@ -62,7 +62,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -101,7 +101,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -132,7 +132,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -162,7 +162,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -192,7 +192,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -224,7 +224,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },
@@ -248,7 +248,7 @@ describe('Sequenced form meta input', () => {
         />
       ),
       {
-        context: {
+        user: {
           isAdmin: true,
         },
       },

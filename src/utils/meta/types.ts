@@ -9,7 +9,4 @@ export type PageHtmlMeta = {
   description: string,
 }
 
-export type PageMeta = PageHtmlMeta & {
-  isAdmin: boolean,
-  showAds: boolean,
-}
+export type PageMeta = PageHtmlMeta

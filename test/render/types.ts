@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {RenderResult} from '@testing-library/react';
+import {User} from 'next-auth';
 import {NextRouter} from 'next/router';
 
 import {AppReactContextValue} from '../../src/context/app/types';
@@ -12,6 +13,7 @@ export type RenderOptions = {
   preloadState?: PreloadedReduxState,
   routerOptions?: Partial<NextRouter>,
   context?: Partial<AppReactContextValue>,
+  user?: Partial<User>,
 }
 
 export type RenderAppReturns = RenderResult & {

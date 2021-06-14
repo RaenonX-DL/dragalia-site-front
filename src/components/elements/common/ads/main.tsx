@@ -2,18 +2,12 @@ import React from 'react';
 
 import {Adsense} from '@ctrl/react-adsense';
 
-import {AppReactContext} from '../../../context/app/main';
+import {AdsWrapper} from './wrapper';
 
 
 export const AdsInPost = () => {
-  const context = React.useContext(AppReactContext);
-
-  if (context && !context.showAds) {
-    return <></>;
-  }
-
   return (
-    <div className="mb-3">
+    <AdsWrapper>
       <Adsense
         client="ca-pub-1535004092052078"
         slot="1322282773"
@@ -22,19 +16,13 @@ export const AdsInPost = () => {
         format="fluid"
         data-testid="ads-in-post"
       />
-    </div>
+    </AdsWrapper>
   );
 };
 
 export const AdsInPostList = () => {
-  const context = React.useContext(AppReactContext);
-
-  if (context && !context.showAds) {
-    return <></>;
-  }
-
   return (
-    <div className="mb-3">
+    <AdsWrapper>
       <Adsense
         client="ca-pub-1535004092052078"
         slot="3962363338"
@@ -44,6 +32,6 @@ export const AdsInPostList = () => {
         format="fluid"
         data-testid="ads-post-list"
       />
-    </div>
+    </AdsWrapper>
   );
 };

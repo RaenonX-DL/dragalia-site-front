@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {Provider} from 'next-auth/client';
 import App, {AppProps, AppContext, AppInitialProps as NextAppInitialProps} from 'next/app';
 import Head from 'next/head';
 import {Container} from 'react-bootstrap';
@@ -43,26 +44,27 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-        {/* Google AdSense */}
-        {
-          pageProps.showAds &&
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
-        }
+        {/* Google AdSense - ads showing or not to be determined by the component */}
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
       </Head>
+      {/* Boost the performance as suggested, also bugs possible if not wrapped */}
+      {/* https://github.com/nextauthjs/next-auth/discussions/704#discussioncomment-154252 */}
       <AppReactContext.Provider value={appContextValue}>
-        <Navigation/>
-        <SiteAlert/>
-        <ReduxProvider>
-          {
-            pageProps.isNotFound ?
-              <Error404/> :
-              <Container className="p-3">
-                <GlobalAlert/>
-                <Component {...pageProps} />
-              </Container>
-          }
-        </ReduxProvider>
-        <Footer/>
+        <Provider session={pageProps.session}>
+          <Navigation/>
+          <SiteAlert/>
+          <ReduxProvider>
+            {
+              pageProps.isNotFound ?
+                <Error404/> :
+                <Container className="p-3">
+                  <GlobalAlert/>
+                  <Component {...pageProps} />
+                </Container>
+            }
+          </ReduxProvider>
+          <Footer/>
+        </Provider>
       </AppReactContext.Provider>
     </>
   );

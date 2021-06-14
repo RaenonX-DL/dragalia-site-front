@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
-import {Session} from 'next-auth';
-import * as client from 'next-auth/client';
+import {ObjectId} from 'mongodb';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -18,9 +17,6 @@ import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
 
-
-// For mocking `useSession()`
-jest.mock('next-auth/client');
 
 describe('Main quest form', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
@@ -58,17 +54,6 @@ describe('Main quest form', () => {
     fnSendRequest = jest.fn().mockImplementation(async () => response);
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
-    });
-
-    // For some reason, `msw` is not working
-    const mockSession: Session = {
-      user: {
-        id: 7,
-      },
-      expires: '1',
-    };
-    jest.spyOn(client, 'useSession').mockImplementation(() => {
-      return [mockSession, false];
     });
   });
 
@@ -285,13 +270,20 @@ describe('Main quest form', () => {
     // @ts-ignore
     window.location = {assign: jest.fn()};
 
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {
+        user: {
+          id: new ObjectId(),
+        },
+      },
+    );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
     act(() => {
@@ -370,7 +362,13 @@ describe('Main quest form', () => {
           formState={formState}
           setFormState={setFormState}
         />
-      ));
+      ),
+      {
+        user: {
+          id: new ObjectId(),
+        },
+      },
+    );
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
     act(() => {

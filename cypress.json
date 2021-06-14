@@ -1,6 +1,6 @@
 {
   "projectId": "wgo7xq",
-  "baseUrl": "http://localhost:5000",
+  "baseUrl": "http://localhost:3000",
   "downloadsFolder": ".cypress/downloads",
   "pluginsFile": false,
   "screenshotsFolder": ".cypress/screenshots",

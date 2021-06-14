@@ -2,7 +2,8 @@ import {SupportedLanguages} from '../../src/api-def/api/other/lang';
 import {DEFAULT_LANG} from '../../src/i18n/langCode';
 import {CookiesKeys} from '../../src/utils/cookies/keys';
 
-describe('Test page redirection behavior', () => {
+
+describe('Page redirection behavior', () => {
   // 301 = Moved permanently for GET and HEAD
   // 308 is *not* for GET
   //  - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301
