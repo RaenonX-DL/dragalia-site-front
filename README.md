@@ -1,5 +1,7 @@
 # dragalia-site-front
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d4a22e742f5c486d9d636dcefe071c80)](https://app.codacy.com/gh/RaenonX-DL/dragalia-site-front?utm_source=github.com&utm_medium=referral&utm_content=RaenonX-DL/dragalia-site-front&utm_campaign=Badge_Grade_Settings)
+
 [![front-deployment]][front-site]
 [![front-site-status]][front-site]
 [![front-ci]][front-ci-link]
