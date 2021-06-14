@@ -6,6 +6,7 @@ import {AnalysisLookupLandingResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
+import {AdsInPostList} from '../../../common/ads/main';
 import {useFetchState} from '../../../common/fetch';
 import {AnalysisLookupLanding} from './in/landing';
 import {AnalysisLookupInput} from './in/main';
@@ -31,6 +32,7 @@ export const AnalysisPostLookup = () => {
 
   return (
     <>
+      <AdsInPostList/>
       <AnalysisLookupLanding analyses={lookupLanding.data?.analyses || []}/>
       <hr/>
       <AnalysisLookupInput
