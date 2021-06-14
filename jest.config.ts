@@ -1,5 +1,17 @@
 import type {Config} from '@jest/types';
 
+
+const testFileGlob = './**/+(*.)+(spec|test).ts?(x)';
+
+const dependenciesExclusionGlob = '!**/node_modules/**';
+
+const cypressExclusionGlobs = [
+  // No files from hidden cypress folder
+  '!**/.cypress/**',
+  // No files from cypress folder
+  '!**/cypress/**',
+];
+
 const config: Config.InitialOptions = {
   // Basic options
   testEnvironment: 'jsdom',
@@ -10,10 +22,12 @@ const config: Config.InitialOptions = {
   },
   resetMocks: true,
   testMatch: [
-    // Test files
-    './**/*.test.ts?(x)',
-    // No files from hidden cypress folder
-    '!./.cypress/**/*',
+    // Include test files
+    testFileGlob,
+    // Exclude dependencies
+    dependenciesExclusionGlob,
+    // Exclude cypress files
+    ...cypressExclusionGlobs,
   ],
   // Setup / Teardown
   setupFiles: [
@@ -25,14 +39,16 @@ const config: Config.InitialOptions = {
   ],
   // Coverage
   collectCoverageFrom: [
-    // All script files in the children directory of the current directory
-    './**/*.ts?(x)',
-    // No test files
-    `!./**/*.(test|spec).ts?(x)`,
-    // No type definition files
+    // Include all `ts` or `tsx` files in `src`
+    './src/**/*.ts?(x)',
+    // Exclude test files
+    `!${testFileGlob}`,
+    // Exclude dependencies
+    dependenciesExclusionGlob,
+    // Exclude cypress files
+    ...cypressExclusionGlobs,
+    // Exclude type definition files
     '!./**/*.d.ts',
-    // No node module files
-    '!./node_modules/**/*',
   ],
   coverageDirectory: '.',
   coverageReporters: [
