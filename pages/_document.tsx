@@ -41,17 +41,22 @@ class Document extends NextDocument<Props> {
           {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
 
           {/* Global site tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
-          <script dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            
-            function gtag(){dataLayer.push(arguments);}
-            
-            gtag('js', new Date());
-            gtag('config', 'G-796E69CFJG');
-            `,
-          }}/>
+          {
+            process.env.NODE_ENV === 'production' &&
+            <>
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
+              <script dangerouslySetInnerHTML={{
+                __html: `
+              window.dataLayer = window.dataLayer || [];
+              
+              function gtag(){dataLayer.push(arguments);}
+              
+              gtag('js', new Date());
+              gtag('config', 'G-796E69CFJG');
+              `,
+              }}/>
+            </>
+          }
         </Head>
         <body>
           <Main/>
