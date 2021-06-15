@@ -41,14 +41,14 @@ For the [current deployed website][front-site], `NEXT_PUBLIC_API_ROOT` is `https
 
 -   Check https://github.com/RaenonX-DL/dragalia-site-back-2 for the source code.
 
-In general, 
+In general,
 
-`NEXT_PUBLIC_RESOURCE_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main`, 
+`NEXT_PUBLIC_RESOURCE_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main`,
 where stores the parsed data.
 
 -   Check https://github.com/RaenonX-DL/dragalia-site-resources for all available resources.
 
-`NEXT_PUBLIC_DEPOT_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main`, 
+`NEXT_PUBLIC_DEPOT_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main`,
 where stores the dumped game assets.
 
 -   Check https://github.com/RaenonX-DL/dragalia-data-depot for all available resources.
@@ -60,8 +60,8 @@ where stores the dumped game assets.
 [front-ci-link]: https://github.com/RaenonX-DL/dragalia-site-front/actions?query=workflow%3A%22Node+CI%22
 [front-time-badge]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front.svg
 [front-time-link]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front
-[front-site-status]: https://badgen.net/uptime-robot/status/m787223686-f1d10f084c18dd5d5389f456&cache=300
-[front-site-response]: https://badgen.net/uptime-robot/response/m787223686-f1d10f084c18dd5d5389f456&cache=300
+[front-site-status]: https://badgen.net/uptime-robot/status/m787223686-f1d10f084c18dd5d5389f456?cache=300
+[front-site-response]: https://badgen.net/uptime-robot/response/m787223686-f1d10f084c18dd5d5389f456?cache=300
 [front-site-day]: https://badgen.net/uptime-robot/day/m787223686-f1d10f084c18dd5d5389f456?label=uptime%20in%2024%20hrs&cache=300
 [front-site-week]: https://badgen.net/uptime-robot/week/m787223686-f1d10f084c18dd5d5389f456?label=uptime%20in%207%20days&cache=300
 [front-site-month]: https://badgen.net/uptime-robot/month/m787223686-f1d10f084c18dd5d5389f456?label=uptime%20in%201%20month&cache=300
