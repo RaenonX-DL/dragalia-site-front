@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
@@ -39,7 +39,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
   const router = useNextRouter();
 
   const currentStart = Math.max(Number(router.query.start) || 0, 0);
@@ -67,7 +67,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
     });
 
     fnFetchList(
-      session?.user.id.toString() || '',
+      context?.session?.user.id.toString() || '',
       lang,
       pageToStartIdx(page, pageLimit),
       pageLimit,
@@ -130,7 +130,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
         <h4>{title}</h4>
       </Jumbotron>
       {
-        session?.user.isAdmin &&
+        context?.session?.user.isAdmin &&
         <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>
       }
       {

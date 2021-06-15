@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {QuestPostGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostPath} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../common/ads/main';
@@ -20,12 +19,12 @@ type QuestPostOutputProps = {
 
 export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
   const {t, lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   return (
     <>
       {
-        session?.user.isAdmin &&
+        context?.session?.user.isAdmin &&
         <PostManageBar
           newButtons={[{url: GeneralPath.QUEST_NEW}]}
           editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}

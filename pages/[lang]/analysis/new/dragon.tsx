@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {UnitType} from '../../../../src/api-def/api';
 import {AnalysisFormDragonNew} from '../../../../src/components/elements/posts/analysis/form/dragonNew';
+import {AppReactContext} from '../../../../src/context/app/main';
 import {useI18n} from '../../../../src/i18n/hook';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 
@@ -12,12 +11,12 @@ import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender
 
 const AnalysisNewDragon = () => {
   const {lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   return (
     <AnalysisFormDragonNew
       initialPayload={{
-        uid: session?.user.id.toString() || '',
+        uid: context?.session?.user.id.toString() || '',
         lang: lang,
         type: UnitType.DRAGON,
         unitId: 0,

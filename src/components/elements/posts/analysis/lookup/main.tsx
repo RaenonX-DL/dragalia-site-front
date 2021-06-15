@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {AnalysisLookupLandingResponse} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
@@ -16,7 +15,7 @@ import {AnalysisLookupOutput} from './out/main';
 
 export const AnalysisPostLookup = () => {
   const {lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   const [inputForward, setInputForward] = React.useState<InputData>();
   const {
@@ -24,7 +23,7 @@ export const AnalysisPostLookup = () => {
     fetchFunction: fetchLookupLanding,
   } = useFetchState<AnalysisLookupLandingResponse | null>(
     null,
-    () => ApiRequestSender.analysisLookupLanding(session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.analysisLookupLanding(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch the weapon type enums.',
   );
 

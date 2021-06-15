@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
+import {AppReactContext} from '../../../../context/app/main';
 
 
 export const AdsWrapper = ({children}: React.PropsWithChildren<{}>) => {
-  const [session, loading] = useSession();
+  const context = React.useContext(AppReactContext);
 
-  if (loading || !!session?.user.adsFreeExpiry) {
+  if (context?.session?.user.adsFreeExpiry) {
     return <></>;
   }
 

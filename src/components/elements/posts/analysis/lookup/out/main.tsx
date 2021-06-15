@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
 import {Col, Form} from 'react-bootstrap';
 
 import {ApiResponseCode} from '../../../../../../api-def/api';
+import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
@@ -20,7 +20,7 @@ type AnalysisLookupOutputProps = {
 
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
   const {t, lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   const rowElem = React.useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,7 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
       success: true,
       analyses: [],
     },
-    () => ApiRequestSender.analysisLookup(session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.analysisLookup(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch analysis meta.',
   );
 

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostPath} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../common/ads/main';
@@ -24,12 +23,12 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
   const {t, lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   return (
     <>
       {
-        session?.user.isAdmin &&
+        context?.session?.user.isAdmin &&
         <PostManageBar
           newButtons={[
             {

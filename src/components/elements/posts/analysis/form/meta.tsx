@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
 import {Col, Form, Row} from 'react-bootstrap';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
@@ -21,14 +21,14 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   setAvailability,
 }: FormAnalysisMetaProps<P>) => {
   const {t, lang} = useI18n();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   const {isValid, isChecking} = useFormMeta({
     formState,
     setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
-      ApiRequestSender.analysisIdCheck(session?.user.id.toString() || '', payload.unitId, payload.lang)
+      ApiRequestSender.analysisIdCheck(context?.session?.user.id.toString() || '', payload.unitId, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.unitId, payload.lang],
   });

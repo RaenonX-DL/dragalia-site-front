@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {AlertPayloadMaker} from '../../../../../state/alert/utils';
@@ -28,7 +27,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -60,7 +59,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!session) {
+    if (!context?.session) {
       setModalState({
         show: true,
         title: t((t) => t.userControl.noUid),

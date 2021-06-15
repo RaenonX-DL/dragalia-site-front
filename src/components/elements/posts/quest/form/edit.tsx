@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/client';
-
 import {QuestPostEditPayload, QuestPostGetResponse} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormState} from '../../shared/form/types';
@@ -14,11 +13,11 @@ type Props<R extends QuestPostGetResponse> = {
 }
 
 export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) => {
-  const [session] = useSession();
+  const context = React.useContext(AppReactContext);
 
   const [formState, setFormState] = React.useState<PostFormState<QuestPostEditPayload>>({
     payload: {
-      uid: session?.user.id.toString() || '',
+      uid: context?.session?.user.id.toString() || '',
       seqId: post.seqId,
       lang: post.lang,
       title: post.title,
