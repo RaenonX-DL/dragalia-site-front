@@ -9,12 +9,11 @@ import {ensureIndex} from '../../../src/utils/auth';
 
 
 let DATABASE_URL = process.env.AUTH_DATABASE_URL;
-if (!DATABASE_URL) {
+if (!DATABASE_URL && !process.env.CI) {
   console.error('Specify `AUTH_DATABASE_URL` in env vars for next-auth database.');
   process.exit(1);
-} else {
-  DATABASE_URL = `${DATABASE_URL}${AUTH_DB}`;
 }
+DATABASE_URL = `${DATABASE_URL}${AUTH_DB}`;
 
 const nextAuthOptions: NextAuthOptions = {
   // Services
