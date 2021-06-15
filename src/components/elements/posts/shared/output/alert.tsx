@@ -3,8 +3,11 @@ import React from 'react';
 import {Alert} from 'react-bootstrap';
 
 import {SupportedLanguageNames, PostGetResponse} from '../../../../../api-def/api';
-import {makePostPath, PostPath} from '../../../../../const/path';
+import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
+import {makePostPath} from '../../../../../utils/path/make';
+import {NextLink} from '../../../common/link';
+
 
 type AlertProps<R extends PostGetResponse> = {
   response: R,
@@ -47,9 +50,11 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
       {
         response.otherLangs.map((lang) => (
           <li key={lang}>
-            <Alert.Link href={makePostPath(targetPath, {lang, pid})}>
-              {SupportedLanguageNames[lang]}
-            </Alert.Link>
+            <NextLink href={makePostPath(targetPath, {pid, lang})} passHref>
+              <Alert.Link>
+                {SupportedLanguageNames[lang]}
+              </Alert.Link>
+            </NextLink>
           </li>
         ))
       }

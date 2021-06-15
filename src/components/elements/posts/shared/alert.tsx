@@ -8,16 +8,6 @@ type FetchFailedProps = {
   failureMessage: string,
 }
 
-export const AlertFetchFailed = ({failureMessage}: FetchFailedProps) => {
-  const {t} = useI18n();
-
-  return (
-    <Alert variant="danger">
-      {t((t) => t.posts.manage.fetchPostFailed, {error: failureMessage})}
-    </Alert>
-  );
-};
-
 export const AlertFetchListFailed = ({failureMessage}: FetchFailedProps) => {
   const {t} = useI18n();
 

@@ -4,8 +4,8 @@ import {Button, Col, Form} from 'react-bootstrap';
 
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
-import {makeSimplePath} from '../../../../../../utils/path/make';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {useFetchState} from '../../../../common/fetch';
@@ -13,13 +13,14 @@ import {PostManageBar} from '../../../manageBar';
 import {AnalysisTypePicker} from './typePicker';
 import {InputData} from './types';
 
+
 type LookupInputProps = {
-  isAdmin: boolean,
   onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
 }
 
-export const AnalysisLookupInput = ({isAdmin, onSearchRequested}: LookupInputProps) => {
-  const {t, lang} = useI18n();
+export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
+  const {t} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   const [inputData, setInputData] = React.useState<InputData>({
     keyword: '',
@@ -90,16 +91,16 @@ export const AnalysisLookupInput = ({isAdmin, onSearchRequested}: LookupInputPro
         </Form.Row>
       </div>
       {
-        isAdmin &&
+        context?.session?.user.isAdmin &&
         <div className="mb-2">
           <PostManageBar
             newButtons={[
               {
-                url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+                url: GeneralPath.ANALYSIS_NEW_CHARA,
                 title: t((t) => t.posts.manage.addChara),
               },
               {
-                url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+                url: GeneralPath.ANALYSIS_NEW_DRAGON,
                 title: t((t) => t.posts.manage.addDragon),
               },
             ]}

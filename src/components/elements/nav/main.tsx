@@ -1,28 +1,31 @@
 import React from 'react';
 
 import {Nav, Navbar} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
-import {GeneralPath, makeSimplePath} from '../../../const/path';
+import {GeneralPath} from '../../../const/path/definitions';
+import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
-import {titleNavBarId} from '../common/anchor/pageAnchor';
-import {GoogleSigninButton} from '../common/googleSignin/main';
+import {NextLink} from '../common/link';
+import {UserControlButton} from '../common/userControl/main';
+import {titleNavBarId} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
 import {NavDropdownUtils} from './utils';
 
-export const Navigation = React.forwardRef<HTMLHeadingElement>((props, ref) => {
-  const {t, lang} = useI18n();
+
+export const Navigation = () => {
+  const {t} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   return (
     <>
       <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
-        <LinkContainer to={makeSimplePath(GeneralPath.HOME, {lang})}>
+        <NextLink href={GeneralPath.HOME} passHref>
           <Navbar.Brand>
             {t((t) => t.meta.inUse.site.title)}
           </Navbar.Brand>
-        </LinkContainer>
+        </NextLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
@@ -53,18 +56,16 @@ export const Navigation = React.forwardRef<HTMLHeadingElement>((props, ref) => {
           {/* Right part of the navbar */}
           <Nav>
             <LanguageSwitch/>
-            <GoogleSigninButton/>
+            <UserControlButton/>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
       <Navbar
         collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
-        <h1 ref={ref} style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
-          {t((t) => t.meta.inUse.site.title)}
+        <h1 style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
+          {context?.title}
         </h1>
       </Navbar>
     </>
   );
-});
-
-Navigation.displayName = 'Navigation';
+};

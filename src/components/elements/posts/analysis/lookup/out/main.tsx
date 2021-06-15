@@ -3,8 +3,8 @@ import React from 'react';
 import {Col, Form} from 'react-bootstrap';
 
 import {ApiResponseCode} from '../../../../../../api-def/api';
+import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../../utils/cookies';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
@@ -13,12 +13,14 @@ import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
 import {AnalysisEntry} from './entry';
 
+
 type AnalysisLookupOutputProps = {
   inputData: InputData | undefined,
 }
 
 export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
   const {t, lang} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   const rowElem = React.useRef<HTMLDivElement>(null);
 
@@ -30,10 +32,9 @@ export const AnalysisLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     {
       code: ApiResponseCode.SUCCESS,
       success: true,
-      isAdmin: false,
       analyses: [],
     },
-    () => ApiRequestSender.analysisLookup(CookiesControl.getGoogleUid() || '', lang),
+    () => ApiRequestSender.analysisLookup(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch analysis meta.',
   );
 

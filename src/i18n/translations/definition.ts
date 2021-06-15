@@ -174,19 +174,12 @@ export type TranslationStruct = {
       rotation: string,
     },
   },
-  googleSignin: {
+  userControl: {
     noUid: string,
     noUidDetails: string,
-    notLoaded: string,
     login: string,
-    loginError: string,
-    loginFailed: string,
-    loginUnknown: string,
-    loginOfflineDisallowed: string,
     logout: string,
-    logoutFailed: string,
-    logoutUnknown: string,
-    requestFailed: string,
+    loading: string,
   },
   lang: {
     inUse: string,
@@ -198,7 +191,6 @@ export type TranslationStruct = {
     },
     warning: {
       adminOnly: string,
-      pageNav: string,
       truncated: string,
     },
     info: {
@@ -222,12 +214,10 @@ export type TranslationStruct = {
   meta: {
     inUse: {
       about: PageMetaTranslations,
-      analysisList: PageMetaTranslations,
+      analysisIndex: PageMetaTranslations,
       analysisNewChara: PageMetaTranslations,
       analysisNewDragon: PageMetaTranslations,
       analysisEdit: PageMetaTranslations,
-      analysisEditChara: PageMetaTranslations,
-      analysisEditDragon: PageMetaTranslations,
       analysisPost: PageMetaTranslations,
       home: PageMetaTranslations,
       questEdit: PageMetaTranslations,
@@ -242,6 +232,7 @@ export type TranslationStruct = {
       },
     },
     error: {
+      401: PageMetaTranslations,
       404: PageMetaTranslations,
     }
     temp: {

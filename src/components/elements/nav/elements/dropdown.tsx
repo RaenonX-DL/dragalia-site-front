@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {NavDropdown} from 'react-bootstrap';
-import {useLocation} from 'react-router-dom';
 
-import {getNeutralPathFromUrl} from '../../../../utils/path/utils';
+import {useNextRouter} from '../../../../utils/router';
 import {NavDropdownItem} from './dropdownItem';
 import {NavDropdownEntry} from './types';
+
 
 type Props = {
   title: string,
@@ -13,25 +13,13 @@ type Props = {
 }
 
 export const NavDropdownMenu = ({title, items}: Props) => {
-  const location = useLocation();
-
-  const {path: neutralPath} = getNeutralPathFromUrl(location.pathname);
-  let isActive;
-  if (neutralPath) {
-    isActive = items
-      .some((item) => {
-        if (item.type !== 'item') {
-          return false;
-        }
-
-        return item.path === neutralPath;
-      });
-  } else {
-    isActive = false;
-  }
+  const {pathnameNoLang} = useNextRouter();
 
   return (
-    <NavDropdown title={title} id={title} active={isActive}>
+    <NavDropdown
+      title={title} id={title}
+      active={items.some((item) => item.type === 'item' && item.path === pathnameNoLang)}
+    >
       {
         items.map((item, idx) => {
           if (item.type === 'header') {

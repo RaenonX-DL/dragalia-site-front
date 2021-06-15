@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {PostIdCheckResponse, PostMeta} from '../../../../../../api-def/api';
+import {AppReactContext} from '../../../../../../context/app/main';
 import {DelayedCheckState} from '../../../../common/delayedCheck';
 import {isFormStateValid, PostFormControlProps} from '../types';
 
@@ -22,13 +23,14 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   getEffectDependency,
 }: FormMetaHookProps<P, R>): FormMetaHookReturns => {
   const {payload} = formState;
+  const context = React.useContext(AppReactContext);
 
   const [checkState, setCheckState] = React.useState<DelayedCheckState>({
     isChecking: false,
     checkTimer: null,
   });
 
-  const isValid = isFormStateValid(formState);
+  const isValid = context?.session?.user.isAdmin ? isFormStateValid(formState) : false;
 
   const checkAvailability = (payload: P) => {
     setCheckState({...checkState, isChecking: true});
@@ -42,6 +44,11 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   // - `timeout` for delaying the availability check
   React.useEffect(
     () => {
+      if (!context?.session?.user.isAdmin) {
+        setAvailability(false);
+        return;
+      }
+
       if (checkState.checkTimer) {
         clearTimeout(checkState.checkTimer);
         setCheckState({...checkState, checkTimer: null});

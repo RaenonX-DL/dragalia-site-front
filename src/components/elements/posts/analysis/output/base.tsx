@@ -1,41 +1,46 @@
 import React from 'react';
 
 import {AnalysisGetResponse} from '../../../../../api-def/api';
-import {GeneralPath, makePostPath, makeSimplePath, PostPath} from '../../../../../const/path';
+import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {AdsInPost, PostInfo, PostManageBar} from '../../../../elements';
+import {makePostPath} from '../../../../../utils/path/make';
+import {AdsInPost} from '../../../common/ads/main';
+import {PostManageBar} from '../../manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../shared/output/alert';
+import {PostInfo} from '../../shared/output/info';
 import {SectionBottom} from './bottom';
 import {SectionTop} from './top';
+
 
 type AnalysisOutputBaseProps<R extends AnalysisGetResponse> = {
   analysis: R,
   renderBody: (post: R) => React.ReactElement,
 }
 
-
 export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   analysis,
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
   const {t, lang} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   return (
     <>
       {
-        analysis.isAdmin &&
+        context?.session?.user.isAdmin &&
         <PostManageBar
           newButtons={[
             {
-              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_CHARA, {lang}),
+              url: GeneralPath.ANALYSIS_NEW_CHARA,
               title: t((t) => t.posts.manage.addChara),
             },
             {
-              url: makeSimplePath(GeneralPath.ANALYSIS_NEW_DRAGON, {lang}),
+              url: GeneralPath.ANALYSIS_NEW_DRAGON,
               title: t((t) => t.posts.manage.addDragon),
             },
           ]}
-          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {lang, pid: analysis.unitId})}
+          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.unitId, lang})}
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}

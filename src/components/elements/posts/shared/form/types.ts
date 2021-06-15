@@ -2,6 +2,7 @@ import React from 'react';
 
 import {PostMeta, PostEditResponse} from '../../../../../api-def/api';
 
+
 /**
  * State of a post form.
  */

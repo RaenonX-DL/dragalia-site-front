@@ -3,22 +3,21 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import {SequencedPostListResponse} from '../../../../../api-def/api';
-import {getParamValue} from '../../../../../const/path';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {useNextRouter} from '../../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../../utils/services/api';
-import {Paginator, PostManageBar, PostManageBarProps} from '../../../../elements';
-import {AdsInPostList} from '../../../common/ads';
+import {AdsInPostList} from '../../../common/ads/main';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
+import {Paginator} from '../../../common/pagination/paginator';
 import {PaginationState} from '../../../common/pagination/types';
 import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../../common/pagination/utils';
+import {PostManageBar, PostManageBarProps} from '../../manageBar';
 import {AlertFetchListFailed} from '../alert';
 
 
 type Status<R extends SequencedPostListResponse> = FetchStatusSimple & {
   paginationState: PaginationState,
-  isAdmin: boolean,
-  showAds: boolean,
   showAlert: boolean,
   errorContent: string
   response?: R,
@@ -40,8 +39,10 @@ export const PostListPage = <R extends SequencedPostListResponse>({
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
+  const context = React.useContext(AppReactContext);
+  const router = useNextRouter();
 
-  const currentStart = Math.max(Number(getParamValue('start')) || 0, 0);
+  const currentStart = Math.max(Number(router.query.start) || 0, 0);
   const pageLimit = 10;
 
   const [status, setStatus] = React.useState<Status<R>>(
@@ -54,8 +55,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       },
       fetched: false,
       fetching: false,
-      isAdmin: false,
-      showAds: false,
       showAlert: false,
       errorContent: '',
     },
@@ -68,7 +67,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
     });
 
     fnFetchList(
-      CookiesControl.getGoogleUid() || '',
+      context?.session?.user.id.toString() || '',
       lang,
       pageToStartIdx(page, pageLimit),
       pageLimit,
@@ -85,7 +84,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
             },
             fetched: true,
             fetching: false,
-            isAdmin: data.isAdmin,
             showAlert: false,
             response: data,
           });
@@ -117,6 +115,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 
   // TEST: Pagination action
   //  - Go to paginated page, use paginator once, then try to go back
+  //  - Disable on no item
 
   // Trigger page click event if the pagination status desync with the URL params
   // - This occurs when the user try to go to the previous page by `history.back()`
@@ -126,12 +125,12 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 
   return (
     <>
-      {status.showAds && <AdsInPostList/>}
+      <AdsInPostList/>
       <Jumbotron className="mb-3">
         <h4>{title}</h4>
       </Jumbotron>
       {
-        status.isAdmin &&
+        context?.session?.user.isAdmin &&
         <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>
       }
       {

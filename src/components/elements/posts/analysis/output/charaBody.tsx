@@ -4,7 +4,6 @@ import {Col, Row} from 'react-bootstrap';
 
 import {CharaAnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 import {AnalysisSkillOutput} from './charaSkill';
 import {SectionProps} from './props';
@@ -18,21 +17,17 @@ export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGe
       {
         analysis.forceStrikes &&
         <>
-          <PageAnchor
-            name="fs" type="h3"
-            text={t((t) => t.posts.analysis.forceStrike)}
-            className="mb-3"
-          />
+          <h3 className="mb-3">
+            {t((t) => t.posts.analysis.forceStrike)}
+          </h3>
           <div className="rounded bg-black-32 p-3">
             <Markdown>{analysis.forceStrikes || 'N/A'}</Markdown>
           </div>
         </>
       }
-      <PageAnchor
-        name="skills" type="h3"
-        text={t((t) => t.posts.analysis.skills)}
-        className="my-3"
-      />
+      <h3 className="my-3">
+        {t((t) => t.posts.analysis.skills)}
+      </h3>
       {
         analysis.skills.map((skill, skillIdx) => {
           return (
@@ -50,11 +45,9 @@ export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGe
       <hr/>
       <Row>
         <Col>
-          <PageAnchor
-            name="tips-builds" type="h3"
-            text={t((t) => t.posts.analysis.tipsBuilds)}
-            className="mb-3"
-          />
+          <h3 className="mb-3">
+            {t((t) => t.posts.analysis.tipsBuilds)}
+          </h3>
           <Markdown>{analysis.tipsBuilds}</Markdown>
         </Col>
       </Row>

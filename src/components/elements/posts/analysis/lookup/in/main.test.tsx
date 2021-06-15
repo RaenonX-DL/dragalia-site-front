@@ -96,7 +96,7 @@ describe('Input of analysis lookup', () => {
 
   it('fetches required enums on load', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
@@ -105,7 +105,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes empty input data if no condition specified', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     const expectedInput: InputData = {
@@ -122,7 +122,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes input data with analysis type', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
@@ -144,7 +144,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes input data with elements', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
@@ -166,7 +166,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes input data with weapon types', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
@@ -188,7 +188,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes input data with search keyword', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
@@ -210,7 +210,7 @@ describe('Input of analysis lookup', () => {
 
   it('passes input data with multiple conditions', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin={false}/>));
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
     });
 
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
@@ -238,7 +238,10 @@ describe('Input of analysis lookup', () => {
 
   it('shows post manage bar if the user is an admin', async () => {
     await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested} isAdmin/>));
+      renderReact(
+        () => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>),
+        {user: {isAdmin: true}},
+      );
     });
 
     screen.getByText(translationEN.posts.manage.addChara);

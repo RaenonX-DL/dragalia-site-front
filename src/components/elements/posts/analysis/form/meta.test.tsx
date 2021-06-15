@@ -76,7 +76,6 @@ describe('Analysis form meta input', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
     jest.useRealTimers();
   });
 
@@ -103,13 +102,20 @@ describe('Analysis form meta input', () => {
   });
 
   it('shows the valid mark and the unit icon upon passing the check', async () => {
-    const {rerender} = renderReact(() => (
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormAnalysisMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+        />
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 10950102}});
     rerender();
@@ -137,13 +143,20 @@ describe('Analysis form meta input', () => {
       isAdmin: true,
     }));
 
-    const {rerender} = renderReact(() => (
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormAnalysisMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+        />
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     rerender();
@@ -159,13 +172,20 @@ describe('Analysis form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last unit ID change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormAnalysisMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+        />
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     fireEvent.change(idField, {target: {value: 577}});
     rerender();
@@ -178,13 +198,20 @@ describe('Analysis form meta input', () => {
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormAnalysisMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+        />
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
@@ -197,13 +224,20 @@ describe('Analysis form meta input', () => {
   });
 
   it('does not start the check within 1 sec of the change', async () => {
-    const {rerender} = renderReact(() => (
-      <FormAnalysisMeta
-        formState={state}
-        setPayload={setPayload}
-        setAvailability={setAvailability}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <FormAnalysisMeta
+          formState={state}
+          setPayload={setPayload}
+          setAvailability={setAvailability}
+        />
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();

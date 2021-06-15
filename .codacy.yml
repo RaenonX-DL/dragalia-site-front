@@ -1,4 +1,10 @@
+---
 engines:
   duplication:
     exclude_paths:
+      # Test files
       - "**.test.ts"
+  csslint:
+    exclude_paths:
+      # Bootstrap CSS file (auto-generated)
+      - "src/bootstrap.css"

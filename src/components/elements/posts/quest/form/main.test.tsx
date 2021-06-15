@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
-import {Route} from 'react-router-dom';
+import {ObjectId} from 'mongodb';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -13,10 +13,10 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {CookiesControl} from '../../../../../utils/cookies';
 import {makePostPath} from '../../../../../utils/path/make';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
+
 
 describe('Main quest form', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
@@ -34,7 +34,7 @@ describe('Main quest form', () => {
       isPreloaded: true,
       payload: {
         seqId: response.seqId,
-        googleUid: 'googleUid',
+        uid: 'googleUid',
         lang: SupportedLanguages.CHT,
         title: 'ttl',
         general: 'gen',
@@ -55,7 +55,6 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
-    jest.spyOn(CookiesControl, 'getGoogleUid').mockImplementation(() => formState.payload.googleUid);
   });
 
   it('loads the data correctly', async () => {
@@ -266,13 +265,25 @@ describe('Main quest form', () => {
   });
 
   it('submits correct payload after edit', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    // @ts-ignore
+    delete window.location;
+    // @ts-ignore
+    window.location = {assign: jest.fn()};
+
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {
+        user: {
+          id: new ObjectId(),
+        },
+      },
+    );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
     act(() => {
@@ -322,8 +333,6 @@ describe('Main quest form', () => {
     });
     rerender();
 
-    screen.debug();
-
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
     expect(fnSendRequest).toHaveBeenCalledWith({
       ...formState.payload,
@@ -342,15 +351,24 @@ describe('Main quest form', () => {
   });
 
   it('redirects to correct location on submit', async () => {
-    const {history, rerender} = renderReact(() => (
-      <Route>
+    // @ts-ignore
+    delete window.location;
+    // @ts-ignore
+    window.location = {assign: jest.fn()};
+    const {rerender} = renderReact(
+      () => (
         <QuestPostForm
           fnSendRequest={fnSendRequest}
           formState={formState}
           setFormState={setFormState}
         />
-      </Route>
-    ));
+      ),
+      {
+        user: {
+          id: new ObjectId(),
+        },
+      },
+    );
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
     act(() => {
@@ -361,8 +379,11 @@ describe('Main quest form', () => {
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(history.location.pathname)
-        .toBe(makePostPath(PostPath.QUEST, {pid: response.seqId, lang: SupportedLanguages.EN}));
+      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
+        PostPath.QUEST,
+        {pid: response.seqId, lang: SupportedLanguages.EN},
+      ));
     });
+    expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
 });

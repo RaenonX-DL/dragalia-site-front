@@ -1,18 +1,20 @@
 import React from 'react';
 
 import {RenderResult} from '@testing-library/react';
-import {MemoryHistory} from 'history';
+import {User} from 'next-auth';
+import {NextRouter} from 'next/router';
 
-import {PartialReduxState} from '../../src/state/state';
+import {PreloadedReduxState} from '../../src/state/state';
 import {ReduxStore} from '../../src/state/store';
 
+
 export type RenderOptions = {
-  preloadState?: PartialReduxState,
-  route?: string,
+  preloadState?: PreloadedReduxState,
+  routerOptions?: Partial<NextRouter>,
+  user?: Partial<User>,
 }
 
-export type RenderReturns = RenderResult & {
+export type RenderAppReturns = RenderResult & {
   rerender: (element?: React.ReactElement) => void,
   store: ReduxStore,
-  history: MemoryHistory,
 }

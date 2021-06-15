@@ -3,6 +3,7 @@ env:
   browser: true
   es6: true
   node: true
+  jest: true
 
 extends:
   - google
@@ -10,6 +11,9 @@ extends:
   - plugin:eslint-plugin-import/errors
   - plugin:eslint-plugin-import/warnings
   - plugin:eslint-plugin-import/typescript
+
+ignorePatterns:
+  - '*.d.ts'
 
 globals:
   Atomics: readonly

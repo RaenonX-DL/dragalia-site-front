@@ -1,23 +1,26 @@
 import React from 'react';
 
 import {NavDropdown} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
-import {GeneralPath} from '../const/path/definitions';
-import {makeSimplePath} from '../utils/path/make';
+import {NextLink} from '../components/elements/common/link';
+import {CookiesKeys} from '../utils/cookies/keys';
+import {setCookies} from '../utils/cookies/utils';
+import {mergePlaceholders} from '../utils/path/process';
+import {useNextRouter} from '../utils/router';
 import {GoogleAnalytics} from '../utils/services/ga';
 import {useI18n} from './hook';
 
 
 export const LanguageSwitch = () => {
-  const {t, lang, setLang} = useI18n();
+  const {t, lang} = useI18n();
+  const {pathnameNoLang, query} = useNextRouter();
 
   const currentLangName = SupportedLanguageNames[lang];
 
   const onLangChanged = (newLang: SupportedLanguages) => () => {
     GoogleAnalytics.languageChange(lang, newLang);
-    setLang(newLang);
+    setCookies(CookiesKeys.LANG, newLang);
   };
 
   return (
@@ -27,11 +30,13 @@ export const LanguageSwitch = () => {
       <NavDropdown.Divider/>
       {
         Object.values(SupportedLanguages).map((newLang) => (
-          <LinkContainer key={newLang} to={makeSimplePath(GeneralPath.HOME, {lang: newLang})}>
-            <NavDropdown.Item onClick={onLangChanged(newLang)}>
+          <NextLink key={newLang} href={mergePlaceholders(pathnameNoLang, query)} locale={newLang} passHref>
+            <NavDropdown.Item
+              onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
+            >
               {SupportedLanguageNames[newLang]}
             </NavDropdown.Item>
-          </LinkContainer>
+          </NextLink>
         ))
       }
     </NavDropdown>

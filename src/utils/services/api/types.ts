@@ -2,14 +2,14 @@ import {SupportedLanguages, PostGetResponse, SequencedPostListResponse} from '..
 
 
 export type FunctionFetchPostList<R extends SequencedPostListResponse> = (
-  googleUid: string,
+  uid: string,
   langCode: SupportedLanguages,
   start: number,
   limit: number,
 ) => Promise<R>
 
 export type FunctionFetchPost<R extends PostGetResponse> = (
-  googleUid: string,
+  uid: string,
   seqId: number,
   langCode: SupportedLanguages,
   increaseCount?: boolean,

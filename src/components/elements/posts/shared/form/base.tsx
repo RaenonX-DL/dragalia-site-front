@@ -1,14 +1,11 @@
 import React from 'react';
 
-import {Redirect} from 'react-router-dom';
-
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
-import {AlertPayloadMaker} from '../../../../../state/alert/express';
+import {AlertPayloadMaker} from '../../../../../state/alert/utils';
 import {useDispatch} from '../../../../../state/store';
-import {CookiesControl} from '../../../../../utils/cookies';
-import {BeforeUnloadPrompt} from '../../../common/beforeUnloadPrompt';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
@@ -18,7 +15,6 @@ type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> =
   fnGetRedirectPath: (redirectId: number) => string,
   fnGetRedirectId: (response: R) => number,
 }
-
 
 export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   formState,
@@ -31,6 +27,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
+  const context = React.useContext(AppReactContext);
 
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -38,11 +35,16 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     message: '',
   });
 
-  const [redirectId, setRedirectId] = React.useState(-1);
+  React.useEffect(() => {
+    window.onbeforeunload = (e) => {
+      e.preventDefault();
+      return (e.returnValue = '');
+    };
 
-  if (redirectId > 0) {
-    return <Redirect to={{pathname: fnGetRedirectPath(redirectId)}}/>;
-  }
+    return () => {
+      window.onbeforeunload = null;
+    };
+  });
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
     ...formState,
@@ -57,11 +59,11 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!CookiesControl.getGoogleUid()) {
+    if (!context?.session) {
       setModalState({
         show: true,
-        title: t((t) => t.googleSignin.noUid),
-        message: t((t) => t.googleSignin.noUidDetails),
+        title: t((t) => t.userControl.noUid),
+        message: t((t) => t.userControl.noUidDetails),
       });
       return;
     }
@@ -71,7 +73,8 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     fnSendRequest(formState.payload)
       .then((data) => {
         if (data.success) {
-          setRedirectId(fnGetRedirectId(data));
+          window.onbeforeunload = null;
+          window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
           dispatch(alertDispatchers.showAlert(AlertPayloadMaker.postPublished(t)));
         } else {
           setModalState({
@@ -92,7 +95,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 
   return (
     <>
-      <BeforeUnloadPrompt/>
       <CommonModal modalState={modalState} setModalState={setModalState}/>
       <form onSubmit={onSubmit}>
         {renderMain(setPayload, setAvailability)}

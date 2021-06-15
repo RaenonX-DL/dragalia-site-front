@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {CharaAnalysisEditPayload, CharaAnalysisBody, AnalysisEditResponse} from '../../../../../api-def/api';
-import {CookiesControl} from '../../../../../utils/cookies';
+import {AnalysisEditResponse, CharaAnalysisBody, CharaAnalysisEditPayload} from '../../../../../api-def/api';
+import {AppReactContext} from '../../../../../context/app/main';
 import {PostEditCommon} from '../../shared/form/edit';
 import {PostFormFetchProps, PostFormState} from '../../shared/form/types';
 import {AnalysisFormBase} from './base';
@@ -16,10 +16,11 @@ type AnalysisFormCharaEditProps<P extends CharaAnalysisEditPayload, R extends An
 export const AnalysisFormCharaEdit = ({
   initialAnalysis, fnSendRequest,
 }: AnalysisFormCharaEditProps<CharaAnalysisEditPayload, AnalysisEditResponse>) => {
+  const context = React.useContext(AppReactContext);
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
       ...initialAnalysis,
-      googleUid: CookiesControl.getGoogleUid() || '',
+      uid: context?.session?.user.id.toString() || '',
       editNote: '',
     },
     isIdAvailable: true,

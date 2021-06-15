@@ -5,7 +5,8 @@ import {Col, Row} from 'react-bootstrap';
 import {PostGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
-import {InfoCard, PageAnchor, PostEditNotes} from '../../../../elements';
+import {PostEditNotes} from './editNotes';
+import {InfoCard} from './infoCard';
 
 
 type PostInfoProps = {
@@ -17,11 +18,7 @@ export const PostInfo = ({post}: PostInfoProps) => {
 
   return (
     <>
-      <PageAnchor
-        name="post-info" type="h3"
-        text={t((t) => t.posts.info.titleSelf)}
-        className="mb-3"
-      />
+      <h3 className="mb-3">{t((t) => t.posts.info.titleSelf)}</h3>
       <Row>
         <Col lg={4} className="pr-lg-2">
           <InfoCard

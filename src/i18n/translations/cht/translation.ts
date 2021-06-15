@@ -176,19 +176,12 @@ export const translation: TranslationStruct = {
       rotation: '輪轉計算',
     },
   },
-  googleSignin: {
-    noUid: '無 Google 使用者 ID',
-    noUidDetails: '找不到 Google 使用者 ID。請嘗試重新登入。',
-    notLoaded: '載入失敗，請嘗試啟用第三方 Cookies 後重試。',
-    login: 'Google 登入',
-    loginError: '錯誤: {{error}} - {{details}}',
-    loginFailed: '登入失敗',
-    loginUnknown: '因為不明原因，無法登入。({{error}})',
-    loginOfflineDisallowed: '離線登入已禁用。請洽網站管理員。',
-    logout: 'Google 登出',
-    logoutFailed: '登出失敗',
-    logoutUnknown: '因為不明原因，無法登出。',
-    requestFailed: '登入請求傳送失敗',
+  userControl: {
+    noUid: '無使用者 ID',
+    noUidDetails: '找不到使用者 ID。請嘗試重新登入。',
+    login: '登入',
+    logout: '登出',
+    loading: '讀取中...',
   },
   lang: {
     inUse: '目前使用中',
@@ -202,7 +195,6 @@ export const translation: TranslationStruct = {
     },
     warning: {
       adminOnly: '網站管理員才有此頁面的使用權限。',
-      pageNav: '確定要離開本頁面嗎？',
       truncated: '因條目過多，只顯示部分條目 (顯示 {{displayed}} 條 / 共有 {{returned}} 條)。' +
         '如果要顯示第 {{displayed}} 條後的結果，請縮小搜尋範圍。',
     },
@@ -234,63 +226,55 @@ export const translation: TranslationStruct = {
     inUse: {
       about: {
         title: '關於',
-        description: '關於本網站的介紹頁面。',
+        description: '關於本網站的介紹。',
       },
-      analysisList: {
+      analysisIndex: {
         title: '評測目錄',
         description: '角色、龍族評測目錄。',
       },
       analysisNewChara: {
         title: '新角色評測',
-        description: '新角色評測編輯頁面。',
+        description: '角色評測新增頁面。',
       },
       analysisNewDragon: {
         title: '新龍族評測',
-        description: '新龍族評測編輯頁面。',
+        description: '龍族評測新增頁面。',
       },
       analysisEdit: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
-      },
-      analysisEditChara: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
-      },
-      analysisEditDragon: {
-        title: '編輯評測 - {{title}}',
-        description: '評測 #A{{pid}} 的編輯頁面。',
+        title: '編輯評測 - {{name}}',
+        description: '{{name}}評測的編輯頁面。',
       },
       analysisPost: {
-        title: '【評測】{{title}}',
-        description: '{{description}}',
+        title: '【評測】{{name}}',
+        description: '{{summary}}',
       },
       home: {
         title: '首頁',
-        description: 'OM 龍絆攻略網首頁。',
+        description: '歡迎來到 OM 龍絆攻略網！',
       },
       questEdit: {
         title: '編輯攻略 - {{title}}',
-        description: '評測 #Q{{pid}} 的編輯頁面。',
+        description: '攻略: {{title}} 的編輯頁面。',
       },
       questList: {
-        title: '高難副本攻略目錄',
-        description: '各龍絆高難副本的攻略目錄頁面。',
+        title: '副本攻略目錄',
+        description: '各龍絆副本攻略目錄。',
       },
       questNew: {
-        title: '新增高難攻略',
-        description: '高難副本攻略的新增頁面。',
+        title: '新增副本攻略',
+        description: '副本攻略新增頁面。',
       },
       questPost: {
-        title: '{{title}}',
-        description: '{{description}}',
+        title: '【攻略】{{title}}',
+        description: '詳情請進入頁面查看。',
       },
       site: {
         title: 'OM 龍絆攻略站',
-        description: '由 OM 製作的失落龍絆攻略網。',
+        description: '由 Oasis of the Maniacs 共同製作的失落龍絆攻略網。',
       },
       thanks: {
         title: '特別感謝',
-        description: '協助本網站建置的清單。',
+        description: '各方面協助本網站的成員清單。',
       },
       gameData: {
         ex: {
@@ -304,6 +288,10 @@ export const translation: TranslationStruct = {
       },
     },
     error: {
+      401: {
+        title: '權限不足',
+        description: '權限不足，請檢查是否已登入。',
+      },
       404: {
         title: '頁面不存在',
         description: '此頁面不存在。',

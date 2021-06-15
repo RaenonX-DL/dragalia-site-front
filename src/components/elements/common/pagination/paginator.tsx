@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {Pagination} from 'react-bootstrap';
-import {useHistory} from 'react-router';
 
-import {scrollRefToTop} from '../../../../utils/scroll';
+import {useNextRouter} from '../../../../utils/router';
+import {scrollElementToTop} from '../../../../utils/scroll';
 import {PaginationState, SpecialKey} from './types';
 import {getValidNewPage} from './utils';
 
@@ -25,12 +25,7 @@ export const Paginator = ({
   getNewQueryParam,
   disable = false,
 }: PaginatorProps) => {
-  // TEST: Paginator
-  //  - Disable on no item
-  //  - Special keys available and behaving correctly
-  //  - Page number shown is correct
-
-  const history = useHistory();
+  const router = useNextRouter();
 
   const changePage = (newPage: number) => () => {
     newPage = getValidNewPage(newPage, state.currentPage, state.maxPage);
@@ -40,17 +35,26 @@ export const Paginator = ({
       return;
     }
 
-    // Update history
-    history.push({
-      pathname: path,
-      search: getNewQueryParam(newPage),
-    });
-
     // Call page click event
     onPageClick(newPage);
 
-    // Scroll to top after changing the page
-    scrollRefToTop();
+    // Update history
+    router
+      .push(
+        {
+          pathname: path,
+          search: getNewQueryParam(newPage),
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+      .then(() => void 0);
+
+    // Scroll to top
+    // `router.push` won't scroll
+    scrollElementToTop();
   };
 
   return (

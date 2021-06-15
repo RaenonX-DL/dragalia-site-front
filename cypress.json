@@ -1,0 +1,11 @@
+{
+  "projectId": "wgo7xq",
+  "baseUrl": "http://localhost:3000",
+  "downloadsFolder": ".cypress/downloads",
+  "pluginsFile": false,
+  "screenshotsFolder": ".cypress/screenshots",
+  "supportFile": false,
+  "videosFolder": ".cypress/videos",
+  "videoUploadOnPasses": false,
+  "nodeVersion": "system"
+}

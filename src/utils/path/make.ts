@@ -1,44 +1,22 @@
-import {generatePath, useLocation} from 'react-router-dom';
-
 import {SupportedLanguages} from '../../api-def/api';
-import {GeneralPath, PagePath, PathRoot, PostPath} from '../../const/path/definitions';
-import {getLangFromUrl} from './utils';
+import {PostPath} from '../../const/path/definitions';
 
-export const getParamValue = (paramName: string, defaultValue?: string): string | undefined => {
-  const location = useLocation();
 
-  return new URLSearchParams(location.search).get(paramName) || defaultValue;
+const generatePath = (path: string, args: { [key in string]: string | number }) => {
+  Object
+    .keys(args)
+    .forEach((key) => {
+      path = path.replace(`[${key}]`, args[key].toString());
+    });
+
+  return path;
 };
 
-type PathArgs = {
+type PostPathArgs = {
   lang: SupportedLanguages,
-}
-
-const makePath = (path: string) => {
-  return `${PathRoot}${path}`;
-};
-
-export const makeRoutePath = (path: PagePath) => {
-  return makePath(path);
-};
-
-export const makeSimplePath = (path: GeneralPath, args: PathArgs) => {
-  return generatePath(makePath(path), args);
-};
-
-type PostPathArgs = PathArgs & {
   pid: number,
 }
 
 export const makePostPath = (path: PostPath, args: PostPathArgs) => {
-  return generatePath(makePath(path), args);
-};
-
-export const patchLanguageToPath = (path: string, lang: SupportedLanguages) => {
-  // If language found in path - don't patch
-  if (getLangFromUrl(path, () => null)) {
-    return path;
-  }
-
-  return generatePath(makePath(path), {lang});
+  return generatePath(`/${args.lang}${path}`, args);
 };

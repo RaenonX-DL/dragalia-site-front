@@ -18,6 +18,7 @@ import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {InputData} from './in/types';
 import {AnalysisPostLookup} from './main';
 
+
 describe('Analysis lookup page', () => {
   let fnScroll: jest.SpyInstance;
   let fnGetLookup: jest.SpyInstance<Promise<AnalysisLookupResponse>, [string, SupportedLanguages]>;
@@ -53,7 +54,6 @@ describe('Analysis lookup page', () => {
 
   const lookupResponseNoAnalyses: AnalysisLookupResponse = {
     code: ApiResponseCode.SUCCESS,
-    isAdmin: false,
     success: false,
     analyses: {},
   };
@@ -66,7 +66,6 @@ describe('Analysis lookup page', () => {
   const lookupLandingResponse: AnalysisLookupLandingResponse = {
     code: ApiResponseCode.SUCCESS,
     success: false,
-    isAdmin: false,
     analyses: [analyses[10950102], analyses[10950301]],
   };
 
@@ -96,7 +95,6 @@ describe('Analysis lookup page', () => {
     });
     await waitFor(async () => {
       expect(fnScroll).toHaveBeenCalledTimes(2);
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
     });
   });
 

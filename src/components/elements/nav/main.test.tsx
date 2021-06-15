@@ -3,18 +3,17 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
 import {GeneralPath} from '../../../const/path/definitions';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
-import {makeSimplePath} from '../../../utils/path/make';
 import {Navigation} from './main';
+
 
 describe('Navigation bar', () => {
   it('has expected things shown', async () => {
     renderReact(() => <Navigation/>);
 
     // One for navbar, another one for title bar
-    expect(screen.queryAllByText(translationEN.meta.inUse.site.title).length).toBe(2);
+    expect(screen.queryByText(translationEN.meta.inUse.site.title)).toBeInTheDocument();
     expect(screen.queryByText(translationEN.meta.inUse.thanks.title)).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.quest.titleSelf)).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.titleSelf)).toBeInTheDocument();
@@ -37,7 +36,11 @@ describe('Navigation bar', () => {
   it('marks item as active upon visit', async () => {
     renderReact(
       () => <Navigation/>,
-      {route: makeSimplePath(GeneralPath.ABOUT, {lang: SupportedLanguages.EN})},
+      {
+        routerOptions: {
+          pathname: GeneralPath.ABOUT,
+        },
+      },
     );
 
     const aboutButton = screen.getByText(translationEN.meta.inUse.about.title);

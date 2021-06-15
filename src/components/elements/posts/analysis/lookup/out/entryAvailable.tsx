@@ -27,7 +27,7 @@ export const AnalysisEntryAvailable = ({
         <Col className="mr-2">
           <a
             className="h6"
-            href={makePostPath(PostPath.ANALYSIS, {lang, pid: unitInfo.id})}
+            href={makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang})}
           >
             {unitInfo.name[lang]}
           </a>

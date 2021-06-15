@@ -199,19 +199,12 @@ export const translation: TranslationStruct = {
       rotation: 'Rotations Calculator',
     },
   },
-  googleSignin: {
-    noUid: 'No Google user ID',
-    noUidDetails: 'Cannot find Google user ID. Please try re-login.',
-    notLoaded: 'Failed to load. Please try enabling 3rd-party cookies then try again.',
-    login: 'Google Login',
-    loginError: 'Error: {{error}} - {{details}}',
-    loginFailed: 'Login failed',
-    loginUnknown: 'Failed to login for unknown reason. ({{error}})',
-    loginOfflineDisallowed: 'Offline login is disallowed. Please contact the website admin.',
-    logout: 'Google Logout',
-    logoutFailed: 'Logout failed',
-    logoutUnknown: 'Failed to logout for unknown reason.',
-    requestFailed: 'Failed to send login request',
+  userControl: {
+    noUid: 'No user ID',
+    noUidDetails: 'User ID not found. Please re-login.',
+    login: 'Login',
+    logout: 'Logout',
+    loading: 'Loading...',
   },
   lang: {
     inUse: 'Currently in-use',
@@ -225,7 +218,6 @@ export const translation: TranslationStruct = {
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
-      pageNav: 'Are you sure you want to leave this page?',
       truncated: 'Due to excessive number of results, ' +
         'results are truncated ({{displayed}} Displayed / {{returned} Available). ' +
         'To display the truncated results, please narrow the search condition.',
@@ -264,33 +256,25 @@ export const translation: TranslationStruct = {
         title: 'About',
         description: 'Information about this website.',
       },
-      analysisList: {
+      analysisIndex: {
         title: 'Index of analysis',
         description: 'List of character/dragon analyses.',
       },
       analysisNewChara: {
         title: 'New character analysis',
-        description: 'Page for new character analysis.',
+        description: 'Page to add a new character analysis.',
       },
       analysisNewDragon: {
         title: 'New dragon analysis',
-        description: 'Page for dragon character analysis.',
+        description: 'Page to add a new dragon analysis.',
       },
       analysisEdit: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
-      },
-      analysisEditChara: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
-      },
-      analysisEditDragon: {
-        title: 'Edit analysis - {{title}}',
-        description: 'Page for editing the analysis #A{{pid}}',
+        title: 'Edit analysis - {{name}}',
+        description: 'Page to edit the analysis of {{name}}.',
       },
       analysisPost: {
-        title: '【Analysis】{{title}}',
-        description: '{{description}}',
+        title: '【Analysis】{{name}}',
+        description: 'Analysis of {{name}}.',
       },
       home: {
         title: 'Homepage',
@@ -298,7 +282,7 @@ export const translation: TranslationStruct = {
       },
       questEdit: {
         title: 'Edit quest guide - {{title}}',
-        description: 'Page for editing a quest guide.',
+        description: 'Page to edit quest guide #Q{{pid}}.',
       },
       questList: {
         title: 'Index of quest guides',
@@ -306,19 +290,19 @@ export const translation: TranslationStruct = {
       },
       questNew: {
         title: 'New quest guide',
-        description: 'Page for a new High-Difficulty quest guide.',
+        description: 'Page to create a new High-Difficulty quest guide.',
       },
       questPost: {
-        title: '{{title}}',
-        description: '{{description}}',
+        title: '【Quest Guide】{{title}}',
+        description: 'Visit for the details.',
       },
       site: {
         title: 'DL Info by OM',
-        description: 'Dragalia Lost info website by OM.',
+        description: 'Dragalia Lost info website by Oasis of the Maniacs.',
       },
       thanks: {
         title: 'Special Thanks',
-        description: 'List of contributors of this website.',
+        description: 'List of the contributors of this website.',
       },
       gameData: {
         ex: {
@@ -332,6 +316,10 @@ export const translation: TranslationStruct = {
       },
     },
     error: {
+      401: {
+        title: 'Access Denied',
+        description: 'Please check your current login status.',
+      },
       404: {
         title: 'Page not exists',
         description: 'The page does not exist.',

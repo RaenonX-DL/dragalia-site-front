@@ -12,7 +12,6 @@ import {
   AnalysisPublishResponse,
   AnalysisResponse,
   ApiEndPoints,
-  ApiResponseCode,
   BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisGetResponse,
@@ -39,98 +38,51 @@ import {
   RequestPayloadBase,
   SupportedLanguages,
   UnitType,
-  UserIsAdminPayload,
-  UserIsAdminResponse,
-  UserLoginPayload,
-  UserLoginResponse,
 } from '../../../api-def/api';
 import {getFullApiUrl} from './utils';
+
 
 /**
  * Class for sending an API request.
  */
 export class ApiRequestSender {
-  // region User controls
-
-  /**
-   * Send a user login request.
-   *
-   * @param {string} googleUid Google UID of the logged in user
-   * @param {string} googleEmail Google email of the logged in user
-   * @return {Promise<UserLoginResponse>} promise returned from `fetch`
-   */
-  static userLogin(googleUid: string, googleEmail: string): Promise<UserLoginResponse> {
-    return ApiRequestSender.sendRequest<UserLoginResponse, UserLoginPayload>(
-      'POST',
-      ApiEndPoints.USER_LOGIN,
-      {googleUid, googleEmail},
-    );
-  }
-
-  /**
-   * Send a user admin privilege check request.
-   *
-   * This does not send an actual request if `googleUid` is `null`.
-   * Instead, it will directly return a response body indicating that the user is not an admin.
-   *
-   * @param {string | null} googleUid Google UID of the user yo check
-   * @return {Promise<UserIsAdminResponse>} promise returned from `fetch`
-   */
-  static userIsAdmin(googleUid: string | null): Promise<UserIsAdminResponse> {
-    if (!googleUid) {
-      return Promise.resolve({
-        code: ApiResponseCode.SUCCESS,
-        success: true,
-        isAdmin: false,
-      });
-    }
-
-    return ApiRequestSender.sendRequest<UserIsAdminResponse, UserIsAdminPayload>(
-      'GET',
-      ApiEndPoints.USER_IS_ADMIN,
-      {googleUid},
-    );
-  }
-
-  // endregion
-
   // region Quest posts
 
   /**
    * Get a quest post using its sequential ID.
    *
-   * @param {string} googleUid Google UID of the logged in user
+   * @param {string} uid UID of the logged in user
    * @param {number} seqId sequential ID of the post to get
    * @param {SupportedLanguages} lang language code of the post to get
    * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
    */
   static questGet(
-    googleUid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
+    uid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
   ): Promise<QuestPostGetResponse> {
     return ApiRequestSender.sendRequest<QuestPostGetResponse, QuestPostGetPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_GET,
-      {googleUid, seqId, lang, incCount},
+      {uid, seqId, lang, incCount},
     );
   }
 
   /**
    * Get a list of all quest posts.
    *
-   * @param {string} googleUid Google UID of the logged in user
+   * @param {string} uid UID of the logged in user
    * @param {SupportedLanguages} lang language code of the posts
    * @param {number} start starting index of the posts
    * @param {number} limit maximum count of the data to be returned
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
   static questList(
-    googleUid: string, lang: SupportedLanguages, start: number, limit: number,
+    uid: string, lang: SupportedLanguages, start: number, limit: number,
   ): Promise<QuestPostListResponse> {
     return ApiRequestSender.sendRequest<QuestPostListResponse, QuestPostListPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_LIST,
-      {googleUid, lang, start, limit},
+      {uid, lang, start, limit},
     );
   }
 
@@ -165,17 +117,18 @@ export class ApiRequestSender {
   /**
    * Send a request to check if the ID combination for the quest post is available.
    *
-   * @param {string} googleUid current Google UID
+   * @param {string} uid current UID
    * @param {number | null} seqId title of the post
    * @param {SupportedLanguages} lang language code of the quest post
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
   static questIdCheck(
-    googleUid: string, seqId: number | null, lang: SupportedLanguages): Promise<QuestPostIdCheckResponse> {
+    uid: string, seqId: number | null, lang: SupportedLanguages,
+  ): Promise<QuestPostIdCheckResponse> {
     return ApiRequestSender.sendRequest<QuestPostIdCheckResponse, QuestPostIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_ID_CHECK,
-      {seqId: seqId || undefined, googleUid, lang},
+      {seqId: seqId || undefined, uid, lang},
     );
   }
 
@@ -218,50 +171,50 @@ export class ApiRequestSender {
   /**
    * Send an analysis lookup info request.
    *
-   * @param {string} googleUid Google UID to use for getting the analysis lookup
+   * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
-  static analysisLookup(googleUid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
+  static analysisLookup(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_LOOKUP,
-      {googleUid, lang},
+      {uid, lang},
     );
   }
 
   /**
    * Send an analysis lookup info request on landing.
    *
-   * @param {string} googleUid Google UID to use for getting the analysis lookup
+   * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
    * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
    */
-  static analysisLookupLanding(googleUid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
+  static analysisLookupLanding(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupLandingResponse, AnalysisLookupLandingPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_LOOKUP_LANDING,
-      {googleUid, lang},
+      {uid, lang},
     );
   }
 
   /**
    * Get an analysis post using its unit ID.
    *
-   * @param {string} googleUid Google UID of the logged in user
+   * @param {string} uid user ID of the logged in user
    * @param {number} unitId unit ID of the analysis to get
    * @param {SupportedLanguages} lang language code of the post to get
    * @param {boolean} incCount if the post view count should be increased or not
    * @return {Promise<AnalysisGetResponse>} promise returned from `fetch`
    */
   static analysisGet(
-    googleUid: string, unitId: number, lang: SupportedLanguages, incCount?: boolean,
+    uid: string, unitId: number, lang: SupportedLanguages, incCount?: boolean,
   ):
     Promise<AnalysisResponse> {
     return ApiRequestSender.sendRequest<AnalysisGetResponse, AnalysisGetPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_GET,
-      {googleUid, unitId, lang, incCount},
+      {uid, unitId, lang, incCount},
     )
       .then((response) => {
         if (response.type === UnitType.CHARACTER) {
@@ -309,18 +262,18 @@ export class ApiRequestSender {
   /**
    * Send a request to check if the ID combination for the analysis is available.
    *
-   * @param {string} googleUid current Google UID
+   * @param {string} uid current UID
    * @param {number | null} unitId analysis unit ID
    * @param {SupportedLanguages} lang language code of the analysis post
    * @return {Promise<AnalysisIdCheckResponse>} promise returned from `fetch`
    */
   static analysisIdCheck(
-    googleUid: string, unitId: number, lang: SupportedLanguages,
+    uid: string, unitId: number, lang: SupportedLanguages,
   ): Promise<AnalysisIdCheckResponse> {
     return ApiRequestSender.sendRequest<AnalysisIdCheckResponse, AnalysisIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_ID_CHECK,
-      {unitId, googleUid, lang},
+      {unitId, uid, lang},
     );
   }
 
@@ -331,18 +284,18 @@ export class ApiRequestSender {
   /**
    * Send a request to get the post page meta.
    *
-   * @param {string} googleUid Google UID
+   * @param {string} uid User ID
    * @param {SupportedLanguages} lang post language
    * @param {PostType} postType type of the post
    * @param {number} pid post ID
    * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
    */
-  static getPostMeta(googleUid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
+  static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
     return ApiRequestSender.sendRequest<PostPageMetaResponse | FailedResponse, PostPageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_POST,
       {
-        googleUid,
+        uid,
         lang,
         postType,
         postId: pid,
@@ -353,16 +306,14 @@ export class ApiRequestSender {
   /**
    * Send a request to get the generic page meta.
    *
-   * @param {string} googleUid Google UID
+   * @param {string} uid UID
    * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
    */
-  static getPageMeta(googleUid: string) {
+  static getPageMeta(uid: string) {
     return ApiRequestSender.sendRequest<PageMetaResponse | FailedResponse, PageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_GENERAL,
-      {
-        googleUid,
-      },
+      {uid},
     );
   }
 

@@ -1,20 +1,17 @@
 import React from 'react';
 
 import {Nav} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 
-import {useI18n} from '../../../../i18n/hook';
-import {makeSimplePath} from '../../../../utils/path/make';
+import {useNextRouter} from '../../../../utils/router';
 import {NavProps} from './types';
 
+
 export const NavItem = ({text, path}: NavProps) => {
-  const {lang} = useI18n();
+  const {pathnameNoLang} = useNextRouter();
 
   return (
-    <LinkContainer to={makeSimplePath(path, {lang})}>
-      <Nav.Link>
-        {text}
-      </Nav.Link>
-    </LinkContainer>
+    <Nav.Link href={path} className={path === pathnameNoLang ? 'active' : ''}>
+      {text}
+    </Nav.Link>
   );
 };

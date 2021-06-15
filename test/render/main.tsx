@@ -1,57 +1,87 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
-import {createMemoryHistory, MemoryHistory} from 'history';
-import {Router} from 'react-router-dom';
+import {renderHook} from '@testing-library/react-hooks';
+import {ObjectId} from 'mongodb';
+import {Session} from 'next-auth';
+import {RouterContext} from 'next/dist/next-server/lib/router-context';
 
-import {Main} from '../../src/main';
+import {AppReactContext} from '../../src/context/app/main';
+import {AppReactContextValue} from '../../src/context/app/types';
 import {ReduxProvider} from '../../src/state/provider';
 import {createStore, ReduxStore} from '../../src/state/store';
-import {RenderOptions, RenderReturns} from './types';
+import {makeRouter} from './router';
+import {RenderOptions, RenderAppReturns} from './types';
+
 
 type WrapperProps = {
   store: ReduxStore,
   options?: RenderOptions,
-  history: MemoryHistory,
 }
 
-const RenderWrapper = ({history, store, children}: React.PropsWithChildren<WrapperProps>) => {
+const RenderWrapper = ({store, options, children}: React.PropsWithChildren<WrapperProps>) => {
+  const session: Session = {
+    expires: '99999999999',
+    user: {
+      id: new ObjectId(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isAdmin: false,
+      ...options?.user,
+    },
+  };
+
+  const context: AppReactContextValue = {
+    title: 'Title',
+    description: 'Description',
+    session,
+  };
+
   return (
-    <Router history={history}>
-      <ReduxProvider persist={false} reduxStore={store}>
-        {children}
-      </ReduxProvider>
-    </Router>
+    <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
+      <AppReactContext.Provider value={context}>
+        <ReduxProvider persist={false} reduxStore={store}>
+          {children}
+        </ReduxProvider>
+      </AppReactContext.Provider>
+    </RouterContext.Provider>
+  );
+};
+
+export const renderReactHook = <T, >(
+  callback: (...params: any[]) => T,
+  options?: RenderOptions,
+) => {
+  const store = createStore(options?.preloadState);
+
+  return renderHook(
+    callback,
+    {
+      wrapper: RenderWrapper,
+      initialProps: {options, store},
+    },
   );
 };
 
 export const renderReact = (
   getReactElement: () => React.ReactElement,
   options?: RenderOptions,
-): RenderReturns => {
+): RenderAppReturns => {
   const store = createStore(options?.preloadState);
-  const history = createMemoryHistory({initialEntries: [options?.route || '']});
 
   const app = render(
-    <RenderWrapper history={history} options={options} store={store}>
+    <RenderWrapper options={options} store={store}>
       {getReactElement()}
     </RenderWrapper>,
   );
 
   const rerender = () => {
     app.rerender(
-      <RenderWrapper history={history} options={options} store={store}>
+      <RenderWrapper options={options} store={store}>
         {getReactElement()}
       </RenderWrapper>,
     );
   };
 
-  return {...app, rerender, store, history};
-};
-
-export const renderApp = (
-  route: string,
-  options?: RenderOptions,
-): RenderReturns => {
-  return renderReact(() => <Main/>, {...options, route});
+  return {...app, rerender, store};
 };

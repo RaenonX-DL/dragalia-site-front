@@ -1,12 +1,13 @@
 import {waitFor} from '@testing-library/react';
-import {renderHook} from '@testing-library/react-hooks';
 
+import {renderReactHook} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api';
 import {useUnitInfo} from './unitInfo';
 
+
 describe('Unit info hook', () => {
   it('loads all unit info and create a lookup map', async () => {
-    const {result} = renderHook(() => useUnitInfo());
+    const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => {
       expect(result.current.charaInfo.length).toBeGreaterThan(0);
@@ -16,7 +17,7 @@ describe('Unit info hook', () => {
   });
 
   it('returns the unit name if it exists', async () => {
-    const {result} = renderHook(() => useUnitInfo());
+    const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => {
       expect(result.current.charaInfo.length).toBeGreaterThan(0);
@@ -28,7 +29,7 @@ describe('Unit info hook', () => {
   });
 
   it('returns undefined if the unit does not exist', async () => {
-    const {result} = renderHook(() => useUnitInfo());
+    const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => {
       expect(result.current.charaInfo.length).toBeGreaterThan(0);

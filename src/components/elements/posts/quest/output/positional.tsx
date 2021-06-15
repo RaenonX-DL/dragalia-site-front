@@ -4,7 +4,6 @@ import {Accordion, Button, Col, Row} from 'react-bootstrap';
 
 import {PositionalInfo} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {PageAnchor} from '../../../common/anchor/pageAnchor';
 import {Markdown} from '../../../markdown/main';
 
 
@@ -19,12 +18,12 @@ export const QuestPositionOutput = ({info}: OutputProps) => {
   return (
     <>
       {
-        info.map((info, idx) => (
+        info.map((info) => (
           <div key={info.position} className="p-3 bg-black-32 rounded mb-3">
             <Accordion>
               <Row>
                 <Col>
-                  <PageAnchor name={`pos-${idx}`} type="h4" text={info.position}/>
+                  <h4 className="mb-3">{info.position}</h4>
                 </Col>
                 <Col className="d-flex flex-row-reverse">
                   <Accordion.Toggle as={Button} variant="outline-success" eventKey={info.position}>

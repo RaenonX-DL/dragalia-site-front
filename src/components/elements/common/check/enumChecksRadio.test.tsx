@@ -75,10 +75,6 @@ describe('Enum checks as radio', () => {
     setData = jest.fn().mockImplementation((newData) => data = newData);
   });
 
-  afterEach(() => {
-    data = {'enum': 2};
-  });
-
   it('can check single item', async () => {
     data = {'enum': 2};
     renderReact(() => <CheckWrapper data={data}/>);
