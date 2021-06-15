@@ -286,6 +286,10 @@ export const translation: TranslationStruct = {
       },
     },
     error: {
+      401: {
+        title: '權限不足',
+        description: '權限不足，請檢查是否已登入。',
+      },
       404: {
         title: 'ページが存在しません',
         description: 'description',

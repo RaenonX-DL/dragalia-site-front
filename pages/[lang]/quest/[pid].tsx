@@ -19,7 +19,11 @@ export const getServerSideProps: GetServerSideProps<QuestPageProps> = async (con
 
   return {
     props: {
-      response: await getServerSidePropsPost(context, ApiRequestSender.questGet, session?.user?.id.toString() || ''),
+      response: await getServerSidePropsPost(
+        context,
+        ApiRequestSender.questGet,
+        session?.user?.id.toString(),
+      ),
     },
   };
 };

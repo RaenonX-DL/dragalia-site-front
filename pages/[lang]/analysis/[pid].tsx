@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<AnalysisPageProps> = async (
       response: await getServerSidePropsPost(
         context,
         ApiRequestSender.analysisGet,
-        session?.user?.id.toString() || '',
+        session?.user?.id.toString(),
       ),
     },
   };

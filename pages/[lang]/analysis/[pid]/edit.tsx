@@ -12,7 +12,7 @@ import {
 } from '../../../../src/api-def/api';
 import {AnalysisFormCharaEdit} from '../../../../src/components/elements/posts/analysis/form/charaEdit';
 import {AnalysisFormDragonEdit} from '../../../../src/components/elements/posts/analysis/form/dragonEdit';
-import {GeneralPath} from '../../../../src/const/path/definitions';
+import {ProtectedLayout} from '../../../../src/components/pages/layout/protected';
 import {useI18n} from '../../../../src/i18n/hook';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../../src/utils/ssr';
@@ -26,19 +26,13 @@ type AnalysisEditProps = {
 export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (context) => {
   const session = await getSession(context);
 
-  if (!session) {
-    // FIXME: [Blocked by Auth Rework] Change redirection destination - user not logged in yet
-    return {
-      redirect: {
-        permanent: false,
-        destination: GeneralPath.HOME,
-      },
-    };
-  }
-
   return {
     props: {
-      response: await getServerSidePropsPost(context, ApiRequestSender.analysisGet, session?.user?.id.toString()),
+      response: await getServerSidePropsPost(
+        context,
+        ApiRequestSender.analysisGet,
+        session?.user?.id.toString(),
+      ),
     },
   };
 };
@@ -63,48 +57,52 @@ const AnalysisEdit = ({response}: AnalysisEditProps) => {
     const post = response as CharaAnalysisBody;
 
     return (
-      <AnalysisFormCharaEdit
-        initialAnalysis={{
-          lang: post.lang,
-          unitId: post.unitId,
-          type: post.type,
-          summary: post.summary,
-          summonResult: post.summonResult,
-          passives: post.passives,
-          normalAttacks: post.normalAttacks,
-          tipsBuilds: post.tipsBuilds,
-          forceStrikes: post.forceStrikes,
-          skills: post.skills,
-          videos: post.videos,
-          story: post.story,
-          keywords: post.keywords,
-        }}
-        fnSendRequest={ApiRequestSender.analysisEditChara}
-      />
+      <ProtectedLayout>
+        <AnalysisFormCharaEdit
+          initialAnalysis={{
+            lang: post.lang,
+            unitId: post.unitId,
+            type: post.type,
+            summary: post.summary,
+            summonResult: post.summonResult,
+            passives: post.passives,
+            normalAttacks: post.normalAttacks,
+            tipsBuilds: post.tipsBuilds,
+            forceStrikes: post.forceStrikes,
+            skills: post.skills,
+            videos: post.videos,
+            story: post.story,
+            keywords: post.keywords,
+          }}
+          fnSendRequest={ApiRequestSender.analysisEditChara}
+        />
+      </ProtectedLayout>
     );
   }
   if (analysisType === UnitType.DRAGON) {
     const post = response as DragonAnalysisBody;
 
     return (
-      <AnalysisFormDragonEdit
-        initialAnalysis={{
-          lang: post.lang,
-          unitId: post.unitId,
-          type: post.type,
-          summary: post.summary,
-          summonResult: post.summonResult,
-          passives: post.passives,
-          normalAttacks: post.normalAttacks,
-          ultimate: post.ultimate,
-          notes: post.notes,
-          suitableCharacters: post.suitableCharacters,
-          videos: post.videos,
-          story: post.story,
-          keywords: post.keywords,
-        }}
-        fnSendRequest={ApiRequestSender.analysisEditDragon}
-      />
+      <ProtectedLayout>
+        <AnalysisFormDragonEdit
+          initialAnalysis={{
+            lang: post.lang,
+            unitId: post.unitId,
+            type: post.type,
+            summary: post.summary,
+            summonResult: post.summonResult,
+            passives: post.passives,
+            normalAttacks: post.normalAttacks,
+            ultimate: post.ultimate,
+            notes: post.notes,
+            suitableCharacters: post.suitableCharacters,
+            videos: post.videos,
+            story: post.story,
+            keywords: post.keywords,
+          }}
+          fnSendRequest={ApiRequestSender.analysisEditDragon}
+        />
+      </ProtectedLayout>
     );
   }
 
@@ -116,6 +114,7 @@ const AnalysisEdit = ({response}: AnalysisEditProps) => {
       )}
     </Alert>
   );
-};
+}
+;
 
 export default AnalysisEdit;

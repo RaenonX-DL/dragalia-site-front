@@ -67,6 +67,8 @@ const nextAuthOptions: NextAuthOptions = {
 
       return session;
     },
+    // relative callback url won't work without this
+    redirect: async (url: string): Promise<string> => url,
   },
 
   // UI customizations

@@ -232,6 +232,7 @@ export type TranslationStruct = {
       },
     },
     error: {
+      401: PageMetaTranslations,
       404: PageMetaTranslations,
     }
     temp: {

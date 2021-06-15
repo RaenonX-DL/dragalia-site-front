@@ -316,6 +316,10 @@ export const translation: TranslationStruct = {
       },
     },
     error: {
+      401: {
+        title: 'Access Denied',
+        description: 'Please check your current login status.',
+      },
       404: {
         title: 'Page not exists',
         description: 'The page does not exist.',
