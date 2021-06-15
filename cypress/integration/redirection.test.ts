@@ -61,20 +61,29 @@ describe('Page redirection behavior', () => {
   });
 
   it('redirects post page to i18n specific page w/ trailing slash', () => {
-    cy.visit('/analysis/27')
+    // 404 doesn't matter
+    cy.visit('/analysis/9999999', {failOnStatusCode: false})
       .location('pathname')
-      .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}/analysis/27`));
+      .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}/analysis/9999999`));
   });
 
   it('redirects post page to i18n specific page w/o trailing slash', () => {
-    cy.visit('/analysis/27/')
+    // 404 doesn't matter
+    cy.visit('/analysis/9999999/', {failOnStatusCode: false})
       .location('pathname')
-      .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}/analysis/27`));
+      .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}/analysis/9999999`));
   });
 
   it('redirects according to language in cookies', () => {
-    cy.visit('/analysis/27', {headers: {cookie: `${CookiesKeys.LANG}=${SupportedLanguages.EN}`}})
+    // 404 doesn't matter
+    cy.visit(
+      '/analysis/9999999',
+      {
+        failOnStatusCode: false,
+        headers: {cookie: `${CookiesKeys.LANG}=${SupportedLanguages.EN}`},
+      },
+    )
       .location('pathname')
-      .then((path) => expect(path).to.equal(`/${SupportedLanguages.EN}/analysis/27`));
+      .then((path) => expect(path).to.equal(`/${SupportedLanguages.EN}/analysis/9999999`));
   });
 });
