@@ -25,7 +25,6 @@ Main | Dev
 :---: | :---:
 [![front-grade-badge-main]][front-cq-link-main] | [![front-grade-badge-dev]][front-cq-link-dev]
 [![front-coverage-badge-main]][front-cq-link-main] | [![front-coverage-badge-dev]][front-cq-link-dev]
-[![front-cypress-badge-main]][front-cypress-link] | [![front-cypress-badge-dev]][front-cypress-link]
 
 Frontend of [Dragalia Lost info website by OM][front-site].
 
@@ -33,9 +32,9 @@ Frontend of [Dragalia Lost info website by OM][front-site].
 
 Name | Required/Optional | Description
 :---: | :---: | :---:
-NEXT_PUBLIC_API_ROOT | Required | Root URL of the backend. This should **not** end with a slash (`/`).
-NEXT_PUBLIC_RESOURCE_ROOT | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
-NEXT_PUBLIC_DEPOT_ROOT | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
+`NEXT_PUBLIC_API_ROOT` | Required | Root URL of the backend. This should **not** end with a slash (`/`).
+`NEXT_PUBLIC_RESOURCE_ROOT` | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
+`NEXT_PUBLIC_DEPOT_ROOT` | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
 
 For the [current deployed website][front-site], `NEXT_PUBLIC_API_ROOT` is `https://dl-back.raenonx.cc`.
 
