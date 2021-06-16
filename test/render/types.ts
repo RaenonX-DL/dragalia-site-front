@@ -12,6 +12,7 @@ export type RenderOptions = {
   preloadState?: PreloadedReduxState,
   routerOptions?: Partial<NextRouter>,
   user?: Partial<User>,
+  hasSession?: boolean,
 }
 
 export type RenderAppReturns = RenderResult & {
