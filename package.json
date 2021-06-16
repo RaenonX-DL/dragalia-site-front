@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "nodemon",
     "test": "jest --config jest.config.ts --maxWorkers=50% --colors",
-    "test:cypress": "npx cypress open",
+    "test:cypress": "cypress run",
+    "test:ci": "start-test 3000 test:cypress",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --fix --ext .ts,.tsx",
     "build": "npm-run-all build:*",
