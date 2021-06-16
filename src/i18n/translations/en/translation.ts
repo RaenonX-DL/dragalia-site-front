@@ -274,7 +274,7 @@ export const translation: TranslationStruct = {
       },
       analysisPost: {
         title: '【Analysis】{{name}}',
-        description: 'Analysis of {{name}}.',
+        description: '{{summary}}',
       },
       home: {
         title: 'Homepage',
@@ -282,7 +282,7 @@ export const translation: TranslationStruct = {
       },
       questEdit: {
         title: 'Edit quest guide - {{title}}',
-        description: 'Page to edit quest guide #Q{{pid}}.',
+        description: 'Page to edit quest guide: {{title}}.',
       },
       questList: {
         title: 'Index of quest guides',
