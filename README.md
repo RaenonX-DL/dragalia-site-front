@@ -23,8 +23,8 @@
 
 Main | Dev
 :---: | :---:
-[![front-grade-badge-main]][front-cq-link-main] | [![front-coverage-badge-main]][front-cq-link-main]
-[![front-grade-badge-dev]][front-cq-link-dev] | [![front-coverage-badge-dev]][front-cq-link-dev]
+[![front-grade-badge-main]][front-cq-link-main] | [![front-grade-badge-dev]][front-cq-link-dev]
+[![front-coverage-badge-main]][front-cq-link-main] | [![front-coverage-badge-dev]][front-cq-link-dev]
 [![front-cypress-badge-main]][front-cypress-link] | [![front-cypress-badge-dev]][front-cypress-link]
 
 Frontend of [Dragalia Lost info website by OM][front-site].
