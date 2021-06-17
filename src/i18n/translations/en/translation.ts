@@ -236,11 +236,6 @@ export const translation: TranslationStruct = {
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
     },
-    alert: {
-      ads: 'Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)',
-      migration: 'The website is currently under a infrastructure renovation. ' +
-        'Please contact me via any SNS if you consistently encounter any problem, thanks!',
-    },
   },
   misc: {
     add: 'Add',

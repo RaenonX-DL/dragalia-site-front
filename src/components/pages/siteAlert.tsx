@@ -2,25 +2,30 @@ import React from 'react';
 
 import {Alert} from 'react-bootstrap';
 
-import {useI18n} from '../../i18n/hook';
+import {AppReactContext} from '../../context/app/main';
 import {Markdown} from '../elements/markdown/main';
+import styles from './siteAlert.module.css';
 
 
 export const SiteAlert = () => {
-  const {t} = useI18n();
+  const [alertIdx, setAlertIdx] = React.useState(0);
+  const alerts = React.useContext(AppReactContext)?.alerts;
+
+  if (!alerts?.length) {
+    return <></>;
+  }
 
   return (
-    <>
-      <Alert variant="info" className="mb-0 py-0">
+    <div className={styles.container}>
+      <Alert
+        variant={alerts[alertIdx].variant}
+        className={`${styles.text} mb-0 py-0`}
+        onAnimationIteration={() => setAlertIdx((alertIdx + 1) % alerts.length)}
+      >
         <Markdown>
-          {t((t) => t.message.alert.ads)}
+          {alerts[alertIdx].message}
         </Markdown>
       </Alert>
-      <Alert variant="warning" className="mb-0 py-0">
-        <Markdown>
-          {t((t) => t.message.alert.migration)}
-        </Markdown>
-      </Alert>
-    </>
+    </div>
   );
 };

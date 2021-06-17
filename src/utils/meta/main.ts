@@ -22,7 +22,10 @@ export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
 
   // Early return if `pathname` is not a valid page path - consider as 404
   if (!isPagePath(pathnameNoLang)) {
-    return {...onNotFound(context, metaTFunc(metaTFuncOnNotFound))};
+    return {
+      ...onNotFound(context, metaTFunc(metaTFuncOnNotFound)),
+      alerts: [],
+    };
   }
 
   const metaResponse = await getPageMetaPromise({lang, pathnameNoLang, context});
@@ -30,10 +33,12 @@ export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
   if (isMetaResponseFailure(metaResponse)) {
     return {
       ...onMetaResponseFailed(context, metaResponse, metaTFunc(metaTFuncOnNotFound)),
+      alerts: [],
     };
   }
 
   return {
     ...metaTFunc(metaTransFunctions[pathnameNoLang], {...metaResponse.params}),
+    alerts: metaResponse.alerts,
   };
 };

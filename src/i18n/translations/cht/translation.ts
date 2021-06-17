@@ -209,10 +209,6 @@ export const translation: TranslationStruct = {
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
     },
-    alert: {
-      ads: '每月捐款支持 OM 與我 (RaenonX) 以外，還可以無廣告瀏覽網站！[詳情請點此](/thanks)',
-      migration: '目前網站基礎正在翻新中。使用過程中若有任何持續問題，請到各大 SNS 上聯繫我，感謝！',
-    },
   },
   misc: {
     add: '新增',

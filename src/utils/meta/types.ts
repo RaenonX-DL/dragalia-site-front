@@ -1,4 +1,4 @@
-import {ApiResponseCode, BaseResponse, FailedResponse} from '../../api-def/api';
+import {AlertEntry, ApiResponseCode, BaseResponse, FailedResponse} from '../../api-def/api';
 
 export const isMetaResponseFailure = (response: BaseResponse): response is FailedResponse => {
   return !!response.code && response.code !== ApiResponseCode.SUCCESS;
@@ -9,4 +9,6 @@ export type PageHtmlMeta = {
   description: string,
 }
 
-export type PageMeta = PageHtmlMeta
+export type PageMeta = PageHtmlMeta & {
+  alerts: Array<AlertEntry>,
+}
