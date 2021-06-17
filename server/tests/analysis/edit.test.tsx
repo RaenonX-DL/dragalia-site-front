@@ -17,7 +17,7 @@ import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {renderReact} from '../../../test/render/main';
 
 
-describe('Analysis edit request', () => {
+describe('Analysis edit page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 

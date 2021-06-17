@@ -16,7 +16,7 @@ import {getTFunction} from '../../../src/i18n/utils';
 import {renderReact} from '../../../test/render/main';
 
 
-describe('Analysis get request', () => {
+describe('Analysis page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 
@@ -144,5 +144,41 @@ describe('Analysis get request', () => {
     expect(screen.queryByText(charaResponse.summary)).not.toBeInTheDocument();
     expect(screen.queryByText(dragonResponse.summary)).not.toBeInTheDocument();
     expect(screen.queryByText(alertText)).toBeInTheDocument();
+  });
+
+  it('shows at least 3 ads (chara)', () => {
+    renderReact(
+      () => <AnalysisPage response={charaResponse}/>,
+      {user: {isAdmin: true}},
+    );
+
+    expect(screen.queryAllByTestId('ads-in-post').length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('does not show ads if should not show (chara)', () => {
+    renderReact(
+      () => <AnalysisPage response={charaResponse}/>,
+      {user: {adsFreeExpiry: new Date()}},
+    );
+
+    expect(screen.queryByTestId('ads-in-post')).not.toBeInTheDocument();
+  });
+
+  it('shows at least 3 ads (dragon)', () => {
+    renderReact(
+      () => <AnalysisPage response={dragonResponse}/>,
+      {user: {isAdmin: true}},
+    );
+
+    expect(screen.queryAllByTestId('ads-in-post').length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('does not show ads if should not show (dragon)', () => {
+    renderReact(
+      () => <AnalysisPage response={dragonResponse}/>,
+      {user: {adsFreeExpiry: new Date()}},
+    );
+
+    expect(screen.queryByTestId('ads-in-post')).not.toBeInTheDocument();
   });
 });
