@@ -12,17 +12,11 @@ export const AnalysisOutputDragonBody = ({analysis}: SectionProps<DragonAnalysis
   return (
     <>
       <h3 className="mb-3">{t((t) => t.posts.analysis.ultimate)}</h3>
-      <div className="rounded bg-black-32 p-3 mb-3">
-        <Markdown>{analysis.ultimate}</Markdown>
-      </div>
+      <Markdown>{analysis.ultimate}</Markdown>
       <h3 className="mb-3">{t((t) => t.posts.analysis.notesDragon)}</h3>
-      <div className="rounded bg-black-32 p-3 mb-3">
-        <Markdown>{analysis.notes}</Markdown>
-      </div>
+      <Markdown>{analysis.notes}</Markdown>
       <h3 className="mb-3">{t((t) => t.posts.analysis.suitable)}</h3>
-      <div className="rounded bg-black-32 p-3 mb-3">
-        <Markdown>{analysis.suitableCharacters}</Markdown>
-      </div>
+      <Markdown>{analysis.suitableCharacters}</Markdown>
     </>
   );
 };

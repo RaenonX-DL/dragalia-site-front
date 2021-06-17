@@ -1,3 +1,9 @@
+.mdBody {
+  border-radius: 0.25rem;
+  background-color: #202020;
+  padding: 1rem;
+}
+
 .mdBody h1,
 .mdBody h2,
 .mdBody h3,
@@ -26,9 +32,9 @@
 }
 
 .mdBody blockquote {
-  background-color: #222;
-  border-radius: 10px;
+  border-left: 5px solid #5a85c7;
   color: #ccc;
+  margin: 0;
 }
 
 .mdBody strong {

@@ -20,9 +20,7 @@ export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGe
           <h3 className="mb-3">
             {t((t) => t.posts.analysis.forceStrike)}
           </h3>
-          <div className="rounded bg-black-32 p-3">
-            <Markdown>{analysis.forceStrikes || 'N/A'}</Markdown>
-          </div>
+          <Markdown>{analysis.forceStrikes || 'N/A'}</Markdown>
         </>
       }
       <h3 className="my-3">
