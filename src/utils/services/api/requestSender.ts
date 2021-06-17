@@ -307,13 +307,14 @@ export class ApiRequestSender {
    * Send a request to get the generic page meta.
    *
    * @param {string} uid UID
+   * @param {SupportedLanguages} lang current page language
    * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
    */
-  static getPageMeta(uid: string) {
+  static getPageMeta(uid: string, lang: SupportedLanguages) {
     return ApiRequestSender.sendRequest<PageMetaResponse | FailedResponse, PageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_GENERAL,
-      {uid},
+      {uid, lang},
     );
   }
 

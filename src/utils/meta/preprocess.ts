@@ -20,7 +20,7 @@ export const getPageMetaPromise = async ({
 }: PageMetaPromiseArgs): Promise<PageMetaResponse | FailedResponse> => {
   const uid = (await getSession(context.ctx))?.user?.id.toString() || '';
 
-  let responsePromise = ApiRequestSender.getPageMeta(uid);
+  let responsePromise = ApiRequestSender.getPageMeta(uid, lang);
 
   if (isPostPath(pathnameNoLang)) {
     responsePromise = ApiRequestSender.getPostMeta(
