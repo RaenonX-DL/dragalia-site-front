@@ -1,9 +1,6 @@
 # IntelliJ project files
 /.idea
 
-# scss files - these should be compiled to css before commmit
-*.scss
-
 # dependencies
 /node_modules
 /.pnp

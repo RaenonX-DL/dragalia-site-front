@@ -1,9 +1,71 @@
 .mdBody {
-  border-radius: 0.25rem;
+  overflow: auto;
   background-color: #202020;
-  padding: 1rem;
+  border: transparent solid 1rem;
+  border-radius: 0.25rem;
 }
-
+.mdBody table {
+  width: 100%;
+  padding-right: 30px;
+}
+.mdBody table tr {
+  background-color: #0e0e0e;
+  border: 1px solid #656565;
+}
+.mdBody table th,
+.mdBody table td {
+  padding: 0.65rem 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.mdBody table tbody tr:nth-of-type(odd) {
+  background-color: #141414;
+}
+.mdBody table tbody tr:nth-of-type(even) {
+  background-color: #202020;
+}
+.mdBody table tbody tr:hover {
+  background-color: #042a3b;
+}
+@media screen and (max-width: 992px) {
+  .mdBody table thead {
+    display: none;
+  }
+  .mdBody table td {
+    border-bottom: 1px solid #656565;
+    display: block;
+    text-align: right;
+  }
+  .mdBody table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+  .mdBody table td:last-child {
+    border-bottom: 0;
+  }
+  .mdBody table tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .mdBody table tr:last-child {
+    margin-bottom: 0;
+  }
+}
+.mdBody pre {
+  background-color: #151515;
+  color: #0f0;
+  padding: 10px;
+  border-radius: 0.25rem;
+}
+.mdBody blockquote {
+  border-left: 5px solid #80b2ff;
+  color: #aaa;
+  margin: 0;
+}
+.mdBody strong {
+  color: #80b2ff;
+}
 .mdBody h1,
 .mdBody h2,
 .mdBody h3,
@@ -13,60 +75,4 @@
   color: skyblue;
 }
 
-.mdBody pre {
-  background-color: #151515;
-  color: #0f0;
-  padding: 10px;
-  border-radius: 0.25rem;
-}
-
-.mdBody table {
-  display: table;
-  width: 100%;
-  margin-bottom: 1rem;
-  border: 0;
-  color: #fff;
-  background-color: #0e0e0e;
-  border-collapse: collapse;
-  border-spacing: 2px;
-}
-
-.mdBody blockquote {
-  border-left: 5px solid #5a85c7;
-  color: #ccc;
-  margin: 0;
-}
-
-.mdBody strong {
-  color: #80b2ff;
-}
-
-.mdBody table,
-.mdBody thead,
-.mdBody th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #dee2e6;
-}
-
-.mdBody th,
-.mdBody td {
-  padding: 0.75rem;
-  border: 1px solid #454d55;
-}
-
-.mdBody thead th,
-.mdBody tbody td {
-  border-bottom-width: 2px;
-}
-
-.mdBody tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.mdBody tbody tr:hover {
-  background-color: rgb(50, 50, 50);
-}
-
-.mdBody tbody tr:hover:nth-of-type(odd) {
-  background-color: rgb(50, 50, 50);
-}
+/*# sourceMappingURL=main.module.css.map */
