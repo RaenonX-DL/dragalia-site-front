@@ -97,20 +97,18 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
       </div>
       {
         context?.session?.user.isAdmin &&
-        <div className="mb-2">
-          <PostManageBar
-            newButtons={[
-              {
-                url: GeneralPath.ANALYSIS_NEW_CHARA,
-                title: t((t) => t.posts.manage.addChara),
-              },
-              {
-                url: GeneralPath.ANALYSIS_NEW_DRAGON,
-                title: t((t) => t.posts.manage.addDragon),
-              },
-            ]}
-          />
-        </div>
+        <PostManageBar
+          newButtons={[
+            {
+              url: GeneralPath.ANALYSIS_NEW_CHARA,
+              title: t((t) => t.posts.manage.addChara),
+            },
+            {
+              url: GeneralPath.ANALYSIS_NEW_DRAGON,
+              title: t((t) => t.posts.manage.addDragon),
+            },
+          ]}
+        />
       }
     </>
   );

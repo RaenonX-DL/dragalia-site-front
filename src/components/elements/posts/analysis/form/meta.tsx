@@ -42,6 +42,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
     <Form.Row>
       <Col lg={3}>
         <Form.Control
+          className="mb-3"
           placeholder={t((t) => t.posts.info.id)}
           isValid={isValid} isInvalid={!isValid}
           onChange={(e) => {
@@ -49,13 +50,14 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
               setPayload('unitId', +e.target.value);
             }
           }}
-          value={payload.unitId} disabled={isPreloaded || isChecking}
+          value={payload.unitId}
+          disabled={isPreloaded || isChecking}
         />
       </Col>
       <Col lg={6} className={unitInfo ? 'pr-0' : ''}>
         <Row noGutters>
           <Col>
-            <Form.Control className="mb-2" type="text" value={unitInfo?.name[lang] || ''} disabled/>
+            <Form.Control className="mb-3" type="text" value={unitInfo?.name[lang] || ''} disabled/>
           </Col>
           {
             unitInfo &&
