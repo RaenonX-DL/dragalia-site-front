@@ -4,6 +4,7 @@
 
 .text {
   animation: marquee 7s linear infinite;
+  border-radius: 0 !important;
 }
 
 @keyframes marquee {

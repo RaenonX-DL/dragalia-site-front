@@ -19,7 +19,7 @@ export const SiteAlert = () => {
     <div className={styles.container}>
       <Alert
         variant={alerts[alertIdx].variant}
-        className={`${styles.text} mb-0 py-0`}
+        className={`${styles.text} mb-0 mx-n1 py-2`}
         onAnimationIteration={() => setAlertIdx((alertIdx + 1) % alerts.length)}
       >
         <Markdown overrideStyle={false}>
