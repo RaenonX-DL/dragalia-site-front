@@ -9,7 +9,8 @@ import {RouterContext} from 'next/dist/next-server/lib/router-context';
 import {AppReactContext} from '../../src/context/app/main';
 import {AppReactContextValue} from '../../src/context/app/types';
 import {ReduxProvider} from '../../src/state/provider';
-import {createStore, ReduxStore} from '../../src/state/store';
+import {createStore} from '../../src/state/store';
+import {ReduxStore} from '../../src/state/types';
 import {makeRouter} from './router';
 import {RenderOptions, RenderAppReturns} from './types';
 

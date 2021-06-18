@@ -1,11 +1,11 @@
 import React from 'react';
 
+import {useDispatch} from 'react-redux';
+
 import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
-import {AlertPayloadMaker} from '../../../../../state/alert/utils';
-import {useDispatch} from '../../../../../state/store';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
@@ -68,14 +68,15 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
       return;
     }
 
-    // TEST: Alert displayed after publish
-
     fnSendRequest(formState.payload)
       .then((data) => {
         if (data.success) {
           window.onbeforeunload = null;
+          dispatch(alertDispatchers.showAlert({
+            message: t((t) => t.posts.message.published),
+            variant: 'success',
+          }));
           window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
-          dispatch(alertDispatchers.showAlert(AlertPayloadMaker.postPublished(t)));
         } else {
           setModalState({
             show: true,

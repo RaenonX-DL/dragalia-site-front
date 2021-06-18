@@ -5,8 +5,7 @@ import {User} from 'next-auth';
 import {NextRouter} from 'next/router';
 
 import {AlertEntry} from '../../src/api-def/api';
-import {PreloadedReduxState} from '../../src/state/state';
-import {ReduxStore} from '../../src/state/store';
+import {PreloadedReduxState, ReduxStore} from '../../src/state/types';
 
 
 export type RenderOptions = {

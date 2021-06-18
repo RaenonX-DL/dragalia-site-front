@@ -3,7 +3,7 @@ import {useDispatch as useReduxDispatch} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './reducer';
-import {PreloadedReduxState} from './state';
+import {Dispatcher, PreloadedReduxState} from './types';
 
 
 export const createStore = (preloadedState?: PreloadedReduxState) => configureStore({
@@ -20,12 +20,4 @@ export const createStore = (preloadedState?: PreloadedReduxState) => configureSt
   },
 });
 
-export type ReduxStore = ReturnType<typeof createStore>;
-
-export type Dispatcher = ReduxStore['dispatch'];
-
-/**
- * Return the dispatch function which dispatches an action (both sync or async).
- * @return {never}
- */
 export const useDispatch: () => Dispatcher = () => useReduxDispatch<Dispatcher>();

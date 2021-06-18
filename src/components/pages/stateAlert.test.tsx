@@ -27,7 +27,6 @@ describe('State alert', () => {
       {
         preloadState: {
           alert: {
-            show: true,
             message: 'ALERT',
             variant: 'warning',
           },
@@ -52,7 +51,6 @@ describe('State alert', () => {
       {
         preloadState: {
           alert: {
-            show: true,
             message: 'ALERT',
             variant: 'warning',
           },
