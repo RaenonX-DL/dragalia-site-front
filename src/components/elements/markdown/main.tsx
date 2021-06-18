@@ -3,8 +3,9 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
+import {components} from './components';
 import styles from './main.module.css';
-import {renderers} from './renderers';
+
 
 type Props = {
   children: string,
@@ -16,7 +17,7 @@ export const Markdown = ({children, overrideStyle = true}: Props) => {
 
   return (
     <div ref={ref} className={overrideStyle ? styles.mdBody : ''}>
-      <ReactMarkdown plugins={[gfm]} components={renderers}>
+      <ReactMarkdown plugins={[gfm]} components={components}>
         {children}
       </ReactMarkdown>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const isImage = (imageUrl: string) => {
   return imageUrl.endsWith('.jpeg') ||
     imageUrl.endsWith('.png') ||
