@@ -24,6 +24,7 @@ div.btn-group-toggle > label.btn-outline-secondary:hover {
     background-position: 100% 50%;
   }
 }
+/* stylelint-disable no-invalid-position-at-import-rule */
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

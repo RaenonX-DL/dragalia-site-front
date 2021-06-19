@@ -14,6 +14,7 @@
     "test:cypress": "cypress run",
     "test:ci": "start-test 3000 test:cypress",
     "lint": "eslint src --ext .ts,.tsx",
+    "lint:css": "stylelint **/*.scss",
     "lint:fix": "eslint src --fix --ext .ts,.tsx",
     "build": "npm-run-all build:*",
     "build:next": "next build",

@@ -4,10 +4,7 @@ plugins:
 extends:
   - stylelint-config-standard
 
-ignoreFiles:
-  # Automatically compiled from scss file
-  - ./src/bootstrap.css
-
 rules:
+  # Override @ rules
   at-rule-no-unknown: null
   scss/at-rule-no-unknown: true

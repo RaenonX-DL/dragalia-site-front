@@ -152,6 +152,7 @@ $card-bg: colors.$color-black-32;
 // region Bootstrap & default variables
 
 // This must be placed after all variable overrides above
+/* stylelint-disable no-invalid-position-at-import-rule */
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // endregion
