@@ -1,11 +1,14 @@
 @use "../../../../public/colors";
 
 $strong-color: #80b2ff;
+$body-margin: 0.75rem;
+$bottom-margin: 0.5rem;
 
 .mdBody {
   overflow: auto;
   background-color: colors.$color-black-32;
-  border: transparent solid 1rem;
+  border: transparent solid $body-margin;
+  border-bottom: 0;
   border-radius: 0.25rem;
 
   table {
@@ -13,10 +16,15 @@ $strong-color: #80b2ff;
 
     width: 100%;
     padding-right: 30px;
+    margin-bottom: $bottom-margin;
 
     tr {
       background-color: #0e0e0e;
       border: 1px solid $table-border-color;
+    }
+
+    tr:last-child {
+      margin-bottom: 0;
     }
 
     th,
@@ -62,7 +70,7 @@ $strong-color: #80b2ff;
 
       tr {
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: $bottom-margin;
       }
 
       tr:last-child {
@@ -73,7 +81,7 @@ $strong-color: #80b2ff;
 
   div {
     &.text {
-      margin: 0.5rem 0;
+      margin-bottom: $bottom-margin;
     }
 
     &.youtubeEmbed {

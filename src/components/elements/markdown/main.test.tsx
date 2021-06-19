@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {screen} from '@testing-library/react';
+import {fireEvent, screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../test/render/main';
+import {translation as translationEN} from '../../../i18n/translations/en/translation';
 import {Markdown} from './main';
 
 
@@ -34,6 +35,15 @@ describe('Markdown', () => {
 
     const imageElement = screen.getByAltText('image');
     expect(imageElement).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
+  });
+
+  it('renders gif as a clickable button', async () => {
+    renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
+
+    const openButton = screen.getByText(translationEN.misc.openGif);
+    fireEvent.click(openButton);
+
+    expect(screen.getByAltText('image')).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.gif');
   });
 
   it('renders texts as <div>', async () => {

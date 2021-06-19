@@ -35,7 +35,7 @@ export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionPro
       {
         analysis.normalAttacks &&
         <>
-          <h3 className="mb-3">
+          <h3 className="my-3">
             {t((t) => t.posts.analysis.normalAttack)}
           </h3>
           <Markdown>{analysis.normalAttacks}</Markdown>

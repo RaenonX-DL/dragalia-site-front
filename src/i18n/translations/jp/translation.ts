@@ -212,6 +212,7 @@ export const translation: TranslationStruct = {
     add: '追加',
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
+    openGif: '點擊以開啟 GIF 圖片',
     remove: '削除',
     search: '検索',
     searchKeyword: 'Keyword',

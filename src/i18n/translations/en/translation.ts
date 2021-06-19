@@ -241,6 +241,7 @@ export const translation: TranslationStruct = {
     add: 'Add',
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
+    openGif: 'Click to open GIF',
     remove: 'Remove',
     search: 'Search',
     searchKeyword: 'Keyword',

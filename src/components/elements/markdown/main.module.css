@@ -1,16 +1,21 @@
 .mdBody {
   overflow: auto;
   background-color: #202020;
-  border: transparent solid 1rem;
+  border: transparent solid 0.75rem;
+  border-bottom: 0;
   border-radius: 0.25rem;
 }
 .mdBody table {
   width: 100%;
   padding-right: 30px;
+  margin-bottom: 0.5rem;
 }
 .mdBody table tr {
   background-color: #0e0e0e;
   border: 1px solid #656565;
+}
+.mdBody table tr:last-child {
+  margin-bottom: 0;
 }
 .mdBody table th,
 .mdBody table td {
@@ -45,14 +50,14 @@
   }
   .mdBody table tr {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
   .mdBody table tr:last-child {
     margin-bottom: 0;
   }
 }
 .mdBody div.text {
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 }
 .mdBody div.youtubeEmbed {
   position: relative;

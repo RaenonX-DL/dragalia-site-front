@@ -203,6 +203,7 @@ export type TranslationStruct = {
     add: string,
     omMember: string,
     omGroup: string,
+    openGif: string,
     remove: string,
     search: string,
     searchKeyword: string,
