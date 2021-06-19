@@ -207,6 +207,11 @@ export const translation: TranslationStruct = {
         '現在 **高難易度クエスト攻略、キャラドラゴン評価** のページの一部は完成しています、ご覧ください。\n\n' +
         'ページを選択したら說明もついてます。',
     },
+    error: {
+      auth: {
+        noProvider: 'No authentication providers available.',
+      },
+    },
   },
   misc: {
     add: '追加',
@@ -279,6 +284,12 @@ export const translation: TranslationStruct = {
         skillAtk: {
           title: 'TBA',
           description: 'description',
+        },
+      },
+      auth: {
+        signIn: {
+          title: 'Login',
+          description: 'Sign-in to the website to enable more features.',
         },
       },
     },

@@ -198,6 +198,11 @@ export type TranslationStruct = {
       fetching: string,
       welcome: string,
     },
+    error: {
+      auth: {
+        noProvider: string,
+      }
+    }
   },
   misc: {
     add: string,
@@ -227,6 +232,9 @@ export type TranslationStruct = {
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
       },
+      auth: {
+        signIn: PageMetaTranslations,
+      }
     },
     error: {
       401: PageMetaTranslations,
@@ -320,4 +328,3 @@ export type TranslationStruct = {
     },
   },
 }
-;

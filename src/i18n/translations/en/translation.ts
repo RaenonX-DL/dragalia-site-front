@@ -1,5 +1,6 @@
 import {TranslationStruct} from '../definition';
 
+
 export const translation: TranslationStruct = {
   donation: {
     tierS1: 'Tier S-1',
@@ -236,6 +237,11 @@ export const translation: TranslationStruct = {
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
     },
+    error: {
+      auth: {
+        noProvider: 'No authentication providers available.',
+      },
+    },
   },
   misc: {
     add: 'Add',
@@ -308,6 +314,12 @@ export const translation: TranslationStruct = {
         skillAtk: {
           title: 'Attacking skill lookup',
           description: 'Page to search for all attacking skills in the game.',
+        },
+      },
+      auth: {
+        signIn: {
+          title: 'Login',
+          description: 'Sign-in to the website to enable more features.',
         },
       },
     },

@@ -72,7 +72,9 @@ const nextAuthOptions: NextAuthOptions = {
   },
 
   // UI customizations
-  theme: 'dark',
+  pages: {
+    signIn: '/auth/signin',
+  },
 };
 
 export default NextAuth(nextAuthOptions);

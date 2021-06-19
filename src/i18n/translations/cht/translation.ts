@@ -1,5 +1,6 @@
 import {TranslationStruct} from '../definition';
 
+
 export const translation: TranslationStruct = {
   donation: {
     tierS1: 'Tier S-1',
@@ -209,6 +210,11 @@ export const translation: TranslationStruct = {
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
     },
+    error: {
+      auth: {
+        noProvider: '無可用登入服務。',
+      },
+    },
   },
   misc: {
     add: '新增',
@@ -281,6 +287,12 @@ export const translation: TranslationStruct = {
         skillAtk: {
           title: '攻擊技能搜尋',
           description: '各攻擊技能資訊搜尋頁面。',
+        },
+      },
+      auth: {
+        signIn: {
+          title: '登入',
+          description: '登入網站以開啟更多功能。',
         },
       },
     },

@@ -1,4 +1,4 @@
-import {GeneralPath, PagePath, PostPath} from '../../const/path/definitions';
+import {AuthPath, GeneralPath, PagePath, PostPath} from '../../const/path/definitions';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../i18n/types';
 
@@ -19,6 +19,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.SKILL_ATK]: (t) => t.meta.inUse.gameData.skillAtk,
   [GeneralPath.ABOUT]: (t) => t.meta.inUse.about,
   [GeneralPath.SPECIAL_THANKS]: (t) => t.meta.inUse.thanks,
+  [AuthPath.SIGN_IN]: (t) => t.meta.inUse.auth.signIn,
   // Constructing paths
   [PostPath.MISC]: (t) => t.meta.temp.constructing,
   [GeneralPath.MISC_LIST]: (t) => t.meta.temp.constructing,

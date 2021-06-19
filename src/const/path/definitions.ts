@@ -35,13 +35,17 @@ export enum GeneralPath {
   SPECIAL_THANKS = '/thanks',
 }
 
+export enum AuthPath {
+  SIGN_IN = '/auth/signin'
+}
+
 export const allPaths = ([] as Array<PagePath>).concat(
-  ...[PostPath, GeneralPath].map(
+  ...[PostPath, GeneralPath, AuthPath].map(
     (paths) => Object.values(paths),
   ),
 );
 
-export type PagePath = PostPath | GeneralPath;
+export type PagePath = PostPath | GeneralPath | AuthPath;
 
 export const isPagePath = (path: string): path is PagePath => {
   return allPaths.some((pagePath) => pagePath === path);
