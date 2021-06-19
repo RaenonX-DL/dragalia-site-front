@@ -39,7 +39,6 @@
   .mdBody table td::before {
     content: attr(data-label);
     float: left;
-    font-weight: bold;
   }
   .mdBody table td:last-child {
     border-bottom: 0;

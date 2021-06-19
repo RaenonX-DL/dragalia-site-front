@@ -54,7 +54,6 @@ $strong-color: #80b2ff;
       td::before {
         content: attr(data-label);
         float: left;
-        font-weight: bold;
       }
 
       td:last-child {

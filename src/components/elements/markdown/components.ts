@@ -1,6 +1,7 @@
 import {Components} from 'react-markdown/src/ast-to-react';
 
 import {renderLink} from './components/link';
+import {renderTable, renderTableCell, renderTableRow} from './components/table';
 import {renderText} from './components/text';
 
 
@@ -12,4 +13,7 @@ export const components: Components = {
   // @ts-ignore
   a: renderLink,
   p: renderText,
+  table: renderTable,
+  tr: renderTableRow,
+  td: renderTableCell,
 };

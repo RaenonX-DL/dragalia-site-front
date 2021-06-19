@@ -41,4 +41,31 @@ describe('Markdown', () => {
 
     expect(screen.getByText('some text', {selector: 'div'})).toBeInTheDocument();
   });
+
+  it('renders a table correctly', async () => {
+    const tableText = 'head | col 2\n:---: | :---:\nX | Y';
+
+    renderReact(() => <Markdown>{tableText}</Markdown>);
+
+    expect(screen.getByText('head', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('col 2', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('X', {selector: 'td'})).toBeInTheDocument();
+    expect(screen.getByText('Y', {selector: 'td'})).toBeInTheDocument();
+  });
+
+  it('renders multiple tables correctly', async () => {
+    const tableText = 'head | col 2\n:---: | :---:\nX | Y';
+    const table2Text = 'footer | col B\n:---: | :---:\nZ | A';
+
+    renderReact(() => <Markdown>{`${tableText}\n\n${table2Text}`}</Markdown>);
+
+    expect(screen.getByText('head', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('col 2', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('X', {selector: 'td'})).toBeInTheDocument();
+    expect(screen.getByText('Y', {selector: 'td'})).toBeInTheDocument();
+    expect(screen.getByText('footer', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('col B', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('Z', {selector: 'td'})).toBeInTheDocument();
+    expect(screen.getByText('A', {selector: 'td'})).toBeInTheDocument();
+  });
 });
