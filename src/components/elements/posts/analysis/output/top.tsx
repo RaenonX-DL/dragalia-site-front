@@ -15,9 +15,7 @@ export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionPro
       <h3 className="mb-3">
         {t((t) => t.posts.analysis.summary)}
       </h3>
-      <div className="rounded bg-black-32 p-3">
-        <Markdown>{analysis.summary || 'N/A'}</Markdown>
-      </div>
+      <Markdown>{analysis.summary || 'N/A'}</Markdown>
       <AdsInPost/>
       {
         analysis.summonResult &&
@@ -26,27 +24,21 @@ export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionPro
           <h3 className="mb-3">
             {t((t) => t.posts.analysis.summonResult)}
           </h3>
-          <div className="rounded bg-black-32 p-3">
-            <Markdown>{analysis.summonResult}</Markdown>
-          </div>
+          <Markdown>{analysis.summonResult}</Markdown>
         </>
       }
       <hr/>
       <h3 className="mb-3">
         {t((t) => t.posts.analysis.passive)}
       </h3>
-      <div className="rounded bg-black-32 p-3 mb-3">
-        <Markdown>{analysis.passives || 'N/A'}</Markdown>
-      </div>
+      <Markdown>{analysis.passives || 'N/A'}</Markdown>
       {
         analysis.normalAttacks &&
         <>
           <h3 className="mb-3">
             {t((t) => t.posts.analysis.normalAttack)}
           </h3>
-          <div className="rounded bg-black-32 p-3 mb-3">
-            <Markdown>{analysis.normalAttacks}</Markdown>
-          </div>
+          <Markdown>{analysis.normalAttacks}</Markdown>
         </>
       }
     </>

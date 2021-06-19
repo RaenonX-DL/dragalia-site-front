@@ -26,7 +26,7 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
         {
           editPostUrl &&
             <NextLink href={editPostUrl} passHref>
-              <Button variant="outline-info" className="float-right ml-2">
+              <Button variant="outline-info" className="float-right ml-2 mb-3">
                 {t((t) => t.posts.manage.edit)}
               </Button>
             </NextLink>
@@ -34,7 +34,7 @@ export const PostManageBar = ({newButtons, editPostUrl}: PostManageBarProps) => 
         {
           newButtons.map(({url, title}, idx) => (
             <NextLink href={url} key={idx} passHref>
-              <Button variant="outline-success" className="float-right ml-2">
+              <Button variant="outline-success" className="float-right ml-2 mb-3">
                 {title || t((t) => t.posts.manage.add)}
               </Button>
             </NextLink>

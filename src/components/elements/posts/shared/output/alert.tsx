@@ -17,7 +17,7 @@ export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}
   const {t, lang} = useI18n();
 
   return (
-    <Alert variant="warning" className="mt-3">
+    <Alert variant="warning">
       {
         t(
           (t) => t.posts.message.altLang,
@@ -44,7 +44,7 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
   const {t} = useI18n();
 
   return (
-    <Alert variant="info" className="mt-3">
+    <Alert variant="info">
       {t((t) => t.posts.message.otherLang)}
       <br/>
       {

@@ -13,6 +13,7 @@ import {ResourceLoader} from '../../../../../../utils/services/resources/loader'
 import {AnalysisLookupInput} from './main';
 import {InputData} from './types';
 
+
 describe('Input of analysis lookup', () => {
   const elemEnums = {
     elemental: [
@@ -75,7 +76,7 @@ describe('Input of analysis lookup', () => {
   };
 
   beforeEach(() => {
-    onSearchRequested = jest.fn();
+    onSearchRequested = jest.fn().mockImplementation(() => jest.fn());
     getEnumElements = jest
       .spyOn(ResourceLoader, 'getEnumElements')
       .mockImplementation(async (callback) => {
@@ -231,6 +232,28 @@ describe('Input of analysis lookup', () => {
       types: [UnitType.CHARACTER],
       elements: [1],
       weaponTypes: [2],
+    };
+
+    expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
+  });
+
+  it('triggers search on entering `enter`', async () => {
+    await act(async () => {
+      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
+    });
+
+    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+
+    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
+    fireEvent.change(searchInput, {target: {value: 'test'}});
+
+    fireEvent.submit(searchInput);
+
+    const expectedInput: InputData = {
+      keyword: 'test',
+      types: [],
+      elements: [],
+      weaponTypes: [],
     };
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);

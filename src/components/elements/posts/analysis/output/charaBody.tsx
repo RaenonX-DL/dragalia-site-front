@@ -4,6 +4,7 @@ import {Col, Row} from 'react-bootstrap';
 
 import {CharaAnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
+import {AdsInPost} from '../../../common/ads/main';
 import {Markdown} from '../../../markdown/main';
 import {AnalysisSkillOutput} from './charaSkill';
 import {SectionProps} from './props';
@@ -20,9 +21,7 @@ export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGe
           <h3 className="mb-3">
             {t((t) => t.posts.analysis.forceStrike)}
           </h3>
-          <div className="rounded bg-black-32 p-3">
-            <Markdown>{analysis.forceStrikes || 'N/A'}</Markdown>
-          </div>
+          <Markdown>{analysis.forceStrikes || 'N/A'}</Markdown>
         </>
       }
       <h3 className="my-3">
@@ -43,6 +42,7 @@ export const AnalysisOutputCharaBody = ({analysis}: SectionProps<CharaAnalysisGe
         })
       }
       <hr/>
+      <AdsInPost/>
       <Row>
         <Col>
           <h3 className="mb-3">

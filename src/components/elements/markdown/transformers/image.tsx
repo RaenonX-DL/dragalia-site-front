@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const isImage = (imageUrl: string) => {
   return imageUrl.endsWith('.jpeg') ||
     imageUrl.endsWith('.png') ||
@@ -13,5 +14,9 @@ type Props = {
 }
 
 export const ImageInHTML = ({imageUrl, alt}: Props) => {
-  return <a href={imageUrl}><img className="mb-2" src={imageUrl} alt={alt}/></a>;
+  return (
+    <a href={imageUrl} target="_blank" rel="noreferrer">
+      <img className="mb-2" src={imageUrl} alt={alt}/>
+    </a>
+  );
 };

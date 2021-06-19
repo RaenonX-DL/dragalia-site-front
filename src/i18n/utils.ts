@@ -16,10 +16,10 @@ export const getTFunction = (
     if (!newValue) {
       const errorMessage = `Placeholder of key [${key}] does not exist in string: "${entry}"`;
 
-      if (process.env.NODE_ENV === 'development') {
-        throw new Error(errorMessage);
-      } else {
+      if (process.env.NODE_ENV === 'production') {
         console.warn(errorMessage);
+      } else {
+        throw new Error(errorMessage);
       }
 
       return original;

@@ -8,7 +8,7 @@ import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
 import {NextLink} from '../common/link';
 import {UserControlButton} from '../common/userControl/main';
-import {titleNavBarId} from './const';
+import {TITLE_NAV_HTML_ID} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
 import {NavDropdownUtils} from './utils';
@@ -61,7 +61,9 @@ export const Navigation = () => {
         </Navbar.Collapse>
       </Navbar>
       <Navbar
-        collapseOnSelect expand="lg" bg="anim-om" variant="dark" sticky="top" style={{zIndex: 999}} id={titleNavBarId}>
+        collapseOnSelect expand="lg" bg="anim-om" variant="dark"
+        sticky="top" style={{zIndex: 999}} id={TITLE_NAV_HTML_ID}
+      >
         <h1 style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
           {context?.title}
         </h1>

@@ -58,7 +58,8 @@ const AnalysisPage = ({response}: AnalysisPageProps) => {
     <Alert variant="danger">
       {t(
         (t) => t.posts.analysis.error.unknownType,
-        {analysisType: UnitType[response.type]},
+        // If `response.type` is really unknown, `UnitType[response.type]` might return falsy value
+        {analysisType: UnitType[response.type] || response.type},
       )}
     </Alert>
   );

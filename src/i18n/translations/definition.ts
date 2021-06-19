@@ -198,10 +198,6 @@ export type TranslationStruct = {
       fetching: string,
       welcome: string,
     },
-    alert: {
-      ads: string,
-      migration: string,
-    },
   },
   misc: {
     add: string,

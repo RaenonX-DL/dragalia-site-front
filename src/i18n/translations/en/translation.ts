@@ -236,11 +236,6 @@ export const translation: TranslationStruct = {
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
     },
-    alert: {
-      ads: 'Save a cup of coffee for each month to be ads-free! [Click here for more details](/thanks)',
-      migration: 'The website is currently under a infrastructure renovation. ' +
-        'Please contact me via any SNS if you consistently encounter any problem, thanks!',
-    },
   },
   misc: {
     add: 'Add',
@@ -274,7 +269,7 @@ export const translation: TranslationStruct = {
       },
       analysisPost: {
         title: '【Analysis】{{name}}',
-        description: 'Analysis of {{name}}.',
+        description: '{{summary}}',
       },
       home: {
         title: 'Homepage',
@@ -282,7 +277,7 @@ export const translation: TranslationStruct = {
       },
       questEdit: {
         title: 'Edit quest guide - {{title}}',
-        description: 'Page to edit quest guide #Q{{pid}}.',
+        description: 'Page to edit quest guide: {{title}}.',
       },
       questList: {
         title: 'Index of quest guides',

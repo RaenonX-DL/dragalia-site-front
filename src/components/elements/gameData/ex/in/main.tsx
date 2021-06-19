@@ -1,10 +1,10 @@
 import React, {MouseEvent} from 'react';
 
 import {Button} from 'react-bootstrap';
+import {useDispatch} from 'react-redux';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
-import {useDispatch} from '../../../../../state/store';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {isNotFetched} from '../../../common/fetch';
 import {SelectionData} from '../types';
@@ -43,7 +43,6 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
     const promiseGetEnum = ResourceLoader.getEnumElements()
       .catch((e) => {
         dispatch(alertDispatchers.showAlert({
-          show: true,
           message: `Failed to fetch the element enum resource. (${e.message})`,
           variant: 'warning',
         }));
@@ -52,7 +51,6 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
     const promiseGetExBuffParams = ResourceLoader.getEnumExBuffParameters()
       .catch((e) => {
         dispatch(alertDispatchers.showAlert({
-          show: true,
           message: `Failed to fetch the condition enum resource. (${e.message})`,
           variant: 'warning',
         }));

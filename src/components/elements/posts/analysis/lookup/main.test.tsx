@@ -251,6 +251,29 @@ describe('Analysis lookup page', () => {
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
+  it('searches by pressing `enter`', async () => {
+    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    renderReact(() => <AnalysisPostLookup/>);
+
+    await waitFor(() => {
+      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    });
+
+    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
+    act(() => {
+      fireEvent.change(keywordInput, {target: {value: 'Karina'}});
+    });
+    fireEvent.submit(keywordInput);
+
+    await waitFor(async () => {
+      expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    });
+    await waitFor(async () => {
+      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
+    });
+    expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
+  });
+
   it('sends GA event', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);

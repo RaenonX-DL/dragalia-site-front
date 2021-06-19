@@ -1,4 +1,4 @@
-import React, {MouseEvent} from 'react';
+import React, {FormEvent} from 'react';
 
 import {Button, Col, Form} from 'react-bootstrap';
 
@@ -15,7 +15,7 @@ import {InputData} from './types';
 
 
 type LookupInputProps = {
-  onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
+  onSearchRequested: (inputData: InputData) => (event: FormEvent<HTMLFormElement>) => void,
 }
 
 export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
@@ -69,43 +69,46 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
           inputKey="weaponTypes"
           setInputData={setInputData}
         />
-        <Form.Row>
-          <Col>
-            <Form.Control
-              placeholder={t((t) => t.misc.searchKeyword)}
-              value={inputData.keyword}
-              onChange={(e) => setInputData({
-                ...inputData,
-                keyword: e.target.value,
-              })}
-            />
-          </Col>
-          <Col xs="auto" className="text-right">
-            <Button
-              variant="outline-info"
-              onClick={onSearchRequested(inputData)}
-            >
-              {t((t) => t.misc.search)}
-            </Button>
-          </Col>
-        </Form.Row>
+        <Form onSubmit={(e) => {
+          e.preventDefault();
+          onSearchRequested(inputData)(e);
+        }}>
+          <Form.Row>
+            <Col>
+              <Form.Control
+                placeholder={t((t) => t.misc.searchKeyword)}
+                value={inputData.keyword}
+                onChange={(e) => setInputData({
+                  ...inputData,
+                  keyword: e.target.value,
+                })}
+              />
+            </Col>
+            <Col xs="auto" className="text-right">
+              <Button
+                variant="outline-info"
+                type="submit"
+              >
+                {t((t) => t.misc.search)}
+              </Button>
+            </Col>
+          </Form.Row>
+        </Form>
       </div>
       {
         context?.session?.user.isAdmin &&
-        <div className="mb-2">
-          <PostManageBar
-            newButtons={[
-              {
-                url: GeneralPath.ANALYSIS_NEW_CHARA,
-                title: t((t) => t.posts.manage.addChara),
-              },
-              {
-                url: GeneralPath.ANALYSIS_NEW_DRAGON,
-                title: t((t) => t.posts.manage.addDragon),
-              },
-            ]}
-          />
-        </div>
+        <PostManageBar
+          newButtons={[
+            {
+              url: GeneralPath.ANALYSIS_NEW_CHARA,
+              title: t((t) => t.posts.manage.addChara),
+            },
+            {
+              url: GeneralPath.ANALYSIS_NEW_DRAGON,
+              title: t((t) => t.posts.manage.addDragon),
+            },
+          ]}
+        />
       }
     </>
   );

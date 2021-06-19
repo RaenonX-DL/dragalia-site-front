@@ -39,17 +39,13 @@ export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
       <h3 className="mb-3">
         {t((t) => t.posts.quest.general)}
       </h3>
-      <div className="rounded bg-black-32 p-3">
-        <Markdown>{post.general}</Markdown>
-      </div>
+      <Markdown>{post.general}</Markdown>
       <hr/>
       <AdsInPost/>
       <h3 className="mb-3">
         {t((t) => t.posts.quest.video)}
       </h3>
-      <div className="rounded bg-black-32 p-3">
-        <Markdown>{post.video || 'N/A'}</Markdown>
-      </div>
+      <Markdown>{post.video || 'N/A'}</Markdown>
       <AdsInPost/>
       <hr/>
       <h3 className="mb-3">
@@ -63,9 +59,7 @@ export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
           <h3 className="mb-3">
             {t((t) => t.posts.quest.addendum)}
           </h3>
-          <div className="rounded bg-black-32 p-3">
-            <Markdown>{post.addendum}</Markdown>
-          </div>
+          <Markdown>{post.addendum}</Markdown>
           <hr/>
         </>
       }

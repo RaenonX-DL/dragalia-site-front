@@ -131,7 +131,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       </Jumbotron>
       {
         context?.session?.user.isAdmin &&
-        <div className="mb-3"><PostManageBar {...postManageBarProps}/></div>
+        <PostManageBar {...postManageBarProps}/>
       }
       {
         status.showAlert &&

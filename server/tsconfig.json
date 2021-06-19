@@ -8,6 +8,9 @@
     "checkJs": true
   },
   "include": [
-    "./",
+    "./"
+  ],
+  "exclude": [
+    "./tests/"
   ]
 }

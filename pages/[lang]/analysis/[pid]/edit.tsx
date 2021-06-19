@@ -38,11 +38,6 @@ export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (
 };
 
 const AnalysisEdit = ({response}: AnalysisEditProps) => {
-  // TEST: Post edit form
-  //  - returning character
-  //  - returning dragon
-  //  - key `viewCount` not included in payload (#124)
-  //  - display unknown post type
   const {t} = useI18n();
 
   if (!response) {
@@ -110,7 +105,8 @@ const AnalysisEdit = ({response}: AnalysisEditProps) => {
     <Alert variant="danger">
       {t(
         (t) => t.posts.analysis.error.unknownType,
-        {analysisType: UnitType[analysisType]},
+        // If `response.type` is really unknown, `UnitType[response.type]` might return falsy value
+        {analysisType: UnitType[response.type] || response.type.toString()},
       )}
     </Alert>
   );

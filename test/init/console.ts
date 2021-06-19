@@ -7,10 +7,11 @@ export const initMockConsoleBehavior = () => {
   const originalErrorFn = console.error;
 
   console.error = (...data: any[]) => {
-    // Skips displaying error starting with `Warning:`
-    //   Mainly suppresses warning of no-op React and wrap-in-act from React
+    // Skips displaying some error messages
+    //  - Suppresses warning of no-op React and wrap-in-act from React
+    //  - Suppresses error of `navigation` not implemented
     const errorMessage = data[0];
-    if (errorMessage.startsWith('Warning:')) {
+    if (errorMessage.startsWith('Warning:') || errorMessage.startsWith('Error: Not implemented:')) {
       return;
     }
 

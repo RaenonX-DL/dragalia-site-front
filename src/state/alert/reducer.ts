@@ -1,20 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {AlertData} from './data';
 import {alertDispatchers} from './dispatchers';
-import {ALERT_STATE_NAME, AlertDispatcherName} from './name';
-import {AlertState} from './state';
+import {ALERT_STATE_NAME, AlertData, AlertDispatcherName, AlertState} from './types';
 
-
-export const alertCloseReducer = (state: AlertData) => {
-  state.message = '';
-  state.show = false;
-};
 
 const initialState: AlertState = {
   message: '',
   variant: '',
-  show: false,
+};
+
+export const alertShowReducer = (state: AlertData, {payload}: {payload: AlertData}) => {
+  state.message = payload.message;
+  state.variant = payload.variant;
+};
+
+export const alertCloseReducer = (state: AlertData) => {
+  state.message = '';
+  state.variant = '';
 };
 
 const alertSlice = createSlice({
@@ -22,13 +24,7 @@ const alertSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Show the alert
-    builder.addCase(alertDispatchers[AlertDispatcherName.SHOW_ALERT], (state, {payload}) => {
-      state.message = payload.message;
-      state.variant = payload.variant;
-      state.show = true;
-    });
-    // Action on alert closed
+    builder.addCase(alertDispatchers[AlertDispatcherName.SHOW_ALERT], alertShowReducer);
     builder.addCase(alertDispatchers[AlertDispatcherName.ALERT_CLOSED], alertCloseReducer);
   },
 });
