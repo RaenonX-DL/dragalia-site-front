@@ -29,7 +29,9 @@ parserOptions:
 
 plugins:
   - "@typescript-eslint"
+  - jest-dom
   - react
+  - testing-library
   - unused-imports
 
 rules:
