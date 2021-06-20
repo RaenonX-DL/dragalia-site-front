@@ -2,7 +2,7 @@ import React from 'react';
 
 import {PostIdCheckResponse, PostMeta} from '../../../../../../api-def/api';
 import {AppReactContext} from '../../../../../../context/app/main';
-import {DelayedCheckState} from '../../../../common/delayedCheck';
+import {DelayedCheckState} from '../../../../common/types';
 import {isFormStateValid, PostFormControlProps} from '../types';
 
 

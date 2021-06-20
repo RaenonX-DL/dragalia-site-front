@@ -5,3 +5,8 @@ export type TitledProps = {
 export type DetailedProps = TitledProps & {
   description: string,
 }
+
+export type DelayedCheckState = {
+  isChecking: boolean,
+  checkTimer: NodeJS.Timeout | null,
+}
