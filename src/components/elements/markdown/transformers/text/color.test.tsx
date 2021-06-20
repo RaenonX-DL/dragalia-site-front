@@ -8,13 +8,15 @@ import {ColoredText} from './color';
 
 describe('Text coloring', () => {
   it('colors text with preset color', async () => {
-    renderReact(() => <ColoredText regexGroup={{color: 'red', text: 'Text'}}/>);
+    const textContent = '[red]Text';
+    renderReact(() => <ColoredText>{textContent}</ColoredText>);
 
     expect(screen.getByText('Text', {selector: 'span'})).toHaveStyle({color: 'red'});
   });
 
   it('colors text with RGB', async () => {
-    renderReact(() => <ColoredText regexGroup={{color: '#757577', text: 'Text'}}/>);
+    const textContent = '[#757577]Text';
+    renderReact(() => <ColoredText>{textContent}</ColoredText>);
 
     expect(screen.getByText('Text', {selector: 'span'})).toHaveStyle({color: '#757577'});
   });

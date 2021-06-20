@@ -91,7 +91,7 @@ describe('Markdown', () => {
   });
 
   it('colors the text by RGB', async () => {
-    const markdown = '[#757575]Text[/]';
+    const markdown = '::[#757575]Text::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -99,7 +99,7 @@ describe('Markdown', () => {
   });
 
   it('colors the text by preset color', async () => {
-    const markdown = '[red]Text[/]';
+    const markdown = '::[red]Text::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -107,7 +107,7 @@ describe('Markdown', () => {
   });
 
   it('colors multiple texts', async () => {
-    const markdown = 'No color [#757575]Text 1[/] [red]Text 2[/]';
+    const markdown = 'No color ::[#757575]Text 1:: ::[red]Text 2::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -116,7 +116,7 @@ describe('Markdown', () => {
   });
 
   it('colors text in table', async () => {
-    const markdown = 'head | col 2\n:---: | :---:\nX | [red]Y[/]';
+    const markdown = 'head | col 2\n:---: | :---:\nX | ::[red]Y::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -124,7 +124,7 @@ describe('Markdown', () => {
   });
 
   it('colors text in list', async () => {
-    const markdown = '- X\n- [red]Y[/]';
+    const markdown = '- X\n- ::[red]Y::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -132,7 +132,7 @@ describe('Markdown', () => {
   });
 
   it('only color the desired text', async () => {
-    const markdown = 'Highlight [red]red[/] only';
+    const markdown = 'Highlight ::[red]red:: only';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
@@ -145,5 +145,50 @@ describe('Markdown', () => {
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
     expect(screen.getByText('[red]red')).toBeInTheDocument();
+  });
+
+  it('enlarges the whole text', async () => {
+    const markdown = '!!whole!!';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('whole', {selector: 'span'})).toHaveStyle({fontSize: '1.5rem'});
+  });
+
+  it('enlarges the desired text', async () => {
+    const markdown = 'Partial !!enlarge!! me';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('enlarge', {selector: 'span'})).toHaveStyle({fontSize: '1.5rem'});
+  });
+
+  it('enlarges within colored text', async () => {
+    const markdown = '::[red]Some !!enlarged!! text::';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    const elem = screen.getByText('enlarged', {selector: 'span'});
+    expect(elem).toHaveStyle({fontSize: '1.5rem'});
+    expect(elem.parentElement).toHaveStyle({color: 'red'});
+  });
+
+  it('colors text with some enlarged', async () => {
+    const markdown = '!!Enlarged and ::[red]colored::!!';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    const elem = screen.getByText('colored', {selector: 'span'});
+    screen.debug();
+    expect(elem).toHaveStyle({color: 'red'});
+    expect(elem.parentElement).toHaveStyle({fontSize: '1.5rem'});
+  });
+
+  it('shows original if the syntax is unclosed', async () => {
+    const markdown = '::[#757575]Text';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('::[#757575]Text')).toBeInTheDocument();
   });
 });

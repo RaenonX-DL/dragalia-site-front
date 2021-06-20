@@ -1,38 +1,60 @@
 import React from 'react';
 
-import {ColoredText, ColorTextMatchGroup, colorTextRegex} from './color';
-import {transformText} from './utils';
+import {syntaxCollection} from './syntax';
+import {TextComponentProps} from './types';
 
 
-type TextProps = {
-  text: string,
-}
+export const Text = ({children}: TextComponentProps) => {
+  // Text start test benchmark: https://jsbench.me/bnkq5gug02
+  // Text end test benchmark: https://jsbench.me/nfkq5gy0od
 
-const Text = ({text}: TextProps) => {
-  // NOTE: Implementations likely to be changed if adding an additional syntax.
+  for (let idxStart = 0; idxStart < children.length; idxStart++) {
+    const text = children.substring(idxStart);
 
-  const children: Array<[number, React.ReactNode]> = [
-    // Transform color text
-    ...transformText<ColorTextMatchGroup>(
-      text,
-      colorTextRegex,
-      (group) => <ColoredText regexGroup={group}/>,
-    ),
-  ];
+    for (const syntax of syntaxCollection) {
+      if (!text.startsWith(syntax.start)) {
+        continue; // Text not started with the command
+      }
 
-  // Sort by starting index of the original text, then return ReactNode only
-  return <>{children
-    .sort((child) => child[0])
-    .map((child) => child[1])
-  }</>;
+      let idxEnd = text.indexOf(syntax.end, syntax.start.length);
+      if (idxEnd === -1) {
+        continue; // Closing command not found, continue the search
+      }
+      idxEnd += idxStart; // return of `indexOf` is offset instead (text is substring)
+
+      const leftRemainder = children.substring(0, idxStart);
+      const extracted = children.substring(idxStart + syntax.start.length, idxEnd);
+      const rightRemainder = children.substring(idxEnd + syntax.end.length);
+
+      return (
+        <>
+          <Text>{leftRemainder}</Text>
+          <syntax.Component>{extracted}</syntax.Component>
+          <Text>{rightRemainder}</Text>
+        </>
+      );
+    }
+  }
+
+  return <>{children}</>;
 };
 
-export const transformTextChildren = (children: Array<React.ReactNode>) => {
-  return children.map((child, idx) => {
-    if (typeof child === 'string') {
-      return <Text key={idx} text={child}/>;
-    }
+type TextChildrenProps = {
+  children: Array<React.ReactNode>,
+}
 
-    return <>{child}</>;
-  });
+export const TextChildren = ({children}: TextChildrenProps) => {
+  return (
+    <>
+      {
+        children.map((child, idx) => {
+          if (typeof child === 'string') {
+            return <Text key={idx}>{child}</Text>;
+          }
+
+          return <>{child}</>;
+        })
+      }
+    </>
+  );
 };
