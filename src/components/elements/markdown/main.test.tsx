@@ -104,6 +104,22 @@ describe('Markdown', () => {
     expect(screen.getByText('Text 2', {selector: 'span'})).toHaveStyle({color: 'red'});
   });
 
+  it('colors text in table', async () => {
+    const markdown = 'head | col 2\n:---: | :---:\nX | [red]Y[/]';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('Y', {selector: 'span'})).toHaveStyle({color: 'red'});
+  });
+
+  it('colors text in list', async () => {
+    const markdown = '- X\n- [red]Y[/]';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('Y', {selector: 'span'})).toHaveStyle({color: 'red'});
+  });
+
   it('only color the desired text', async () => {
     const markdown = 'Highlight [red]red[/] only';
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {TableCellComponent, TableRowComponent} from 'react-markdown/src/ast-to-react';
 
+import {transformTextChildren} from '../transformers/text/main';
 import {MarkdownComponentProps} from '../types';
 
 
@@ -39,5 +40,5 @@ export const renderTableRow: TableRowComponent = ({children}) => {
 };
 
 export const renderTableCell: TableCellComponent = ({children}) => {
-  return <td data-label={headers[idxCounter++]}>{children}</td>;
+  return <td data-label={headers[idxCounter++]}>{transformTextChildren(children)}</td>;
 };
