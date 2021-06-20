@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api';
@@ -64,7 +65,7 @@ describe('Enum checks as radio', () => {
 
   const clickFirstButton = () => {
     const enumButton = screen.getByAltText('enum#1');
-    fireEvent.click(enumButton);
+    userEvent.click(enumButton);
   };
 
   let data: {enum: number};

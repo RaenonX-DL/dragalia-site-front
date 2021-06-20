@@ -1,9 +1,11 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {act, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {ObjectId} from 'mongodb';
 
 import {renderReact} from '../../../../../../test/render/main';
+import {typeInput} from '../../../../../../test/utils/event';
 import {
   ApiResponseCode,
   QuestPostEditPayload,
@@ -90,8 +92,7 @@ describe('Main quest form', () => {
     ));
 
     const titleField = screen.getByDisplayValue(formState.payload.title);
-    fireEvent.change(titleField, {target: {value: 'Title'}});
-    rerender();
+    typeInput(titleField, 'Title', {clear: true, rerender});
 
     await waitFor(() => {
       expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
@@ -99,7 +100,7 @@ describe('Main quest form', () => {
   });
 
   it('can change general info', async () => {
-    renderReact(() => (
+    const {rerender} = renderReact(() => (
       <QuestPostForm
         fnSendRequest={fnSendRequest}
         formState={formState}
@@ -108,7 +109,7 @@ describe('Main quest form', () => {
     ));
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
-    fireEvent.change(generalInfoField, {target: {value: 'General'}});
+    typeInput(generalInfoField, 'General', {clear: true, rerender});
 
     await waitFor(() => {
       expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
@@ -116,7 +117,7 @@ describe('Main quest form', () => {
   });
 
   it('can change video section', async () => {
-    renderReact(() => (
+    const {rerender} = renderReact(() => (
       <QuestPostForm
         fnSendRequest={fnSendRequest}
         formState={formState}
@@ -125,7 +126,7 @@ describe('Main quest form', () => {
     ));
 
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
-    fireEvent.change(videoField, {target: {value: 'Video'}});
+    typeInput(videoField, 'Video', {clear: true, rerender});
 
     await waitFor(() => {
       expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
@@ -142,29 +143,25 @@ describe('Main quest form', () => {
     ));
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
-    fireEvent.change(posField, {target: {value: 'Position'}});
-    rerender();
+    typeInput(posField, 'Position', {clear: true, rerender});
     await waitFor(() => {
       expect(screen.getByDisplayValue('Position')).toBeInTheDocument();
     });
 
     const tipsField = screen.getByText(formState.payload.positional[0].tips, {selector: 'textarea'});
-    fireEvent.change(tipsField, {target: {value: 'Tips'}});
-    rerender();
+    typeInput(tipsField, 'Tips', {clear: true, rerender});
     await waitFor(() => {
       expect(screen.getByText('Tips', {selector: 'textarea'})).toBeInTheDocument();
     });
 
     const buildField = screen.getByText(formState.payload.positional[0].builds, {selector: 'textarea'});
-    fireEvent.change(buildField, {target: {value: 'Builds'}});
-    rerender();
+    typeInput(buildField, 'Builds', {clear: true, rerender});
     await waitFor(() => {
       expect(screen.getByText('Builds', {selector: 'textarea'})).toBeInTheDocument();
     });
 
     const rotationsField = screen.getByText(formState.payload.positional[0].rotations, {selector: 'textarea'});
-    fireEvent.change(rotationsField, {target: {value: 'Rotations'}});
-    rerender();
+    typeInput(rotationsField, 'Rotations', {clear: true, rerender});
     await waitFor(() => {
       expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
     });
@@ -181,7 +178,7 @@ describe('Main quest form', () => {
 
     const addButton = screen.getByText(translationEN.misc.add);
     act(() => {
-      fireEvent.click(addButton);
+      userEvent.click(addButton);
     });
     rerender();
 
@@ -218,7 +215,7 @@ describe('Main quest form', () => {
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     act(() => {
-      fireEvent.click(removeButton);
+      userEvent.click(removeButton);
     });
     rerender();
 
@@ -238,7 +235,7 @@ describe('Main quest form', () => {
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     act(() => {
-      fireEvent.click(removeButton);
+      userEvent.click(removeButton);
     });
     rerender();
 
@@ -248,7 +245,7 @@ describe('Main quest form', () => {
   });
 
   it('can change addendum', async () => {
-    renderReact(() => (
+    const {rerender} = renderReact(() => (
       <QuestPostForm
         fnSendRequest={fnSendRequest}
         formState={formState}
@@ -257,7 +254,7 @@ describe('Main quest form', () => {
     ));
 
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
-    fireEvent.change(addendumField, {target: {value: 'Addendum'}});
+    typeInput(addendumField, 'Addendum', {clear: true, rerender});
 
     await waitFor(() => {
       expect(screen.getByText('Addendum', {selector: 'textarea'})).toBeInTheDocument();
@@ -286,51 +283,28 @@ describe('Main quest form', () => {
     );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(generalInfoField, {target: {value: 'General'}});
-    });
-    rerender();
+    typeInput(generalInfoField, 'General', {clear: true, rerender});
 
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(videoField, {target: {value: 'Video'}});
-    });
-    rerender();
+    typeInput(videoField, 'Video', {clear: true, rerender});
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
-    act(() => {
-      fireEvent.change(posField, {target: {value: 'Position'}});
-    });
-    rerender();
+    typeInput(posField, 'Position', {clear: true, rerender});
 
     const tipsField = screen.getByText(formState.payload.positional[0].tips, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(tipsField, {target: {value: 'Tips'}});
-    });
-    rerender();
+    typeInput(tipsField, 'Tips', {clear: true, rerender});
 
     const buildField = screen.getByText(formState.payload.positional[0].builds, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(buildField, {target: {value: 'Builds'}});
-    });
-    rerender();
+    typeInput(buildField, 'Builds', {clear: true, rerender});
 
     const rotationsField = screen.getByText(formState.payload.positional[0].rotations, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(rotationsField, {target: {value: 'Rotations'}});
-    });
-    rerender();
+    typeInput(rotationsField, 'Rotations', {clear: true, rerender});
 
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(addendumField, {target: {value: 'Addendum'}});
-    });
-    rerender();
+    typeInput(addendumField, 'Addendum', {clear: true, rerender});
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
-    act(() => {
-      fireEvent.click(submitButton);
-    });
+    userEvent.click(submitButton);
     rerender();
 
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
@@ -371,9 +345,7 @@ describe('Main quest form', () => {
     );
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
-    act(() => {
-      fireEvent.click(submitButton);
-    });
+    userEvent.click(submitButton);
     rerender();
 
     expect(fnSendRequest).toHaveBeenCalledTimes(1);

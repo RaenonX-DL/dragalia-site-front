@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {OverlayTooltip} from './tooltip';
 
@@ -17,13 +18,13 @@ describe('Tooltip overlay behavior', () => {
 
     const mainOverlay = screen.getByText(overlayText);
 
-    fireEvent.mouseOver(mainOverlay);
+    userEvent.hover(mainOverlay);
     await waitFor(() => mainOverlay);
 
     // Check if the pop up shows
     expect(screen.getByText(popUpText)).toBeInTheDocument();
 
-    fireEvent.mouseLeave(mainOverlay);
+    userEvent.unhover(mainOverlay);
     await waitFor(() => {
       // Check if the pop up hides
       expect(screen.queryByText(popUpText)).not.toBeInTheDocument();

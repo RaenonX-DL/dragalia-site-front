@@ -3,6 +3,7 @@ import React from 'react';
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
+import {typeInput} from '../../../../../../test/utils/event';
 import {
   AnalysisMeta,
   ApiResponseCode,
@@ -88,8 +89,7 @@ describe('Analysis form meta input', () => {
       />
     ));
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    fireEvent.change(idField, {target: {value: 'string'}});
-    rerender();
+    typeInput(idField, 'string', {rerender});
 
     expect(state.payload.unitId).toBe(10950101);
     act(() => {
@@ -117,8 +117,7 @@ describe('Analysis form meta input', () => {
       },
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    fireEvent.change(idField, {target: {value: 10950102}});
-    rerender();
+    typeInput(idField, '10950102', {rerender, clear: true});
 
     await waitFor(() => {
       expect(fnToUnitInfoMap).toHaveBeenCalled();
@@ -128,7 +127,6 @@ describe('Analysis form meta input', () => {
     });
     await waitFor(() => {
       expect(setAvailability).toHaveBeenCalledWith(true);
-      rerender();
       expect(idField).toHaveClass('is-valid');
     });
     screen.getByAltText(name[SupportedLanguages.EN]);
@@ -158,8 +156,7 @@ describe('Analysis form meta input', () => {
       },
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    fireEvent.change(idField, {target: {value: 577}});
-    rerender();
+    typeInput(idField, '577', {rerender});
 
     act(() => {
       jest.runTimersToTime(1100);
@@ -187,12 +184,11 @@ describe('Analysis form meta input', () => {
       },
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    fireEvent.change(idField, {target: {value: 577}});
-    rerender();
+    typeInput(idField, '577', {rerender});
 
     await waitFor(() => {
       jest.runTimersToTime(1100);
-      expect(setPayload).toHaveBeenCalledTimes(1);
+      expect(setPayload).toHaveBeenCalledTimes(3);
       expect(fnIdCheck).toHaveBeenCalledTimes(1);
     });
   });
@@ -244,8 +240,8 @@ describe('Analysis form meta input', () => {
 
     await waitFor(() => {
       jest.runTimersToTime(100);
-      expect(setPayload).toHaveBeenCalledTimes(1);
     });
+    expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });
 });

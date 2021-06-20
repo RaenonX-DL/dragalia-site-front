@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {GeneralPath} from '../../../../const/path/definitions';
@@ -29,7 +30,7 @@ describe('Nav dropdown', () => {
 
     const dropdownTitle = screen.getByText('nav title');
     act(() => {
-      fireEvent.click(dropdownTitle);
+      userEvent.click(dropdownTitle);
     });
 
     await waitFor(async () => {
@@ -51,14 +52,11 @@ describe('Nav dropdown', () => {
     );
 
     const dropdownTitle = screen.getByText('nav title');
-    act(() => {
-      fireEvent.click(dropdownTitle);
-    });
+    userEvent.click(dropdownTitle);
 
     const dummyLink = screen.getByText('dummy');
-    act(() => {
-      fireEvent.click(dummyLink);
-    });
+    // False positive of pointer event set to `none`
+    fireEvent.click(dummyLink);
 
     await waitFor(async () => {
       expect(dropdownTitle).toHaveClass('active');

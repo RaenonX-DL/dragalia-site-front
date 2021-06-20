@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
@@ -41,7 +42,7 @@ describe('Markdown', () => {
     renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
 
     const openButton = screen.getByText(translationEN.misc.openGif);
-    fireEvent.click(openButton);
+    userEvent.click(openButton);
 
     expect(screen.getByAltText('image')).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.gif');
   });

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {act, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {
@@ -72,7 +73,7 @@ describe('Input of analysis lookup', () => {
 
   const clickSearchButton = () => {
     const searchButton = screen.getByText(translationEN.misc.search);
-    fireEvent.click(searchButton);
+    userEvent.click(searchButton);
   };
 
   beforeEach(() => {
@@ -129,7 +130,7 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
-    fireEvent.click(characterButton);
+    userEvent.click(characterButton);
 
     clickSearchButton();
 
@@ -151,7 +152,7 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const elemButton = await screen.findByText('elem A EN');
-    fireEvent.click(elemButton);
+    userEvent.click(elemButton);
 
     clickSearchButton();
 
@@ -173,7 +174,7 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const weaponButton = await screen.findByText('weapon B EN');
-    fireEvent.click(weaponButton);
+    userEvent.click(weaponButton);
 
     clickSearchButton();
 
@@ -195,7 +196,7 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
+    userEvent.type(searchInput, 'test');
 
     clickSearchButton();
 
@@ -217,13 +218,13 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
-    fireEvent.click(characterButton);
+    userEvent.click(characterButton);
     const elemButton = await screen.findByText('elem A EN');
-    fireEvent.click(elemButton);
+    userEvent.click(elemButton);
     const weaponButton = await screen.findByText('weapon B EN');
-    fireEvent.click(weaponButton);
+    userEvent.click(weaponButton);
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
+    userEvent.type(searchInput, 'test');
 
     clickSearchButton();
 
@@ -245,9 +246,8 @@ describe('Input of analysis lookup', () => {
     await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
 
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
-
-    fireEvent.submit(searchInput);
+    userEvent.type(searchInput, 'test');
+    userEvent.type(searchInput, '{enter}');
 
     const expectedInput: InputData = {
       keyword: 'test',

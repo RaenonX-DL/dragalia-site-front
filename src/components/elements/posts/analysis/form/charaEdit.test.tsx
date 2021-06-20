@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {ObjectId} from 'mongodb';
 
 import {renderReact} from '../../../../../../test/render/main';
@@ -68,26 +69,35 @@ describe('Character edit form', () => {
     );
 
     const summary = screen.getByText(initial.summary, {selector: 'textarea'});
-    fireEvent.change(summary, {target: {value: 'summary'}});
+    userEvent.clear(summary);
+    userEvent.type(summary, 'summary');
     const summonResult = screen.getByText(initial.summonResult, {selector: 'textarea'});
-    fireEvent.change(summonResult, {target: {value: 'summonResult'}});
+    userEvent.clear(summonResult);
+    userEvent.type(summonResult, 'summonResult');
     const passives = screen.getByText(initial.passives, {selector: 'textarea'});
-    fireEvent.change(passives, {target: {value: 'passives'}});
+    userEvent.clear(passives);
+    userEvent.type(passives, 'passives');
     const normalAttacks = screen.getByText(initial.normalAttacks, {selector: 'textarea'});
-    fireEvent.change(normalAttacks, {target: {value: 'normalAttacks'}});
+    userEvent.clear(normalAttacks);
+    userEvent.type(normalAttacks, 'normalAttacks');
     const forceStrikes = screen.getByText(initial.forceStrikes, {selector: 'textarea'});
-    fireEvent.change(forceStrikes, {target: {value: 'forceStrikes'}});
+    userEvent.clear(forceStrikes);
+    userEvent.type(forceStrikes, 'forceStrikes');
     const tipsBuilds = screen.getByText(initial.tipsBuilds, {selector: 'textarea'});
-    fireEvent.change(tipsBuilds, {target: {value: 'tipsBuilds'}});
+    userEvent.clear(tipsBuilds);
+    userEvent.type(tipsBuilds, 'tipsBuilds');
     const videos = screen.getByText(initial.videos, {selector: 'textarea'});
-    fireEvent.change(videos, {target: {value: 'videos'}});
+    userEvent.clear(videos);
+    userEvent.type(videos, 'videos');
     const keywords = screen.getByText(initial.keywords, {selector: 'textarea'});
-    fireEvent.change(keywords, {target: {value: 'keywords'}});
+    userEvent.clear(keywords);
+    userEvent.type(keywords, 'keywords');
     const story = screen.getByText(initial.story, {selector: 'textarea'});
-    fireEvent.change(story, {target: {value: 'story'}});
+    userEvent.clear(story);
+    userEvent.type(story, 'story');
 
     const editButton = screen.getByText(translationEN.posts.manage.edit);
-    fireEvent.click(editButton);
+    userEvent.click(editButton);
 
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
     expect(fnSendRequest).toHaveBeenCalledWith({
@@ -131,10 +141,10 @@ describe('Character edit form', () => {
     );
 
     const summary = screen.getByText(initial.summary, {selector: 'textarea'});
-    fireEvent.change(summary, {target: {value: 'summary'}});
+    userEvent.type(summary, 'summary');
 
     const editButton = screen.getByText(translationEN.posts.manage.edit);
-    fireEvent.click(editButton);
+    userEvent.click(editButton);
 
     await waitFor(() => {
       expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
@@ -167,9 +177,9 @@ describe('Character edit form', () => {
     );
 
     const summary = screen.getByText(initial.summary, {selector: 'textarea'});
-    fireEvent.change(summary, {target: {value: 'summary'}});
+    userEvent.type(summary, 'summary');
 
     const editButton = screen.getByText(translationEN.posts.manage.edit);
-    fireEvent.click(editButton);
+    userEvent.click(editButton);
   });
 });

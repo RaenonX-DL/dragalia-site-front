@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {GeneralPath} from '../../../const/path/definitions';
@@ -27,7 +28,7 @@ describe('Navigation bar', () => {
     const {rerender} = renderReact(() => <Navigation/>);
 
     const thanksButton = screen.getByText(translationEN.meta.inUse.thanks.title);
-    fireEvent.click(thanksButton);
+    userEvent.click(thanksButton);
     rerender();
 
     expect(thanksButton).toHaveClass('active');

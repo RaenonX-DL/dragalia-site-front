@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {CustomRadios} from './customRadio';
@@ -60,7 +61,7 @@ describe('Radio checks', () => {
     ));
 
     const enumButton = screen.getByText('check 1');
-    fireEvent.click(enumButton);
+    userEvent.click(enumButton);
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(1);
     expect(inputData).toStrictEqual({selected: 1});
@@ -95,9 +96,9 @@ describe('Radio checks', () => {
     const enum2Buttons = screen.getAllByText('check 2');
     expect(enum2Buttons.length).toBe(2);
 
-    fireEvent.click(enum1Buttons[0]);
+    userEvent.click(enum1Buttons[0]);
     rerender();
-    fireEvent.click(enum2Buttons[1]);
+    userEvent.click(enum2Buttons[1]);
     rerender();
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(2);

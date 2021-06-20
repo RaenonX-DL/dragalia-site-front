@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import AnalysisEdit from '../../../pages/[lang]/analysis/[pid]/edit';
 import {
@@ -157,7 +158,7 @@ describe('Analysis edit page', () => {
     );
 
     const editButton = screen.getByText(translations[SupportedLanguages.EN].posts.manage.edit);
-    fireEvent.click(editButton);
+    userEvent.click(editButton);
 
     await waitFor(async () => {
       expect(apiRequest).toHaveBeenCalledTimes(1);
