@@ -24,7 +24,7 @@ export const SignInPage = ({providers}: SignInPageProps) => {
   }
 
   return (
-    <div className="center-screen">
+    <div className={styles.providerFrame}>
       {Object.values(providers).map((provider) => (
         <Button
           key={provider.name} variant="outline-light" className={styles.providerButton}
