@@ -169,7 +169,7 @@ describe('Analysis lookup page', () => {
     await waitFor(async () => {
       expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
     });
-  });
+  }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
   it('searches by type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);

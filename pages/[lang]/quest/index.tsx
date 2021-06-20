@@ -16,7 +16,6 @@ const QuestList = () => {
   return (
     <PostListPage
       title={title}
-      currentUrl={GeneralPath.QUEST_LIST}
       fnFetchList={ApiRequestSender.questList}
       postManageBarProps={{
         newButtons: [{url: GeneralPath.QUEST_NEW}],
