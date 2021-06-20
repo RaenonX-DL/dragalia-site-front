@@ -11,6 +11,7 @@ enum GAEvent {
   DAMAGE_CALCULATOR = 'damage_calc',
   ABILITY_SEARCH = 'ability_search',
   ANALYSIS_LOOKUP = 'analysis_lookup',
+  OPEN_IMAGE = 'open_image',
 }
 
 enum GAParameter {
@@ -133,6 +134,20 @@ export class GoogleAnalytics {
         [GAParameter.WEAPON_WAND]: inputData.weaponTypes.includes(Weapon.WAND),
         [GAParameter.WEAPON_STAFF]: inputData.weaponTypes.includes(Weapon.STAFF),
         [GAParameter.WEAPON_MANACASTER]: inputData.weaponTypes.includes(Weapon.MANACASTER),
+      },
+    );
+  }
+
+  /**
+   * Record that a GIF has been shown.
+   *
+   * @param {string} imageUrl URL of the GIF
+   */
+  static showGif(imageUrl: string) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.OPEN_IMAGE,
+      {
+        'image_url': imageUrl,
       },
     );
   }

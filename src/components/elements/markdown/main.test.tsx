@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
+import {GoogleAnalytics} from '../../../utils/services/ga';
 import {Markdown} from './main';
 
 
@@ -45,6 +46,15 @@ describe('Markdown', () => {
     userEvent.click(openButton);
 
     expect(screen.getByAltText('image')).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.gif');
+  });
+
+  it('records a GIF has been opened', async () => {
+    const fnGAShowGif = jest.spyOn(GoogleAnalytics, 'showGif');
+    renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
+
+    const openButton = screen.getByText(translationEN.misc.openGif);
+    userEvent.click(openButton);
+    expect(fnGAShowGif).toHaveBeenCalledTimes(1);
   });
 
   it('renders texts as <div>', async () => {

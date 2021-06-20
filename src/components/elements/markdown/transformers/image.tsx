@@ -3,6 +3,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 
 import {useI18n} from '../../../../i18n/hook';
+import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {CommonModal, ModalState} from '../../common/modal';
 
 
@@ -34,6 +35,7 @@ export const ImageInHTML = ({imageUrl, alt}: Props) => {
   });
 
   const openGifModal = () => {
+    GoogleAnalytics.showGif(imageUrl);
     setModalState({
       ...modalState,
       show: true,
