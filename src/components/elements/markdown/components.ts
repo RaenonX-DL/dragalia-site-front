@@ -1,18 +1,18 @@
 import {Components} from 'react-markdown/src/ast-to-react';
 
 import {renderLink} from './components/link';
+import {renderParagraph} from './components/paragraph/main';
 import {renderTable, renderTableCell, renderTableRow} from './components/table';
-import {renderText} from './components/text';
 
 
 // Key correspondences:
 // https://github.com/remarkjs/react-markdown/blob/main/changelog.md#600---2021-04-15
 
-// Ignoring ts compilation errors because some props are expected but undefined in type definitions.
 export const components: Components = {
+  // `href` is expected for `<a>` but it's `undefined` in type definitions
   // @ts-ignore
   a: renderLink,
-  p: renderText,
+  p: renderParagraph,
   table: renderTable,
   tr: renderTableRow,
   td: renderTableCell,

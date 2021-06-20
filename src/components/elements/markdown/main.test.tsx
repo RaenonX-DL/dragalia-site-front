@@ -78,4 +78,45 @@ describe('Markdown', () => {
     expect(screen.getByText('Z', {selector: 'td'})).toBeInTheDocument();
     expect(screen.getByText('A', {selector: 'td'})).toBeInTheDocument();
   });
+
+  it('colors the text by RGB', async () => {
+    const markdown = '[#757575]Text[/]';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('Text', {selector: 'span'})).toHaveStyle({color: '#757575'});
+  });
+
+  it('colors the text by preset color', async () => {
+    const markdown = '[red]Text[/]';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('Text', {selector: 'span'})).toHaveStyle({color: 'red'});
+  });
+
+  it('colors multiple texts', async () => {
+    const markdown = 'No color [#757575]Text 1[/] [red]Text 2[/]';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('Text 1', {selector: 'span'})).toHaveStyle({color: '#757575'});
+    expect(screen.getByText('Text 2', {selector: 'span'})).toHaveStyle({color: 'red'});
+  });
+
+  it('only color the desired text', async () => {
+    const markdown = 'Highlight [red]red[/] only';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('red', {selector: 'span'})).toHaveStyle({color: 'red'});
+  });
+
+  it('does not color if the syntax is incomplete', async () => {
+    const markdown = '[red]red';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('[red]red')).toBeInTheDocument();
+  });
 });

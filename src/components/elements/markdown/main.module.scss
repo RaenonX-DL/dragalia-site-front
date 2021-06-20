@@ -1,13 +1,12 @@
 @use "../../../../public/colors";
 
 $strong-color: #80b2ff;
-$body-margin: 0.75rem;
-$bottom-margin: 0.5rem;
+$item-margin: 0.75rem;
 
 .mdBody {
   overflow: auto;
   background-color: colors.$color-black-32;
-  border: transparent solid $body-margin;
+  border: transparent solid $item-margin;
   border-bottom: 0;
   border-radius: 0.25rem;
 
@@ -16,7 +15,7 @@ $bottom-margin: 0.5rem;
 
     width: 100%;
     padding-right: 30px;
-    margin-bottom: $bottom-margin;
+    margin-bottom: $item-margin;
 
     tr {
       background-color: #0e0e0e;
@@ -70,7 +69,7 @@ $bottom-margin: 0.5rem;
 
       tr {
         display: block;
-        margin-bottom: $bottom-margin;
+        margin-bottom: $item-margin;
       }
 
       tr:last-child {
@@ -81,7 +80,7 @@ $bottom-margin: 0.5rem;
 
   div {
     &.text {
-      margin-bottom: $bottom-margin;
+      margin-bottom: $item-margin;
     }
 
     &.youtubeEmbed {

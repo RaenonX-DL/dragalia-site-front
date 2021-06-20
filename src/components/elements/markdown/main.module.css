@@ -8,7 +8,7 @@
 .mdBody table {
   width: 100%;
   padding-right: 30px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .mdBody table tr {
   background-color: #0e0e0e;
@@ -50,14 +50,14 @@
   }
   .mdBody table tr {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
   .mdBody table tr:last-child {
     margin-bottom: 0;
   }
 }
 .mdBody div.text {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .mdBody div.youtubeEmbed {
   position: relative;
