@@ -1,7 +1,7 @@
 import {Components} from 'react-markdown/src/ast-to-react';
 
 import {renderLink} from './components/link';
-import {renderParagraph} from './components/paragraph/main';
+import {renderParagraph} from './components/paragraph';
 import {renderTable, renderTableCell, renderTableRow} from './components/table';
 
 

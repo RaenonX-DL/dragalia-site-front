@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ColoredText, ColorTextMatchGroup, colorTextRegex} from '../../transformers/color';
+import {ColoredText, ColorTextMatchGroup, colorTextRegex} from './color';
 import {transformText} from './utils';
 
 

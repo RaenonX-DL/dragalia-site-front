@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from '../../main.module.css';
-import {MarkdownComponentProps} from '../../types';
-import {Text} from './text';
+import styles from '../main.module.css';
+import {Text} from '../transformers/text/main';
+import {MarkdownComponentProps} from '../types';
 
 
 export const renderParagraph = ({children}: MarkdownComponentProps) => {

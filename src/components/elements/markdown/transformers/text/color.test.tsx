@@ -2,7 +2,7 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {renderReact} from '../../../../../test/render/main';
+import {renderReact} from '../../../../../../test/render/main';
 import {ColoredText} from './color';
 
 
