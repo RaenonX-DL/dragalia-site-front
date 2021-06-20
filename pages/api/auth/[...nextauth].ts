@@ -24,6 +24,22 @@ const nextAuthOptions: NextAuthOptions = {
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
+    Providers.Discord({
+      clientId: process.env.AUTH_DISCORD_ID,
+      clientSecret: process.env.AUTH_DISCORD_SECRET,
+    }),
+    Providers.GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
+    Providers.Twitch({
+      clientId: process.env.AUTH_TWITCH_ID,
+      clientSecret: process.env.AUTH_TWITCH_SECRET,
+    }),
+    Providers.Twitter({
+      clientId: process.env.AUTH_TWITTER_ID,
+      clientSecret: process.env.AUTH_TWITTER_SECRET,
+    }),
   ],
 
   session: {

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {AuthPath} from '../../../../const/path/definitions';
-import {AppReactContext} from '../../../../context/app/main';
-import {useNextRouter} from '../../../../utils/router';
-import {LoginButton} from './button/login';
-import {LogoutButton} from './button/logout';
+import {AuthPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
+import {useNextRouter} from '../../../../../utils/router';
+import {LoginButton} from './login';
+import {LogoutButton} from './logout';
 
 
 export const UserControlButton = () => {

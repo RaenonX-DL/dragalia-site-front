@@ -1,0 +1,11 @@
+.providerButton {
+  border: 0;
+  background-color: #252525;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+.providerButton:first-child {
+  margin-left: 0;
+}
+
+/*# sourceMappingURL=main.module.css.map */

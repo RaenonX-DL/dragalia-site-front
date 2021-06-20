@@ -2,9 +2,9 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {renderReact} from '../../../../../test/render/main';
-import {AuthPath} from '../../../../const/path/definitions';
-import {translation as translationEN} from '../../../../i18n/translations/en/translation';
+import {renderReact} from '../../../../../../test/render/main';
+import {AuthPath} from '../../../../../const/path/definitions';
+import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {UserControlButton} from './main';
 
 
