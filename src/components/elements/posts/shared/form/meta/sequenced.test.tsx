@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {typeInput} from '../../../../../../../test/utils/event';
@@ -72,13 +72,9 @@ describe('Sequenced form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    await waitFor(() => {
-      expect(setAvailability).toHaveBeenCalledWith(true);
-      expect(idField).toHaveClass('is-valid');
-    });
+    jest.runTimersToTime(1100);
+    await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(true));
+    expect(idField).toHaveClass('is-valid');
   });
 
   it('shows the invalid mark upon failing the check', async () => {
@@ -109,13 +105,9 @@ describe('Sequenced form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    await waitFor(() => {
-      expect(setAvailability).toHaveBeenCalledWith(false);
-      expect(idField).toHaveClass('is-invalid');
-    });
+    jest.runTimersToTime(1100);
+    await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(false));
+    expect(idField).toHaveClass('is-invalid');
   });
 
   it('starts checking 1 sec later after the last seq ID change', async () => {
@@ -138,9 +130,7 @@ describe('Sequenced form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
+    jest.runTimersToTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(3);
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
@@ -165,9 +155,7 @@ describe('Sequenced form meta input', () => {
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     typeInput(titleField, 'Another Title', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
+    jest.runTimersToTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(13);
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
@@ -193,9 +181,7 @@ describe('Sequenced form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
+    jest.runTimersToTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
@@ -246,9 +232,7 @@ describe('Sequenced form meta input', () => {
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     typeInput(titleField, 'Another Title', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(100);
-    });
+    jest.runTimersToTime(100);
     expect(setPayload).toHaveBeenCalledTimes(13);
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });

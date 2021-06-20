@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -59,11 +59,9 @@ describe('Analysis output (Character)', () => {
   const chtName = SupportedLanguageNames[SupportedLanguages.CHT];
 
   it('renders correctly if no alt lang', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputDragon analysis={analysisResponse}/>
-      ));
-    });
+    renderReact(() => (
+      <AnalysisOutputDragon analysis={analysisResponse}/>
+    ));
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
@@ -82,15 +80,13 @@ describe('Analysis output (Character)', () => {
   });
 
   it('renders correctly if has alt lang', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputDragon analysis={{
-          ...analysisResponse,
-          isAltLang: true,
-          otherLangs: [SupportedLanguages.CHT],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <AnalysisOutputDragon analysis={{
+        ...analysisResponse,
+        isAltLang: true,
+        otherLangs: [SupportedLanguages.CHT],
+      }}/>
+    ));
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
@@ -110,15 +106,13 @@ describe('Analysis output (Character)', () => {
   });
 
   it('gives correct link for alt lang redirection', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputDragon analysis={{
-          ...analysisResponse,
-          isAltLang: true,
-          otherLangs: [SupportedLanguages.CHT],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <AnalysisOutputDragon analysis={{
+        ...analysisResponse,
+        isAltLang: true,
+        otherLangs: [SupportedLanguages.CHT],
+      }}/>
+    ));
 
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
@@ -128,14 +122,12 @@ describe('Analysis output (Character)', () => {
   });
 
   it('renders correctly if no edit notes', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <AnalysisOutputDragon analysis={{
-          ...analysisResponse,
-          editNotes: [],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <AnalysisOutputDragon analysis={{
+        ...analysisResponse,
+        editNotes: [],
+      }}/>
+    ));
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
@@ -154,17 +146,16 @@ describe('Analysis output (Character)', () => {
   });
 
   it('renders correctly for admin', async () => {
-    await act(async () => {
-      renderReact(
-        () => (
-          <AnalysisOutputDragon analysis={analysisResponse}/>
-        ),
-        {
-          user: {
-            isAdmin: true,
-          },
-        });
-    });
+    renderReact(
+      () => (
+        <AnalysisOutputDragon analysis={analysisResponse}/>
+      ),
+      {
+        user: {
+          isAdmin: true,
+        },
+      },
+    );
 
     expect(screen.getByText(translationEN.posts.manage.addChara)).toBeInTheDocument();
     expect(screen.getByText(translationEN.posts.manage.addDragon)).toBeInTheDocument();

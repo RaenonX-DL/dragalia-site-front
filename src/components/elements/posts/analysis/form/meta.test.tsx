@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {fireEvent, screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {typeInput} from '../../../../../../test/utils/event';
@@ -92,13 +92,8 @@ describe('Analysis form meta input', () => {
     typeInput(idField, 'string', {rerender});
 
     expect(state.payload.unitId).toBe(10950101);
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    await waitFor(() => {
-      rerender();
-      expect(state.payload.unitId).toBe(10950101);
-    });
+    jest.runTimersToTime(1100);
+    await waitFor(() => expect(state.payload.unitId).toBe(10950101));
   });
 
   it('shows the valid mark and the unit icon upon passing the check', async () => {
@@ -119,16 +114,10 @@ describe('Analysis form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '10950102', {rerender, clear: true});
 
-    await waitFor(() => {
-      expect(fnToUnitInfoMap).toHaveBeenCalled();
-    });
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    await waitFor(() => {
-      expect(setAvailability).toHaveBeenCalledWith(true);
-      expect(idField).toHaveClass('is-valid');
-    });
+    expect(fnToUnitInfoMap).toHaveBeenCalled();
+    jest.runTimersToTime(1100);
+    await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(true));
+    expect(idField).toHaveClass('is-valid');
     screen.getByAltText(name[SupportedLanguages.EN]);
   });
 
@@ -158,14 +147,9 @@ describe('Analysis form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
-    await waitFor(() => {
-      expect(setAvailability).toHaveBeenCalledWith(false);
-      rerender();
-      expect(idField).toHaveClass('is-invalid');
-    });
+    jest.runTimersToTime(1100);
+    await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(false));
+    expect(idField).toHaveClass('is-invalid');
   });
 
   it('starts checking 1 sec later after the last unit ID change', async () => {
@@ -186,11 +170,9 @@ describe('Analysis form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    await waitFor(() => {
-      jest.runTimersToTime(1100);
-      expect(setPayload).toHaveBeenCalledTimes(3);
-      expect(fnIdCheck).toHaveBeenCalledTimes(1);
-    });
+    jest.runTimersToTime(1100);
+    expect(setPayload).toHaveBeenCalledTimes(3);
+    expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
 
   it('starts checking 1 sec later after the last lang change', async () => {
@@ -212,11 +194,9 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    await waitFor(() => {
-      jest.runTimersToTime(1100);
-      expect(setPayload).toHaveBeenCalledTimes(1);
-      expect(fnIdCheck).toHaveBeenCalledTimes(1);
-    });
+    jest.runTimersToTime(1100);
+    expect(setPayload).toHaveBeenCalledTimes(1);
+    expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
 
   it('does not start the check within 1 sec of the change', async () => {
@@ -238,9 +218,7 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    await waitFor(() => {
-      jest.runTimersToTime(100);
-    });
+    jest.runTimersToTime(100);
     expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });

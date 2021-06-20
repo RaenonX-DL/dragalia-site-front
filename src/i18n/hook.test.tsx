@@ -1,4 +1,3 @@
-import {waitFor} from '@testing-library/react';
 import * as nextRouter from 'next/router';
 
 import {renderReactHook} from '../../test/render/main';
@@ -28,10 +27,8 @@ describe('I18n hook', () => {
 
     const {result} = renderReactHook(() => useI18n());
 
-    await waitFor(() => {
-      expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);
-      expect(result.current.lang).toBe(SupportedLanguages.JP);
-    });
+    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);
+    expect(result.current.lang).toBe(SupportedLanguages.JP);
   });
 
   // (O) cookies (X) router will be redirected by the framework
@@ -42,9 +39,7 @@ describe('I18n hook', () => {
 
     const {result} = renderReactHook(() => useI18n());
 
-    await waitFor(() => {
-      expect(result.current.lang).toBe(SupportedLanguages.JP);
-    });
+    expect(result.current.lang).toBe(SupportedLanguages.JP);
     expect(setCookies).not.toHaveBeenCalled();
   });
 
@@ -54,9 +49,7 @@ describe('I18n hook', () => {
 
     const {result} = renderReactHook(() => useI18n());
 
-    await waitFor(() => {
-      expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);
-      expect(result.current.lang).toBe(SupportedLanguages.JP);
-    });
+    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.JP);
+    expect(result.current.lang).toBe(SupportedLanguages.JP);
   });
 });

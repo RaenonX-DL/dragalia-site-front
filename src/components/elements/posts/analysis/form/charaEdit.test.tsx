@@ -146,12 +146,11 @@ describe('Character edit form', () => {
     const editButton = screen.getByText(translationEN.posts.manage.edit);
     userEvent.click(editButton);
 
-    await waitFor(() => {
-      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
-        PostPath.ANALYSIS,
-        {pid: initial.unitId, lang: SupportedLanguages.EN},
-      ));
-    });
+    const expectedPostPath = makePostPath(
+      PostPath.ANALYSIS,
+      {pid: initial.unitId, lang: SupportedLanguages.EN},
+    );
+    await waitFor(() => expect(window.location.assign).toHaveBeenCalledWith(expectedPostPath));
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
 

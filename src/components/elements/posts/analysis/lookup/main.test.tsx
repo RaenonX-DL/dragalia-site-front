@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
@@ -83,42 +83,28 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      userEvent.click(searchButton);
-    });
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
   });
 
   it('searches and scrolls even if not found', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.type(keywordInput, 'AAA');
     userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -126,21 +112,15 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     const {rerender} = renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.type(keywordInput, 'AAA');
     userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
 
     fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
@@ -150,41 +130,25 @@ describe('Analysis lookup page', () => {
     userEvent.clear(keywordInput);
     userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(3);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
+    expect(fnScroll).toHaveBeenCalledTimes(3);
   }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
   it('searches by type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('elementsFLAME')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('elementsFLAME')).toBeInTheDocument());
 
     const flameElemButton = screen.getByAltText('elementsFLAME');
-    act(() => {
-      userEvent.click(flameElemButton);
-    });
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      userEvent.click(searchButton);
-    });
+    userEvent.click(flameElemButton);
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
     expect(screen.queryByAltText('Karina')).not.toBeInTheDocument();
   });
 
@@ -192,26 +156,16 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('weaponTypesAXE')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('weaponTypesAXE')).toBeInTheDocument());
 
     const flameElemButton = screen.getByAltText('weaponTypesAXE');
-    act(() => {
-      userEvent.click(flameElemButton);
-    });
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      userEvent.click(searchButton);
-    });
+    userEvent.click(flameElemButton);
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -219,21 +173,15 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     const {rerender} = renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = screen.getByText(translationEN.misc.search);
     typeInput(keywordInput, 'Karina', {rerender});
     userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -241,20 +189,14 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     userEvent.type(keywordInput, 'Karina');
     userEvent.type(keywordInput, '{enter}');
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -262,29 +204,19 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('elementsWATER')).toBeInTheDocument();
-      expect(screen.queryByAltText('elementsWIND')).toBeInTheDocument();
-      expect(screen.queryByAltText('weaponTypesAXE')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('elementsWATER')).toBeInTheDocument());
+    expect(screen.queryByAltText('elementsWIND')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByAltText('weaponTypesAXE')).toBeInTheDocument());
 
     const waterElemButton = screen.getByAltText('elementsWATER');
-    act(() => {
-      userEvent.click(waterElemButton);
-    });
     const windElemButton = screen.getByAltText('elementsWIND');
-    act(() => {
-      userEvent.click(windElemButton);
-    });
     const axeButton = screen.getByAltText('weaponTypesAXE');
-    act(() => {
-      userEvent.click(axeButton);
-    });
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      userEvent.click(searchButton);
-    });
+    userEvent.click(waterElemButton);
+    userEvent.click(windElemButton);
+    userEvent.click(axeButton);
+    userEvent.click(searchButton);
 
     const expectedInput: InputData = {
       types: [],
@@ -292,14 +224,11 @@ describe('Analysis lookup page', () => {
       weaponTypes: [4],
       keyword: '',
     };
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-      expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);
-      expect(fnGaAnalysisLookup).toHaveBeenCalledWith(expectedInput);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);
+    expect(fnGaAnalysisLookup).toHaveBeenCalledWith(expectedInput);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -312,11 +241,9 @@ describe('Analysis lookup page', () => {
     userEvent.type(keywordInput, 'AAAA');
     userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-      expect(screen.queryByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument());
+    expect(fnScroll).toHaveBeenCalledTimes(2);
     const errorText = screen.getByText(translationEN.posts.analysis.error.noResult);
     expect(errorText).toHaveClass('text-danger');
     expect(errorText).toHaveClass('text-center');

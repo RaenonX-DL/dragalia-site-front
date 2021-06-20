@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {ObjectId} from 'mongodb';
 
@@ -94,9 +94,7 @@ describe('Main quest form', () => {
     const titleField = screen.getByDisplayValue(formState.payload.title);
     typeInput(titleField, 'Title', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
-    });
+    expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
   it('can change general info', async () => {
@@ -111,9 +109,7 @@ describe('Main quest form', () => {
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
     typeInput(generalInfoField, 'General', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
   });
 
   it('can change video section', async () => {
@@ -128,9 +124,7 @@ describe('Main quest form', () => {
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
     typeInput(videoField, 'Video', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
   });
 
   it('can change positional info', async () => {
@@ -144,27 +138,19 @@ describe('Main quest form', () => {
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
     typeInput(posField, 'Position', {clear: true, rerender});
-    await waitFor(() => {
-      expect(screen.getByDisplayValue('Position')).toBeInTheDocument();
-    });
+    expect(screen.getByDisplayValue('Position')).toBeInTheDocument();
 
     const tipsField = screen.getByText(formState.payload.positional[0].tips, {selector: 'textarea'});
     typeInput(tipsField, 'Tips', {clear: true, rerender});
-    await waitFor(() => {
-      expect(screen.getByText('Tips', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Tips', {selector: 'textarea'})).toBeInTheDocument();
 
     const buildField = screen.getByText(formState.payload.positional[0].builds, {selector: 'textarea'});
     typeInput(buildField, 'Builds', {clear: true, rerender});
-    await waitFor(() => {
-      expect(screen.getByText('Builds', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Builds', {selector: 'textarea'})).toBeInTheDocument();
 
     const rotationsField = screen.getByText(formState.payload.positional[0].rotations, {selector: 'textarea'});
     typeInput(rotationsField, 'Rotations', {clear: true, rerender});
-    await waitFor(() => {
-      expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
   });
 
   it('can add positional info', async () => {
@@ -177,14 +163,10 @@ describe('Main quest form', () => {
     ));
 
     const addButton = screen.getByText(translationEN.misc.add);
-    act(() => {
-      userEvent.click(addButton);
-    });
+    userEvent.click(addButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(2);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(2);
   });
 
   it('can remove positional info if > 1', async () => {
@@ -214,14 +196,10 @@ describe('Main quest form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    act(() => {
-      userEvent.click(removeButton);
-    });
+    userEvent.click(removeButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
   });
 
   it('cannot remove positional info if < 1', async () => {
@@ -234,14 +212,10 @@ describe('Main quest form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    act(() => {
-      userEvent.click(removeButton);
-    });
+    userEvent.click(removeButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
   });
 
   it('can change addendum', async () => {
@@ -256,9 +230,7 @@ describe('Main quest form', () => {
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
     typeInput(addendumField, 'Addendum', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('Addendum', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Addendum', {selector: 'textarea'})).toBeInTheDocument();
   });
 
   it('submits correct payload after edit', async () => {
@@ -350,12 +322,11 @@ describe('Main quest form', () => {
 
     expect(fnSendRequest).toHaveBeenCalledTimes(1);
 
-    await waitFor(() => {
-      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
-        PostPath.QUEST,
-        {pid: response.seqId, lang: SupportedLanguages.EN},
-      ));
-    });
+    const expectedPostPath = makePostPath(
+      PostPath.QUEST,
+      {pid: response.seqId, lang: SupportedLanguages.EN},
+    );
+    await waitFor(() => expect(window.location.assign).toHaveBeenCalledWith(expectedPostPath));
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
 });

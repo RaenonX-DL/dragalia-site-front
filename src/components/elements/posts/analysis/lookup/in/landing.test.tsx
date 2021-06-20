@@ -6,6 +6,7 @@ import {renderReact} from '../../../../../../../test/render/main';
 import {AnalysisLookupEntry, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
 import {AnalysisLookupLanding} from './landing';
 
+
 describe('Analysis lookup top section upon landing', () => {
   const analyses: Array<AnalysisLookupEntry> = [
     {
@@ -37,8 +38,6 @@ describe('Analysis lookup top section upon landing', () => {
   it('shows analyses on fetched', async () => {
     renderReact(() => (<AnalysisLookupLanding analyses={analyses}/>));
 
-    await waitFor(() => {
-      screen.getByText('Gala Leonidas');
-    });
+    await waitFor(() => screen.getByText('Gala Leonidas'));
   });
 });

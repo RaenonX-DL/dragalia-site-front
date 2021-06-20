@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -59,11 +59,9 @@ describe('Quest post output', () => {
   const chtName = SupportedLanguageNames[SupportedLanguages.CHT];
 
   it('renders correctly if no alt lang', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <QuestPostOutput post={postResponse}/>
-      ));
-    });
+    renderReact(() => (
+      <QuestPostOutput post={postResponse}/>
+    ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
@@ -78,15 +76,13 @@ describe('Quest post output', () => {
   });
 
   it('renders correctly if has alt lang', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <QuestPostOutput post={{
-          ...postResponse,
-          isAltLang: true,
-          otherLangs: [SupportedLanguages.CHT],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <QuestPostOutput post={{
+        ...postResponse,
+        isAltLang: true,
+        otherLangs: [SupportedLanguages.CHT],
+      }}/>
+    ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
@@ -102,15 +98,13 @@ describe('Quest post output', () => {
   });
 
   it('gives correct link for alt lang redirection', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <QuestPostOutput post={{
-          ...postResponse,
-          isAltLang: true,
-          otherLangs: [SupportedLanguages.CHT],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <QuestPostOutput post={{
+        ...postResponse,
+        isAltLang: true,
+        otherLangs: [SupportedLanguages.CHT],
+      }}/>
+    ));
 
     // `Link` element won't contain locale in `href`
     const altLangLink = screen.getAllByText(chtName)[0];
@@ -121,14 +115,12 @@ describe('Quest post output', () => {
   });
 
   it('renders correctly if no edit notes', async () => {
-    await act(async () => {
-      renderReact(() => (
-        <QuestPostOutput post={{
-          ...postResponse,
-          editNotes: [],
-        }}/>
-      ));
-    });
+    renderReact(() => (
+      <QuestPostOutput post={{
+        ...postResponse,
+        editNotes: [],
+      }}/>
+    ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
     expect(screen.getByText(/video/)).toBeInTheDocument();
@@ -143,12 +135,10 @@ describe('Quest post output', () => {
   });
 
   it('renders correctly for admin', async () => {
-    await act(async () => {
-      renderReact(
-        () => <QuestPostOutput post={postResponse}/>,
-        {user: {isAdmin: true}},
-      );
-    });
+    renderReact(
+      () => <QuestPostOutput post={postResponse}/>,
+      {user: {isAdmin: true}},
+    );
 
     expect(screen.getByText(translationEN.posts.manage.add)).toBeInTheDocument();
     expect(screen.getByText(translationEN.posts.manage.edit)).toBeInTheDocument();

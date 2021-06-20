@@ -118,9 +118,7 @@ describe('Post list page', () => {
       />
     ));
 
-    await waitFor(() => {
-      expect(fnRenderEntries).toHaveBeenCalledTimes(1);
-    });
+    await waitFor(() => expect(fnRenderEntries).toHaveBeenCalledTimes(1));
   });
 
   it('shows alert if failed to fetch the post list', async () => {
@@ -138,9 +136,8 @@ describe('Post list page', () => {
       />
     ));
 
-    await waitFor(() => {
-      expect(screen.getByText(new RegExp(ApiResponseCode[ApiResponseCode.FAILED_INTERNAL_ERROR]))).toBeInTheDocument();
-    });
+    const errorRegex = new RegExp(ApiResponseCode[ApiResponseCode.FAILED_INTERNAL_ERROR]);
+    await waitFor(() => expect(screen.getByText(errorRegex)).toBeInTheDocument());
   });
 
   it('disables paginator if no items to show', async () => {
@@ -161,14 +158,12 @@ describe('Post list page', () => {
       />
     ));
 
-    await waitFor(() => {
-      expect(screen.getByText('First').parentElement).toHaveAttribute('disabled');
-      expect(screen.getByText('Previous').parentElement).toHaveAttribute('disabled');
-      expect(screen.getByText('1')).toHaveAttribute('disabled');
-      expect(screen.getByText('2')).toHaveAttribute('disabled');
-      expect(screen.getByText('3')).toHaveAttribute('disabled');
-      expect(screen.getByText('Next').parentElement).toHaveAttribute('disabled');
-      expect(screen.getByText('Last').parentElement).toHaveAttribute('disabled');
-    });
+    await waitFor(() => expect(screen.getByText('First').parentElement).toHaveAttribute('disabled'));
+    expect(screen.getByText('Previous').parentElement).toHaveAttribute('disabled');
+    expect(screen.getByText('1')).toHaveAttribute('disabled');
+    expect(screen.getByText('2')).toHaveAttribute('disabled');
+    expect(screen.getByText('3')).toHaveAttribute('disabled');
+    expect(screen.getByText('Next').parentElement).toHaveAttribute('disabled');
+    expect(screen.getByText('Last').parentElement).toHaveAttribute('disabled');
   });
 });

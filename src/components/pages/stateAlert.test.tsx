@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../test/render/main';
 import * as alertReducers from '../../state/alert/reducer';
@@ -36,9 +36,7 @@ describe('State alert', () => {
 
     expect(screen.getByText('ALERT')).toBeInTheDocument();
 
-    act(() => {
-      jest.runTimersToTime(alertDuration + 100);
-    });
+    jest.runTimersToTime(alertDuration + 100);
 
     expect(screen.queryByText('ALERT')).not.toBeInTheDocument();
   });
@@ -60,9 +58,7 @@ describe('State alert', () => {
 
     unmount();
 
-    act(() => {
-      jest.runTimersToTime(alertDuration + 100);
-    });
+    jest.runTimersToTime(alertDuration + 100);
     expect(fnCloseAlert).not.toHaveBeenCalled();
   });
 });
