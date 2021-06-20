@@ -1,9 +1,10 @@
 import React from 'react';
 
 import {GetServerSideProps} from 'next';
-import {getProviders, signIn} from 'next-auth/client';
+import {getProviders, getSession, signIn} from 'next-auth/client';
 import {Button} from 'react-bootstrap';
 
+import {GeneralPath} from '../../src/const/path/definitions';
 import {useI18n} from '../../src/i18n/hook';
 
 
@@ -11,7 +12,23 @@ type SignInPageProps = {
   providers: UnwrapPromise<ReturnType<typeof getProviders>>,
 }
 
-export const getServerSideProps: GetServerSideProps<SignInPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<SignInPageProps> = async (context) => {
+  const {req, res, query} = context;
+  const session = await getSession({req});
+
+  const {callbackUrl} = query;
+
+  if (session && res && session.accessToken) {
+    // Manual redirect here instead of setting `callbackUrl` in `signIn()`
+    // because customized page disregards `callbackUrl`
+    return {
+      redirect: {
+        statusCode: 302,
+        destination: (callbackUrl as string) || GeneralPath.HOME,
+      },
+    };
+  }
+
   return {
     props: {
       providers: await getProviders(),
