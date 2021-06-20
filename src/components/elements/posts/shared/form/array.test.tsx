@@ -57,7 +57,7 @@ describe('Array data form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    expect(removeButton).toHaveAttribute('disabled');
+    expect(removeButton).toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
   });
@@ -91,7 +91,7 @@ describe('Array data form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    expect(removeButton).not.toHaveAttribute('disabled');
+    expect(removeButton).not.toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(3);
   });
