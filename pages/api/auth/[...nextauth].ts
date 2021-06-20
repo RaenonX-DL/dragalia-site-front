@@ -4,6 +4,7 @@ import {TypeORM} from 'next-auth/adapters';
 import Providers from 'next-auth/providers';
 
 import {AUTH_DB} from '../../../src/api-def/models';
+import {AuthPath} from '../../../src/const/path/definitions';
 import {UserModel} from '../../../src/models/user';
 import {ensureIndex} from '../../../src/utils/auth';
 
@@ -67,13 +68,25 @@ const nextAuthOptions: NextAuthOptions = {
 
       return session;
     },
-    // relative callback url won't work without this
-    redirect: async (url: string): Promise<string> => url,
+    redirect: async (url: string, baseUrl: string): Promise<string> => {
+      if (url.startsWith('/')) {
+        // Allow relative path redirection
+        return url;
+      }
+
+      if (url.startsWith(baseUrl)) {
+        // Allow same-origin redirection
+        return url;
+      }
+
+      // Don't return `url` as the callback URL could be cross-origin, which should be disallowed
+      return baseUrl;
+    },
   },
 
   // UI customizations
   pages: {
-    signIn: '/auth/signin',
+    signIn: AuthPath.SIGN_IN,
   },
 };
 
