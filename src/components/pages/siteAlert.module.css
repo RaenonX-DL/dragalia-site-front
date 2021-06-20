@@ -3,7 +3,7 @@
 }
 
 .text {
-  animation: marquee 7s linear infinite;
+  animation: marquee 4s linear infinite;
   border-radius: 0 !important;
 }
 
@@ -11,10 +11,10 @@
   0% {
     transform: translate(0, 100%);
   }
-  3% {
+  4% {
     transform: translate(0, 0);
   }
-  97% {
+  96% {
     transform: translate(0, 0);
   }
   100% {
