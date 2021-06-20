@@ -4,6 +4,7 @@ import {GetServerSideProps} from 'next';
 import {getProviders, getSession, signIn} from 'next-auth/client';
 import {Button} from 'react-bootstrap';
 
+import {providerIcon} from '../../src/components/elements/common/userControl/icons';
 import {GeneralPath} from '../../src/const/path/definitions';
 import {useI18n} from '../../src/i18n/hook';
 
@@ -48,13 +49,16 @@ const SignInPage = ({providers}: SignInPageProps) => {
   }
 
   return (
-    <>
+    <div className="center-screen">
       {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
-          <Button onClick={() => signIn(provider.id)}>Sign in with {provider.name}</Button>
-        </div>
+        <Button
+          key={provider.name} size="lg" variant="outline-light"
+          onClick={() => signIn(provider.id)}
+        >
+          {providerIcon[provider.name] || provider.name}
+        </Button>
       ))}
-    </>
+    </div>
   );
 };
 
