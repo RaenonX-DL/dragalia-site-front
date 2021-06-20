@@ -1,3 +1,4 @@
+import {throwError} from '../utils/error';
 import {PageMetaTranslations, TranslationStruct} from './translations/definition';
 import {GetTranslationFunction, InterpolateParams, TFunction} from './types';
 
@@ -16,11 +17,7 @@ export const getTFunction = (
     if (!newValue) {
       const errorMessage = `Placeholder of key [${key}] does not exist in string: "${entry}"`;
 
-      if (process.env.NODE_ENV === 'production') {
-        console.warn(errorMessage);
-      } else {
-        throw new Error(errorMessage);
-      }
+      throwError(errorMessage);
 
       return original;
     }
