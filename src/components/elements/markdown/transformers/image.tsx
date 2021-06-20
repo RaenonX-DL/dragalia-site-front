@@ -15,7 +15,7 @@ export const isImage = (imageUrl: string) => {
 
 const Image = ({imageUrl, alt}: Props) => (
   <a href={imageUrl} target="_blank" rel="noreferrer">
-    <img className="mb-2" src={imageUrl} alt={alt}/>
+    <img src={imageUrl} alt={alt}/>
   </a>
 );
 
@@ -46,6 +46,7 @@ export const ImageInHTML = ({imageUrl, alt}: Props) => {
       <>
         <CommonModal modalState={modalState} setModalState={setModalState}/>
         <Button className="p-0" variant="link" onClick={() => openGifModal()}>
+          <i className="bi bi-image"/>&nbsp;
           {t((t) => t.misc.openGif)}
         </Button>
       </>

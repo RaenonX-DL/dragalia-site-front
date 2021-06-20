@@ -85,7 +85,7 @@ $item-margin: 0.75rem;
 
     &.youtubeEmbed {
       position: relative;
-      padding-bottom: 56.25%;  // 16:9
+      padding-bottom: 56.25%; // 16:9
       height: 0;
     }
   }
@@ -119,6 +119,20 @@ $item-margin: 0.75rem;
     color: $strong-color;
   }
 
+  ol,
+  ul,
+  dl {
+    padding-inline-start: 25px;
+    margin-bottom: $item-margin;
+  }
+
+  h1,
+  h2,
+  h3 {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid colors.$hr-color;
+  }
+
   h1,
   h2,
   h3,
@@ -126,5 +140,7 @@ $item-margin: 0.75rem;
   h5,
   h6 {
     color: skyblue;
+    margin-bottom: $item-margin;
+    font-weight: 600;
   }
 }

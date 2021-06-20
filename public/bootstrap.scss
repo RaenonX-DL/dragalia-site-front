@@ -33,7 +33,7 @@ $border-color: colors.$color-light-gray !default;
 
 // region Thematic break (hr)
 
-$hr-border-color: rgba(colors.$color-light-gray, 0.5);
+$hr-border-color: colors.$hr-color;
 
 // endregion
 

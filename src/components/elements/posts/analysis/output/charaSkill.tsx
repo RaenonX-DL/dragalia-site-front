@@ -44,6 +44,7 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
                 <Markdown>{rotations}</Markdown>
               </>
             }
+            {rotations && tips && <div className="mb-2"/>}
             {
               tips &&
               <>

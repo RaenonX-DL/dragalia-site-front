@@ -87,6 +87,18 @@
 .mdBody strong {
   color: #80b2ff;
 }
+.mdBody ol,
+.mdBody ul,
+.mdBody dl {
+  padding-inline-start: 25px;
+  margin-bottom: 0.75rem;
+}
+.mdBody h1,
+.mdBody h2,
+.mdBody h3 {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.5);
+}
 .mdBody h1,
 .mdBody h2,
 .mdBody h3,
@@ -94,6 +106,8 @@
 .mdBody h5,
 .mdBody h6 {
   color: skyblue;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.module.css.map */
