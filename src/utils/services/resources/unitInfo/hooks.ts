@@ -1,13 +1,10 @@
-import {CharaInfo, DragonInfo, FuncGetUnitName, toUnitInfoMap, UnitInfoMap} from '../../../api-def/resources';
-import {useFetchState} from '../../../components/elements/common/fetch';
-import {ResourceLoader} from './loader';
+import React from 'react';
 
-type UseUnitInfoReturn = {
-  charaInfo: CharaInfo,
-  dragonInfo: DragonInfo,
-  unitInfoMap: UnitInfoMap,
-  getUnitName: FuncGetUnitName,
-}
+import {toUnitInfoMap} from '../../../../api-def/resources';
+import {useFetchState} from '../../../../components/elements/common/fetch';
+import {ResourceLoader} from '../loader';
+import {UseUnitInfoReturn} from './types';
+
 
 export const useUnitInfo = (): UseUnitInfoReturn => {
   const {
@@ -30,7 +27,10 @@ export const useUnitInfo = (): UseUnitInfoReturn => {
   fetchCharaInfo();
   fetchDragonInfo();
 
-  const unitInfoMap = toUnitInfoMap(charaInfo.data, dragonInfo.data);
+  const unitInfoMap = React.useMemo(
+    () => toUnitInfoMap(charaInfo.data, dragonInfo.data),
+    [charaInfo, dragonInfo],
+  );
 
   return {
     charaInfo: charaInfo.data,

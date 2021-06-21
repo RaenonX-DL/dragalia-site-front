@@ -413,7 +413,7 @@ export const translation: TranslationStruct = {
       titleSelf: 'Others',
     },
     quest: {
-      titleSelf: 'HDTs/Agitos',
+      titleSelf: 'Quest Guides',
       addendum: 'Addendum',
       builds: 'Builds',
       character: 'Character',

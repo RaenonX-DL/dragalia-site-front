@@ -1,8 +1,8 @@
 import {waitFor} from '@testing-library/react';
 
-import {renderReactHook} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api';
-import {useUnitInfo} from './unitInfo';
+import {renderReactHook} from '../../../../../test/render/main';
+import {SupportedLanguages} from '../../../../api-def/api';
+import {useUnitInfo} from './hooks';
 
 
 describe('Unit info hook', () => {

@@ -7,7 +7,7 @@ import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
-import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo';
+import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../common/fetch';
 import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
