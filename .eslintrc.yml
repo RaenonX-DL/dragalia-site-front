@@ -12,6 +12,14 @@ extends:
   - plugin:eslint-plugin-import/warnings
   - plugin:eslint-plugin-import/typescript
 
+plugins:
+  - "@typescript-eslint"
+  - jest-dom
+  - react
+  - react-hooks
+  - testing-library
+  - unused-imports
+
 ignorePatterns:
   - '*.d.ts'
 
@@ -26,13 +34,6 @@ parserOptions:
     jsx: true
   ecmaVersion: 2021
   sourceType: module
-
-plugins:
-  - "@typescript-eslint"
-  - jest-dom
-  - react
-  - testing-library
-  - unused-imports
 
 rules:
   "@typescript-eslint/no-unused-vars":
