@@ -44,6 +44,25 @@ describe('Quick reference transformer', () => {
     expect(result).toBe(expectedText);
   });
 
+  it('transforms analysis link (sentenced)', async () => {
+    const text = 'Check Gala Mym Analysis';
+
+    const result = await transformQuickReference({text, lang});
+
+    const expectedPath = makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang});
+    const expectedText = `Check [Gala Mym](${expectedPath}) Analysis`;
+    expect(result).toBe(expectedText);
+  });
+
+  it('keeps transformed analysis intact', async () => {
+    const expectedPath = makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang});
+
+    const text = `Check [Gala Mym](${expectedPath}) Analysis Analysis`;
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(text);
+  });
+
   it('does not transform incomplete analysis link', async () => {
     const text = 'Gala Analysis';
 
@@ -87,5 +106,19 @@ describe('Quick reference transformer', () => {
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${expectedAnalysis}`);
   });
 
-  it.todo('keeps already transformed references intact');
+  it('keeps already transformed references intact', async () => {
+    const expectedMisc =
+      `Miscellaneous post [${translations[lang].posts.misc.titleSelf} #3]` +
+      `(${makePostPath(PostPath.MISC, {pid: 3, lang})})`;
+    const expectedQuest =
+      `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
+      `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
+    const expectedAnalysis =
+      `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})}) Analysis`;
+    const text = `${expectedMisc} ${expectedQuest} ${expectedAnalysis}`;
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(text);
+  });
 });

@@ -24,18 +24,18 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
   }
 
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp([...unitNameIdMap.keys()].join('|'), 'gi');
+  const regex = new RegExp(`([^\\[])?(${[...unitNameIdMap.keys()].join('|')})([^\\]])`, 'g');
   text = text.replace(
     regex,
-    (unitName) => {
+    (matched, leftRemainder, unitName, rightRemainder) => {
       const unitId = unitNameIdMap.get(unitName);
       if (!unitId) {
-        return unitName;
+        return matched;
       }
 
       const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitId, lang});
 
-      return `[${unitName}](${postPath})`;
+      return `${leftRemainder || ''}[${unitName}](${postPath})${rightRemainder}`;
     },
   );
 
