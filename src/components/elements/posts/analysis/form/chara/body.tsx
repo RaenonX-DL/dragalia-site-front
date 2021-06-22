@@ -2,18 +2,18 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {CharaAnalysisPayload, CharacterSkill} from '../../../../../api-def/api';
-import {useI18n} from '../../../../../i18n/hook';
-import {generateNewCharaSkill} from '../../../../../utils/services/api/utils';
-import {MarkdownInput} from '../../../markdown/input';
-import {ArrayDataForm} from '../../shared/form/array';
-import {PostFormDataProps, PostFormState} from '../../shared/form/types';
-import {AnalysisSkillInput} from './charaSkill';
+import {CharaAnalysisPayload, CharacterSkill} from '../../../../../../api-def/api';
+import {useI18n} from '../../../../../../i18n/hook';
+import {generateNewCharaSkill} from '../../../../../../utils/services/api/utils';
+import {MarkdownInput} from '../../../../markdown/input';
+import {ArrayDataForm} from '../../../shared/form/array';
+import {PostFormDataProps, PostFormState} from '../../../shared/form/types';
+import {AnalysisSkillInput} from './skill';
+
 
 type CharaAnalysisFormProps<P extends CharaAnalysisPayload> = PostFormDataProps<P> & {
   setState: (newState: PostFormState<P>) => void,
 }
-
 
 export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
   formState,

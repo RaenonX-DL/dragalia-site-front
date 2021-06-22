@@ -2,10 +2,10 @@ import React from 'react';
 
 import {Col, Row} from 'react-bootstrap';
 
-import {DragonAnalysisPayload} from '../../../../../api-def/api';
-import {useI18n} from '../../../../../i18n/hook';
-import {MarkdownInput} from '../../../markdown/input';
-import {PostFormDataProps} from '../../shared/form/types';
+import {DragonAnalysisPayload} from '../../../../../../api-def/api';
+import {useI18n} from '../../../../../../i18n/hook';
+import {MarkdownInput} from '../../../../markdown/input';
+import {PostFormDataProps} from '../../../shared/form/types';
 
 export const DragonAnalysisForm = <P extends DragonAnalysisPayload>({formState, setPayload}: PostFormDataProps<P>) => {
   const {t} = useI18n();

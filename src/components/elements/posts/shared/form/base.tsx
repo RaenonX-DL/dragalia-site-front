@@ -6,6 +6,7 @@ import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../../api-de
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {alertDispatchers} from '../../../../../state/alert/dispatchers';
+import {ProtectedLayout} from '../../../../pages/layout/protected';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
@@ -24,6 +25,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   renderOnPreloaded,
   fnGetRedirectPath,
   fnGetRedirectId,
+  fnProcessPayload,
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
@@ -56,7 +58,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     isIdAvailable: availability,
   });
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!context?.session) {
@@ -68,34 +70,38 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
       return;
     }
 
-    fnSendRequest(formState.payload)
-      .then((data) => {
-        if (data.success) {
-          window.onbeforeunload = null;
-          dispatch(alertDispatchers.showAlert({
-            message: t((t) => t.posts.message.published),
-            variant: 'success',
-          }));
-          window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
-        } else {
-          setModalState({
-            show: true,
-            title: t((t) => t.posts.manage.publishFailed),
-            message: `${data.code}: ${ApiResponseCode[data.code]}`,
-          });
-        }
-      })
-      .catch((error) => {
+    if (fnProcessPayload) {
+      formState.payload = await fnProcessPayload(formState.payload);
+    }
+
+    try {
+      const data = await fnSendRequest(formState.payload);
+
+      if (data.success) {
+        window.onbeforeunload = null;
+        dispatch(alertDispatchers.showAlert({
+          message: t((t) => t.posts.message.published),
+          variant: 'success',
+        }));
+        window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
+      } else {
         setModalState({
           show: true,
           title: t((t) => t.posts.manage.publishFailed),
-          message: JSON.stringify(error),
+          message: `${data.code}: ${ApiResponseCode[data.code]}`,
         });
+      }
+    } catch (error) {
+      setModalState({
+        show: true,
+        title: t((t) => t.posts.manage.publishFailed),
+        message: JSON.stringify(error),
       });
+    }
   };
 
   return (
-    <>
+    <ProtectedLayout>
       <CommonModal modalState={modalState} setModalState={setModalState}/>
       <form onSubmit={onSubmit}>
         {renderMain(setPayload, setAvailability)}
@@ -104,6 +110,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
         <hr/>
         <FormControl formState={formState}/>
       </form>
-    </>
+    </ProtectedLayout>
   );
 };

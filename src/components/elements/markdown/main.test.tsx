@@ -179,7 +179,6 @@ describe('Markdown', () => {
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
     const elem = screen.getByText('colored', {selector: 'span'});
-    screen.debug();
     expect(elem).toHaveStyle({color: 'red'});
     expect(elem.parentElement).toHaveStyle({fontSize: '1.5rem'});
   });

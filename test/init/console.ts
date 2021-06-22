@@ -16,6 +16,8 @@ export const initMockConsoleBehavior = () => {
       return;
     }
 
+    // - `Warning:`: mostly coming from wrapping with act
+    // - `Error: Not implemented:`: navigation in jsdom
     if (errorMessage.startsWith('Warning:') || errorMessage.startsWith('Error: Not implemented:')) {
       return;
     }

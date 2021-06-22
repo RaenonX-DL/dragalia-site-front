@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Col, Form, Row} from 'react-bootstrap';
 
-import {useI18n} from '../../../../../i18n/hook';
-import {MarkdownInput} from '../../../markdown/input';
+import {useI18n} from '../../../../../../i18n/hook';
+import {MarkdownInput} from '../../../../markdown/input';
 
 
 export type AnalysisSkillInputProps = {

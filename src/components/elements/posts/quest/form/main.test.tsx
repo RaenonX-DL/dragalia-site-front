@@ -2,7 +2,6 @@ import React from 'react';
 
 import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {ObjectId} from 'mongodb';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {typeInput} from '../../../../../../test/utils/event';
@@ -16,11 +15,12 @@ import {
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {makePostPath} from '../../../../../utils/path/make';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
 
 
-describe('Main quest form', () => {
+describe('Quest form (New/Edit)', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
   const response: QuestPostEditResponse = {
     code: ApiResponseCode.SUCCESS,
@@ -57,16 +57,24 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
+    jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
-  it('loads the data correctly', async () => {
-    const {container} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('loads correctly', async () => {
+    const {container} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const payload = formState.payload;
 
@@ -82,14 +90,17 @@ describe('Main quest form', () => {
     expect(container).toHaveTextContent(payload.addendum);
   });
 
-  it('can change title', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes title', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const titleField = screen.getByDisplayValue(formState.payload.title);
     typeInput(titleField, 'Title', {clear: true, rerender});
@@ -97,14 +108,17 @@ describe('Main quest form', () => {
     expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
-  it('can change general info', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes general info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
     typeInput(generalInfoField, 'General', {clear: true, rerender});
@@ -112,14 +126,17 @@ describe('Main quest form', () => {
     expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can change video section', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes video section', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
     typeInput(videoField, 'Video', {clear: true, rerender});
@@ -127,14 +144,17 @@ describe('Main quest form', () => {
     expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can change positional info', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes positional info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
     typeInput(posField, 'Position', {clear: true, rerender});
@@ -153,14 +173,17 @@ describe('Main quest form', () => {
     expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can add positional info', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('adds positional info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const addButton = screen.getByText(translationEN.misc.add);
     userEvent.click(addButton);
@@ -169,7 +192,7 @@ describe('Main quest form', () => {
     expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(2);
   });
 
-  it('can remove positional info if > 1', async () => {
+  it('removes positional info if > 1', async () => {
     const newFormState = {...formState};
 
     newFormState.payload.positional = [
@@ -187,13 +210,16 @@ describe('Main quest form', () => {
       },
     ];
 
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     userEvent.click(removeButton);
@@ -203,13 +229,16 @@ describe('Main quest form', () => {
   });
 
   it('cannot remove positional info if < 1', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const removeButton = screen.getByText(translationEN.misc.remove);
     userEvent.click(removeButton);
@@ -218,14 +247,17 @@ describe('Main quest form', () => {
     expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
   });
 
-  it('can change addendum', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes addendum', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
     typeInput(addendumField, 'Addendum', {clear: true, rerender});
@@ -247,11 +279,7 @@ describe('Main quest form', () => {
           setFormState={setFormState}
         />
       ),
-      {
-        user: {
-          id: new ObjectId(),
-        },
-      },
+      {user: {isAdmin: true}},
     );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
@@ -301,6 +329,7 @@ describe('Main quest form', () => {
     delete window.location;
     // @ts-ignore
     window.location = {assign: jest.fn()};
+
     const {rerender} = renderReact(
       () => (
         <QuestPostForm
@@ -309,11 +338,7 @@ describe('Main quest form', () => {
           setFormState={setFormState}
         />
       ),
-      {
-        user: {
-          id: new ObjectId(),
-        },
-      },
+      {user: {isAdmin: true}},
     );
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
@@ -329,4 +354,8 @@ describe('Main quest form', () => {
     await waitFor(() => expect(window.location.assign).toHaveBeenCalledWith(expectedPostPath));
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
+
+  it.todo('transforms quick references in the payload');
+
+  it.todo('blocks access from non-admin user');
 });
