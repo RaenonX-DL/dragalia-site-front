@@ -368,7 +368,7 @@ export const translation: TranslationStruct = {
       fetchListFailed: '貼文清單獲取失敗。({{error}})',
       fetchPostFailed: '貼文獲取失敗。({{error}})',
       md: 'Markdown',
-      modifyNote: '編輯註記',
+      editNote: '編輯註記',
       modifyTime: '編輯時間',
       postNotExists: '貼文不存在。',
       preview: '預覽',

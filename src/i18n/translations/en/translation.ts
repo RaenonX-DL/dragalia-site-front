@@ -397,7 +397,7 @@ export const translation: TranslationStruct = {
       fetchListFailed: 'Failed to fetch the post list. ({{error}})',
       fetchPostFailed: 'Failed to fetch the post. ({{error}})',
       md: 'Markdown',
-      modifyNote: 'Modification Note',
+      editNote: 'Modification Note',
       modifyTime: 'Modified at',
       postNotExists: 'Post not exists.',
       preview: 'Preview',

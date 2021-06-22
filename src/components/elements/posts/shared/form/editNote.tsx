@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 
 import {PostEditPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from './types';
+
 
 type FormEditNoteProps<P extends PostEditPayload> = PostFormDataProps<P>
 
@@ -14,15 +14,15 @@ export const FormEditNote = <P extends PostEditPayload>({setPayload}: FormEditNo
 
   return (
     <>
-      <h5>{t((t) => t.posts.manage.modifyNote)}</h5>
-      <Row>
+      <h5>{t((t) => t.posts.manage.editNote)}</h5>
+      <Form.Row>
         <Col>
-          <MarkdownInput
-            onChanged={(e) => setPayload('editNote', e.target.value)}
-            rows={3}
+          <Form.Control
+            className="mb-2" placeholder={t((t) => t.posts.manage.editNote)}
+            onChange={(e) => setPayload('editNote', e.target.value)}
           />
         </Col>
-      </Row>
+      </Form.Row>
     </>
   );
 };

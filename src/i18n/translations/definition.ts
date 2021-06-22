@@ -299,7 +299,7 @@ export type TranslationStruct = {
       fetchListFailed: string,
       fetchPostFailed: string,
       md: string,
-      modifyNote: string,
+      editNote: string,
       modifyTime: string,
       postNotExists: string,
       preview: string,
