@@ -307,7 +307,7 @@ describe('Quest form (New/Edit)', () => {
     userEvent.click(submitButton);
     rerender();
 
-    expect(fnSendRequest).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalledTimes(1));
     expect(fnSendRequest).toHaveBeenCalledWith({
       ...formState.payload,
       general: 'General',
@@ -345,7 +345,7 @@ describe('Quest form (New/Edit)', () => {
     userEvent.click(submitButton);
     rerender();
 
-    expect(fnSendRequest).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalledTimes(1));
 
     const expectedPostPath = makePostPath(
       PostPath.QUEST,
@@ -355,7 +355,64 @@ describe('Quest form (New/Edit)', () => {
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
   });
 
-  it.todo('transforms quick references in the payload');
+  it('transforms quick references in the payload', async () => {
+    const originalText = 'Quest #Q3';
+    const transformedText = `Quest [${translationEN.posts.quest.titleSelf} #3]` +
+      `(${makePostPath(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
+
+    formState.payload = {
+      uid: formState.payload.uid,
+      lang: formState.payload.lang,
+      seqId: response.seqId,
+      title: originalText,
+      general: originalText,
+      video: originalText,
+      positional: [
+        {
+          position: originalText,
+          rotations: originalText,
+          builds: originalText,
+          tips: originalText,
+        },
+      ],
+      addendum: originalText,
+      editNote: originalText,
+    };
+
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const editButton = screen.getByText(translationEN.posts.manage.edit);
+    userEvent.click(editButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest).toHaveBeenCalledWith({
+      uid: formState.payload.uid,
+      lang: formState.payload.lang,
+      seqId: response.seqId,
+      title: originalText,
+      general: transformedText,
+      video: transformedText,
+      positional: [
+        {
+          position: originalText,
+          rotations: transformedText,
+          builds: transformedText,
+          tips: transformedText,
+        },
+      ],
+      addendum: transformedText,
+      editNote: originalText,
+    });
+  });
 
   it.todo('blocks access from non-admin user');
 });

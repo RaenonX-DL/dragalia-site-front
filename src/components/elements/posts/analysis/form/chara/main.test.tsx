@@ -197,7 +197,10 @@ describe('Character analysis form', () => {
       `(${makePostPath(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
 
     formState.payload = {
-      ...formState.payload,
+      uid: formState.payload.uid,
+      lang: formState.payload.lang,
+      unitId: formState.payload.unitId,
+      type: formState.payload.type,
       summary: originalText,
       summonResult: originalText,
       passives: originalText,
@@ -213,6 +216,7 @@ describe('Character analysis form', () => {
       videos: originalText,
       keywords: originalText,
       story: originalText,
+      editNote: originalText,
     };
 
     renderReact(
@@ -250,7 +254,7 @@ describe('Character analysis form', () => {
       videos: transformedText,
       keywords: transformedText,
       story: transformedText,
-      editNote: '',
+      editNote: originalText,
     });
   });
 
