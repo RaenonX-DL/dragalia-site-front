@@ -2,11 +2,19 @@ import {SupportedLanguages} from '../../../api-def/api';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
+import * as unitInfoUtils from '../../services/resources/unitInfo/utils';
 import {transformQuickReference} from './quickReference';
 
 
 describe('Quick reference transformer', () => {
   const lang = SupportedLanguages.EN;
+
+  beforeEach(() => {
+    // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
+    jest.spyOn(unitInfoUtils, 'getUnitNameIdMap').mockResolvedValue(new Map([
+      ['Gala Mym', 10550101],
+    ]));
+  });
 
   it('transforms quest post link', async () => {
     const text = 'Quest post #Q1';
@@ -78,4 +86,6 @@ describe('Quick reference transformer', () => {
       `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})}) Analysis`;
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${expectedAnalysis}`);
   });
+
+  it.todo('keeps already transformed references intact');
 });

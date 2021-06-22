@@ -19,16 +19,20 @@ const transformQuestPost: TextTransformer = async ({text, lang}) => {
 const transformAnalysis: TextTransformer = async ({text, lang}) => {
   const unitNameIdMap = await getUnitNameIdMap(lang);
 
-  if (!Object.keys(unitNameIdMap).length) {
+  if (!unitNameIdMap.size) {
     return text;
   }
 
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp(Object.keys(unitNameIdMap).join('|'), 'gi');
+  const regex = new RegExp([...unitNameIdMap.keys()].join('|'), 'gi');
   text = text.replace(
     regex,
     (unitName) => {
-      const unitId = unitNameIdMap[unitName];
+      const unitId = unitNameIdMap.get(unitName);
+      if (!unitId) {
+        return unitName;
+      }
+
       const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitId, lang});
 
       return `[${unitName}](${postPath})`;
