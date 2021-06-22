@@ -25,7 +25,7 @@ export const QuestNewForm = () => {
       ],
       addendum: '',
     },
-    isIdAvailable: false,
+    isIdAvailable: true,
     isPreloaded: false,
   });
 
