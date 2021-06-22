@@ -33,10 +33,26 @@ class Document extends NextDocument<Props> {
           <link href="/manifest.json" rel="manifest"/>
 
           {/* React-bootstrap imports */}
-          <script crossOrigin="anonymous" src="https://unpkg.com/react/umd/react.production.min.js"/>
-          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"/>
-          <script crossOrigin="anonymous" src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"/>
-          <script>const Alert = ReactBootstrap.Alert;</script>
+          {/* No known available async ways to import these yet */}
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script
+            crossOrigin="anonymous"
+            src="https://unpkg.com/react/umd/react.production.min.js"
+          />
+          {/* No known available async ways to import these yet */}
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script
+            crossOrigin="anonymous"
+            src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
+          />
+          {/* No known available async ways to import these yet */}
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script
+            async crossOrigin="anonymous"
+            src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+          />
+
+          <script>var Alert = ReactBootstrap.Alert;</script>
 
           {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
 
