@@ -414,5 +414,19 @@ describe('Quest form (New/Edit)', () => {
     });
   });
 
-  it.todo('blocks access from non-admin user');
+  it('blocks access from non-admin user', async () => {
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: false}},
+    );
+
+    expect(screen.queryByText(translationEN.posts.manage.edit)).not.toBeInTheDocument();
+    expect(screen.getByText(translationEN.meta.error['401'].description)).toBeInTheDocument();
+  });
 });
