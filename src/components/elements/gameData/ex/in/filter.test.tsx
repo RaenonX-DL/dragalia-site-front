@@ -114,7 +114,7 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const elemCheck = screen.getByAltText('filterElementCodeelem 1');
+    const elemCheck = screen.getByAltText('EN elem 1');
     userEvent.click(elemCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
@@ -131,7 +131,7 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
+    const exCheck = screen.getByAltText('EN ex 1');
     userEvent.click(exCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
@@ -148,7 +148,7 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
+    const cexCheck = screen.getByAltText('EN cex 1');
     userEvent.click(cexCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
@@ -165,13 +165,13 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const elemCheck = screen.getByAltText('filterElementCodeelem 2');
+    const elemCheck = screen.getByAltText('EN elem 2');
     userEvent.click(elemCheck);
     rerender();
-    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
+    const exCheck = screen.getByAltText('EN ex 1');
     userEvent.click(exCheck);
     rerender();
-    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
+    const cexCheck = screen.getByAltText('EN cex 1');
     userEvent.click(cexCheck);
     rerender();
 

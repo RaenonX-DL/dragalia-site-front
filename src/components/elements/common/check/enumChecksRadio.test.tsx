@@ -64,7 +64,7 @@ describe('Enum checks as radio', () => {
   };
 
   const clickFirstButton = () => {
-    const enumButton = screen.getByAltText('enum#1');
+    const enumButton = screen.getByAltText('EN 1');
     userEvent.click(enumButton);
   };
 
@@ -120,6 +120,6 @@ describe('Enum checks as radio', () => {
       />
     ));
 
-    expect(screen.getByAltText('enum#3')).toBeInTheDocument();
+    expect(screen.getByAltText('EN 3')).toBeInTheDocument();
   });
 });

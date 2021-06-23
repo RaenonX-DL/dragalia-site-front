@@ -135,14 +135,14 @@ describe('Analysis lookup page', () => {
     expect(fnScroll).toHaveBeenCalledTimes(3);
   }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
-  it('searches by type', async () => {
+  it('searches by element and type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByAltText('elementsFLAME')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByAltText('Flame')).toBeInTheDocument());
 
-    const flameElemButton = screen.getByAltText('elementsFLAME');
+    const flameElemButton = screen.getByAltText('Flame');
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(flameElemButton);
     userEvent.click(searchButton);
@@ -157,9 +157,9 @@ describe('Analysis lookup page', () => {
     renderReact(() => <AnalysisPostLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByAltText('weaponTypesAXE')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByAltText('Axe')).toBeInTheDocument());
 
-    const flameElemButton = screen.getByAltText('weaponTypesAXE');
+    const flameElemButton = screen.getByAltText('Axe');
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(flameElemButton);
     userEvent.click(searchButton);
@@ -205,13 +205,13 @@ describe('Analysis lookup page', () => {
     renderReact(() => <AnalysisPostLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByAltText('elementsWATER')).toBeInTheDocument());
-    expect(screen.queryByAltText('elementsWIND')).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByAltText('weaponTypesAXE')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByAltText('Water')).toBeInTheDocument());
+    expect(screen.queryByAltText('Wind')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByAltText('Axe')).toBeInTheDocument());
 
-    const waterElemButton = screen.getByAltText('elementsWATER');
-    const windElemButton = screen.getByAltText('elementsWIND');
-    const axeButton = screen.getByAltText('weaponTypesAXE');
+    const waterElemButton = screen.getByAltText('Water');
+    const windElemButton = screen.getByAltText('Wind');
+    const axeButton = screen.getByAltText('Axe');
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(waterElemButton);
     userEvent.click(windElemButton);
