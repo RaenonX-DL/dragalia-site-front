@@ -52,7 +52,7 @@ export const TextChildren = ({children}: TextChildrenProps) => {
             return <Text key={idx}>{child}</Text>;
           }
 
-          return <>{child}</>;
+          return <React.Fragment key={idx}>{child}</React.Fragment>;
         })
       }
     </>
