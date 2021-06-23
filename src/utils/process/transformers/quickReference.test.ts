@@ -1,4 +1,8 @@
-import {generateGalaMymUnitInfo} from '../../../../test/data/mock/unitInfo';
+import {
+  generateGalaMymInfo,
+  generateHighBrunhildaInfo,
+  generateBrunhildaInfo,
+} from '../../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../../api-def/api';
 import {DepotPaths} from '../../../api-def/resources/paths';
 import {PostPath} from '../../../const/path/definitions';
@@ -8,20 +12,13 @@ import * as unitInfoUtils from '../../services/resources/unitInfo/utils';
 import {transformQuickReference} from './quickReference';
 
 
-describe('Quick reference transformer', () => {
-  const lang = SupportedLanguages.EN;
+const lang = SupportedLanguages.EN;
 
-  const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
-  const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
-  const galaMymMdTransformed = `${galaMymImageMd} ${galaMymAnalysisLink}`;
+const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
+const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
+const galaMymMdTransformed = `${galaMymImageMd} ${galaMymAnalysisLink}`;
 
-  beforeEach(() => {
-    // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
-    jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
-      ['Gala Mym', generateGalaMymUnitInfo()],
-    ]));
-  });
-
+describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   it('transforms quest post link', async () => {
     const text = 'Quest post #Q1';
 
@@ -34,37 +31,6 @@ describe('Quick reference transformer', () => {
 
   it('does not transform incomplete quest post link', async () => {
     const text = 'Quest post #Q';
-
-    const result = await transformQuickReference({text, lang});
-
-    expect(result).toBe(text);
-  });
-
-  it('transforms analysis link', async () => {
-    const text = 'Gala Mym';
-
-    const result = await transformQuickReference({text, lang});
-
-    expect(result).toBe(galaMymMdTransformed);
-  });
-
-  it('transforms analysis link (sentenced)', async () => {
-    const text = 'Check Gala Mym Analysis';
-
-    const result = await transformQuickReference({text, lang});
-
-    const expectedText = `Check ${galaMymMdTransformed} Analysis`;
-    expect(result).toBe(expectedText);
-  });
-
-  it('keeps transformed analysis intact', async () => {
-    const result = await transformQuickReference({text: galaMymMdTransformed, lang});
-
-    expect(result).toBe(galaMymMdTransformed);
-  });
-
-  it('does not transform incomplete analysis link', async () => {
-    const text = 'Gala Analysis';
 
     const result = await transformQuickReference({text, lang});
 
@@ -120,5 +86,59 @@ describe('Quick reference transformer', () => {
     const result = await transformQuickReference({text, lang});
 
     expect(result).toBe(text);
+  });
+});
+
+describe('Quick reference transformer (Analysis)', () => {
+  beforeEach(() => {
+    // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
+    jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
+      ['Brunhilda', generateBrunhildaInfo()],
+      ['Gala Mym', generateGalaMymInfo()],
+      ['High Brunhilda', generateHighBrunhildaInfo()],
+    ]));
+  });
+
+  it('transforms analysis link', async () => {
+    const text = 'Gala Mym';
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(galaMymMdTransformed);
+  });
+
+  it('transforms analysis link (sentenced)', async () => {
+    const text = 'Check Gala Mym Analysis';
+
+    const result = await transformQuickReference({text, lang});
+
+    const expectedText = `Check ${galaMymMdTransformed} Analysis`;
+    expect(result).toBe(expectedText);
+  });
+
+  it('keeps transformed analysis intact', async () => {
+    const result = await transformQuickReference({text: galaMymMdTransformed, lang});
+
+    expect(result).toBe(galaMymMdTransformed);
+  });
+
+  it('does not transform incomplete analysis link', async () => {
+    const text = 'Gala Analysis';
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(text);
+  });
+
+  it('matches greedily', async () => {
+    const highBrunhildaAnalysisLink = `[High Brunhilda](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
+    const highBrunhildaImageMd = `![High Brunhilda](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
+    const highBrunhildaMdTransformed = `${highBrunhildaImageMd} ${highBrunhildaAnalysisLink}`;
+
+    const text = 'High Brunhilda';
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(highBrunhildaMdTransformed);
   });
 });

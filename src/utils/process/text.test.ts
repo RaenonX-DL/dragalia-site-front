@@ -1,4 +1,4 @@
-import {generateGalaMymUnitInfo} from '../../../test/data/mock/unitInfo';
+import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../api-def/api';
 import {DepotPaths} from '../../api-def/resources/paths';
 import {PostPath} from '../../const/path/definitions';
@@ -18,7 +18,7 @@ describe('Process text', () => {
   beforeEach(() => {
     // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
     jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
-      ['Gala Mym', generateGalaMymUnitInfo()],
+      ['Gala Mym', generateGalaMymInfo()],
     ]));
   });
 
