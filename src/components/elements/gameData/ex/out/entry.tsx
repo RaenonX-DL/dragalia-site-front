@@ -8,7 +8,7 @@ import {
   CharaExAbilityDataEntry,
 } from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {OverlayTooltip} from '../../../common/overlay/tooltip';
+import {Image} from '../../../common/image';
 import {ExAbility} from './exUnit';
 
 
@@ -24,17 +24,11 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
   const charaName = entry.chara.name[lang];
   const charaIconURL = DepotPaths.getCharaIconURL(entry.chara.iconName);
 
-  const ImageIcon = () => (
-    <OverlayTooltip text={charaName}>
-      <img src={charaIconURL} alt={charaName} style={{height: '4rem'}}/>
-    </OverlayTooltip>
-  );
-
   return (
     <div className="rounded bg-black-32 p-2 mb-2">
       <Row noGutters>
         <Col xs="auto" className="align-middle">
-          <ImageIcon/>
+          <Image src={charaIconURL} text={charaName} style={{height: '4rem'}}/>
         </Col>
         <Col>
           <Row noGutters>

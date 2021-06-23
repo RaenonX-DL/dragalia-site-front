@@ -11,7 +11,7 @@ import {CheckType} from './types';
 
 export type EnumChecksProps<K extends string, V, T extends { [key in K]: V }> =
   ChecksPropsDisplay<EnumEntry, K, V, T> & {
-  imageHeight?: CSS.Property.Height<string | number>,
+  imageHeight?: CSS.Property.Height,
 }
 
 type EnumChecksPropsInternal<K extends string, V, T extends { [key in K]: V }> =

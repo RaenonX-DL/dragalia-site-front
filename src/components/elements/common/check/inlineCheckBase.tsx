@@ -1,10 +1,10 @@
 import React from 'react';
 
 import * as CSS from 'csstype';
-import {ButtonGroup, Image, ToggleButton} from 'react-bootstrap';
+import {ButtonGroup, ToggleButton} from 'react-bootstrap';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {OverlayTooltip} from '../overlay/tooltip';
+import {Image} from '../image';
 import {TitledProps} from '../types';
 import {CheckType} from './types';
 
@@ -17,7 +17,7 @@ export type InlineCheckBaseProps = TitledProps & {
   imageUrl?: string,
   id?: string,
   checked?: boolean,
-  imageHeight?: CSS.Property.Height<string | number>,
+  imageHeight?: CSS.Property.Height,
 }
 
 
@@ -32,16 +32,9 @@ export const InlineCheckBase = ({
   onChange,
   imageHeight,
 }: InlineCheckBaseProps) => {
-  let label;
-  if (imageUrl) {
-    label = (
-      <OverlayTooltip text={title}>
-        <Image src={imageUrl} alt={id} style={{height: imageHeight || '1.5rem'}}/>
-      </OverlayTooltip>
-    );
-  } else {
-    label = <span className="text-light">{title}</span>;
-  }
+  const label = imageUrl ?
+    <Image src={imageUrl} text={title} style={{height: imageHeight || '1.5rem'}}/> :
+    <span className="text-light">{title}</span>;
 
   // Value of `1` is the identifier of that button in a button group.
   // https://react-bootstrap.github.io/components/buttons/#toggle-button-props
