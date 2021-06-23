@@ -10,7 +10,7 @@ type LinkComponentProps = MarkdownComponentProps & {
   href: string
 }
 
-export const renderLink = ({children, href, ...props}: LinkComponentProps) => {
+export const renderLink = ({children, href}: LinkComponentProps) => {
   const videoId = extractVideoId(href);
   if (videoId) {
     return <EmbeddedYoutubeVideo videoId={videoId}/>;
@@ -20,5 +20,5 @@ export const renderLink = ({children, href, ...props}: LinkComponentProps) => {
     return <ImageInHTML src={href} alt="image"/>;
   }
 
-  return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
+  return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
 };
