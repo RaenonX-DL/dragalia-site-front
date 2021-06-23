@@ -38,6 +38,8 @@ import {
   QuestPostPublishResponse,
   RequestPayloadBase,
   SupportedLanguages,
+  UnitNameRefPayload,
+  UnitNameRefResponse,
   UnitType,
 } from '../../../api-def/api';
 import {getFullApiUrl} from './utils';
@@ -141,7 +143,7 @@ export class ApiRequestSender {
    * Send a character analysis post publish request.
    *
    * @param {CharaAnalysisPublishPayload} payload payload of a character analysis post
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisPublishResponse>} promise returned from `fetch`
    */
   static analysisPublishChara(
     payload: CharaAnalysisPublishPayload,
@@ -174,7 +176,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisLookupResponse>} promise returned from `fetch`
    */
   static analysisLookup(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
@@ -189,7 +191,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisLookupLandingResponse>} promise returned from `fetch`
    */
   static analysisLookupLanding(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupLandingResponse, AnalysisLookupLandingPayload>(
@@ -289,7 +291,7 @@ export class ApiRequestSender {
    * @param {SupportedLanguages} lang post language
    * @param {PostType} postType type of the post
    * @param {number} pid post ID
-   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   * @return {Promise<PostPageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
   static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
     return ApiRequestSender.sendRequest<PostPageMetaResponse | FailedResponse, PostPageMetaPayload>(
@@ -307,15 +309,35 @@ export class ApiRequestSender {
   /**
    * Send a request to get the generic page meta.
    *
-   * @param {string} uid UID
+   * @param {string} uid User ID
    * @param {SupportedLanguages} lang current page language
-   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   * @return {Promise<PageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
   static getPageMeta(uid: string, lang: SupportedLanguages) {
     return ApiRequestSender.sendRequest<PageMetaResponse | FailedResponse, PageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_GENERAL,
       {uid, lang},
+    );
+  }
+
+  // endregion
+
+  // region Data
+
+  /**
+   * Send a request to get all unit name references.
+   *
+   * Note that this request is always anonymous (UID sent is an empty string).
+   *
+   * @param {SupportedLanguages} lang language of the name
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static getUnitNameReferences(lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<UnitNameRefResponse, UnitNameRefPayload>(
+      'GET',
+      ApiEndPoints.DATA_UNIT_NAME_REF,
+      {uid: '', lang},
     );
   }
 
