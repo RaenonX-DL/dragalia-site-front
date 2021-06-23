@@ -16,7 +16,7 @@ const lang = SupportedLanguages.EN;
 
 const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
 const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
-const galaMymMdTransformed = `${galaMymImageMd} ${galaMymAnalysisLink}`;
+const galaMymMdTransformed = `${galaMymImageMd}${galaMymAnalysisLink}`;
 
 describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   it('transforms quest post link', async () => {
@@ -133,7 +133,7 @@ describe('Quick reference transformer (Analysis)', () => {
   it('matches greedily', async () => {
     const highBrunhildaAnalysisLink = `[High Brunhilda](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
     const highBrunhildaImageMd = `![High Brunhilda](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
-    const highBrunhildaMdTransformed = `${highBrunhildaImageMd} ${highBrunhildaAnalysisLink}`;
+    const highBrunhildaMdTransformed = `${highBrunhildaImageMd}${highBrunhildaAnalysisLink}`;
 
     const text = 'High Brunhilda';
 

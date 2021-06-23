@@ -13,7 +13,7 @@ describe('Process text', () => {
 
   const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
   const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
-  const galaMymMdTransformed = `${galaMymImageMd} ${galaMymAnalysisLink}`;
+  const galaMymMdTransformed = `${galaMymImageMd}${galaMymAnalysisLink}`;
 
   beforeEach(() => {
     // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve

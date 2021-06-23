@@ -36,7 +36,7 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
       const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang});
       const imageMd = `![${unitName}](${getImageURL(unitInfo)}|unitIcon)`;
 
-      return `${leftRemainder || ''}${imageMd} [${unitName}](${postPath})${rightRemainder}`;
+      return `${leftRemainder || ''}${imageMd}[${unitName}](${postPath})${rightRemainder}`;
     },
   );
 

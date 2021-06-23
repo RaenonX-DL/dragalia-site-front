@@ -14,6 +14,7 @@ img {
   max-height: 100%;
 }
 img.unitIcon {
+  margin: 0 0.2rem;
   height: 1.6rem;
 }
 
