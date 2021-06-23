@@ -28,7 +28,7 @@ export const useUnitInfo = (): UseUnitInfoReturn => {
   fetchDragonInfo();
 
   const unitInfoMap = React.useMemo(
-    () => toUnitInfoMap(charaInfo.data, dragonInfo.data),
+    () => toUnitInfoMap(charaInfo.data, dragonInfo.data, (info) => info.id),
     [charaInfo, dragonInfo],
   );
 

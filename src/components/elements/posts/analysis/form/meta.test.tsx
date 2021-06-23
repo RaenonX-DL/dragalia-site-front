@@ -34,7 +34,7 @@ describe('Analysis form meta input', () => {
     [SupportedLanguages.EN]: 'en',
     [SupportedLanguages.JP]: 'jp',
   };
-  const unitInfoMap: UnitInfoMap = new Map([
+  const unitInfoMap: UnitInfoMap<number> = new Map([
     [
       10950102,
       {
