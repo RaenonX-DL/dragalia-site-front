@@ -1,11 +1,8 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
-import {translation as translationEN} from '../../../i18n/translations/en/translation';
-import {GoogleAnalytics} from '../../../utils/services/ga';
 import {Markdown} from './main';
 
 
@@ -30,31 +27,6 @@ describe('Markdown', () => {
 
     const embedElement = screen.getByTestId('youtubeEmbed');
     expect(embedElement).toHaveAttribute('src', '//www.youtube.com/embed/m8B_tlk-pl0');
-  });
-
-  it('renders image links as <img>', async () => {
-    renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.jpeg'}</Markdown>);
-
-    const imageElement = screen.getByAltText('image');
-    expect(imageElement).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
-  });
-
-  it('renders gif as a clickable button', async () => {
-    renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
-
-    const openButton = screen.getByText(translationEN.misc.openGif);
-    userEvent.click(openButton);
-
-    expect(screen.getByAltText('image')).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.gif');
-  });
-
-  it('records a GIF has been opened', async () => {
-    const fnGAShowGif = jest.spyOn(GoogleAnalytics, 'showGif');
-    renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
-
-    const openButton = screen.getByText(translationEN.misc.openGif);
-    userEvent.click(openButton);
-    expect(fnGAShowGif).toHaveBeenCalledTimes(1);
   });
 
   it('renders texts as <div>', async () => {
@@ -183,7 +155,7 @@ describe('Markdown', () => {
     expect(elem.parentElement).toHaveStyle({fontSize: '1.5rem'});
   });
 
-  it('shows original if the syntax is unclosed', async () => {
+  it('shows original if the color syntax is unclosed', async () => {
     const markdown = '::[#757575]Text';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);

@@ -1,5 +1,6 @@
 import {Components} from 'react-markdown/src/ast-to-react';
 
+import {renderImage} from './components/image';
 import {renderLink} from './components/link';
 import {renderListItem} from './components/listItem';
 import {renderParagraph} from './components/paragraph';
@@ -18,4 +19,5 @@ export const components: Components = {
   tr: renderTableRow,
   td: renderTableCell,
   li: renderListItem,
+  img: renderImage,
 };

@@ -1,30 +1,28 @@
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources/paths';
-import {UnitInfoData} from '../../../../api-def/resources/types/unitInfo';
+import {UnitInfoData, UnitInfoMap} from '../../../../api-def/resources/types/unitInfo';
+import {toUnitInfoMap} from '../../../../api-def/resources/utils/unitInfo';
 import {ResourceLoader} from '../loader';
-import {UnitNameInfoMap} from './types';
 
 
-let cache: UnitNameInfoMap;
+const cache: {[lang in SupportedLanguages]?: UnitInfoMap<string>} = {};
 
-export const getUnitNameInfoMap = async (lang: SupportedLanguages): Promise<UnitNameInfoMap> => {
+export const getUnitNameInfoMap = async (lang: SupportedLanguages): Promise<UnitInfoMap<string>> => {
   if (typeof window === 'undefined') {
     // This method may be used multiple times.
     // Limit this to client side only reduces response desync issue.
     throw new Error('This is only allowed to run at the client side');
   }
 
-  if (cache) {
-    return cache;
+  let nameInfoMap = cache[lang];
+  if (nameInfoMap) {
+    return nameInfoMap;
   }
 
   const unitInfo = await Promise.all([ResourceLoader.getCharacterInfo(), ResourceLoader.getDragonInfo()]);
 
-  cache = new Map(unitInfo
-    .flat()
-    .map((unitInfo) => [unitInfo.name[lang], unitInfo]),
-  );
-  return cache;
+  nameInfoMap = cache[lang] = toUnitInfoMap(unitInfo[0], unitInfo[1], (info) => info.name[lang]);
+  return nameInfoMap;
 };
 
 const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = {

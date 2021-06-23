@@ -1,4 +1,6 @@
+import {generateGalaMymUnitInfo} from '../../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../../api-def/api';
+import {DepotPaths} from '../../../api-def/resources/paths';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
@@ -9,10 +11,14 @@ import {transformQuickReference} from './quickReference';
 describe('Quick reference transformer', () => {
   const lang = SupportedLanguages.EN;
 
+  const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
+  const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
+  const galaMymMdTransformed = `${galaMymImageMd} ${galaMymAnalysisLink}`;
+
   beforeEach(() => {
     // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
-    jest.spyOn(unitInfoUtils, 'getUnitNameIdMap').mockResolvedValue(new Map([
-      ['Gala Mym', 10550101],
+    jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
+      ['Gala Mym', generateGalaMymUnitInfo()],
     ]));
   });
 
@@ -35,13 +41,11 @@ describe('Quick reference transformer', () => {
   });
 
   it('transforms analysis link', async () => {
-    const text = 'Gala Mym Analysis';
+    const text = 'Gala Mym';
 
     const result = await transformQuickReference({text, lang});
 
-    const expectedPath = makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang});
-    const expectedText = `[Gala Mym](${expectedPath}) Analysis`;
-    expect(result).toBe(expectedText);
+    expect(result).toBe(galaMymMdTransformed);
   });
 
   it('transforms analysis link (sentenced)', async () => {
@@ -49,18 +53,14 @@ describe('Quick reference transformer', () => {
 
     const result = await transformQuickReference({text, lang});
 
-    const expectedPath = makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang});
-    const expectedText = `Check [Gala Mym](${expectedPath}) Analysis`;
+    const expectedText = `Check ${galaMymMdTransformed} Analysis`;
     expect(result).toBe(expectedText);
   });
 
   it('keeps transformed analysis intact', async () => {
-    const expectedPath = makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang});
+    const result = await transformQuickReference({text: galaMymMdTransformed, lang});
 
-    const text = `Check [Gala Mym](${expectedPath}) Analysis Analysis`;
-    const result = await transformQuickReference({text, lang});
-
-    expect(result).toBe(text);
+    expect(result).toBe(galaMymMdTransformed);
   });
 
   it('does not transform incomplete analysis link', async () => {
@@ -102,7 +102,7 @@ describe('Quick reference transformer', () => {
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
       `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
     const expectedAnalysis =
-      `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})}) Analysis`;
+      `${galaMymMdTransformed} Analysis`;
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${expectedAnalysis}`);
   });
 
@@ -114,7 +114,7 @@ describe('Quick reference transformer', () => {
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
       `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
     const expectedAnalysis =
-      `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})}) Analysis`;
+      `${galaMymMdTransformed} Analysis`;
     const text = `${expectedMisc} ${expectedQuest} ${expectedAnalysis}`;
 
     const result = await transformQuickReference({text, lang});

@@ -1,7 +1,7 @@
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
-import {getUnitNameIdMap} from '../../services/resources/unitInfo/utils';
+import {getImageURL, getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
 import {TextTransformer} from '../type';
 
 
@@ -17,25 +17,26 @@ const transformQuestPost: TextTransformer = async ({text, lang}) => {
 };
 
 const transformAnalysis: TextTransformer = async ({text, lang}) => {
-  const unitNameIdMap = await getUnitNameIdMap(lang);
+  const unitNameIdMap = await getUnitNameInfoMap(lang);
 
   if (!unitNameIdMap.size) {
     return text;
   }
 
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp(`([^\\[])?(${[...unitNameIdMap.keys()].join('|')})([^\\]])`, 'g');
+  const regex = new RegExp(`([^\\[])?(${[...unitNameIdMap.keys()].join('|')})([^\\]]|$)`, 'g');
   text = text.replace(
     regex,
     (matched, leftRemainder, unitName, rightRemainder) => {
-      const unitId = unitNameIdMap.get(unitName);
-      if (!unitId) {
+      const unitInfo = unitNameIdMap.get(unitName);
+      if (!unitInfo) {
         return matched;
       }
 
-      const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitId, lang});
+      const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang});
+      const imageMd = `![${unitName}](${getImageURL(unitInfo)}|unitIcon)`;
 
-      return `${leftRemainder || ''}[${unitName}](${postPath})${rightRemainder}`;
+      return `${leftRemainder || ''}${imageMd} [${unitName}](${postPath})${rightRemainder}`;
     },
   );
 

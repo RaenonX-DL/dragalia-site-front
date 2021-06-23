@@ -1,4 +1,4 @@
-import {CharaInfo, DragonInfo, FuncGetUnitName, UnitInfoDataBase, UnitInfoMap} from '../../../../api-def/resources';
+import {CharaInfo, DragonInfo, FuncGetUnitName, UnitInfoMap} from '../../../../api-def/resources';
 
 
 export type UseUnitInfoReturn = {

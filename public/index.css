@@ -13,6 +13,9 @@ img {
   max-width: 100%;
   max-height: 100%;
 }
+img.unitIcon {
+  height: 1.6rem;
+}
 
 div.footer {
   height: 15vh;
