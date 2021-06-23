@@ -2,8 +2,8 @@ import React from 'react';
 
 import {UnitInfoData} from '../../../api-def/resources/types';
 import {useI18n} from '../../../i18n/hook';
+import {getImageURL} from '../../../utils/services/resources/unitInfo/utils';
 import {Image} from '../common/image';
-import {getImageURL} from '../posts/analysis/lookup/utils';
 
 
 type UnitIconProps = {
