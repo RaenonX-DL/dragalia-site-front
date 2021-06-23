@@ -7,6 +7,11 @@ import {useI18n} from '../../../i18n/hook';
 import {Markdown} from './main';
 
 
+enum EventKey {
+  MARKDOWN = 'markdown',
+  PREVIEW = 'preview',
+}
+
 type MarkdownInputProps = {
   rows?: number,
   onChanged?: ChangeEventHandler<HTMLTextAreaElement>,
@@ -18,6 +23,7 @@ export const MarkdownInput = ({rows, onChanged, value = '', required = false}: M
   const {t} = useI18n();
 
   const [content, setContent] = React.useState(value);
+  const [preview, setPreview] = React.useState(<></>);
 
   const updateContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -27,18 +33,25 @@ export const MarkdownInput = ({rows, onChanged, value = '', required = false}: M
     }
   };
 
+  const onSelect = (key: string | null) => {
+    if (key !== 'preview') {
+      return;
+    }
+
+    // To lazy-load markdown
+    setPreview(<Markdown>{content}</Markdown>);
+  };
+
   return (
-    <Tabs defaultActiveKey="markdown">
-      <Tab eventKey="markdown" title={t((t) => t.posts.manage.md)}>
+    <Tabs defaultActiveKey={EventKey.MARKDOWN} onSelect={onSelect}>
+      <Tab eventKey={EventKey.MARKDOWN} title={t((t) => t.posts.manage.md)}>
         <textarea
-          className="form-control mt-1" rows={rows} onChange={updateContent}
+          className="form-control" rows={rows} onChange={updateContent}
           required={required} value={content}
         />
       </Tab>
-      <Tab eventKey="preview" title={t((t) => t.posts.manage.preview)}>
-        <div className="p-3">
-          <Markdown>{content}</Markdown>
-        </div>
+      <Tab eventKey={EventKey.PREVIEW} title={t((t) => t.posts.manage.preview)}>
+        {preview}
       </Tab>
     </Tabs>
   );
