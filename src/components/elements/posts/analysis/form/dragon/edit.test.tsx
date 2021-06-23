@@ -7,7 +7,6 @@ import {renderReact} from '../../../../../../../test/render/main';
 import {ApiResponseCode, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
-import * as unitInfoUtils from '../../../../../../utils/services/resources/unitInfo/utils';
 import {AnalysisFormDragonEdit} from './edit';
 
 
@@ -20,10 +19,6 @@ describe('Dragon analysis edit form', () => {
       success: true,
       available: true,
     });
-    // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
-    jest.spyOn(unitInfoUtils, 'getUnitNameIdMap').mockResolvedValue(new Map([
-      ['Some Dragon', 20950101],
-    ]));
     fnSendRequest = jest.spyOn(ApiRequestSender, 'analysisEditDragon').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
