@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {ConditionEnumMap} from '../../../src/api-def/resources/types/export/enums';
 import {ElementBonus, ElementBonusData} from '../../../src/api-def/resources/types/export/misc';

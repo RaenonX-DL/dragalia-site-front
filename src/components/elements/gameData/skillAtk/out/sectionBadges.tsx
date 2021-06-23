@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
 
 import {getBadgesBuffCount} from './badgesBuffCount';
 import {getBadgesBuffZone} from './badgesBuffZone';

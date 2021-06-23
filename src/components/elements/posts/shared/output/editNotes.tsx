@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Table} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 
 import {PostEditNote} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';

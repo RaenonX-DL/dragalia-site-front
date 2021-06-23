@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import {SupportedLanguageNames, PostGetResponse} from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';

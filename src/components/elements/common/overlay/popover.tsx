@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Popover} from 'react-bootstrap';
+import Popover from 'react-bootstrap/Popover';
 import {v4} from 'uuid';
 
 import {OverlayBase, OverlayCommonProps} from './base';

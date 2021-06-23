@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Form} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
 import {AnalysisLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';

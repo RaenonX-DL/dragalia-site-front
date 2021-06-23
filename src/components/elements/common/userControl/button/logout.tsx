@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {signOut} from 'next-auth/client';
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';

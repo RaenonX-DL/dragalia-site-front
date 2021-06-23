@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {useRouter} from 'next/router';
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 import {AuthPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';

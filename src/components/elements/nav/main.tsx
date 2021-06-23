@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Nav, Navbar} from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';

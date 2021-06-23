@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Collapse} from 'react-bootstrap';
+import Collapse from 'react-bootstrap/Collapse';
 
 import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Tooltip} from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import {OverlayBase, OverlayCommonProps} from './base';
 

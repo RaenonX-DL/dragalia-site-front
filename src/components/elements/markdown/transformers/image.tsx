@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 import {useI18n} from '../../../../i18n/hook';
 import {GoogleAnalytics} from '../../../../utils/services/ga';

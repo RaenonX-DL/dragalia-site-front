@@ -2,7 +2,7 @@ import React from 'react';
 
 import {GetServerSideProps} from 'next';
 import {getSession} from 'next-auth/client';
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import {
   AnalysisResponse,

@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Col, Form, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {OverlayPopover} from '../overlay/popover';
 import {InputProps} from '../props';

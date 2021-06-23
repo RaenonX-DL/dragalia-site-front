@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../src/api-def/resources';
 import {useFetchState} from '../../src/components/elements/common/fetch';

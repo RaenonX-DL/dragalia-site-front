@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {Accordion, Button, Col, Row} from 'react-bootstrap';
+import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {PositionalInfo} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Nav} from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
 
 import {useNextRouter} from '../../../../utils/router';
 import {NavProps} from './types';

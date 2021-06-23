@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {OverlayTrigger} from 'react-bootstrap';
 import {OverlayChildren} from 'react-bootstrap/Overlay';
-import {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger';
+import OverlayTrigger, {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger';
 
 
 export type OverlayCommonProps = {

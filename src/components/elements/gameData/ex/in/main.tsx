@@ -1,6 +1,6 @@
 import React, {MouseEvent} from 'react';
 
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux';
 
 import {useI18n} from '../../../../../i18n/hook';

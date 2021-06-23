@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Badge, Col} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
 
 import {DepotPaths, AfflictionUnit} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';

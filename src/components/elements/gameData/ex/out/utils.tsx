@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Badge} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 
 import {
   AbilityVariantEffectUnitData,
@@ -112,7 +112,7 @@ export const filterExAbilityData = (exAbilityData: Array<CharaExAbilityDataEntry
       return false;
     }
 
-    return inputData.filterChainedExBuffParamCode.length == 0 ||
+    return inputData.filterChainedExBuffParamCode.length === 0 ||
       entry.chainedEx.some((chainedExEffect) => {
         return inputData.filterChainedExBuffParamCode.includes(chainedExEffect.parameter.code);
       });

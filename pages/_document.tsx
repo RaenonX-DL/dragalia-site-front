@@ -48,7 +48,7 @@ class Document extends NextDocument<Props> {
           {/* No known available async ways to import these yet */}
           {/* eslint-disable-next-line @next/next/no-sync-scripts */}
           <script
-            defer crossOrigin="anonymous"
+            crossOrigin="anonymous"
             src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
           />
 

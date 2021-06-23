@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Badge} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 
 import {QuestPostListEntry} from '../../../../../api-def/api';
 import {PostEntryBadgesProps} from '../../shared/list/entry';

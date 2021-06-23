@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Form} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
 import {ApiResponseCode} from '../../../../../../api-def/api';
 import {AppReactContext} from '../../../../../../context/app/main';

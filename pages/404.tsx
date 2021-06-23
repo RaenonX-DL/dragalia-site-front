@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Col, Container, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../src/i18n/hook';
 

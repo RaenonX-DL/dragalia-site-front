@@ -1,7 +1,8 @@
 import React from 'react';
 
 import * as CSS from 'csstype';
-import {ButtonGroup, ToggleButton} from 'react-bootstrap';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import {ButtonVariant} from 'react-bootstrap/types';
 
 import {Image} from '../image';
