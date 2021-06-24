@@ -24,7 +24,11 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
   }
 
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp(`([^\\[])?(${[...unitNameIdMap.keys()].join('|')})([^\\]]|$)`, 'g');
+  const regex = new RegExp(
+    // Sort the keys by its length descending for greedy match
+    `([^\\[])?(${[...unitNameIdMap.keys()].sort((a, b) => b.length - a.length).join('|')})([^\\]]|$)`,
+    'g',
+  );
   text = text.replace(
     regex,
     (matched, leftRemainder, unitName, rightRemainder) => {

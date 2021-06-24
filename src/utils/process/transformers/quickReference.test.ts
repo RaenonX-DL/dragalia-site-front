@@ -94,8 +94,8 @@ describe('Quick reference transformer (Analysis)', () => {
     // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
     jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
       ['Brunhilda', generateBrunhildaInfo()],
+      ['BrunhildaExtended', generateHighBrunhildaInfo()],
       ['Gala Mym', generateGalaMymInfo()],
-      ['High Brunhilda', generateHighBrunhildaInfo()],
     ]));
   });
 
@@ -131,14 +131,14 @@ describe('Quick reference transformer (Analysis)', () => {
   });
 
   it('matches greedily', async () => {
-    const highBrunhildaAnalysisLink = `[High Brunhilda](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
-    const highBrunhildaImageMd = `![High Brunhilda](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
-    const highBrunhildaMdTransformed = `${highBrunhildaImageMd}${highBrunhildaAnalysisLink}`;
+    const brunhildaExtAnalysisLink = `[BrunhildaExtended](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
+    const brunhildaExtImageMd = `![BrunhildaExtended](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
+    const brunhildaExtMdTransformed = `${brunhildaExtImageMd}${brunhildaExtAnalysisLink}`;
 
-    const text = 'High Brunhilda';
+    const text = 'BrunhildaExtended';
 
     const result = await transformQuickReference({text, lang});
 
-    expect(result).toBe(highBrunhildaMdTransformed);
+    expect(result).toBe(brunhildaExtMdTransformed);
   });
 });
