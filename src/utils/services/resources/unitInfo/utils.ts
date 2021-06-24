@@ -1,7 +1,7 @@
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources/paths';
 import {UnitInfoData, UnitInfoMap} from '../../../../api-def/resources/types/unitInfo';
-import {toUnitInfoMap} from '../../../../api-def/resources/utils/unitInfo';
+import {toUnitInfoMap, toUnitInfoNameMap} from '../../../../api-def/resources/utils/unitInfo';
 import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
 
@@ -25,16 +25,8 @@ export const getUnitNameInfoMap = async (lang: SupportedLanguages): Promise<Unit
     ResourceLoader.getDragonInfo(),
     ApiRequestSender.getUnitNameReferences(lang),
   ]);
-
-  const unitInfoMap = toUnitInfoMap(charaInfo, dragonInfo, (info) => info.name[lang]);
   const unitInfoIdMap = toUnitInfoMap(charaInfo, dragonInfo, (info) => info.id);
-  Object.entries(unitNameRef.data).forEach(([name, unitId]) => {
-    const unitInfo = unitInfoIdMap.get(unitId);
-    if (!unitInfo) {
-      return;
-    }
-    unitInfoMap.set(name, unitInfo);
-  });
+  const unitInfoMap = toUnitInfoNameMap(unitInfoIdMap, lang, unitNameRef.data);
 
   nameInfoMap = cache[lang] = unitInfoMap;
 
