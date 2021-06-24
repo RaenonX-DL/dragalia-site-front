@@ -361,7 +361,9 @@ export class ApiRequestSender {
       headers: {'Content-Type': 'application/json'},
     };
 
-    console.debug(`[API] Sending ${method} request to ${endpoint}`);
+    if (!process.env.CI) {
+      console.debug(`[API] Sending ${method} request to ${endpoint}`);
+    }
 
     if (method === 'GET') {
       return fetch(`${endpoint}?${new URLSearchParams(payload).toString()}`, initOptionsBase)

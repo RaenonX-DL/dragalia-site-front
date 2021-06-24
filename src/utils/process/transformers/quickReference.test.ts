@@ -91,7 +91,7 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
 
 describe('Quick reference transformer (Analysis)', () => {
   beforeEach(() => {
-    // Mocking this because the fetching promises in `getUnitNameIdMap()` do not resolve
+    // Mocking this because the fetching promises in `getUnitNameIdMap()` cannot resolve
     jest.spyOn(unitInfoUtils, 'getUnitNameInfoMap').mockResolvedValue(new Map([
       ['Brunhilda', generateBrunhildaInfo()],
       ['BrunhildaExtended', generateHighBrunhildaInfo()],

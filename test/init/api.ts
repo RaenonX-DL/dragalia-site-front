@@ -4,7 +4,9 @@ import path from 'path';
 import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 
+import {AnalysisIdCheckResponse, ApiEndPoints, ApiResponseCode, UnitNameRefResponse} from '../../src/api-def/api';
 import {ResourcePaths} from '../../src/api-def/resources';
+import {getFullApiUrl} from '../../src/utils/services/api/utils';
 
 
 export const mswServer = setupServer(
@@ -22,6 +24,24 @@ export const mswServer = setupServer(
       'utf-8',
     );
     return res(ctx.json(JSON.parse(fileContent)));
+  }),
+  rest.get(`${getFullApiUrl(ApiEndPoints.DATA_UNIT_NAME_REF)}`, async (req, res, ctx) => {
+    const response: UnitNameRefResponse = {
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: {},
+    };
+
+    return res(ctx.json(response));
+  }),
+  rest.get(`${getFullApiUrl(ApiEndPoints.POST_ANALYSIS_ID_CHECK)}`, async (req, res, ctx) => {
+    const response: AnalysisIdCheckResponse = {
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: false,
+    };
+
+    return res(ctx.json(response));
   }),
 );
 
