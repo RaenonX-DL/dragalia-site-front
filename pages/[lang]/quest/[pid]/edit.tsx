@@ -22,6 +22,7 @@ export const getServerSideProps: GetServerSideProps<QuestEditProps> = async (con
       response: await getServerSidePropsPost(
         context,
         ApiRequestSender.questGet,
+        (pid) => Number(pid),
         session?.user?.id.toString(),
       ),
     },

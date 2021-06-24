@@ -42,6 +42,7 @@ import {
   UnitNameRefResponse,
   UnitType,
 } from '../../../api-def/api';
+import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
 
@@ -54,19 +55,14 @@ export class ApiRequestSender {
   /**
    * Get a quest post using its sequential ID.
    *
-   * @param {string} uid UID of the logged in user
-   * @param {number} seqId sequential ID of the post to get
-   * @param {SupportedLanguages} lang language code of the post to get
-   * @param {boolean} incCount if the post view count should be increased or not
+   * @param {FetchPostOptions} options options to get a quest post
    * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
    */
-  static questGet(
-    uid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
-  ): Promise<QuestPostGetResponse> {
+  static questGet({uid, postId, lang, incCount}: FetchPostOptions<number>): Promise<QuestPostGetResponse> {
     return ApiRequestSender.sendRequest<QuestPostGetResponse, QuestPostGetPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_GET,
-      {uid, seqId, lang, incCount},
+      {uid, seqId: postId, lang, incCount},
     );
   }
 
@@ -204,20 +200,14 @@ export class ApiRequestSender {
   /**
    * Get an analysis post using its unit ID.
    *
-   * @param {string} uid user ID of the logged in user
-   * @param {number} unitId unit ID of the analysis to get
-   * @param {SupportedLanguages} lang language code of the post to get
-   * @param {boolean} incCount if the post view count should be increased or not
+   * @param {FetchPostOptions} options options to get an analysis
    * @return {Promise<AnalysisGetResponse>} promise returned from `fetch`
    */
-  static analysisGet(
-    uid: string, unitId: number, lang: SupportedLanguages, incCount?: boolean,
-  ):
-    Promise<AnalysisResponse> {
+  static analysisGet({uid, lang, postId, incCount}: FetchPostOptions<number | string>): Promise<AnalysisResponse> {
     return ApiRequestSender.sendRequest<AnalysisGetResponse, AnalysisGetPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_GET,
-      {uid, unitId, lang, incCount},
+      {uid, lang, unitId: postId, incCount},
     )
       .then((response) => {
         if (response.type === UnitType.CHARACTER) {

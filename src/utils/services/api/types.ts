@@ -8,9 +8,11 @@ export type FunctionFetchPostList<R extends SequencedPostListResponse> = (
   limit: number,
 ) => Promise<R>
 
-export type FunctionFetchPost<R extends PostGetResponse> = (
+export type FetchPostOptions<K> = {
   uid: string,
-  seqId: number,
-  langCode: SupportedLanguages,
-  increaseCount?: boolean,
-) => Promise<R>
+  postId: K,
+  lang: SupportedLanguages,
+  incCount?: boolean,
+}
+
+export type FunctionFetchPost<K, R extends PostGetResponse> = (options: FetchPostOptions<K>) => Promise<R>
