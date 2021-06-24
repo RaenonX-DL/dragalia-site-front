@@ -10,7 +10,7 @@ describe('Unit info hook', () => {
     const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => expect(result.current.charaInfo.length).toBeGreaterThan(0));
-    expect(result.current.dragonInfo.length).toBeGreaterThan(0);
+    await waitFor(() => expect(result.current.dragonInfo.length).toBeGreaterThan(0));
     expect(result.current.unitInfoMap.size).toBeGreaterThan(0);
   });
 
@@ -18,7 +18,7 @@ describe('Unit info hook', () => {
     const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => expect(result.current.charaInfo.length).toBeGreaterThan(0));
-    expect(result.current.dragonInfo.length).toBeGreaterThan(0);
+    await waitFor(() => expect(result.current.dragonInfo.length).toBeGreaterThan(0));
     expect(result.current.unitInfoMap.size).toBeGreaterThan(0);
 
     expect(result.current.getUnitName(10950101, SupportedLanguages.EN)).toBe('Gala Leonidas');
@@ -28,7 +28,7 @@ describe('Unit info hook', () => {
     const {result} = renderReactHook(() => useUnitInfo());
 
     await waitFor(() => expect(result.current.charaInfo.length).toBeGreaterThan(0));
-    expect(result.current.dragonInfo.length).toBeGreaterThan(0);
+    await waitFor(() => expect(result.current.dragonInfo.length).toBeGreaterThan(0));
     expect(result.current.unitInfoMap.size).toBeGreaterThan(0);
 
     expect(result.current.getUnitName(1, SupportedLanguages.EN)).toBeUndefined();
