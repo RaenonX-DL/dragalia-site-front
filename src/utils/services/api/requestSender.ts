@@ -280,19 +280,14 @@ export class ApiRequestSender {
    * @param {string} uid User ID
    * @param {SupportedLanguages} lang post language
    * @param {PostType} postType type of the post
-   * @param {number} pid post ID
+   * @param {number | string} postIdentifier post identifier
    * @return {Promise<PostPageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
-  static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
+  static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, postIdentifier: number | string) {
     return ApiRequestSender.sendRequest<PostPageMetaResponse | FailedResponse, PostPageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_POST,
-      {
-        uid,
-        lang,
-        postType,
-        postId: pid,
-      },
+      {uid, lang, postType, postIdentifier},
     );
   }
 
