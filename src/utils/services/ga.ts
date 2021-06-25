@@ -7,7 +7,6 @@ import {InputData as AnalysisInput} from '../../components/elements/posts/analys
 
 enum GAEvent {
   LANG_CHANGE = 'lang_change',
-  LOGIN = 'login',
   DAMAGE_CALCULATOR = 'damage_calc',
   ABILITY_SEARCH = 'ability_search',
   ANALYSIS_LOOKUP = 'analysis_lookup',
@@ -50,29 +49,6 @@ export class GoogleAnalytics {
         'old': oldLang,
         'new': newLang,
       },
-    );
-  }
-
-  /**
-   * Record the event of an user logged in.
-   *
-   * @param {string} method method used for login
-   * @param {boolean} success if the login succeed
-   * @param {string} errorName name of the error
-   */
-  static login(method: string = 'Google', success: boolean, errorName?: string) {
-    const params: Record<string, string | boolean> = {
-      'method': method,
-      'success': success,
-    };
-
-    if (errorName) {
-      params['error_name'] = errorName;
-    }
-
-    GoogleAnalytics.sendEvent(
-      GAEvent.LOGIN,
-      params,
     );
   }
 
@@ -168,7 +144,7 @@ export class GoogleAnalytics {
     }
 
     if ((window as any).gtag) {
-      // Defined in `index.html`
+      // Defined in entry point
       // @ts-ignore
       window.gtag('event', eventName, parameters);
     }
