@@ -29,7 +29,7 @@ export const ExEffectUnit = ({
             text={effectUnit.parameter.name[lang]}
             style={{height: '2rem'}}
           />
-          <OverlayTooltip text={rate.toString()}>
+          <OverlayTooltip text={rate.toString()} key={rate}>
             <span className="align-middle">
               &nbsp;{rate.toFixed(0)}&nbsp;{effectUnit.paramUnit.name[lang]}
             </span>

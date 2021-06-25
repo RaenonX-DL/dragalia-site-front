@@ -8,6 +8,7 @@ import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import {ExEffectUnit} from './exEffectUnit';
 import {getAbilityVariantEffectBadges} from './utils';
 
+
 type ExAbilityProps = {
   effectUnits: Array<AbilityVariantEffectUnitData>,
   name: string,
@@ -20,7 +21,7 @@ export const ExAbility = ({effectUnits, name, description, conditionEnums, isEx 
   <div className="text-center">
     <Row>
       <Col>
-        <OverlayTooltip text={description}>
+        <OverlayTooltip key={description} text={description}>
           <span>{name}</span>
         </OverlayTooltip>
       </Col>

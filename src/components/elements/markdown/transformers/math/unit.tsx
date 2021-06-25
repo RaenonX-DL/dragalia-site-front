@@ -8,7 +8,7 @@ import {ExpressionOutputProps} from './types';
 export const ExpressionOutput = ({exprExtractResult, evalResult, expression}: ExpressionOutputProps) => {
   if (exprExtractResult.location === 'none') {
     return (
-      <OverlayTooltip text={expression} placement="top">
+      <OverlayTooltip key={expression} text={expression} placement="top">
         <span className={styles.calc}>
           <i className="bi bi-calculator"/>
           {evalResult}
