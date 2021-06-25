@@ -11,25 +11,25 @@ export const Text = ({children}: TextComponentProps) => {
   for (let idxStart = 0; idxStart < children.length; idxStart++) {
     const text = children.substring(idxStart);
 
-    for (const syntax of syntaxCollection) {
-      if (!text.startsWith(syntax.start)) {
+    for (const Syntax of syntaxCollection) {
+      if (!text.startsWith(Syntax.start)) {
         continue; // Text not started with the command
       }
 
-      let idxEnd = text.indexOf(syntax.end, syntax.start.length);
+      let idxEnd = text.indexOf(Syntax.end, Syntax.start.length);
       if (idxEnd === -1) {
         continue; // Closing command not found, continue the search
       }
       idxEnd += idxStart; // return of `indexOf` is offset instead (text is substring)
 
       const leftRemainder = children.substring(0, idxStart);
-      const extracted = children.substring(idxStart + syntax.start.length, idxEnd);
-      const rightRemainder = children.substring(idxEnd + syntax.end.length);
+      const extracted = children.substring(idxStart + Syntax.start.length, idxEnd);
+      const rightRemainder = children.substring(idxEnd + Syntax.end.length);
 
       return (
         <>
           <Text>{leftRemainder}</Text>
-          <syntax.Component>{extracted}</syntax.Component>
+          <Syntax.Component>{extracted}</Syntax.Component>
           <Text>{rightRemainder}</Text>
         </>
       );

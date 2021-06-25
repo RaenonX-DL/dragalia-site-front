@@ -1,11 +1,12 @@
 @use "../../../../public/colors";
 
 $strong-color: #80b2ff;
+$markdown-bg-color: colors.$color-black-32;
 $item-margin: 0.75rem;
 
 .mdBody {
   overflow: auto;
-  background-color: colors.$color-black-32;
+  background-color: $markdown-bg-color;
   border: transparent solid $item-margin;
   border-bottom: 0;
   border-radius: 0.25rem;
@@ -87,6 +88,19 @@ $item-margin: 0.75rem;
       position: relative;
       padding-bottom: 56.25%; // 16:9
       height: 0;
+    }
+  }
+
+  span {
+    &.calc {
+      background-color: darken($markdown-bg-color, 10%);
+      color: #ff0;
+      border-radius: 0.25rem;
+      padding: 0.1rem 0.2rem;
+
+      i {
+        margin-right: 0.2rem;
+      }
     }
   }
 

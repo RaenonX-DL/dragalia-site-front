@@ -1,3 +1,4 @@
+import {CalcExpression} from '../math/main';
 import {ColoredText} from './color';
 import {EnlargedTextLevel2, EnlargedTextLevel3} from './enlarge';
 import {Syntax} from './types';
@@ -7,6 +8,12 @@ const colorSyntax: Syntax = {
   start: '::',
   end: '::',
   Component: ColoredText,
+};
+
+const calcSyntax: Syntax = {
+  start: '==',
+  end: '==',
+  Component: CalcExpression,
 };
 
 const enlargeLv3Syntax: Syntax = {
@@ -24,6 +31,7 @@ const enlargeLv2Syntax: Syntax = {
 // NOTE: Order matters!
 export const syntaxCollection = [
   colorSyntax,
+  calcSyntax,
   enlargeLv3Syntax,
   enlargeLv2Syntax,
 ];

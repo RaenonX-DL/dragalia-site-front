@@ -162,4 +162,12 @@ describe('Markdown', () => {
 
     expect(screen.getByText('::[#757575]Text')).toBeInTheDocument();
   });
+
+  it('calculates and show the result', async () => {
+    const markdown = '==5 + 5 [fx]==';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('10 (5 + 5)')).toBeInTheDocument();
+  });
 });
