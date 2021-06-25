@@ -1,10 +1,25 @@
+// Height of 2 lines of text
+$height: 4.125rem;
+
 .container {
   overflow: hidden;
+  height: $height;
 }
 
 .text {
   animation: marquee 4s linear infinite;
+  height: $height;
+  // Override border radius for alert in bootstrap
   border-radius: 0 !important;
+  // Align element vertically at the middle
+  display: table-cell;
+  vertical-align: middle;
+  // Overwritten if `display` is not `table-cell`
+  margin: 0;
+  // `display: table-cell` causes the element NOT to stretch
+  width: 100vw;
+  // Align with navbar and override bootstrap alert padding
+  padding: 0.5rem 1rem !important;
 }
 
 @keyframes marquee {
@@ -12,11 +27,11 @@
     transform: translate(0, 100%);
   }
 
-  4% {
+  5% {
     transform: translate(0, 0);
   }
 
-  96% {
+  95% {
     transform: translate(0, 0);
   }
 
