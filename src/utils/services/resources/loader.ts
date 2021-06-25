@@ -11,6 +11,7 @@ import {
   ExBuffParams,
   ResourcePaths,
   SkillIdentifierInfo,
+  StatusEnums,
   WeaponTypeEnums,
 } from '../../../api-def/resources';
 
@@ -82,6 +83,17 @@ export class ResourceLoader {
    */
   static getEnumElements(callback?: (elementEnums: ElementEnums) => void): Promise<ElementEnums> {
     return ResourceLoader.fetchResources<ElementEnums>(ResourcePaths.ENUMS_ELEMENTS, callback);
+  }
+
+  /**
+   * Get affliction status enums.
+   *
+   * @function
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<WeaponTypeEnums>} promise after the callback
+   */
+  static getEnumAfflictionStatus(callback?: (weaponTypeEnums: StatusEnums) => void): Promise<StatusEnums> {
+    return ResourceLoader.fetchResources<StatusEnums>(ResourcePaths.ENUMS_STATUS, callback);
   }
 
   /**
