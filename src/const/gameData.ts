@@ -1,3 +1,5 @@
+import {GetTranslationFunction} from '../i18n/types';
+
 /**
  * Class of the condition codes.
  *
@@ -12,3 +14,9 @@ export enum ConditionCodes {
   TARGET_STATE_BK = 180,
   TARGET_STATE_OD = 181,
 }
+
+export const conditionNameTransFunc: { [code in ConditionCodes]?: GetTranslationFunction } = {
+  [ConditionCodes.NONE]: (t) => t.game.skillAtk.name.targetState.none,
+  [ConditionCodes.TARGET_STATE_OD]: (t) => t.game.skillAtk.name.targetState.od,
+  [ConditionCodes.TARGET_STATE_BK]: (t) => t.game.skillAtk.name.targetState.bk,
+};
