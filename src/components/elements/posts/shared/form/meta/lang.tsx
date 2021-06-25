@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Form} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 import {PostMeta, SupportedLanguageNames, SupportedLanguages} from '../../../../../../api-def/api';
 import {PostFormControlProps} from '../types';

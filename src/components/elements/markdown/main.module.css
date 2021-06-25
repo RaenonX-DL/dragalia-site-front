@@ -1,16 +1,21 @@
 .mdBody {
   overflow: auto;
   background-color: #202020;
-  border: transparent solid 1rem;
+  border: transparent solid 0.75rem;
+  border-bottom: 0;
   border-radius: 0.25rem;
 }
 .mdBody table {
   width: 100%;
   padding-right: 30px;
+  margin-bottom: 0.75rem;
 }
 .mdBody table tr {
   background-color: #0e0e0e;
   border: 1px solid #656565;
+}
+.mdBody table tr:last-child {
+  margin-bottom: 0;
 }
 .mdBody table th,
 .mdBody table td {
@@ -45,19 +50,28 @@
   }
   .mdBody table tr {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .mdBody table tr:last-child {
     margin-bottom: 0;
   }
 }
 .mdBody div.text {
-  margin: 0.5rem 0;
+  margin-bottom: 0.75rem;
 }
 .mdBody div.youtubeEmbed {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
+}
+.mdBody span.calc {
+  background-color: #070707;
+  color: #ff0;
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.2rem;
+}
+.mdBody span.calc i {
+  margin-right: 0.2rem;
 }
 .mdBody iframe.youtubeEmbed {
   position: absolute;
@@ -82,6 +96,18 @@
 .mdBody strong {
   color: #80b2ff;
 }
+.mdBody ol,
+.mdBody ul,
+.mdBody dl {
+  padding-inline-start: 25px;
+  margin-bottom: 0.75rem;
+}
+.mdBody h1,
+.mdBody h2,
+.mdBody h3 {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.5);
+}
 .mdBody h1,
 .mdBody h2,
 .mdBody h3,
@@ -89,6 +115,8 @@
 .mdBody h5,
 .mdBody h6 {
   color: skyblue;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.module.css.map */

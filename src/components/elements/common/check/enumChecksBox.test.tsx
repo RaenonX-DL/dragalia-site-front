@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api';
@@ -52,13 +53,13 @@ describe('Enum check boxes as checkboxes', () => {
   ];
 
   const clickFirstButton = () => {
-    const enumButton = screen.getByAltText('enum#1');
-    fireEvent.click(enumButton);
+    const enumButton = screen.getByAltText('EN 1');
+    userEvent.click(enumButton);
   };
 
   const clickSecondButton = () => {
-    const enumButton = screen.getByAltText('enum#2');
-    fireEvent.click(enumButton);
+    const enumButton = screen.getByAltText('EN 2');
+    userEvent.click(enumButton);
   };
 
   let data: {enum: Array<number>};
@@ -165,6 +166,6 @@ describe('Enum check boxes as checkboxes', () => {
       />
     ));
 
-    expect(screen.getByAltText('enum#3')).toBeInTheDocument();
+    expect(screen.getByAltText('EN 3')).toBeInTheDocument();
   });
 });

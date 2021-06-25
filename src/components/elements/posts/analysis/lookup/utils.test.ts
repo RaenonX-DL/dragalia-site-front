@@ -2,8 +2,9 @@ import charaData from '../../../../../../test/data/resources/info/chara.json';
 import dragonData from '../../../../../../test/data/resources/info/dragon.json';
 import {SupportedLanguages, UnitType} from '../../../../../api-def/api';
 import {DepotPaths, CharaInfo, DragonInfo, UnitInfoData} from '../../../../../api-def/resources';
+import {getImageURL} from '../../../../../utils/services/resources/unitInfo/utils';
 import {InputData} from './in/types';
-import {getImageURL, getUnitInfo} from './utils';
+import {getUnitInfo} from './utils';
 
 describe('Get unit info from input data', () => {
   const charaInfo: CharaInfo = charaData;

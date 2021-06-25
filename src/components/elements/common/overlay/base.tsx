@@ -1,13 +1,14 @@
 import React from 'react';
 
-import {OverlayTrigger} from 'react-bootstrap';
-import {OverlayChildren} from 'react-bootstrap/Overlay';
-import {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger';
+import {OverlayChildren, Placement} from 'react-bootstrap/Overlay';
+import OverlayTrigger, {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger';
 
 
 export type OverlayCommonProps = {
-  // Do this to require `children` to be present (React.PropsWithChildren does not require children)
+  // Note that the children MUST be able to accept `ref`
+  // Doc: https://react-bootstrap.github.io/components/overlays/#overlay-trigger
   children: React.ReactElement,
+  placement?: Placement,
 }
 
 type Props = OverlayCommonProps & {
@@ -15,16 +16,12 @@ type Props = OverlayCommonProps & {
   trigger?: OverlayTriggerType | Array<OverlayTriggerType>,
 }
 
-export const OverlayBase = ({
-  overlay,
-  trigger,
-  children,
-}: Props) => {
+export const OverlayBase = ({placement, trigger, overlay, children}: Props) => {
   return (
     <OverlayTrigger
-      placement="auto"
-      trigger={trigger}
       overlay={overlay}
+      placement={placement}
+      trigger={trigger}
     >
       {children}
     </OverlayTrigger>

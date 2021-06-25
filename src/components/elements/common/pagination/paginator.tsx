@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Pagination} from 'react-bootstrap';
+import Pagination from 'react-bootstrap/Pagination';
 
 import {useNextRouter} from '../../../../utils/router';
 import {scrollElementToTop} from '../../../../utils/scroll';

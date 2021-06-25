@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import {AppReactContext} from '../../context/app/main';
 import {Markdown} from '../elements/markdown/main';

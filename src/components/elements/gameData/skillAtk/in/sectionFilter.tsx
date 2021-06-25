@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Form} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {EnumChecksBox} from '../../../common/check/enumChecksBox';

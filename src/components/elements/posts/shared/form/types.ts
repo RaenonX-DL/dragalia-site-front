@@ -34,15 +34,16 @@ export type PostFormControlProps<P extends PostMeta> = PostFormDataProps<P> & {
  */
 export type PostFormFetchProps<P extends PostMeta, R extends PostEditResponse> = {
   fnSendRequest: (payload: P) => Promise<R>,
+  fnProcessPayload?: (payload: P) => PromiseLike<P>,
 }
 
 /**
- * Props of the main post form.
+ * Props of the base post form.
  */
-export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = PostFormFetchProps<P, R> & {
+export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = PostFormFetchProps<P, R> & {
   formState: PostFormState<P>,
   setFormState: React.Dispatch<React.SetStateAction<PostFormState<P>>>,
-  renderMain?: (
+  renderMain: (
     setPayload: PostFormSetPayloadFunc<P>,
     setAvailability: (availability: boolean) => void,
   ) => React.ReactElement,
@@ -52,14 +53,10 @@ export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = Post
 }
 
 /**
- * Props of the base post form.
+ * Props of the main post form.
  */
-export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = PostFormProps<P, R> & {
-  renderMain: (
-    setPayload: PostFormSetPayloadFunc<P>,
-    setAvailability: (availability: boolean) => void,
-  ) => React.ReactElement,
-}
+export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = Pick<PostFormBaseProps<P, R>,
+  'formState' | 'setFormState' | 'fnSendRequest' | 'fnProcessPayload' | 'renderOnPreloaded'>;
 
 export const isFormStateValid = <P extends PostMeta>({isIdAvailable, isPreloaded}: PostFormState<P>) => {
   return isIdAvailable || isPreloaded;

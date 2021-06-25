@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Badge, Col, Row} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {ConditionEnumMap} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';

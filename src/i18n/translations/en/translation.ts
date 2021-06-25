@@ -1,5 +1,6 @@
 import {TranslationStruct} from '../definition';
 
+
 export const translation: TranslationStruct = {
   donation: {
     tierS1: 'Tier S-1',
@@ -236,11 +237,17 @@ export const translation: TranslationStruct = {
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
     },
+    error: {
+      auth: {
+        noProvider: 'No authentication providers available.',
+      },
+    },
   },
   misc: {
     add: 'Add',
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
+    openGif: 'Click to open GIF',
     remove: 'Remove',
     search: 'Search',
     searchKeyword: 'Keyword',
@@ -309,11 +316,17 @@ export const translation: TranslationStruct = {
           description: 'Page to search for all attacking skills in the game.',
         },
       },
+      auth: {
+        signIn: {
+          title: 'Login',
+          description: 'Sign-in to the website to enable more features.',
+        },
+      },
     },
     error: {
       401: {
         title: 'Access Denied',
-        description: 'Please check your current login status.',
+        description: 'Access denied. Please check your current login status.',
       },
       404: {
         title: 'Page not exists',
@@ -384,7 +397,7 @@ export const translation: TranslationStruct = {
       fetchListFailed: 'Failed to fetch the post list. ({{error}})',
       fetchPostFailed: 'Failed to fetch the post. ({{error}})',
       md: 'Markdown',
-      modifyNote: 'Modification Note',
+      editNote: 'Modification Note',
       modifyTime: 'Modified at',
       postNotExists: 'Post not exists.',
       preview: 'Preview',
@@ -400,7 +413,7 @@ export const translation: TranslationStruct = {
       titleSelf: 'Others',
     },
     quest: {
-      titleSelf: 'HDTs/Agitos',
+      titleSelf: 'Quest Guides',
       addendum: 'Addendum',
       builds: 'Builds',
       character: 'Character',

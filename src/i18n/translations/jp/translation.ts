@@ -207,11 +207,17 @@ export const translation: TranslationStruct = {
         '現在 **高難易度クエスト攻略、キャラドラゴン評価** のページの一部は完成しています、ご覧ください。\n\n' +
         'ページを選択したら說明もついてます。',
     },
+    error: {
+      auth: {
+        noProvider: 'No authentication providers available.',
+      },
+    },
   },
   misc: {
     add: '追加',
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
+    openGif: '點擊以開啟 GIF 圖片',
     remove: '削除',
     search: '検索',
     searchKeyword: 'Keyword',
@@ -278,6 +284,12 @@ export const translation: TranslationStruct = {
         skillAtk: {
           title: 'TBA',
           description: 'description',
+        },
+      },
+      auth: {
+        signIn: {
+          title: 'Login',
+          description: 'Sign-in to the website to enable more features.',
         },
       },
     },
@@ -353,7 +365,7 @@ export const translation: TranslationStruct = {
       fetchListFailed: '文のリスト獲得失敗。({{error}})',
       fetchPostFailed: '文の獲得失敗。({{error}})',
       md: 'Markdown',
-      modifyNote: '記事を編集する',
+      editNote: '記事を編集する',
       modifyTime: '日期を編集する',
       postNotExists: '文がありません。',
       preview: 'プレビュー',

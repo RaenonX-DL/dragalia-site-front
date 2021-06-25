@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {CustomBoxes} from './customBox';
@@ -60,7 +61,7 @@ describe('Checkboxes', () => {
     ));
 
     const enumButton = screen.getByText('check 2');
-    fireEvent.click(enumButton);
+    userEvent.click(enumButton);
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(1);
     expect(inputData).toStrictEqual({selected: []});
@@ -79,10 +80,10 @@ describe('Checkboxes', () => {
     ));
 
     const enum1Button = screen.getByText('check 1');
-    fireEvent.click(enum1Button);
+    userEvent.click(enum1Button);
     rerender();
     const enum2Button = screen.getByText('check 2');
-    fireEvent.click(enum2Button);
+    userEvent.click(enum2Button);
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(2);
     expect(inputData).toStrictEqual({selected: [1, 2]});
@@ -101,7 +102,7 @@ describe('Checkboxes', () => {
     ));
 
     const enumButton = screen.getByText('check 1');
-    fireEvent.click(enumButton);
+    userEvent.click(enumButton);
 
     expect(setInputDataFunc).toHaveBeenCalledTimes(1);
     expect(inputData).toStrictEqual({selected: [2, 1]});

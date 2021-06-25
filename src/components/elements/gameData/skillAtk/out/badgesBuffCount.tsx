@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Badge} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 
 import {AttackingSkillData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
@@ -16,7 +16,7 @@ export const getBadgesBuffCount = (atkSkillEntry: AttackingSkillData) => {
   const maxEachPct = Math.max(...atkSkillEntry.skill.buffCountBoost.map((data) => data.each)) * 100;
 
   let tooltipText;
-  if (atkSkillEntry.skill.buffCountBoost.some((data) => data.limit != 0)) {
+  if (atkSkillEntry.skill.buffCountBoost.some((data) => data.limit !== 0)) {
     tooltipText = t(
       (t) => t.game.skillAtk.entry.buffCountDescCapped,
       {

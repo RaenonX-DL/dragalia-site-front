@@ -2,7 +2,7 @@ import React from 'react';
 
 import {GetServerSideProps} from 'next';
 import {getSession} from 'next-auth/client';
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import {
   AnalysisResponse,
@@ -10,9 +10,8 @@ import {
   DragonAnalysisBody,
   UnitType,
 } from '../../../../src/api-def/api';
-import {AnalysisFormCharaEdit} from '../../../../src/components/elements/posts/analysis/form/charaEdit';
-import {AnalysisFormDragonEdit} from '../../../../src/components/elements/posts/analysis/form/dragonEdit';
-import {ProtectedLayout} from '../../../../src/components/pages/layout/protected';
+import {AnalysisFormCharaEdit} from '../../../../src/components/elements/posts/analysis/form/chara/edit';
+import {AnalysisFormDragonEdit} from '../../../../src/components/elements/posts/analysis/form/dragon/edit';
 import {useI18n} from '../../../../src/i18n/hook';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../../src/utils/ssr';
@@ -31,6 +30,8 @@ export const getServerSideProps: GetServerSideProps<AnalysisEditProps> = async (
       response: await getServerSidePropsPost(
         context,
         ApiRequestSender.analysisGet,
+        // No need to type cast here as these will be sent as string in API request
+        (pid) => pid,
         session?.user?.id.toString(),
       ),
     },
@@ -52,52 +53,46 @@ const AnalysisEdit = ({response}: AnalysisEditProps) => {
     const post = response as CharaAnalysisBody;
 
     return (
-      <ProtectedLayout>
-        <AnalysisFormCharaEdit
-          initialAnalysis={{
-            lang: post.lang,
-            unitId: post.unitId,
-            type: post.type,
-            summary: post.summary,
-            summonResult: post.summonResult,
-            passives: post.passives,
-            normalAttacks: post.normalAttacks,
-            tipsBuilds: post.tipsBuilds,
-            forceStrikes: post.forceStrikes,
-            skills: post.skills,
-            videos: post.videos,
-            story: post.story,
-            keywords: post.keywords,
-          }}
-          fnSendRequest={ApiRequestSender.analysisEditChara}
-        />
-      </ProtectedLayout>
+      <AnalysisFormCharaEdit
+        analysis={{
+          lang: post.lang,
+          unitId: post.unitId,
+          type: post.type,
+          summary: post.summary,
+          summonResult: post.summonResult,
+          passives: post.passives,
+          normalAttacks: post.normalAttacks,
+          tipsBuilds: post.tipsBuilds,
+          forceStrikes: post.forceStrikes,
+          skills: post.skills,
+          videos: post.videos,
+          story: post.story,
+          keywords: post.keywords,
+        }}
+      />
     );
   }
   if (analysisType === UnitType.DRAGON) {
     const post = response as DragonAnalysisBody;
 
     return (
-      <ProtectedLayout>
-        <AnalysisFormDragonEdit
-          initialAnalysis={{
-            lang: post.lang,
-            unitId: post.unitId,
-            type: post.type,
-            summary: post.summary,
-            summonResult: post.summonResult,
-            passives: post.passives,
-            normalAttacks: post.normalAttacks,
-            ultimate: post.ultimate,
-            notes: post.notes,
-            suitableCharacters: post.suitableCharacters,
-            videos: post.videos,
-            story: post.story,
-            keywords: post.keywords,
-          }}
-          fnSendRequest={ApiRequestSender.analysisEditDragon}
-        />
-      </ProtectedLayout>
+      <AnalysisFormDragonEdit
+        analysis={{
+          lang: post.lang,
+          unitId: post.unitId,
+          type: post.type,
+          summary: post.summary,
+          summonResult: post.summonResult,
+          passives: post.passives,
+          normalAttacks: post.normalAttacks,
+          ultimate: post.ultimate,
+          notes: post.notes,
+          suitableCharacters: post.suitableCharacters,
+          videos: post.videos,
+          story: post.story,
+          keywords: post.keywords,
+        }}
+      />
     );
   }
 

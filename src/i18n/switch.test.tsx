@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {fireEvent, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../test/render/main';
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
@@ -48,18 +49,13 @@ describe('Language Switch', () => {
     renderReact(() => <LanguageSwitch/>);
 
     const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    act(() => {
-      fireEvent.click(langSwitch);
-    });
+    userEvent.click(langSwitch);
 
     const enItems = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]);
     expect(enItems.length).toBe(3);
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT])).toBeInTheDocument();
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.JP])).toBeInTheDocument();
-
-    await waitFor(() => {
-      expect(enItems[2]).toHaveClass('active');
-    });
+    expect(enItems[2]).toHaveClass('active');
   });
 
   it('redirects to the correct language page on click', async () => {
@@ -73,15 +69,11 @@ describe('Language Switch', () => {
     );
 
     const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    act(() => {
-      fireEvent.click(langSwitch);
-    });
+    userEvent.click(langSwitch);
 
     const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
     expect(chtLink).toHaveAttribute('href', `/${SupportedLanguages.CHT}${GeneralPath.ABOUT}`);
-    act(() => {
-      fireEvent.click(chtLink);
-    });
+    fireEvent.click(chtLink);
     expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
     expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
   });
@@ -98,18 +90,14 @@ describe('Language Switch', () => {
     );
 
     const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    act(() => {
-      fireEvent.click(langSwitch);
-    });
+    userEvent.click(langSwitch);
 
     const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
     expect(chtLink).toHaveAttribute(
       'href',
       makePostPath(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.CHT}),
     );
-    act(() => {
-      fireEvent.click(chtLink);
-    });
+    fireEvent.click(chtLink);
     expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
     expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
   });

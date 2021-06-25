@@ -1,0 +1,18 @@
+@use "../../../../../../public/colors";
+
+$button-bg-color: darken(colors.$color-black-50, 5%);
+$button-distance: 0.85vw;
+
+.providerFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.providerButton {
+  border: 0;
+  background-color: $button-bg-color;
+  font-size: 2rem;
+  margin: 0 $button-distance;
+}

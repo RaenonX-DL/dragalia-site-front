@@ -1,0 +1,15 @@
+.providerFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.providerButton {
+  border: 0;
+  background-color: #252525;
+  font-size: 2rem;
+  margin: 0 0.85vw;
+}
+
+/*# sourceMappingURL=main.module.css.map */

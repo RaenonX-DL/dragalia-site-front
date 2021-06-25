@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {AnalysisLookupEntry} from '../../../../../../api-def/api';
 import {PostPath} from '../../../../../../const/path/definitions';

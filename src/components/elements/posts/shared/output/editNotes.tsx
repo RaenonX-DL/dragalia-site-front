@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Table} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 
 import {PostEditNote} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
@@ -18,7 +18,7 @@ export const PostEditNotes = ({editNotes}: PostEditNotesProps) => {
       <thead>
         <tr>
           <th className="text-center">{t((t) => t.posts.manage.modifyTime)}</th>
-          <th className="text-center w-75">{t((t) => t.posts.manage.modifyNote)}</th>
+          <th className="text-center w-75">{t((t) => t.posts.manage.editNote)}</th>
         </tr>
       </thead>
       <tbody>

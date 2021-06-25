@@ -5,7 +5,6 @@ import {getSession} from 'next-auth/client';
 
 import {QuestPostGetResponse} from '../../../../src/api-def/api';
 import {QuestEditForm} from '../../../../src/components/elements/posts/quest/form/edit';
-import {ProtectedLayout} from '../../../../src/components/pages/layout/protected';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../../src/utils/ssr';
 import Error404 from '../../../404';
@@ -23,6 +22,7 @@ export const getServerSideProps: GetServerSideProps<QuestEditProps> = async (con
       response: await getServerSidePropsPost(
         context,
         ApiRequestSender.questGet,
+        (pid) => Number(pid),
         session?.user?.id.toString(),
       ),
     },
@@ -34,11 +34,7 @@ const QuestEdit = ({response}: QuestEditProps) => {
     return <Error404/>;
   }
 
-  return (
-    <ProtectedLayout>
-      <QuestEditForm post={response}/>
-    </ProtectedLayout>
-  );
+  return <QuestEditForm post={response}/>;
 };
 
 export default QuestEdit;

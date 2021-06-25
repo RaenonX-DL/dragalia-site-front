@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {Markdown} from '../../../markdown/main';
@@ -16,7 +17,7 @@ export type AnalysisSkillOutputProps = {
 export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkillOutputProps) => {
   const {t} = useI18n();
 
-  const hasAllInfo = rotations && tips;
+  const hasAdditionalInfo = rotations || tips;
 
   return (
     <div className="rounded bg-black-32 p-3">
@@ -26,15 +27,15 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
         </Col>
       </Row>
       <Row>
-        <Col lg={hasAllInfo ? 6 : 12}>
+        <Col lg={hasAdditionalInfo ? 6 : 12}>
           <h5 className="text-center pb-2 border-bottom">
             {t((t) => t.posts.analysis.skill.info)}
           </h5>
           <Markdown>{info}</Markdown>
         </Col>
         {
-          (rotations || tips) &&
-          <Col lg={tips ? 6 : 12}>
+          hasAdditionalInfo &&
+          <Col lg={6}>
             {
               rotations &&
               <>
@@ -44,7 +45,7 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
                 <Markdown>{rotations}</Markdown>
               </>
             }
-            {hasAllInfo && <div className="mb-3"/>}
+            {rotations && tips && <div className="mb-2"/>}
             {
               tips &&
               <>

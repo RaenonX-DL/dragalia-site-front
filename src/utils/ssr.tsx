@@ -5,20 +5,21 @@ import {getLangFromQuery} from './path/process';
 import {FunctionFetchPost} from './services/api/types';
 
 
-export const getServerSidePropsPost = async <T extends PostGetResponse>(
+export const getServerSidePropsPost = async <K, R extends PostGetResponse>(
   context: GetServerSidePropsContext,
-  fnGetPost: FunctionFetchPost<T>,
+  fnGetPost: FunctionFetchPost<K, R>,
+  fnGetPostId: (pid: string) => K,
   uid?: string,
-): Promise<T | null> => {
+): Promise<R | null> => {
   const {pid} = context.query;
 
   try {
-    return await fnGetPost(
-      uid || '',
-      Number(pid),
-      getLangFromQuery(context.query),
-      false,
-    );
+    return await fnGetPost({
+      uid: uid || '',
+      postId: fnGetPostId(pid as string),
+      lang: getLangFromQuery(context.query),
+      incCount: false,
+    });
   } catch {
     return null;
   }

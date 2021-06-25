@@ -5,6 +5,8 @@
 
 @use "colors";
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css");
+
 // endregion
 
 // region Body
@@ -31,7 +33,7 @@ $border-color: colors.$color-light-gray !default;
 
 // region Thematic break (hr)
 
-$hr-border-color: rgba(colors.$color-light-gray, 0.5);
+$hr-border-color: colors.$hr-color;
 
 // endregion
 

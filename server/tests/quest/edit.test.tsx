@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import QuestEdit from '../../../pages/[lang]/quest/[pid]/edit';
 import {
@@ -91,11 +92,9 @@ describe('Quest edit page', () => {
     );
 
     const editButton = screen.getByText(translations[SupportedLanguages.EN].posts.manage.edit);
-    fireEvent.click(editButton);
+    userEvent.click(editButton);
 
-    await waitFor(async () => {
-      expect(apiRequest).toHaveBeenCalledTimes(1);
-    });
+    await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
 
     const keys = Object.keys(apiRequest.mock.calls[0][0]);
     expect(keys).toContain('addendum');

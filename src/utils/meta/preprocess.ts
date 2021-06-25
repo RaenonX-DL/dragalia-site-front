@@ -27,7 +27,7 @@ export const getPageMetaPromise = async ({
       uid,
       lang,
       pathPostType[pathnameNoLang],
-      Number(context.router.query.pid),
+      context.router.query.pid as string,
     );
   }
 

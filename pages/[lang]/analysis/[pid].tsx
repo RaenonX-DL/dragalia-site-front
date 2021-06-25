@@ -2,7 +2,7 @@ import React from 'react';
 
 import {GetServerSideProps} from 'next';
 import {getSession} from 'next-auth/client';
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import {
   AnalysisGetResponse,
@@ -30,6 +30,8 @@ export const getServerSideProps: GetServerSideProps<AnalysisPageProps> = async (
       response: await getServerSidePropsPost(
         context,
         ApiRequestSender.analysisGet,
+        // No need to type cast here as these will be sent as string in API request
+        (pid) => pid,
         session?.user?.id.toString(),
       ),
     },

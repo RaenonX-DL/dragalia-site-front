@@ -14,8 +14,6 @@ import {
   WeaponTypeEnums,
 } from '../../../api-def/resources';
 
-// TEST: Ensure that the fetched data won't have `undefined`,
-//  which may caused by a definition mismatch between the parser and these type definitions.
 
 /**
  * Class to load the resources.

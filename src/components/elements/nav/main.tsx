@@ -1,13 +1,14 @@
 import React from 'react';
 
-import {Nav, Navbar} from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {LanguageSwitch} from '../../../i18n/switch';
 import {NextLink} from '../common/link';
-import {UserControlButton} from '../common/userControl/main';
+import {UserControlButton} from '../common/userControl/button/main';
 import {TITLE_NAV_HTML_ID} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';

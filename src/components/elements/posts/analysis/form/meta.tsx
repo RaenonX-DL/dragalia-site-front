@@ -1,12 +1,14 @@
 import React from 'react';
 
-import {Col, Form, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
-import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo';
+import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
 import {UnitIcon} from '../../../gameData/unitIcon';
 import {useFormMeta} from '../../shared/form/meta/hook';
 import {FormMetaLangPicker} from '../../shared/form/meta/lang';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Form} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 
 // Separating `ChecksPropsDisplay` and `ChecksProps` to avoid false positive of required HTML attribute

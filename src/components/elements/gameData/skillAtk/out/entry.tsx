@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Col, Row} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import {ConditionEnumMap, SkillIdentifierInfo} from '../../../../../api-def/resources';
 import {DistributionBar} from '../../../charts';

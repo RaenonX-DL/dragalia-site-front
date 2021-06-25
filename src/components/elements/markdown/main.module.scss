@@ -1,11 +1,14 @@
 @use "../../../../public/colors";
 
 $strong-color: #80b2ff;
+$markdown-bg-color: colors.$color-black-32;
+$item-margin: 0.75rem;
 
 .mdBody {
   overflow: auto;
-  background-color: colors.$color-black-32;
-  border: transparent solid 1rem;
+  background-color: $markdown-bg-color;
+  border: transparent solid $item-margin;
+  border-bottom: 0;
   border-radius: 0.25rem;
 
   table {
@@ -13,10 +16,15 @@ $strong-color: #80b2ff;
 
     width: 100%;
     padding-right: 30px;
+    margin-bottom: $item-margin;
 
     tr {
       background-color: #0e0e0e;
       border: 1px solid $table-border-color;
+    }
+
+    tr:last-child {
+      margin-bottom: 0;
     }
 
     th,
@@ -62,7 +70,7 @@ $strong-color: #80b2ff;
 
       tr {
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: $item-margin;
       }
 
       tr:last-child {
@@ -73,13 +81,26 @@ $strong-color: #80b2ff;
 
   div {
     &.text {
-      margin: 0.5rem 0;
+      margin-bottom: $item-margin;
     }
 
     &.youtubeEmbed {
       position: relative;
-      padding-bottom: 56.25%;  // 16:9
+      padding-bottom: 56.25%; // 16:9
       height: 0;
+    }
+  }
+
+  span {
+    &.calc {
+      background-color: darken($markdown-bg-color, 10%);
+      color: #ff0;
+      border-radius: 0.25rem;
+      padding: 0.1rem 0.2rem;
+
+      i {
+        margin-right: 0.2rem;
+      }
     }
   }
 
@@ -112,6 +133,20 @@ $strong-color: #80b2ff;
     color: $strong-color;
   }
 
+  ol,
+  ul,
+  dl {
+    padding-inline-start: 25px;
+    margin-bottom: $item-margin;
+  }
+
+  h1,
+  h2,
+  h3 {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid colors.$hr-color;
+  }
+
   h1,
   h2,
   h3,
@@ -119,5 +154,7 @@ $strong-color: #80b2ff;
   h5,
   h6 {
     color: skyblue;
+    margin-bottom: $item-margin;
+    font-weight: 600;
   }
 }

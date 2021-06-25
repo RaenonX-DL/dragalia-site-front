@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {PostMeta, SupportedLanguages} from '../../../../../api-def/api';
@@ -57,7 +58,7 @@ describe('Array data form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    expect(removeButton).toHaveAttribute('disabled');
+    expect(removeButton).toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
   });
@@ -91,7 +92,7 @@ describe('Array data form', () => {
     ));
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    expect(removeButton).not.toHaveAttribute('disabled');
+    expect(removeButton).not.toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(3);
   });
@@ -122,7 +123,7 @@ describe('Array data form', () => {
     ));
 
     const addButton = screen.getByText(translationEN.misc.add);
-    fireEvent.click(addButton);
+    userEvent.click(addButton);
 
     expect(payload.enums.length).toBe(3);
     expect(setArrayFunc).toHaveBeenCalledTimes(1);

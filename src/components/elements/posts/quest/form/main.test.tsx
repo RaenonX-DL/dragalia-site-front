@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
-import {ObjectId} from 'mongodb';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
+import {typeInput} from '../../../../../../test/utils/event';
 import {
   ApiResponseCode,
   QuestPostEditPayload,
@@ -14,11 +15,12 @@ import {
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {makePostPath} from '../../../../../utils/path/make';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../shared/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
 
 
-describe('Main quest form', () => {
+describe('Quest form (New/Edit)', () => {
   let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
   const response: QuestPostEditResponse = {
     code: ApiResponseCode.SUCCESS,
@@ -55,16 +57,24 @@ describe('Main quest form', () => {
     setFormState = jest.fn().mockImplementation((newState: PostFormState<QuestPostEditPayload>) => {
       formState = newState;
     });
+    jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
-  it('loads the data correctly', async () => {
-    const {container} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('loads correctly', async () => {
+    const {container} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const payload = formState.payload;
 
@@ -80,117 +90,109 @@ describe('Main quest form', () => {
     expect(container).toHaveTextContent(payload.addendum);
   });
 
-  it('can change title', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes title', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const titleField = screen.getByDisplayValue(formState.payload.title);
-    fireEvent.change(titleField, {target: {value: 'Title'}});
-    rerender();
+    typeInput(titleField, 'Title', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
-    });
+    expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
-  it('can change general info', async () => {
-    renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes general info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
-    fireEvent.change(generalInfoField, {target: {value: 'General'}});
+    typeInput(generalInfoField, 'General', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('General', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can change video section', async () => {
-    renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes video section', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
-    fireEvent.change(videoField, {target: {value: 'Video'}});
+    typeInput(videoField, 'Video', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Video', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can change positional info', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes positional info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
-    fireEvent.change(posField, {target: {value: 'Position'}});
-    rerender();
-    await waitFor(() => {
-      expect(screen.getByDisplayValue('Position')).toBeInTheDocument();
-    });
+    typeInput(posField, 'Position', {clear: true, rerender});
+    expect(screen.getByDisplayValue('Position')).toBeInTheDocument();
 
     const tipsField = screen.getByText(formState.payload.positional[0].tips, {selector: 'textarea'});
-    fireEvent.change(tipsField, {target: {value: 'Tips'}});
-    rerender();
-    await waitFor(() => {
-      expect(screen.getByText('Tips', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    typeInput(tipsField, 'Tips', {clear: true, rerender});
+    expect(screen.getByText('Tips', {selector: 'textarea'})).toBeInTheDocument();
 
     const buildField = screen.getByText(formState.payload.positional[0].builds, {selector: 'textarea'});
-    fireEvent.change(buildField, {target: {value: 'Builds'}});
-    rerender();
-    await waitFor(() => {
-      expect(screen.getByText('Builds', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    typeInput(buildField, 'Builds', {clear: true, rerender});
+    expect(screen.getByText('Builds', {selector: 'textarea'})).toBeInTheDocument();
 
     const rotationsField = screen.getByText(formState.payload.positional[0].rotations, {selector: 'textarea'});
-    fireEvent.change(rotationsField, {target: {value: 'Rotations'}});
-    rerender();
-    await waitFor(() => {
-      expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    typeInput(rotationsField, 'Rotations', {clear: true, rerender});
+    expect(screen.getByText('Rotations', {selector: 'textarea'})).toBeInTheDocument();
   });
 
-  it('can add positional info', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('adds positional info', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const addButton = screen.getByText(translationEN.misc.add);
-    act(() => {
-      fireEvent.click(addButton);
-    });
+    userEvent.click(addButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(2);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(2);
   });
 
-  it('can remove positional info if > 1', async () => {
+  it('removes positional info if > 1', async () => {
     const newFormState = {...formState};
 
     newFormState.payload.positional = [
@@ -208,60 +210,59 @@ describe('Main quest form', () => {
       },
     ];
 
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    act(() => {
-      fireEvent.click(removeButton);
-    });
+    userEvent.click(removeButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
   });
 
   it('cannot remove positional info if < 1', async () => {
-    const {rerender} = renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const removeButton = screen.getByText(translationEN.misc.remove);
-    act(() => {
-      fireEvent.click(removeButton);
-    });
+    userEvent.click(removeButton);
     rerender();
 
-    await waitFor(() => {
-      expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
-    });
+    expect(screen.getAllByText(translationEN.posts.quest.builds, {selector: 'label'}).length).toBe(1);
   });
 
-  it('can change addendum', async () => {
-    renderReact(() => (
-      <QuestPostForm
-        fnSendRequest={fnSendRequest}
-        formState={formState}
-        setFormState={setFormState}
-      />
-    ));
+  it('changes addendum', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
 
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
-    fireEvent.change(addendumField, {target: {value: 'Addendum'}});
+    typeInput(addendumField, 'Addendum', {clear: true, rerender});
 
-    await waitFor(() => {
-      expect(screen.getByText('Addendum', {selector: 'textarea'})).toBeInTheDocument();
-    });
+    expect(screen.getByText('Addendum', {selector: 'textarea'})).toBeInTheDocument();
   });
 
   it('submits correct payload after edit', async () => {
@@ -278,62 +279,35 @@ describe('Main quest form', () => {
           setFormState={setFormState}
         />
       ),
-      {
-        user: {
-          id: new ObjectId(),
-        },
-      },
+      {user: {isAdmin: true}},
     );
 
     const generalInfoField = screen.getByText(formState.payload.general, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(generalInfoField, {target: {value: 'General'}});
-    });
-    rerender();
+    typeInput(generalInfoField, 'General', {clear: true, rerender});
 
     const videoField = screen.getByText(formState.payload.video, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(videoField, {target: {value: 'Video'}});
-    });
-    rerender();
+    typeInput(videoField, 'Video', {clear: true, rerender});
 
     const posField = screen.getByDisplayValue(formState.payload.positional[0].position);
-    act(() => {
-      fireEvent.change(posField, {target: {value: 'Position'}});
-    });
-    rerender();
+    typeInput(posField, 'Position', {clear: true, rerender});
 
     const tipsField = screen.getByText(formState.payload.positional[0].tips, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(tipsField, {target: {value: 'Tips'}});
-    });
-    rerender();
+    typeInput(tipsField, 'Tips', {clear: true, rerender});
 
     const buildField = screen.getByText(formState.payload.positional[0].builds, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(buildField, {target: {value: 'Builds'}});
-    });
-    rerender();
+    typeInput(buildField, 'Builds', {clear: true, rerender});
 
     const rotationsField = screen.getByText(formState.payload.positional[0].rotations, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(rotationsField, {target: {value: 'Rotations'}});
-    });
-    rerender();
+    typeInput(rotationsField, 'Rotations', {clear: true, rerender});
 
     const addendumField = screen.getByText(formState.payload.addendum, {selector: 'textarea'});
-    act(() => {
-      fireEvent.change(addendumField, {target: {value: 'Addendum'}});
-    });
-    rerender();
+    typeInput(addendumField, 'Addendum', {clear: true, rerender});
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
-    act(() => {
-      fireEvent.click(submitButton);
-    });
+    userEvent.click(submitButton);
     rerender();
 
-    expect(fnSendRequest).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalledTimes(1));
     expect(fnSendRequest).toHaveBeenCalledWith({
       ...formState.payload,
       general: 'General',
@@ -355,6 +329,7 @@ describe('Main quest form', () => {
     delete window.location;
     // @ts-ignore
     window.location = {assign: jest.fn()};
+
     const {rerender} = renderReact(
       () => (
         <QuestPostForm
@@ -363,27 +338,95 @@ describe('Main quest form', () => {
           setFormState={setFormState}
         />
       ),
-      {
-        user: {
-          id: new ObjectId(),
-        },
-      },
+      {user: {isAdmin: true}},
     );
 
     const submitButton = screen.getByText(translationEN.posts.manage.edit);
-    act(() => {
-      fireEvent.click(submitButton);
-    });
+    userEvent.click(submitButton);
     rerender();
 
-    expect(fnSendRequest).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalledTimes(1));
 
-    await waitFor(() => {
-      expect(window.location.assign).toHaveBeenCalledWith(makePostPath(
-        PostPath.QUEST,
-        {pid: response.seqId, lang: SupportedLanguages.EN},
-      ));
-    });
+    const expectedPostPath = makePostPath(
+      PostPath.QUEST,
+      {pid: response.seqId, lang: SupportedLanguages.EN},
+    );
+    await waitFor(() => expect(window.location.assign).toHaveBeenCalledWith(expectedPostPath));
     expect(window.location.assign).not.toHaveBeenCalledTimes(2);
+  });
+
+  it('transforms quick references in the payload', async () => {
+    const originalText = 'Quest #Q3';
+    const transformedText = `Quest [${translationEN.posts.quest.titleSelf} #3]` +
+      `(${makePostPath(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
+
+    formState.payload = {
+      uid: formState.payload.uid,
+      lang: formState.payload.lang,
+      seqId: response.seqId,
+      title: originalText,
+      general: originalText,
+      video: originalText,
+      positional: [
+        {
+          position: originalText,
+          rotations: originalText,
+          builds: originalText,
+          tips: originalText,
+        },
+      ],
+      addendum: originalText,
+      editNote: originalText,
+    };
+
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const editButton = screen.getByText(translationEN.posts.manage.edit);
+    userEvent.click(editButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest).toHaveBeenCalledWith({
+      uid: formState.payload.uid,
+      lang: formState.payload.lang,
+      seqId: response.seqId,
+      title: originalText,
+      general: transformedText,
+      video: transformedText,
+      positional: [
+        {
+          position: originalText,
+          rotations: transformedText,
+          builds: transformedText,
+          tips: transformedText,
+        },
+      ],
+      addendum: transformedText,
+      editNote: originalText,
+    });
+  });
+
+  it('blocks access from non-admin user', async () => {
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={formState}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: false}},
+    );
+
+    expect(screen.queryByText(translationEN.posts.manage.edit)).not.toBeInTheDocument();
+    expect(screen.getByText(translationEN.meta.error['401'].description)).toBeInTheDocument();
   });
 });

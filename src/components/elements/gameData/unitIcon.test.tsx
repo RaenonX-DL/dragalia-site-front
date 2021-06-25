@@ -6,7 +6,7 @@ import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api/other/lang';
 import {UnitType} from '../../../api-def/api/other/unit';
 import {UnitInfoData} from '../../../api-def/resources/types/unitInfo';
-import * as utils from '../posts/analysis/lookup/utils';
+import * as utils from '../../../utils/services/resources/unitInfo/utils';
 import {UnitIcon} from './unitIcon';
 
 

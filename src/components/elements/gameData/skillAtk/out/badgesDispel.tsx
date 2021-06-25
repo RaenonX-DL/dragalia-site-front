@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Badge} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 
 import {AttackingSkillData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';

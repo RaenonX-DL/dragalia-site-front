@@ -2,7 +2,7 @@ import React from 'react';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
-import {SequencedPostListResponse} from '../../../../../api-def/api';
+import {ApiResponseCode, SequencedPostListResponse} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';
@@ -25,40 +25,37 @@ type Status<R extends SequencedPostListResponse> = FetchStatusSimple & {
 
 type PostListPageProps<R extends SequencedPostListResponse> = {
   title: string,
-  currentUrl: string,
   postManageBarProps: PostManageBarProps,
   fnFetchList: FunctionFetchPostList<R>,
   renderPostEntries: (response: R) => React.ReactElement,
+  pageLimit?: number
 }
 
 export const PostListPage = <R extends SequencedPostListResponse>({
   title,
-  currentUrl,
   postManageBarProps,
   fnFetchList,
   renderPostEntries,
+  pageLimit = 10,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
   const context = React.useContext(AppReactContext);
   const router = useNextRouter();
 
   const currentStart = Math.max(Number(router.query.start) || 0, 0);
-  const pageLimit = 10;
 
-  const [status, setStatus] = React.useState<Status<R>>(
-    {
-      paginationState: {
-        currentStart,
-        currentPage: startIdxToPage(currentStart, pageLimit),
-        maxPage: -1,
-        pageLimit,
-      },
-      fetched: false,
-      fetching: false,
-      showAlert: false,
-      errorContent: '',
+  const [status, setStatus] = React.useState<Status<R>>({
+    paginationState: {
+      currentStart,
+      currentPage: startIdxToPage(currentStart, pageLimit),
+      maxPage: -1,
+      pageLimit,
     },
-  );
+    fetched: false,
+    fetching: false,
+    showAlert: false,
+    errorContent: '',
+  });
 
   const onPageClick = (page: number) => {
     setStatus({
@@ -93,7 +90,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
             fetched: true,
             fetching: false,
             showAlert: true,
-            errorContent: data.code.toString(),
+            errorContent: ApiResponseCode[data.code],
           });
         }
       })
@@ -108,14 +105,10 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       });
   };
 
-  // Trigger the fetch request if the start index seems to be in the initializing state
+  // Trigger fetch request if the status is in the initial state
   if (isNotFetched(status)) {
     onPageClick(status.paginationState.currentPage);
   }
-
-  // TEST: Pagination action
-  //  - Go to paginated page, use paginator once, then try to go back
-  //  - Disable on no item
 
   // Trigger page click event if the pagination status desync with the URL params
   // - This occurs when the user try to go to the previous page by `history.back()`
@@ -141,7 +134,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       <div className="d-flex justify-content-center">
         <Paginator
           state={status.paginationState}
-          path={currentUrl}
+          path={router.pathname}
           onPageClick={onPageClick}
           getNewQueryParam={(page) => (
             new URLSearchParams(`start=${(page - 1) * status.paginationState.pageLimit}`)

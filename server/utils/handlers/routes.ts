@@ -11,7 +11,10 @@ import {NextHandler, Server, ServerHasLang} from './types';
 
 
 const isUrlToBypass = (url: string) => {
-  return url.includes('.') || url.startsWith('/api') || url.includes('next');
+  return url.includes('.') ||
+    url.startsWith('/api') ||
+    url.startsWith('/auth') ||
+    url.includes('next');
 };
 
 const getLanguage = (req: FastifyRequest) => {

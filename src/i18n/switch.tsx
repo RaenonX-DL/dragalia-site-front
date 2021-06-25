@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {NavDropdown} from 'react-bootstrap';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
 import {NextLink} from '../components/elements/common/link';

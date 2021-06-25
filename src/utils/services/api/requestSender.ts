@@ -6,7 +6,8 @@ import {
   AnalysisGetResponse,
   AnalysisIdCheckPayload,
   AnalysisIdCheckResponse,
-  AnalysisLookupLandingPayload, AnalysisLookupLandingResponse,
+  AnalysisLookupLandingPayload,
+  AnalysisLookupLandingResponse,
   AnalysisLookupPayload,
   AnalysisLookupResponse,
   AnalysisPublishResponse,
@@ -37,8 +38,11 @@ import {
   QuestPostPublishResponse,
   RequestPayloadBase,
   SupportedLanguages,
+  UnitNameRefPayload,
+  UnitNameRefResponse,
   UnitType,
 } from '../../../api-def/api';
+import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
 
@@ -51,19 +55,14 @@ export class ApiRequestSender {
   /**
    * Get a quest post using its sequential ID.
    *
-   * @param {string} uid UID of the logged in user
-   * @param {number} seqId sequential ID of the post to get
-   * @param {SupportedLanguages} lang language code of the post to get
-   * @param {boolean} incCount if the post view count should be increased or not
+   * @param {FetchPostOptions} options options to get a quest post
    * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
    */
-  static questGet(
-    uid: string, seqId: number, lang: SupportedLanguages, incCount?: boolean,
-  ): Promise<QuestPostGetResponse> {
+  static questGet({uid, postId, lang, incCount}: FetchPostOptions<number>): Promise<QuestPostGetResponse> {
     return ApiRequestSender.sendRequest<QuestPostGetResponse, QuestPostGetPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_GET,
-      {uid, seqId, lang, incCount},
+      {uid, seqId: postId, lang, incCount},
     );
   }
 
@@ -140,7 +139,7 @@ export class ApiRequestSender {
    * Send a character analysis post publish request.
    *
    * @param {CharaAnalysisPublishPayload} payload payload of a character analysis post
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisPublishResponse>} promise returned from `fetch`
    */
   static analysisPublishChara(
     payload: CharaAnalysisPublishPayload,
@@ -173,7 +172,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisLookupResponse>} promise returned from `fetch`
    */
   static analysisLookup(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
@@ -188,7 +187,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisLookupLandingResponse>} promise returned from `fetch`
    */
   static analysisLookupLanding(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
     return ApiRequestSender.sendRequest<AnalysisLookupLandingResponse, AnalysisLookupLandingPayload>(
@@ -201,20 +200,14 @@ export class ApiRequestSender {
   /**
    * Get an analysis post using its unit ID.
    *
-   * @param {string} uid user ID of the logged in user
-   * @param {number} unitId unit ID of the analysis to get
-   * @param {SupportedLanguages} lang language code of the post to get
-   * @param {boolean} incCount if the post view count should be increased or not
+   * @param {FetchPostOptions} options options to get an analysis
    * @return {Promise<AnalysisGetResponse>} promise returned from `fetch`
    */
-  static analysisGet(
-    uid: string, unitId: number, lang: SupportedLanguages, incCount?: boolean,
-  ):
-    Promise<AnalysisResponse> {
+  static analysisGet({uid, lang, postId, incCount}: FetchPostOptions<number | string>): Promise<AnalysisResponse> {
     return ApiRequestSender.sendRequest<AnalysisGetResponse, AnalysisGetPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_GET,
-      {uid, unitId, lang, incCount},
+      {uid, lang, unitId: postId, incCount},
     )
       .then((response) => {
         if (response.type === UnitType.CHARACTER) {
@@ -287,34 +280,49 @@ export class ApiRequestSender {
    * @param {string} uid User ID
    * @param {SupportedLanguages} lang post language
    * @param {PostType} postType type of the post
-   * @param {number} pid post ID
-   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   * @param {number | string} postIdentifier post identifier
+   * @return {Promise<PostPageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
-  static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, pid: number) {
+  static getPostMeta(uid: string, lang: SupportedLanguages, postType: PostType, postIdentifier: number | string) {
     return ApiRequestSender.sendRequest<PostPageMetaResponse | FailedResponse, PostPageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_POST,
-      {
-        uid,
-        lang,
-        postType,
-        postId: pid,
-      },
+      {uid, lang, postType, postIdentifier},
     );
   }
 
   /**
    * Send a request to get the generic page meta.
    *
-   * @param {string} uid UID
+   * @param {string} uid User ID
    * @param {SupportedLanguages} lang current page language
-   * @return {Promise<AnalysisIdCheckResponse | FailedResponse>} promise returned from `fetch`
+   * @return {Promise<PageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
   static getPageMeta(uid: string, lang: SupportedLanguages) {
     return ApiRequestSender.sendRequest<PageMetaResponse | FailedResponse, PageMetaPayload>(
       'GET',
       ApiEndPoints.PAGE_META_GENERAL,
       {uid, lang},
+    );
+  }
+
+  // endregion
+
+  // region Data
+
+  /**
+   * Send a request to get all unit name references.
+   *
+   * Note that this request is always anonymous (UID sent is an empty string).
+   *
+   * @param {SupportedLanguages} lang language of the name
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static getUnitNameReferences(lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<UnitNameRefResponse, UnitNameRefPayload>(
+      'GET',
+      ApiEndPoints.DATA_UNIT_NAME_REF,
+      {uid: '', lang},
     );
   }
 
@@ -338,7 +346,9 @@ export class ApiRequestSender {
       headers: {'Content-Type': 'application/json'},
     };
 
-    console.debug(`[API] Sending ${method} request to ${endpoint}`);
+    if (!process.env.CI) {
+      console.debug(`[API] Sending ${method} request to ${endpoint}`);
+    }
 
     if (method === 'GET') {
       return fetch(`${endpoint}?${new URLSearchParams(payload).toString()}`, initOptionsBase)

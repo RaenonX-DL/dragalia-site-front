@@ -198,11 +198,17 @@ export type TranslationStruct = {
       fetching: string,
       welcome: string,
     },
+    error: {
+      auth: {
+        noProvider: string,
+      }
+    }
   },
   misc: {
     add: string,
     omMember: string,
     omGroup: string,
+    openGif: string,
     remove: string,
     search: string,
     searchKeyword: string,
@@ -226,6 +232,9 @@ export type TranslationStruct = {
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
       },
+      auth: {
+        signIn: PageMetaTranslations,
+      }
     },
     error: {
       401: PageMetaTranslations,
@@ -290,7 +299,7 @@ export type TranslationStruct = {
       fetchListFailed: string,
       fetchPostFailed: string,
       md: string,
-      modifyNote: string,
+      editNote: string,
       modifyTime: string,
       postNotExists: string,
       preview: string,
@@ -319,4 +328,3 @@ export type TranslationStruct = {
     },
   },
 }
-;

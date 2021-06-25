@@ -4,6 +4,7 @@ import {TypeORM} from 'next-auth/adapters';
 import Providers from 'next-auth/providers';
 
 import {AUTH_DB} from '../../../src/api-def/models';
+import {AuthPath} from '../../../src/const/path/definitions';
 import {UserModel} from '../../../src/models/user';
 import {ensureIndex} from '../../../src/utils/auth';
 
@@ -22,6 +23,22 @@ const nextAuthOptions: NextAuthOptions = {
     Providers.Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    }),
+    Providers.Discord({
+      clientId: process.env.AUTH_DISCORD_ID,
+      clientSecret: process.env.AUTH_DISCORD_SECRET,
+    }),
+    Providers.GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
+    Providers.Twitch({
+      clientId: process.env.AUTH_TWITCH_ID,
+      clientSecret: process.env.AUTH_TWITCH_SECRET,
+    }),
+    Providers.Twitter({
+      clientId: process.env.AUTH_TWITTER_ID,
+      clientSecret: process.env.AUTH_TWITTER_SECRET,
     }),
   ],
 
@@ -67,12 +84,26 @@ const nextAuthOptions: NextAuthOptions = {
 
       return session;
     },
-    // relative callback url won't work without this
-    redirect: async (url: string): Promise<string> => url,
+    redirect: async (url: string, baseUrl: string): Promise<string> => {
+      if (url.startsWith('/')) {
+        // Allow relative path redirection
+        return url;
+      }
+
+      if (url.startsWith(baseUrl)) {
+        // Allow same-origin redirection
+        return url;
+      }
+
+      // Don't return `url` as the callback URL could be cross-origin, which should be disallowed
+      return baseUrl;
+    },
   },
 
   // UI customizations
-  theme: 'dark',
+  pages: {
+    signIn: AuthPath.SIGN_IN,
+  },
 };
 
 export default NextAuth(nextAuthOptions);

@@ -4,6 +4,7 @@ import {AnalysisBody, AnalysisEditResponse, AnalysisPublishResponse} from '../..
 import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostPath} from '../../../../../utils/path/make';
+import {processText} from '../../../../../utils/process/text';
 import {PostFormBase} from '../../shared/form/base';
 import {PostFormBaseProps} from '../../shared/form/types';
 import {FormBottom} from './bottom';
@@ -15,6 +16,7 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
   formState,
   setFormState,
   fnSendRequest,
+  fnProcessPayload,
   renderMain,
   renderOnPreloaded,
 }: PostFormBaseProps<P, R>) => {
@@ -41,6 +43,17 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
       renderOnPreloaded={renderOnPreloaded}
       fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
       fnGetRedirectId={(response) => response.unitId}
+      fnProcessPayload={async (payload) => ({
+        ...payload,
+        ...(fnProcessPayload ? await fnProcessPayload(payload) : {}),
+        summary: await processText({text: payload.summary, lang}),
+        summonResult: await processText({text: payload.summonResult, lang}),
+        passives: await processText({text: payload.passives, lang}),
+        normalAttacks: await processText({text: payload.normalAttacks, lang}),
+        videos: await processText({text: payload.videos, lang}),
+        story: await processText({text: payload.story, lang}),
+        keywords: await processText({text: payload.keywords, lang}),
+      })}
     />
   );
 };

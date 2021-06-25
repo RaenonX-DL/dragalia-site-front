@@ -17,6 +17,7 @@ export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) 
 
   const [formState, setFormState] = React.useState<PostFormState<QuestPostEditPayload>>({
     payload: {
+      // Explicit to avoid passing unwanted properties
       uid: context?.session?.user.id.toString() || '',
       seqId: post.seqId,
       lang: post.lang,

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import * as scrollUtils from '../../../../utils/scroll';
@@ -58,7 +59,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('4');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(getQueryParam).toHaveBeenCalledWith(4);
   });
@@ -79,7 +80,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('First');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(getQueryParam).toHaveBeenCalledWith(1);
   });
@@ -100,7 +101,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('Previous');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(getQueryParam).toHaveBeenCalledWith(2);
   });
@@ -121,7 +122,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('Next');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(getQueryParam).toHaveBeenCalledWith(3);
   });
@@ -142,7 +143,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('Last');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(getQueryParam).toHaveBeenCalledWith(7);
   });
@@ -164,10 +165,10 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('4');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(pageButton.parentElement).toHaveClass('disabled');
-    // `fireEvent` can "click through" the disabled element, therefore triggering the event
+    // `userEvent` can "click through" the disabled element, therefore triggering the event
   });
 
   it('scrolls on page change', async () => {
@@ -186,7 +187,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('Next');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(scrollToTop).toHaveBeenCalled();
   });
@@ -207,7 +208,7 @@ describe('Paginator', () => {
     ));
 
     const pageButton = screen.getByText('Last');
-    fireEvent.click(pageButton);
+    userEvent.click(pageButton);
 
     expect(onPageClick).toHaveBeenCalled();
     expect(getQueryParam).toHaveBeenCalled();

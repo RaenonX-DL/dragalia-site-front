@@ -1,13 +1,7 @@
 import {UnitType} from '../../../../../api-def/api';
-import {
-  CharaInfo,
-  CharaInfoData,
-  DepotPaths,
-  DragonInfo,
-  UnitInfoData,
-  UnitInfoDataBase,
-} from '../../../../../api-def/resources';
+import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} from '../../../../../api-def/resources';
 import {InputData} from './in/types';
+
 
 export const getUnitInfo = (
   inputData: InputData | undefined,
@@ -72,13 +66,4 @@ export const getUnitInfo = (
     a.element - b.element || // Elem ASC (FLAME -> SHADOW)
     (isInfoChara(a) && isInfoChara(b) ? a.weapon - b.weapon : 0) // Weapon ASC if chara (SWORD -> MANACASTER)
   ));
-};
-
-const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = {
-  [UnitType.CHARACTER]: DepotPaths.getCharaIconURL,
-  [UnitType.DRAGON]: DepotPaths.getDragonIconURL,
-};
-
-export const getImageURL = (unitInfo: UnitInfoData) => {
-  return fnGetImageURL[unitInfo.type](unitInfo.iconName);
 };

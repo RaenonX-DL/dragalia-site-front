@@ -1,9 +1,11 @@
 import React from 'react';
 
-import {Badge, Col} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
 
 import {DepotPaths, AfflictionUnit} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
+import {Image} from '../../../common/image';
 import {SectionProps} from './props';
 
 
@@ -22,10 +24,13 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
             arr.findIndex((afflictionUnit) => afflictionUnit.statusIcon === item.statusIcon) === idx
           ))
           .map((affliction: AfflictionUnit, index: number) => (
-            <p key={index}>
-              <img
+            <React.Fragment key={index}>
+              <Image
+                text={affliction.statusIcon}
                 src={DepotPaths.getAfflictionIconURL(affliction.statusIcon)}
-                alt={affliction.statusIcon} style={{width: '1.5rem'}}/>&nbsp;
+                style={{width: '1.5rem'}}
+              />
+              &nbsp;
               {t((t) => t.game.skillAtk.entry.affliction,
                 {
                   afflictionTime: affliction.actionTime.toFixed(2),
@@ -37,7 +42,7 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
                   <Badge variant="success">{t((t) => t.game.skillAtk.entry.stackable)}</Badge> :
                   <Badge variant="danger">{t((t) => t.game.skillAtk.entry.unstackable)}</Badge>
               }
-            </p>
+            </React.Fragment>
           ))
       }
     </Col>

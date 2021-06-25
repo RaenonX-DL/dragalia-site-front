@@ -1,11 +1,12 @@
 import React from 'react';
 
-import {Modal} from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+
 
 export type ModalState = {
   show: boolean,
   title: string,
-  message: string,
+  message: React.ReactNode,
 }
 
 type CommonModalProps = {

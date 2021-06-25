@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {fireEvent, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../api-def/api';
@@ -113,8 +114,8 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const elemCheck = screen.getByAltText('filterElementCodeelem 1');
-    fireEvent.click(elemCheck);
+    const elemCheck = screen.getByAltText('EN elem 1');
+    userEvent.click(elemCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterElementCode).toStrictEqual([1]);
@@ -130,8 +131,8 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
-    fireEvent.click(exCheck);
+    const exCheck = screen.getByAltText('EN ex 1');
+    userEvent.click(exCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterExBuffParamCode).toStrictEqual([1]);
@@ -147,8 +148,8 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
-    fireEvent.click(cexCheck);
+    const cexCheck = screen.getByAltText('EN cex 1');
+    userEvent.click(cexCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
     expect(inputData.filterChainedExBuffParamCode).toStrictEqual([1]);
@@ -164,14 +165,14 @@ describe('EX/CEX filter section', () => {
       />
     ));
 
-    const elemCheck = screen.getByAltText('filterElementCodeelem 2');
-    fireEvent.click(elemCheck);
+    const elemCheck = screen.getByAltText('EN elem 2');
+    userEvent.click(elemCheck);
     rerender();
-    const exCheck = screen.getByAltText('filterExBuffParamCodeex 1');
-    fireEvent.click(exCheck);
+    const exCheck = screen.getByAltText('EN ex 1');
+    userEvent.click(exCheck);
     rerender();
-    const cexCheck = screen.getByAltText('filterChainedExBuffParamCodecex 1');
-    fireEvent.click(cexCheck);
+    const cexCheck = screen.getByAltText('EN cex 1');
+    userEvent.click(cexCheck);
     rerender();
 
     expect(setInputData).toHaveBeenCalledTimes(3);

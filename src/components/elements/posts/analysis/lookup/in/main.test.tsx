@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {
@@ -72,7 +73,7 @@ describe('Input of analysis lookup', () => {
 
   const clickSearchButton = () => {
     const searchButton = screen.getByText(translationEN.misc.search);
-    fireEvent.click(searchButton);
+    userEvent.click(searchButton);
   };
 
   beforeEach(() => {
@@ -96,18 +97,14 @@ describe('Input of analysis lookup', () => {
   });
 
   it('fetches required enums on load', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
     expect(getEnumWeaponType).toHaveBeenCalledTimes(1);
   });
 
   it('passes empty input data if no condition specified', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
     const expectedInput: InputData = {
       keyword: '',
@@ -122,14 +119,12 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with analysis type', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
-    fireEvent.click(characterButton);
+    userEvent.click(characterButton);
 
     clickSearchButton();
 
@@ -144,14 +139,12 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with elements', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const elemButton = await screen.findByText('elem A EN');
-    fireEvent.click(elemButton);
+    userEvent.click(elemButton);
 
     clickSearchButton();
 
@@ -166,14 +159,12 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with weapon types', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const weaponButton = await screen.findByText('weapon B EN');
-    fireEvent.click(weaponButton);
+    userEvent.click(weaponButton);
 
     clickSearchButton();
 
@@ -188,14 +179,12 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with search keyword', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
+    userEvent.type(searchInput, 'test');
 
     clickSearchButton();
 
@@ -210,20 +199,18 @@ describe('Input of analysis lookup', () => {
   });
 
   it('passes input data with multiple conditions', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const characterButton = await screen.findByText(translationEN.posts.analysis.type.character);
-    fireEvent.click(characterButton);
+    userEvent.click(characterButton);
     const elemButton = await screen.findByText('elem A EN');
-    fireEvent.click(elemButton);
+    userEvent.click(elemButton);
     const weaponButton = await screen.findByText('weapon B EN');
-    fireEvent.click(weaponButton);
+    userEvent.click(weaponButton);
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
+    userEvent.type(searchInput, 'test');
 
     clickSearchButton();
 
@@ -238,16 +225,13 @@ describe('Input of analysis lookup', () => {
   });
 
   it('triggers search on entering `enter`', async () => {
-    await act(async () => {
-      renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
-    });
+    renderReact(() => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>));
 
-    await waitFor(() => expect(getEnumElements).toHaveBeenCalledTimes(1));
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
 
     const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    fireEvent.change(searchInput, {target: {value: 'test'}});
-
-    fireEvent.submit(searchInput);
+    userEvent.type(searchInput, 'test');
+    userEvent.type(searchInput, '{enter}');
 
     const expectedInput: InputData = {
       keyword: 'test',
@@ -260,12 +244,10 @@ describe('Input of analysis lookup', () => {
   });
 
   it('shows post manage bar if the user is an admin', async () => {
-    await act(async () => {
-      renderReact(
-        () => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>),
-        {user: {isAdmin: true}},
-      );
-    });
+    renderReact(
+      () => (<AnalysisLookupInput onSearchRequested={onSearchRequested}/>),
+      {user: {isAdmin: true}},
+    );
 
     screen.getByText(translationEN.posts.manage.addChara);
   });

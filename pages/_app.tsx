@@ -4,7 +4,7 @@ import {Session} from 'next-auth';
 import {getSession} from 'next-auth/client';
 import App, {AppProps, AppContext, AppInitialProps as NextAppInitialProps} from 'next/app';
 import Head from 'next/head';
-import {Container} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 
 import {Footer} from '../src/components/elements/footer';
 import {Navigation} from '../src/components/elements/nav/main';

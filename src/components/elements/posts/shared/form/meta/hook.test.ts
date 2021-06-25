@@ -1,4 +1,4 @@
-import {act, waitFor} from '@testing-library/react';
+import {waitFor} from '@testing-library/react';
 
 import {renderReactHook} from '../../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
@@ -46,11 +46,9 @@ describe('Form meta hook', () => {
     formState.payload.lang = SupportedLanguages.CHT;
     rerender();
 
-    await waitFor(() => {
-      expect(setAvailability).toHaveBeenCalledWith(false);
-      expect(fnIdCheck).not.toHaveBeenCalled();
-      expect(result.current.isValid).toBe(false);
-    });
+    expect(setAvailability).toHaveBeenCalledWith(false);
+    expect(fnIdCheck).not.toHaveBeenCalled();
+    expect(result.current.isValid).toBe(false);
   });
 
   it('loads initial validity state', async () => {
@@ -103,15 +101,12 @@ describe('Form meta hook', () => {
     formState.payload.lang = SupportedLanguages.CHT;
     rerender();
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
+    jest.runTimersToTime(1100);
 
-    await waitFor(() => {
-      expect(fnIdCheck).toHaveBeenCalled();
-      expect(setAvailability).toHaveBeenCalledWith(true);
-      expect(result.current.isValid).toBe(true);
-    });
+    await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());
+    expect(setAvailability).toHaveBeenCalledWith(true);
+    expect(result.current.isValid).toBe(true);
+
     jest.useRealTimers();
   });
 
@@ -141,16 +136,13 @@ describe('Form meta hook', () => {
     formState.payload.lang = SupportedLanguages.CHT;
     rerender();
 
-    act(() => {
-      jest.runTimersToTime(1100);
-    });
+    jest.runTimersToTime(1100);
     rerender();
 
-    await waitFor(() => {
-      expect(fnIdCheck).toHaveBeenCalled();
-      expect(setAvailability).toHaveBeenCalledWith(false);
-      expect(result.current.isValid).toBe(false);
-    });
+    await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());
+    expect(setAvailability).toHaveBeenCalledWith(false);
+    expect(result.current.isValid).toBe(false);
+
     jest.useRealTimers();
   });
 });

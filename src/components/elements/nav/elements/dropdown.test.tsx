@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {fireEvent, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {GeneralPath} from '../../../../const/path/definitions';
@@ -28,16 +29,12 @@ describe('Nav dropdown', () => {
     renderReact(() => <NavDropdownMenu title={navDropdownTitle} items={navDropdownItems}/>);
 
     const dropdownTitle = screen.getByText('nav title');
-    act(() => {
-      fireEvent.click(dropdownTitle);
-    });
+    userEvent.click(dropdownTitle);
 
-    await waitFor(async () => {
-      const dummyLink = screen.getByText('dummy');
-      expect(dummyLink).toHaveAttribute('href', GeneralPath.ABOUT);
-      expect(screen.queryByText('header')).toHaveAttribute('role', 'heading');
-      expect(screen.getByTestId('divider')).toHaveAttribute('role', 'separator');
-    });
+    const dummyLink = screen.getByText('dummy');
+    expect(dummyLink).toHaveAttribute('href', GeneralPath.ABOUT);
+    expect(screen.queryByText('header')).toHaveAttribute('role', 'heading');
+    expect(screen.getByTestId('divider')).toHaveAttribute('role', 'separator');
   });
 
   it('shows active for the parent and the active dropdown item', async () => {
@@ -51,18 +48,13 @@ describe('Nav dropdown', () => {
     );
 
     const dropdownTitle = screen.getByText('nav title');
-    act(() => {
-      fireEvent.click(dropdownTitle);
-    });
+    userEvent.click(dropdownTitle);
 
     const dummyLink = screen.getByText('dummy');
-    act(() => {
-      fireEvent.click(dummyLink);
-    });
+    // False positive of pointer event set to `none`
+    fireEvent.click(dummyLink);
 
-    await waitFor(async () => {
-      expect(dropdownTitle).toHaveClass('active');
-      expect(dummyLink).toHaveClass('active');
-    });
+    expect(dropdownTitle).toHaveClass('active');
+    expect(dummyLink).toHaveClass('active');
   });
 });

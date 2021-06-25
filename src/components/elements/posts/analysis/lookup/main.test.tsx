@@ -1,8 +1,10 @@
 import React from 'react';
 
-import {act, fireEvent, screen, waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
+import {typeInput} from '../../../../../../test/utils/event';
 import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
 import {UnitType} from '../../../../../api-def/api/other/unit';
 import {
@@ -81,46 +83,28 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
   });
 
   it('searches and scrolls even if not found', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: 'AAA'}});
-    });
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.type(keywordInput, 'AAA');
+    userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -128,73 +112,43 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     const {rerender} = renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: 'AAA'}});
-    });
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.type(keywordInput, 'AAA');
+    userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
 
     fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
     rerender();
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: ''}});
-    });
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.clear(keywordInput);
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(fnScroll).toHaveBeenCalledTimes(3);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
-    });
-  });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
+    expect(fnScroll).toHaveBeenCalledTimes(3);
+  }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
-  it('searches by type', async () => {
+  it('searches by element and type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('elementsFLAME')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Flame')).toBeInTheDocument());
 
-    const flameElemButton = screen.getByAltText('elementsFLAME');
-    act(() => {
-      fireEvent.click(flameElemButton);
-    });
+    const flameElemButton = screen.getByAltText('Flame');
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.click(flameElemButton);
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Gala Leonidas')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
     expect(screen.queryByAltText('Karina')).not.toBeInTheDocument();
   });
 
@@ -202,52 +156,32 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('weaponTypesAXE')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Axe')).toBeInTheDocument());
 
-    const flameElemButton = screen.getByAltText('weaponTypesAXE');
-    act(() => {
-      fireEvent.click(flameElemButton);
-    });
+    const flameElemButton = screen.getByAltText('Axe');
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.click(flameElemButton);
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
   it('searches by keyword', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
-    renderReact(() => <AnalysisPostLookup/>);
+    const {rerender} = renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: 'Karina'}});
-    });
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    typeInput(keywordInput, 'Karina', {rerender});
+    userEvent.click(searchButton);
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -255,22 +189,14 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: 'Karina'}});
-    });
-    fireEvent.submit(keywordInput);
+    userEvent.type(keywordInput, 'Karina');
+    userEvent.type(keywordInput, '{enter}');
 
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -278,29 +204,19 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
     renderReact(() => <AnalysisPostLookup/>);
 
-    await waitFor(() => {
-      expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-      expect(screen.queryByAltText('elementsWATER')).toBeInTheDocument();
-      expect(screen.queryByAltText('elementsWIND')).toBeInTheDocument();
-      expect(screen.queryByAltText('weaponTypesAXE')).toBeInTheDocument();
-    });
+    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByAltText('Water')).toBeInTheDocument());
+    expect(screen.queryByAltText('Wind')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByAltText('Axe')).toBeInTheDocument());
 
-    const waterElemButton = screen.getByAltText('elementsWATER');
-    act(() => {
-      fireEvent.click(waterElemButton);
-    });
-    const windElemButton = screen.getByAltText('elementsWIND');
-    act(() => {
-      fireEvent.click(windElemButton);
-    });
-    const axeButton = screen.getByAltText('weaponTypesAXE');
-    act(() => {
-      fireEvent.click(axeButton);
-    });
+    const waterElemButton = screen.getByAltText('Water');
+    const windElemButton = screen.getByAltText('Wind');
+    const axeButton = screen.getByAltText('Axe');
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.click(waterElemButton);
+    userEvent.click(windElemButton);
+    userEvent.click(axeButton);
+    userEvent.click(searchButton);
 
     const expectedInput: InputData = {
       types: [],
@@ -308,14 +224,11 @@ describe('Analysis lookup page', () => {
       weaponTypes: [4],
       keyword: '',
     };
-    await waitFor(async () => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-      expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);
-      expect(fnGaAnalysisLookup).toHaveBeenCalledWith(expectedInput);
-    });
-    await waitFor(async () => {
-      expect(screen.queryByAltText('Karina')).toBeInTheDocument();
-    });
+
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);
+    expect(fnGaAnalysisLookup).toHaveBeenCalledWith(expectedInput);
+    await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
     expect(screen.queryByAltText('Gala Leonidas')).not.toBeInTheDocument();
   });
 
@@ -324,19 +237,13 @@ describe('Analysis lookup page', () => {
     renderReact(() => <AnalysisPostLookup/>);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    act(() => {
-      fireEvent.change(keywordInput, {target: {value: 'AAAA'}});
-    });
     const searchButton = screen.getByText(translationEN.misc.search);
-    act(() => {
-      fireEvent.click(searchButton);
-    });
+    userEvent.type(keywordInput, 'AAAA');
+    userEvent.click(searchButton);
 
-    await waitFor(() => {
-      expect(fnGetLookup).toHaveBeenCalledTimes(1);
-      expect(fnScroll).toHaveBeenCalledTimes(2);
-      expect(screen.queryByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument();
-    });
+    expect(fnGetLookup).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument());
+    expect(fnScroll).toHaveBeenCalledTimes(2);
     const errorText = screen.getByText(translationEN.posts.analysis.error.noResult);
     expect(errorText).toHaveClass('text-danger');
     expect(errorText).toHaveClass('text-center');
