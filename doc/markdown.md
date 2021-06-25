@@ -54,17 +54,23 @@ Larger (2rem):
 ==([fx])<Expression>([fx])(Decimal)==
 ```
 
+> Things in the parentheses are optional.
+
 Show the expression and the result in 2 decimals at the end:
 
 ```
 ==<Expression>[fx][2f]==
 ```
 
-> Things in the parentheses are optional.
-
 - `[O]` `[fx]` is a constant string representing the placeholder of the calculation expression.
 - `[R]` `<Expression>` is the expression used for the calculation.
 - `[O]` `<Decimal>` is the number of decimals to display.
   - Either have something like `[2f]` for showing 2 decimals, or omit it all.
+  - Default to 0 decimals i.e., the answer will be an integer if not set.
 
 > Both `*` and `x` mean multiply.
+
+#### References
+
+Check [mathjs documentation](https://mathjs.org/docs/expressions/syntax.html)
+for the expression syntax.

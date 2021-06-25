@@ -14,6 +14,22 @@ export type ExtractExpressionReturn = ExtractReturn & {
 
 export type ExpressionReplaceDirection = 'toCalculate' | 'toDisplay';
 
+export type ExpressionReplacementName = 'multiplySign' | 'percentSign';
+
+export type ExpressionReplacement = {
+  name: ExpressionReplacementName,
+  atCalculate: string,
+  atDisplay: string,
+  availableDirections: Array<ExpressionReplaceDirection>,
+}
+
+export type ExpressionReplacements = Array<ExpressionReplacement>
+
+export type ExpressionReplaceReturn = {
+  expression: string,
+  replacementUsed: { [name in ExpressionReplacementName]: boolean },
+}
+
 export type CalcExpressionProps = {
   children: string,
 }

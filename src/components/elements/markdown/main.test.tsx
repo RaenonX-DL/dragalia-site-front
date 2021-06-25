@@ -170,4 +170,21 @@ describe('Markdown', () => {
 
     expect(screen.getByText('10 (5 + 5)')).toBeInTheDocument();
   });
+
+  it('calculates complicating expression', async () => {
+    const markdown = '==[fx] 13% x 2 + 38% x 1== (3 Hit)';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('(13% x 2 + 38% x 1) 64%')).toBeInTheDocument();
+    expect(screen.getByText(/(3 Hit)/)).toBeInTheDocument();
+  });
+
+  it('skips calculating invalid expression', async () => {
+    const markdown = '==something==';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    expect(screen.getByText('something')).toBeInTheDocument();
+  });
 });
