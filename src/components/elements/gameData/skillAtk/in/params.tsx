@@ -6,15 +6,15 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
 import {InputSectionBaseProps} from '../../props';
-import {SectionAtk} from './sectionAtk';
-import {SectionBuff} from './sectionBuff';
-import {SectionCrt} from './sectionCrt';
-import {SectionEx} from './sectionEx';
-import {SectionFilter} from './sectionFilter';
-import {SectionOther} from './sectionOther';
-import {SectionPunisher} from './sectionPunisher';
-import {SectionSkill} from './sectionSkill';
-import {SectionTarget} from './sectionTarget';
+import {SectionAtk} from './sections/atk';
+import {SectionBuff} from './sections/buff';
+import {SectionCrt} from './sections/crt';
+import {SectionEx} from './sections/ex';
+import {SectionFilter} from './sections/filter';
+import {SectionOther} from './sections/other';
+import {SectionPunisher} from './sections/punisher';
+import {SectionSkill} from './sections/skill';
+import {SectionTarget} from './sections/target';
 import {InputData} from './types';
 
 

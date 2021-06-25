@@ -5,10 +5,10 @@ import {TranslationStruct} from '../../../../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../../../../i18n/types';
 import {InputData} from './types';
 
+
 type InputSummaryProps = {
   inputData: InputData
 }
-
 
 export const InputSummary = ({inputData}: InputSummaryProps) => {
   const {t} = useI18n();

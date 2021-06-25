@@ -1,15 +1,16 @@
 import React from 'react';
 
-import {ConditionCodes} from '../../../../../const/gameData';
-import {useI18n} from '../../../../../i18n/hook';
-import {CustomRadios} from '../../../common/check/customRadio';
-import {EnumChecksBox} from '../../../common/check/enumChecksBox';
-import {EnumChecksRadio} from '../../../common/check/enumChecksRadio';
-import {CheckEntry} from '../../../common/check/types';
-import {NumericInput} from '../../../common/input/numeric';
-import {SectionSubTitle} from '../../elements/subTitle';
-import {SectionTitle} from '../../elements/title';
-import {SectionProps, SectionPropsCondEnums} from './props';
+import {ConditionCodes} from '../../../../../../const/gameData';
+import {useI18n} from '../../../../../../i18n/hook';
+import {CustomRadios} from '../../../../common/check/customRadio';
+import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
+import {EnumChecksRadio} from '../../../../common/check/enumChecksRadio';
+import {CheckEntry} from '../../../../common/check/types';
+import {NumericInput} from '../../../../common/input/numeric';
+import {SectionSubTitle} from '../../../elements/subTitle';
+import {SectionTitle} from '../../../elements/title';
+import {SectionProps, SectionPropsCondEnums} from '../props';
+
 
 type SectionTargetProps = SectionProps & SectionPropsCondEnums;
 

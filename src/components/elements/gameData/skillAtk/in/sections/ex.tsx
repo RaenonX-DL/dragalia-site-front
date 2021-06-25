@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {useI18n} from '../../../../../i18n/hook';
-import {InlineCheck} from '../../../common/check/inlineCheck';
-import {SectionTitle} from '../../elements/title';
-import {SectionProps} from './props';
+import {useI18n} from '../../../../../../i18n/hook';
+import {InlineCheck} from '../../../../common/check/inlineCheck';
+import {SectionTitle} from '../../../elements/title';
+import {SectionProps} from '../props';
+
 
 export const SectionEx = ({inputData, setInputData}: SectionProps) => {
   const {t} = useI18n();
