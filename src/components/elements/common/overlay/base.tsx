@@ -5,13 +5,14 @@ import OverlayTrigger, {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger
 
 
 export type OverlayCommonProps = {
-  // Do this to require `children` to be present (React.PropsWithChildren does not require children)
+  // Note that the children MUST be able to accept `ref`
+  // Doc: https://react-bootstrap.github.io/components/overlays/#overlay-trigger
   children: React.ReactElement,
+  placement?: Placement,
 }
 
 type Props = OverlayCommonProps & {
   overlay: OverlayChildren,
-  placement?: Placement,
   trigger?: OverlayTriggerType | Array<OverlayTriggerType>,
 }
 

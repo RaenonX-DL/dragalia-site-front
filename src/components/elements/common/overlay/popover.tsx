@@ -11,13 +11,17 @@ type PopoverProps = OverlayCommonProps & {
   content: string | HTMLElement,
 }
 
-export const OverlayPopover = ({title, content, children}: PopoverProps) => (
-  <OverlayBase trigger="click" overlay={(
-    <Popover id={v4()}>
-      <Popover.Title as="h3">{title}</Popover.Title>
-      <Popover.Content>{content}</Popover.Content>
-    </Popover>
-  )}>
+export const OverlayPopover = ({title, placement, content, children}: PopoverProps) => (
+  <OverlayBase
+    trigger="click"
+    placement={placement}
+    overlay={(
+      <Popover id={v4()}>
+        <Popover.Title as="h3">{title}</Popover.Title>
+        <Popover.Content>{content}</Popover.Content>
+      </Popover>
+    )}
+  >
     {children}
   </OverlayBase>
 );
