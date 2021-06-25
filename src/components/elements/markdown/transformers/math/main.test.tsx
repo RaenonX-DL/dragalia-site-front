@@ -65,4 +65,34 @@ describe('Markdown math expression', () => {
 
     expect(screen.getByText('0.63 (5 / 8)')).toBeInTheDocument();
   });
+
+  it('preserves % if present in the expression using `x` for multiply', async () => {
+    renderReact(() => <CalcExpression>{'140% x 2 + 2000% [fx]'}</CalcExpression>);
+
+    expect(screen.getByText('2280% (140% x 2 + 2000%)')).toBeInTheDocument();
+  });
+
+  it('preserves % if present in the expression', async () => {
+    renderReact(() => <CalcExpression>{'140% * 2 + 2000% [fx]'}</CalcExpression>);
+
+    expect(screen.getByText('2280% (140% x 2 + 2000%)')).toBeInTheDocument();
+  });
+
+  it('calculates complicating expression w/ %', async () => {
+    renderReact(() => <CalcExpression>{'15% x 1 + 90% x 2 + 105% x 3 [fx]'}</CalcExpression>);
+
+    expect(screen.getByText('510% (15% x 1 + 90% x 2 + 105% x 3)')).toBeInTheDocument();
+  });
+
+  it('calculates complicating expression w/o %', async () => {
+    renderReact(() => <CalcExpression>{'15 x 1 + 90 x 2 + 105 x 3 [fx]'}</CalcExpression>);
+
+    expect(screen.getByText('510 (15 x 1 + 90 x 2 + 105 x 3)')).toBeInTheDocument();
+  });
+
+  it('can calculate multiple multiplications', async () => {
+    renderReact(() => <CalcExpression>{'15 x 5 x 3'}</CalcExpression>);
+
+    expect(screen.getByText('225')).toBeInTheDocument();
+  });
 });

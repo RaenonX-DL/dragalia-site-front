@@ -17,10 +17,12 @@ export const LanguageSwitch = () => {
   const {pathnameNoLang, query} = useNextRouter();
 
   const currentLangName = SupportedLanguageNames[lang];
+  const neutralUrl = mergePlaceholders(pathnameNoLang, query);
 
   const onLangChanged = (newLang: SupportedLanguages) => () => {
     GoogleAnalytics.languageChange(lang, newLang);
     setCookies(CookiesKeys.LANG, newLang);
+    window.location.assign(neutralUrl); // Force refresh to load all changes
   };
 
   return (
@@ -30,8 +32,9 @@ export const LanguageSwitch = () => {
       <NavDropdown.Divider/>
       {
         Object.values(SupportedLanguages).map((newLang) => (
-          <NextLink key={newLang} href={mergePlaceholders(pathnameNoLang, query)} locale={newLang} passHref>
+          <NextLink key={newLang} href={neutralUrl} locale={newLang} passHref>
             <NavDropdown.Item
+              key={newLang}
               onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
             >
               {SupportedLanguageNames[newLang]}

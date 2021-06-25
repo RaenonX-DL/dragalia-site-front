@@ -1,20 +1,27 @@
 .container {
   overflow: hidden;
+  height: 4.125rem;
 }
 
 .text {
   animation: marquee 4s linear infinite;
+  height: 4.125rem;
   border-radius: 0 !important;
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0;
+  width: 100vw;
+  padding: 0.5rem 1rem !important;
 }
 
 @keyframes marquee {
   0% {
     transform: translate(0, 100%);
   }
-  4% {
+  5% {
     transform: translate(0, 0);
   }
-  96% {
+  95% {
     transform: translate(0, 0);
   }
   100% {
