@@ -3,7 +3,8 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {CalculatedData} from './main';
+import {CalculatedData} from '../main';
+
 
 type SectionSkillDamageProps = {
   calculatedData: CalculatedData,

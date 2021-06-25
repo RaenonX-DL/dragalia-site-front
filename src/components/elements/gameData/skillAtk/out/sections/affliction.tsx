@@ -3,10 +3,10 @@ import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Col from 'react-bootstrap/Col';
 
-import {DepotPaths, AfflictionUnit} from '../../../../../api-def/resources';
-import {useI18n} from '../../../../../i18n/hook';
-import {ImageWithOverlay} from '../../../common/image';
-import {SectionProps} from './props';
+import {DepotPaths, AfflictionUnit} from '../../../../../../api-def/resources';
+import {useI18n} from '../../../../../../i18n/hook';
+import {ImageWithOverlay} from '../../../../common/image';
+import {SectionProps} from '../props';
 
 
 export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {

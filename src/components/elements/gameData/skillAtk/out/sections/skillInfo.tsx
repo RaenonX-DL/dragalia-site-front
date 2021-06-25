@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {CalculatedData} from './main';
-import {SectionProps} from './props';
+import {CalculatedData} from '../main';
+import {SectionProps} from '../props';
+
 
 type SectionSkillInfoProps = SectionProps & {
   calculatedData: CalculatedData,

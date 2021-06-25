@@ -8,12 +8,12 @@ import {DistributionBar} from '../../../charts';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 import {CalculatedData} from './main';
-import {SectionAffliction} from './sectionAffliction';
-import {SectionBadges} from './sectionBadges';
-import {SectionImageIcon} from './sectionIcon';
-import {SectionSkillDamage} from './sectionSkillDamage';
-import {SectionSkillInfo} from './sectionSkillInfo';
-import {SectionSkillName} from './sectionSkillName';
+import {SectionAffliction} from './sections/affliction';
+import {SectionBadges} from './sections/badges';
+import {SectionImageIcon} from './sections/icon';
+import {SectionSkillDamage} from './sections/skillDamage';
+import {SectionSkillInfo} from './sections/skillInfo';
+import {SectionSkillName} from './sections/skillName';
 
 
 type SkillEntryProps = {
@@ -22,7 +22,6 @@ type SkillEntryProps = {
   conditionEnumMap: ConditionEnumMap,
   skillIdentifierInfo: SkillIdentifierInfo,
 }
-
 
 export const AttackingSkillEntry = ({
   inputData,

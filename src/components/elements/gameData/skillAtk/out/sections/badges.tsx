@@ -2,11 +2,11 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {getBadgesBuffCount} from './badgesBuffCount';
-import {getBadgesBuffZone} from './badgesBuffZone';
-import {getBadgesCrisisMod} from './badgesCrisisMod';
-import {getBadgesDispel} from './badgesDispel';
-import {SectionProps} from './props';
+import {getBadgesBuffCount} from '../badges/buffCount';
+import {getBadgesBuffZone} from '../badges/buffZone';
+import {getBadgesCrisisMod} from '../badges/crisisMod';
+import {getBadgesDispel} from '../badges/dispel';
+import {SectionProps} from '../props';
 
 
 export const SectionBadges = ({atkSkillEntry}: SectionProps) => {
