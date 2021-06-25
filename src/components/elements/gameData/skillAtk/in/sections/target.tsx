@@ -2,6 +2,7 @@ import React from 'react';
 
 import {ConditionCodes} from '../../../../../../const/gameData';
 import {useI18n} from '../../../../../../i18n/hook';
+import {getConditionName} from '../../../../../../utils/game/conditionName';
 import {CustomRadios} from '../../../../common/check/customRadio';
 import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
 import {EnumChecksRadio} from '../../../../common/check/enumChecksRadio';
@@ -22,19 +23,11 @@ export const SectionTarget = ({
   const {t} = useI18n();
 
   const stateLabels: Array<CheckEntry> = [
-    {
-      text: t((t) => t.game.skillAtk.name.targetState.none),
-      code: ConditionCodes.NONE,
-    },
-    {
-      text: t((t) => t.game.skillAtk.name.targetState.od),
-      code: ConditionCodes.TARGET_STATE_OD,
-    },
-    {
-      text: t((t) => t.game.skillAtk.name.targetState.bk),
-      code: ConditionCodes.TARGET_STATE_BK,
-    },
-  ];
+    ConditionCodes.NONE,
+    ConditionCodes.TARGET_STATE_OD,
+    ConditionCodes.TARGET_STATE_BK,
+  ]
+    .map((code) => ({text: getConditionName(code, t), code}));
 
   return (
     <>

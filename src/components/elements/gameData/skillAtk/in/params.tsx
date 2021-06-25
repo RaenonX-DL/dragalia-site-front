@@ -19,22 +19,11 @@ import {InputData} from './types';
 
 
 type InputParametersProps = InputSectionBaseProps<InputData> & {
-  collapsed: boolean
+  collapsed: boolean,
+  conditionEnums: CategorizedConditionEnums,
 }
 
-export const InputParameters = ({collapsed, inputData, setInputData}: InputParametersProps) => {
-  const {
-    fetchStatus: conditionEnums,
-    fetchFunction: fetchConditionEnums,
-  } = useFetchState<CategorizedConditionEnums>(
-    {
-      afflictions: [],
-      elements: [],
-    },
-    ResourceLoader.getEnumCategorizedConditions,
-    'Failed to fetch the condition enums.',
-  );
-
+export const InputParameters = ({collapsed, inputData, setInputData, conditionEnums}: InputParametersProps) => {
   const {
     fetchStatus: elemEnums,
     fetchFunction: fetchElemEnums,
@@ -46,7 +35,6 @@ export const InputParameters = ({collapsed, inputData, setInputData}: InputParam
     'Failed to fetch the element enums.',
   );
 
-  fetchConditionEnums();
   fetchElemEnums();
 
   return (
@@ -67,18 +55,14 @@ export const InputParameters = ({collapsed, inputData, setInputData}: InputParam
           <hr/>
           <SectionOther inputData={inputData} setInputData={setInputData}/>
           <hr/>
+          <SectionTarget inputData={inputData} setInputData={setInputData} conditionEnums={conditionEnums}/>
+          <hr/>
         </div>
       </Collapse>
-      <SectionTarget
-        inputData={inputData}
-        setInputData={setInputData}
-        conditionEnums={conditionEnums.data}
-      />
-      <hr/>
       <SectionFilter
         inputData={inputData}
         setInputData={setInputData}
-        conditionEnums={conditionEnums.data}
+        conditionEnums={conditionEnums}
         elementEnums={elemEnums.data}
       />
     </>

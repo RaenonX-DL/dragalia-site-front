@@ -3,9 +3,12 @@ import React, {MouseEvent} from 'react';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
+import {CategorizedConditionEnums} from '../../../../../api-def/resources';
 import {ConditionCodes} from '../../../../../const/gameData';
 import {useI18n} from '../../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../../utils/scroll';
+import {ResourceLoader} from '../../../../../utils/services/resources/loader';
+import {useFetchState} from '../../../common/fetch';
 import {InputParameters} from './params';
 import {InputSummary} from './summary';
 import {InputData} from './types';
@@ -50,6 +53,20 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     filterSharedOnly: false,
   });
 
+  const {
+    fetchStatus: conditionEnums,
+    fetchFunction: fetchConditionEnums,
+  } = useFetchState<CategorizedConditionEnums>(
+    {
+      afflictions: [],
+      elements: [],
+    },
+    ResourceLoader.getEnumCategorizedConditions,
+    'Failed to fetch the condition enums.',
+  );
+
+  fetchConditionEnums();
+
   const onCollapseClicked = () => {
     setCollapsed(!collapsed);
 
@@ -60,7 +77,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
     <>
       <Collapse in={collapsed}>
         <div>
-          <InputSummary inputData={inputData}/>
+          <InputSummary inputData={inputData} conditionEnums={conditionEnums.data}/>
           <hr/>
         </div>
       </Collapse>
@@ -68,6 +85,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
         collapsed={collapsed}
         inputData={inputData}
         setInputData={setInputData}
+        conditionEnums={conditionEnums.data}
       />
       <hr/>
       <div className="text-right">
