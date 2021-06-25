@@ -4,6 +4,7 @@ import {ChecksBase} from './checksBase';
 import {InlineCheckBase} from './inlineCheckBase';
 import {CheckEntry, CheckType} from './types';
 
+
 type CustomRadiosProps = {
   options: Array<CheckEntry>,
   type: CheckType,
@@ -22,18 +23,16 @@ export const CustomChecksBase = ({
   return (
     <ChecksBase
       options={options}
-      renderCheckItem={({text, code}: CheckEntry) => {
-        return (
-          <InlineCheckBase
-            title={text}
-            groupName={groupName}
-            type={type}
-            key={text}
-            onChange={(checked) => onChange(checked, code)}
-            checked={isChecked(code)}
-          />
-        );
-      }}
+      renderCheckItem={({text, code}: CheckEntry) => (
+        <InlineCheckBase
+          title={text}
+          groupName={groupName}
+          type={type}
+          key={text}
+          onChange={(checked) => onChange(checked, code)}
+          checked={isChecked(code)}
+        />
+      )}
     />
   );
 };

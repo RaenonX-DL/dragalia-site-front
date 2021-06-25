@@ -20,7 +20,6 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
   const {t} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
-
   const [inputData, setInputData] = React.useState<InputData>({
     atkInGame: 7000,
     atkConditionalPct: 20,
