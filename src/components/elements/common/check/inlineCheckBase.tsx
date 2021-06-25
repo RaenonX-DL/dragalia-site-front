@@ -5,7 +5,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {Image} from '../image';
+import {ImageWithOverlay} from '../image';
 import {TitledProps} from '../types';
 import {CheckType} from './types';
 
@@ -34,7 +34,7 @@ export const InlineCheckBase = ({
   imageHeight,
 }: InlineCheckBaseProps) => {
   const label = imageUrl ?
-    <Image src={imageUrl} text={title} style={{height: imageHeight || '1.5rem'}}/> :
+    <ImageWithOverlay src={imageUrl} text={title} style={{height: imageHeight || '1.5rem'}}/> :
     <span className="text-light">{title}</span>;
 
   // Value of `1` is the identifier of that button in a button group.

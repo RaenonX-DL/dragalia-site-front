@@ -11,7 +11,11 @@ type ImageIconProps = {
 }
 
 export const Image = ({text, src, className, style}: ImageIconProps) => (
+  <img src={src} alt={text} style={style} className={className}/>
+);
+
+export const ImageWithOverlay = ({text, src, className, style}: ImageIconProps) => (
   <OverlayTooltip text={text}>
-    <img src={src} alt={text} style={style} className={className}/>
+    <Image src={src} text={text} style={style} className={className}/>
   </OverlayTooltip>
 );

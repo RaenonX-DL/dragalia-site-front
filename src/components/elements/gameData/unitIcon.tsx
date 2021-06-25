@@ -3,7 +3,7 @@ import React from 'react';
 import {UnitInfoData} from '../../../api-def/resources/types';
 import {useI18n} from '../../../i18n/hook';
 import {getImageURL} from '../../../utils/services/resources/unitInfo/utils';
-import {Image} from '../common/image';
+import {ImageWithOverlay} from '../common/image';
 
 
 type UnitIconProps = {
@@ -16,7 +16,7 @@ export const UnitIcon = ({unitInfo, className, style}: UnitIconProps) => {
   const {lang} = useI18n();
 
   return (
-    <Image
+    <ImageWithOverlay
       src={getImageURL(unitInfo)}
       text={unitInfo.name[lang]}
       className={className}

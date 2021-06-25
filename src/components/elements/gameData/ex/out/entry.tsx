@@ -9,7 +9,7 @@ import {
   CharaExAbilityDataEntry,
 } from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {Image} from '../../../common/image';
+import {ImageWithOverlay} from '../../../common/image';
 import {ExAbility} from './exUnit';
 
 
@@ -29,7 +29,7 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
     <div className="rounded bg-black-32 p-2 mb-2">
       <Row noGutters>
         <Col xs="auto" className="align-middle">
-          <Image src={charaIconURL} text={charaName} style={{height: '4rem'}}/>
+          <ImageWithOverlay src={charaIconURL} text={charaName} style={{height: '4rem'}}/>
         </Col>
         <Col>
           <Row noGutters>

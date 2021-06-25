@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 import {DepotPaths, AfflictionUnit} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {Image} from '../../../common/image';
+import {ImageWithOverlay} from '../../../common/image';
 import {SectionProps} from './props';
 
 
@@ -25,7 +25,7 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
           ))
           .map((affliction: AfflictionUnit, index: number) => (
             <React.Fragment key={index}>
-              <Image
+              <ImageWithOverlay
                 text={affliction.statusIcon}
                 src={DepotPaths.getAfflictionIconURL(affliction.statusIcon)}
                 style={{width: '1.5rem'}}

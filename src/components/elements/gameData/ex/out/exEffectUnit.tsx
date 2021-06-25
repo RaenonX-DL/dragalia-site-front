@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import {DepotPaths, AbilityVariantEffectUnitData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {Image} from '../../../common/image';
+import {ImageWithOverlay} from '../../../common/image';
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 
 
@@ -24,7 +24,7 @@ export const ExEffectUnit = ({
     <>
       <Row>
         <Col style={{fontSize: '1.1rem'}}>
-          <Image
+          <ImageWithOverlay
             src={DepotPaths.getImageURL(effectUnit.parameter.imagePath)}
             text={effectUnit.parameter.name[lang]}
             style={{height: '2rem'}}

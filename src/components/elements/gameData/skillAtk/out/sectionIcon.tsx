@@ -2,7 +2,7 @@ import React from 'react';
 
 import {DepotPaths} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {OverlayTooltip} from '../../../common/overlay/tooltip';
+import {ImageWithOverlay} from '../../../common/image';
 import {SectionProps} from './props';
 
 export const SectionImageIcon = ({atkSkillEntry}: SectionProps) => {
@@ -12,8 +12,10 @@ export const SectionImageIcon = ({atkSkillEntry}: SectionProps) => {
   const charaIconURL = DepotPaths.getCharaIconURL(atkSkillEntry.chara.iconName);
 
   return (
-    <OverlayTooltip text={charaName}>
-      <img src={charaIconURL} alt={charaName} style={{height: '4rem'}}/>
-    </OverlayTooltip>
+    <ImageWithOverlay
+      src={charaIconURL}
+      text={charaName}
+      style={{height: '4rem'}}
+    />
   );
 };
