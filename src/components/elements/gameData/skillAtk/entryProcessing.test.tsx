@@ -1,62 +1,11 @@
-import {ConditionCodes} from '../../../../const/gameData';
 import {ResourceLoader} from '../../../../utils/services/resources';
 import {InputData} from './in/types';
+import {generateInputData} from './in/utils';
 import {filterSkillEntries} from './out/utils';
 
+
 describe('Attacking skill entries processing', () => {
-  const inputDataTemplate: InputData = {
-    params: {
-      atk: {
-        inGame: 5000,
-        conditionalPct: 0,
-        buffPct: 0,
-      },
-      buff: {
-        count: 0,
-        zone: {
-          self: 0,
-          ally: 0,
-        },
-      },
-      ex: {
-        blade: false,
-        wand: false,
-      },
-      crt: {
-        ratePct: 0,
-        damagePct: 0,
-        inspired: false,
-      },
-      skill: {
-        buffPct: 0,
-        passivePct: 0,
-        energized: false,
-      },
-      punishers: {
-        bkPct: 0,
-        othersPct: 0,
-      },
-      others: {
-        elemBonusPct: 0,
-        currentHpPct: 0,
-      },
-    },
-    target: {
-      elemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
-      afflictionCodes: [],
-      def: {
-        base: 0,
-        downPct: 0,
-        bkRate: 0.6,
-      },
-      state: ConditionCodes.NONE,
-    },
-    filter: {
-      elemCodes: [],
-      afflictionCondCode: [],
-      sharedOnly: false,
-    },
-  };
+  const inputDataTemplate: InputData = generateInputData();
 
   it('checks if the promise is returning data', async () => {
     await ResourceLoader.getAttackingSkillEntries((data) => data)

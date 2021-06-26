@@ -53,4 +53,15 @@ export type InputData = {
     afflictionCondCode: Array<number>,
     sharedOnly: boolean,
   },
+  display: {
+    actualDamage: boolean,
+    // Damage mod / Hit count
+    damageInfo: boolean,
+    damageDist: boolean,
+    affliction: boolean,
+    // SS / SSP / SS Cost
+    spInfo: boolean,
+    // Hit timings, cancellation info, animation duration
+    animationInfo: boolean,
+  }
 }
