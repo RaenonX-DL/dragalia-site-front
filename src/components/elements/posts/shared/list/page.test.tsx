@@ -3,7 +3,7 @@ import React from 'react';
 import {screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {ApiResponseCode} from '../../../../../api-def/api/responseCode';
+import {ApiResponseCode} from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {PostListPage} from './page';
 

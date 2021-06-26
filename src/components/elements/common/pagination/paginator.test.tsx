@@ -12,7 +12,6 @@ describe('Paginator', () => {
   let getQueryParam: jest.Mock;
   let onPageClick: jest.Mock;
   let scrollToTop: jest.SpyInstance;
-  const path = '/paginator';
 
   beforeEach(() => {
     getQueryParam = jest.fn();
@@ -29,7 +28,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -52,7 +50,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -73,7 +70,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -94,7 +90,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -115,7 +110,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -136,7 +130,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -157,7 +150,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
         disable
@@ -180,7 +172,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
@@ -201,7 +192,6 @@ describe('Paginator', () => {
           maxPage: 7,
           pageLimit: 10,
         }}
-        path={path}
         onPageClick={onPageClick}
         getNewQueryParam={getQueryParam}
       />
