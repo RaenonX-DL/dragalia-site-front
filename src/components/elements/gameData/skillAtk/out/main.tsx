@@ -68,19 +68,18 @@ export const AttackingSkillOutput = ({
   }
 
   // Add transformed entries
-  entries
-    .push(
-      ...calculatedEntries
-        .map((calculatedData: CalculatedData, index: number) => (
-          <AttackingSkillEntry
-            key={index}
-            inputData={inputData}
-            calculatedData={calculatedData}
-            conditionEnumMap={allConditionEnums}
-            skillIdentifierInfo={skillIdentifierInfo}
-          />
-        )),
-    );
+  entries.push(
+    ...calculatedEntries
+      .map((calculatedData: CalculatedData, index: number) => (
+        <AttackingSkillEntry
+          key={index}
+          inputData={inputData}
+          calculatedData={calculatedData}
+          conditionEnumMap={allConditionEnums}
+          skillIdentifierInfo={skillIdentifierInfo}
+        />
+      )),
+  );
 
   return <>{entries}</>;
 };

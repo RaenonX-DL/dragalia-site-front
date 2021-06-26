@@ -131,9 +131,9 @@ export const translation: TranslationStruct = {
       entry: {
         notCancelable: 'モーションキャンセル不可',
         cancelable: 'モーション発動 {{cancelTime}} 秒後キャンセル可能',
-        stackable: '重複スタック可能',
-        unstackable: '重複スタック不可',
-        affliction: '＠ {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)',
+        stackable: '重複可能',
+        unstackable: '重複不可',
+        affliction: '{{affliction}} @ {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)',
         buffCount: 'バフ個数が多いほどダメUP',
         buffCountDescCapped: '+{{each}}% of the total mod for each buff; Capped at {{limit}}%',
         buffCountDescUncapped: '+{{each}}% of the total mod for each buff; Uncapped',

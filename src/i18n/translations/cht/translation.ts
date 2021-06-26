@@ -134,7 +134,7 @@ export const translation: TranslationStruct = {
         cancelable: '此技能可於 {{cancelTime}} 秒後取消。',
         stackable: '可堆疊',
         unstackable: '不可疊',
-        affliction: '於 {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)',
+        affliction: '{{affliction}} @ {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)',
         buffCount: 'Buff 數增傷',
         buffCountDescCapped: '每一 Buff 最多 +{{each}}% 總倍率；上限 {{limit}}%',
         buffCountDescUncapped: '每一 Buff 最多 +{{each}}% 總倍率；無上限',

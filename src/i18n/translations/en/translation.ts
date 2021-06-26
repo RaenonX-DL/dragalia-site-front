@@ -157,7 +157,8 @@ export const translation: TranslationStruct = {
         cancelable: 'This skill can be canceled after {{cancelTime}} seconds.',
         stackable: 'Stackable',
         unstackable: 'Unstackable',
-        affliction: 'At {{afflictionTime}} s ({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)',
+        affliction: '{{affliction}} @ {{afflictionTime}} s ' +
+          '({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)',
         buffCount: 'Buff Counts',
         buffCountDescCapped: '+{{each}}% of the total mod for each buff; Capped at {{limit}}%',
         buffCountDescUncapped: '+{{each}}% of the total mod for each buff; Uncapped',
