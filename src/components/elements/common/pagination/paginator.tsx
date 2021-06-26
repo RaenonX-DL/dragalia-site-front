@@ -10,7 +10,6 @@ import {getValidNewPage} from './utils';
 
 type PaginatorProps = {
   state: PaginationState,
-  path: string,
   // `page` is 1-index.
   onPageClick: (page: number) => void,
   // `page` is 1-index. This should exclude `?` in the URL.
@@ -20,7 +19,6 @@ type PaginatorProps = {
 
 export const Paginator = ({
   state,
-  path,
   onPageClick,
   getNewQueryParam,
   disable = false,
@@ -42,7 +40,7 @@ export const Paginator = ({
     router
       .push(
         {
-          pathname: path,
+          pathname: router.pathnameNoLang,
           search: getNewQueryParam(newPage),
         },
         undefined,

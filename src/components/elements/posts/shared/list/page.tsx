@@ -134,7 +134,6 @@ export const PostListPage = <R extends SequencedPostListResponse>({
       <div className="d-flex justify-content-center">
         <Paginator
           state={status.paginationState}
-          path={router.pathname}
           onPageClick={onPageClick}
           getNewQueryParam={(page) => (
             new URLSearchParams(`start=${(page - 1) * status.paginationState.pageLimit}`)
