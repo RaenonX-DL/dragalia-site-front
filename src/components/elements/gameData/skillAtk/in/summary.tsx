@@ -27,9 +27,9 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
           {
             atkVal:
               (
-                inputData.atkInGame * // In-game ATK
-                (1 + inputData.atkConditionalPct / 100) * // Condition ATK boosts
-                (1 + inputData.atkBuffPct / 100)
+                inputData.params.atk.inGame * // In-game ATK
+                (1 + inputData.params.atk.conditionalPct / 100) * // Condition ATK boosts
+                (1 + inputData.params.atk.buffPct / 100)
               ).toFixed(2),
           },
         )}
@@ -38,9 +38,9 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
         {t(
           (t) => t.game.skillAtk.summary.atkData,
           {
-            atkInGame: inputData.atkInGame.toFixed(0),
-            atkConditionalPct: inputData.atkConditionalPct.toFixed(0),
-            atkBuffPct: inputData.atkBuffPct.toFixed(0),
+            atkInGame: inputData.params.atk.inGame.toFixed(0),
+            atkConditionalPct: inputData.params.atk.conditionalPct.toFixed(0),
+            atkBuffPct: inputData.params.atk.buffPct.toFixed(0),
           },
         )}
       </p>
@@ -49,17 +49,17 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
         {t(
           (t) => t.game.skillAtk.summary.buffData,
           {
-            buffCount: inputData.buffCount.toFixed(0),
-            buffZoneSelf: inputData.buffZoneSelf.toFixed(0),
-            buffZoneAlly: inputData.buffZoneAlly.toFixed(0),
+            buffCount: inputData.params.buff.count.toFixed(0),
+            buffZoneSelf: inputData.params.buff.zone.self.toFixed(0),
+            buffZoneAlly: inputData.params.buff.zone.ally.toFixed(0),
           },
         )}
       </p>
       <h5>{t((t) => t.game.skillAtk.summary.ex)}</h5>
       <p className={detailClassNames}>
         {[
-          [inputData.exBlade, (t: TranslationStruct) => t.game.skillAtk.summary.exBlade],
-          [inputData.exWand, (t: TranslationStruct) => t.game.skillAtk.summary.exWand],
+          [inputData.params.ex.blade, (t: TranslationStruct) => t.game.skillAtk.summary.exBlade],
+          [inputData.params.ex.wand, (t: TranslationStruct) => t.game.skillAtk.summary.exWand],
         ]
           .filter((entry) => entry[0])
           .map((entry) => t(entry[1] as GetTranslationFunction))
@@ -72,23 +72,23 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
           {
             crtVal: (
               1 +
-              (inputData.criticalInspired ? 1 : inputData.criticalRatePct / 100) * // Critical Rate and Inspired
-              (inputData.criticalDamagePct / 100 + 0.7) // Critical damage
+              (inputData.params.crt.inspired ? 1 : inputData.params.crt.ratePct / 100) * // Critical Rate and Inspired
+              (inputData.params.crt.damagePct / 100 + 0.7) // Critical damage
             ).toFixed(2),
           },
         )}
       </h5>
       <p className={detailClassNames}>
         {[
-          inputData.criticalInspired ?
+          inputData.params.crt.inspired ?
             t((t) => t.game.skillAtk.summary.crtInspired) :
             t(
               (t) => t.game.skillAtk.summary.crtRate,
-              {crtRate: inputData.criticalRatePct.toFixed(1)},
+              {crtRate: inputData.params.crt.ratePct.toFixed(1)},
             ),
           t(
             (t) => t.game.skillAtk.summary.crtDamage,
-            {crtDamage: inputData.criticalDamagePct.toFixed(0)},
+            {crtDamage: inputData.params.crt.damagePct.toFixed(0)},
           )]
           .join(' / ')}
       </p>
@@ -98,18 +98,25 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
           {
             skillVal:
               (
-                (1 + (inputData.skillPassivePct + (inputData.skillEnergized ? 50 : 0)) / 100) * // Passives & Energized
-                (1 + (inputData.exWand ? 0.15 : 0)) * // Wand EX
-                (1 + inputData.skillBuffPct / 100) // Skill Damage Buffs
+                // Passives & Energized
+                (1 + (inputData.params.skill.passivePct + (inputData.params.skill.energized ? 50 : 0)) / 100) *
+                (1 + (inputData.params.ex.wand ? 0.15 : 0)) * // Wand EX
+                (1 + inputData.params.skill.buffPct / 100) // Skill Damage Buffs
               ).toFixed(2),
           },
         )}
       </h5>
       <p className={detailClassNames}>
         {[
-          t((t) => t.game.skillAtk.summary.skillPassive, {skillPassivePct: inputData.skillPassivePct.toFixed(0)}),
-          t((t) => t.game.skillAtk.summary.skillBuff, {skillBuffPct: inputData.skillBuffPct.toFixed(0)}),
-          inputData.skillEnergized ? t((t) => t.game.skillAtk.summary.skillEnergized) : '',
+          t(
+            (t) => t.game.skillAtk.summary.skillPassive,
+            {skillPassivePct: inputData.params.skill.passivePct.toFixed(0)},
+          ),
+          t(
+            (t) => t.game.skillAtk.summary.skillBuff,
+            {skillBuffPct: inputData.params.skill.buffPct.toFixed(0)},
+          ),
+          inputData.params.skill.energized ? t((t) => t.game.skillAtk.summary.skillEnergized) : '',
         ]
           .filter((str) => str.length > 0)
           .join(' / ')}
@@ -120,8 +127,8 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
           {
             punisherVal:
               (
-                (1 + inputData.punishersBkPct / 100) *
-                (1 + inputData.punishersOtherPct / 100)
+                (1 + inputData.params.punishers.bkPct / 100) *
+                (1 + inputData.params.punishers.othersPct / 100)
               ).toFixed(2),
           },
         )}</h5>
@@ -129,8 +136,8 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
         {t(
           (t) => t.game.skillAtk.summary.punisherData,
           {
-            punishersBkPct: inputData.punishersBkPct.toFixed(0),
-            punishersOtherPct: inputData.punishersOtherPct.toFixed(0),
+            punishersBkPct: inputData.params.punishers.bkPct.toFixed(0),
+            punishersOtherPct: inputData.params.punishers.othersPct.toFixed(0),
           },
         )}
       </p>
@@ -139,8 +146,8 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
         {t(
           (t) => t.game.skillAtk.summary.otherData,
           {
-            otherElemBonusPct: inputData.otherElemBonusPct.toFixed(0),
-            otherCurrentHpPct: inputData.otherCurrentHpPct.toFixed(0),
+            otherElemBonusPct: inputData.params.others.elemBonusPct.toFixed(0),
+            otherCurrentHpPct: inputData.params.others.currentHpPct.toFixed(0),
           },
         )}
       </p>
@@ -148,29 +155,28 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
       <p className={detailClassNames}>
         {t((t) => t.game.skillAtk.summary.targetData.element)}
         <EnumEntryImageIcon
-          entry={conditionEnums.elements.find((entry) => entry.code === inputData.targetElemCondCode)}
+          entry={conditionEnums.elements.find((entry) => entry.code === inputData.target.elemCondCode)}
         />
         <br/>
         {t((t) => t.game.skillAtk.summary.targetData.afflictions)}
         {
           conditionEnums.afflictions
-            .filter((entry) => inputData.targetAfflictionCodes.includes(entry.code))
+            .filter((entry) => inputData.target.afflictionCodes.includes(entry.code))
             .map((entry, idx) => <EnumEntryImageIcon entry={entry} key={idx}/>)
         }<br/>
         {t(
           (t) => t.game.skillAtk.summary.targetData.state,
-          {state: getConditionName(inputData.targetStateCode, t)},
+          {state: getConditionName(inputData.target.state, t)},
         )}<br/>
         {t(
           (t) => t.game.skillAtk.summary.targetData.def,
           {
-            def: inputData.targetDefBase.toFixed(0),
-            defDownPct: inputData.targetDefDownPct.toFixed(0),
-            defBkRate: inputData.targetDefBkRate.toFixed(1),
+            def: inputData.target.def.base.toFixed(0),
+            defDownPct: inputData.target.def.downPct.toFixed(0),
+            defBkRate: inputData.target.def.bkRate.toFixed(1),
           },
         )}
       </p>
     </>
   );
-}
-;
+};

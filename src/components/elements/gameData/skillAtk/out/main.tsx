@@ -47,7 +47,7 @@ export const AttackingSkillOutput = ({
       // Element bonus rate
       const charaElementRate = elementBonusData.getElementBonus(
         String(entry.chara.element),
-        String(inputData.targetElemCondCode),
+        String(inputData.target.elemCondCode),
       );
 
       // Calculate skill damage

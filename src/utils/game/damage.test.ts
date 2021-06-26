@@ -5,33 +5,57 @@ import {calculateDamage, CalculateDamageReturn} from './damage';
 
 
 const inputDataTemplate: InputData = {
-  atkInGame: 0,
-  atkConditionalPct: 0,
-  atkBuffPct: 0,
-  buffCount: 0,
-  buffZoneSelf: 0,
-  buffZoneAlly: 0,
-  exBlade: false,
-  exWand: false,
-  criticalRatePct: 0,
-  criticalDamagePct: 0,
-  criticalInspired: false,
-  skillBuffPct: 0,
-  skillPassivePct: 0,
-  skillEnergized: false,
-  punishersBkPct: 0,
-  punishersOtherPct: 0,
-  otherElemBonusPct: 0,
-  otherCurrentHpPct: 0,
-  targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
-  targetAfflictionCodes: [],
-  targetDefBase: 0,
-  targetDefDownPct: 0,
-  targetDefBkRate: 0.6,
-  targetStateCode: ConditionCodes.NONE,
-  filterElementCode: [],
-  filterAfflictionCondCode: [],
-  filterSharedOnly: false,
+  params: {
+    atk: {
+      inGame: 5000,
+      conditionalPct: 0,
+      buffPct: 0,
+    },
+    buff: {
+      count: 0,
+      zone: {
+        self: 0,
+        ally: 0,
+      },
+    },
+    ex: {
+      blade: false,
+      wand: false,
+    },
+    crt: {
+      ratePct: 0,
+      damagePct: 0,
+      inspired: false,
+    },
+    skill: {
+      buffPct: 0,
+      passivePct: 0,
+      energized: false,
+    },
+    punishers: {
+      bkPct: 0,
+      othersPct: 0,
+    },
+    others: {
+      elemBonusPct: 0,
+      currentHpPct: 0,
+    },
+  },
+  target: {
+    elemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
+    afflictionCodes: [],
+    def: {
+      base: 0,
+      downPct: 0,
+      bkRate: 0.6,
+    },
+    state: ConditionCodes.NONE,
+  },
+  filter: {
+    elemCodes: [],
+    afflictionCondCode: [],
+    sharedOnly: false,
+  },
 };
 
 
@@ -39,6 +63,7 @@ const attackingSkillDataTemplate: AttackingSkillData = {
   uniqueHash: '',
   condition: [],
   chara: {
+    id: 0,
     iconName: '',
     name: {
       cht: '',
@@ -76,28 +101,47 @@ const attackingSkillDataTemplate: AttackingSkillData = {
 
 it('checks if the damage is calculated correctly', () => {
   const inputData: InputData = {
-    ...inputDataTemplate,
-    atkInGame: 6438,
-    atkConditionalPct: 20,
-    atkBuffPct: 197,
-    exBlade: true,
-    exWand: true,
-    criticalRatePct: 100,
-    criticalDamagePct: 170,
-    criticalInspired: false,
-    skillBuffPct: 200,
-    skillPassivePct: 40,
-    skillEnergized: true,
-    punishersBkPct: 20,
-    punishersOtherPct: 50,
-    otherElemBonusPct: 20,
-    otherCurrentHpPct: 0,
-    targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
-    targetAfflictionCodes: [ConditionCodes.TARGET_BOGGED.valueOf()],
-    targetDefBase: 10,
-    targetDefDownPct: 30,
-    targetDefBkRate: 0.8,
-    targetStateCode: ConditionCodes.TARGET_STATE_BK,
+    params: {
+      atk: {
+        inGame: 6438,
+        conditionalPct: 20,
+        buffPct: 197,
+      },
+      buff: inputDataTemplate.params.buff,
+      ex: {
+        blade: true,
+        wand: true,
+      },
+      crt: {
+        ratePct: 100,
+        damagePct: 170,
+        inspired: false,
+      },
+      skill: {
+        buffPct: 200,
+        passivePct: 40,
+        energized: true,
+      },
+      punishers: {
+        bkPct: 20,
+        othersPct: 50,
+      },
+      others: {
+        elemBonusPct: 20,
+        currentHpPct: 0,
+      },
+    },
+    target: {
+      elemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
+      afflictionCodes: [ConditionCodes.TARGET_BOGGED.valueOf()],
+      def: {
+        base: 10,
+        downPct: 30,
+        bkRate: 0.8,
+      },
+      state: ConditionCodes.TARGET_STATE_BK,
+    },
+    filter: inputDataTemplate.filter,
   };
 
   const attackingSkillData = {

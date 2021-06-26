@@ -22,33 +22,57 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
 
   const [collapsed, setCollapsed] = React.useState(true);
   const [inputData, setInputData] = React.useState<InputData>({
-    atkInGame: 7000,
-    atkConditionalPct: 20,
-    atkBuffPct: 30,
-    buffCount: 0,
-    buffZoneSelf: 0,
-    buffZoneAlly: 0,
-    exBlade: true,
-    exWand: true,
-    criticalRatePct: 4,
-    criticalDamagePct: 0,
-    criticalInspired: false,
-    skillBuffPct: 0,
-    skillPassivePct: 40,
-    skillEnergized: false,
-    punishersBkPct: 0,
-    punishersOtherPct: 20,
-    otherElemBonusPct: 0,
-    otherCurrentHpPct: 100,
-    targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
-    targetAfflictionCodes: [],
-    targetDefBase: 10,
-    targetDefDownPct: 0,
-    targetDefBkRate: 0.6,
-    targetStateCode: ConditionCodes.NONE,
-    filterElementCode: [],
-    filterAfflictionCondCode: [],
-    filterSharedOnly: false,
+    params: {
+      atk: {
+        inGame: 7000,
+        conditionalPct: 20,
+        buffPct: 30,
+      },
+      buff: {
+        count: 0,
+        zone: {
+          self: 0,
+          ally: 0,
+        },
+      },
+      ex: {
+        blade: true,
+        wand: true,
+      },
+      crt: {
+        ratePct: 4,
+        damagePct: 0,
+        inspired: false,
+      },
+      skill: {
+        buffPct: 0,
+        passivePct: 40,
+        energized: false,
+      },
+      punishers: {
+        bkPct: 0,
+        othersPct: 20,
+      },
+      others: {
+        elemBonusPct: 0,
+        currentHpPct: 100,
+      },
+    },
+    target: {
+      elemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
+      afflictionCodes: [],
+      def: {
+        base: 10,
+        downPct: 0,
+        bkRate: 0.8,
+      },
+      state: ConditionCodes.NONE,
+    },
+    filter: {
+      elemCodes: [],
+      afflictionCondCode: [],
+      sharedOnly: false,
+    },
   });
 
   const {
