@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import {DepotPaths, AfflictionUnit, StatusEnums} from '../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
+import {reverseEnumTransLookup} from '../../../../../../utils/services/resources/utils';
 import {useFetchState} from '../../../../common/fetch';
 import {ImageWithOverlay} from '../../../../common/image';
 import {SectionProps} from '../props';
@@ -19,8 +20,12 @@ type AfflictionEntryProps = {
 const AfflictionEntry = ({affliction, statusEnums}: AfflictionEntryProps) => {
   const {t, lang} = useI18n();
 
-  const afflictionName = statusEnums.status.find((entry) => entry.code === affliction.statusCode)?.trans[lang] ||
-    affliction.statusIcon;
+  const afflictionName = reverseEnumTransLookup(
+    statusEnums.status,
+    affliction.statusCode,
+    lang,
+    affliction.statusCode.toString(),
+  );
 
   // <div> for line separation
   return (
