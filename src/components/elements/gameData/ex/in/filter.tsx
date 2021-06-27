@@ -3,12 +3,12 @@ import React from 'react';
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
-import {InputSectionBaseProps} from '../../props';
+import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from './types';
 import {overwriteInputData} from './utils';
 
 
-type SectionProps = InputSectionBaseProps<InputData> & {
+type SectionProps = InputPanelCommonProps<InputData> & {
   elementEnums: ElementEnums,
   exBuffParams: ExBuffParams
 }

@@ -57,7 +57,7 @@ export type InputEntry<E, E2 extends EnumEntry, T> =
 
 export type InputEntries<E, E2 extends EnumEntry, T> = Array<InputEntry<E, E2, T>>
 
-type InputPanelCommonProps<T> = {
+export type InputPanelCommonProps<T> = {
   inputData: T,
   setInputData: (newData: T) => void,
 }

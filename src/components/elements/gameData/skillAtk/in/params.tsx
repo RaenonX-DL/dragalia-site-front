@@ -3,7 +3,7 @@ import React from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 
 import {CategorizedConditionEnums} from '../../../../../api-def/resources';
-import {InputSectionBaseProps} from '../../props';
+import {InputPanelCommonProps} from '../../../input/types';
 import {SectionAtk} from './sections/atk';
 import {SectionBuff} from './sections/buff';
 import {SectionCrt} from './sections/crt';
@@ -16,7 +16,7 @@ import {InputSummary} from './summary';
 import {InputData} from './types';
 
 
-type InputParametersProps = InputSectionBaseProps<InputData> & {
+type InputParametersProps = InputPanelCommonProps<InputData> & {
   collapsed: boolean,
   conditionEnums: CategorizedConditionEnums,
 }
