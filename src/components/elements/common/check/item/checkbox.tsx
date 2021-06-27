@@ -5,7 +5,7 @@ import {CheckItem} from '../base/item';
 import {CheckItemProps} from '../types';
 
 
-type InlineCheckProps<T> = InputProps<T, boolean> & Pick<CheckItemProps, 'text'>
+export type CheckboxInputProps<T> = InputProps<T, boolean> & Pick<CheckItemProps, 'text'>
 
 export const CheckboxInput = <T, >({
   text,
@@ -13,7 +13,7 @@ export const CheckboxInput = <T, >({
   setInputData,
   getValue,
   getUpdatedInputData,
-}: InlineCheckProps<T>) => {
+}: CheckboxInputProps<T>) => {
   return (
     <CheckItem
       text={text}

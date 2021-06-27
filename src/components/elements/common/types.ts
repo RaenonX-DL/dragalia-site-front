@@ -1,9 +1,9 @@
-export type TitledProps = {
-  title: string,
+export type TitledProps<T = string> = {
+  title: T,
 }
 
-export type DetailedProps = TitledProps & {
-  description: string,
+export type DetailedProps<T = string> = TitledProps<T> & {
+  description: T,
 }
 
 export type ReadonlyInputProps<T, V> = {

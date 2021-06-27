@@ -6,7 +6,7 @@ import {CheckboxGroup} from '../group/checkbox';
 import {CheckboxGroupProps} from '../types';
 
 
-type EnumChecksBoxProps<E extends EnumEntry, T> = Omit<CheckboxGroupProps<E, T>, 'getCheckOptionComparer'>
+export type EnumChecksBoxProps<E extends EnumEntry, T> = Omit<CheckboxGroupProps<E, T>, 'getCheckOptionComparer'>
 
 export const EnumCheckboxGroup = <E extends EnumEntry, T>({
   options,

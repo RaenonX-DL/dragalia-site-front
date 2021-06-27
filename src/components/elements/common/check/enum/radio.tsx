@@ -6,7 +6,7 @@ import {RadioGroup} from '../group/radio';
 import {RadioGroupProps} from '../types';
 
 
-type EnumRadioGroupProps<E extends EnumEntry, T> = Omit<RadioGroupProps<E, T>, 'getCheckOptionComparer'>
+export type EnumRadioGroupProps<E extends EnumEntry, T> = Omit<RadioGroupProps<E, T>, 'getCheckOptionComparer'>
 
 export const EnumRadioGroup = <E extends EnumEntry, T>({
   options,

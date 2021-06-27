@@ -22,6 +22,7 @@ type InputParametersProps = InputSectionBaseProps<InputData> & {
 }
 
 export const InputParameters = ({collapsed, inputData, setInputData, conditionEnums}: InputParametersProps) => {
+  // <div> is required for collapse to work
   return (
     <>
       <Collapse in={collapsed}>

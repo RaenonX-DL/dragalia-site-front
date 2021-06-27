@@ -8,7 +8,7 @@ import {OverlayPopover} from '../overlay/popover';
 import {DetailedProps, InputProps} from '../types';
 
 
-type NumericInputProps<T> =
+export type NumericInputProps<T> =
   DetailedProps &
   InputProps<T, number> & {
   required?: boolean,
