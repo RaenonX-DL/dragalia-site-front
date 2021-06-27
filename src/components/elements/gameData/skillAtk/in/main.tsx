@@ -6,8 +6,8 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
+import {Filter} from './filter';
 import {InputParameters} from './params';
-import {SectionFilter} from './sections/filter';
 import {InputData} from './types';
 import {generateInputData} from './utils';
 
@@ -49,7 +49,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
 
   return (
     <>
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         conditionEnums={conditionEnums.data}
