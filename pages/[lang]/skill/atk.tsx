@@ -59,6 +59,12 @@ const AttackingSkillLookup = () => {
   fetchSkillIdentifiers();
   fetchAttackingSkillEntries();
 
+  React.useEffect(() => {
+    if (inputDataForward) {
+      scrollRefToTop(entryCol);
+    }
+  }, [inputDataForward]);
+
   return (
     <Row>
       <Col lg={4} className="rounded bg-black-32 p-3 mb-3">
@@ -66,9 +72,6 @@ const AttackingSkillLookup = () => {
           onSearchRequested={(inputData: InputData) => () => {
             GoogleAnalytics.damageCalc('search', inputData);
 
-            scrollRefToTop(entryCol);
-
-            // This function is expensive, scroll first
             setInputDataForward(inputData);
           }}
         />
