@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {EnumEntry} from '../../../api-def/resources';
-import {useI18n} from '../../../i18n/hook';
 import {EnumCheckboxGroup} from '../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../common/check/enum/radio';
 import {RadioGroup} from '../common/check/group/radio';
@@ -18,13 +17,11 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
   inputData,
   setInputData,
 }: InputEntryProps<E, E2, T>) => {
-  const {t} = useI18n();
-
   if (inputEntry.type === 'title') {
-    return <SectionTitle title={t(inputEntry.title)} description={t(inputEntry.description)}/>;
+    return <SectionTitle title={inputEntry.title} description={inputEntry.description}/>;
   }
   if (inputEntry.type === 'subTitle') {
-    return <SectionSubTitle title={t(inputEntry.title)} description={t(inputEntry.description)}/>;
+    return <SectionSubTitle title={inputEntry.title} description={inputEntry.description}/>;
   }
   if (inputEntry.type === 'separator') {
     return <hr/>;
@@ -33,8 +30,8 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
     return (
       <NumericInput
         {...inputEntry}
-        title={t(inputEntry.title)}
-        description={t(inputEntry.description)}
+        title={inputEntry.title}
+        description={inputEntry.description}
         inputData={inputData}
         setInputData={setInputData}
       />

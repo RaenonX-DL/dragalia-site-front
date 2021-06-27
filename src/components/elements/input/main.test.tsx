@@ -30,8 +30,8 @@ describe('Input collection', () => {
         inputEntries={[
           {
             type: 'title',
-            title: () => 'title',
-            description: () => 'description',
+            title: 'title',
+            description: 'description',
           },
         ]}
         inputData={inputData}
@@ -52,8 +52,8 @@ describe('Input collection', () => {
         inputEntries={[
           {
             type: 'subTitle',
-            title: () => 'title',
-            description: () => 'description',
+            title: 'title',
+            description: 'description',
           },
         ]}
         inputData={inputData}
@@ -88,8 +88,8 @@ describe('Input collection', () => {
         inputEntries={[
           {
             type: 'inputNumber',
-            title: () => 'title',
-            description: () => 'description',
+            title: 'title',
+            description: 'description',
             getValue: (inputData) => inputData.num || 0,
             getUpdatedInputData: (newValue) => ({num: newValue}),
           },
@@ -319,8 +319,8 @@ describe('Input collection', () => {
         inputEntries={[
           {
             type: 'title',
-            title: () => 'title',
-            description: () => 'description',
+            title: 'title',
+            description: 'description',
           },
           {
             type: 'separator',

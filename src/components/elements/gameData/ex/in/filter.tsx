@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
+import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {InputSectionBaseProps} from '../../props';
 import {InputData} from './types';
@@ -18,6 +19,8 @@ export const SectionFilter = ({
   elementEnums,
   exBuffParams,
 }: SectionProps) => {
+  const {t} = useI18n();
+
   return (
     <InputPanel
       inputData={inputData}
@@ -25,8 +28,8 @@ export const SectionFilter = ({
       inputEntries={[
         {
           type: 'title',
-          title: (t) => t.game.ex.name.filterElement,
-          description: (t) => t.game.ex.desc.filterElement,
+          title: t((t) => t.game.ex.name.filterElement),
+          description: t((t) => t.game.ex.desc.filterElement),
         },
         {
           type: 'enumCheckGroup',
@@ -36,8 +39,8 @@ export const SectionFilter = ({
         },
         {
           type: 'title',
-          title: (t) => t.game.ex.name.filterExBuffParam,
-          description: (t) => t.game.ex.desc.filterExBuffParam,
+          title: t((t) => t.game.ex.name.filterExBuffParam),
+          description: t((t) => t.game.ex.desc.filterExBuffParam),
         },
         {
           type: 'enumCheckGroup',
@@ -48,8 +51,8 @@ export const SectionFilter = ({
         },
         {
           type: 'title',
-          title: (t) => t.game.ex.name.filterChainedExBuffParam,
-          description: (t) => t.game.ex.desc.filterChainedExBuffParam,
+          title: t((t) => t.game.ex.name.filterChainedExBuffParam),
+          description: t((t) => t.game.ex.desc.filterChainedExBuffParam),
         },
         {
           type: 'enumCheckGroup',

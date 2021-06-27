@@ -1,5 +1,4 @@
 import {EnumEntry} from '../../../api-def/resources/types/enum';
-import {GetTranslationFunction} from '../../../i18n/types';
 import {EnumChecksBoxProps} from '../common/check/enum/checkbox';
 import {EnumRadioGroupProps} from '../common/check/enum/radio';
 import {CheckboxInputProps} from '../common/check/item/checkbox';
@@ -8,11 +7,11 @@ import {NumericInputProps} from '../common/input/numeric';
 import {DetailedProps} from '../common/types';
 
 
-export type InputEntryTitle = DetailedProps<GetTranslationFunction> & {
+export type InputEntryTitle = DetailedProps & {
   type: 'title',
 }
 
-export type InputEntrySubTitle = DetailedProps<GetTranslationFunction> & {
+export type InputEntrySubTitle = DetailedProps & {
   type: 'subTitle'
 }
 
@@ -21,7 +20,7 @@ export type InputEntrySeparator = {
 }
 
 export type InputEntryNumber<T> =
-  DetailedProps<GetTranslationFunction> &
+  DetailedProps &
   Omit<NumericInputProps<T>, keyof DetailedProps | keyof InputPanelCommonProps<T>> & {
   type: 'inputNumber'
 }
