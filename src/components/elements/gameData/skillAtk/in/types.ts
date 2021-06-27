@@ -1,4 +1,6 @@
+import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources/types/export/enums';
 import {ConditionCodes} from '../../../../../const/gameData';
+import {InputPanelCommonProps} from '../../../input/types';
 
 
 export type InputData = {
@@ -64,4 +66,14 @@ export type InputData = {
     // Hit timings, cancellation info, animation duration
     animationInfo: boolean,
   }
+}
+
+export type SectionProps = InputPanelCommonProps<InputData>
+
+export type SectionPropsCondEnums = SectionProps & {
+  conditionEnums: CategorizedConditionEnums
+}
+
+export type SectionPropsElemEnums = SectionProps & {
+  elementEnums: ElementEnums
 }

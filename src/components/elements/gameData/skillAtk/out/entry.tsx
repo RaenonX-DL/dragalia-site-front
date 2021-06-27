@@ -45,21 +45,33 @@ export const AttackingSkillEntry = ({
         <Col className="my-auto">
           <SectionSkillName atkSkillEntry={atkSkillEntry} skillIdentifierInfo={skillIdentifierInfo}/>
         </Col>
-        <Col xs="auto" sm="auto" className="text-right my-auto">
-          <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
-        </Col>
-        <Col className="text-center my-auto" lg={5}>
-          <SectionSkillDamage calculatedData={calculatedData}/>
-          <ConditionBadges conditionCodes={calculatedData.skillEntry.condition} conditionEnums={conditionEnumMap}/>
-        </Col>
+        {
+          inputData.display.damageInfo &&
+          <Col xs="auto" sm="auto" className="text-right my-auto">
+            <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
+          </Col>
+        }
+        {
+          inputData.display.actualDamage &&
+          <Col className="text-center my-auto" lg={5}>
+            <SectionSkillDamage calculatedData={calculatedData}/>
+            <ConditionBadges conditionCodes={calculatedData.skillEntry.condition} conditionEnums={conditionEnumMap}/>
+          </Col>
+        }
       </Row>
-      <Row className="text-center">
-        <Col>
-          <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height="0.5rem" displayText={false}/>
-        </Col>
-      </Row>
+      {
+        inputData.display.damageDist &&
+        <Row className="text-center">
+          <Col>
+            <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height="0.5rem" displayText={false}/>
+          </Col>
+        </Row>
+      }
       <Row>
-        <SectionAffliction atkSkillEntry={atkSkillEntry}/>
+        {
+          inputData.display.affliction &&
+          <SectionAffliction atkSkillEntry={atkSkillEntry}/>
+        }
         <SectionBadges atkSkillEntry={atkSkillEntry}/>
       </Row>
     </div>

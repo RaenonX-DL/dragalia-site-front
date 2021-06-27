@@ -1,4 +1,4 @@
-import React, {MouseEvent} from 'react';
+import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 
@@ -6,40 +6,36 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
+import {CommonModal, ModalState} from '../../../common/modal';
 import {Filter} from './filter';
+import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
 import {InputData} from './types';
-import {generateInputData} from './utils';
+import {generateInputData, validateInputData} from './utils';
 
 
 type InputProps = {
-  onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
+  onSearchRequested: (inputData: InputData) => void,
 }
 
 export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
   const [inputData, setInputData] = React.useState<InputData>(generateInputData());
+  const [modalState, setModalState] = React.useState<ModalState>({
+    show: false,
+    title: '',
+    message: '',
+  });
 
-  const {
-    fetchStatus: conditionEnums,
-    fetchFunction: fetchConditionEnums,
-  } = useFetchState<CategorizedConditionEnums>(
-    {
-      afflictions: [],
-      elements: [],
-    },
+  const {fetchStatus: conditionEnums, fetchFunction: fetchConditionEnums} = useFetchState<CategorizedConditionEnums>(
+    {afflictions: [], elements: []},
     ResourceLoader.getEnumCategorizedConditions,
     'Failed to fetch the condition enums.',
   );
-  const {
-    fetchStatus: elemEnums,
-    fetchFunction: fetchElemEnums,
-  } = useFetchState<ElementEnums>(
-    {
-      elemental: [],
-    },
+  const {fetchStatus: elemEnums, fetchFunction: fetchElemEnums} = useFetchState<ElementEnums>(
+    {elemental: []},
     ResourceLoader.getEnumElements,
     'Failed to fetch the element enums.',
   );
@@ -49,6 +45,7 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
 
   return (
     <>
+      <CommonModal modalState={modalState} setModalState={setModalState}/>
       <Filter
         inputData={inputData}
         setInputData={setInputData}
@@ -56,11 +53,25 @@ export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
         elementEnums={elemEnums.data}
       />
       <hr/>
+      <DisplayItemPicker inputData={inputData} setInputData={setInputData}/>
+      <hr/>
       <div className="text-right">
         <Button variant="outline-primary" onClick={() => setCollapsed(!collapsed)} className="mr-2">
           {t((t) => t.game.skillAtk.collapse)}
         </Button>
-        <Button variant="outline-info" onClick={onSearchRequested(inputData)}>
+        <Button variant="outline-info" onClick={() => {
+          const isInputValid = validateInputData(
+            inputData,
+            lang,
+            (message) => setModalState({...modalState, show: true, message}),
+          );
+
+          if (!isInputValid) {
+            return;
+          }
+
+          onSearchRequested(inputData);
+        }}>
           {t((t) => t.misc.search)}
         </Button>
       </div>

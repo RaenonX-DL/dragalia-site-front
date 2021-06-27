@@ -126,6 +126,18 @@ export type TranslationStruct = {
         filterAffliction: string,
         filterOther: string,
       },
+      display: {
+        title: string,
+        desc: string,
+        options: {
+          actualDamage: string,
+          damageInfo: string,
+          damageDistribution: string,
+          affliction: string,
+          spInfo: string,
+          animationInfo: string,
+        },
+      }
       entry: {
         notCancelable: string,
         cancelable: string,
@@ -174,6 +186,9 @@ export type TranslationStruct = {
         otherData: string,
       },
       collapse: string,
+      error: {
+        noInfoToDisplay: string,
+      },
     },
     tools: {
       titleSelf: string,

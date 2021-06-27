@@ -2,11 +2,7 @@ import React from 'react';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
-import {
-  SectionProps,
-  SectionPropsCondEnums,
-  SectionPropsElemEnums,
-} from './props';
+import {SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
 import {overwriteInputData} from './utils';
 
 

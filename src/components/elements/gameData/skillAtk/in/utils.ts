@@ -1,4 +1,6 @@
+import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
 import {ConditionCodes} from '../../../../../const/gameData';
+import {translations} from '../../../../../i18n/translations/main';
 import {DeepPartial} from '../../../../../utils/types';
 import {InputData} from './types';
 
@@ -121,12 +123,27 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
     },
     display: {
       actualDamage: false,
-      damageInfo: false,
+      damageInfo: true,
       damageDist: false,
-      affliction: false,
-      spInfo: false,
+      affliction: true,
+      spInfo: true,
       animationInfo: false,
     },
   },
   overwrite || {},
 );
+
+export const validateInputData = (
+  inputData: InputData,
+  lang: SupportedLanguages,
+  onInvalid: (errorMessage: string) => void,
+) => {
+  const displayInfoCount = Object.values(inputData.display).filter((display) => display).length;
+
+  if (!displayInfoCount) {
+    onInvalid(translations[lang].game.skillAtk.error.noInfoToDisplay);
+    return false;
+  }
+
+  return true;
+};

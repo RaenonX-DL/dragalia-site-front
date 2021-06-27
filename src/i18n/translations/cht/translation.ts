@@ -129,6 +129,18 @@ export const translation: TranslationStruct = {
           '注意，這邊的條件篩選指的是技能本身所帶的異常狀態，並非異常特攻。',
         filterOther: '其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。',
       },
+      display: {
+        title: '顯示資訊',
+        desc: '選擇想要在結果中看到的資訊。',
+        options: {
+          actualDamage: '實際傷害',
+          damageInfo: '傷害資訊',
+          damageDistribution: '傷害分布',
+          affliction: '異常狀態',
+          spInfo: 'SP 資訊',
+          animationInfo: '動畫資訊',
+        },
+      },
       entry: {
         notCancelable: '此技能無法取消。',
         cancelable: '此技能可於 {{cancelTime}} 秒後取消。',
@@ -177,6 +189,9 @@ export const translation: TranslationStruct = {
         otherData: '屬性增傷 +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%',
       },
       collapse: '摺疊/展開',
+      error: {
+        noInfoToDisplay: '請選擇至少一項顯示資訊。',
+      },
     },
     tools: {
       titleSelf: '遊戲工具',

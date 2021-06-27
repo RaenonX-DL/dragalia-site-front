@@ -152,6 +152,18 @@ export const translation: TranslationStruct = {
           'If Shared Skill Only is selected, then when filtering and calculating, ' +
           'only shared skills will be considered and displayed.',
       },
+      display: {
+        title: 'Info to Display',
+        desc: 'Info to display in the results.',
+        options: {
+          actualDamage: 'Actual Damage',
+          damageInfo: 'Damage Info',
+          damageDistribution: 'Damage Spread',
+          affliction: 'Affliction',
+          spInfo: 'SP Info',
+          animationInfo: 'Animation',
+        },
+      },
       entry: {
         notCancelable: 'This skill is not cancelable',
         cancelable: 'This skill can be canceled after {{cancelTime}} seconds.',
@@ -201,6 +213,9 @@ export const translation: TranslationStruct = {
         otherData: 'Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%',
       },
       collapse: 'Collapse/Expand',
+      error: {
+        noInfoToDisplay: 'Please select at least 1 info to display.',
+      },
     },
     tools: {
       titleSelf: 'Game Tools',

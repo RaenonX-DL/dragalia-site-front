@@ -128,6 +128,18 @@ export const translation: TranslationStruct = {
           '※状態異常付与できるスキルを検索する機能です。(状態異常特効を持つスキルを検索しているのではありません。)',
         filterOther: 'その他フィルタリング条件。シェアスキルのみ検索可能です。',
       },
+      display: {
+        title: '顯示資訊',
+        desc: '選擇想要在結果中看到的資訊。',
+        options: {
+          actualDamage: '實際傷害',
+          damageInfo: '傷害資訊',
+          damageDistribution: '傷害分布',
+          affliction: '異常狀態',
+          spInfo: 'SP 資訊',
+          animationInfo: '動畫資訊',
+        },
+      },
       entry: {
         notCancelable: 'モーションキャンセル不可',
         cancelable: 'モーション発動 {{cancelTime}} 秒後キャンセル可能',
@@ -176,6 +188,9 @@ export const translation: TranslationStruct = {
         otherData: '属性ダメ +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%',
       },
       collapse: '展開 / 折り畳み',
+      error: {
+        noInfoToDisplay: 'Please select at least 1 info to display.',
+      },
     },
     tools: {
       titleSelf: '他のツール',
