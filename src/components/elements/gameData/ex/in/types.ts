@@ -1,5 +1,7 @@
 export type InputData = {
-  filterElementCode: Array<number>,
-  filterExBuffParamCode: Array<number>,
-  filterChainedExBuffParamCode: Array<number>,
+  filter: {
+    elements: Array<number>,
+    exBuffParams: Array<number>,
+    cexBuffParams: Array<number>,
+  }
 }

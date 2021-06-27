@@ -3,8 +3,8 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 
 import {useI18n} from '../../../../../../i18n/hook';
-import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
-import {InlineCheck} from '../../../../common/check/inlineCheck';
+import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
+import {CheckboxInput} from '../../../../common/check/item/checkbox';
 import {SectionSubTitle} from '../../../elements/subTitle';
 import {SectionTitle} from '../../../elements/title';
 import {
@@ -12,6 +12,7 @@ import {
   SectionPropsCondEnums,
   SectionPropsElemEnums,
 } from '../props';
+import {overwriteInputData} from '../utils';
 
 
 type SectionFilterProps =
@@ -37,32 +38,35 @@ export const SectionFilter = ({
         title={t((t) => t.game.skillAtk.name.filterElement)}
         description={t((t) => t.game.skillAtk.desc.filterElement)}
       />
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={elementEnums.elemental}
         inputData={inputData}
-        inputKey="filterElementCode"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.filter.elemCodes}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {elemCodes: newValue}})}
       />
       <SectionSubTitle
         title={t((t) => t.game.skillAtk.name.filterAffliction)}
         description={t((t) => t.game.skillAtk.desc.filterAffliction)}
       />
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={conditionEnums.afflictions}
         inputData={inputData}
-        inputKey="filterAfflictionCondCode"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.filter.afflictionCondCode}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {afflictionCondCode: newValue}})}
       />
       <SectionSubTitle
         title={t((t) => t.game.skillAtk.name.filterOther)}
         description={t((t) => t.game.skillAtk.desc.filterOther)}
       />
       <Form.Group className="mb-3 text-center">
-        <InlineCheck
-          title={t((t) => t.game.skillAtk.name.filterSharedOnly)}
+        <CheckboxInput
+          text={t((t) => t.game.skillAtk.name.filterSharedOnly)}
           inputData={inputData}
-          inputKey="filterSharedOnly"
           setInputData={setInputData}
+          getValue={(inputData) => inputData.filter.sharedOnly}
+          getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {sharedOnly: newValue}})}
         />
       </Form.Group>
     </>

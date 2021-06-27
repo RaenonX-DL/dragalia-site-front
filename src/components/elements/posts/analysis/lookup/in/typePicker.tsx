@@ -2,9 +2,10 @@ import React from 'react';
 
 import {UnitType} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
-import {CustomBoxes} from '../../../../common/check/customBox';
-import {CheckEntry} from '../../../../common/check/types';
+import {CheckboxGroup} from '../../../../common/check/group/checkbox';
+import {CheckOption} from '../../../../common/check/types';
 import {InputData} from './types';
+
 
 type TypePickerProps = {
   inputData: InputData,
@@ -14,7 +15,7 @@ type TypePickerProps = {
 export const AnalysisTypePicker = ({inputData, setInputData}: TypePickerProps) => {
   const {t} = useI18n();
 
-  const analysisTypes: Array<CheckEntry> = [
+  const analysisTypes: Array<CheckOption & {code: UnitType}> = [
     {
       text: t((t) => t.posts.analysis.type.character),
       code: UnitType.CHARACTER,
@@ -27,11 +28,13 @@ export const AnalysisTypePicker = ({inputData, setInputData}: TypePickerProps) =
 
   return (
     <>
-      <CustomBoxes
+      <CheckboxGroup
         options={analysisTypes}
         inputData={inputData}
         setInputData={setInputData}
-        inputKey="types"
+        getValue={(inputData) => inputData.types}
+        getUpdatedInputData={(types) => ({...inputData, types})}
+        getCheckOptionComparer={(option) => option.code}
       />
     </>
   );

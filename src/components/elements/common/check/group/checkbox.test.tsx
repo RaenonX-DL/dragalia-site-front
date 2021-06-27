@@ -3,29 +3,21 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {CustomBoxes} from './customBox';
-import {CheckEntry} from './types';
+import {renderReact} from '../../../../../../test/render/main';
+import {CheckOption} from '../types';
+import {CheckboxGroup} from './checkbox';
+
 
 describe('Checkboxes', () => {
-  const options: Array<CheckEntry> = [
-    {
-      text: 'check 1',
-      code: 1,
-    },
-    {
-      text: 'check 2',
-      code: 2,
-    },
-    {
-      text: 'check 3',
-      code: 3,
-    },
+  const options: Array<CheckOption & {code: number}> = [
+    {text: 'check 1', code: 1},
+    {text: 'check 2', code: 2},
+    {text: 'check 3', code: 3},
   ];
 
   let inputData: {selected: Array<number>};
 
-  let setInputDataFunc: jest.Mock<void, [{selected: Array<number>}]>;
+  let setInputDataFunc: jest.Mock;
 
   beforeEach(() => {
     setInputDataFunc = jest.fn().mockImplementation((newData) => inputData = newData);
@@ -35,15 +27,17 @@ describe('Checkboxes', () => {
     inputData = {selected: [2, 3]};
 
     renderReact(() => (
-      <CustomBoxes
+      <CheckboxGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
-    const toggleInput = screen.getByTestId('check 2').children[0];
+    const toggleInput = screen.getByText('check 2').parentNode?.children[0];
     expect(toggleInput).toHaveAttribute('checked');
     expect(setInputDataFunc).toHaveBeenCalledTimes(0);
   });
@@ -52,11 +46,13 @@ describe('Checkboxes', () => {
     inputData = {selected: [2]};
 
     renderReact(() => (
-      <CustomBoxes
+      <CheckboxGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
@@ -71,11 +67,13 @@ describe('Checkboxes', () => {
     inputData = {selected: []};
 
     const {rerender} = renderReact(() => (
-      <CustomBoxes
+      <CheckboxGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
@@ -93,11 +91,13 @@ describe('Checkboxes', () => {
     inputData = {selected: [2]};
 
     renderReact(() => (
-      <CustomBoxes
+      <CheckboxGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
       />
     ));
 

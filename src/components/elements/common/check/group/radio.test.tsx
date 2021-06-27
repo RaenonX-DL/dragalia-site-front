@@ -3,29 +3,20 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {CustomRadios} from './customRadio';
-import {CheckEntry} from './types';
+import {renderReact} from '../../../../../../test/render/main';
+import {CheckOption} from '../types';
+import {RadioGroup} from './radio';
+
 
 describe('Radio checks', () => {
-  const options: Array<CheckEntry> = [
-    {
-      text: 'check 1',
-      code: 1,
-    },
-    {
-      text: 'check 2',
-      code: 2,
-    },
-    {
-      text: 'check 3',
-      code: 3,
-    },
+  const options: Array<CheckOption & {code: number}> = [
+    {text: 'check 1', code: 1},
+    {text: 'check 2', code: 2},
+    {text: 'check 3', code: 3},
   ];
 
   let inputData: {selected: number};
-
-  let setInputDataFunc: jest.Mock<void, [{selected: number}]>;
+  let setInputDataFunc: jest.Mock;
 
   beforeEach(() => {
     setInputDataFunc = jest.fn().mockImplementation((newData) => inputData = newData);
@@ -35,28 +26,34 @@ describe('Radio checks', () => {
     inputData = {selected: 2};
 
     renderReact(() => (
-      <CustomRadios
+      <RadioGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
+        groupName="radio"
       />
     ));
 
-    const toggleInput = screen.getByTestId('check 2').children[0];
+    const toggleInput = screen.getByText('check 2').parentNode?.children[0];
     expect(toggleInput).toHaveAttribute('checked');
-    expect(setInputDataFunc).toHaveBeenCalledTimes(0);
+    expect(setInputDataFunc).not.toHaveBeenCalled();
   });
 
   test('selecting another option changes the state', async () => {
     inputData = {selected: 2};
 
     renderReact(() => (
-      <CustomRadios
+      <RadioGroup
         options={options}
         inputData={inputData}
-        inputKey="selected"
         setInputData={setInputDataFunc}
+        getValue={(inputData) => inputData.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        getCheckOptionComparer={(option) => option.code}
+        groupName="radio"
       />
     ));
 
@@ -76,17 +73,23 @@ describe('Radio checks', () => {
 
     const {rerender} = renderReact(() => (
       <>
-        <CustomRadios
+        <RadioGroup
           options={options}
           inputData={inputData}
-          inputKey="selected"
           setInputData={setInputDataFunc}
+          getValue={(inputData) => inputData.selected}
+          getUpdatedInputData={(newValue) => ({...inputData, selected: newValue})}
+          getCheckOptionComparer={(option) => option.code}
+          groupName="radio"
         />
-        <CustomRadios
+        <RadioGroup
           options={options}
           inputData={inputData}
-          inputKey="another"
           setInputData={setInputDataFunc}
+          getValue={(inputData) => inputData.another}
+          getUpdatedInputData={(newValue) => ({...inputData, another: newValue})}
+          getCheckOptionComparer={(option) => option.code}
+          groupName="radio"
         />
       </>
     ));

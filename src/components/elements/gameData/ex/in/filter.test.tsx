@@ -8,6 +8,8 @@ import {SupportedLanguages} from '../../../../../api-def/api';
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
+import {generateInputData} from './utils';
+
 
 describe('EX/CEX filter section', () => {
   let inputData: InputData;
@@ -86,11 +88,7 @@ describe('EX/CEX filter section', () => {
 
   beforeEach(() => {
     setInputData = jest.fn().mockImplementation((newData) => inputData = newData);
-    inputData = {
-      filterElementCode: [],
-      filterExBuffParamCode: [],
-      filterChainedExBuffParamCode: [],
-    };
+    inputData = generateInputData();
   });
 
   it('renders the filter section', async () => {
@@ -118,7 +116,7 @@ describe('EX/CEX filter section', () => {
     userEvent.click(elemCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
-    expect(inputData.filterElementCode).toStrictEqual([1]);
+    expect(inputData.filter.elements).toStrictEqual([1]);
   });
 
   it('can filter by EX parameter', async () => {
@@ -135,7 +133,7 @@ describe('EX/CEX filter section', () => {
     userEvent.click(exCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
-    expect(inputData.filterExBuffParamCode).toStrictEqual([1]);
+    expect(inputData.filter.exBuffParams).toStrictEqual([1]);
   });
 
   it('can filter by CEX parameter', async () => {
@@ -152,7 +150,7 @@ describe('EX/CEX filter section', () => {
     userEvent.click(cexCheck);
 
     expect(setInputData).toHaveBeenCalledTimes(1);
-    expect(inputData.filterChainedExBuffParamCode).toStrictEqual([1]);
+    expect(inputData.filter.cexBuffParams).toStrictEqual([1]);
   });
 
   it('can filter by multiple conditions', async () => {
@@ -176,8 +174,8 @@ describe('EX/CEX filter section', () => {
     rerender();
 
     expect(setInputData).toHaveBeenCalledTimes(3);
-    expect(inputData.filterElementCode).toStrictEqual([2]);
-    expect(inputData.filterExBuffParamCode).toStrictEqual([1]);
-    expect(inputData.filterChainedExBuffParamCode).toStrictEqual([1]);
+    expect(inputData.filter.elements).toStrictEqual([2]);
+    expect(inputData.filter.exBuffParams).toStrictEqual([1]);
+    expect(inputData.filter.cexBuffParams).toStrictEqual([1]);
   });
 });

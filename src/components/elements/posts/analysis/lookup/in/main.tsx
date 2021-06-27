@@ -9,7 +9,7 @@ import {GeneralPath} from '../../../../../../const/path/definitions';
 import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
-import {EnumChecksBox} from '../../../../common/check/enumChecksBox';
+import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
 import {useFetchState} from '../../../../common/fetch';
 import {PostManageBar} from '../../../manageBar';
 import {AnalysisTypePicker} from './typePicker';
@@ -59,17 +59,19 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
     <>
       <div className="rounded bg-black-32 p-3 mb-2">
         <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
-        <EnumChecksBox
+        <EnumCheckboxGroup
           options={elemEnums.data.elemental}
           inputData={inputData}
-          inputKey="elements"
           setInputData={setInputData}
+          getValue={(inputData) => inputData.elements}
+          getUpdatedInputData={(newValue) => ({...inputData, elements: newValue})}
         />
-        <EnumChecksBox
+        <EnumCheckboxGroup
           options={weaponTypeEnums.data.weapon}
           inputData={inputData}
-          inputKey="weaponTypes"
           setInputData={setInputData}
+          getValue={(inputData) => inputData.weaponTypes}
+          getUpdatedInputData={(newValue) => ({...inputData, weaponTypes: newValue})}
         />
         <Form onSubmit={(e) => {
           e.preventDefault();

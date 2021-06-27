@@ -3,10 +3,11 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../api-def/api';
-import {EnumEntry} from '../../../../api-def/resources';
-import {EnumChecksBox} from './enumChecksBox';
+import {renderReact} from '../../../../../../test/render/main';
+import {SupportedLanguages} from '../../../../../api-def/api';
+import {EnumEntry} from '../../../../../api-def/resources';
+import {EnumCheckboxGroup} from './checkbox';
+
 
 describe('Enum check boxes as checkboxes', () => {
   const enums: Array<EnumEntry> = [
@@ -52,104 +53,110 @@ describe('Enum check boxes as checkboxes', () => {
     },
   ];
 
-  const clickFirstButton = () => {
+  const clickFirstButton = (rerender: () => void) => {
     const enumButton = screen.getByAltText('EN 1');
     userEvent.click(enumButton);
+    rerender();
   };
 
-  const clickSecondButton = () => {
+  const clickSecondButton = (rerender: () => void) => {
     const enumButton = screen.getByAltText('EN 2');
     userEvent.click(enumButton);
+    rerender();
   };
 
-  let data: {enum: Array<number>};
-  let setData: jest.Mock<void, [typeof data]>;
+  let data: {selected: Array<number>};
+  let setData: jest.Mock;
 
   beforeEach(() => {
-    data = {'enum': []};
     setData = jest.fn().mockImplementation((newData) => data = newData);
   });
 
   it('can check single item', async () => {
-    data = {'enum': [] as Array<number>};
-    renderReact(() => (
-      <EnumChecksBox
+    data = {selected: []};
+    const {rerender} = renderReact(() => (
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 
-    clickFirstButton();
+    clickFirstButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(1);
-    expect(data).toStrictEqual({enum: [1]});
+    expect(data).toStrictEqual({selected: [1]});
   });
 
   it('can cancel checking single item', async () => {
+    data = {selected: []};
     const {rerender} = renderReact(() => (
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 
-    clickFirstButton();
-    rerender();
-    clickFirstButton();
+    clickFirstButton(rerender);
+    clickFirstButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(2);
-    expect(data).toStrictEqual({enum: []});
+    expect(data).toStrictEqual({selected: []});
   });
 
   it('can check multiple items', async () => {
+    data = {selected: []};
     const {rerender} = renderReact(() => (
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 
-    clickFirstButton();
-    rerender();
-    clickSecondButton();
+    clickFirstButton(rerender);
+    clickSecondButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(2);
-    expect(data).toStrictEqual({enum: [1, 2]});
+    expect(data).toStrictEqual({selected: [1, 2]});
   });
 
   it('can cancel checking multiple items', async () => {
+    data = {selected: []};
     const {rerender} = renderReact(() => (
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 
-    clickFirstButton();
-    rerender();
-    clickSecondButton();
-    rerender();
-    clickFirstButton();
+    clickFirstButton(rerender);
+    clickSecondButton(rerender);
+    clickFirstButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(3);
-    expect(data).toStrictEqual({enum: [2]});
+    expect(data).toStrictEqual({selected: [2]});
   });
 
   it('shows text if the image URL is not available', async () => {
+    data = {selected: []};
     renderReact(() => (
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 
@@ -157,12 +164,14 @@ describe('Enum check boxes as checkboxes', () => {
   });
 
   it('shows image if the image URL is available', async () => {
+    data = {selected: []};
     renderReact(() => (
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
       />
     ));
 

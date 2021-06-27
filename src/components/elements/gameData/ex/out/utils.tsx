@@ -11,6 +11,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {getConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 
+
 export const getAbilityVariantEffectBadges = (
   entry: AbilityVariantEffectUnitData,
   conditionEnums: ConditionEnumMap,
@@ -99,22 +100,22 @@ export const getAbilityVariantEffectBadges = (
 
 export const filterExAbilityData = (exAbilityData: Array<CharaExAbilityDataEntry>, inputData: InputData) => {
   return exAbilityData.filter((entry) => {
-    if (inputData.filterElementCode.length > 0 && !inputData.filterElementCode.includes(entry.chara.element)) {
+    if (inputData.filter.elements.length && !inputData.filter.elements.includes(entry.chara.element)) {
       return false;
     }
 
     if (
-      inputData.filterExBuffParamCode.length > 0 &&
+      inputData.filter.exBuffParams.length > 0 &&
       !entry.ex.some((exEffect) => {
-        return inputData.filterExBuffParamCode.includes(exEffect.parameter.code);
+        return inputData.filter.exBuffParams.includes(exEffect.parameter.code);
       })
     ) {
       return false;
     }
 
-    return inputData.filterChainedExBuffParamCode.length === 0 ||
+    return inputData.filter.cexBuffParams.length === 0 ||
       entry.chainedEx.some((chainedExEffect) => {
-        return inputData.filterChainedExBuffParamCode.includes(chainedExEffect.parameter.code);
+        return inputData.filter.cexBuffParams.includes(chainedExEffect.parameter.code);
       });
   });
 };

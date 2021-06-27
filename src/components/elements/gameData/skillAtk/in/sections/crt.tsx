@@ -1,10 +1,11 @@
 import React from 'react';
 
 import {useI18n} from '../../../../../../i18n/hook';
-import {InlineCheck} from '../../../../common/check/inlineCheck';
+import {CheckboxInput} from '../../../../common/check/item/checkbox';
 import {NumericInput} from '../../../../common/input/numeric';
 import {SectionTitle} from '../../../elements/title';
 import {SectionProps} from '../props';
+import {overwriteInputData} from '../utils';
 
 
 export const SectionCrt = ({inputData, setInputData}: SectionProps) => {
@@ -20,24 +21,27 @@ export const SectionCrt = ({inputData, setInputData}: SectionProps) => {
         title={t((t) => t.game.skillAtk.name.crtRate)}
         description={t((t) => t.game.skillAtk.desc.crtRate)}
         inputData={inputData}
-        inputKey="criticalRatePct"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.params.crt.ratePct}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {crt: {ratePct: newValue}}})}
         maxValue={100}
       />
       <NumericInput
         title={t((t) => t.game.skillAtk.name.crtDamage)}
         description={t((t) => t.game.skillAtk.desc.crtDamage)}
         inputData={inputData}
-        inputKey="criticalDamagePct"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.params.crt.damagePct}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {crt: {damagePct: newValue}}})}
         maxValue={400}
       />
       <div className="text-center">
-        <InlineCheck
-          title={t((t) => t.game.skillAtk.name.crtInspired)}
+        <CheckboxInput
+          text={t((t) => t.game.skillAtk.name.crtInspired)}
           inputData={inputData}
-          inputKey="criticalInspired"
           setInputData={setInputData}
+          getValue={(inputData) => inputData.params.crt.inspired}
+          getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {crt: {inspired: newValue}}})}
         />
       </div>
     </>

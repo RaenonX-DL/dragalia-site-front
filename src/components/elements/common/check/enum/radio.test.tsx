@@ -3,10 +3,11 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../api-def/api';
-import {EnumEntry} from '../../../../api-def/resources/types';
-import {EnumChecksRadio} from './enumChecksRadio';
+import {renderReact} from '../../../../../../test/render/main';
+import {SupportedLanguages} from '../../../../../api-def/api';
+import {EnumEntry} from '../../../../../api-def/resources/types';
+import {EnumRadioGroup} from './radio';
+
 
 describe('Enum checks as radio', () => {
   const enums: Array<EnumEntry> = [
@@ -52,58 +53,67 @@ describe('Enum checks as radio', () => {
     },
   ];
 
-  const CheckWrapper = ({data}: {data: {enum: number}}) => {
-    return (
-      <EnumChecksRadio
-        options={enums}
-        inputData={data}
-        inputKey="enum"
-        setInputData={setData}
-      />
-    );
-  };
-
-  const clickFirstButton = () => {
+  const clickFirstButton = (rerender: () => void) => {
     const enumButton = screen.getByAltText('EN 1');
     userEvent.click(enumButton);
+    rerender();
   };
 
-  let data: {enum: number};
+  let data: {selected: number};
   let setData: jest.Mock<void, [typeof data]>;
 
   beforeEach(() => {
-    data = {'enum': 2};
     setData = jest.fn().mockImplementation((newData) => data = newData);
   });
 
   it('can check single item', async () => {
-    data = {'enum': 2};
-    renderReact(() => <CheckWrapper data={data}/>);
+    data = {selected: 2};
+    const {rerender} = renderReact(() => (
+      <EnumRadioGroup
+        options={enums}
+        inputData={data}
+        setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        groupName="radio"
+      />
+    ));
 
-    clickFirstButton();
+    clickFirstButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(1);
-    expect(data).toStrictEqual({enum: 1});
+    expect(data).toStrictEqual({selected: 1});
   });
 
   it('does not change the selection if selected the same', async () => {
-    data = {'enum': 1};
-    const {rerender} = renderReact(() => <CheckWrapper data={data}/>);
+    data = {selected: 1};
+    const {rerender} = renderReact(() => (
+      <EnumRadioGroup
+        options={enums}
+        inputData={data}
+        setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        groupName="radio"
+      />
+    ));
 
-    clickFirstButton();
-    rerender();
+    clickFirstButton(rerender);
 
     expect(setData).toHaveBeenCalledTimes(0);
-    expect(data).toStrictEqual({enum: 1});
+    expect(data).toStrictEqual({selected: 1});
   });
 
   it('shows text if the image URL is not available', async () => {
+    data = {selected: 2};
     renderReact(() => (
-      <EnumChecksRadio
+      <EnumRadioGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        groupName="radio"
       />
     ));
 
@@ -111,12 +121,15 @@ describe('Enum checks as radio', () => {
   });
 
   it('shows image if the image URL is available', async () => {
+    data = {selected: 2};
     renderReact(() => (
-      <EnumChecksRadio
+      <EnumRadioGroup
         options={enums}
         inputData={data}
-        inputKey="enum"
         setInputData={setData}
+        getValue={(data) => data.selected}
+        getUpdatedInputData={(newValue) => ({selected: newValue})}
+        groupName="radio"
       />
     ));
 

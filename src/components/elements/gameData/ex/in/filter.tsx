@@ -2,23 +2,24 @@ import React from 'react';
 
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {EnumChecksBox} from '../../../common/check/enumChecksBox';
+import {EnumCheckboxGroup} from '../../../common/check/enum/checkbox';
 import {SectionTitle} from '../../elements/title';
 import {InputSectionBaseProps} from '../../props';
 import {InputData} from './types';
+import {overwriteInputData} from './utils';
 
-type SectionProps<D extends InputData> = InputSectionBaseProps<D> & {
+
+type SectionProps = InputSectionBaseProps<InputData> & {
   elementEnums: ElementEnums,
   exBuffParams: ExBuffParams
 }
 
-
-export const SectionFilter = <D extends InputData>({
+export const SectionFilter = ({
   inputData,
   setInputData,
   elementEnums,
   exBuffParams,
-}: SectionProps<D>) => {
+}: SectionProps) => {
   const {t} = useI18n();
 
   return (
@@ -27,32 +28,35 @@ export const SectionFilter = <D extends InputData>({
         title={t((t) => t.game.ex.name.filterElement)}
         description={t((t) => t.game.ex.desc.filterElement)}
       />
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={elementEnums.elemental}
         inputData={inputData}
-        inputKey="filterElementCode"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.filter.elements}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {elements: newValue}})}
       />
       <SectionTitle
         title={t((t) => t.game.ex.name.filterExBuffParam)}
         description={t((t) => t.game.ex.desc.filterExBuffParam)}
       />
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={exBuffParams.exBuffParam}
         inputData={inputData}
-        inputKey="filterExBuffParamCode"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.filter.exBuffParams}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {exBuffParams: newValue}})}
         imageHeight="2rem"
       />
       <SectionTitle
         title={t((t) => t.game.ex.name.filterChainedExBuffParam)}
         description={t((t) => t.game.ex.desc.filterChainedExBuffParam)}
       />
-      <EnumChecksBox
+      <EnumCheckboxGroup
         options={exBuffParams.chainedExBuffParam}
         inputData={inputData}
-        inputKey="filterChainedExBuffParamCode"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.filter.cexBuffParams}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {filter: {cexBuffParams: newValue}})}
         imageHeight="2rem"
       />
     </>

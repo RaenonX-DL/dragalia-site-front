@@ -10,6 +10,7 @@ import {isNotFetched} from '../../../common/fetch';
 import {SelectionData} from '../types';
 import {SectionFilter} from './filter';
 import {InputData} from './types';
+import {generateInputData} from './utils';
 
 
 type InputProps = {
@@ -21,11 +22,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
 
-  const [inputData, setInputData] = React.useState<InputData>({
-    filterElementCode: [],
-    filterExBuffParamCode: [],
-    filterChainedExBuffParamCode: [],
-  });
+  const [inputData, setInputData] = React.useState<InputData>(generateInputData());
 
   const [selectionData, setSelectionData] = React.useState<SelectionData>({
     fetched: false,

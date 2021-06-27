@@ -4,6 +4,7 @@ import {useI18n} from '../../../../../../i18n/hook';
 import {NumericInput} from '../../../../common/input/numeric';
 import {SectionTitle} from '../../../elements/title';
 import {SectionProps} from '../props';
+import {overwriteInputData} from '../utils';
 
 
 export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
@@ -19,22 +20,25 @@ export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
         title={t((t) => t.game.skillAtk.name.buffCount)}
         description={t((t) => t.game.skillAtk.desc.buffCount)}
         inputData={inputData}
-        inputKey="buffCount"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.params.buff.count}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {buff: {count: newValue}}})}
       />
       <NumericInput
         title={t((t) => t.game.skillAtk.name.buffZoneSelf)}
         description={t((t) => t.game.skillAtk.desc.buffZoneSelf)}
         inputData={inputData}
-        inputKey="buffZoneSelf"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.params.buff.zone.self}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {buff: {zone: {self: newValue}}}})}
       />
       <NumericInput
         title={t((t) => t.game.skillAtk.name.buffZoneAlly)}
         description={t((t) => t.game.skillAtk.desc.buffZoneAlly)}
         inputData={inputData}
-        inputKey="buffZoneAlly"
         setInputData={setInputData}
+        getValue={(inputData) => inputData.params.buff.zone.ally}
+        getUpdatedInputData={(newValue) => overwriteInputData(inputData, {params: {buff: {zone: {ally: newValue}}}})}
       />
     </>
   );
