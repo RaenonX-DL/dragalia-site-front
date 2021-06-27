@@ -13,7 +13,7 @@ type SectionProps = InputSectionBaseProps<InputData> & {
   exBuffParams: ExBuffParams
 }
 
-export const SectionFilter = ({
+export const Filter = ({
   inputData,
   setInputData,
   elementEnums,

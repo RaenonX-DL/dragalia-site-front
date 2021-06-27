@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import {renderReact} from '../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../api-def/api';
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
-import {SectionFilter} from './filter';
+import {Filter} from './filter';
 import {InputData} from './types';
 import {generateInputData} from './utils';
 
@@ -93,7 +93,7 @@ describe('EX/CEX filter section', () => {
 
   it('renders the filter section', async () => {
     renderReact(() => (
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
@@ -104,7 +104,7 @@ describe('EX/CEX filter section', () => {
 
   it('can filter by element', async () => {
     renderReact(() => (
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
@@ -121,7 +121,7 @@ describe('EX/CEX filter section', () => {
 
   it('can filter by EX parameter', async () => {
     renderReact(() => (
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
@@ -138,7 +138,7 @@ describe('EX/CEX filter section', () => {
 
   it('can filter by CEX parameter', async () => {
     renderReact(() => (
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
@@ -155,7 +155,7 @@ describe('EX/CEX filter section', () => {
 
   it('can filter by multiple conditions', async () => {
     const {rerender} = renderReact(() => (
-      <SectionFilter
+      <Filter
         inputData={inputData}
         setInputData={setInputData}
         elementEnums={elementEnums}
