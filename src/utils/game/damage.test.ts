@@ -1,3 +1,4 @@
+import {generateAttackingSkillEntry} from '../../../test/data/mock/skill';
 import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {generateInputData} from '../../components/elements/gameData/skillAtk/in/utils';
@@ -6,44 +7,7 @@ import {calculateDamage, CalculateDamageReturn} from './damage';
 
 
 describe('Damage calculation', () => {
-  const attackingSkillDataTemplate: AttackingSkillData = {
-    uniqueHash: '',
-    condition: [],
-    chara: {
-      id: 0,
-      iconName: '',
-      name: {
-        cht: '',
-        en: '',
-        jp: '',
-      },
-      element: 0,
-    },
-    skill: {
-      identifiers: [],
-      internalId: 0,
-      name: {
-        cht: '',
-        en: '',
-        jp: '',
-      },
-      spMax: 0,
-      sharable: false,
-      ssCost: 0,
-      ssSp: 0,
-      modsMax: [],
-      crisisMax: [],
-      hitsMax: 0,
-      afflictions: [],
-      buffCountBoost: [],
-      buffZoneBoost: {
-        self: 0,
-        ally: 0,
-      },
-      dispelMax: false,
-      dispelTimingMax: [],
-    },
-  };
+  const attackingSkillDataTemplate: AttackingSkillData = generateAttackingSkillEntry();
 
   it('checks if the damage is calculated correctly', () => {
     const inputData: InputData = generateInputData({

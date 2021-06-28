@@ -192,6 +192,19 @@ export const translation: TranslationStruct = {
       error: {
         noInfoToDisplay: '請選擇至少一項顯示資訊。',
       },
+      animation: {
+        earliest: '最早於 {{time}} 秒',
+        earliestUnavailable: '無資料',
+        hitTiming: '攻擊時間',
+        hitTimingHeader: '攻擊時間 (秒)',
+        cancelInfo: '取消資訊',
+        cancelHeader: {
+          action: '行動',
+          time: '開放時間 (秒)',
+          preConditions: '其他條件',
+        },
+        warning: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
+      },
     },
     tools: {
       titleSelf: '遊戲工具',

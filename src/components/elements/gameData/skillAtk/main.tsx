@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {ConditionEnumMap} from '../../../../api-def/resources/types/export/enums';
+import {ConditionEnumMap, SkillEnums} from '../../../../api-def/resources/types/export/enums';
 import {ElementBonus, ElementBonusData} from '../../../../api-def/resources/types/export/misc';
 import {AttackingSkillData} from '../../../../api-def/resources/types/skillAtk';
 import {SkillIdentifierInfo} from '../../../../api-def/resources/types/skillIdentifier';
@@ -53,11 +53,17 @@ export const AttackingSkillLookup = () => {
     ResourceLoader.getAttackingSkillEntries,
     'Failed to fetch attacking skill entries.',
   );
+  const {fetchStatus: skillEnums, fetchFunction: fetchSkillEnums} = useFetchState<SkillEnums>(
+    {cancel: []},
+    ResourceLoader.getEnumSkill,
+    'Failed to fetch skill enums.',
+  );
 
   fetchElementBonuses();
   fetchConditionEnums();
   fetchSkillIdentifiers();
   fetchAttackingSkillEntries();
+  fetchSkillEnums();
 
   React.useEffect(() => {
     if (inputDataForward) {
@@ -79,10 +85,11 @@ export const AttackingSkillLookup = () => {
       <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
         <AttackingSkillOutput
           inputData={inputDataForward}
-          allConditionEnums={conditionEnums.data}
+          conditionEnumMap={conditionEnums.data}
           elementBonusData={elementBonuses.data}
           skillIdentifierInfo={skillIdentifiers.data}
           atkSkillEntries={attackingSkillEntries.data}
+          skillEnums={skillEnums.data}
         />
       </Col>
     </Row>

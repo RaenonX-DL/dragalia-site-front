@@ -1,0 +1,28 @@
+.animation table {
+  width: 100%;
+  padding-right: 30px;
+}
+.animation table tr {
+  background-color: #0e0e0e;
+  border: 1px solid #656565;
+}
+.animation table tr:last-child {
+  margin-bottom: 0;
+}
+.animation table th,
+.animation table td {
+  padding: 0.2rem 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.animation table tbody tr:nth-of-type(odd) {
+  background-color: #141414;
+}
+.animation table tbody tr:nth-of-type(even) {
+  background-color: #202020;
+}
+.animation table tbody tr:hover {
+  background-color: #042a3b;
+}
+
+/*# sourceMappingURL=animation.module.css.map */

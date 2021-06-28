@@ -191,6 +191,19 @@ export const translation: TranslationStruct = {
       error: {
         noInfoToDisplay: 'Please select at least 1 info to display.',
       },
+      animation: {
+        earliest: '{{time}} sec @ Earliest',
+        earliestUnavailable: 'Unavailable',
+        hitTiming: 'Hit Timing',
+        hitTimingHeader: 'Hit Timing (sec)',
+        cancelInfo: 'Cancel Info',
+        cancelHeader: {
+          action: 'Action',
+          time: 'Time (sec)',
+          preConditions: 'Other Conditions',
+        },
+        warning: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
+      },
     },
     tools: {
       titleSelf: '他のツール',

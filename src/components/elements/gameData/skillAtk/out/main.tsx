@@ -1,15 +1,12 @@
 import React from 'react';
 
-import {
-  AttackingSkillData,
-  ConditionEnumMap,
-  ElementBonusData,
-  SkillIdentifierInfo,
-} from '../../../../../api-def/resources';
-import {calculateDamage, CalculateDamageReturn} from '../../../../../utils/game';
-import {overLengthWarningCheck} from '../../utils';
+import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
+import {calculateDamage, CalculateDamageReturn} from '../../../../../utils/game/damage';
+import {AnimationInfoWarning} from '../../warnings/animation';
+import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';
+import {EnumDataPack} from './props';
 import {filterSkillEntries} from './utils';
 
 
@@ -18,20 +15,19 @@ export type CalculatedData = {
   skillEntry: AttackingSkillData,
 }
 
-type OutputProps = {
+type OutputProps = EnumDataPack & {
   inputData?: InputData,
   elementBonusData: ElementBonusData,
   atkSkillEntries: Array<AttackingSkillData>,
-  allConditionEnums: ConditionEnumMap,
-  skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 export const AttackingSkillOutput = ({
   inputData,
   elementBonusData,
   atkSkillEntries,
-  allConditionEnums,
+  conditionEnumMap,
   skillIdentifierInfo,
+  skillEnums,
 }: OutputProps) => {
   // Early termination if no input
   if (!inputData) {
@@ -66,6 +62,10 @@ export const AttackingSkillOutput = ({
   if (warning !== null) {
     entries.push(warning);
   }
+  // Check if animation info warning should be displayed
+  if (inputData.display.animationInfo) {
+    entries.push(<AnimationInfoWarning/>);
+  }
 
   // Add transformed entries
   entries.push(
@@ -75,8 +75,9 @@ export const AttackingSkillOutput = ({
           key={index}
           inputData={inputData}
           calculatedData={calculatedData}
-          conditionEnumMap={allConditionEnums}
+          conditionEnumMap={conditionEnumMap}
           skillIdentifierInfo={skillIdentifierInfo}
+          skillEnums={skillEnums}
         />
       )),
   );

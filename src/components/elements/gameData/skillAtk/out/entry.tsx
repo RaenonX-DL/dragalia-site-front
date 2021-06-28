@@ -3,12 +3,13 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {ConditionEnumMap, SkillIdentifierInfo} from '../../../../../api-def/resources';
 import {DistributionBar} from '../../../charts';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 import {CalculatedData} from './main';
+import {EnumDataPack} from './props';
 import {SectionAffliction} from './sections/affliction';
+import {SectionAnimation} from './sections/animation';
 import {SectionBadges} from './sections/badges';
 import {SectionImageIcon} from './sections/icon';
 import {SectionSkillDamage} from './sections/skillDamage';
@@ -16,11 +17,9 @@ import {SectionSkillInfo} from './sections/skillInfo';
 import {SectionSkillName} from './sections/skillName';
 
 
-type SkillEntryProps = {
+type SkillEntryProps = EnumDataPack & {
   inputData?: InputData,
   calculatedData: CalculatedData,
-  conditionEnumMap: ConditionEnumMap,
-  skillIdentifierInfo: SkillIdentifierInfo,
 }
 
 export const AttackingSkillEntry = ({
@@ -28,6 +27,7 @@ export const AttackingSkillEntry = ({
   calculatedData,
   conditionEnumMap,
   skillIdentifierInfo,
+  skillEnums,
 }: SkillEntryProps) => {
   const atkSkillEntry = calculatedData.skillEntry;
 
@@ -74,6 +74,10 @@ export const AttackingSkillEntry = ({
         }
         <SectionBadges atkSkillEntry={atkSkillEntry}/>
       </Row>
+      {
+        inputData.display.animationInfo &&
+        <SectionAnimation atkSkillEntry={atkSkillEntry} skillEnums={skillEnums} conditionEnumMap={conditionEnumMap}/>
+      }
     </div>
   );
 };

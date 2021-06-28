@@ -189,6 +189,19 @@ export type TranslationStruct = {
       error: {
         noInfoToDisplay: string,
       },
+      animation: {
+        earliest: string,
+        earliestUnavailable: string,
+        hitTiming: string,
+        hitTimingHeader: string,
+        cancelInfo: string,
+        cancelHeader: {
+          action: string,
+          time: string,
+          preConditions: string,
+        },
+        warning: string,
+      },
     },
     tools: {
       titleSelf: string,
