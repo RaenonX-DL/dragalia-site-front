@@ -1,13 +1,17 @@
 # Markdown Cheatsheet
 
+Syntax below can be seen immediately in markdown input preview.
+
+However, there are some syntax that will only process after the form submission,
+such as [quick reference](/doc/quickReference.md).
+
 ## Common usage
 
 [Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
 
 ## Customized syntax
 
-`[R]` means required.
-`[O]` means optional.
+`[R]` means required; `[O]` means optional.
 
 ### Text coloring
 

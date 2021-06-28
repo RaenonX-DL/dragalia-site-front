@@ -100,6 +100,14 @@ describe('Quick reference transformer (Analysis)', () => {
   });
 
   it('transforms analysis link', async () => {
+    const text = ':Gala Mym:';
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(galaMymMdTransformed);
+  });
+
+  it('transforms simple unit name', async () => {
     const text = 'Gala Mym';
 
     const result = await transformQuickReference({text, lang});
@@ -108,7 +116,7 @@ describe('Quick reference transformer (Analysis)', () => {
   });
 
   it('transforms analysis link (sentenced)', async () => {
-    const text = 'Check Gala Mym Analysis';
+    const text = 'Check :Gala Mym: Analysis';
 
     const result = await transformQuickReference({text, lang});
 
@@ -135,7 +143,7 @@ describe('Quick reference transformer (Analysis)', () => {
     const brunhildaExtImageMd = `![BrunhildaExtended](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
     const brunhildaExtMdTransformed = `${brunhildaExtImageMd}${brunhildaExtAnalysisLink}`;
 
-    const text = 'BrunhildaExtended';
+    const text = ':BrunhildaExtended:';
 
     const result = await transformQuickReference({text, lang});
 
