@@ -64,6 +64,11 @@ export const Filter = ({
               getValue: (inputData) => inputData.filter.sharedOnly,
               getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {sharedOnly: newValue}}),
             },
+            {
+              text: t((t) => t.game.skillAtk.name.filterDispelOnly),
+              getValue: (inputData) => inputData.filter.dispelOnly,
+              getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {dispelOnly: newValue}}),
+            },
           ],
         },
       ]}

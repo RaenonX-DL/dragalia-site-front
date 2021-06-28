@@ -96,6 +96,7 @@ export const translation: TranslationStruct = {
         filterAffliction: 'Affliction',
         filterOther: 'Other',
         filterSharedOnly: 'Shared Skill Only',
+        filterDispelOnly: 'Dispel Only',
       },
       desc: {
         atk: 'Any parameter that relates to strength',

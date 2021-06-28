@@ -54,6 +54,7 @@ export type InputData = {
     elemCodes: Array<number>,
     afflictionCondCode: Array<number>,
     sharedOnly: boolean,
+    dispelOnly: boolean,
   },
   display: {
     actualDamage: boolean,

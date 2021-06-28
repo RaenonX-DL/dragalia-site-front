@@ -88,6 +88,7 @@ export const translation: TranslationStruct = {
         filterAffliction: '状態異常',
         filterOther: 'その他',
         filterSharedOnly: 'シェアスキルのみ表示',
+        filterDispelOnly: 'Dispel Only',
       },
       desc: {
         atk: '攻撃力に関するパラメータ全般。',

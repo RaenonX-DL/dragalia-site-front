@@ -8,6 +8,11 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
     atkSkillEntries = atkSkillEntries.filter((entry) => entry.skill.sharable);
   }
 
+  // Filter dispel skill only if set
+  if (inputData.filter.dispelOnly) {
+    atkSkillEntries = atkSkillEntries.filter((entry) => entry.skill.dispelMax);
+  }
+
   // Filter element if specified
   if (inputData.filter.elemCodes.length) {
     atkSkillEntries = atkSkillEntries

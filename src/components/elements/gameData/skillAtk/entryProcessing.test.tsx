@@ -7,14 +7,14 @@ import {filterSkillEntries} from './out/utils';
 describe('Attacking skill entries processing', () => {
   const inputDataTemplate: InputData = generateInputData();
 
-  it('checks if the promise is returning data', async () => {
+  it('returns skill entries', async () => {
     await ResourceLoader.getAttackingSkillEntries((data) => data)
       .then((data) => {
         expect(data.length).toBeGreaterThan(0);
       });
   });
 
-  it('checks if all entries are returned when no filter is applicable', async () => {
+  it('returns all entries if no filter', async () => {
     await ResourceLoader.getAttackingSkillEntries((data) => data)
       .then((data) => {
         data = filterSkillEntries(inputDataTemplate, data);
@@ -22,7 +22,7 @@ describe('Attacking skill entries processing', () => {
       });
   });
 
-  it('checks if SS only filtering is working correctly', async () => {
+  it('returns SS only', async () => {
     await ResourceLoader.getAttackingSkillEntries((data) => data)
       .then((data) => {
         const dataFiltered = filterSkillEntries(
@@ -40,7 +40,25 @@ describe('Attacking skill entries processing', () => {
       });
   });
 
-  it('checks if elemental filtering is working correctly', async () => {
+  it('returns dispel only', async () => {
+    await ResourceLoader.getAttackingSkillEntries((data) => data)
+      .then((data) => {
+        const dataFiltered = filterSkillEntries(
+          {
+            ...inputDataTemplate,
+            filter: {
+              ...inputDataTemplate.filter,
+              dispelOnly: true,
+            },
+          },
+          data,
+        );
+        expect(dataFiltered.length).toBeGreaterThan(0);
+        expect(dataFiltered.map((entry) => entry.skill.dispelMax)).not.toContain(false);
+      });
+  });
+
+  it('returns specified element only', async () => {
     const enumElements = () => ResourceLoader.getEnumElements();
     const attackingEntries = () => ResourceLoader.getAttackingSkillEntries();
 
@@ -65,7 +83,7 @@ describe('Attacking skill entries processing', () => {
       });
   });
 
-  it('checks if affliction filtering is working correctly', async () => {
+  it('returns specified affliction', async () => {
     const enumConditions = () => ResourceLoader.getEnumCategorizedConditions();
     const attackingEntries = () => ResourceLoader.getAttackingSkillEntries();
 

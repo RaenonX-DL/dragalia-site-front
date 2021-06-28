@@ -89,6 +89,7 @@ export const translation: TranslationStruct = {
         filterAffliction: '異常狀態',
         filterOther: '其他',
         filterSharedOnly: '限定共享技',
+        filterDispelOnly: '限定可驅散',
       },
       desc: {
         atk: '泛指所有遊戲內與攻擊力有關的參數。',

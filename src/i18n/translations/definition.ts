@@ -89,6 +89,7 @@ export type TranslationStruct = {
         filterAffliction: string,
         filterOther: string,
         filterSharedOnly: string,
+        filterDispelOnly: string,
       },
       desc: {
         atk: string,

@@ -56,6 +56,7 @@ export const overwriteInputData = (original: InputData, overwrite: DeepPartial<I
     elemCodes: overwrite?.filter?.elemCodes ?? original.filter.elemCodes,
     afflictionCondCode: overwrite?.filter?.afflictionCondCode ?? original.filter.afflictionCondCode,
     sharedOnly: overwrite?.filter?.sharedOnly ?? original.filter.sharedOnly,
+    dispelOnly: overwrite?.filter?.dispelOnly ?? original.filter.dispelOnly,
   },
   display: {
     actualDamage: overwrite?.display?.actualDamage ?? original.display.actualDamage,
@@ -120,6 +121,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       elemCodes: [],
       afflictionCondCode: [],
       sharedOnly: false,
+      dispelOnly: false,
     },
     display: {
       actualDamage: false,
