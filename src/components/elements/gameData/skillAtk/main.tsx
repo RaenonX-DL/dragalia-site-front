@@ -88,7 +88,6 @@ export const AttackingSkillLookup = () => {
             calculatedEntries={calculatedEntries || []}
             conditionEnumMap={conditionEnumMap}
             skillIdentifierInfo={skillIdentifierInfo}
-            atkSkillEntries={attackingSkillEntries}
             skillEnums={skillEnums}
             statusEnums={statusEnums}
           />

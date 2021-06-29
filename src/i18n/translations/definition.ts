@@ -204,7 +204,6 @@ export type TranslationStruct = {
           time: string,
           preConditions: string,
         },
-        warning: string,
       },
       sort: {
         text: string,
@@ -218,7 +217,11 @@ export type TranslationStruct = {
         sp: string,
         ssp: string,
         ssCost: string,
-      }
+      },
+      info: {
+        affliction: string,
+        animation: string,
+      },
     },
     tools: {
       titleSelf: string,

@@ -205,7 +205,6 @@ export const translation: TranslationStruct = {
           time: '開放時間 (秒)',
           preConditions: '其他條件',
         },
-        warning: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
       },
       sort: {
         text: '排序: {{sortBy}}',
@@ -224,6 +223,10 @@ export const translation: TranslationStruct = {
         sp: 'SP',
         ssp: 'SSP',
         ssCost: 'SS Cost',
+      },
+      info: {
+        affliction: '部分異常狀態的時效為浮動值 (冰凍、暈眩較為常見)。以下計算中所使用的秒數為最大值。',
+        animation: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
       },
     },
     tools: {

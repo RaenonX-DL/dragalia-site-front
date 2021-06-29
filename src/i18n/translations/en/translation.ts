@@ -229,7 +229,6 @@ export const translation: TranslationStruct = {
           time: 'Time (sec)',
           preConditions: 'Other Conditions',
         },
-        warning: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
       },
       sort: {
         text: 'Order: {{sortBy}}',
@@ -248,6 +247,11 @@ export const translation: TranslationStruct = {
         sp: 'SP',
         ssp: 'SSP',
         ssCost: 'SS Cost',
+      },
+      info: {
+        affliction: 'Duration for some afflictions are variable, especially freeze and stun. ' +
+          'Calculations below are using the maximum duration.',
+        animation: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
       },
     },
     tools: {

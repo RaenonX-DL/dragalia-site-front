@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AttackingSkillData} from '../../../../../api-def/resources';
+import {AfflictionWarning} from '../../warnings/affliction';
 import {AnimationInfoWarning} from '../../warnings/animation';
 import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
@@ -11,11 +11,10 @@ import {CalculatedSkillEntry} from './types';
 
 type OutputProps = EnumDataPack & {
   displayConfig: InputData['display'],
-  atkSkillEntries: Array<AttackingSkillData>,
   calculatedEntries: Array<CalculatedSkillEntry>,
 }
 
-export const AttackingSkillOutput = ({displayConfig, atkSkillEntries, calculatedEntries, ...enums}: OutputProps) => {
+export const AttackingSkillOutput = ({displayConfig, calculatedEntries, ...enums}: OutputProps) => {
   // Early termination if no input
   if (!calculatedEntries.length) {
     return <></>;
@@ -28,9 +27,14 @@ export const AttackingSkillOutput = ({displayConfig, atkSkillEntries, calculated
   if (warning !== null) {
     entries.push(warning);
   }
-  // Check if animation info warning should be displayed
+  // Check if animation info alert should be displayed
   if (displayConfig.animationInfo) {
     entries.push(<AnimationInfoWarning/>);
+  }
+  // Check if affliction info alert should be displayed
+  // - Both affliction and SP info do something with affliction
+  if (displayConfig.affliction || displayConfig.spInfo) {
+    entries.push(<AfflictionWarning/>);
   }
 
   // Add transformed entries
