@@ -161,7 +161,7 @@ export const translation: TranslationStruct = {
           damageInfo: 'Damage Info',
           damageDistribution: 'Damage Spread',
           affliction: 'Affliction',
-          spInfo: 'SP Info',
+          spInfo: 'SP Info / Efficiency',
           animationInfo: 'Animation',
         },
       },

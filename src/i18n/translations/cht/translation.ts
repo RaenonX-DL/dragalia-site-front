@@ -138,7 +138,7 @@ export const translation: TranslationStruct = {
           damageInfo: '傷害資訊',
           damageDistribution: '傷害分布',
           affliction: '異常狀態',
-          spInfo: 'SP 資訊',
+          spInfo: 'SP 效率/資訊',
           animationInfo: '動畫資訊',
         },
       },
