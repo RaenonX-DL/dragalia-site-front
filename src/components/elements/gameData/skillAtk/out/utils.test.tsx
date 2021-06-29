@@ -107,7 +107,7 @@ describe('Sort ATK skill entries', () => {
     elemBonusData = new ElementBonusData(await ResourceLoader.getElementBonusData());
   });
 
-  it('sorts entries by damage DESC', async () => {
+  it('sorts entries by damage', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'damage',
@@ -122,7 +122,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
-  it('sorts entries by SP ASC', async () => {
+  it('sorts entries by SP', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'sp',
@@ -137,7 +137,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeLessThan(entries[4]);
   });
 
-  it('sorts entries by SSP ASC', async () => {
+  it('sorts entries by SSP', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'ssp',
@@ -152,7 +152,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeLessThan(entries[4]);
   });
 
-  it('sorts entries by SP efficiency DESC', async () => {
+  it('sorts entries by SP efficiency', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'modPer1KSp',
@@ -167,7 +167,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
-  it('sorts entries by SSP efficiency DESC', async () => {
+  it('sorts entries by SSP efficiency', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'modPer1KSsp',
@@ -182,7 +182,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
-  it('sorts entries by affliction duration SP efficiency DESC', async () => {
+  it('sorts entries by affliction duration SP efficiency', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'afflictionLengthPer1KSp',
@@ -197,7 +197,7 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
-  it('sorts entries by affliction duration SSP efficiency DESC', async () => {
+  it('sorts entries by affliction duration SSP efficiency', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'afflictionLengthPer1KSsp',
@@ -210,6 +210,41 @@ describe('Sort ATK skill entries', () => {
     expect(entries[1]).toBeGreaterThan(entries[2]);
     expect(entries[2]).toBeGreaterThan(entries[3]);
     expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+
+  it('puts non-SS at last if sort by SSP', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'ssp',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillEntry.skill.ssSp);
+    expect(entries[0]).toBeGreaterThan(0);
+  });
+
+  it('puts non-SS/no-affliction skills at last if sort by affliction efficiency in SSP', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'ssp',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => Math.min(...Object.values(entry.efficiency.secPer1KSsp)))
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(0);
+  });
+
+  it('puts no-affliction skills at last if sort by affliction efficiency in SP', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'ssp',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => Math.min(...Object.values(entry.efficiency.secPer1KSp)))
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(0);
   });
 });
 

@@ -1,4 +1,5 @@
 import {GetTranslationFunction} from '../../../../../../i18n/types';
+import {sortAscending, sortDescending} from '../../../../../../utils/sort';
 import {SortBy} from '../../in/types';
 import {CalculatedSkillEntry} from '../types';
 
@@ -6,17 +7,25 @@ import {CalculatedSkillEntry} from '../types';
 type SortFuncLookup = { [sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number }
 
 export const sortFunc: SortFuncLookup = {
-  damage: (a, b) => b.skillDamage.expected - a.skillDamage.expected,
-  sp: (a, b) => a.skillEntry.skill.spMax - b.skillEntry.skill.spMax,
-  ssp: (a, b) => a.skillEntry.skill.ssSp - b.skillEntry.skill.ssSp,
-  modPer1KSp: (a, b) => b.efficiency.modPctPer1KSp - a.efficiency.modPctPer1KSp,
-  modPer1KSsp: (a, b) => b.efficiency.modPctPer1KSsp - a.efficiency.modPctPer1KSsp,
-  afflictionLengthPer1KSp: (a, b) => (
-    Math.min(...Object.values(b.efficiency.secPer1KSp)) - Math.min(...Object.values(a.efficiency.secPer1KSp))
-  ),
-  afflictionLengthPer1KSsp: (a, b) => (
-    Math.min(...Object.values(b.efficiency.secPer1KSsp)) - Math.min(...Object.values(a.efficiency.secPer1KSsp))
-  ),
+  damage: sortDescending({getComparer: (element) => element.skillDamage.expected}),
+  sp: sortAscending({getComparer: (element) => element.skillEntry.skill.spMax}),
+  ssp: sortAscending({
+    getComparer: (element) => element.skillEntry.skill.ssSp,
+    isToPutLast: (element) => !element.skillEntry.skill.sharable,
+  }),
+  modPer1KSp: sortDescending({getComparer: (element) => element.efficiency.modPctPer1KSp}),
+  modPer1KSsp: sortDescending({
+    getComparer: (element) => element.efficiency.modPctPer1KSsp,
+    isToPutLast: (element) => !element.skillEntry.skill.sharable,
+  }),
+  afflictionLengthPer1KSp: sortDescending({
+    getComparer: (element) => Math.min(...Object.values(element.efficiency.secPer1KSp)),
+    isToPutLast: (element) => !element.skillEntry.skill.afflictions.length,
+  }),
+  afflictionLengthPer1KSsp: sortDescending({
+    getComparer: (element) => Math.min(...Object.values(element.efficiency.secPer1KSsp)),
+    isToPutLast: (element) => !element.skillEntry.skill.sharable || !element.skillEntry.skill.afflictions.length,
+  }),
 };
 
 export const orderName: { [sortBy in SortBy]: GetTranslationFunction } = {
