@@ -21,6 +21,8 @@ import {
   DragonAnalysisGetResponse,
   DragonAnalysisPublishPayload,
   FailedResponse,
+  GetAtkSkillPresetPayload,
+  GetAtkSkillPresetResponse,
   PageMetaPayload,
   PageMetaResponse,
   PostPageMetaPayload,
@@ -37,11 +39,14 @@ import {
   QuestPostPublishPayload,
   QuestPostPublishResponse,
   RequestPayloadBase,
+  SetAtkSkillPresetPayload,
+  SetAtkSkillPresetResponse,
   SupportedLanguages,
   UnitNameRefPayload,
   UnitNameRefResponse,
   UnitType,
 } from '../../../api-def/api';
+import {InputData as AtkSkillInput} from '../../../components/elements/gameData/skillAtk/in/types';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
@@ -272,12 +277,12 @@ export class ApiRequestSender {
 
   // endregion
 
-  // region Get page meta
+  // region Page meta
 
   /**
    * Send a request to get the post page meta.
    *
-   * @param {string} uid User ID
+   * @param {string} uid user ID
    * @param {SupportedLanguages} lang post language
    * @param {PostType} postType type of the post
    * @param {number | string} postIdentifier post identifier
@@ -294,7 +299,7 @@ export class ApiRequestSender {
   /**
    * Send a request to get the generic page meta.
    *
-   * @param {string} uid User ID
+   * @param {string} uid user ID
    * @param {SupportedLanguages} lang current page language
    * @return {Promise<PageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
@@ -323,6 +328,40 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.DATA_UNIT_NAME_REF,
       {uid: '', lang},
+    );
+  }
+
+  // endregion
+
+  // region Preset
+
+  /**
+   * Send a request to get an ATK skill input data preset.
+   *
+   * @param {string} uid user ID
+   * @param {string} presetId input preset ID
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static getPresetAtkSkill(uid: string, presetId: string) {
+    return ApiRequestSender.sendRequest<GetAtkSkillPresetResponse, GetAtkSkillPresetPayload>(
+      'GET',
+      ApiEndPoints.PRESET_ATK_SKILL_INPUT,
+      {uid, presetId},
+    );
+  }
+
+  /**
+   * Send a request to create an ATK skill input data preset.
+   *
+   * @param {string} uid user ID
+   * @param {AtkSkillInput} preset ATK skill input data
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static setPresetAtkSkill(uid: string, preset: AtkSkillInput) {
+    return ApiRequestSender.sendRequest<SetAtkSkillPresetResponse, SetAtkSkillPresetPayload>(
+      'POST',
+      ApiEndPoints.PRESET_ATK_SKILL_INPUT,
+      {uid, preset},
     );
   }
 

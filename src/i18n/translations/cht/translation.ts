@@ -192,6 +192,7 @@ export const translation: TranslationStruct = {
       collapse: '摺疊/展開',
       error: {
         noInfoToDisplay: '請選擇至少一項顯示資訊。',
+        presetMustLogin: '請先登入再使用預設參數功能。',
       },
       animation: {
         earliest: '最早於 {{time}} 秒',

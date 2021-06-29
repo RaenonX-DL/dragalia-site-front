@@ -191,6 +191,7 @@ export const translation: TranslationStruct = {
       collapse: '展開 / 折り畳み',
       error: {
         noInfoToDisplay: 'Please select at least 1 info to display.',
+        presetMustLogin: 'You must login to use the input parameter preset via link.',
       },
       animation: {
         earliest: '{{time}} sec @ Earliest',

@@ -11,6 +11,7 @@ enum GAEvent {
   ABILITY_SEARCH = 'ability_search',
   ANALYSIS_LOOKUP = 'analysis_lookup',
   OPEN_IMAGE = 'open_image',
+  LOAD_INPUT_PRESET = 'load_preset',
 }
 
 enum GAParameter {
@@ -30,6 +31,7 @@ enum GAParameter {
   WEAPON_WAND = 'weapon_wand',
   WEAPON_STAFF = 'weapon_staff',
   WEAPON_MANACASTER = 'weapon_manacaster',
+  PRESET_TYPE = 'preset_type',
 }
 
 /**
@@ -124,6 +126,20 @@ export class GoogleAnalytics {
       GAEvent.OPEN_IMAGE,
       {
         'image_url': imageUrl,
+      },
+    );
+  }
+
+  /**
+   * Record that an input preset has been loaded.
+   *
+   * @param {string} type type of the preset loaded
+   */
+  static presetLoaded(type: 'atkSkill') {
+    GoogleAnalytics.sendEvent(
+      GAEvent.LOAD_INPUT_PRESET,
+      {
+        [GAParameter.PRESET_TYPE]: type,
       },
     );
   }
