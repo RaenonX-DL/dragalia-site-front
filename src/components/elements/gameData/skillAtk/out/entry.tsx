@@ -14,6 +14,7 @@ import {SectionImageIcon} from './sections/icon';
 import {SectionSkillDamage} from './sections/skillDamage';
 import {SectionSkillInfo} from './sections/skillInfo';
 import {SectionSkillName} from './sections/skillName';
+import {SectionSpInfo} from './sections/sp/main';
 import {CalculatedSkillEntry} from './types';
 
 
@@ -28,6 +29,7 @@ export const AttackingSkillEntry = ({
   conditionEnumMap,
   skillIdentifierInfo,
   skillEnums,
+  statusEnums,
 }: SkillEntryProps) => {
   const atkSkillEntry = calculatedData.skillEntry;
 
@@ -70,13 +72,17 @@ export const AttackingSkillEntry = ({
       <Row>
         {
           inputData.display.affliction &&
-          <SectionAffliction atkSkillEntry={atkSkillEntry}/>
+          <SectionAffliction atkSkillEntry={atkSkillEntry} statusEnums={statusEnums}/>
         }
         <SectionBadges atkSkillEntry={atkSkillEntry}/>
       </Row>
       {
         inputData.display.animationInfo &&
         <SectionAnimation atkSkillEntry={atkSkillEntry} skillEnums={skillEnums} conditionEnumMap={conditionEnumMap}/>
+      }
+      {
+        inputData.display.spInfo &&
+        <SectionSpInfo calculatedData={calculatedData} statusEnums={statusEnums}/>
       }
     </div>
   );

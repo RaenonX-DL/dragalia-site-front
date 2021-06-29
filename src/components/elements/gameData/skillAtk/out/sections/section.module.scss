@@ -2,16 +2,21 @@
 
 $item-margin: 0.75rem;
 
-.animation {
-  table {
-    $table-border-color: #656565;
+$table-border-color: #656565;
+$table-border: 1px solid $table-border-color;
 
+.section {
+  p {
+    margin: 0;
+  }
+
+  table {
     width: 100%;
     padding-right: 30px;
 
     tr {
       background-color: #0e0e0e;
-      border: 1px solid $table-border-color;
+      border: $table-border;
     }
 
     tr:last-child {
@@ -23,6 +28,21 @@ $item-margin: 0.75rem;
       padding: 0.2rem 1rem;
       text-align: center;
       white-space: nowrap;
+
+      &.sp,
+      &.ssp {
+        width: 40%;
+      }
+
+      &.ssCost {
+        width: 20%;
+      }
+
+      &.sp,
+      &.ssp,
+      &.ssCost {
+        border: $table-border;
+      }
     }
 
     tbody {

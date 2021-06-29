@@ -5,11 +5,9 @@ import Col from 'react-bootstrap/Col';
 
 import {DepotPaths, AfflictionUnit, StatusEnums} from '../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../i18n/hook';
-import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {reverseEnumTransLookup} from '../../../../../../utils/services/resources/utils';
-import {useFetchState} from '../../../../common/fetch';
 import {ImageWithOverlay} from '../../../../common/image';
-import {SectionProps} from '../props';
+import {EnumDataPack, SectionProps} from '../props';
 
 
 type AfflictionEntryProps = {
@@ -53,18 +51,9 @@ const AfflictionEntry = ({affliction, statusEnums}: AfflictionEntryProps) => {
   );
 };
 
-export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
-  const {
-    fetchStatus: statusEnums,
-    fetchFunction: fetchStatusEnums,
-  } = useFetchState<StatusEnums>(
-    {status: []},
-    ResourceLoader.getEnumAfflictionStatus,
-    'Failed to fetch affliction status enums.',
-  );
+type SectionAfflictionProps = SectionProps & Pick<EnumDataPack, 'statusEnums'>
 
-  fetchStatusEnums();
-
+export const SectionAffliction = ({atkSkillEntry, statusEnums}: SectionAfflictionProps) => {
   if (!atkSkillEntry.skill.afflictions.length) {
     return <></>;
   }
@@ -77,7 +66,7 @@ export const SectionAffliction = ({atkSkillEntry}: SectionProps) => {
             arr.findIndex((afflictionUnit) => afflictionUnit.statusIcon === item.statusIcon) === idx
           ))
           .map((affliction: AfflictionUnit, index: number) => (
-            <AfflictionEntry affliction={affliction} statusEnums={statusEnums.data} key={index}/>
+            <AfflictionEntry affliction={affliction} statusEnums={statusEnums} key={index}/>
           ))
       }
     </Col>

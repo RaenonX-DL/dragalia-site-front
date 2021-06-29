@@ -30,7 +30,7 @@ describe('ATK skill entry sorter', () => {
     const dropdownButton = screen.getByText(/Order/);
     userEvent.click(dropdownButton);
 
-    const orderButton = screen.getByText(translationEN.game.skillAtk.sort.afflictionLengthPer1KSpDesc);
+    const orderButton = screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp);
     fireEvent.click(orderButton);
 
     expect(onOrderPicked).toHaveBeenCalledTimes(1);

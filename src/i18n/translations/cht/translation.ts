@@ -208,13 +208,21 @@ export const translation: TranslationStruct = {
       },
       sort: {
         text: '排序: {{sortBy}}',
-        damageDesc: '傷害 (高 → 低)',
-        spAsc: 'SP (低 → 高)',
-        sspAsc: 'SSP (低 → 高)',
-        spPer1KModDesc: 'SP / 1000% (低 → 高)',
-        sspPer1KModDesc: 'SSP / 1000% (低 → 高)',
-        afflictionLengthPer1KSpDesc: '異常效期 (秒) / 1K SP (高 → 低)',
-        afflictionLengthPer1KSspDesc: '異常效期 (秒) / 1K SSP (高 → 低)',
+        damageDesc: '傷害',
+        sp: 'SP',
+        ssp: 'SSP',
+      },
+      spInfo: {
+        efficiencyIndexes: '效率指標',
+        efficiency: {
+          spPer1KMod: 'SP / 1000%',
+          sspPer1KMod: 'SSP / 1000%',
+          secPer1KSp: '異常效期 (秒) / 1K SP',
+          secPer1KSsp: '異常效期 (秒) / 1K SSP',
+        },
+        sp: 'SP',
+        ssp: 'SSP',
+        ssCost: 'SS Cost',
       },
     },
     tools: {

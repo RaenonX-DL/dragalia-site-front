@@ -1,3 +1,5 @@
+import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
+
 export type PageMetaTranslations = {
   title: string,
   description: string,
@@ -206,12 +208,15 @@ export type TranslationStruct = {
       sort: {
         text: string,
         damageDesc: string,
-        spAsc: string,
-        sspAsc: string,
-        spPer1KModDesc: string,
-        sspPer1KModDesc: string,
-        afflictionLengthPer1KSpDesc: string,
-        afflictionLengthPer1KSspDesc: string,
+        sp: string,
+        ssp: string,
+      },
+      spInfo: {
+        efficiencyIndexes: string,
+        efficiency: {[index in keyof Efficiency]: string},
+        sp: string,
+        ssp: string,
+        ssCost: string,
       }
     },
     tools: {

@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {ConditionEnumMap, SkillEnums} from '../../../../api-def/resources/types/export/enums';
+import {ConditionEnumMap, SkillEnums, StatusEnums} from '../../../../api-def/resources/types/export/enums';
 import {ElementBonus, ElementBonusData} from '../../../../api-def/resources/types/export/misc';
 import {AttackingSkillData} from '../../../../api-def/resources/types/skillAtk';
 import {SkillIdentifierInfo} from '../../../../api-def/resources/types/skillIdentifier';
@@ -60,12 +60,21 @@ export const AttackingSkillLookup = () => {
     ResourceLoader.getEnumSkill,
     'Failed to fetch skill enums.',
   );
+  const {
+    fetchStatus: statusEnums,
+    fetchFunction: fetchStatusEnums,
+  } = useFetchState<StatusEnums>(
+    {status: []},
+    ResourceLoader.getEnumAfflictionStatus,
+    'Failed to fetch affliction status enums.',
+  );
 
   fetchElementBonuses();
   fetchConditionEnums();
   fetchSkillIdentifiers();
   fetchAttackingSkillEntries();
   fetchSkillEnums();
+  fetchStatusEnums();
 
   React.useEffect(() => {
     if (inputDataForward) {
@@ -103,6 +112,7 @@ export const AttackingSkillLookup = () => {
           skillIdentifierInfo={skillIdentifiers.data}
           atkSkillEntries={attackingSkillEntries.data}
           skillEnums={skillEnums.data}
+          statusEnums={statusEnums.data}
         />
       </Col>
     </Row>

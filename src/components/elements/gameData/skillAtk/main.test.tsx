@@ -82,7 +82,7 @@ describe('ATK skill lookup', () => {
     // Actual damage from S!Julietta
     expect(screen.queryByText('161,524')).not.toBeInTheDocument();
     // Affliction from S!Julietta
-    await waitFor(() => expect(screen.getByAltText('Bog')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getAllByAltText('Bog').length).toBeGreaterThan(0));
     // Affliction from S!Julietta
     expect(screen.queryByText('', {selector: 'svg > rect'})).not.toBeInTheDocument();
   });

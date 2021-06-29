@@ -16,14 +16,7 @@ type OutputProps = EnumDataPack & {
   atkSkillEntries: Array<AttackingSkillData>,
 }
 
-export const AttackingSkillOutput = ({
-  inputData,
-  elementBonusData,
-  atkSkillEntries,
-  conditionEnumMap,
-  skillIdentifierInfo,
-  skillEnums,
-}: OutputProps) => {
+export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntries, ...enums}: OutputProps) => {
   // Early termination if no input
   if (!inputData) {
     return <></>;
@@ -57,9 +50,7 @@ export const AttackingSkillOutput = ({
           key={index}
           inputData={inputData}
           calculatedData={calculatedData}
-          conditionEnumMap={conditionEnumMap}
-          skillIdentifierInfo={skillIdentifierInfo}
-          skillEnums={skillEnums}
+          {...enums}
         />
       )),
   );

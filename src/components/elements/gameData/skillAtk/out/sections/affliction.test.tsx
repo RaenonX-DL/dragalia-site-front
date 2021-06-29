@@ -4,18 +4,24 @@ import {screen, waitFor} from '@testing-library/react';
 
 import {generateAttackingSkillEntry} from '../../../../../../../test/data/mock/skill';
 import {renderReact} from '../../../../../../../test/render/main';
-import {AttackingSkillData, DepotPaths} from '../../../../../../api-def/resources';
+import {AttackingSkillData, DepotPaths, StatusEnums} from '../../../../../../api-def/resources';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
+import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {SectionAffliction} from './affliction';
 
 
 describe('Affliction section', () => {
   const templateEntry: AttackingSkillData = generateAttackingSkillEntry();
+  let statusEnums: StatusEnums;
+
+  beforeAll(async () => {
+    statusEnums = await ResourceLoader.getEnumAfflictionStatus();
+  });
 
   it('shows affliction with name', async () => {
     const entry = {...templateEntry};
 
-    renderReact(() => <SectionAffliction atkSkillEntry={entry}/>);
+    renderReact(() => <SectionAffliction atkSkillEntry={entry} statusEnums={statusEnums}/>);
 
     await waitFor(() => expect(screen.getByAltText('Blindness')).toBeInTheDocument());
 
@@ -41,7 +47,7 @@ describe('Affliction section', () => {
       },
     };
 
-    renderReact(() => <SectionAffliction atkSkillEntry={entry}/>);
+    renderReact(() => <SectionAffliction atkSkillEntry={entry} statusEnums={statusEnums}/>);
 
     expect(screen.getByText(translationEN.game.skillAtk.entry.unstackable, {selector: 'span.badge'}))
       .toBeInTheDocument();
@@ -50,7 +56,7 @@ describe('Affliction section', () => {
   it('shows stackable affliction badge', async () => {
     const entry = {...templateEntry};
 
-    renderReact(() => <SectionAffliction atkSkillEntry={entry}/>);
+    renderReact(() => <SectionAffliction atkSkillEntry={entry} statusEnums={statusEnums}/>);
 
     expect(screen.getByText(translationEN.game.skillAtk.entry.stackable, {selector: 'span.badge'}))
       .toBeInTheDocument();
@@ -65,7 +71,7 @@ describe('Affliction section', () => {
       },
     };
 
-    const {container} = renderReact(() => <SectionAffliction atkSkillEntry={entry}/>);
+    const {container} = renderReact(() => <SectionAffliction atkSkillEntry={entry} statusEnums={statusEnums}/>);
 
     expect(container.firstChild).toBeNull();
   });

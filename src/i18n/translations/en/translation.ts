@@ -232,13 +232,21 @@ export const translation: TranslationStruct = {
       },
       sort: {
         text: 'Order: {{sortBy}}',
-        damageDesc: 'Damage (Hi → Lo)',
-        spAsc: 'SP (Lo → Hi)',
-        sspAsc: 'SSP (Lo → Hi)',
-        spPer1KModDesc: 'SP / 1000% (Lo → Hi)',
-        sspPer1KModDesc: 'SSP / 1000% (Lo → Hi)',
-        afflictionLengthPer1KSpDesc: 'Affliction (sec) / 1K SP (Hi → Lo)',
-        afflictionLengthPer1KSspDesc: 'Affliction (sec) / 1K SSP (Hi → Lo)',
+        damageDesc: 'Damage',
+        sp: 'SP',
+        ssp: 'SSP',
+      },
+      spInfo: {
+        efficiencyIndexes: 'Efficiency Indexes',
+        efficiency: {
+          spPer1KMod: 'SP / 1000%',
+          sspPer1KMod: 'SSP / 1000%',
+          secPer1KSp: 'Affliction (sec) / 1K SP',
+          secPer1KSsp: 'Affliction (sec) / 1K SSP',
+        },
+        sp: 'SP',
+        ssp: 'SSP',
+        ssCost: 'SS Cost',
       },
     },
     tools: {

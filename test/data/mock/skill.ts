@@ -1,5 +1,6 @@
 import {SupportedLanguages} from '../../../src/api-def/api';
 import {AttackingSkillData, Element} from '../../../src/api-def/resources';
+import {CalculatedSkillEntry} from '../../../src/components/elements/gameData/skillAtk/out/types';
 
 
 export const generateAttackingSkillEntry = (): AttackingSkillData => ({
@@ -53,4 +54,26 @@ export const generateAttackingSkillEntry = (): AttackingSkillData => ({
     cancelActionsMax: [],
   },
   uniqueHash: 'hash',
+});
+
+export const generateCalculatedEntry = (): CalculatedSkillEntry => ({
+  skillEntry: generateAttackingSkillEntry(),
+  skillDamage: {
+    expected: 12500,
+    highest: 15000,
+    lowest: 10000,
+    totalMods: 7,
+  },
+  efficiency: {
+    spPer1KMod: 1000,
+    sspPer1KMod: 1200,
+    secPer1KSp: {
+      1: 2.5757575757,
+      2: 5.0131313131,
+    },
+    secPer1KSsp: {
+      3: 3.5757575757,
+      4: 6.0131313131,
+    },
+  },
 });

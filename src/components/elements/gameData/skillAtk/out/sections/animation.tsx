@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import {useI18n} from '../../../../../../i18n/hook';
 import {reverseEnumTransLookup} from '../../../../../../utils/services/resources/utils';
 import {EnumDataPack, SectionProps} from '../props';
-import styles from './animation.module.css';
+import styles from './section.module.css';
 
 
 const HitTiming = ({atkSkillEntry}: SectionProps) => {
@@ -19,7 +19,7 @@ const HitTiming = ({atkSkillEntry}: SectionProps) => {
   const earliest = Math.min(...atkSkillEntry.skill.hitTimingSecMax);
 
   return (
-    <div className="text-center">
+    <>
       <Button variant="outline-light" size="sm" className="mt-2" onClick={() => setShow(!show)}>
         <i className="bi bi-arrows-collapse"/>&nbsp;
         {t((t) => t.game.skillAtk.animation.hitTiming)}&nbsp;-&nbsp;
@@ -45,7 +45,7 @@ const HitTiming = ({atkSkillEntry}: SectionProps) => {
           </table>
         </div>
       </Collapse>
-    </div>
+    </>
   );
 };
 
@@ -60,7 +60,7 @@ const CancelAction = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnim
   const isAvailable = earliest !== Infinity;
 
   return (
-    <div className="text-center">
+    <>
       <Button
         variant="outline-light" size="sm" className="mt-2"
         onClick={() => setShow(!show)} disabled={!isAvailable}
@@ -112,7 +112,7 @@ const CancelAction = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnim
           </table>
         </div>
       </Collapse>
-    </div>
+    </>
   );
 };
 
@@ -120,7 +120,7 @@ type SectionAnimationProps = SectionProps & Pick<EnumDataPack, 'skillEnums' | 'c
 
 export const SectionAnimation = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnimationProps) => {
   return (
-    <div className={styles.animation}>
+    <div className={`${styles.section} text-center`}>
       <Form.Row>
         <Col lg={6}>
           <HitTiming atkSkillEntry={atkSkillEntry}/>
