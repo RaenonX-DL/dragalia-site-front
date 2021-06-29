@@ -3,6 +3,8 @@ import {ConditionCodes} from '../../../../../const/gameData';
 import {InputPanelCommonProps} from '../../../input/types';
 
 
+export type SortBy = 'damage' | 'sp' | 'ssp'
+
 export type InputData = {
   params: {
     atk: {
@@ -67,6 +69,7 @@ export type InputData = {
     // Hit timings, cancellation info, animation duration
     animationInfo: boolean,
   }
+  sortBy: SortBy,
 }
 
 export type SectionProps = InputPanelCommonProps<InputData>

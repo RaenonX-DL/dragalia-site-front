@@ -66,6 +66,7 @@ export const overwriteInputData = (original: InputData, overwrite: DeepPartial<I
     spInfo: overwrite?.display?.spInfo ?? original.display.spInfo,
     animationInfo: overwrite?.display?.animationInfo ?? original.display.animationInfo,
   },
+  sortBy: overwrite?.sortBy ?? original.sortBy,
 });
 
 export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData => overwriteInputData(
@@ -131,6 +132,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       spInfo: true,
       animationInfo: false,
     },
+    sortBy: 'damage',
   },
   overwrite || {},
 );

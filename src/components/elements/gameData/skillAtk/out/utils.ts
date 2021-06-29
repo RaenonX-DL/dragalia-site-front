@@ -1,5 +1,7 @@
-import {AttackingSkillData} from '../../../../../api-def/resources';
+import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
+import {calculateDamage} from '../../../../../utils/game/damage';
 import {InputData} from '../in/types';
+import {sortFunc} from './sorter/lookup';
 
 
 export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<AttackingSkillData>) => {
@@ -30,4 +32,26 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
   }
 
   return atkSkillEntries;
+};
+
+
+export const calculateEntries = (
+  atkSkillEntries: Array<AttackingSkillData>, inputData: InputData, elemBonusData: ElementBonusData,
+) => {
+  return atkSkillEntries
+    .map((entry: AttackingSkillData) => {
+      // Element bonus rate
+      const charaElementRate = elemBonusData.getElementBonus(
+        String(entry.chara.element),
+        String(inputData.target.elemCondCode),
+      );
+
+      // Calculate skill damage
+      const skillDamage = calculateDamage(inputData, entry, charaElementRate);
+      // endregion
+
+      return {skillDamage, skillEntry: entry};
+    })
+    .filter((calcData) => calcData.skillDamage.expected > 0)
+    .sort(sortFunc[inputData.sortBy]);
 };
