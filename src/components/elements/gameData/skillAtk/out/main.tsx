@@ -1,19 +1,14 @@
 import React from 'react';
 
 import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
-import {CalculateDamageReturn} from '../../../../../utils/game/damage';
 import {AnimationInfoWarning} from '../../warnings/animation';
 import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';
 import {EnumDataPack} from './props';
+import {CalculatedSkillEntry} from './types';
 import {calculateEntries, filterSkillEntries} from './utils';
 
-
-export type CalculatedData = {
-  skillDamage: CalculateDamageReturn,
-  skillEntry: AttackingSkillData,
-}
 
 type OutputProps = EnumDataPack & {
   inputData?: InputData,
@@ -38,7 +33,7 @@ export const AttackingSkillOutput = ({
   const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
 
   // Calculate entries
-  const calculatedEntries: Array<CalculatedData> = calculateEntries(
+  const calculatedEntries: Array<CalculatedSkillEntry> = calculateEntries(
     atkSkillEntriesFiltered, inputData, elementBonusData,
   );
 
@@ -57,7 +52,7 @@ export const AttackingSkillOutput = ({
   // Add transformed entries
   entries.push(
     ...calculatedEntries
-      .map((calculatedData: CalculatedData, index: number) => (
+      .map((calculatedData: CalculatedSkillEntry, index: number) => (
         <AttackingSkillEntry
           key={index}
           inputData={inputData}

@@ -206,6 +206,15 @@ export const translation: TranslationStruct = {
         },
         warning: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
       },
+      sort: {
+        damageDesc: '傷害 (高 → 低)',
+        spAsc: 'SP (低 → 高)',
+        sspAsc: 'SSP (低 → 高)',
+        spPer1KModDesc: 'SP / 1000% (低 → 高)',
+        sspPer1KModDesc: 'SSP / 1000% (低 → 高)',
+        afflictionLengthPer1KSpAsc: '異常效期 (秒) / 1K SP (高 → 低)',
+        afflictionLengthPer1KSspAsc: '異常效期 (秒) / 1K SSP (高 → 低)',
+      },
     },
     tools: {
       titleSelf: '遊戲工具',

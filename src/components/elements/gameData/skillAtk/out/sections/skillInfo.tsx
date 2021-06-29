@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {CalculatedData} from '../main';
 import {SectionProps} from '../props';
+import {CalculatedSkillEntry} from '../types';
 
 
 type SectionSkillInfoProps = SectionProps & {
-  calculatedData: CalculatedData,
+  calculatedData: CalculatedSkillEntry,
 }
 
 export const SectionSkillInfo = ({atkSkillEntry, calculatedData}: SectionSkillInfoProps) => (

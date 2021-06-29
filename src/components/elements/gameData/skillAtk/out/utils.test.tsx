@@ -1,3 +1,4 @@
+import {generateAttackingSkillEntry} from '../../../../../../test/data/mock/skill';
 import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from '../in/types';
@@ -96,6 +97,8 @@ describe('Filter ATK skill entries', () => {
 });
 
 describe('Sort ATK skill entries', () => {
+  // Source of getting the unique ordered array: https://stackoverflow.com/a/34191046/11571888
+
   let data: Array<AttackingSkillData>;
   let elemBonusData: ElementBonusData;
 
@@ -107,39 +110,234 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by damage DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'damage',
+      sortBy: 'damageDesc',
     };
 
-    const entries = calculateEntries(data, inputData, elemBonusData);
-    expect(entries[0].skillDamage.expected > entries[1].skillDamage.expected);
-    expect(entries[1].skillDamage.expected > entries[2].skillDamage.expected);
-    expect(entries[2].skillDamage.expected > entries[3].skillDamage.expected);
-    expect(entries[3].skillDamage.expected > entries[4].skillDamage.expected);
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillDamage.expected)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
   it('sorts entries by SP ASC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'sp',
+      sortBy: 'spAsc',
     };
 
-    const entries = calculateEntries(data, inputData, elemBonusData);
-    expect(entries[0].skillEntry.skill.spMax > entries[1].skillEntry.skill.spMax);
-    expect(entries[1].skillEntry.skill.spMax > entries[2].skillEntry.skill.spMax);
-    expect(entries[2].skillEntry.skill.spMax > entries[3].skillEntry.skill.spMax);
-    expect(entries[3].skillEntry.skill.spMax > entries[4].skillEntry.skill.spMax);
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillEntry.skill.spMax)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeLessThan(entries[1]);
+    expect(entries[1]).toBeLessThan(entries[2]);
+    expect(entries[2]).toBeLessThan(entries[3]);
+    expect(entries[3]).toBeLessThan(entries[4]);
   });
 
   it('sorts entries by SSP ASC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'ssp',
+      sortBy: 'sspAsc',
     };
 
-    const entries = calculateEntries(data, inputData, elemBonusData);
-    expect(entries[0].skillEntry.skill.ssSp > entries[1].skillEntry.skill.ssSp);
-    expect(entries[1].skillEntry.skill.ssSp > entries[2].skillEntry.skill.ssSp);
-    expect(entries[2].skillEntry.skill.ssSp > entries[3].skillEntry.skill.ssSp);
-    expect(entries[3].skillEntry.skill.ssSp > entries[4].skillEntry.skill.ssSp);
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillEntry.skill.ssSp)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeLessThan(entries[1]);
+    expect(entries[1]).toBeLessThan(entries[2]);
+    expect(entries[2]).toBeLessThan(entries[3]);
+    expect(entries[3]).toBeLessThan(entries[4]);
+  });
+
+  it('sorts entries by SP efficiency DESC', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'spPer1KModDesc',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.efficiency.spPer1KMod)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+
+  it('sorts entries by SSP efficiency DESC', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'sspPer1KModDesc',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.efficiency.sspPer1KMod)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+
+  it('sorts entries by affliction duration SP efficiency DESC', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'afflictionLengthPer1KSpDesc',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => Math.min(...Object.values(entry.efficiency.secPer1KSp)))
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+
+  it('sorts entries by affliction duration SSP efficiency DESC', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'afflictionLengthPer1KSspDesc',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => Math.min(...Object.values(entry.efficiency.secPer1KSsp)))
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+});
+
+describe('Entry calculation', () => {
+  const data: AttackingSkillData = generateAttackingSkillEntry();
+  let elemBonusData: ElementBonusData;
+
+  beforeAll(async () => {
+    elemBonusData = new ElementBonusData(await ResourceLoader.getElementBonusData());
+  });
+
+  it('calculates SP efficiency', async () => {
+    const dataModified: AttackingSkillData = {
+      ...data,
+      skill: {
+        ...data.skill,
+        spMax: 5000,
+        modsMax: [10, 15],
+        buffCountBoost: [
+          {
+            each: 0,
+            inEffect: 0,
+            limit: 0,
+          },
+          {
+            each: 0,
+            inEffect: 0,
+            limit: 0,
+          },
+        ],
+        crisisMax: [0, 0],
+      },
+    };
+
+    const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.spPer1KMod).toBe(2000);
+  });
+
+  it('calculates SSP efficiency', async () => {
+    const dataModified: AttackingSkillData = {
+      ...data,
+      skill: {
+        ...data.skill,
+        ssSp: 25000,
+        modsMax: [10, 15],
+        buffCountBoost: [
+          {
+            each: 0,
+            inEffect: 0,
+            limit: 0,
+          },
+          {
+            each: 0,
+            inEffect: 0,
+            limit: 0,
+          },
+        ],
+        crisisMax: [0, 0],
+      },
+    };
+
+    const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.sspPer1KMod).toBe(10000);
+  });
+
+  it('calculates affliction duration SP efficiency', async () => {
+    const dataModified: AttackingSkillData = {
+      ...data,
+      skill: {
+        ...data.skill,
+        spMax: 25000,
+        afflictions: [
+          {
+            actionTime: 1.5,
+            duration: 25,
+            probabilityPct: 120,
+            stackable: true,
+            statusCode: 4,
+            statusConditionCode: 0,
+            statusIcon: 'afflictionIcon',
+          },
+          {
+            actionTime: 1.5,
+            duration: 50,
+            probabilityPct: 120,
+            stackable: true,
+            statusCode: 5,
+            statusConditionCode: 0,
+            statusIcon: 'afflictionIcon',
+          },
+        ],
+      },
+    };
+
+    const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.secPer1KSp).toStrictEqual({4: 1, 5: 2});
+  });
+
+  it('calculates affliction duration SSP efficiency', async () => {
+    const dataModified: AttackingSkillData = {
+      ...data,
+      skill: {
+        ...data.skill,
+        ssSp: 12500,
+        afflictions: [
+          {
+            actionTime: 1.5,
+            duration: 25,
+            probabilityPct: 120,
+            stackable: true,
+            statusCode: 4,
+            statusConditionCode: 0,
+            statusIcon: 'afflictionIcon',
+          },
+          {
+            actionTime: 1.5,
+            duration: 50,
+            probabilityPct: 120,
+            stackable: true,
+            statusCode: 5,
+            statusConditionCode: 0,
+            statusIcon: 'afflictionIcon',
+          },
+        ],
+      },
+    };
+
+    const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.secPer1KSsp).toStrictEqual({4: 2, 5: 4});
   });
 });

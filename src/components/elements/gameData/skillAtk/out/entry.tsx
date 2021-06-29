@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import {DistributionBar} from '../../../charts';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
-import {CalculatedData} from './main';
 import {EnumDataPack} from './props';
 import {SectionAffliction} from './sections/affliction';
 import {SectionAnimation} from './sections/animation';
@@ -15,11 +14,12 @@ import {SectionImageIcon} from './sections/icon';
 import {SectionSkillDamage} from './sections/skillDamage';
 import {SectionSkillInfo} from './sections/skillInfo';
 import {SectionSkillName} from './sections/skillName';
+import {CalculatedSkillEntry} from './types';
 
 
 type SkillEntryProps = EnumDataPack & {
   inputData?: InputData,
-  calculatedData: CalculatedData,
+  calculatedData: CalculatedSkillEntry,
 }
 
 export const AttackingSkillEntry = ({

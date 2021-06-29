@@ -205,6 +205,15 @@ export const translation: TranslationStruct = {
         },
         warning: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
       },
+      sort: {
+        damageDesc: '傷害 (高 → 低)',
+        spAsc: 'SP (低 → 高)',
+        sspAsc: 'SSP (低 → 高)',
+        spPer1KModDesc: 'SP / 1000% (低 → 高)',
+        sspPer1KModDesc: 'SSP / 1000% (低 → 高)',
+        afflictionLengthPer1KSpAsc: '異常效期 (秒) / 1K SP (高 → 低)',
+        afflictionLengthPer1KSspAsc: '異常效期 (秒) / 1K SSP (高 → 低)',
+      },
     },
     tools: {
       titleSelf: '他のツール',

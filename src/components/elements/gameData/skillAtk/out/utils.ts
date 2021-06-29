@@ -2,6 +2,7 @@ import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resou
 import {calculateDamage} from '../../../../../utils/game/damage';
 import {InputData} from '../in/types';
 import {sortFunc} from './sorter/lookup';
+import {CalculatedSkillEntry, Efficiency} from './types';
 
 
 export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<AttackingSkillData>) => {
@@ -34,10 +35,9 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
   return atkSkillEntries;
 };
 
-
 export const calculateEntries = (
   atkSkillEntries: Array<AttackingSkillData>, inputData: InputData, elemBonusData: ElementBonusData,
-) => {
+): Array<CalculatedSkillEntry> => {
   return atkSkillEntries
     .map((entry: AttackingSkillData) => {
       // Element bonus rate
@@ -48,9 +48,24 @@ export const calculateEntries = (
 
       // Calculate skill damage
       const skillDamage = calculateDamage(inputData, entry, charaElementRate);
-      // endregion
 
-      return {skillDamage, skillEntry: entry};
+      // Calculate efficiency
+      const efficiency: Efficiency = {
+        spPer1KMod: entry.skill.spMax / (skillDamage.totalMods / 10),
+        sspPer1KMod: entry.skill.ssSp / (skillDamage.totalMods / 10),
+        secPer1KSp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
+          [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.spMax / 1000)]
+        ))),
+        secPer1KSsp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
+          [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.ssSp / 1000)]
+        ))),
+      };
+
+      return {
+        skillDamage,
+        skillEntry: entry,
+        efficiency,
+      };
     })
     .filter((calcData) => calcData.skillDamage.expected > 0)
     .sort(sortFunc[inputData.sortBy]);

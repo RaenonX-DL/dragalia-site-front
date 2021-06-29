@@ -24,12 +24,16 @@ export const generateAttackingSkillEntry = (): AttackingSkillData => ({
       statusConditionCode: 0,
       statusIcon: 'afflictionIcon',
     }],
-    buffCountBoost: [],
+    buffCountBoost: [{
+      each: 0,
+      inEffect: 0,
+      limit: 0,
+    }],
     buffZoneBoost: {
       self: 0,
       ally: 0,
     },
-    crisisMax: [],
+    crisisMax: [0],
     dispelMax: false,
     dispelTimingMax: [],
     hitsMax: 0,

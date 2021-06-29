@@ -203,6 +203,15 @@ export type TranslationStruct = {
         },
         warning: string,
       },
+      sort: {
+        damageDesc: string,
+        spAsc: string,
+        sspAsc: string,
+        spPer1KModDesc: string,
+        sspPer1KModDesc: string,
+        afflictionLengthPer1KSpAsc: string,
+        afflictionLengthPer1KSspAsc: string,
+      }
     },
     tools: {
       titleSelf: string,

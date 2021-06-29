@@ -3,7 +3,14 @@ import {ConditionCodes} from '../../../../../const/gameData';
 import {InputPanelCommonProps} from '../../../input/types';
 
 
-export type SortBy = 'damage' | 'sp' | 'ssp'
+export type SortBy =
+  'damageDesc' |
+  'spAsc' |
+  'sspAsc' |
+  'spPer1KModDesc' |
+  'sspPer1KModDesc' |
+  'afflictionLengthPer1KSpDesc' |
+  'afflictionLengthPer1KSspDesc'
 
 export type InputData = {
   params: {

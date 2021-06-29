@@ -3,11 +3,11 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {CalculatedData} from '../main';
+import {CalculatedSkillEntry} from '../types';
 
 
 type SectionSkillDamageProps = {
-  calculatedData: CalculatedData,
+  calculatedData: CalculatedSkillEntry,
 }
 
 export const SectionSkillDamage = ({calculatedData}: SectionSkillDamageProps) => {
