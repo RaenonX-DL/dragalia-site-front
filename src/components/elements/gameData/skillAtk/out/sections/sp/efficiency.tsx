@@ -87,7 +87,7 @@ export const SpEfficiencyTable = ({calculatedData, statusEnums}: SectionSpInfoPr
                     <tr>
                       <td>{t((t) => t.game.skillAtk.spInfo.efficiency.secPer1KSsp)}</td>
                       <td>
-                        <AfflictionDataCell statusEnums={statusEnums} data={calculatedData.efficiency.secPer1KSp}/>
+                        <AfflictionDataCell statusEnums={statusEnums} data={calculatedData.efficiency.secPer1KSsp}/>
                       </td>
                     </tr>
                   }
