@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
@@ -73,6 +74,7 @@ export const AttackingSkillInput = ({inputData, setInputData, isSearchAllowed, o
 
           onSearchRequested(inputData);
         }}>
+          {!isSearchAllowed && <Spinner animation="grow" size="sm" as="span" className="mr-1"/>}
           {t((t) => t.misc.search)}
         </Button>
       </div>
