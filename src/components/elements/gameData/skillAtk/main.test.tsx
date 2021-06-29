@@ -206,4 +206,6 @@ describe('ATK skill lookup', () => {
 
     expect(screen.getByText('Order: SP', {selector: 'button'})).toBeInTheDocument();
   }, 10000);
+
+  it.todo('sorts on order changed');
 });

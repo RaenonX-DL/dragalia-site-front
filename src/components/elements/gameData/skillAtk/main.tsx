@@ -75,7 +75,11 @@ export const AttackingSkillLookup = () => {
             <Col>
               <AttackingSkillSorter
                 inputData={inputData}
-                onOrderPicked={(sortBy) => setInputData(overwriteInputData(inputData, {sortBy}))}
+                onOrderPicked={(sortBy) => {
+                  const newInputData = overwriteInputData(inputData, {sortBy});
+                  setInputData(newInputData);
+                  setCalculatedEntries(getCalculatedEntries(newInputData, attackingSkillEntries, elementBonuses));
+                }}
               />
             </Col>
           </Row>
