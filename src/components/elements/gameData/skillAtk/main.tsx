@@ -3,34 +3,21 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {ElementBonusData} from '../../../../api-def/resources';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
-import {useFetchEnums, UseFetchEnumsReturn} from './hooks';
+import {useFetchEnums} from './hooks';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
+import {getCalculatedEntries} from './in/utils/calculate';
 import {generateInputData, overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
 import {AttackingSkillSorter} from './out/sorter/main';
 import {CalculatedSkillEntry} from './out/types';
-import {calculateEntries, filterSkillEntries} from './out/utils';
 
-
-const getCalculatedEntries = (
-  inputData: InputData,
-  atkSkillEntries: UseFetchEnumsReturn['attackingSkillEntries'],
-  elementBonusData: ElementBonusData,
-): Array<CalculatedSkillEntry> => (
-  calculateEntries(
-    filterSkillEntries(inputData, atkSkillEntries),
-    inputData,
-    elementBonusData,
-  )
-);
 
 export const AttackingSkillLookup = () => {
   const [inputData, setInputData] = React.useState<InputData>(generateInputData());
-  const [atkSkillOutput, setAtkSkillOutput] = React.useState<Array<CalculatedSkillEntry> | undefined>();
+  const [calculatedEntries, setCalculatedEntries] = React.useState<Array<CalculatedSkillEntry> | undefined>();
 
   const entryCol = React.useRef<HTMLDivElement>(null);
 
@@ -45,11 +32,11 @@ export const AttackingSkillLookup = () => {
   } = useFetchEnums();
 
   React.useEffect(() => {
-    if (!atkSkillOutput) {
+    if (!calculatedEntries) {
       return;
     }
     scrollRefToTop(entryCol);
-  }, [atkSkillOutput]);
+  }, [calculatedEntries]);
 
   return (
     <Row>
@@ -57,11 +44,11 @@ export const AttackingSkillLookup = () => {
         <AttackingSkillInput
           inputData={inputData}
           setInputData={setInputData}
-          isAllFetched={isAllFetched}
+          isSearchAllowed={isAllFetched}
           onSearchRequested={(inputData: InputData) => {
             GoogleAnalytics.damageCalc('search', inputData);
 
-            setAtkSkillOutput(getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses));
+            setCalculatedEntries(getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses));
           }}
         />
       </Col>
@@ -76,7 +63,7 @@ export const AttackingSkillLookup = () => {
         </Row>
         <AttackingSkillOutput
           displayConfig={inputData.display}
-          calculatedEntries={atkSkillOutput || []}
+          calculatedEntries={calculatedEntries || []}
           conditionEnumMap={conditionEnumMap}
           skillIdentifierInfo={skillIdentifierInfo}
           atkSkillEntries={attackingSkillEntries}

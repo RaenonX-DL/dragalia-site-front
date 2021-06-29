@@ -8,7 +8,6 @@ import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {InputPanelCommonProps} from '../../../input/types';
-import {UseFetchEnumsReturn} from '../hooks';
 import {Filter} from './filter';
 import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
@@ -16,11 +15,12 @@ import {InputData} from './types';
 import {validateInputData} from './utils/inputData';
 
 
-type InputProps = InputPanelCommonProps<InputData> & Pick<UseFetchEnumsReturn, 'isAllFetched'> & {
+type InputProps = InputPanelCommonProps<InputData> & {
   onSearchRequested: (inputData: InputData) => void,
+  isSearchAllowed: boolean,
 }
 
-export const AttackingSkillInput = ({inputData, setInputData, isAllFetched, onSearchRequested}: InputProps) => {
+export const AttackingSkillInput = ({inputData, setInputData, isSearchAllowed, onSearchRequested}: InputProps) => {
   const {t, lang} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
@@ -60,7 +60,7 @@ export const AttackingSkillInput = ({inputData, setInputData, isAllFetched, onSe
         <Button variant="outline-primary" onClick={() => setCollapsed(!collapsed)} className="mr-2">
           {t((t) => t.game.skillAtk.collapse)}
         </Button>
-        <Button variant="outline-info" disabled={!isAllFetched} onClick={() => {
+        <Button variant="outline-info" disabled={!isSearchAllowed} onClick={() => {
           const isInputValid = validateInputData(
             inputData,
             lang,
