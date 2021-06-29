@@ -13,7 +13,7 @@ import {ResourceLoader} from '../../../../utils/services/resources/loader';
 import {useFetchState, useFetchStateProcessed} from '../../common/fetch';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
-import {overwriteInputData} from './in/utils';
+import {overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
 import {AttackingSkillSorter} from './out/sorter/main';
 

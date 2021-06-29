@@ -1,8 +1,8 @@
-import {SupportedLanguages} from '../../../../../api-def/api/other/lang';
-import {ConditionCodes} from '../../../../../const/gameData';
-import {translations} from '../../../../../i18n/translations/main';
-import {DeepPartial} from '../../../../../utils/types';
-import {InputData} from './types';
+import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
+import {ConditionCodes} from '../../../../../../const/gameData';
+import {translations} from '../../../../../../i18n/translations/main';
+import {DeepPartial} from '../../../../../../utils/types';
+import {InputData} from '../types';
 
 
 export const overwriteInputData = (original: InputData, overwrite: DeepPartial<InputData>): InputData => ({

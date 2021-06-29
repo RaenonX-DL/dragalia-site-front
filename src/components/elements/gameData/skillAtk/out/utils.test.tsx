@@ -2,7 +2,7 @@ import {generateAttackingSkillEntry} from '../../../../../../test/data/mock/skil
 import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from '../in/types';
-import {generateInputData} from '../in/utils';
+import {generateInputData} from '../in/utils/inputData';
 import {calculateEntries, filterSkillEntries} from './utils';
 
 

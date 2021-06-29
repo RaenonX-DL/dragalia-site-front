@@ -6,7 +6,7 @@ import {getConditionName} from '../../../../../../utils/game/conditionName';
 import {CheckOption} from '../../../../common/check/types';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps, SectionPropsCondEnums} from '../types';
-import {overwriteInputData} from '../utils';
+import {overwriteInputData} from '../utils/inputData';
 
 
 type SectionTargetProps = SectionProps & SectionPropsCondEnums;

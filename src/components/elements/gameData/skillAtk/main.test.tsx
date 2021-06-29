@@ -5,8 +5,8 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {translation as translationEN} from '../../../../i18n/translations/en/translation';
-import {overwriteInputData} from './in/utils';
-import * as utils from './in/utils';
+import {overwriteInputData} from './in/utils/inputData';
+import * as utils from './in/utils/inputData';
 import {AttackingSkillLookup} from './main';
 
 

@@ -11,7 +11,7 @@ import {Filter} from './filter';
 import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
 import {InputData} from './types';
-import {generateInputData, validateInputData} from './utils';
+import {generateInputData, validateInputData} from './utils/inputData';
 
 
 type InputProps = {

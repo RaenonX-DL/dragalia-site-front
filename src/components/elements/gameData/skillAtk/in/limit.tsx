@@ -4,7 +4,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from './types';
-import {overwriteInputData} from './utils';
+import {overwriteInputData} from './utils/inputData';
 
 
 export const DisplayItemPicker = ({inputData, setInputData}: InputPanelCommonProps<InputData>) => {
