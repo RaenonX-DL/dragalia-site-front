@@ -6,10 +6,10 @@ import {
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
-} from '../../../../api-def/resources';
-import {ResourceLoader} from '../../../../utils/services/resources/loader';
-import {useFetchState, useFetchStateProcessed} from '../../common/fetch';
-import {EnumDataPack} from './out/props';
+} from '../../../../../api-def/resources';
+import {ResourceLoader} from '../../../../../utils/services/resources/loader';
+import {useFetchState, useFetchStateProcessed} from '../../../common/fetch';
+import {EnumDataPack} from '../out/props';
 
 
 export type UseFetchEnumsReturn = EnumDataPack & {

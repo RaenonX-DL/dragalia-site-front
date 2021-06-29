@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
-import {useFetchEnums} from './hooks';
+import {useFetchEnums} from './hooks/enums';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
 import {getCalculatedEntries} from './in/utils/calculate';

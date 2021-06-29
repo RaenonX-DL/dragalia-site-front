@@ -1,5 +1,5 @@
 import {ElementBonusData} from '../../../../../../api-def/resources';
-import {UseFetchEnumsReturn} from '../../hooks';
+import {UseFetchEnumsReturn} from '../../hooks/enums';
 import {CalculatedSkillEntry} from '../../out/types';
 import {calculateEntries, filterSkillEntries} from '../../out/utils';
 import {InputData} from '../types';
