@@ -19,12 +19,12 @@ export const sortFunc: SortFuncLookup = {
   ),
 };
 
-export const sortName: { [sortBy in SortBy]: GetTranslationFunction } = {
+export const orderName: { [sortBy in SortBy]: GetTranslationFunction } = {
   damageDesc: (t) => t.game.skillAtk.sort.damageDesc,
   spAsc: (t) => t.game.skillAtk.sort.spAsc,
   sspAsc: (t) => t.game.skillAtk.sort.sspAsc,
   spPer1KModDesc: (t) => t.game.skillAtk.sort.spPer1KModDesc,
   sspPer1KModDesc: (t) => t.game.skillAtk.sort.sspPer1KModDesc,
-  afflictionLengthPer1KSpDesc: (t) => t.game.skillAtk.sort.afflictionLengthPer1KSpAsc,
-  afflictionLengthPer1KSspDesc: (t) => t.game.skillAtk.sort.afflictionLengthPer1KSspAsc,
+  afflictionLengthPer1KSpDesc: (t) => t.game.skillAtk.sort.afflictionLengthPer1KSpDesc,
+  afflictionLengthPer1KSspDesc: (t) => t.game.skillAtk.sort.afflictionLengthPer1KSspDesc,
 };

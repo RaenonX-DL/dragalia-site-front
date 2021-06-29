@@ -231,13 +231,14 @@ export const translation: TranslationStruct = {
         warning: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
       },
       sort: {
+        text: 'Order: {{sortBy}}',
         damageDesc: 'Damage (Hi → Lo)',
         spAsc: 'SP (Lo → Hi)',
         sspAsc: 'SSP (Lo → Hi)',
         spPer1KModDesc: 'SP / 1000% (Lo → Hi)',
         sspPer1KModDesc: 'SSP / 1000% (Lo → Hi)',
-        afflictionLengthPer1KSpAsc: 'Affliction (sec) / 1K SP (Hi → Lo)',
-        afflictionLengthPer1KSspAsc: 'Affliction (sec) / 1K SSP (Hi → Lo)',
+        afflictionLengthPer1KSpDesc: 'Affliction (sec) / 1K SP (Hi → Lo)',
+        afflictionLengthPer1KSspDesc: 'Affliction (sec) / 1K SSP (Hi → Lo)',
       },
     },
     tools: {

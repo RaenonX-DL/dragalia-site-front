@@ -204,13 +204,14 @@ export type TranslationStruct = {
         warning: string,
       },
       sort: {
+        text: string,
         damageDesc: string,
         spAsc: string,
         sspAsc: string,
         spPer1KModDesc: string,
         sspPer1KModDesc: string,
-        afflictionLengthPer1KSpAsc: string,
-        afflictionLengthPer1KSspAsc: string,
+        afflictionLengthPer1KSpDesc: string,
+        afflictionLengthPer1KSspDesc: string,
       }
     },
     tools: {

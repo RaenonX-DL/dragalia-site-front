@@ -13,7 +13,9 @@ import {ResourceLoader} from '../../../../utils/services/resources/loader';
 import {useFetchState, useFetchStateProcessed} from '../../common/fetch';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
+import {overwriteInputData} from './in/utils';
 import {AttackingSkillOutput} from './out/main';
+import {AttackingSkillSorter} from './out/sorter/main';
 
 
 export const AttackingSkillLookup = () => {
@@ -83,6 +85,17 @@ export const AttackingSkillLookup = () => {
         />
       </Col>
       <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
+        {
+          inputDataForward &&
+          <Row className="text-right mb-2">
+            <Col>
+              <AttackingSkillSorter
+                inputData={inputDataForward}
+                onOrderPicked={(sortBy) => setInputDataForward(overwriteInputData(inputDataForward, {sortBy}))}
+              />
+            </Col>
+          </Row>
+        }
         <AttackingSkillOutput
           inputData={inputDataForward}
           conditionEnumMap={conditionEnums.data}
