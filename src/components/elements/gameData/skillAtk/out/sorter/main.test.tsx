@@ -34,6 +34,6 @@ describe('ATK skill entry sorter', () => {
     fireEvent.click(orderButton);
 
     expect(onOrderPicked).toHaveBeenCalledTimes(1);
-    expect(onOrderPicked).toHaveBeenLastCalledWith('afflictionLengthPer1KSpDesc');
+    expect(onOrderPicked).toHaveBeenLastCalledWith('afflictionLengthPer1KSp');
   });
 });

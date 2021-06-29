@@ -19,12 +19,12 @@ import {CalculatedSkillEntry} from './types';
 
 
 type SkillEntryProps = EnumDataPack & {
-  inputData?: InputData,
+  displayConfig: InputData['display'],
   calculatedData: CalculatedSkillEntry,
 }
 
 export const AttackingSkillEntry = ({
-  inputData,
+  displayConfig,
   calculatedData,
   conditionEnumMap,
   skillIdentifierInfo,
@@ -32,11 +32,6 @@ export const AttackingSkillEntry = ({
   statusEnums,
 }: SkillEntryProps) => {
   const atkSkillEntry = calculatedData.skillEntry;
-
-  // Early terminate if no input data
-  if (!inputData) {
-    return <></>;
-  }
 
   return (
     <div className="rounded bg-black-32 p-2 mb-2">
@@ -48,13 +43,13 @@ export const AttackingSkillEntry = ({
           <SectionSkillName atkSkillEntry={atkSkillEntry} skillIdentifierInfo={skillIdentifierInfo}/>
         </Col>
         {
-          inputData.display.damageInfo &&
+          displayConfig.damageInfo &&
           <Col xs="auto" sm="auto" className="text-right my-auto">
             <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
           </Col>
         }
         {
-          inputData.display.actualDamage &&
+          displayConfig.actualDamage &&
           <Col className="text-center my-auto" lg={5}>
             <SectionSkillDamage calculatedData={calculatedData}/>
             <ConditionBadges conditionCodes={calculatedData.skillEntry.condition} conditionEnums={conditionEnumMap}/>
@@ -62,7 +57,7 @@ export const AttackingSkillEntry = ({
         }
       </Row>
       {
-        inputData.display.damageDist &&
+        displayConfig.damageDist &&
         <Row className="text-center">
           <Col>
             <DistributionBar data={atkSkillEntry.skill.modsMax} padding={0} height="0.5rem" displayText={false}/>
@@ -71,17 +66,17 @@ export const AttackingSkillEntry = ({
       }
       <Row>
         {
-          inputData.display.affliction &&
+          displayConfig.affliction &&
           <SectionAffliction atkSkillEntry={atkSkillEntry} statusEnums={statusEnums}/>
         }
         <SectionBadges atkSkillEntry={atkSkillEntry}/>
       </Row>
       {
-        inputData.display.animationInfo &&
+        displayConfig.animationInfo &&
         <SectionAnimation atkSkillEntry={atkSkillEntry} skillEnums={skillEnums} conditionEnumMap={conditionEnumMap}/>
       }
       {
-        inputData.display.spInfo &&
+        displayConfig.spInfo &&
         <SectionSpInfo calculatedData={calculatedData} statusEnums={statusEnums}/>
       }
     </div>

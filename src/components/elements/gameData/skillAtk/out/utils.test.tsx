@@ -110,7 +110,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by damage DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'damageDesc',
+      sortBy: 'damage',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -125,7 +125,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SP ASC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'spAsc',
+      sortBy: 'sp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -140,7 +140,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SSP ASC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'sspAsc',
+      sortBy: 'ssp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -155,7 +155,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'spPer1KModDesc',
+      sortBy: 'spPer1KMod',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -170,7 +170,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SSP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'sspPer1KModDesc',
+      sortBy: 'sspPer1KMod',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -185,7 +185,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by affliction duration SP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'afflictionLengthPer1KSpDesc',
+      sortBy: 'afflictionLengthPer1KSp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -200,7 +200,7 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by affliction duration SSP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'afflictionLengthPer1KSspDesc',
+      sortBy: 'afflictionLengthPer1KSsp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)

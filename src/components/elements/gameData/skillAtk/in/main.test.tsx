@@ -6,18 +6,30 @@ import userEvent from '@testing-library/user-event';
 import {renderReact} from '../../../../../../test/render/main';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {AttackingSkillInput} from './main';
+import {InputData} from './types';
 import {generateInputData, overwriteInputData} from './utils/inputData';
 
 
 describe('ATK skill input', () => {
   let fnOnSearch: jest.Mock;
+  let inputData: InputData;
+  let setInputData: jest.Mock;
 
   beforeEach(() => {
     fnOnSearch = jest.fn();
+    inputData = generateInputData();
+    setInputData = jest.fn().mockImplementation((newData) => inputData = newData);
   });
 
   it('collapsed to summary on load', async () => {
-    renderReact(() => <AttackingSkillInput onSearchRequested={fnOnSearch}/>);
+    renderReact(() => (
+      <AttackingSkillInput
+        onSearchRequested={fnOnSearch}
+        isAllFetched
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+    ));
 
     const inspireButton = screen.queryByText(
       translationEN.game.skillAtk.name.crtInspired,
@@ -27,7 +39,14 @@ describe('ATK skill input', () => {
   });
 
   it('cannot search if no info to display', async () => {
-    renderReact(() => <AttackingSkillInput onSearchRequested={fnOnSearch}/>);
+    const {rerender} = renderReact(() => (
+      <AttackingSkillInput
+        onSearchRequested={fnOnSearch}
+        isAllFetched
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+    ));
 
     const displayDamageInfo = screen.getByText(translationEN.game.skillAtk.display.options.damageInfo);
     const displaySpInfo = screen.getByText(translationEN.game.skillAtk.display.options.spInfo);
@@ -36,25 +55,37 @@ describe('ATK skill input', () => {
       {selector: 'span'},
     );
     userEvent.click(displayDamageInfo);
+    rerender();
     userEvent.click(displaySpInfo);
+    rerender();
     userEvent.click(displayAffliction);
+    rerender();
 
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);
+    rerender();
 
     const errorMessage = translationEN.game.skillAtk.error.noInfoToDisplay;
     await waitFor(() => expect(screen.getByText(errorMessage)).toBeInTheDocument());
     expect(fnOnSearch).not.toHaveBeenCalled();
   });
 
-  it('sends correct items to display in input data', async () => {
-    renderReact(() => <AttackingSkillInput onSearchRequested={fnOnSearch}/>);
+  it('sends correct display config in input data', async () => {
+    const {rerender} = renderReact(() => (
+      <AttackingSkillInput
+        onSearchRequested={fnOnSearch}
+        isAllFetched
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+    ));
 
     const displayAffliction = screen.getByText(
       translationEN.game.skillAtk.display.options.affliction,
       {selector: 'span'},
     );
     userEvent.click(displayAffliction);
+    rerender();
 
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);

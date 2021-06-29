@@ -6,25 +6,25 @@ import {CalculatedSkillEntry} from '../types';
 type SortFuncLookup = { [sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number }
 
 export const sortFunc: SortFuncLookup = {
-  damageDesc: (a, b) => b.skillDamage.expected - a.skillDamage.expected,
-  spAsc: (a, b) => a.skillEntry.skill.spMax - b.skillEntry.skill.spMax,
-  sspAsc: (a, b) => a.skillEntry.skill.ssSp - b.skillEntry.skill.ssSp,
-  spPer1KModDesc: (a, b) => b.efficiency.spPer1KMod - a.efficiency.spPer1KMod,
-  sspPer1KModDesc: (a, b) => b.efficiency.sspPer1KMod - a.efficiency.sspPer1KMod,
-  afflictionLengthPer1KSpDesc: (a, b) => (
+  damage: (a, b) => b.skillDamage.expected - a.skillDamage.expected,
+  sp: (a, b) => a.skillEntry.skill.spMax - b.skillEntry.skill.spMax,
+  ssp: (a, b) => a.skillEntry.skill.ssSp - b.skillEntry.skill.ssSp,
+  spPer1KMod: (a, b) => b.efficiency.spPer1KMod - a.efficiency.spPer1KMod,
+  sspPer1KMod: (a, b) => b.efficiency.sspPer1KMod - a.efficiency.sspPer1KMod,
+  afflictionLengthPer1KSp: (a, b) => (
     Math.min(...Object.values(b.efficiency.secPer1KSp)) - Math.min(...Object.values(a.efficiency.secPer1KSp))
   ),
-  afflictionLengthPer1KSspDesc: (a, b) => (
+  afflictionLengthPer1KSsp: (a, b) => (
     Math.min(...Object.values(b.efficiency.secPer1KSsp)) - Math.min(...Object.values(a.efficiency.secPer1KSsp))
   ),
 };
 
 export const orderName: { [sortBy in SortBy]: GetTranslationFunction } = {
-  damageDesc: (t) => t.game.skillAtk.sort.damageDesc,
-  spAsc: (t) => t.game.skillAtk.sort.sp,
-  sspAsc: (t) => t.game.skillAtk.sort.ssp,
-  spPer1KModDesc: (t) => t.game.skillAtk.spInfo.efficiency.spPer1KMod,
-  sspPer1KModDesc: (t) => t.game.skillAtk.spInfo.efficiency.sspPer1KMod,
-  afflictionLengthPer1KSpDesc: (t) => t.game.skillAtk.spInfo.efficiency.secPer1KSp,
-  afflictionLengthPer1KSspDesc: (t) => t.game.skillAtk.spInfo.efficiency.secPer1KSsp,
+  damage: (t) => t.game.skillAtk.sort.damageDesc,
+  sp: (t) => t.game.skillAtk.sort.sp,
+  ssp: (t) => t.game.skillAtk.sort.ssp,
+  spPer1KMod: (t) => t.game.skillAtk.spInfo.efficiency.spPer1KMod,
+  sspPer1KMod: (t) => t.game.skillAtk.spInfo.efficiency.sspPer1KMod,
+  afflictionLengthPer1KSp: (t) => t.game.skillAtk.spInfo.efficiency.secPer1KSp,
+  afflictionLengthPer1KSsp: (t) => t.game.skillAtk.spInfo.efficiency.secPer1KSsp,
 };

@@ -1,34 +1,25 @@
 import React from 'react';
 
-import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
+import {AttackingSkillData} from '../../../../../api-def/resources';
 import {AnimationInfoWarning} from '../../warnings/animation';
 import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';
 import {EnumDataPack} from './props';
 import {CalculatedSkillEntry} from './types';
-import {calculateEntries, filterSkillEntries} from './utils';
 
 
 type OutputProps = EnumDataPack & {
-  inputData?: InputData,
-  elementBonusData: ElementBonusData,
+  displayConfig: InputData['display'],
   atkSkillEntries: Array<AttackingSkillData>,
+  calculatedEntries: Array<CalculatedSkillEntry>,
 }
 
-export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntries, ...enums}: OutputProps) => {
+export const AttackingSkillOutput = ({displayConfig, atkSkillEntries, calculatedEntries, ...enums}: OutputProps) => {
   // Early termination if no input
-  if (!inputData) {
+  if (!calculatedEntries.length) {
     return <></>;
   }
-
-  // Filter entries
-  const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
-
-  // Calculate entries
-  const calculatedEntries: Array<CalculatedSkillEntry> = calculateEntries(
-    atkSkillEntriesFiltered, inputData, elementBonusData,
-  );
 
   const entries: Array<React.ReactElement> = [];
 
@@ -38,7 +29,7 @@ export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntri
     entries.push(warning);
   }
   // Check if animation info warning should be displayed
-  if (inputData.display.animationInfo) {
+  if (displayConfig.animationInfo) {
     entries.push(<AnimationInfoWarning/>);
   }
 
@@ -48,7 +39,7 @@ export const AttackingSkillOutput = ({inputData, elementBonusData, atkSkillEntri
       .map((calculatedData: CalculatedSkillEntry, index: number) => (
         <AttackingSkillEntry
           key={index}
-          inputData={inputData}
+          displayConfig={displayConfig}
           calculatedData={calculatedData}
           {...enums}
         />

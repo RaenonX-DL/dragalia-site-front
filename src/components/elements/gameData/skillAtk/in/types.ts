@@ -4,13 +4,13 @@ import {InputPanelCommonProps} from '../../../input/types';
 
 
 export type SortBy =
-  'damageDesc' |
-  'spAsc' |
-  'sspAsc' |
-  'spPer1KModDesc' |
-  'sspPer1KModDesc' |
-  'afflictionLengthPer1KSpDesc' |
-  'afflictionLengthPer1KSspDesc'
+  'damage' |
+  'sp' |
+  'ssp' |
+  'spPer1KMod' |
+  'sspPer1KMod' |
+  'afflictionLengthPer1KSp' |
+  'afflictionLengthPer1KSsp'
 
 export type InputData = {
   params: {

@@ -3,116 +3,85 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {ConditionEnumMap, SkillEnums, StatusEnums} from '../../../../api-def/resources/types/export/enums';
-import {ElementBonus, ElementBonusData} from '../../../../api-def/resources/types/export/misc';
-import {AttackingSkillData} from '../../../../api-def/resources/types/skillAtk';
-import {SkillIdentifierInfo} from '../../../../api-def/resources/types/skillIdentifier';
+import {ElementBonusData} from '../../../../api-def/resources';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
-import {ResourceLoader} from '../../../../utils/services/resources/loader';
-import {useFetchState, useFetchStateProcessed} from '../../common/fetch';
+import {useFetchEnums, UseFetchEnumsReturn} from './hooks';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
-import {overwriteInputData} from './in/utils/inputData';
+import {generateInputData, overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
 import {AttackingSkillSorter} from './out/sorter/main';
+import {CalculatedSkillEntry} from './out/types';
+import {calculateEntries, filterSkillEntries} from './out/utils';
 
+
+const getCalculatedEntries = (
+  inputData: InputData,
+  atkSkillEntries: UseFetchEnumsReturn['attackingSkillEntries'],
+  elementBonusData: ElementBonusData,
+): Array<CalculatedSkillEntry> => (
+  calculateEntries(
+    filterSkillEntries(inputData, atkSkillEntries),
+    inputData,
+    elementBonusData,
+  )
+);
 
 export const AttackingSkillLookup = () => {
-  const [inputDataForward, setInputDataForward] = React.useState<InputData>();
+  const [inputData, setInputData] = React.useState<InputData>(generateInputData());
+  const [atkSkillOutput, setAtkSkillOutput] = React.useState<Array<CalculatedSkillEntry> | undefined>();
+
   const entryCol = React.useRef<HTMLDivElement>(null);
 
   const {
-    fetchStatus: elementBonuses,
-    fetchFunction: fetchElementBonuses,
-  } = useFetchStateProcessed<ElementBonusData, ElementBonus>(
-    new ElementBonusData(),
-    ResourceLoader.getElementBonusData,
-    'Failed to fetch element bonus data.',
-    (response) => new ElementBonusData(response),
-  );
-  const {
-    fetchStatus: conditionEnums,
-    fetchFunction: fetchConditionEnums,
-  } = useFetchState<ConditionEnumMap>(
-    {},
-    ResourceLoader.getEnumAllConditions,
-    'Failed to fetch condition enums.',
-  );
-  const {
-    fetchStatus: skillIdentifiers,
-    fetchFunction: fetchSkillIdentifiers,
-  } = useFetchState<SkillIdentifierInfo>(
-    {},
-    ResourceLoader.getSkillIdentifierInfo,
-    'Failed to fetch skill identifiers.',
-  );
-  const {
-    fetchStatus: attackingSkillEntries,
-    fetchFunction: fetchAttackingSkillEntries,
-  } = useFetchState<Array<AttackingSkillData>>(
-    [],
-    ResourceLoader.getAttackingSkillEntries,
-    'Failed to fetch attacking skill entries.',
-  );
-  const {fetchStatus: skillEnums, fetchFunction: fetchSkillEnums} = useFetchState<SkillEnums>(
-    {cancel: []},
-    ResourceLoader.getEnumSkill,
-    'Failed to fetch skill enums.',
-  );
-  const {
-    fetchStatus: statusEnums,
-    fetchFunction: fetchStatusEnums,
-  } = useFetchState<StatusEnums>(
-    {status: []},
-    ResourceLoader.getEnumAfflictionStatus,
-    'Failed to fetch affliction status enums.',
-  );
-
-  fetchElementBonuses();
-  fetchConditionEnums();
-  fetchSkillIdentifiers();
-  fetchAttackingSkillEntries();
-  fetchSkillEnums();
-  fetchStatusEnums();
+    elementBonuses,
+    conditionEnumMap,
+    skillIdentifierInfo,
+    attackingSkillEntries,
+    skillEnums,
+    statusEnums,
+    isAllFetched,
+  } = useFetchEnums();
 
   React.useEffect(() => {
-    if (inputDataForward) {
-      scrollRefToTop(entryCol);
+    if (!atkSkillOutput) {
+      return;
     }
-  }, [inputDataForward]);
+    scrollRefToTop(entryCol);
+  }, [atkSkillOutput]);
 
   return (
     <Row>
       <Col lg={4} className="rounded bg-black-32 p-3 mb-3">
         <AttackingSkillInput
+          inputData={inputData}
+          setInputData={setInputData}
+          isAllFetched={isAllFetched}
           onSearchRequested={(inputData: InputData) => {
             GoogleAnalytics.damageCalc('search', inputData);
 
-            setInputDataForward(inputData);
+            setAtkSkillOutput(getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses));
           }}
         />
       </Col>
       <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
-        {
-          inputDataForward &&
-          <Row className="text-right mb-2">
-            <Col>
-              <AttackingSkillSorter
-                inputData={inputDataForward}
-                onOrderPicked={(sortBy) => setInputDataForward(overwriteInputData(inputDataForward, {sortBy}))}
-              />
-            </Col>
-          </Row>
-        }
+        <Row className="text-right mb-2">
+          <Col>
+            <AttackingSkillSorter
+              inputData={inputData}
+              onOrderPicked={(sortBy) => setInputData(overwriteInputData(inputData, {sortBy}))}
+            />
+          </Col>
+        </Row>
         <AttackingSkillOutput
-          inputData={inputDataForward}
-          conditionEnumMap={conditionEnums.data}
-          elementBonusData={elementBonuses.data}
-          skillIdentifierInfo={skillIdentifiers.data}
-          atkSkillEntries={attackingSkillEntries.data}
-          skillEnums={skillEnums.data}
-          statusEnums={statusEnums.data}
+          displayConfig={inputData.display}
+          calculatedEntries={atkSkillOutput || []}
+          conditionEnumMap={conditionEnumMap}
+          skillIdentifierInfo={skillIdentifierInfo}
+          atkSkillEntries={attackingSkillEntries}
+          skillEnums={skillEnums}
+          statusEnums={statusEnums}
         />
       </Col>
     </Row>

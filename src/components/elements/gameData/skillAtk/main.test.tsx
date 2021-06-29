@@ -35,7 +35,11 @@ describe('ATK skill lookup', () => {
 
     renderReact(() => <AttackingSkillLookup/>);
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
     userEvent.click(searchButton);
 
     expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
@@ -72,7 +76,11 @@ describe('ATK skill lookup', () => {
 
     renderReact(() => <AttackingSkillLookup/>);
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
     userEvent.click(searchButton);
 
     expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
@@ -109,7 +117,11 @@ describe('ATK skill lookup', () => {
 
     renderReact(() => <AttackingSkillLookup/>);
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
     userEvent.click(searchButton);
 
     expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
@@ -146,7 +158,11 @@ describe('ATK skill lookup', () => {
 
     renderReact(() => <AttackingSkillLookup/>);
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
     userEvent.click(searchButton);
 
     expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
@@ -161,4 +177,33 @@ describe('ATK skill lookup', () => {
     // Affliction from S!Julietta
     expect(screen.queryByText('', {selector: 'svg > rect'})).not.toBeInTheDocument();
   });
+
+  it('does not change the sort order if search again', async () => {
+    jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
+      overwriteInputData(inputDataTemplate, {sortBy: 'sp'})
+    ));
+
+    const {rerender} = renderReact(() => <AttackingSkillLookup/>);
+
+    // Initial search
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
+    userEvent.click(searchButton);
+    rerender();
+
+    const dispelOnly = screen.getByText(translationEN.game.skillAtk.name.filterDispelOnly);
+    userEvent.click(dispelOnly);
+    rerender();
+    userEvent.click(searchButton);
+    rerender();
+
+    // No ideas for checking if the order is really unchanged
+    // - Spy on scroll top won't work because the change is not immediately reflected
+    await new Promise((r) => setTimeout(r, 1000));
+
+    expect(screen.getByText('Order: SP', {selector: 'button'})).toBeInTheDocument();
+  }, 10000);
 });
