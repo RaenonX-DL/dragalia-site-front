@@ -22,7 +22,7 @@ describe('Input collection', () => {
     fnSetInputData = jest.fn().mockImplementation((newData) => inputData = newData);
   });
 
-  it('renders section title', async () => {
+  it('renders section title w/ click to show description', async () => {
     inputData = {};
 
     renderReact(() => (
@@ -39,12 +39,12 @@ describe('Input collection', () => {
       />
     ));
 
-    const titleElement = screen.getByText('title', {selector: 'h4'});
-    userEvent.click(titleElement);
+    const infoIcon = screen.getByText('', {selector: 'i.bi'});
+    userEvent.click(infoIcon);
     expect(screen.getByText('description')).toBeInTheDocument();
   });
 
-  it('renders sub title', async () => {
+  it('renders sub title w/ click to show description', async () => {
     inputData = {};
 
     renderReact(() => (
@@ -61,7 +61,7 @@ describe('Input collection', () => {
       />
     ));
 
-    const titleElement = screen.getByText('title', {selector: 'h5'});
+    const titleElement = screen.getByText('', {selector: 'i.bi'});
     userEvent.click(titleElement);
     expect(screen.getByText('description')).toBeInTheDocument();
   });

@@ -38,7 +38,7 @@ describe('ATK skill lookup', () => {
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);
 
-    await waitFor(() => expect(screen.getByText('Summer Julietta')).toBeInTheDocument());
+    expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
     // Damage info from S!Julietta
     expect(screen.getByText('2708%')).toBeInTheDocument();
     expect(screen.getAllByText('3 HIT').length).toBe(2); // There are multiple 3 hit bog skills
@@ -75,7 +75,7 @@ describe('ATK skill lookup', () => {
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);
 
-    await waitFor(() => expect(screen.getByText('Summer Julietta')).toBeInTheDocument());
+    expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
     // Damage info from S!Julietta
     expect(screen.queryByText('2708%')).not.toBeInTheDocument();
     expect(screen.queryAllByText('3 HIT').length).toBe(0);
@@ -112,7 +112,7 @@ describe('ATK skill lookup', () => {
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);
 
-    await waitFor(() => expect(screen.getByText('Summer Julietta')).toBeInTheDocument());
+    expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
     // Damage info from S!Julietta
     expect(screen.queryByText('2708%')).not.toBeInTheDocument();
     expect(screen.queryAllByText('3 HIT').length).toBe(0);
@@ -149,7 +149,7 @@ describe('ATK skill lookup', () => {
     const searchButton = screen.getByText(translationEN.misc.search);
     userEvent.click(searchButton);
 
-    await waitFor(() => expect(screen.getByText('Summer Julietta')).toBeInTheDocument());
+    expect(await screen.findByText('Summer Julietta', undefined, {timeout: 2000})).toBeInTheDocument();
 
     // Damage info from S!Julietta
     expect(screen.queryByText('2708%')).not.toBeInTheDocument();
