@@ -240,8 +240,8 @@ export const translation: TranslationStruct = {
       spInfo: {
         efficiencyIndexes: 'Efficiency Indexes',
         efficiency: {
-          spPer1KMod: 'SP / 1000%',
-          sspPer1KMod: 'SSP / 1000%',
+          modPctPer1KSp: '% / 1K SP',
+          modPctPer1KSsp: '% / 1K SSP',
           secPer1KSp: 'Affliction (sec) / 1K SP',
           secPer1KSsp: 'Affliction (sec) / 1K SSP',
         },

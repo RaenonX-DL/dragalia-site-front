@@ -46,7 +46,7 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
   });
@@ -77,10 +77,10 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
-    expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.sspPer1KMod)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSsp)).toBeInTheDocument();
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSsp)).toBeInTheDocument();
   });
 
@@ -99,10 +99,10 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
-    expect(screen.queryByText(translationEN.game.skillAtk.spInfo.efficiency.sspPer1KMod)).not.toBeInTheDocument();
+    expect(screen.queryByText(translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSsp)).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSsp)).not.toBeInTheDocument();
   });
 
@@ -132,7 +132,7 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
     expect(screen.queryByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp)).not.toBeInTheDocument();
@@ -154,7 +154,7 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp)).toBeInTheDocument();
@@ -186,10 +186,10 @@ describe('SP info section', () => {
     userEvent.click(efficiencyButton);
 
     await waitFor(() => expect(screen.getByText(
-      translationEN.game.skillAtk.spInfo.efficiency.spPer1KMod,
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
       {selector: '.collapse.show *'},
     )).toBeInTheDocument());
-    expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.sspPer1KMod)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSsp)).toBeInTheDocument();
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp)).toBeInTheDocument();
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSsp)).toBeInTheDocument();
   });

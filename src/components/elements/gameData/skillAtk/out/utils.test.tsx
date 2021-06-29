@@ -155,11 +155,11 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'spPer1KMod',
+      sortBy: 'modPer1KSp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
-      .map((entry) => entry.efficiency.spPer1KMod)
+      .map((entry) => entry.efficiency.modPctPer1KSp)
       .filter((x, i, a) => !i || x !== a[i - 1]);
     expect(entries[0]).toBeGreaterThan(entries[1]);
     expect(entries[1]).toBeGreaterThan(entries[2]);
@@ -170,11 +170,11 @@ describe('Sort ATK skill entries', () => {
   it('sorts entries by SSP efficiency DESC', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
-      sortBy: 'sspPer1KMod',
+      sortBy: 'modPer1KSsp',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
-      .map((entry) => entry.efficiency.sspPer1KMod)
+      .map((entry) => entry.efficiency.modPctPer1KSsp)
       .filter((x, i, a) => !i || x !== a[i - 1]);
     expect(entries[0]).toBeGreaterThan(entries[1]);
     expect(entries[1]).toBeGreaterThan(entries[2]);
@@ -245,7 +245,7 @@ describe('Entry calculation', () => {
     };
 
     const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
-    expect(entry.efficiency.spPer1KMod).toBe(2000);
+    expect(entry.efficiency.modPctPer1KSp).toBe(500);
   });
 
   it('calculates SSP efficiency', async () => {
@@ -272,7 +272,7 @@ describe('Entry calculation', () => {
     };
 
     const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
-    expect(entry.efficiency.sspPer1KMod).toBe(10000);
+    expect(entry.efficiency.modPctPer1KSsp).toBe(100);
   });
 
   it('calculates affliction duration SP efficiency', async () => {

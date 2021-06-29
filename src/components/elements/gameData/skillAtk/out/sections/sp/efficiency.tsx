@@ -63,14 +63,14 @@ export const SpEfficiencyTable = ({calculatedData, statusEnums}: SectionSpInfoPr
           <table>
             <tbody>
               <tr>
-                <td>{t((t) => t.game.skillAtk.spInfo.efficiency.spPer1KMod)}</td>
-                <td>{calculatedData.efficiency.spPer1KMod.toFixed(2)}</td>
+                <td>{t((t) => t.game.skillAtk.spInfo.efficiency.modPctPer1KSp)}</td>
+                <td>{calculatedData.efficiency.modPctPer1KSp.toFixed(2)}%</td>
               </tr>
               {
                 calculatedData.skillEntry.skill.sharable &&
                 <tr>
-                  <td>{t((t) => t.game.skillAtk.spInfo.efficiency.sspPer1KMod)}</td>
-                  <td>{calculatedData.efficiency.sspPer1KMod.toFixed(2)}</td>
+                  <td>{t((t) => t.game.skillAtk.spInfo.efficiency.modPctPer1KSsp)}</td>
+                  <td>{calculatedData.efficiency.modPctPer1KSsp.toFixed(2)}%</td>
                 </tr>
               }
               {

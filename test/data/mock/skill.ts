@@ -65,8 +65,8 @@ export const generateCalculatedEntry = (): CalculatedSkillEntry => ({
     totalMods: 7,
   },
   efficiency: {
-    spPer1KMod: 1000,
-    sspPer1KMod: 1200,
+    modPctPer1KSp: 1000,
+    modPctPer1KSsp: 1200,
     secPer1KSp: {
       1: 2.5757575757,
       2: 5.0131313131,

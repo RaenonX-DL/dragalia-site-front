@@ -51,8 +51,8 @@ export const calculateEntries = (
 
       // Calculate efficiency
       const efficiency: Efficiency = {
-        spPer1KMod: entry.skill.spMax / (skillDamage.totalMods / 10),
-        sspPer1KMod: entry.skill.ssSp / (skillDamage.totalMods / 10),
+        modPctPer1KSp: (skillDamage.totalMods * 100) / (entry.skill.spMax / 1000),
+        modPctPer1KSsp: (skillDamage.totalMods * 100) / (entry.skill.ssSp / 1000),
         secPer1KSp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
           [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.spMax / 1000)]
         ))),

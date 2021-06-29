@@ -3,8 +3,8 @@ import {CalculateDamageReturn} from '../../../../../utils/game/damage';
 
 
 export type Efficiency = {
-  spPer1KMod: number,
-  sspPer1KMod: number,
+  modPctPer1KSp: number,
+  modPctPer1KSsp: number,
   secPer1KSp: {[StatusCode in number]: number},
   secPer1KSsp: {[StatusCode in number]: number},
 }

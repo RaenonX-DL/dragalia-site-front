@@ -7,8 +7,8 @@ export type SortBy =
   'damage' |
   'sp' |
   'ssp' |
-  'spPer1KMod' |
-  'sspPer1KMod' |
+  'modPer1KSp' |
+  'modPer1KSsp' |
   'afflictionLengthPer1KSp' |
   'afflictionLengthPer1KSsp'
 

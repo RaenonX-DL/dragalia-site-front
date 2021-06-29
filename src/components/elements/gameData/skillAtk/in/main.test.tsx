@@ -25,7 +25,7 @@ describe('ATK skill input', () => {
     renderReact(() => (
       <AttackingSkillInput
         onSearchRequested={fnOnSearch}
-        isAllFetched
+        isSearchAllowed
         inputData={inputData}
         setInputData={setInputData}
       />
@@ -42,7 +42,7 @@ describe('ATK skill input', () => {
     const {rerender} = renderReact(() => (
       <AttackingSkillInput
         onSearchRequested={fnOnSearch}
-        isAllFetched
+        isSearchAllowed
         inputData={inputData}
         setInputData={setInputData}
       />
@@ -74,7 +74,7 @@ describe('ATK skill input', () => {
     const {rerender} = renderReact(() => (
       <AttackingSkillInput
         onSearchRequested={fnOnSearch}
-        isAllFetched
+        isSearchAllowed
         inputData={inputData}
         setInputData={setInputData}
       />
