@@ -23,7 +23,7 @@ describe('Process text', () => {
   });
 
   it('transforms all quick references at once', async () => {
-    const text = 'Miscellaneous post #M3 Quest Post #Q1 Gala Mym Analysis';
+    const text = 'Miscellaneous post #M3 Quest Post #Q1 :Gala Mym: Analysis';
 
     const result = await processText({text, lang});
 

@@ -57,7 +57,7 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   });
 
   it('transforms all types of link at once', async () => {
-    const text = 'Miscellaneous post #M3 Quest Post #Q1 Gala Mym Analysis';
+    const text = 'Miscellaneous post #M3 Quest Post #Q1 :Gala Mym: Analysis';
 
     const result = await transformQuickReference({text, lang});
 
