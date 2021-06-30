@@ -191,6 +191,7 @@ export type TranslationStruct = {
       collapse: string,
       error: {
         noInfoToDisplay: string,
+        noResult: string,
         presetMustLogin: string,
       },
       animation: {

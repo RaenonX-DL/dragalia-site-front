@@ -2,6 +2,7 @@ import React from 'react';
 
 import {AfflictionWarning} from '../../warnings/affliction';
 import {AnimationInfoWarning} from '../../warnings/animation';
+import {NoResultWarning} from '../../warnings/noResult';
 import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';
@@ -15,9 +16,8 @@ type OutputProps = EnumDataPack & {
 }
 
 export const AttackingSkillOutput = ({displayConfig, calculatedEntries, ...enums}: OutputProps) => {
-  // Early termination if no input
   if (!calculatedEntries.length) {
-    return <></>;
+    return <NoResultWarning/>;
   }
 
   const entries: Array<React.ReactElement> = [];

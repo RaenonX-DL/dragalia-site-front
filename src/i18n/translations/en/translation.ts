@@ -216,6 +216,7 @@ export const translation: TranslationStruct = {
       collapse: 'Collapse/Expand',
       error: {
         noInfoToDisplay: 'Please select at least 1 info to display.',
+        noResult: 'No available results.',
         presetMustLogin: 'You must login to use the input parameter preset via link.',
       },
       animation: {
