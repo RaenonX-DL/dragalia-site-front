@@ -8,15 +8,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import {useI18n} from '../../../../../i18n/hook';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {useAtkSkillInput} from '../hooks/preset';
+import {PresetStatus} from './types';
 
 
-type CurrentStatus =
-  'notCreated' |
-  'creating' |
-  'copied' |
-  'createdNotCopied';
-
-const statusButtonIcon: { [status in CurrentStatus]: React.ReactElement } = {
+const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
   notCreated: <i className="bi bi-share-fill"/>,
   creating: <Spinner animation="grow" size="sm"/>,
   copied: <i className="bi bi-check2"/>,
@@ -30,7 +25,7 @@ type Props = {
 export const AttackingSkillPreset = ({isEnabled}: Props) => {
   const {t} = useI18n();
 
-  const [currentStatus, setCurrentStatus] = React.useState<CurrentStatus>('notCreated');
+  const [status, setStatus] = React.useState<PresetStatus>('notCreated');
   const [presetLink, setPresetLink] = React.useState<string>(t((t) => t.game.skillAtk.info.preset));
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
@@ -38,7 +33,7 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
     message: '',
   });
   const {inputData, makePreset, makePresetLink} = useAtkSkillInput(() => {
-    setCurrentStatus('notCreated');
+    setStatus('notCreated');
     setModalState({
       ...modalState,
       show: true,
@@ -47,29 +42,26 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
   });
 
   const copyAndSetTimeout = (link: string) => {
-    navigator.clipboard.writeText(link).then(() => setCurrentStatus('copied'));
-    return setTimeout(() => setCurrentStatus('createdNotCopied'), 5000);
+    navigator.clipboard.writeText(link).then(() => setStatus('copied'));
+    return setTimeout(() => setStatus('createdNotCopied'), 5000);
   };
 
   const onClickShareButton = () => {
-    if (currentStatus === 'notCreated') {
-      setCurrentStatus('creating');
+    console.log('render preset', inputData.display);
+    if (status === 'notCreated') {
+      setStatus('creating');
       makePreset();
     }
-    if (currentStatus === 'createdNotCopied' && makePresetLink) {
+    if (status === 'createdNotCopied' && makePresetLink) {
       const timeout: NodeJS.Timeout = copyAndSetTimeout(makePresetLink);
       return () => clearTimeout(timeout);
     }
   };
 
-  React.useEffect(() => {
-    setCurrentStatus('notCreated');
-  }, [inputData]);
-
-  if (currentStatus === 'creating' && makePresetLink) {
+  if (status === 'creating' && makePresetLink) {
     setPresetLink(makePresetLink);
     copyAndSetTimeout(makePresetLink);
-    setCurrentStatus('copied');
+    setStatus('copied');
   }
 
   return (
@@ -77,9 +69,9 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
       <CommonModal modalState={modalState} setModalState={setModalState}/>
       <InputGroup className="mb-2 mr-sm-2">
         <FormControl
-          className={`bg-black-32 ${currentStatus === 'copied' ? 'text-info' : 'text-light'}`} disabled
+          className={`bg-black-32 ${status === 'copied' ? 'text-info' : 'text-light'}`} disabled
           value={
-            currentStatus === 'copied' ?
+            status === 'copied' ?
               t((t) => t.game.skillAtk.info.presetExpiry) :
               presetLink
           }
@@ -88,9 +80,9 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
           <Button
             className="d-flex align-items-center"
             variant="outline-light" onClick={onClickShareButton}
-            disabled={!isEnabled || currentStatus === 'creating' || currentStatus === 'copied'}
+            disabled={!isEnabled || status === 'creating' || status === 'copied'}
           >
-            {statusButtonIcon[currentStatus]}
+            {statusButtonIcon[status]}
           </Button>
         </InputGroup.Append>
       </InputGroup>

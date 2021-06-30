@@ -4,11 +4,15 @@ import {fireEvent, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
+import {ApiResponseCode} from '../../../../api-def/api';
+import {translation as translationCHT} from '../../../../i18n/translations/cht/translation';
 import {translation as translationEN} from '../../../../i18n/translations/en/translation';
+import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import * as warnings from '../warnings/overLength';
-import * as calcs from './in/utils/calculate';
+import {PRESET_QUERY_NAME} from './hooks/preset';
+import * as calc from './in/utils/calculate';
 import * as utils from './in/utils/inputData';
-import {overwriteInputData} from './in/utils/inputData';
+import {generateInputData, overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillLookup} from './main';
 import * as output from './out/main';
 
@@ -269,7 +273,7 @@ describe('ATK skill lookup', () => {
   });
 
   it('cannot create preset if there are no results', async () => {
-    jest.spyOn(calcs, 'getCalculatedEntries').mockReturnValue([]);
+    jest.spyOn(calc, 'getCalculatedEntries').mockReturnValue([]);
     const outputComponent = jest.spyOn(output, 'AttackingSkillOutput');
 
     renderReact(() => <AttackingSkillLookup/>);
@@ -291,4 +295,34 @@ describe('ATK skill lookup', () => {
     const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
     expect(shareButton.parentNode).toBeDisabled();
   });
+
+  it('loads input preset', async () => {
+    jest.spyOn(ApiRequestSender, 'getPresetAtkSkill').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      preset: generateInputData({display: {actualDamage: true}}),
+    });
+
+    renderReact(
+      () => <AttackingSkillLookup/>,
+      {
+        hasSession: true,
+        routerOptions: {query: {[PRESET_QUERY_NAME]: 'preset'}},
+      },
+    );
+
+    const searchButton = await screen.findByText(
+      translationCHT.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
+    userEvent.click(searchButton);
+
+    await waitForEntryProcessed();
+    screen.debug(undefined, 100000);
+    // Actual damage from Wedding Aoi
+    expect(await screen.findByText('417,497')).toBeInTheDocument();
+  });
+
+  it.todo('reset preset status on input changed then re-search');
 });
