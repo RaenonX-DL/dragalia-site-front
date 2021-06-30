@@ -8,8 +8,9 @@ import {alertDispatchers} from '../../../../../state/alert/dispatchers';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {isNotFetched} from '../../../common/fetch';
 import {SelectionData} from '../types';
-import {SectionFilter} from './filter';
+import {Filter} from './filter';
 import {InputData} from './types';
+import {generateInputData} from './utils';
 
 
 type InputProps = {
@@ -21,11 +22,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
 
-  const [inputData, setInputData] = React.useState<InputData>({
-    filterElementCode: [],
-    filterExBuffParamCode: [],
-    filterChainedExBuffParamCode: [],
-  });
+  const [inputData, setInputData] = React.useState<InputData>(generateInputData());
 
   const [selectionData, setSelectionData] = React.useState<SelectionData>({
     fetched: false,
@@ -75,7 +72,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
 
   return (
     <div className="rounded bg-black-32 p-3">
-      <SectionFilter
+      <Filter
         elementEnums={selectionData.elementEnums}
         exBuffParams={selectionData.exBuffParams}
         inputData={inputData}

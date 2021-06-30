@@ -7,6 +7,7 @@ import {OverlayBase, OverlayCommonProps} from './base';
 
 type TooltipProps = OverlayCommonProps & {
   text: string,
+  key: React.Key,
 }
 
 export const OverlayTooltip = ({text, placement, children}: TooltipProps) => (

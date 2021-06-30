@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
+import {Image} from '../../../common/image';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {IMAGE_CLASS_SPLITTER} from './const';
 import {ImageProps} from './types';
-import {ImageUnit} from './unit';
 
 
 export const ImageInHTML = ({src, alt}: ImageProps) => {
@@ -26,7 +26,7 @@ export const ImageInHTML = ({src, alt}: ImageProps) => {
     setModalState({
       ...modalState,
       show: true,
-      message: <ImageUnit src={actualSrc} alt={alt} className={className}/>,
+      message: <Image src={actualSrc} text={alt} className={className}/>,
     });
   };
 
@@ -42,5 +42,5 @@ export const ImageInHTML = ({src, alt}: ImageProps) => {
     );
   }
 
-  return <ImageUnit src={actualSrc} alt={alt} className={className}/>;
+  return <Image src={actualSrc} text={alt} className={className}/>;
 };

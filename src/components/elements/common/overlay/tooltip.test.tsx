@@ -12,7 +12,7 @@ describe('Tooltip overlay behavior', () => {
     const overlayText = 'overlay';
 
     render(
-      <OverlayTooltip text={popUpText}>
+      <OverlayTooltip text={popUpText} key={popUpText}>
         <span>{overlayText}</span>
       </OverlayTooltip>,
     );

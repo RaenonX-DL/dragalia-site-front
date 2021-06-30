@@ -1,63 +1,24 @@
 import React from 'react';
 
-import {
-  AttackingSkillData,
-  ConditionEnumMap,
-  ElementBonusData,
-  SkillIdentifierInfo,
-} from '../../../../../api-def/resources';
-import {calculateDamage, CalculateDamageReturn} from '../../../../../utils/game';
-import {overLengthWarningCheck} from '../../utils';
+import {AfflictionWarning} from '../../warnings/affliction';
+import {AnimationInfoWarning} from '../../warnings/animation';
+import {NoResultWarning} from '../../warnings/noResult';
+import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {AttackingSkillEntry} from './entry';
-import {filterSkillEntries} from './utils';
+import {EnumDataPack} from './props';
+import {CalculatedSkillEntry} from './types';
 
 
-export type CalculatedData = {
-  skillDamage: CalculateDamageReturn,
-  skillEntry: AttackingSkillData,
+type OutputProps = EnumDataPack & {
+  displayConfig: InputData['display'],
+  calculatedEntries: Array<CalculatedSkillEntry>,
 }
 
-type OutputProps = {
-  inputData?: InputData,
-  elementBonusData: ElementBonusData,
-  atkSkillEntries: Array<AttackingSkillData>,
-  allConditionEnums: ConditionEnumMap,
-  skillIdentifierInfo: SkillIdentifierInfo,
-}
-
-export const AttackingSkillOutput = ({
-  inputData,
-  elementBonusData,
-  atkSkillEntries,
-  allConditionEnums,
-  skillIdentifierInfo,
-}: OutputProps) => {
-  // Early termination if no input
-  if (!inputData) {
-    return <></>;
+export const AttackingSkillOutput = ({displayConfig, calculatedEntries, ...enums}: OutputProps) => {
+  if (!calculatedEntries.length) {
+    return <NoResultWarning/>;
   }
-
-  // Filter entries
-  const atkSkillEntriesFiltered = filterSkillEntries(inputData, atkSkillEntries);
-
-  // Calculate entries
-  const calculatedEntries: Array<CalculatedData> = atkSkillEntriesFiltered
-    .map((entry: AttackingSkillData) => {
-      // Element bonus rate
-      const charaElementRate = elementBonusData.getElementBonus(
-        String(entry.chara.element),
-        String(inputData.targetElemCondCode),
-      );
-
-      // Calculate skill damage
-      const skillDamage = calculateDamage(inputData, entry, charaElementRate);
-      // endregion
-
-      return {skillDamage, skillEntry: entry};
-    })
-    .filter((calcData) => calcData.skillDamage.expected > 0)
-    .sort((a, b) => b.skillDamage.expected - a.skillDamage.expected);
 
   const entries: Array<React.ReactElement> = [];
 
@@ -66,21 +27,28 @@ export const AttackingSkillOutput = ({
   if (warning !== null) {
     entries.push(warning);
   }
+  // Check if animation info alert should be displayed
+  if (displayConfig.animationInfo) {
+    entries.push(<AnimationInfoWarning key="animationWarning"/>);
+  }
+  // Check if affliction info alert should be displayed
+  // - Both affliction and SP info do something with affliction
+  if (displayConfig.affliction || displayConfig.spInfo) {
+    entries.push(<AfflictionWarning key="afflictionWarning"/>);
+  }
 
   // Add transformed entries
-  entries
-    .push(
-      ...calculatedEntries
-        .map((calculatedData: CalculatedData, index: number) => (
-          <AttackingSkillEntry
-            key={index}
-            inputData={inputData}
-            calculatedData={calculatedData}
-            conditionEnumMap={allConditionEnums}
-            skillIdentifierInfo={skillIdentifierInfo}
-          />
-        )),
-    );
+  entries.push(
+    ...calculatedEntries
+      .map((calculatedData: CalculatedSkillEntry, index: number) => (
+        <AttackingSkillEntry
+          key={index}
+          displayConfig={displayConfig}
+          calculatedData={calculatedData}
+          {...enums}
+        />
+      )),
+  );
 
   return <>{entries}</>;
 };

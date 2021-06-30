@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
-import {overLengthWarningCheck} from '../../utils';
+import {overLengthWarningCheck} from '../../warnings/overLength';
 import {InputData} from '../in/types';
 import {ExAbilityEntry} from './entry';
 import {filterExAbilityData} from './utils';

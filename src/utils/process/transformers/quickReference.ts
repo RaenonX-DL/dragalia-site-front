@@ -2,6 +2,7 @@ import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
 import {getImageURL, getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
+import {sortDescending} from '../../sort';
 import {TextTransformer} from '../type';
 
 
@@ -23,12 +24,12 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
     return text;
   }
 
+  // Sort the keys by its length descending for greedy match
+  const nameRegex = [...unitNameIdMap.keys()]
+    .sort(sortDescending({getComparer: (element) => element.length}))
+    .join('|');
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp(
-    // Sort the keys by its length descending for greedy match
-    `([^\\[])?(${[...unitNameIdMap.keys()].sort((a, b) => b.length - a.length).join('|')})([^\\]]|$)`,
-    'g',
-  );
+  const regex = new RegExp(`([^\\[]|:|^)(${nameRegex})([^\\]]|:|$)`, 'g');
   text = text.replace(
     regex,
     (matched, leftRemainder, unitName, rightRemainder) => {
@@ -39,6 +40,9 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
 
       const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang});
       const imageMd = `![${unitName}](${getImageURL(unitInfo)}|unitIcon)`;
+
+      leftRemainder = leftRemainder.replace(/:/g, '');
+      rightRemainder = rightRemainder.replace(/:/g, '');
 
       return `${leftRemainder || ''}${imageMd}[${unitName}](${postPath})${rightRemainder}`;
     },

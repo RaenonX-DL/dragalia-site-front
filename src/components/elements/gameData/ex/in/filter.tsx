@@ -2,59 +2,66 @@ import React from 'react';
 
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {EnumChecksBox} from '../../../common/check/enumChecksBox';
-import {SectionTitle} from '../../elements/title';
-import {InputSectionBaseProps} from '../../props';
+import {InputPanel} from '../../../input/main';
+import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from './types';
+import {overwriteInputData} from './utils';
 
-type SectionProps<D extends InputData> = InputSectionBaseProps<D> & {
+
+type SectionProps = InputPanelCommonProps<InputData> & {
   elementEnums: ElementEnums,
   exBuffParams: ExBuffParams
 }
 
-
-export const SectionFilter = <D extends InputData>({
+export const Filter = ({
   inputData,
   setInputData,
   elementEnums,
   exBuffParams,
-}: SectionProps<D>) => {
+}: SectionProps) => {
   const {t} = useI18n();
 
   return (
-    <>
-      <SectionTitle
-        title={t((t) => t.game.ex.name.filterElement)}
-        description={t((t) => t.game.ex.desc.filterElement)}
-      />
-      <EnumChecksBox
-        options={elementEnums.elemental}
-        inputData={inputData}
-        inputKey="filterElementCode"
-        setInputData={setInputData}
-      />
-      <SectionTitle
-        title={t((t) => t.game.ex.name.filterExBuffParam)}
-        description={t((t) => t.game.ex.desc.filterExBuffParam)}
-      />
-      <EnumChecksBox
-        options={exBuffParams.exBuffParam}
-        inputData={inputData}
-        inputKey="filterExBuffParamCode"
-        setInputData={setInputData}
-        imageHeight="2rem"
-      />
-      <SectionTitle
-        title={t((t) => t.game.ex.name.filterChainedExBuffParam)}
-        description={t((t) => t.game.ex.desc.filterChainedExBuffParam)}
-      />
-      <EnumChecksBox
-        options={exBuffParams.chainedExBuffParam}
-        inputData={inputData}
-        inputKey="filterChainedExBuffParamCode"
-        setInputData={setInputData}
-        imageHeight="2rem"
-      />
-    </>
+    <InputPanel
+      inputData={inputData}
+      setInputData={setInputData}
+      inputEntries={[
+        {
+          type: 'title',
+          title: t((t) => t.game.ex.name.filterElement),
+          description: t((t) => t.game.ex.desc.filterElement),
+        },
+        {
+          type: 'enumCheckGroup',
+          options: elementEnums.elemental,
+          getValue: (inputData) => inputData.filter.elements,
+          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {elements: newValue}}),
+        },
+        {
+          type: 'title',
+          title: t((t) => t.game.ex.name.filterExBuffParam),
+          description: t((t) => t.game.ex.desc.filterExBuffParam),
+        },
+        {
+          type: 'enumCheckGroup',
+          options: exBuffParams.exBuffParam,
+          getValue: (inputData) => inputData.filter.exBuffParams,
+          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {exBuffParams: newValue}}),
+          imageHeight: '2rem',
+        },
+        {
+          type: 'title',
+          title: t((t) => t.game.ex.name.filterChainedExBuffParam),
+          description: t((t) => t.game.ex.desc.filterChainedExBuffParam),
+        },
+        {
+          type: 'enumCheckGroup',
+          options: exBuffParams.chainedExBuffParam,
+          getValue: (inputData) => inputData.filter.cexBuffParams,
+          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {cexBuffParams: newValue}}),
+          imageHeight: '2rem',
+        },
+      ]}
+    />
   );
 };

@@ -1,22 +1,20 @@
 import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from '../in/types';
+import {generateInputData, overwriteInputData} from '../in/utils';
 import {filterExAbilityData} from './utils';
 
-const inputDataTemplate: InputData = {
-  filterElementCode: [],
-  filterExBuffParamCode: [],
-  filterChainedExBuffParamCode: [],
-};
 
 describe('(chained) ex ability filtering function', () => {
-  test('ex ability resource loadable', async () => {
+  const inputDataTemplate: InputData = generateInputData();
+
+  it('loads ex ability resource', async () => {
     await ResourceLoader.getAbilityEx((data) => data)
       .then((data) => {
         expect(data.length).toBeGreaterThan(0);
       });
   });
 
-  test('empty filter returns all data', async () => {
+  it('returns all data if the filter is empty', async () => {
     await ResourceLoader.getAbilityEx((data) => data)
       .then((data) => {
         data = filterExAbilityData(data, inputDataTemplate);
@@ -24,7 +22,7 @@ describe('(chained) ex ability filtering function', () => {
       });
   });
 
-  test('ex ability can be filtered by element', async () => {
+  it('filters ability using element', async () => {
     const enumElements = () => ResourceLoader.getEnumElements();
     const exAbilityData = () => ResourceLoader.getAbilityEx();
 
@@ -33,14 +31,17 @@ describe('(chained) ex ability filtering function', () => {
         elemEnums.elemental.forEach((elemEnum) => {
           const elemEnumCode = elemEnum.code;
 
-          const dataFiltered = filterExAbilityData(data, {...inputDataTemplate, filterElementCode: [elemEnumCode]});
+          const dataFiltered = filterExAbilityData(
+            data,
+            overwriteInputData(inputDataTemplate, {filter: {elements: [elemEnumCode]}}),
+          );
           expect(dataFiltered.length).toBeGreaterThan(0);
           expect(dataFiltered.map((entry) => entry.chara.element === elemEnumCode)).not.toContain(false);
         });
       });
   });
 
-  test('ex ability can be filtered by buff parameter', async () => {
+  it('filters using EX buff parameter', async () => {
     const enumBuffParams = () => ResourceLoader.getEnumExBuffParameters();
     const exAbilityData = () => ResourceLoader.getAbilityEx();
 
@@ -49,10 +50,10 @@ describe('(chained) ex ability filtering function', () => {
         exBuffParams.exBuffParam.forEach((exBuffParam) => {
           const exBuffParamCode = exBuffParam.code;
 
-          const dataFiltered = filterExAbilityData(data, {
-            ...inputDataTemplate,
-            filterExBuffParamCode: [exBuffParamCode],
-          });
+          const dataFiltered = filterExAbilityData(
+            data,
+            overwriteInputData(inputDataTemplate, {filter: {exBuffParams: [exBuffParamCode]}}),
+          );
           expect(dataFiltered.map(
             (entry) => {
               return entry.ex.some((effectUnit) => effectUnit.parameter.code === exBuffParamCode);
@@ -61,7 +62,7 @@ describe('(chained) ex ability filtering function', () => {
       });
   });
 
-  test('ex ability can be filtered by buff param & element', async () => {
+  it('filters using EX buff param & element', async () => {
     const enumElements = () => ResourceLoader.getEnumElements();
     const enumBuffParams = () => ResourceLoader.getEnumExBuffParameters();
     const exAbilityData = () => ResourceLoader.getAbilityEx();
@@ -74,11 +75,13 @@ describe('(chained) ex ability filtering function', () => {
           elemEnums.elemental.forEach((elemEnum) => {
             const elemEnumCode = elemEnum.code;
 
-            const dataFiltered = filterExAbilityData(data, {
-              ...inputDataTemplate,
-              filterExBuffParamCode: [exBuffParamCode],
-              filterElementCode: [elemEnumCode],
-            });
+            const dataFiltered = filterExAbilityData(
+              data,
+              overwriteInputData(
+                inputDataTemplate,
+                {filter: {exBuffParams: [exBuffParamCode], elements: [elemEnumCode]}},
+              ),
+            );
             expect(dataFiltered.map(
               (entry) => {
                 return entry.ex.some((effectUnit) => {
@@ -90,7 +93,7 @@ describe('(chained) ex ability filtering function', () => {
       });
   });
 
-  test('ex ability data filtered using OR logic', async () => {
+  it('filters ex ability using OR logic', async () => {
     const enumElements = () => ResourceLoader.getEnumElements();
     const exAbilityData = () => ResourceLoader.getAbilityEx();
 
@@ -98,10 +101,10 @@ describe('(chained) ex ability filtering function', () => {
       .then(([exBuffParams, data]) => {
         const firstTwoElemCode = exBuffParams.elemental.slice(0, 2).map((entry) => entry.code);
 
-        const dataFiltered = filterExAbilityData(data, {
-          ...inputDataTemplate,
-          filterElementCode: firstTwoElemCode,
-        });
+        const dataFiltered = filterExAbilityData(
+          data,
+          overwriteInputData(inputDataTemplate, {filter: {elements: firstTwoElemCode}}),
+        );
         expect(dataFiltered.map(
           (entry) => {
             return firstTwoElemCode.includes(entry.chara.element);
@@ -109,7 +112,7 @@ describe('(chained) ex ability filtering function', () => {
       });
   });
 
-  test('chained ex ability can be filtered by buff parameter', async () => {
+  it('filters ex ability by CEX buff parameter', async () => {
     const enumBuffParams = () => ResourceLoader.getEnumExBuffParameters();
     const exAbilityData = () => ResourceLoader.getAbilityEx();
 
@@ -118,10 +121,10 @@ describe('(chained) ex ability filtering function', () => {
         exBuffParams.chainedExBuffParam.forEach((cexBuffParam) => {
           const cexBuffParamCode = cexBuffParam.code;
 
-          const dataFiltered = filterExAbilityData(data, {
-            ...inputDataTemplate,
-            filterChainedExBuffParamCode: [cexBuffParamCode],
-          });
+          const dataFiltered = filterExAbilityData(
+            data,
+            overwriteInputData(inputDataTemplate, {filter: {cexBuffParams: [cexBuffParamCode]}}),
+          );
           expect(dataFiltered.map((entry) => {
             return entry.chainedEx.some((effectUnit) => effectUnit.parameter.code === cexBuffParamCode);
           })).not.toContain(false);

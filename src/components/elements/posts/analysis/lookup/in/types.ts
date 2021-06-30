@@ -1,5 +1,6 @@
 import {UnitType} from '../../../../../../api-def/api';
 
+
 export type InputData = {
   keyword: string,
   types: Array<UnitType>,

@@ -1,84 +1,92 @@
-import React, {MouseEvent} from 'react';
+import React from 'react';
 
 import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+import Spinner from 'react-bootstrap/Spinner';
 
-import {ConditionCodes} from '../../../../../const/gameData';
+import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {scrollRefToTop} from '../../../../../utils/scroll';
+import {ResourceLoader} from '../../../../../utils/services/resources/loader';
+import {useFetchState} from '../../../common/fetch';
+import {CommonModal, ModalState} from '../../../common/modal';
+import {useAtkSkillInput} from '../hooks/preset';
+import {Filter} from './filter';
+import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
-import {InputSummary} from './summary';
 import {InputData} from './types';
+import {validateInputData} from './utils/inputData';
 
 
 type InputProps = {
-  onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
+  onSearchRequested: (inputData: InputData) => void,
+  isAllFetched: boolean,
 }
 
-
-export const AttackingSkillInput = ({onSearchRequested}: InputProps) => {
-  const {t} = useI18n();
+export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProps) => {
+  const {t, lang} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
-
-  const [inputData, setInputData] = React.useState<InputData>({
-    atkInGame: 7000,
-    atkConditionalPct: 20,
-    atkBuffPct: 30,
-    buffCount: 0,
-    buffZoneSelf: 0,
-    buffZoneAlly: 0,
-    exBlade: true,
-    exWand: true,
-    criticalRatePct: 4,
-    criticalDamagePct: 0,
-    criticalInspired: false,
-    skillBuffPct: 0,
-    skillPassivePct: 40,
-    skillEnergized: false,
-    punishersBkPct: 0,
-    punishersOtherPct: 20,
-    otherElemBonusPct: 0,
-    otherCurrentHpPct: 100,
-    targetElemCondCode: ConditionCodes.TARGET_ELEM_EFFECTIVE,
-    targetAfflictionCodes: [],
-    targetDefBase: 10,
-    targetDefDownPct: 0,
-    targetDefBkRate: 0.6,
-    targetStateCode: ConditionCodes.NONE,
-    filterElementCode: [],
-    filterAfflictionCondCode: [],
-    filterSharedOnly: false,
+  const [modalState, setModalState] = React.useState<ModalState>({
+    show: false,
+    title: '',
+    message: '',
   });
+  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput();
+  const isSearchAllowed = isAllFetched && getPresetStatus.fetched;
 
-  const onCollapseClicked = () => {
-    setCollapsed(!collapsed);
+  const {fetchStatus: conditionEnums, fetchFunction: fetchConditionEnums} = useFetchState<CategorizedConditionEnums>(
+    {afflictions: [], elements: []},
+    ResourceLoader.getEnumCategorizedConditions,
+    'Failed to fetch the condition enums.',
+  );
+  const {fetchStatus: elemEnums, fetchFunction: fetchElemEnums} = useFetchState<ElementEnums>(
+    {elemental: []},
+    ResourceLoader.getEnumElements,
+    'Failed to fetch the element enums.',
+  );
 
-    scrollRefToTop();
-  };
+  fetchConditionEnums();
+  fetchElemEnums();
 
   return (
     <>
-      <Collapse in={collapsed}>
-        <div>
-          <InputSummary inputData={inputData}/>
-          <hr/>
-        </div>
-      </Collapse>
+      <CommonModal modalState={modalState} setModalState={setModalState}/>
+      <Filter
+        inputData={inputData}
+        setInputData={setInputData}
+        conditionEnums={conditionEnums.data}
+        elementEnums={elemEnums.data}
+      />
+      <hr/>
+      <DisplayItemPicker inputData={inputData} setInputData={setInputData}/>
+      <hr/>
+      <div className="text-right">
+        <Button variant="outline-primary" onClick={() => setCollapsed(!collapsed)} className="mr-2">
+          {t((t) => t.game.skillAtk.collapse)}
+        </Button>
+        <Button variant="outline-info" disabled={!isSearchAllowed} onClick={() => {
+          const isInputValid = validateInputData(
+            inputData,
+            lang,
+            (message) => setModalState({...modalState, show: true, message}),
+          );
+
+          if (!isInputValid) {
+            return;
+          }
+
+          onSearchRequested(inputData);
+        }}>
+          {!isSearchAllowed && <Spinner animation="grow" size="sm" as="span" className="mr-1"/>}
+          {t((t) => t.misc.search)}
+        </Button>
+      </div>
+      <hr/>
       <InputParameters
         collapsed={collapsed}
         inputData={inputData}
         setInputData={setInputData}
+        conditionEnums={conditionEnums.data}
       />
-      <hr/>
-      <div className="text-right">
-        <Button variant="outline-primary" onClick={onCollapseClicked} className="mr-2">
-          {t((t) => t.game.skillAtk.collapse)}
-        </Button>
-        <Button variant="outline-info" onClick={onSearchRequested(inputData)}>
-          {t((t) => t.misc.search)}
-        </Button>
-      </div>
     </>
   );
 };

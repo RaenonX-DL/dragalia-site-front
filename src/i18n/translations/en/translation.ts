@@ -90,12 +90,13 @@ export const translation: TranslationStruct = {
         },
         targetDefDown: 'Def Down (%)',
         targetDef: 'Base Def',
-        targetDefBk: 'BK Def Reduction',
+        targetDefBk: 'BK Def Rate',
         filter: 'Filter',
         filterElement: 'Element',
         filterAffliction: 'Affliction',
         filterOther: 'Other',
         filterSharedOnly: 'Shared Skill Only',
+        filterDispelOnly: 'Dispel Only',
       },
       desc: {
         atk: 'Any parameter that relates to strength',
@@ -152,12 +153,25 @@ export const translation: TranslationStruct = {
           'If Shared Skill Only is selected, then when filtering and calculating, ' +
           'only shared skills will be considered and displayed.',
       },
+      display: {
+        title: 'Info to Display',
+        desc: 'Info to display in the results.',
+        options: {
+          actualDamage: 'Actual Damage',
+          damageInfo: 'Damage Info',
+          damageDistribution: 'Damage Spread',
+          affliction: 'Affliction',
+          spInfo: 'SP Info / Efficiency',
+          animationInfo: 'Animation',
+        },
+      },
       entry: {
         notCancelable: 'This skill is not cancelable',
         cancelable: 'This skill can be canceled after {{cancelTime}} seconds.',
         stackable: 'Stackable',
         unstackable: 'Unstackable',
-        affliction: 'At {{afflictionTime}} s ({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)',
+        affliction: '{{affliction}} @ {{afflictionTime}} s ' +
+          '({{afflictionProbabilityPct}}% / {{afflictionDuration}} s)',
         buffCount: 'Buff Counts',
         buffCountDescCapped: '+{{each}}% of the total mod for each buff; Capped at {{limit}}%',
         buffCountDescUncapped: '+{{each}}% of the total mod for each buff; Uncapped',
@@ -189,11 +203,59 @@ export const translation: TranslationStruct = {
         skillEnergized: 'Energized',
         punisher: 'Punisher - {{punisherVal}}',
         punisherData: 'BK {{punishersBkPct}}% / Other {{punishersOtherPct}}%',
+        target: 'Target Status',
+        targetData: {
+          element: 'Element: ',
+          afflictions: 'Afflictions: ',
+          state: 'State: {{state}}',
+          def: 'Base DEF {{def}} / DEF Down -{{defDownPct}}% / BK Rate {{defBkRate}}',
+        },
         other: 'Others',
         otherData: 'Element +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%',
-        sharedOnly: 'Shared Skill Only',
       },
       collapse: 'Collapse/Expand',
+      error: {
+        noInfoToDisplay: 'Please select at least 1 info to display.',
+        noResult: 'No available results.',
+        presetMustLogin: 'You must login to use the input parameter preset via link.',
+      },
+      animation: {
+        earliest: '{{time}} sec @ Earliest',
+        earliestUnavailable: 'Unavailable',
+        hitTiming: 'Hit Timing',
+        hitTimingHeader: 'Hit Timing (sec)',
+        cancelInfo: 'Cancel Info',
+        cancelHeader: {
+          action: 'Action',
+          time: 'Time (sec)',
+          preConditions: 'Other Conditions',
+        },
+      },
+      sort: {
+        text: 'Order: {{sortBy}}',
+        damageDesc: 'Damage',
+        sp: 'SP',
+        ssp: 'SSP',
+      },
+      spInfo: {
+        efficiencyIndexes: 'Efficiency Indexes',
+        efficiency: {
+          modPctPer1KSp: '% / 1K SP',
+          modPctPer1KSsp: '% / 1K SSP',
+          secPer1KSp: 'Affliction (sec) / 1K SP',
+          secPer1KSsp: 'Affliction (sec) / 1K SSP',
+        },
+        sp: 'SP',
+        ssp: 'SSP',
+        ssCost: 'SS Cost',
+      },
+      info: {
+        affliction: 'Duration for some afflictions are variable, especially freeze and stun. ' +
+          'Calculations below are using the maximum duration.',
+        animation: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
+        preset: 'Click on the share button to create a preset link.',
+        presetExpiry: 'The link expires 30 days after the last usage.',
+      },
     },
     tools: {
       titleSelf: 'Game Tools',
@@ -220,7 +282,7 @@ export const translation: TranslationStruct = {
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
       truncated: 'Due to excessive number of results, ' +
-        'results are truncated ({{displayed}} Displayed / {{returned} Available). ' +
+        'results are truncated ({{displayed}} Displayed / {{returned}} Available). ' +
         'To display the truncated results, please narrow the search condition.',
     },
     info: {

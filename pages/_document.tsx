@@ -59,6 +59,7 @@ class Document extends NextDocument<Props> {
           {/* Global site tag (gtag.js) - Google Analytics */}
           {
             process.env.NODE_ENV === 'production' &&
+            !process.env.CI &&
             <>
               <script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
               <script dangerouslySetInnerHTML={{

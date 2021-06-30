@@ -5,28 +5,28 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {OverlayPopover} from '../overlay/popover';
-import {InputProps} from '../props';
-import {DetailedProps} from '../types';
+import {DetailedProps, InputProps} from '../types';
 
 
-type NumericInputProps<K extends string, T extends { [key in K]: number }> =
+export type NumericInputProps<T> =
   DetailedProps &
-  InputProps<K, number, T> & {
+  InputProps<T, number> & {
   required?: boolean,
   minValue?: number,
   maxValue?: number
 }
 
-export const NumericInput = <K extends string, T extends { [key in K]: number }>({
+export const NumericInput = <T, >({
   title,
   description,
   inputData,
-  inputKey,
   setInputData,
+  getValue,
+  getUpdatedInputData,
   minValue,
   maxValue,
   required = true,
-}: NumericInputProps<K, T>) => {
+}: NumericInputProps<T>) => {
   if (minValue && maxValue && minValue > maxValue) {
     console.warn(`Min value ${minValue} should not be greater than max value (${maxValue}).`);
   }
@@ -39,8 +39,7 @@ export const NumericInput = <K extends string, T extends { [key in K]: number }>
       <Col>
         <Form.Control
           type="number"
-          value={inputData[inputKey]}
-          name={inputKey}
+          value={getValue(inputData)}
           min={minValue}
           max={maxValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +48,7 @@ export const NumericInput = <K extends string, T extends { [key in K]: number }>
             let newValue = Math.min(e.target.max ? parseFloat(e.target.max) : Infinity, val);
             newValue = Math.max(e.target.min ? parseFloat(e.target.min) : -Infinity, newValue);
 
-            setInputData({
-              ...inputData,
-              [inputKey]: newValue,
-            });
+            setInputData(getUpdatedInputData(newValue));
           }}
           required={required}
         />

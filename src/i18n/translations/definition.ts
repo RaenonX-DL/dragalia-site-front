@@ -1,3 +1,5 @@
+import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
+
 export type PageMetaTranslations = {
   title: string,
   description: string,
@@ -89,6 +91,7 @@ export type TranslationStruct = {
         filterAffliction: string,
         filterOther: string,
         filterSharedOnly: string,
+        filterDispelOnly: string,
       },
       desc: {
         atk: string,
@@ -126,6 +129,18 @@ export type TranslationStruct = {
         filterAffliction: string,
         filterOther: string,
       },
+      display: {
+        title: string,
+        desc: string,
+        options: {
+          actualDamage: string,
+          damageInfo: string,
+          damageDistribution: string,
+          affliction: string,
+          spInfo: string,
+          animationInfo: string,
+        },
+      }
       entry: {
         notCancelable: string,
         cancelable: string,
@@ -163,11 +178,53 @@ export type TranslationStruct = {
         skillEnergized: string,
         punisher: string,
         punisherData: string,
+        target: string,
+        targetData: {
+          element: string,
+          afflictions: string,
+          state: string,
+          def: string,
+        },
         other: string,
         otherData: string,
-        sharedOnly: string,
       },
       collapse: string,
+      error: {
+        noInfoToDisplay: string,
+        noResult: string,
+        presetMustLogin: string,
+      },
+      animation: {
+        earliest: string,
+        earliestUnavailable: string,
+        hitTiming: string,
+        hitTimingHeader: string,
+        cancelInfo: string,
+        cancelHeader: {
+          action: string,
+          time: string,
+          preConditions: string,
+        },
+      },
+      sort: {
+        text: string,
+        damageDesc: string,
+        sp: string,
+        ssp: string,
+      },
+      spInfo: {
+        efficiencyIndexes: string,
+        efficiency: {[index in keyof Efficiency]: string},
+        sp: string,
+        ssp: string,
+        ssCost: string,
+      },
+      info: {
+        affliction: string,
+        animation: string,
+        preset: string,
+        presetExpiry: string,
+      },
     },
     tools: {
       titleSelf: string,
