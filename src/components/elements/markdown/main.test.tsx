@@ -46,6 +46,16 @@ describe('Markdown', () => {
     expect(screen.getByText('Y', {selector: 'td'})).toBeInTheDocument();
   });
 
+  it('does not crash if the table is incomplete', async () => {
+    const tableText = 'head | col 2\n:---: | :---:\nX';
+
+    renderReact(() => <Markdown>{tableText}</Markdown>);
+
+    expect(screen.getByText('head', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('col 2', {selector: 'th'})).toBeInTheDocument();
+    expect(screen.getByText('X', {selector: 'td'})).toBeInTheDocument();
+  });
+
   it('renders multiple tables correctly', async () => {
     const tableText = 'head | col 2\n:---: | :---:\nX | Y';
     const table2Text = 'footer | col B\n:---: | :---:\nZ | A';
