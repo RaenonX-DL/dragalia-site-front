@@ -1,17 +1,34 @@
 import React from 'react';
 
-import {screen, waitFor} from '@testing-library/react';
+import {fireEvent, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {translation as translationEN} from '../../../../i18n/translations/en/translation';
-import {overwriteInputData} from './in/utils/inputData';
+import * as warnings from '../warnings/overLength';
+import * as calcs from './in/utils/calculate';
 import * as utils from './in/utils/inputData';
+import {overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillLookup} from './main';
+import * as output from './out/main';
 
 
 describe('ATK skill lookup', () => {
   const inputDataTemplate = utils.generateInputData();
+  let fnOverLengthCheck: jest.SpyInstance;
+
+  const waitForEntryProcessed = async () => {
+    await waitFor(() => expect(fnOverLengthCheck).toHaveBeenCalledTimes(1));
+  };
+
+  const waitForResourcesLoaded = async () => {
+    await waitFor(() => expect(screen.getByText(translationEN.misc.search)).not.toBeDisabled());
+  };
+
+  beforeEach(() => {
+    jest.restoreAllMocks();
+    fnOverLengthCheck = jest.spyOn(warnings, 'overLengthWarningCheck');
+  });
 
   it('only display damage info', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
@@ -183,7 +200,7 @@ describe('ATK skill lookup', () => {
       overwriteInputData(inputDataTemplate, {sortBy: 'sp'})
     ));
 
-    const {rerender} = renderReact(() => <AttackingSkillLookup/>);
+    renderReact(() => <AttackingSkillLookup/>);
 
     // Initial search
     const searchButton = await screen.findByText(
@@ -192,20 +209,86 @@ describe('ATK skill lookup', () => {
       {timeout: 2000},
     );
     userEvent.click(searchButton);
-    rerender();
 
+    fnOverLengthCheck.mockClear();
     const dispelOnly = screen.getByText(translationEN.game.skillAtk.name.filterDispelOnly);
     userEvent.click(dispelOnly);
-    rerender();
     userEvent.click(searchButton);
-    rerender();
 
-    // No ideas for checking if the order is really unchanged
-    // - Spy on scroll top won't work because the change is not immediately reflected
-    await new Promise((r) => setTimeout(r, 1000));
+    await waitForEntryProcessed();
 
     expect(screen.getByText('Order: SP', {selector: 'button'})).toBeInTheDocument();
   }, 10000);
 
-  it.todo('sorts on order changed');
+  it('re-search on order changed', async () => {
+    renderReact(() => <AttackingSkillLookup/>);
+
+    // Wait until all resources are loaded
+    await waitForResourcesLoaded();
+
+    const sortOrderButton = screen.getByText('Order: Damage', {selector: 'button'});
+    userEvent.click(sortOrderButton);
+
+    const sspOrderButton = screen.getByText(translationEN.game.skillAtk.spInfo.ssp);
+    fireEvent.click(sspOrderButton);
+
+    await waitForEntryProcessed();
+  });
+
+  it('does not allow creating preset if the user is anonymous', async () => {
+    renderReact(() => <AttackingSkillLookup/>);
+
+    // Wait until all resources are loaded
+    await waitForResourcesLoaded();
+
+    // Initial search
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
+    userEvent.click(searchButton);
+
+    await waitForEntryProcessed();
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    userEvent.click(shareButton);
+
+    const mustLoginWarning = translationEN.game.skillAtk.error.presetMustLogin;
+    await waitFor(() => expect(screen.getByText(mustLoginWarning)).toBeInTheDocument());
+  });
+
+  it('cannot create preset on load', async () => {
+    renderReact(() => <AttackingSkillLookup/>);
+
+    // Wait until all resources are loaded
+    await waitForResourcesLoaded();
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    expect(shareButton.parentNode).toBeDisabled();
+  });
+
+  it('cannot create preset if there are no results', async () => {
+    jest.spyOn(calcs, 'getCalculatedEntries').mockReturnValue([]);
+    const outputComponent = jest.spyOn(output, 'AttackingSkillOutput');
+
+    renderReact(() => <AttackingSkillLookup/>);
+
+    // Wait until all resources are loaded
+    await waitForResourcesLoaded();
+    outputComponent.mockClear();
+
+    // Initial search
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
+    userEvent.click(searchButton);
+
+    await waitFor(() => expect(outputComponent).toHaveBeenCalledTimes(1));
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    expect(shareButton.parentNode).toBeDisabled();
+  });
 });

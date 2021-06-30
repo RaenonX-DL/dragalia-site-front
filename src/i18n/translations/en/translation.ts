@@ -253,6 +253,8 @@ export const translation: TranslationStruct = {
         affliction: 'Duration for some afflictions are variable, especially freeze and stun. ' +
           'Calculations below are using the maximum duration.',
         animation: 'Animation info might be inaccurate. Actual animation provided in the analysis if available.',
+        preset: 'Click on the share button to create a preset link.',
+        presetExpiry: 'The link expires 30 days after the last usage.',
       },
     },
     tools: {

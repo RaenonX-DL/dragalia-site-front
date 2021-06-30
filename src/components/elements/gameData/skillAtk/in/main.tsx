@@ -7,7 +7,7 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
-import {CommonModal, ModalState} from '../../../common/modal';
+import {ModalState} from '../../../common/modal';
 import {useAtkSkillInput} from '../hooks/preset';
 import {Filter} from './filter';
 import {DisplayItemPicker} from './limit';
@@ -30,13 +30,7 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
     title: '',
     message: '',
   });
-  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput(() => {
-    setModalState({
-      ...modalState,
-      show: true,
-      message: t((t) => t.game.skillAtk.error.presetMustLogin),
-    });
-  });
+  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput();
   const isSearchAllowed = isAllFetched && getPresetStatus.fetched;
 
   const {fetchStatus: conditionEnums, fetchFunction: fetchConditionEnums} = useFetchState<CategorizedConditionEnums>(
@@ -55,7 +49,6 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
 
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState}/>
       <Filter
         inputData={inputData}
         setInputData={setInputData}

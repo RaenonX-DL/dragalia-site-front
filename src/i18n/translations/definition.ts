@@ -222,6 +222,8 @@ export type TranslationStruct = {
       info: {
         affliction: string,
         animation: string,
+        preset: string,
+        presetExpiry: string,
       },
     },
     tools: {

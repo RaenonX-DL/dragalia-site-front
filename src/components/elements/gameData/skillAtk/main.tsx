@@ -14,6 +14,7 @@ import {getCalculatedEntries} from './in/utils/calculate';
 import {generateInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
 import {CalculatedSkillEntry} from './out/types';
+import {AttackingSkillPreset} from './preset/main';
 import {AttackingSkillSorter} from './sorter/main';
 
 
@@ -63,15 +64,18 @@ export const AttackingSkillLookup = () => {
           />
         </Col>
         <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
-          <Row className="text-right mb-2">
+          <Form.Row className="text-right mb-1">
             <Col>
+              <AttackingSkillPreset isEnabled={!!calculatedEntries?.length}/>
+            </Col>
+            <Col xs="auto">
               <AttackingSkillSorter
                 onOrderPicked={(newInputData) => {
                   setCalculatedEntries(getCalculatedEntries(newInputData, attackingSkillEntries, elementBonuses));
                 }}
               />
             </Col>
-          </Row>
+          </Form.Row>
           <AttackingSkillOutput
             displayConfig={inputDataForward.display}
             calculatedEntries={calculatedEntries || []}

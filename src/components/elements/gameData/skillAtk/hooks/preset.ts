@@ -14,8 +14,8 @@ export const PRESET_QUERY_NAME = 'preset';
 
 type UseAtkSkillInputReturn = InputPanelCommonProps<InputData> & {
   getPresetStatus: FetchStatusSimple,
-  setPresetStatus: FetchStatusSimple,
-  makePreset: (inputData: InputData) => void,
+  makePresetLink: string | null,
+  makePreset: () => void,
 }
 
 // This input data is expect to change frequently.
@@ -27,10 +27,10 @@ export const useAtkSkillInput = (onNotLoggedIn?: () => void): UseAtkSkillInputRe
 
   const context = React.useContext(AppReactContext);
 
-  const [fetchStatus, setFetchStatus] = React.useState<FetchStatus<InputData>>({
+  const [inputData, setInputData] = React.useState<InputData>(generateInputData());
+  const [getPresetStatus, setGetPresetStatus] = React.useState<FetchStatusSimple>({
     fetched: !presetId,
     fetching: false,
-    data: generateInputData(),
   });
   const [makePresetStatus, setMakePresetStatus] = React.useState<FetchStatus<string | null>>({
     fetched: false,
@@ -41,16 +41,23 @@ export const useAtkSkillInput = (onNotLoggedIn?: () => void): UseAtkSkillInputRe
   const onNotLoggedInInternal = () => {
     if (onNotLoggedIn) {
       onNotLoggedIn();
+    } else {
+      console.error('User not logged in, action prohibited.');
     }
-    console.error('User not logged in, action prohibited.');
   };
 
-  const makePreset = (inputData: InputData) => {
+  const makePreset = () => {
     setMakePresetStatus({...makePresetStatus, fetched: false, fetching: true});
     if (context?.session) {
       ApiRequestSender.setPresetAtkSkill(context.session.user.id.toString(), inputData)
         .then((response) => {
-          setMakePresetStatus({fetched: true, fetching: false, data: response.presetId});
+          const link = new URL(window.location.href);
+          link.searchParams.set(PRESET_QUERY_NAME, response.presetId);
+
+          setMakePresetStatus({fetched: true, fetching: false, data: link.href});
+        })
+        .catch(() => {
+          setMakePresetStatus({fetched: true, fetching: false, data: null});
         });
     } else {
       onNotLoggedInInternal();
@@ -58,29 +65,29 @@ export const useAtkSkillInput = (onNotLoggedIn?: () => void): UseAtkSkillInputRe
     }
   };
 
-  if (isNotFetched(fetchStatus)) {
+  if (isNotFetched(getPresetStatus)) {
     if (context?.session) {
-      setFetchStatus({...fetchStatus, fetching: true});
+      setGetPresetStatus({...getPresetStatus, fetching: true});
       ApiRequestSender.getPresetAtkSkill(context.session.user.id.toString(), presetId as string)
         .then((response) => {
-          setFetchStatus({
+          setGetPresetStatus({
             fetched: true,
             fetching: false,
-            data: overwriteInputData(fetchStatus.data, response.preset),
           });
+          setInputData(overwriteInputData(inputData, response.preset));
         });
       GoogleAnalytics.presetLoaded('atkSkill');
     } else {
-      setFetchStatus({...fetchStatus, fetched: true, fetching: false});
+      setGetPresetStatus({...getPresetStatus, fetched: true, fetching: false});
       onNotLoggedInInternal();
     }
   }
 
   return {
-    inputData: fetchStatus.data,
-    setInputData: (newData: InputData) => setFetchStatus({...fetchStatus, data: newData}),
-    getPresetStatus: fetchStatus,
-    setPresetStatus: makePresetStatus,
+    inputData,
+    setInputData,
+    getPresetStatus: getPresetStatus,
+    makePresetLink: makePresetStatus.data,
     makePreset,
   };
 };

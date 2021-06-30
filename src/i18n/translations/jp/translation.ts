@@ -227,6 +227,8 @@ export const translation: TranslationStruct = {
       info: {
         affliction: '部分異常狀態的時效為浮動值 (冰凍、暈眩較為常見)。以下計算中所使用的秒數為最大值。',
         animation: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
+        preset: '點選分享按鈕以生成參數網址。',
+        presetExpiry: '網址將於最後使用日期起 30 日後刪除。',
       },
     },
     tools: {
