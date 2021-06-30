@@ -7,7 +7,7 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
-import {ModalState} from '../../../common/modal';
+import {CommonModal, ModalState} from '../../../common/modal';
 import {useAtkSkillInput} from '../hooks/preset';
 import {Filter} from './filter';
 import {DisplayItemPicker} from './limit';
@@ -49,6 +49,7 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
 
   return (
     <>
+      <CommonModal modalState={modalState} setModalState={setModalState}/>
       <Filter
         inputData={inputData}
         setInputData={setInputData}

@@ -32,7 +32,7 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
     title: '',
     message: '',
   });
-  const {inputData, makePreset, makePresetLink} = useAtkSkillInput(() => {
+  const {makePreset, makePresetLink} = useAtkSkillInput(() => {
     setStatus('notCreated');
     setModalState({
       ...modalState,
@@ -47,7 +47,6 @@ export const AttackingSkillPreset = ({isEnabled}: Props) => {
   };
 
   const onClickShareButton = () => {
-    console.log('render preset', inputData.display);
     if (status === 'notCreated') {
       setStatus('creating');
       makePreset();
