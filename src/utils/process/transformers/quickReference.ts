@@ -29,7 +29,7 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
     .sort(sortDescending({getComparer: (element) => element.length}))
     .join('|');
   // Source: https://stackoverflow.com/a/15604206/11571888
-  const regex = new RegExp(`([^\\[]|:|^)(${nameRegex})([^\\]]|:|$)`, 'g');
+  const regex = new RegExp(`(:|^)(${nameRegex})(:|$)`, 'g');
   text = text.replace(
     regex,
     (matched, leftRemainder, unitName, rightRemainder) => {

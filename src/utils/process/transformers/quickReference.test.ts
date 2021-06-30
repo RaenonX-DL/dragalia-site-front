@@ -115,6 +115,14 @@ describe('Quick reference transformer (Analysis)', () => {
     expect(result).toBe(galaMymMdTransformed);
   });
 
+  it('does not transform unit name that is wrapped by spaces', async () => {
+    const text = ' Gala Mym ';
+
+    const result = await transformQuickReference({text, lang});
+
+    expect(result).toBe(text);
+  });
+
   it('transforms analysis link (sentenced)', async () => {
     const text = 'Check :Gala Mym: Analysis';
 
