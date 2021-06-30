@@ -44,6 +44,10 @@ type TextChildrenProps = {
 }
 
 export const TextChildren = ({children}: TextChildrenProps) => {
+  if (!children) {
+    return <></>;
+  }
+
   return (
     <>
       {
