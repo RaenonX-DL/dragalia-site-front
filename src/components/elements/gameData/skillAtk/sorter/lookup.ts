@@ -1,7 +1,7 @@
-import {GetTranslationFunction} from '../../../../../../i18n/types';
-import {sortAscending, sortDescending} from '../../../../../../utils/sort';
-import {SortBy} from '../../in/types';
-import {CalculatedSkillEntry} from '../types';
+import {GetTranslationFunction} from '../../../../../i18n/types';
+import {sortAscending, sortDescending} from '../../../../../utils/sort';
+import {SortBy} from '../in/types';
+import {CalculatedSkillEntry} from '../out/types';
 
 
 type SortFuncLookup = { [sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number }

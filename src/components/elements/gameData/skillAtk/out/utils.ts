@@ -1,7 +1,7 @@
 import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
 import {calculateDamage} from '../../../../../utils/game/damage';
 import {InputData} from '../in/types';
-import {sortFunc} from './sorter/lookup';
+import {sortFunc} from '../sorter/lookup';
 import {CalculatedSkillEntry, Efficiency} from './types';
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../i18n/hook';
@@ -14,8 +15,8 @@ import {InputData} from './in/types';
 import {getCalculatedEntries} from './in/utils/calculate';
 import {overwriteInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
-import {AttackingSkillSorter} from './out/sorter/main';
 import {CalculatedSkillEntry} from './out/types';
+import {AttackingSkillSorter} from './sorter/main';
 
 
 export const AttackingSkillLookup = () => {

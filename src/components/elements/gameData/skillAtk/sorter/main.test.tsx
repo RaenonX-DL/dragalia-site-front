@@ -3,10 +3,10 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../../../test/render/main';
-import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {InputData} from '../../in/types';
-import {generateInputData} from '../../in/utils/inputData';
+import {renderReact} from '../../../../../../test/render/main';
+import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {InputData} from '../in/types';
+import {generateInputData} from '../in/utils/inputData';
 import {AttackingSkillSorter} from './main';
 
 
