@@ -8,7 +8,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
 import {CommonModal, ModalState} from '../../../common/modal';
-import {InputPanelCommonProps} from '../../../input/types';
+import {useAtkSkillInput} from '../hooks/preset';
 import {Filter} from './filter';
 import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
@@ -16,12 +16,12 @@ import {InputData} from './types';
 import {validateInputData} from './utils/inputData';
 
 
-type InputProps = InputPanelCommonProps<InputData> & {
+type InputProps = {
   onSearchRequested: (inputData: InputData) => void,
-  isSearchAllowed: boolean,
+  isAllFetched: boolean,
 }
 
-export const AttackingSkillInput = ({inputData, setInputData, isSearchAllowed, onSearchRequested}: InputProps) => {
+export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProps) => {
   const {t, lang} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
@@ -30,6 +30,14 @@ export const AttackingSkillInput = ({inputData, setInputData, isSearchAllowed, o
     title: '',
     message: '',
   });
+  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput(() => {
+    setModalState({
+      ...modalState,
+      show: true,
+      message: t((t) => t.game.skillAtk.error.presetMustLogin),
+    });
+  });
+  const isSearchAllowed = isAllFetched && getPresetStatus.fetched;
 
   const {fetchStatus: conditionEnums, fetchFunction: fetchConditionEnums} = useFetchState<CategorizedConditionEnums>(
     {afflictions: [], elements: []},

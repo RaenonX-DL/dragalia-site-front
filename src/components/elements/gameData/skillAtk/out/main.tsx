@@ -29,12 +29,12 @@ export const AttackingSkillOutput = ({displayConfig, calculatedEntries, ...enums
   }
   // Check if animation info alert should be displayed
   if (displayConfig.animationInfo) {
-    entries.push(<AnimationInfoWarning/>);
+    entries.push(<AnimationInfoWarning key="animationWarning"/>);
   }
   // Check if affliction info alert should be displayed
   // - Both affliction and SP info do something with affliction
   if (displayConfig.affliction || displayConfig.spInfo) {
-    entries.push(<AfflictionWarning/>);
+    entries.push(<AfflictionWarning key="afflictionWarning"/>);
   }
 
   // Add transformed entries

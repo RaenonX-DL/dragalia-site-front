@@ -4,31 +4,23 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {CommonModal, ModalState} from '../../common/modal';
 import {useFetchEnums} from './hooks/enums';
-import {useAtkSkillInput} from './hooks/preset';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
 import {getCalculatedEntries} from './in/utils/calculate';
-import {overwriteInputData} from './in/utils/inputData';
+import {generateInputData} from './in/utils/inputData';
 import {AttackingSkillOutput} from './out/main';
 import {CalculatedSkillEntry} from './out/types';
 import {AttackingSkillSorter} from './sorter/main';
 
 
 export const AttackingSkillLookup = () => {
-  const {t} = useI18n();
-  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput(() => {
-    setModalState({
-      ...modalState,
-      show: true,
-      message: t((t) => t.game.skillAtk.error.presetMustLogin),
-    });
-  });
-
+  // Having this reduces state updates when changing input.
+  // Frequent update in this component is not ideal because rendering output is expensive.
+  const [inputDataForward, setInputDataForward] = React.useState(generateInputData());
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
     title: '',
@@ -61,13 +53,12 @@ export const AttackingSkillLookup = () => {
       <Row>
         <Col lg={4} className="rounded bg-black-32 p-3 mb-3">
           <AttackingSkillInput
-            inputData={inputData}
-            setInputData={setInputData}
-            isSearchAllowed={isAllFetched && getPresetStatus.fetched}
+            isAllFetched={isAllFetched}
             onSearchRequested={(inputData: InputData) => {
               GoogleAnalytics.damageCalc('search', inputData);
 
               setCalculatedEntries(getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses));
+              setInputDataForward(inputData);
             }}
           />
         </Col>
@@ -75,17 +66,14 @@ export const AttackingSkillLookup = () => {
           <Row className="text-right mb-2">
             <Col>
               <AttackingSkillSorter
-                inputData={inputData}
-                onOrderPicked={(sortBy) => {
-                  const newInputData = overwriteInputData(inputData, {sortBy});
-                  setInputData(newInputData);
+                onOrderPicked={(newInputData) => {
                   setCalculatedEntries(getCalculatedEntries(newInputData, attackingSkillEntries, elementBonuses));
                 }}
               />
             </Col>
           </Row>
           <AttackingSkillOutput
-            displayConfig={inputData.display}
+            displayConfig={inputDataForward.display}
             calculatedEntries={calculatedEntries || []}
             conditionEnumMap={conditionEnumMap}
             skillIdentifierInfo={skillIdentifierInfo}

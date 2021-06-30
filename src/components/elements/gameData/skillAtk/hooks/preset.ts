@@ -18,7 +18,10 @@ type UseAtkSkillInputReturn = InputPanelCommonProps<InputData> & {
   makePreset: (inputData: InputData) => void,
 }
 
-export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputReturn => {
+// This input data is expect to change frequently.
+// Therefore, it should not be used in expensive component, such as ATK skill output,
+// because every change triggers a re-render.
+export const useAtkSkillInput = (onNotLoggedIn?: () => void): UseAtkSkillInputReturn => {
   const {query} = useNextRouter();
   const presetId = query[PRESET_QUERY_NAME];
 
@@ -35,6 +38,26 @@ export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputRet
     data: null,
   });
 
+  const onNotLoggedInInternal = () => {
+    if (onNotLoggedIn) {
+      onNotLoggedIn();
+    }
+    console.error('User not logged in, action prohibited.');
+  };
+
+  const makePreset = (inputData: InputData) => {
+    setMakePresetStatus({...makePresetStatus, fetched: false, fetching: true});
+    if (context?.session) {
+      ApiRequestSender.setPresetAtkSkill(context.session.user.id.toString(), inputData)
+        .then((response) => {
+          setMakePresetStatus({fetched: true, fetching: false, data: response.presetId});
+        });
+    } else {
+      onNotLoggedInInternal();
+      setMakePresetStatus({...makePresetStatus, fetched: true, fetching: false});
+    }
+  };
+
   if (isNotFetched(fetchStatus)) {
     if (context?.session) {
       setFetchStatus({...fetchStatus, fetching: true});
@@ -49,22 +72,9 @@ export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputRet
       GoogleAnalytics.presetLoaded('atkSkill');
     } else {
       setFetchStatus({...fetchStatus, fetched: true, fetching: false});
-      onNotLoggedIn();
+      onNotLoggedInInternal();
     }
   }
-
-  const makePreset = (inputData: InputData) => {
-    setMakePresetStatus({...makePresetStatus, fetched: false, fetching: true});
-    if (context?.session) {
-      ApiRequestSender.setPresetAtkSkill(context.session.user.id.toString(), inputData)
-        .then((response) => {
-          setMakePresetStatus({fetched: true, fetching: false, data: response.presetId});
-        });
-    } else {
-      onNotLoggedIn();
-      setMakePresetStatus({...makePresetStatus, fetched: true, fetching: false});
-    }
-  };
 
   return {
     inputData: fetchStatus.data,
