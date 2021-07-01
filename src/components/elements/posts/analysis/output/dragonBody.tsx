@@ -17,7 +17,7 @@ export const AnalysisOutputDragonBody = ({analysis}: SectionProps<DragonAnalysis
       <AdsInPost/>
       <h3 className="mb-3">{t((t) => t.posts.analysis.notesDragon)}</h3>
       <Markdown>{analysis.notes}</Markdown>
-      <h3 className="mb-3">{t((t) => t.posts.analysis.suitable)}</h3>
+      <h3 className="my-3">{t((t) => t.posts.analysis.suitable)}</h3>
       <Markdown>{analysis.suitableCharacters}</Markdown>
     </>
   );
