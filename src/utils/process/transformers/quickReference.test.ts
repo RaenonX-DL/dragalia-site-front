@@ -15,7 +15,7 @@ import {transformQuickReference} from './quickReference';
 const lang = SupportedLanguages.EN;
 
 const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
-const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
+const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}[unitIcon])`;
 const galaMymMdTransformed = `${galaMymImageMd}${galaMymAnalysisLink}`;
 
 describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
@@ -148,7 +148,7 @@ describe('Quick reference transformer (Analysis)', () => {
 
   it('matches greedily', async () => {
     const brunhildaExtAnalysisLink = `[BrunhildaExtended](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
-    const brunhildaExtImageMd = `![BrunhildaExtended](${DepotPaths.getDragonIconURL('210039_01')}|unitIcon)`;
+    const brunhildaExtImageMd = `![BrunhildaExtended](${DepotPaths.getDragonIconURL('210039_01')}[unitIcon])`;
     const brunhildaExtMdTransformed = `${brunhildaExtImageMd}${brunhildaExtAnalysisLink}`;
 
     const text = ':BrunhildaExtended:';
