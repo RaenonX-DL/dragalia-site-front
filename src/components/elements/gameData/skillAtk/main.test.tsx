@@ -319,7 +319,6 @@ describe('ATK skill lookup', () => {
     userEvent.click(searchButton);
 
     await waitForEntryProcessed();
-    screen.debug(undefined, 100000);
     // Actual damage from Wedding Aoi
     expect(await screen.findByText('417,497')).toBeInTheDocument();
   });
