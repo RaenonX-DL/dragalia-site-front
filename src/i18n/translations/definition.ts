@@ -317,6 +317,10 @@ export type TranslationStruct = {
       suitable: string,
       summary: string,
       summonResult: string,
+      summonExplanation: {
+        title: string,
+        description: string,
+      },
       tipsBuilds: string,
       ultimate: string,
       videos: string,

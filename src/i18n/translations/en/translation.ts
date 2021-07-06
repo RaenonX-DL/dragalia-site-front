@@ -418,6 +418,16 @@ export const translation: TranslationStruct = {
       suitable: 'Suitable Characters',
       summary: 'Summary',
       summonResult: 'My Summoning Result',
+      summonExplanation: {
+        title: 'About this section',
+        description: 'Some people may wonder why this is listed in my analysis. ' +
+          'When I started writing analysis, ' +
+          'I wanted to let people know that getting lucky is pure luck; ' +
+          'getting unlucky is just a usual thing. ' +
+          'I never thought that I would end up dedicating writing analysis like this, ' +
+          'and I still want to let people know what was mentioned about luck, ' +
+          'so I decided to leave it instead of removing it.',
+      },
       tipsBuilds: 'Tips & Builds',
       ultimate: 'Ultimate',
       videos: 'Related Videos',
