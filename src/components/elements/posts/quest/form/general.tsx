@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 
 import {QuestPostPublishPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {MarkdownInput} from '../../../markdown/input';
 import {PostFormDataProps} from '../../shared/form/types';
+
 
 export const FormGeneralInfo = <P extends QuestPostPublishPayload>({formState, setPayload}: PostFormDataProps<P>) => {
   const {t} = useI18n();
@@ -14,8 +15,8 @@ export const FormGeneralInfo = <P extends QuestPostPublishPayload>({formState, s
   const {payload} = formState;
 
   return (
-    <Row>
-      <Col className="pr-2" lg={6}>
+    <Form.Row>
+      <Col className="mb-3 mb-lg-0" lg={6}>
         <h5>{t((t) => t.posts.quest.general)}</h5>
         <MarkdownInput
           onChanged={(e) => setPayload('general', e.target.value)}
@@ -23,13 +24,13 @@ export const FormGeneralInfo = <P extends QuestPostPublishPayload>({formState, s
           required
         />
       </Col>
-      <Col className="pl-2" lg={6}>
+      <Col lg={6}>
         <h5>{t((t) => t.posts.quest.video)}</h5>
         <MarkdownInput
           onChanged={(e) => setPayload('video', e.target.value)}
           rows={5} value={payload.video}
         />
       </Col>
-    </Row>
+    </Form.Row>
   );
 };
