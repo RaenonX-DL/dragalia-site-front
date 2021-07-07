@@ -59,6 +59,7 @@ export const calculateEntries = (
         secPer1KSsp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
           [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.ssSp / 1000)]
         ))),
+        spFullFillSec: entry.skill.spGradualPctMax ? 100 / entry.skill.spGradualPctMax : 0,
       };
 
       return {

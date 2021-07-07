@@ -48,6 +48,7 @@ export const generateAttackingSkillEntry = (): AttackingSkillData => ({
     },
     sharable: false,
     spMax: 9999,
+    spGradualPctMax: 0,
     ssCost: 5,
     ssSp: 17777,
     hitTimingSecMax: [],
@@ -75,5 +76,6 @@ export const generateCalculatedEntry = (): CalculatedSkillEntry => ({
       3: 3.5757575757,
       4: 6.0131313131,
     },
+    spFullFillSec: 0,
   },
 });

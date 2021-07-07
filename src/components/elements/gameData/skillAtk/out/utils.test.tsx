@@ -375,4 +375,22 @@ describe('Entry calculation', () => {
     const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
     expect(entry.efficiency.secPer1KSsp).toStrictEqual({4: 2, 5: 4});
   });
+
+  it('calculates SP full fill sec', async () => {
+    const dataModified: AttackingSkillData = {
+      ...data,
+      skill: {
+        ...data.skill,
+        spGradualPctMax: 2.5,
+      },
+    };
+
+    const entry = calculateEntries([dataModified], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.spFullFillSec).toBe(40);
+  });
+
+  it('does not calculate SP full fill sec if the skill is SP-based', async () => {
+    const entry = calculateEntries([data], inputDataTemplate, elemBonusData)[0];
+    expect(entry.efficiency.spFullFillSec).toBe(0);
+  });
 });
