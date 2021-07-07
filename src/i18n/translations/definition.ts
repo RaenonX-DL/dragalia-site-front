@@ -214,8 +214,10 @@ export type TranslationStruct = {
       },
       spInfo: {
         efficiencyIndexes: string,
-        efficiency: {[index in keyof Efficiency]: string},
+        efficiency: {[index in keyof Omit<Efficiency, 'spFullFillSec'>]: string},
         sp: string,
+        spGradualFill: string,
+        spPctPerSec: string,
         ssp: string,
         ssCost: string,
       },

@@ -246,6 +246,8 @@ export const translation: TranslationStruct = {
           secPer1KSsp: 'Affliction (sec) / 1K SSP',
         },
         sp: 'SP',
+        spGradualFill: '{{secs}} secs ({{sp}})',
+        spPctPerSec: 'SP Regen % / sec',
         ssp: 'SSP',
         ssCost: 'SS Cost',
       },

@@ -193,4 +193,115 @@ describe('SP info section', () => {
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp)).toBeInTheDocument();
     expect(screen.getByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSsp)).toBeInTheDocument();
   });
+
+  it('hides affliction efficiency if the skill gradually fills', async () => {
+    const calculatedData: CalculatedSkillEntry = {
+      ...calculatedDataTemplate,
+      skillEntry: {
+        ...calculatedDataTemplate.skillEntry,
+        skill: {
+          ...calculatedDataTemplate.skillEntry.skill,
+          spGradualPctMax: 2.5,
+        },
+      },
+      efficiency: {
+        ...calculatedDataTemplate.efficiency,
+        spFullFillSec: 40,
+      },
+    };
+
+    renderReact(() => (
+      <SectionSpInfo
+        calculatedData={calculatedData}
+        statusEnums={statusEnums}
+      />
+    ));
+
+    const efficiencyButton = screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiencyIndexes,
+      {selector: 'button'},
+    );
+    userEvent.click(efficiencyButton);
+
+    await waitFor(() => expect(screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
+      {selector: '.collapse.show *'},
+    )).toBeInTheDocument());
+    expect(screen.queryByText(translationEN.game.skillAtk.spInfo.efficiency.secPer1KSp)).not.toBeInTheDocument();
+  });
+
+  it('shows SP % per second if the skill gradually fills', async () => {
+    const calculatedData: CalculatedSkillEntry = {
+      ...calculatedDataTemplate,
+      skillEntry: {
+        ...calculatedDataTemplate.skillEntry,
+        skill: {
+          ...calculatedDataTemplate.skillEntry.skill,
+          spMax: 8000,
+          spGradualPctMax: 2.5,
+        },
+      },
+      efficiency: {
+        ...calculatedDataTemplate.efficiency,
+        spFullFillSec: 40,
+      },
+    };
+
+    renderReact(() => (
+      <SectionSpInfo
+        calculatedData={calculatedData}
+        statusEnums={statusEnums}
+      />
+    ));
+    expect(screen.getByText('40.0 secs (8000)')).toBeInTheDocument();
+
+    const efficiencyButton = screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiencyIndexes,
+      {selector: 'button'},
+    );
+    userEvent.click(efficiencyButton);
+
+    await waitFor(() => expect(screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
+      {selector: '.collapse.show *'},
+    )).toBeInTheDocument());
+    expect(screen.getByText(translationEN.game.skillAtk.spInfo.spPctPerSec)).toBeInTheDocument();
+    expect(screen.getByText('2.50%')).toBeInTheDocument();
+  });
+
+  it('does not show SP % per second if the skill is SP-based', async () => {
+    const calculatedData: CalculatedSkillEntry = {
+      ...calculatedDataTemplate,
+      skillEntry: {
+        ...calculatedDataTemplate.skillEntry,
+        skill: {
+          ...calculatedDataTemplate.skillEntry.skill,
+          spMax: 8000,
+        },
+      },
+      efficiency: {
+        ...calculatedDataTemplate.efficiency,
+        spFullFillSec: 0,
+      },
+    };
+
+    renderReact(() => (
+      <SectionSpInfo
+        calculatedData={calculatedData}
+        statusEnums={statusEnums}
+      />
+    ));
+
+    const efficiencyButton = screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiencyIndexes,
+      {selector: 'button'},
+    );
+    userEvent.click(efficiencyButton);
+
+    await waitFor(() => expect(screen.getByText(
+      translationEN.game.skillAtk.spInfo.efficiency.modPctPer1KSp,
+      {selector: '.collapse.show *'},
+    )).toBeInTheDocument());
+    expect(screen.queryByText(translationEN.game.skillAtk.spInfo.spPctPerSec)).not.toBeInTheDocument();
+  });
 });

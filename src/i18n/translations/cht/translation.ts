@@ -222,6 +222,8 @@ export const translation: TranslationStruct = {
           secPer1KSsp: '異常效期 (秒) / 1K SSP',
         },
         sp: 'SP',
+        spGradualFill: '{{secs}} 秒 ({{sp}})',
+        spPctPerSec: '每秒回復 SP %',
         ssp: 'SSP',
         ssCost: 'SS Cost',
       },
