@@ -36,10 +36,6 @@ const nextAuthOptions: NextAuthOptions = {
       clientId: process.env.AUTH_TWITCH_ID,
       clientSecret: process.env.AUTH_TWITCH_SECRET,
     }),
-    Providers.Twitter({
-      clientId: process.env.AUTH_TWITTER_ID,
-      clientSecret: process.env.AUTH_TWITTER_SECRET,
-    }),
   ],
 
   session: {
