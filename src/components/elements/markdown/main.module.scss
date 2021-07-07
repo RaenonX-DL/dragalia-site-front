@@ -137,6 +137,11 @@ $item-margin: 0.75rem;
   ul,
   dl {
     padding-inline-start: 25px;
+  }
+
+  & > ol,
+  & > ul,
+  & > dl {
     margin-bottom: $item-margin;
   }
 

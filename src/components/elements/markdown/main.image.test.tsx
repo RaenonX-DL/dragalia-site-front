@@ -17,7 +17,7 @@ describe('Markdown (Image)', () => {
   });
 
   it('shows unit image as icon', async () => {
-    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg|unitIcon)'}</Markdown>);
+    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg[unitIcon])'}</Markdown>);
 
     const image = screen.getByAltText('Alt');
     expect(image).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');

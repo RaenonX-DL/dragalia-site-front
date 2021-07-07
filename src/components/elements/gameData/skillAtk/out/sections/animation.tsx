@@ -28,10 +28,12 @@ const HitTiming = ({atkSkillEntry}: SectionProps) => {
       <Collapse in={show}>
         <div className="mt-2">
           <table>
-            <tr>
-              <th>#</th>
-              <th>{t((t) => t.game.skillAtk.animation.hitTimingHeader)}</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{t((t) => t.game.skillAtk.animation.hitTimingHeader)}</th>
+              </tr>
+            </thead>
             <tbody>
               {
                 atkSkillEntry.skill.hitTimingSecMax.map((timing, idx) => (
@@ -76,14 +78,16 @@ const CancelAction = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnim
       <Collapse in={show}>
         <div className="mt-2">
           <table>
-            <tr>
-              <th>{t((t) => t.game.skillAtk.animation.cancelHeader.action)}</th>
-              <th>{t((t) => t.game.skillAtk.animation.cancelHeader.time)}</th>
-              {
-                isAnyCancelHasPreconditions &&
-                <th>{t((t) => t.game.skillAtk.animation.cancelHeader.preConditions)}</th>
-              }
-            </tr>
+            <thead>
+              <tr>
+                <th>{t((t) => t.game.skillAtk.animation.cancelHeader.action)}</th>
+                <th>{t((t) => t.game.skillAtk.animation.cancelHeader.time)}</th>
+                {
+                  isAnyCancelHasPreconditions &&
+                  <th>{t((t) => t.game.skillAtk.animation.cancelHeader.preConditions)}</th>
+                }
+              </tr>
+            </thead>
             <tbody>
               {
                 atkSkillEntry.skill.cancelActionsMax.map((cancelUnit, idx) => (

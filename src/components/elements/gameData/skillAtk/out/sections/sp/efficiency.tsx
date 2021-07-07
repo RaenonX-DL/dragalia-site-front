@@ -74,14 +74,24 @@ export const SpEfficiencyTable = ({calculatedData, statusEnums}: SectionSpInfoPr
                 </tr>
               }
               {
+                calculatedData.skillEntry.skill.spGradualPctMax > 0 &&
+                <tr>
+                  <td>{t((t) => t.game.skillAtk.spInfo.spPctPerSec)}</td>
+                  <td>{calculatedData.skillEntry.skill.spGradualPctMax.toFixed(2)}%</td>
+                </tr>
+              }
+              {
                 !!calculatedData.skillEntry.skill.afflictions.length &&
                 <>
-                  <tr>
-                    <td>{t((t) => t.game.skillAtk.spInfo.efficiency.secPer1KSp)}</td>
-                    <td>
-                      <AfflictionDataCell statusEnums={statusEnums} data={calculatedData.efficiency.secPer1KSp}/>
-                    </td>
-                  </tr>
+                  {
+                    !calculatedData.skillEntry.skill.spGradualPctMax &&
+                    <tr>
+                      <td>{t((t) => t.game.skillAtk.spInfo.efficiency.secPer1KSp)}</td>
+                      <td>
+                        <AfflictionDataCell statusEnums={statusEnums} data={calculatedData.efficiency.secPer1KSp}/>
+                      </td>
+                    </tr>
+                  }
                   {
                     calculatedData.skillEntry.skill.sharable &&
                     <tr>

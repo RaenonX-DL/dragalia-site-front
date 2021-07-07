@@ -5,10 +5,13 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Spinner from 'react-bootstrap/Spinner';
 
+import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {CommonModal, ModalState} from '../../../common/modal';
-import {useAtkSkillInput} from '../hooks/preset';
-import {PresetStatus} from './types';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
+import {CommonModal} from '../../../common/modal';
+import {PRESET_QUERY_NAME} from '../hooks/preset';
+import {InputData} from '../in/types';
+import {PresetState, PresetStatus} from './types';
 
 
 const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
@@ -19,69 +22,100 @@ const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
 };
 
 type Props = {
+  inputData: InputData,
   isEnabled: boolean,
 }
 
-export const AttackingSkillPreset = ({isEnabled}: Props) => {
+export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
   const {t} = useI18n();
 
-  const [status, setStatus] = React.useState<PresetStatus>('notCreated');
-  const [presetLink, setPresetLink] = React.useState<string>(t((t) => t.game.skillAtk.info.preset));
-  const [modalState, setModalState] = React.useState<ModalState>({
-    show: false,
-    title: '',
-    message: '',
-  });
-  const {makePreset, makePresetLink} = useAtkSkillInput(() => {
-    setStatus('notCreated');
-    setModalState({
-      ...modalState,
-      show: true,
-      message: t((t) => t.game.skillAtk.error.presetMustLogin),
-    });
+  const context = React.useContext(AppReactContext);
+
+  const [state, setState] = React.useState<PresetState>({
+    status: 'notCreated',
+    link: t((t) => t.game.skillAtk.info.preset),
+    modal: {
+      show: false,
+      title: '',
+      message: '',
+    },
   });
 
-  const copyAndSetTimeout = (link: string) => {
-    navigator.clipboard.writeText(link).then(() => setStatus('copied'));
-    return setTimeout(() => setStatus('createdNotCopied'), 5000);
+  React.useEffect(() => {
+    setState({...state, status: 'notCreated', link: t((t) => t.game.skillAtk.info.preset)});
+  }, [inputData]);
+
+  const makePreset = () => {
+    setState({...state, status: 'creating'});
+    if (!context?.session) {
+      setState({
+        ...state,
+        status: 'notCreated',
+        modal: {
+          title: 'Error',
+          show: true,
+          message: t((t) => t.game.skillAtk.error.presetMustLogin),
+        },
+      });
+      return;
+    }
+
+    ApiRequestSender.setPresetAtkSkill(context.session.user.id.toString(), inputData)
+      .then((response) => {
+        const link = new URL(window.location.href);
+        link.searchParams.set(PRESET_QUERY_NAME, response.presetId);
+
+        copyAndSetTimeout(link.href);
+      })
+      .catch((e) => {
+        setState({
+          ...state,
+          status: 'notCreated',
+          modal: {
+            title: 'Error',
+            show: true,
+            message: e.message,
+          },
+        });
+      });
+  };
+
+  const copyAndSetTimeout = (link: string = state.link) => {
+    navigator.clipboard.writeText(link).then(() => setState({...state, status: 'copied', link}));
+    return setTimeout(() => setState({...state, status: 'createdNotCopied', link}), 5000);
   };
 
   const onClickShareButton = () => {
-    if (status === 'notCreated') {
-      setStatus('creating');
+    if (state.status === 'notCreated') {
       makePreset();
     }
-    if (status === 'createdNotCopied' && makePresetLink) {
-      const timeout: NodeJS.Timeout = copyAndSetTimeout(makePresetLink);
-      return () => clearTimeout(timeout);
+    if (state.status === 'createdNotCopied') {
+      copyAndSetTimeout();
     }
   };
 
-  if (status === 'creating' && makePresetLink) {
-    setPresetLink(makePresetLink);
-    copyAndSetTimeout(makePresetLink);
-    setStatus('copied');
-  }
-
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState}/>
+      <CommonModal
+        modalState={state.modal}
+        setModalState={(modalState) => setState({...state, modal: modalState})}
+      />
       <InputGroup className="mb-2 mr-sm-2">
         <FormControl
-          className={`bg-black-32 ${status === 'copied' ? 'text-info' : 'text-light'}`} disabled
+          className={`bg-black-32 ${state.status === 'copied' ? 'text-info' : 'text-light'}`} disabled
           value={
-            status === 'copied' ?
+            state.status === 'copied' ?
               t((t) => t.game.skillAtk.info.presetExpiry) :
-              presetLink
+              state.link
           }
         />
         <InputGroup.Append>
           <Button
             className="d-flex align-items-center"
             variant="outline-light" onClick={onClickShareButton}
-            disabled={!isEnabled || status === 'creating' || status === 'copied'}
+            disabled={!isEnabled || state.status === 'creating' || state.status === 'copied'}
           >
-            {statusButtonIcon[status]}
+            {statusButtonIcon[state.status]}
           </Button>
         </InputGroup.Append>
       </InputGroup>

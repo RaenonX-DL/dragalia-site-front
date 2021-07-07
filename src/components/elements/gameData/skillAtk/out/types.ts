@@ -7,6 +7,7 @@ export type Efficiency = {
   modPctPer1KSsp: number,
   secPer1KSp: {[StatusCode in number]: number},
   secPer1KSsp: {[StatusCode in number]: number},
+  spFullFillSec: number,
 }
 
 export type CalculatedSkillEntry = {

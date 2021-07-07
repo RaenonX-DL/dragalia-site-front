@@ -1,8 +1,9 @@
-import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
-import {calculateDamage} from '../../../../../utils/game/damage';
-import {InputData} from '../in/types';
-import {sortFunc} from '../sorter/lookup';
-import {CalculatedSkillEntry, Efficiency} from './types';
+import {AttackingSkillData, ElementBonusData} from '../../../../../../api-def/resources';
+import {calculateDamage} from '../../../../../../utils/game/damage';
+import {InputData} from '../../in/types';
+import {sortFunc} from '../../sorter/lookup';
+import {CalculatedSkillEntry, Efficiency} from '../types';
+import {calculateEfficiency} from './calc';
 
 
 export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<AttackingSkillData>) => {
@@ -39,34 +40,29 @@ export const calculateEntries = (
   atkSkillEntries: Array<AttackingSkillData>, inputData: InputData, elemBonusData: ElementBonusData,
 ): Array<CalculatedSkillEntry> => {
   return atkSkillEntries
-    .map((entry: AttackingSkillData) => {
+    .map((skillEntry: AttackingSkillData) => {
       // Element bonus rate
       const charaElementRate = elemBonusData.getElementBonus(
-        String(entry.chara.element),
+        String(skillEntry.chara.element),
         String(inputData.target.elemCondCode),
       );
 
       // Calculate skill damage
-      const skillDamage = calculateDamage(inputData, entry, charaElementRate);
+      const skillDamage = calculateDamage(inputData, skillEntry, charaElementRate);
 
       // Calculate efficiency
-      const efficiency: Efficiency = {
-        modPctPer1KSp: (skillDamage.totalMods * 100) / (entry.skill.spMax / 1000),
-        modPctPer1KSsp: (skillDamage.totalMods * 100) / (entry.skill.ssSp / 1000),
-        secPer1KSp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
-          [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.spMax / 1000)]
-        ))),
-        secPer1KSsp: Object.fromEntries(entry.skill.afflictions.map((afflictionUnit) => (
-          [afflictionUnit.statusCode, afflictionUnit.duration / (entry.skill.ssSp / 1000)]
-        ))),
-      };
+      const efficiency: Efficiency = inputData.display.spInfo ?
+        calculateEfficiency(skillDamage.totalMods, skillEntry) :
+        {
+          modPctPer1KSp: 0,
+          modPctPer1KSsp: 0,
+          secPer1KSp: {},
+          secPer1KSsp: {},
+          spFullFillSec: 0,
+        };
 
-      return {
-        skillDamage,
-        skillEntry: entry,
-        efficiency,
-      };
+      return {skillDamage, skillEntry, efficiency};
     })
-    .filter((calcData) => calcData.skillDamage.expected > 0)
+    .filter((calcData) => calcData.skillDamage.totalMods > 0)
     .sort(sortFunc[inputData.sortBy]);
 };

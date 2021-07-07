@@ -39,7 +39,7 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
       }
 
       const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang});
-      const imageMd = `![${unitName}](${getImageURL(unitInfo)}|unitIcon)`;
+      const imageMd = `![${unitName}](${getImageURL(unitInfo)}[unitIcon])`;
 
       leftRemainder = leftRemainder.replace(/:/g, '');
       rightRemainder = rightRemainder.replace(/:/g, '');

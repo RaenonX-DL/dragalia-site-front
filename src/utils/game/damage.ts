@@ -47,6 +47,11 @@ export const calculateDamage = (
     })
     .reduce((a, b) => a + b, 0);
 
+  // Omit numeric calculations if not to display
+  if (!inputData.display.actualDamage) {
+    return {lowest: 0, expected: 0, highest: 0, totalMods};
+  }
+
   let damage = 5 / 3; // Base damage
 
   // Damage from ATK
@@ -96,10 +101,5 @@ export const calculateDamage = (
   // Special - Bog
   damage *= inputData.target.afflictionCodes.includes(ConditionCodes.TARGET_BOGGED) ? 1.5 : 1;
 
-  return {
-    lowest: damage * 0.95,
-    expected: damage,
-    highest: damage * 1.05,
-    totalMods: totalMods,
-  };
+  return {lowest: damage * 0.95, expected: damage, highest: damage * 1.05, totalMods};
 };

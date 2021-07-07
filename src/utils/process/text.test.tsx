@@ -1,6 +1,12 @@
+import React from 'react';
+
+import {screen} from '@testing-library/react';
+
 import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
+import {renderReact} from '../../../test/render/main';
 import {SupportedLanguages} from '../../api-def/api';
-import {DepotPaths} from '../../api-def/resources/paths';
+import {DepotPaths} from '../../api-def/resources';
+import {Markdown} from '../../components/elements/markdown/main';
 import {PostPath} from '../../const/path/definitions';
 import {translations} from '../../i18n/translations/main';
 import {makePostPath} from '../path/make';
@@ -12,7 +18,7 @@ describe('Process text', () => {
   const lang = SupportedLanguages.EN;
 
   const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
-  const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}|unitIcon)`;
+  const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}[unitIcon])`;
   const galaMymMdTransformed = `${galaMymImageMd}${galaMymAnalysisLink}`;
 
   beforeEach(() => {
@@ -56,5 +62,15 @@ describe('Process text', () => {
     const result = await processText({text, lang});
 
     expect(result).toBe(text);
+  });
+
+  it('renders correctly for unit icon in table cell', async () => {
+    const text = 'head | col 2\n:---: | :---:\n:Gala Mym: | Y';
+
+    const result = await processText({text, lang});
+
+    renderReact(() => <Markdown>{result}</Markdown>);
+
+    expect(screen.getByAltText('Gala Mym')).toBeInTheDocument();
   });
 });

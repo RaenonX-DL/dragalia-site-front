@@ -6,7 +6,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {Image} from '../../../common/image';
 import {CommonModal, ModalState} from '../../../common/modal';
-import {IMAGE_CLASS_SPLITTER} from './const';
+import {IMAGE_REGEX} from './const';
 import {ImageProps} from './types';
 
 
@@ -19,7 +19,7 @@ export const ImageInHTML = ({src, alt}: ImageProps) => {
     message: '',
   });
 
-  const [actualSrc, className] = src.split(IMAGE_CLASS_SPLITTER, 2);
+  const {src: actualSrc, className} = src.match(IMAGE_REGEX)?.groups || {};
 
   const openGifModal = () => {
     GoogleAnalytics.showGif(actualSrc);

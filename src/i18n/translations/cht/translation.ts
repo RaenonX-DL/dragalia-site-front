@@ -222,6 +222,8 @@ export const translation: TranslationStruct = {
           secPer1KSsp: '異常效期 (秒) / 1K SSP',
         },
         sp: 'SP',
+        spGradualFill: '{{secs}} 秒 ({{sp}})',
+        spPctPerSec: '每秒回復 SP %',
         ssp: 'SSP',
         ssCost: 'SS Cost',
       },
@@ -389,6 +391,12 @@ export const translation: TranslationStruct = {
       suitable: '適配角色',
       summary: '懶人包',
       summonResult: '個人抽抽結果',
+      summonExplanation: {
+        title: '關於這個區塊',
+        description: '有些人可能會好奇為何這個部分會出現在評測中。' +
+          '一剛開始我在寫評測的時候，我想讓我的觀眾知道幾抽就中只是純粹好運，需要幾十、幾百，甚至天井才有是很正常的事情。' +
+          '我從來沒有想過最後我會這麼認真寫評測，而且我也一樣想讓我們觀眾們知道前面提到關於抽卡的事情，所以我決定把這個習慣保留下來。',
+      },
       tipsBuilds: '要點 & 建議配置',
       ultimate: '大招',
       videos: '相關影片',

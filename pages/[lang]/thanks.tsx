@@ -18,23 +18,32 @@ const SpecialThanks = () => {
       </h3>
       <ul>
         <li>
+          桜井みゆき&nbsp;
+          <Badge variant="primary">{t((t) => t.donation.tierSSS)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omGroup)}</Badge>
+        </li>
+        <li>
+          Yu&nbsp;
+          <Badge variant="primary">{t((t) => t.donation.tierSSS)}</Badge>
+        </li>
+        <li>
           Andy&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           Ellie&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+        </li>
+        <li>
+          皮皮熊艹&nbsp;
+          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           Piglet&nbsp;/&nbsp;ピグレット
           <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omGroup)}</Badge>
-        </li>
-        <li>
-          皮皮熊艹&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>

@@ -13,6 +13,8 @@ such as [quick reference](/doc/quickReference.md).
 
 `[R]` means required; `[O]` means optional.
 
+**These syntaxes must not nest with general markdown syntaxes.
+
 ### Text coloring
 
 ```
