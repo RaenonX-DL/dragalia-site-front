@@ -41,6 +41,10 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
     },
   });
 
+  React.useEffect(() => {
+    setState({...state, status: 'notCreated', link: t((t) => t.game.skillAtk.info.preset)});
+  }, [inputData]);
+
   const makePreset = () => {
     setState({...state, status: 'creating'});
     if (!context?.session) {
@@ -78,7 +82,7 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
 
   const copyAndSetTimeout = (link: string = state.link) => {
     navigator.clipboard.writeText(link).then(() => setState({...state, status: 'copied', link}));
-    return setTimeout(() => setState({...state, status: 'createdNotCopied'}), 5000);
+    return setTimeout(() => setState({...state, status: 'createdNotCopied', link}), 5000);
   };
 
   const onClickShareButton = () => {

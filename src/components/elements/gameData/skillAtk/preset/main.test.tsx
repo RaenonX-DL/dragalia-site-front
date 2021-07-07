@@ -16,6 +16,9 @@ describe('ATK skill input preset manager', () => {
 
   beforeEach(() => {
     window.location.href = 'http://localhost:3000';
+    // @ts-ignore
+    // noinspection JSConstantReassignment
+    navigator.clipboard = {writeText: jest.fn().mockResolvedValue(void 0)};
     fnMakePreset = jest.spyOn(ApiRequestSender, 'setPresetAtkSkill').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
@@ -37,6 +40,48 @@ describe('ATK skill input preset manager', () => {
     expect(fnMakePreset.mock.calls[0][1]).toBe(inputData);
   });
 
+  it('shows clipboard icon and link after making a preset and copied once', async () => {
+    jest.useFakeTimers();
+
+    renderReact(
+      () => <AttackingSkillPreset inputData={generateInputData()} isEnabled/>,
+      {hasSession: true},
+    );
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    userEvent.click(shareButton);
+
+    await waitFor(() => expect(fnMakePreset).toHaveBeenCalled());
+    jest.runTimersToTime(7000);
+    await waitFor(() => expect(screen.getByText('', {selector: 'i.bi-clipboard'})).toBeInTheDocument());
+    expect(screen.getByDisplayValue(`http://localhost/?${PRESET_QUERY_NAME}=presetLink`)).toBeInTheDocument();
+
+    jest.useRealTimers();
+  });
+
+  it('copies the correct link if re-copy', async () => {
+    jest.useFakeTimers();
+
+    renderReact(
+      () => <AttackingSkillPreset inputData={generateInputData()} isEnabled/>,
+      {hasSession: true},
+    );
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    userEvent.click(shareButton);
+
+    await waitFor(() => expect(fnMakePreset).toHaveBeenCalled());
+    jest.runTimersToTime(7000);
+
+    const clipboardButton = screen.getByText('', {selector: 'i.bi-clipboard'});
+    userEvent.click(clipboardButton);
+
+    const expectedLink = `http://localhost/?${PRESET_QUERY_NAME}=presetLink`;
+    await waitFor(() => expect(navigator.clipboard.writeText).toHaveBeenLastCalledWith(expectedLink));
+
+    jest.useRealTimers();
+  });
+
   it('does not have 2 preset IDs in the new link if created twice', async () => {
     jest.spyOn(ApiRequestSender, 'getPresetAtkSkill').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
@@ -44,11 +89,6 @@ describe('ATK skill input preset manager', () => {
       preset: {a: true},
     });
     window.location.href = `http://localhost/?${PRESET_QUERY_NAME}=preset`;
-    // @ts-ignore
-    // noinspection JSConstantReassignment
-    navigator.clipboard = {
-      writeText: jest.fn(),
-    };
 
     renderReact(
       () => <AttackingSkillPreset inputData={generateInputData()} isEnabled/>,
