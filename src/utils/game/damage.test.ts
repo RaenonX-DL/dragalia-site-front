@@ -50,6 +50,9 @@ describe('Damage calculation', () => {
         },
         state: ConditionCodes.TARGET_STATE_BK,
       },
+      display: {
+        actualDamage: true,
+      },
     });
 
     const attackingSkillData = {

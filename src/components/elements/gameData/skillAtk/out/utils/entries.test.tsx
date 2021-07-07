@@ -1,9 +1,9 @@
-import {generateAttackingSkillEntry} from '../../../../../../test/data/mock/skill';
-import {AttackingSkillData, ElementBonusData} from '../../../../../api-def/resources';
-import {ResourceLoader} from '../../../../../utils/services/resources';
-import {InputData} from '../in/types';
-import {generateInputData} from '../in/utils/inputData';
-import {calculateEntries, filterSkillEntries} from './utils';
+import {generateAttackingSkillEntry} from '../../../../../../../test/data/mock/skill';
+import {AttackingSkillData, ElementBonusData} from '../../../../../../api-def/resources';
+import {ResourceLoader} from '../../../../../../utils/services/resources';
+import {InputData} from '../../in/types';
+import {generateInputData} from '../../in/utils/inputData';
+import {calculateEntries, filterSkillEntries} from './entries';
 
 
 const inputDataTemplate: InputData = generateInputData();
@@ -111,6 +111,10 @@ describe('Sort ATK skill entries', () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'damage',
+      display: {
+        ...inputDataTemplate.display,
+        actualDamage: true,
+      },
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
@@ -392,5 +396,31 @@ describe('Entry calculation', () => {
   it('does not calculate SP full fill sec if the skill is SP-based', async () => {
     const entry = calculateEntries([data], inputDataTemplate, elemBonusData)[0];
     expect(entry.efficiency.spFullFillSec).toBe(0);
+  });
+
+  it('does not calculate efficiency if SP info will not display', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      display: {
+        ...inputDataTemplate.display,
+        spInfo: false,
+      },
+    };
+
+    const entry = calculateEntries([data], inputData, elemBonusData)[0];
+    expect(entry.efficiency.modPctPer1KSp).toBe(0);
+  });
+
+  it('does not calculate actual damage if actual damage will not display', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      display: {
+        ...inputDataTemplate.display,
+        actualDamage: false,
+      },
+    };
+
+    const entry = calculateEntries([data], inputData, elemBonusData)[0];
+    expect(entry.skillDamage.expected).toBe(0);
   });
 });
