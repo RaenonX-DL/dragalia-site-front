@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {generateInputData} from '../in/utils/inputData';
 import {AttackingSkillSorter} from './main';
 
 
@@ -16,13 +17,23 @@ describe('ATK skill entry sorter', () => {
   });
 
   it('shows the current sort order', async () => {
-    renderReact(() => <AttackingSkillSorter onOrderPicked={onOrderPicked}/>);
+    renderReact(() => (
+      <AttackingSkillSorter
+        inputData={generateInputData({sortBy: 'sp'})}
+        onOrderPicked={onOrderPicked}
+      />
+    ));
 
-    expect(screen.getByText(`Order: ${translationEN.game.skillAtk.sort.damageDesc}`)).toBeInTheDocument();
+    expect(screen.getByText(`Order: ${translationEN.game.skillAtk.sort.sp}`)).toBeInTheDocument();
   });
 
   it('dispatches on order picked event', async () => {
-    renderReact(() => <AttackingSkillSorter onOrderPicked={onOrderPicked}/>);
+    renderReact(() => (
+      <AttackingSkillSorter
+        inputData={generateInputData()}
+        onOrderPicked={onOrderPicked}
+      />
+    ));
 
     const dropdownButton = screen.getByText(/Order/);
     userEvent.click(dropdownButton);

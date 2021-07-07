@@ -113,35 +113,4 @@ describe('Input preset hook', () => {
     await waitFor(() => expect(result.current.getPresetStatus.fetched).toBeTruthy());
     expect(gaEvent).toHaveBeenCalledTimes(1);
   });
-
-  it('does not have 2 preset IDs in the new link if created twice', async () => {
-    jest.spyOn(ApiRequestSender, 'getPresetAtkSkill').mockResolvedValue({
-      code: ApiResponseCode.SUCCESS,
-      success: true,
-      preset: {a: true},
-    });
-    jest.spyOn(ApiRequestSender, 'setPresetAtkSkill').mockResolvedValue({
-      code: ApiResponseCode.SUCCESS,
-      success: true,
-      presetId: 'preset2',
-    });
-    // @ts-ignore
-    delete window.location;
-    // @ts-ignore
-    window.location = {
-      href: `http://localhost/?${PRESET_QUERY_NAME}=preset`,
-    };
-
-    const {result} = renderReactHook(
-      () => useAtkSkillInput(fnOnNotLoggedIn),
-      {
-        hasSession: true,
-        routerOptions: {query: {[PRESET_QUERY_NAME]: 'preset'}},
-      },
-    );
-
-    result.current.makePreset();
-    await waitFor(() => expect(result.current.makePresetLink).not.toBeNull());
-    expect(new URL(result.current.makePresetLink || '').searchParams.getAll(PRESET_QUERY_NAME).length).toBe(1);
-  });
 });

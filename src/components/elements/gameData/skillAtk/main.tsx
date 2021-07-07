@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
-import {CommonModal, ModalState} from '../../common/modal';
 import {useFetchEnums} from './hooks/enums';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
@@ -18,16 +17,17 @@ import {AttackingSkillPreset} from './preset/main';
 import {AttackingSkillSorter} from './sorter/main';
 
 
+type State = {
+  inputData: InputData,
+  calculatedEntries?: Array<CalculatedSkillEntry>,
+}
+
 export const AttackingSkillLookup = () => {
   // Having this reduces state updates when changing input.
   // Frequent update in this component is not ideal because rendering output is expensive.
-  const [inputDataForward, setInputDataForward] = React.useState(generateInputData());
-  const [modalState, setModalState] = React.useState<ModalState>({
-    show: false,
-    title: '',
-    message: '',
+  const [inputDataForward, setInputDataForward] = React.useState<State>({
+    inputData: generateInputData(),
   });
-  const [calculatedEntries, setCalculatedEntries] = React.useState<Array<CalculatedSkillEntry> | undefined>();
 
   const entryCol = React.useRef<HTMLDivElement>(null);
 
@@ -42,15 +42,14 @@ export const AttackingSkillLookup = () => {
   } = useFetchEnums();
 
   React.useEffect(() => {
-    if (!calculatedEntries) {
+    if (!inputDataForward.calculatedEntries) {
       return;
     }
     scrollRefToTop(entryCol);
-  }, [calculatedEntries]);
+  }, [inputDataForward.calculatedEntries]);
 
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState}/>
       <Row>
         <Col lg={4} className="rounded bg-black-32 p-3 mb-3">
           <AttackingSkillInput
@@ -58,27 +57,36 @@ export const AttackingSkillLookup = () => {
             onSearchRequested={(inputData: InputData) => {
               GoogleAnalytics.damageCalc('search', inputData);
 
-              setCalculatedEntries(getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses));
-              setInputDataForward(inputData);
+              setInputDataForward({
+                inputData,
+                calculatedEntries: getCalculatedEntries(inputData, attackingSkillEntries, elementBonuses),
+              });
             }}
           />
         </Col>
         <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
           <Form.Row className="text-right mb-1">
             <Col>
-              <AttackingSkillPreset isEnabled={!!calculatedEntries?.length}/>
+              <AttackingSkillPreset
+                inputData={inputDataForward.inputData}
+                isEnabled={!!inputDataForward.calculatedEntries?.length}
+              />
             </Col>
             <Col xs="auto">
               <AttackingSkillSorter
+                inputData={inputDataForward.inputData}
                 onOrderPicked={(newInputData) => {
-                  setCalculatedEntries(getCalculatedEntries(newInputData, attackingSkillEntries, elementBonuses));
+                  setInputDataForward({
+                    inputData: newInputData,
+                    calculatedEntries: getCalculatedEntries(newInputData, attackingSkillEntries, elementBonuses),
+                  });
                 }}
               />
             </Col>
           </Form.Row>
           <AttackingSkillOutput
-            displayConfig={inputDataForward.display}
-            calculatedEntries={calculatedEntries || []}
+            displayConfig={inputDataForward.inputData.display}
+            calculatedEntries={inputDataForward.calculatedEntries || []}
             conditionEnumMap={conditionEnumMap}
             skillIdentifierInfo={skillIdentifierInfo}
             skillEnums={skillEnums}

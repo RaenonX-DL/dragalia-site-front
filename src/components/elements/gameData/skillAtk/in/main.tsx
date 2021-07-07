@@ -9,8 +9,8 @@ import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {useAtkSkillInput} from '../hooks/preset';
+import {DisplayItemPicker} from './display';
 import {Filter} from './filter';
-import {DisplayItemPicker} from './limit';
 import {InputParameters} from './params';
 import {InputData} from './types';
 import {validateInputData} from './utils/inputData';
@@ -30,9 +30,13 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
     title: '',
     message: '',
   });
-  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput();
-  const isSearchAllowed = isAllFetched && getPresetStatus.fetched;
-
+  const {inputData, setInputData, getPresetStatus} = useAtkSkillInput(() => {
+    setModalState({
+      title: 'Error',
+      show: true,
+      message: t((t) => t.game.skillAtk.error.presetMustLogin),
+    });
+  });
   const {fetchStatus: conditionEnums, fetchFunction: fetchConditionEnums} = useFetchState<CategorizedConditionEnums>(
     {afflictions: [], elements: []},
     ResourceLoader.getEnumCategorizedConditions,
@@ -43,6 +47,8 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
     ResourceLoader.getEnumElements,
     'Failed to fetch the element enums.',
   );
+
+  const isSearchAllowed = isAllFetched && getPresetStatus.fetched;
 
   fetchConditionEnums();
   fetchElemEnums();

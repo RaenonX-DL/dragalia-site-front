@@ -323,5 +323,36 @@ describe('ATK skill lookup', () => {
     expect(await screen.findByText('417,497')).toBeInTheDocument();
   });
 
+  it('makes correct input preset', async () => {
+    const fnMakePreset = jest.spyOn(ApiRequestSender, 'setPresetAtkSkill').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      presetId: 'abc',
+    });
+
+    renderReact(
+      () => <AttackingSkillLookup/>,
+      {hasSession: true},
+    );
+
+    const displayActualDamageBtn = await screen.findByText(translationEN.game.skillAtk.display.options.actualDamage);
+    userEvent.click(displayActualDamageBtn);
+    await waitFor(() => expect(displayActualDamageBtn.parentNode).toHaveClass('active'));
+
+    const searchButton = await screen.findByText(
+      translationEN.misc.search,
+      {selector: 'button:enabled'},
+      {timeout: 2000},
+    );
+    userEvent.click(searchButton);
+
+    await waitForEntryProcessed();
+
+    const shareButton = screen.getByText('', {selector: 'i.bi-share-fill'});
+    userEvent.click(shareButton);
+
+    expect(fnMakePreset.mock.calls[0][1].display.actualDamage).toBe(true);
+  });
+
   it.todo('reset preset status on input changed then re-search');
 });
