@@ -10,7 +10,7 @@ const isSkillNotCommonSp = (entry: CalculatedSkillEntry) => entry.skillEntry.ski
 type SortFuncLookup = { [sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number }
 
 export const sortFunc: SortFuncLookup = {
-  damage: sortDescending({getComparer: (element) => element.skillDamage.expected}),
+  damage: sortDescending({getComparer: (element) => element.skillDamage.totalMods}),
   sp: sortAscending({
     getComparer: (element) => element.skillEntry.skill.spMax,
     isToPutLast: isSkillNotCommonSp,

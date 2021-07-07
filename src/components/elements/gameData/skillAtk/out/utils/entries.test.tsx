@@ -126,6 +126,21 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
+  it('sorts entries by total mods if not displaying actual damage', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'damage',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillDamage.totalMods)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
+  });
+
   it('sorts entries by SP', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
