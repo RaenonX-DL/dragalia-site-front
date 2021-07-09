@@ -293,45 +293,9 @@ export const translation: TranslationStruct = {
         title: '關於',
         description: '關於本網站的介紹。',
       },
-      analysisIndex: {
-        title: '評測目錄',
-        description: '角色、龍族評測目錄。',
-      },
-      analysisNewChara: {
-        title: '新角色評測',
-        description: '角色評測新增頁面。',
-      },
-      analysisNewDragon: {
-        title: '新龍族評測',
-        description: '龍族評測新增頁面。',
-      },
-      analysisEdit: {
-        title: '編輯評測 - {{name}}',
-        description: '{{name}}評測的編輯頁面。',
-      },
-      analysisPost: {
-        title: '【評測】{{name}}',
-        description: '{{summary}}',
-      },
       home: {
         title: '首頁',
         description: '歡迎來到 OM 龍絆攻略網！',
-      },
-      questEdit: {
-        title: '編輯攻略 - {{title}}',
-        description: '攻略: {{title}} 的編輯頁面。',
-      },
-      questList: {
-        title: '副本攻略目錄',
-        description: '各龍絆副本攻略目錄。',
-      },
-      questNew: {
-        title: '新增副本攻略',
-        description: '副本攻略新增頁面。',
-      },
-      questPost: {
-        title: '【攻略】{{title}}',
-        description: '詳情請進入頁面查看。',
       },
       site: {
         title: 'OM 龍絆攻略站',
@@ -340,6 +304,48 @@ export const translation: TranslationStruct = {
       thanks: {
         title: '特別感謝',
         description: '各方面協助本網站的成員清單。',
+      },
+      post: {
+        analysis: {
+          index: {
+            title: '評測目錄',
+            description: '角色、龍族評測目錄。',
+          },
+          newChara: {
+            title: '新角色評測',
+            description: '角色評測新增頁面。',
+          },
+          newDragon: {
+            title: '新龍族評測',
+            description: '龍族評測新增頁面。',
+          },
+          edit: {
+            title: '編輯評測 - {{name}}',
+            description: '{{name}}評測的編輯頁面。',
+          },
+          post: {
+            title: '【評測】{{name}}',
+            description: '{{summary}}',
+          },
+        },
+        quest: {
+          edit: {
+            title: '編輯攻略 - {{title}}',
+            description: '攻略: {{title}} 的編輯頁面。',
+          },
+          list: {
+            title: '副本攻略目錄',
+            description: '各龍絆副本攻略目錄。',
+          },
+          new: {
+            title: '新增副本攻略',
+            description: '副本攻略新增頁面。',
+          },
+          post: {
+            title: '【攻略】{{title}}',
+            description: '詳情請進入頁面查看。',
+          },
+        },
       },
       gameData: {
         ex: {

@@ -275,18 +275,24 @@ export type TranslationStruct = {
   meta: {
     inUse: {
       about: PageMetaTranslations,
-      analysisIndex: PageMetaTranslations,
-      analysisNewChara: PageMetaTranslations,
-      analysisNewDragon: PageMetaTranslations,
-      analysisEdit: PageMetaTranslations,
-      analysisPost: PageMetaTranslations,
       home: PageMetaTranslations,
-      questEdit: PageMetaTranslations,
-      questList: PageMetaTranslations,
-      questNew: PageMetaTranslations,
-      questPost: PageMetaTranslations,
       site: PageMetaTranslations,
       thanks: PageMetaTranslations,
+      post: {
+        analysis: {
+          index: PageMetaTranslations,
+          newChara: PageMetaTranslations,
+          newDragon: PageMetaTranslations,
+          edit: PageMetaTranslations,
+          post: PageMetaTranslations
+        },
+        quest: {
+          edit: PageMetaTranslations,
+          list: PageMetaTranslations,
+          new: PageMetaTranslations,
+          post: PageMetaTranslations,
+        },
+      },
       gameData: {
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,

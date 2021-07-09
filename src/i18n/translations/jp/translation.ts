@@ -290,45 +290,9 @@ export const translation: TranslationStruct = {
         title: 'サイトについて',
         description: 'description',
       },
-      analysisIndex: {
-        title: '評価のカタログ',
-        description: 'description',
-      },
-      analysisNewChara: {
-        title: '新キャラの評価',
-        description: 'description',
-      },
-      analysisNewDragon: {
-        title: '新ドラゴンの評価',
-        description: 'description',
-      },
-      analysisEdit: {
-        title: '評価の編集 - {{name}}',
-        description: '{{name}}を編集するページ。',
-      },
-      analysisPost: {
-        title: '【評価】{{name}}',
-        description: '{{name}}の評価',
-      },
       home: {
         title: 'ホームページ',
         description: 'description',
-      },
-      questEdit: {
-        title: 'クエスト攻略の編集 #Q{{title}}',
-        description: 'クエスト攻略 #Q{{pid}}の編集ページ。',
-      },
-      questList: {
-        title: 'クエスト攻略カタログ',
-        description: 'クエスト攻略のカタログ。',
-      },
-      questNew: {
-        title: 'クエスト攻略の追加',
-        description: 'description',
-      },
-      questPost: {
-        title: '【攻略】{{title}}',
-        description: 'TBA',
       },
       site: {
         title: 'ドラガリ攻略サイト by OM',
@@ -337,6 +301,48 @@ export const translation: TranslationStruct = {
       thanks: {
         title: 'ご協力に感謝',
         description: 'description',
+      },
+      post: {
+        analysis: {
+          index: {
+            title: '評価のカタログ',
+            description: 'description',
+          },
+          newChara: {
+            title: '新キャラの評価',
+            description: 'description',
+          },
+          newDragon: {
+            title: '新ドラゴンの評価',
+            description: 'description',
+          },
+          edit: {
+            title: '評価の編集 - {{name}}',
+            description: '{{name}}を編集するページ。',
+          },
+          post: {
+            title: '【評価】{{name}}',
+            description: '{{name}}の評価',
+          },
+        },
+        quest: {
+          edit: {
+            title: 'クエスト攻略の編集 #Q{{title}}',
+            description: 'クエスト攻略 #Q{{pid}}の編集ページ。',
+          },
+          list: {
+            title: 'クエスト攻略カタログ',
+            description: 'クエスト攻略のカタログ。',
+          },
+          new: {
+            title: 'クエスト攻略の追加',
+            description: 'description',
+          },
+          post: {
+            title: '【攻略】{{title}}',
+            description: 'TBA',
+          },
+        },
       },
       gameData: {
         ex: {

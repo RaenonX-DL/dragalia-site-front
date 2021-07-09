@@ -322,45 +322,9 @@ export const translation: TranslationStruct = {
         title: 'About',
         description: 'Information about this website.',
       },
-      analysisIndex: {
-        title: 'Index of analysis',
-        description: 'List of character/dragon analyses.',
-      },
-      analysisNewChara: {
-        title: 'New character analysis',
-        description: 'Page to add a new character analysis.',
-      },
-      analysisNewDragon: {
-        title: 'New dragon analysis',
-        description: 'Page to add a new dragon analysis.',
-      },
-      analysisEdit: {
-        title: 'Edit analysis - {{name}}',
-        description: 'Page to edit the analysis of {{name}}.',
-      },
-      analysisPost: {
-        title: '【Analysis】{{name}}',
-        description: '{{summary}}',
-      },
       home: {
         title: 'Homepage',
         description: 'Homepage of DL info website by OM.',
-      },
-      questEdit: {
-        title: 'Edit quest guide - {{title}}',
-        description: 'Page to edit quest guide: {{title}}.',
-      },
-      questList: {
-        title: 'Index of quest guides',
-        description: 'Index page of the quest guides.',
-      },
-      questNew: {
-        title: 'New quest guide',
-        description: 'Page to create a new High-Difficulty quest guide.',
-      },
-      questPost: {
-        title: '【Quest Guide】{{title}}',
-        description: 'Visit for the details.',
       },
       site: {
         title: 'DL Info by OM',
@@ -369,6 +333,48 @@ export const translation: TranslationStruct = {
       thanks: {
         title: 'Special Thanks',
         description: 'List of the contributors of this website.',
+      },
+      post: {
+        analysis: {
+          index: {
+            title: 'Index of analysis',
+            description: 'List of character/dragon analyses.',
+          },
+          newChara: {
+            title: 'New character analysis',
+            description: 'Page to add a new character analysis.',
+          },
+          newDragon: {
+            title: 'New dragon analysis',
+            description: 'Page to add a new dragon analysis.',
+          },
+          edit: {
+            title: 'Edit analysis - {{name}}',
+            description: 'Page to edit the analysis of {{name}}.',
+          },
+          post: {
+            title: '【Analysis】{{name}}',
+            description: '{{summary}}',
+          },
+        },
+        quest: {
+          edit: {
+            title: 'Edit quest guide - {{title}}',
+            description: 'Page to edit quest guide: {{title}}.',
+          },
+          list: {
+            title: 'Index of quest guides',
+            description: 'Index page of the quest guides.',
+          },
+          new: {
+            title: 'New quest guide',
+            description: 'Page to create a new High-Difficulty quest guide.',
+          },
+          post: {
+            title: '【Quest Guide】{{title}}',
+            description: 'Visit for the details.',
+          },
+        },
       },
       gameData: {
         ex: {
