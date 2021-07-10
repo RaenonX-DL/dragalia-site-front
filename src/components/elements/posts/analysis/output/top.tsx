@@ -3,7 +3,7 @@ import React from 'react';
 import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../common/ads/main';
-import {OverlayPopover} from '../../../common/overlay/popover';
+import {InfoPopover} from '../../../common/overlay/info';
 import {Markdown} from '../../../markdown/main';
 import {SectionProps} from './props';
 
@@ -24,12 +24,10 @@ export const SectionTop = <R extends AnalysisGetResponse>({analysis}: SectionPro
           <hr/>
           <h3 className="mb-3">
             {t((t) => t.posts.analysis.summonResult)}&nbsp;
-            <OverlayPopover
+            <InfoPopover
               title={t((t) => t.posts.analysis.summonExplanation.title)}
-              content={t((t) => t.posts.analysis.summonExplanation.description)}
-            >
-              <i className="bi bi-info-circle"/>
-            </OverlayPopover>
+              description={t((t) => t.posts.analysis.summonExplanation.description)}
+            />
           </h3>
           <Markdown>{analysis.summonResult}</Markdown>
         </>
