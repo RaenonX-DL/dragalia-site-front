@@ -9,6 +9,7 @@ import {
   ElementBonus,
   ElementEnums,
   ExBuffParams,
+  NormalAttackChain,
   ResourcePaths,
   SkillEnums,
   SkillIdentifierInfo,
@@ -163,7 +164,7 @@ export class ResourceLoader {
 
   // endregion
 
-  // region Unit info
+  // region Info
   /**
    * Get the character info data.
    *
@@ -171,7 +172,7 @@ export class ResourceLoader {
    * @param {function?} callback function to be called after fetching the resource
    * @return {Promise<CharaInfo>} promise after the callback
    */
-  static getCharacterInfo(callback?: (elementBonusData: CharaInfo) => void): Promise<CharaInfo> {
+  static getCharacterInfo(callback?: (charaInfo: CharaInfo) => void): Promise<CharaInfo> {
     return ResourceLoader.fetchResources<CharaInfo>(ResourcePaths.INFO_CHARA, callback);
   }
 
@@ -182,8 +183,22 @@ export class ResourceLoader {
    * @param {function?} callback function to be called after fetching the resource
    * @return {Promise<DragonInfo>} promise after the callback
    */
-  static getDragonInfo(callback?: (elementBonusData: DragonInfo) => void): Promise<DragonInfo> {
+  static getDragonInfo(callback?: (dragonInfo: DragonInfo) => void): Promise<DragonInfo> {
     return ResourceLoader.fetchResources<DragonInfo>(ResourcePaths.INFO_DRAGON, callback);
+  }
+
+  /**
+   * Get all normal attack chain data of an unit.
+   *
+   * @function
+   * @param {number} unitId unit ID of the combo chain
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<NormalAttackChain>} promise after the callback
+   */
+  static getNormalAttackChain(
+    unitId: number, callback?: (attackChain: Array<NormalAttackChain>) => void,
+  ): Promise<Array<NormalAttackChain>> {
+    return ResourceLoader.fetchResources<Array<NormalAttackChain>>(ResourcePaths.getComboURL(unitId), callback);
   }
 
   // endregion
