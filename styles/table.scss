@@ -1,0 +1,39 @@
+$item-margin: 0.75rem;
+
+%standard-table {
+  $table-border-color: #656565;
+
+  width: 100%;
+  padding-right: 30px;
+  margin-bottom: $item-margin;
+
+  tr {
+    background-color: #0e0e0e;
+    border: 1px solid $table-border-color;
+  }
+
+  tr:last-child {
+    margin-bottom: 0;
+  }
+
+  th,
+  td {
+    padding: 0.65rem 1.5rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  tbody {
+    tr:nth-of-type(odd) {
+      background-color: rgb(20, 20, 20);
+    }
+
+    tr:nth-of-type(even) {
+      background-color: rgb(32, 32, 32);
+    }
+
+    tr:hover {
+      background-color: rgb(4, 42, 59);
+    }
+  }
+}
