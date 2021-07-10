@@ -75,7 +75,7 @@ export type InputData = {
     spInfo: boolean,
     // Hit timings, cancellation info, animation duration
     animationInfo: boolean,
-  }
+  },
   sortBy: SortBy,
 }
 

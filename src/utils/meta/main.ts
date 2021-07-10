@@ -25,6 +25,7 @@ export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
     return {
       ...onNotFound(context, metaTFunc(metaTFuncOnNotFound)),
       alerts: [],
+      params: {},
     };
   }
 
@@ -34,11 +35,12 @@ export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
     return {
       ...onMetaResponseFailed(context, metaResponse, metaTFunc(metaTFuncOnNotFound)),
       alerts: [],
+      params: {},
     };
   }
 
   return {
     ...metaTFunc(metaTransFunctions[pathnameNoLang], {...metaResponse.params}),
-    alerts: metaResponse.alerts,
+    ...metaResponse,
   };
 };
