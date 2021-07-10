@@ -44,6 +44,8 @@ import {
   SupportedLanguages,
   UnitNameRefPayload,
   UnitNameRefResponse,
+  UnitPageMetaPayload,
+  UnitPageMetaResponse,
   UnitType,
 } from '../../../api-def/api';
 import {InputData as AtkSkillInput} from '../../../components/elements/gameData/skillAtk/in/types';
@@ -293,6 +295,22 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.PAGE_META_POST,
       {uid, lang, postType, postIdentifier},
+    );
+  }
+
+  /**
+   * Send a request to get the unit page meta.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang post language
+   * @param {number | string} unitIdentifier post identifier
+   * @return {Promise<PostPageMetaResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getUnitMeta(uid: string, lang: SupportedLanguages, unitIdentifier: number | string) {
+    return ApiRequestSender.sendRequest<UnitPageMetaResponse | FailedResponse, UnitPageMetaPayload>(
+      'GET',
+      ApiEndPoints.PAGE_META_UNIT,
+      {uid, lang, unitIdentifier},
     );
   }
 

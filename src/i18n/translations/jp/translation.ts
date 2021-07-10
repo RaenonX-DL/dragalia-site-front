@@ -360,6 +360,12 @@ export const translation: TranslationStruct = {
           description: 'Sign-in to the website to enable more features.',
         },
       },
+      unit: {
+        info: {
+          title: '{{unitName}}',
+          description: 'Unit info of {{unitName}}.',
+        },
+      },
     },
     error: {
       401: {

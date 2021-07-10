@@ -1,8 +1,16 @@
 export const PATH_ROOT = '/[lang]';
 
+export enum UnitPath {
+  UNIT_INFO = '/info/[id]',
+}
+
+export const isUnitPath = (path: string): path is UnitPath => {
+  return Object.values(UnitPath).some((unitPath) => unitPath === path);
+};
+
 // Must and only have `pid` as the key
 export enum PostPath {
-  QUEST = `/quest/[pid]`,
+  QUEST = '/quest/[pid]',
   QUEST_EDIT = '/quest/[pid]/edit',
   ANALYSIS = '/analysis/[pid]',
   ANALYSIS_EDIT = '/analysis/[pid]/edit',
@@ -40,12 +48,12 @@ export enum AuthPath {
 }
 
 export const allPaths = ([] as Array<PagePath>).concat(
-  ...[PostPath, GeneralPath, AuthPath].map(
+  ...[UnitPath, PostPath, GeneralPath, AuthPath].map(
     (paths) => Object.values(paths),
   ),
 );
 
-export type PagePath = PostPath | GeneralPath | AuthPath;
+export type PagePath = UnitPath | PostPath | GeneralPath | AuthPath;
 
 export const isPagePath = (path: string): path is PagePath => {
   return allPaths.some((pagePath) => pagePath === path);

@@ -363,6 +363,12 @@ export const translation: TranslationStruct = {
           description: '登入網站以開啟更多功能。',
         },
       },
+      unit: {
+        info: {
+          title: '{{unitName}}',
+          description: '{{unitName}} 的相關資訊。',
+        },
+      },
     },
     error: {
       401: {

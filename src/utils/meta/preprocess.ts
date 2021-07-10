@@ -4,7 +4,7 @@ import {AppContext} from 'next/app';
 import {FailedResponse} from '../../api-def/api/base/response';
 import {PageMetaResponse} from '../../api-def/api/meta/general/response';
 import {SupportedLanguages} from '../../api-def/api/other/lang';
-import {isPostPath} from '../../const/path/definitions';
+import {isPostPath, isUnitPath} from '../../const/path/definitions';
 import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
 
@@ -28,6 +28,14 @@ export const getPageMetaPromise = async ({
       lang,
       pathPostType[pathnameNoLang],
       context.router.query.pid as string,
+    );
+  }
+
+  if (isUnitPath(pathnameNoLang)) {
+    responsePromise = ApiRequestSender.getUnitMeta(
+      uid,
+      lang,
+      context.router.query.id as string,
     );
   }
 

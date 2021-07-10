@@ -299,7 +299,10 @@ export type TranslationStruct = {
       },
       auth: {
         signIn: PageMetaTranslations,
-      }
+      },
+      unit: {
+        info: PageMetaTranslations,
+      },
     },
     error: {
       401: PageMetaTranslations,
