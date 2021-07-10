@@ -70,9 +70,6 @@
   border-radius: 0.25rem;
   padding: 0.1rem 0.2rem;
 }
-.mdBody span.calc i {
-  margin-right: 0.2rem;
-}
 .mdBody iframe.youtubeEmbed {
   position: absolute;
   top: 0;
