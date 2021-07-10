@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
-import {useFetchEnums} from './hooks/enums';
+import {useFetchResources} from './hooks/enums';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
 import {getCalculatedEntries} from './in/utils/calculate';
@@ -39,7 +39,7 @@ export const AttackingSkillLookup = () => {
     skillEnums,
     statusEnums,
     isAllFetched,
-  } = useFetchEnums();
+  } = useFetchResources();
 
   React.useEffect(() => {
     if (!inputDataForward.calculatedEntries) {

@@ -18,7 +18,7 @@ export type UseFetchEnumsReturn = EnumDataPack & {
   isAllFetched: boolean,
 }
 
-export const useFetchEnums = (): UseFetchEnumsReturn => {
+export const useFetchResources = (): UseFetchEnumsReturn => {
   const {
     fetchStatus: elementBonuses,
     fetchFunction: fetchElementBonuses,
