@@ -6,19 +6,34 @@ import {
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
-} from '../../../../../api-def/resources';
-import {ResourceLoader} from '../../../../../utils/services/resources/loader';
-import {useFetchState, useFetchStateProcessed} from '../../../common/fetch';
-import {EnumDataPack} from '../out/props';
+} from '../../api-def/resources';
+import {ResourceLoader} from '../../utils/services/resources/loader';
+import {DeepPartial} from '../../utils/types';
+import {useFetchState, useFetchStateProcessed} from '../elements/common/fetch';
+import {EnumDataPack} from '../elements/gameData/skillAtk/out/props';
 
 
-export type UseFetchEnumsReturn = EnumDataPack & {
+type AtkSkillResourceToFetch = 'all' | 'conditionEnumsOnly'
+
+type UseAtkSkillResourceOptions = {
+  toFetch: AtkSkillResourceToFetch,
+}
+
+export type UseAtkSkillResourcesReturn = EnumDataPack & {
   attackingSkillEntries: Array<AttackingSkillData>,
   elementBonuses: ElementBonusData,
   isAllFetched: boolean,
 }
 
-export const useFetchResources = (): UseFetchEnumsReturn => {
+const generateOptions = (overwrite?: DeepPartial<UseAtkSkillResourceOptions>): UseAtkSkillResourceOptions => ({
+  toFetch: overwrite?.toFetch || 'all',
+});
+
+export const useAtkSkillResources = (
+  options?: DeepPartial<UseAtkSkillResourceOptions>,
+): UseAtkSkillResourcesReturn => {
+  const optionsInternal = generateOptions(options);
+
   const {
     fetchStatus: elementBonuses,
     fetchFunction: fetchElementBonuses,
@@ -66,12 +81,26 @@ export const useFetchResources = (): UseFetchEnumsReturn => {
     'Failed to fetch affliction status enums.',
   );
 
-  fetchElementBonuses();
+  if (optionsInternal.toFetch === 'all') {
+    fetchElementBonuses();
+    fetchSkillIdentifiers();
+    fetchAttackingSkillEntries();
+    fetchSkillEnums();
+    fetchStatusEnums();
+  }
   fetchConditionEnums();
-  fetchSkillIdentifiers();
-  fetchAttackingSkillEntries();
-  fetchSkillEnums();
-  fetchStatusEnums();
+
+  const allFetchedFlags: { [K in AtkSkillResourceToFetch]: Array<boolean> } = {
+    all: [
+      elementBonuses.fetched,
+      conditionEnums.fetched,
+      skillIdentifiers.fetched,
+      attackingSkillEntries.fetched,
+      skillEnums.fetched,
+      statusEnums.fetched,
+    ],
+    conditionEnumsOnly: [conditionEnums.fetched],
+  };
 
   return {
     elementBonuses: elementBonuses.data,
@@ -80,13 +109,6 @@ export const useFetchResources = (): UseFetchEnumsReturn => {
     attackingSkillEntries: attackingSkillEntries.data,
     skillEnums: skillEnums.data,
     statusEnums: statusEnums.data,
-    isAllFetched: [
-      elementBonuses.fetched,
-      conditionEnums.fetched,
-      skillIdentifiers.fetched,
-      attackingSkillEntries.fetched,
-      skillEnums.fetched,
-      statusEnums.fetched,
-    ].every((fetched) => fetched),
+    isAllFetched: allFetchedFlags[optionsInternal.toFetch].every((fetched) => fetched),
   };
 };

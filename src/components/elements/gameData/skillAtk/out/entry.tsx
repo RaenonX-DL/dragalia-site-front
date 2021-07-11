@@ -52,7 +52,7 @@ export const AttackingSkillEntry = ({
           displayConfig.actualDamage &&
           <Col className="text-center my-auto" lg={5}>
             <SectionSkillDamage calculatedData={calculatedData}/>
-            <ConditionBadges conditionCodes={calculatedData.skillEntry.condition} conditionEnums={conditionEnumMap}/>
+            <ConditionBadges conditionCodes={calculatedData.skillEntry.condition}/>
           </Col>
         }
       </Row>

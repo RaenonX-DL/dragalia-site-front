@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 
+
 export type FetchStatusSimple = {
   fetched: boolean,
   fetching: boolean,
