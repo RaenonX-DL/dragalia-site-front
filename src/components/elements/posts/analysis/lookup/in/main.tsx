@@ -4,13 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {GeneralPath} from '../../../../../../const/path/definitions';
 import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
-import {ResourceLoader} from '../../../../../../utils/services/resources';
+import {useUnitProps} from '../../../../../hooks/unitProps';
 import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
-import {useFetchState} from '../../../../common/fetch';
 import {PostManageBar} from '../../../manageBar';
 import {AnalysisTypePicker} from './typePicker';
 import {InputData} from './types';
@@ -30,44 +28,21 @@ export const AnalysisLookupInput = ({onSearchRequested}: LookupInputProps) => {
     elements: [],
     weaponTypes: [],
   });
-
-  const {
-    fetchStatus: elemEnums,
-    fetchFunction: fetchElemEnums,
-  } = useFetchState<ElementEnums>(
-    {
-      elemental: [],
-    },
-    ResourceLoader.getEnumElements,
-    'Failed to fetch the element enums.',
-  );
-  const {
-    fetchStatus: weaponTypeEnums,
-    fetchFunction: fetchWeaponTypeEnums,
-  } = useFetchState<WeaponTypeEnums>(
-    {
-      weapon: [],
-    },
-    ResourceLoader.getEnumWeaponTypes,
-    'Failed to fetch the weapon type enums.',
-  );
-
-  fetchWeaponTypeEnums();
-  fetchElemEnums();
+  const {elemEnums, weaponEnums} = useUnitProps();
 
   return (
     <>
       <div className="rounded bg-black-32 p-3 mb-2">
         <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
         <EnumCheckboxGroup
-          options={elemEnums.data.elemental}
+          options={elemEnums.elemental}
           inputData={inputData}
           setInputData={setInputData}
           getValue={(inputData) => inputData.elements}
           getUpdatedInputData={(newValue) => ({...inputData, elements: newValue})}
         />
         <EnumCheckboxGroup
-          options={weaponTypeEnums.data.weapon}
+          options={weaponEnums.weapon}
           inputData={inputData}
           setInputData={setInputData}
           getValue={(inputData) => inputData.weaponTypes}
