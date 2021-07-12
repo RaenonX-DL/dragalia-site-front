@@ -2,14 +2,14 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import AnalysisLookup from '../../../pages/[lang]/analysis';
-import {AnalysisLookupLandingResponse, ApiResponseCode, SupportedLanguages} from '../../../src/api-def/api';
-import {translations} from '../../../src/i18n/translations/main';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {renderReact} from '../../../test/render/main';
+import AnalysisLookup from '../../../../pages/[lang]/info';
+import {AnalysisLookupLandingResponse, ApiResponseCode, SupportedLanguages} from '../../../../src/api-def/api';
+import {translations} from '../../../../src/i18n/translations/main';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {renderReact} from '../../../../test/render/main';
 
 
-describe('Analysis listing page', () => {
+describe('Unit info searching page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 

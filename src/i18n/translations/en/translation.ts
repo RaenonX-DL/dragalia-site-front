@@ -386,10 +386,6 @@ export const translation: TranslationStruct = {
       },
       post: {
         analysis: {
-          index: {
-            title: 'Index of analysis',
-            description: 'List of character/dragon analyses.',
-          },
           newChara: {
             title: 'New character analysis',
             description: 'Page to add a new character analysis.',
@@ -427,6 +423,10 @@ export const translation: TranslationStruct = {
         },
       },
       gameData: {
+        info: {
+          title: 'Chara/Dragon info lookup',
+          description: 'Page to search for the info or the analysis of all characters/dragons.',
+        },
         ex: {
           title: 'Co-ab / CCA lookup',
           description: 'Page to search for all Co-abilities/Chained Co-abilities in the game.',

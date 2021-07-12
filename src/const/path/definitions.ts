@@ -25,6 +25,7 @@ export enum GeneralPath {
   MISC_LIST = '/misc',
   // In-game data
   EX = '/ex',
+  INFO_LOOKUP = '/info',
   SKILL_ATK = '/skill/atk',
   SKILL_SUP = '/skill/sup',
   STORY = '/story',

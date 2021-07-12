@@ -324,7 +324,6 @@ export type TranslationStruct = {
       thanks: PageMetaTranslations,
       post: {
         analysis: {
-          index: PageMetaTranslations,
           newChara: PageMetaTranslations,
           newDragon: PageMetaTranslations,
           edit: PageMetaTranslations,
@@ -338,6 +337,7 @@ export type TranslationStruct = {
         },
       },
       gameData: {
+        info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
       },

@@ -4,7 +4,7 @@ import {AppContext} from 'next/app';
 import {FailedResponse} from '../../api-def/api/base/response';
 import {PageMetaResponse} from '../../api-def/api/meta/general/response';
 import {SupportedLanguages} from '../../api-def/api/other/lang';
-import {isPostPath, isUnitPath} from '../../const/path/definitions';
+import {isPostPath, isUnitPath} from '../../const/path/utils';
 import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
 

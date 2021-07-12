@@ -353,10 +353,6 @@ export const translation: TranslationStruct = {
       },
       post: {
         analysis: {
-          index: {
-            title: '評価のカタログ',
-            description: 'description',
-          },
           newChara: {
             title: '新キャラの評価',
             description: 'description',
@@ -394,6 +390,10 @@ export const translation: TranslationStruct = {
         },
       },
       gameData: {
+        info: {
+          title: 'キャラ/ドラゴン情報カタログ',
+          description: 'description',
+        },
         ex: {
           title: 'TBA',
           description: 'description',

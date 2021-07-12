@@ -1,6 +1,6 @@
 import {AppContext} from 'next/app';
 
-import {isPagePath} from '../../const/path/definitions';
+import {isPagePath} from '../../const/path/utils';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {translations} from '../../i18n/translations/main';
 import {GetTranslationFunction} from '../../i18n/types';

@@ -15,6 +15,12 @@ describe('Page redirection behavior', () => {
       .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}`));
   });
 
+  it('redirects legacy analysis index path to new path', () => {
+    cy.visit('/cht/analysis')
+      .location('pathname')
+      .then((path) => expect(path).to.equal('/cht/info'));
+  });
+
   it('bypasses file requests', () => {
     cy.visit('/_next/main.css', {failOnStatusCode: false})
       .location('pathname')

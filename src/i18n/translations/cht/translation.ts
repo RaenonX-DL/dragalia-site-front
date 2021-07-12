@@ -353,10 +353,6 @@ export const translation: TranslationStruct = {
       },
       post: {
         analysis: {
-          index: {
-            title: '評測目錄',
-            description: '角色、龍族評測目錄。',
-          },
           newChara: {
             title: '新角色評測',
             description: '角色評測新增頁面。',
@@ -394,6 +390,10 @@ export const translation: TranslationStruct = {
         },
       },
       gameData: {
+        info: {
+          title: '角色/龍族資訊目錄',
+          description: '各角色、龍族的評測、資訊的索引頁面。',
+        },
         ex: {
           title: 'EX / CEX 搜尋',
           description: 'EX / CEX 搜尋頁面。',

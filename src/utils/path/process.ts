@@ -5,6 +5,25 @@ import {PATH_ROOT} from '../../const/path/definitions';
 import {DEFAULT_LANG} from '../../i18n/langCode';
 
 
+export const urlRemoveLang = (url: string) => {
+  for (const lang of Object.values(SupportedLanguages)) {
+    const urlPrefix = `/${lang}`;
+
+    if (!url.startsWith(urlPrefix)) {
+      continue;
+    }
+
+    url = url.substr(urlPrefix.length);
+    break;
+  }
+
+  if (!url) {
+    return '/';
+  }
+
+  return url;
+};
+
 export const pathnameRemoveLang = (pathname: string) => {
   pathname = pathname.replace(PATH_ROOT, '');
 
