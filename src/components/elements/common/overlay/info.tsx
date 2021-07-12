@@ -1,13 +1,26 @@
 import React from 'react';
 
-import {DetailedProps} from '../types';
+import {Markdown} from '../../markdown/main';
+import {TitledProps} from '../types';
 import {OverlayPopover} from './popover';
 
 
-export const InfoPopover = ({title, description}: DetailedProps) => {
+type InfoPopoverProps = TitledProps & {
+  description: string | React.ReactElement,
+}
+
+export const InfoPopover = ({title, description}: InfoPopoverProps) => {
   return (
     <OverlayPopover title={title} content={description}>
       <i className="bi bi-info-circle"/>
     </OverlayPopover>
   );
+};
+
+type InfoPopoverMarkdownProps = Omit<InfoPopoverProps, 'description'> & {
+  description: string,
+}
+
+export const InfoPopoverMarkdown = ({title, description}: InfoPopoverMarkdownProps) => {
+  return <InfoPopover title={title} description={<Markdown overrideStyle={false}>{description}</Markdown>}/>;
 };
