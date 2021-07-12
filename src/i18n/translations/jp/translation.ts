@@ -237,6 +237,55 @@ export const translation: TranslationStruct = {
       titleSelf: '他のツール',
       rotation: 'ルーティン計算',
     },
+    unitInfo: {
+      header: {
+        combo: {
+          index: '#',
+          mods: '倍率',
+          hitCount: '攻擊次數',
+          sp: 'SP',
+          utp: 'UTP',
+          odRate: 'OD 倍率',
+          crisisMods: '壓血倍率',
+          nextComboSec: '下一 Combo 時間 (秒)',
+        },
+      },
+      title: {
+        passive: '被動技能',
+        coAbility: {
+          all: 'EX / CEX',
+          global: 'EX',
+          chained: 'CEX',
+        },
+        normalAttack: '普攻輪轉',
+        skills: {
+          all: '技能',
+          official: '官方說明',
+          parsed: {
+            atk: '攻擊技能',
+          },
+        },
+      },
+      info: {
+        passive: 'These are official texts. ' +
+          'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+        coAbility: 'These are official texts. Welcome to [Co-ability searching]({{exLookup}}) feature.\n\n' +
+          'Co-ability is applied regardless the unit element. The effect is unstackable. ' +
+          'Chained co-ability is limited to same element only in general. However, the effect is stackable.',
+        skill: {
+          official: 'These are official texts. ' +
+            'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+          parsed: 'These are automatically parsed. Some content might be inaccurate. ' +
+            'Welcome to use the [ATK skill lookup]({{atkSearch}}) for searching.',
+        },
+      },
+      links: {
+        analysis: 'Analysis',
+      },
+      text: {
+        total: '(總計)',
+      },
+    },
   },
   userControl: {
     noUid: '該当するアカウントが見当たりません。',

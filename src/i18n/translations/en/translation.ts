@@ -263,6 +263,56 @@ export const translation: TranslationStruct = {
       titleSelf: 'Game Tools',
       rotation: 'Rotations Calculator',
     },
+    unitInfo: {
+      header: {
+        combo: {
+          index: '#',
+          mods: 'Mods',
+          hitCount: 'Hits',
+          sp: 'SP',
+          utp: 'UTP',
+          odRate: 'OD Rate',
+          crisisMods: 'Crisis Mods',
+          nextComboSec: 'Next combo after (sec)',
+        },
+      },
+      title: {
+        passive: 'Passive',
+        coAbility: {
+          all: 'Co-abilities',
+          global: 'Co-ability',
+          chained: 'Chained Co-ability',
+        },
+        normalAttack: 'Normal Attack Combo Chain',
+        skills: {
+          all: 'Skills',
+          official: 'Official Texts',
+          parsed: {
+            atk: 'Auto-parsed (ATK)',
+          },
+        },
+      },
+      info: {
+        passive: 'These are official texts. ' +
+          'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+        coAbility: 'These are official texts. Welcome to [Co-ability searching]({{exLookup}}) feature.' +
+          'Texts displayed below may be different the texts in-game due to the application design choice.\n\n\n' +
+          'Co-ability is applied regardless the unit element. The effect is unstackable. ' +
+          'Chained co-ability is limited to same element only in general. However, the effect is stackable.',
+        skill: {
+          official: 'These are official texts. ' +
+            'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+          parsed: 'These are automatically parsed. Some content might be inaccurate. ' +
+            'Welcome to use the [ATK skill lookup]({{atkSearch}}) for searching.',
+        },
+      },
+      links: {
+        analysis: 'Analysis',
+      },
+      text: {
+        total: '(Total)',
+      },
+    },
   },
   userControl: {
     noUid: 'No user ID',

@@ -238,6 +238,52 @@ export const translation: TranslationStruct = {
       titleSelf: '遊戲工具',
       rotation: '輪轉計算',
     },
+    unitInfo: {
+      header: {
+        combo: {
+          index: '#',
+          mods: '倍率',
+          hitCount: '攻擊次數',
+          sp: 'SP',
+          utp: 'UTP',
+          odRate: 'OD 倍率',
+          crisisMods: '壓血倍率',
+          nextComboSec: '下一 Combo 時間 (秒)',
+        },
+      },
+      title: {
+        passive: '被動技能',
+        coAbility: {
+          all: 'EX / CEX',
+          global: 'EX',
+          chained: 'CEX',
+        },
+        normalAttack: '普攻輪轉',
+        skills: {
+          all: '技能',
+          official: '官方說明',
+          parsed: {
+            atk: '攻擊技能',
+          },
+        },
+      },
+      info: {
+        passive: '以下內容為官方說明。閱讀對應[角色評測]({{analysis}})以降低理解難度並了解更多細節。',
+        coAbility: '以下內容為官方說明。歡迎使用 [EX/CEX 查詢]({{exLookup}}) 功能。' +
+          '受程式設計影響，部分文字顯示可能會和遊戲內實際內容不同。\n\n\n' +
+          'EX 不限屬性皆可套用，效果不可堆疊；CEX 通常需要對應屬性，效果可以堆疊。',
+        skill: {
+          official: '以下內容為官方說明。閱讀對應[角色評測]({{analysis}})以降低理解難度並了解更多細節。',
+          parsed: '以下內容為自動解析結果，內容可能有誤。歡迎使用[攻擊技能搜尋]({{atkSearch}})功能。',
+        },
+      },
+      links: {
+        analysis: '評測',
+      },
+      text: {
+        total: '(總計)',
+      },
+    },
   },
   userControl: {
     noUid: '無使用者 ID',

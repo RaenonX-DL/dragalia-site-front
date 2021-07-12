@@ -214,7 +214,7 @@ export type TranslationStruct = {
       },
       spInfo: {
         efficiencyIndexes: string,
-        efficiency: {[index in keyof Omit<Efficiency, 'spFullFillSec'>]: string},
+        efficiency: { [index in keyof Omit<Efficiency, 'spFullFillSec'>]: string },
         sp: string,
         spGradualFill: string,
         spPctPerSec: string,
@@ -231,6 +231,50 @@ export type TranslationStruct = {
     tools: {
       titleSelf: string,
       rotation: string,
+    },
+    unitInfo: {
+      header: {
+        combo: {
+          index: string,
+          mods: string,
+          hitCount: string,
+          sp: string,
+          utp: string,
+          odRate: string,
+          crisisMods: string,
+          nextComboSec: string,
+        },
+      },
+      title: {
+        passive: string,
+        coAbility: {
+          all: string,
+          global: string,
+          chained: string,
+        },
+        normalAttack: string,
+        skills: {
+          all: string,
+          official: string,
+          parsed: {
+            atk: string,
+          },
+        },
+      },
+      info: {
+        passive: string,
+        coAbility: string,
+        skill: {
+          official: string,
+          parsed: string,
+        },
+      },
+      links: {
+        analysis: string,
+      },
+      text: {
+        total: string,
+      },
     },
   },
   userControl: {
