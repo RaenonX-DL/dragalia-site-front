@@ -4,10 +4,6 @@ export enum UnitPath {
   UNIT_INFO = '/info/[id]',
 }
 
-export const isUnitPath = (path: string): path is UnitPath => {
-  return Object.values(UnitPath).some((unitPath) => unitPath === path);
-};
-
 // Must and only have `pid` as the key
 export enum PostPath {
   QUEST = '/quest/[pid]',
@@ -16,10 +12,6 @@ export enum PostPath {
   ANALYSIS_EDIT = '/analysis/[pid]/edit',
   MISC = '/misc/[pid]',
 }
-
-export const isPostPath = (path: string): path is PostPath => {
-  return Object.values(PostPath).some((postPath) => postPath === path);
-};
 
 export enum GeneralPath {
   // Home
@@ -54,7 +46,3 @@ export const allPaths = ([] as Array<PagePath>).concat(
 );
 
 export type PagePath = UnitPath | PostPath | GeneralPath | AuthPath;
-
-export const isPagePath = (path: string): path is PagePath => {
-  return allPaths.some((pagePath) => pagePath === path);
-};
