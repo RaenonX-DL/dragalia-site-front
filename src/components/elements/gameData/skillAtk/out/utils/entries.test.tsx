@@ -71,7 +71,7 @@ describe('Filter ATK skill entries', () => {
         data,
       );
       expect(dataFiltered.length).toBeGreaterThan(0);
-      expect(dataFiltered.map((entry) => entry.chara.element === elemEnumCode)).not.toContain(false);
+      expect(dataFiltered.map((entry) => entry.unit.element === elemEnumCode)).not.toContain(false);
     });
   });
 
@@ -91,7 +91,7 @@ describe('Filter ATK skill entries', () => {
         },
         data,
       );
-      expect(dataFiltered.map((entry) => entry.chara.element === afflictionEnumCode)).not.toContain(false);
+      expect(dataFiltered.map((entry) => entry.unit.element === afflictionEnumCode)).not.toContain(false);
     });
   });
 });

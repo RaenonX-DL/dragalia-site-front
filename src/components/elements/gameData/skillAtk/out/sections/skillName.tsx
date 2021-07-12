@@ -18,8 +18,8 @@ export const SectionSkillName = ({atkSkillEntry, skillIdentifierInfo}: SectionSk
   return (
     <>
       <div className="h5 mb-1">
-        <NextLink href={makePostPath(PostPath.ANALYSIS, {pid: atkSkillEntry.chara.id, lang})}>
-          {atkSkillEntry.chara.name[lang]}
+        <NextLink href={makePostPath(PostPath.ANALYSIS, {pid: atkSkillEntry.unit.id, lang})}>
+          {atkSkillEntry.unit.name[lang]}
         </NextLink>
       </div>
       <div className="text-white-50">

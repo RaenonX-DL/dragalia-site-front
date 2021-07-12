@@ -9,8 +9,8 @@ import {SectionProps} from '../props';
 export const SectionImageIcon = ({atkSkillEntry}: SectionProps) => {
   const {lang} = useI18n();
 
-  const charaName = atkSkillEntry.chara.name[lang];
-  const charaIconURL = DepotPaths.getCharaIconURL(atkSkillEntry.chara.iconName);
+  const charaName = atkSkillEntry.unit.name[lang];
+  const charaIconURL = DepotPaths.getUnitIconURL(atkSkillEntry.unit.type, atkSkillEntry.unit.iconName);
 
   return (
     <ImageWithOverlay
