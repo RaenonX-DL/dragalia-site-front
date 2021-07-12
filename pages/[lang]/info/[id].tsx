@@ -1,3 +1,3 @@
-import {CharaInfo} from '../../../src/components/elements/info/chara/main';
+import {UnitInfo} from '../../../src/components/elements/gameData/unitInfo/main';
 
-export default CharaInfo;
+export default UnitInfo;
