@@ -9,6 +9,7 @@ import {
   ElementBonus,
   ElementEnums,
   ExBuffParams,
+  InfoDataAdvanced,
   NormalAttackChain,
   ResourcePaths,
   SkillEnums,
@@ -166,7 +167,7 @@ export class ResourceLoader {
 
   // region Info
   /**
-   * Get the character info data.
+   * Get a character info data.
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
@@ -177,7 +178,7 @@ export class ResourceLoader {
   }
 
   /**
-   * Get the dragon info data.
+   * Get a dragon info data.
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
@@ -199,6 +200,20 @@ export class ResourceLoader {
     unitId: number, callback?: (attackChain: Array<NormalAttackChain>) => void,
   ): Promise<Array<NormalAttackChain>> {
     return ResourceLoader.fetchResources<Array<NormalAttackChain>>(ResourcePaths.getComboURL(unitId), callback);
+  }
+
+  /**
+   * Get the advanced unit info from an unit.
+   *
+   * @function
+   * @param {number} unitId unit ID of the combo chain
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<NormalAttackChain>} promise after the callback
+   */
+  static getAdvancedUnitInfo(
+    unitId: number, callback?: (advancedInfo: InfoDataAdvanced) => void,
+  ): Promise<InfoDataAdvanced> {
+    return ResourceLoader.fetchResources<InfoDataAdvanced>(ResourcePaths.getAdvancedInfoURL(unitId), callback);
   }
 
   // endregion
