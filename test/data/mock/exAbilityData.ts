@@ -1,18 +1,33 @@
-import {SupportedLanguages} from '../../../src/api-def/api';
-import {CharaExAbilityDataEntry, Element} from '../../../src/api-def/resources';
+import {SupportedLanguages, UnitType} from '../../../src/api-def/api';
+import {CharaExAbilityDataEntry, Element, Weapon} from '../../../src/api-def/resources';
 
 
 export const generateExAbilityDataEntry = (): CharaExAbilityDataEntry => {
   return {
     chara: {
+      type: UnitType.CHARACTER,
       element: Element.FLAME,
       iconName: 'icon',
+      rarity: 5,
       id: 10950101,
       name: {
         [SupportedLanguages.CHT]: 'CHT name',
         [SupportedLanguages.EN]: 'EN name',
         [SupportedLanguages.JP]: 'JP name',
       },
+      cvEn: {
+        [SupportedLanguages.CHT]: 'CHT EN CV name',
+        [SupportedLanguages.EN]: 'EN EN CV name',
+        [SupportedLanguages.JP]: 'JP EN CV name',
+      },
+      cvJp: {
+        [SupportedLanguages.CHT]: 'CHT JP CV name',
+        [SupportedLanguages.EN]: 'EN JP CV name',
+        [SupportedLanguages.JP]: 'JP JP CV name',
+      },
+      releaseEpoch: 1,
+      weapon: Weapon.SWORD,
+      hasUniqueDragon: false,
     },
     ex: [{
       conditions: [],

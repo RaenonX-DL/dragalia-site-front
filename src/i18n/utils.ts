@@ -11,7 +11,7 @@ export const getTFunction = (
 ): string => {
   const entry = getEntryFn(translation);
 
-  const replacer = (original: string, key: string) => {
+  const replacer = (original: string, key: string): string => {
     const newValue = replacements[key];
 
     if (!newValue) {
@@ -22,7 +22,7 @@ export const getTFunction = (
       return original;
     }
 
-    return newValue;
+    return newValue.toString();
   };
 
   return entry.replace(/{{(\w+)}}/g, replacer);

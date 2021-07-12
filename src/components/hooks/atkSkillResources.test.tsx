@@ -8,7 +8,7 @@ describe('ATK skill resource fetching hook', () => {
   it('only fetches condition enums', async () => {
     const {result} = renderReactHook(() => useAtkSkillResources({toFetch: 'conditionEnumsOnly'}));
 
-    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy());
+    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy(), {timeout: 2000});
     expect(Object.keys(result.current.conditionEnumMap).length).toBeGreaterThan(0);
     expect(Object.keys(result.current.elementBonuses.data).length).toBe(0);
     expect(result.current.attackingSkillEntries.length).toBe(0);
@@ -20,7 +20,7 @@ describe('ATK skill resource fetching hook', () => {
   it('fetches all resources', async () => {
     const {result} = renderReactHook(() => useAtkSkillResources({toFetch: 'all'}));
 
-    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy());
+    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy(), {timeout: 2000});
     expect(Object.keys(result.current.conditionEnumMap).length).toBeGreaterThan(0);
     expect(Object.keys(result.current.elementBonuses.data).length).toBeGreaterThan(0);
     expect(result.current.attackingSkillEntries.length).toBeGreaterThan(0);
@@ -32,7 +32,7 @@ describe('ATK skill resource fetching hook', () => {
   it('fetches all resources if no options provided', async () => {
     const {result} = renderReactHook(() => useAtkSkillResources({toFetch: 'all'}));
 
-    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy());
+    await waitFor(() => expect(result.current.isAllFetched).toBeTruthy(), {timeout: 2000});
     expect(Object.keys(result.current.conditionEnumMap).length).toBeGreaterThan(0);
     expect(Object.keys(result.current.elementBonuses.data).length).toBeGreaterThan(0);
     expect(result.current.attackingSkillEntries.length).toBeGreaterThan(0);
