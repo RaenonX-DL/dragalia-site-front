@@ -357,9 +357,11 @@ export type TranslationStruct = {
     },
     suffix: string,
   },
+  nav: {
+    unitInfo: string,
+  },
   posts: {
     analysis: {
-      titleSelf: string,
       forceStrike: string,
       keywords: string,
       normalAttack: string,

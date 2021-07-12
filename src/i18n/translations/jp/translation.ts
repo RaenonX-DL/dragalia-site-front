@@ -434,9 +434,11 @@ export const translation: TranslationStruct = {
     },
     suffix: ' | ドラガリ攻略 by OM',
   },
+  nav: {
+    unitInfo: 'キャラ/ドラゴン情報',
+  },
   posts: {
     analysis: {
-      titleSelf: 'ユニット評価',
       forceStrike: 'バーストアタック',
       keywords: 'キーワード',
       normalAttack: '通常攻撃',

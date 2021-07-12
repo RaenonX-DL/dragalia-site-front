@@ -434,9 +434,11 @@ export const translation: TranslationStruct = {
     },
     suffix: ' | 龍絆攻略站 by OM',
   },
+  nav: {
+    unitInfo: '角色/龍族資訊',
+  },
   posts: {
     analysis: {
-      titleSelf: '物件評測',
       forceStrike: '特殊蓄力',
       keywords: '關鍵字',
       normalAttack: '普攻模組',

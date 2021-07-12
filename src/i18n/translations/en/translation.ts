@@ -467,9 +467,11 @@ export const translation: TranslationStruct = {
     },
     suffix: ' | DL Info by OM',
   },
+  nav: {
+    unitInfo: 'Chara/Dragon Info',
+  },
   posts: {
     analysis: {
-      titleSelf: 'Unit Analysis',
       forceStrike: 'Force Strike Module',
       keywords: 'Keywords',
       normalAttack: 'Normal Attack Module',

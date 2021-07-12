@@ -41,7 +41,7 @@ export const Navigation = () => {
             />
             <NavItem
               path={GeneralPath.ANALYSIS_LIST}
-              text={t((t) => t.posts.analysis.titleSelf)}
+              text={t((t) => t.nav.unitInfo)}
             />
             <NavItem
               path={GeneralPath.MISC_LIST}
