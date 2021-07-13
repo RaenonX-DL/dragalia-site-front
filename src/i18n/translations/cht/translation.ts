@@ -279,9 +279,11 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: '評測',
+        info: '資訊',
       },
       text: {
         total: '(總計)',
+        relatedLinks: '相關連結',
       },
     },
   },

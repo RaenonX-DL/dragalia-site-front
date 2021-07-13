@@ -308,9 +308,11 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: 'Analysis',
+        info: 'Info',
       },
       text: {
         total: '(Total)',
+        relatedLinks: 'Related Links',
       },
     },
   },

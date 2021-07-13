@@ -271,9 +271,11 @@ export type TranslationStruct = {
       },
       links: {
         analysis: string,
+        info: string,
       },
       text: {
         total: string,
+        relatedLinks: string,
       },
     },
   },
