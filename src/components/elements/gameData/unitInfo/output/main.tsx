@@ -7,6 +7,7 @@ import {UnitMetaParams} from '../../../../../api-def/api';
 import {DepotPaths, InfoDataAdvanced} from '../../../../../api-def/resources';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
+import {useNextRouter} from '../../../../../utils/router';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../common/fetch';
 import {Image} from '../../../common/image';
@@ -21,12 +22,15 @@ import {SkillSection} from './elements/skill/section';
 export const UnitInfo = () => {
   const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
+  const {query} = useNextRouter();
 
   if (!context) {
     return <></>;
   }
 
-  const unitId = (context.params as UnitMetaParams).unitId;
+  // `context.params` contains the unit ID via direct visit
+  // `query.id` will contains the unit ID via in-site redirection
+  const unitId = (context.params as UnitMetaParams).unitId || +(query.id as string);
   const {fetchStatus: info, fetchFunction: fetchInfo} = useFetchState<InfoDataAdvanced | undefined>(
     undefined,
     () => ResourceLoader.getAdvancedUnitInfo(unitId),
