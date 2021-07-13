@@ -1,10 +1,11 @@
 export const PATH_ROOT = '/[lang]';
 
+// Must and only have `id` as the key for unit ID
 export enum UnitPath {
   UNIT_INFO = '/info/[id]',
 }
 
-// Must and only have `pid` as the key
+// Must and only have `pid` as the key for post identifier
 export enum PostPath {
   QUEST = '/quest/[pid]',
   QUEST_EDIT = '/quest/[pid]/edit',
