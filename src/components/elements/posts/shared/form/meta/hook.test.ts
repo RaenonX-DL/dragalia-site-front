@@ -1,9 +1,7 @@
 import {waitFor} from '@testing-library/react';
 
 import {renderReactHook} from '../../../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
-import {PostMeta} from '../../../../../../api-def/api/post/base/elements/common';
-import {ApiResponseCode} from '../../../../../../api-def/api/responseCode';
+import {ApiResponseCode, PostMeta, SupportedLanguages} from '../../../../../../api-def/api';
 import {PostFormState} from '../types';
 import {useFormMeta} from './hook';
 

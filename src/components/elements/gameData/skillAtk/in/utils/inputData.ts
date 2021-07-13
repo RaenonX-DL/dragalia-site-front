@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../../../../../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../../../../../api-def/api';
 import {ConditionCodes} from '../../../../../../const/gameData';
 import {translations} from '../../../../../../i18n/translations/main';
 import {DeepPartial} from '../../../../../../utils/types';

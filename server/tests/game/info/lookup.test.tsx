@@ -3,7 +3,7 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import AnalysisLookup from '../../../../pages/[lang]/info';
-import {AnalysisLookupLandingResponse, ApiResponseCode, SupportedLanguages} from '../../../../src/api-def/api';
+import {UnitInfoLookupLandingResponse, ApiResponseCode, SupportedLanguages} from '../../../../src/api-def/api';
 import {translations} from '../../../../src/i18n/translations/main';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {renderReact} from '../../../../test/render/main';
@@ -14,14 +14,14 @@ describe('Unit info searching page', () => {
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 
   let lookupLandingFunc: jest.SpyInstance;
-  const lookupLandingResponse: AnalysisLookupLandingResponse = {
+  const lookupLandingResponse: UnitInfoLookupLandingResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
     analyses: [],
   };
 
   beforeEach(() => {
-    lookupLandingFunc = jest.spyOn(ApiRequestSender, 'analysisLookupLanding')
+    lookupLandingFunc = jest.spyOn(ApiRequestSender, 'unitInfoLookupLanding')
       .mockImplementation(() => Promise.resolve(lookupLandingResponse));
   });
 

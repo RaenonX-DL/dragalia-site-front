@@ -1,10 +1,4 @@
-import React from 'react';
-
-import {AnalysisPostLookup} from '../../../src/components/elements/posts/analysis/lookup/main';
+import {UnitInfoLookup} from '../../../src/components/elements/gameData/unitInfo/lookup/main';
 
 
-const AnalysisLookup = () => {
-  return <AnalysisPostLookup/>;
-};
-
-export default AnalysisLookup;
+export default UnitInfoLookup;

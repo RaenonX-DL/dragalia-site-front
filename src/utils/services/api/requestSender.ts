@@ -6,10 +6,6 @@ import {
   AnalysisGetResponse,
   AnalysisIdCheckPayload,
   AnalysisIdCheckResponse,
-  AnalysisLookupLandingPayload,
-  AnalysisLookupLandingResponse,
-  AnalysisLookupPayload,
-  AnalysisLookupResponse,
   AnalysisPublishResponse,
   AnalysisResponse,
   ApiEndPoints,
@@ -42,6 +38,10 @@ import {
   SetAtkSkillPresetPayload,
   SetAtkSkillPresetResponse,
   SupportedLanguages,
+  UnitInfoLookupLandingPayload,
+  UnitInfoLookupLandingResponse,
+  UnitInfoLookupPayload,
+  UnitInfoLookupResponse,
   UnitNameRefPayload,
   UnitNameRefResponse,
   UnitPageMetaPayload,
@@ -179,27 +179,27 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID to get the analysis lookup
    * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<AnalysisLookupResponse>} promise returned from `fetch`
+   * @return {Promise<UnitInfoLookupResponse>} promise returned from `fetch`
    */
-  static analysisLookup(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupResponse> {
-    return ApiRequestSender.sendRequest<AnalysisLookupResponse, AnalysisLookupPayload>(
+  static analysisLookup(uid: string, lang: SupportedLanguages): Promise<UnitInfoLookupResponse> {
+    return ApiRequestSender.sendRequest<UnitInfoLookupResponse, UnitInfoLookupPayload>(
       'GET',
-      ApiEndPoints.POST_ANALYSIS_LOOKUP,
+      ApiEndPoints.INFO_UNIT_LOOKUP,
       {uid, lang},
     );
   }
 
   /**
-   * Send an analysis lookup info request on landing.
+   * Send an unit info lookup info request on landing.
    *
-   * @param {string} uid user ID to get the analysis lookup
-   * @param {SupportedLanguages} lang language to use for getting the analysis info
-   * @return {Promise<AnalysisLookupLandingResponse>} promise returned from `fetch`
+   * @param {string} uid user ID to get the unit info lookup
+   * @param {SupportedLanguages} lang language to use for getting the unit info lookup
+   * @return {Promise<UnitInfoLookupLandingResponse>} promise returned from `fetch`
    */
-  static analysisLookupLanding(uid: string, lang: SupportedLanguages): Promise<AnalysisLookupLandingResponse> {
-    return ApiRequestSender.sendRequest<AnalysisLookupLandingResponse, AnalysisLookupLandingPayload>(
+  static unitInfoLookupLanding(uid: string, lang: SupportedLanguages): Promise<UnitInfoLookupLandingResponse> {
+    return ApiRequestSender.sendRequest<UnitInfoLookupLandingResponse, UnitInfoLookupLandingPayload>(
       'GET',
-      ApiEndPoints.POST_ANALYSIS_LOOKUP_LANDING,
+      ApiEndPoints.INFO_UNIT_LOOKUP_LANDING,
       {uid, lang},
     );
   }

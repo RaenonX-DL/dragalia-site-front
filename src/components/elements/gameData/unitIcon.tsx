@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UnitInfoData} from '../../../api-def/resources/types';
+import {UnitInfoData} from '../../../api-def/resources';
 import {useI18n} from '../../../i18n/hook';
 import {getImageURL} from '../../../utils/services/resources/unitInfo/utils';
 import {ImageWithOverlay} from '../common/image';
