@@ -6,6 +6,7 @@ import {useI18n} from '../../../../../../../i18n/hook';
 import {sum} from '../../../../../../../utils/calc';
 import {Markdown} from '../../../../../markdown/main';
 import {ConditionBadges} from '../../../../elements/conditionBadges';
+import styles from '../main.module.css';
 import {SectionSubTitle} from '../title';
 
 
@@ -17,7 +18,7 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
   const {t} = useI18n();
 
   return (
-    <>
+    <div className={styles.text}>
       <SectionSubTitle>
         <ConditionBadges
           conditionCodes={branchedChain.conditions.length ? branchedChain.conditions : [ConditionCodes.NONE]}
@@ -110,6 +111,6 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };

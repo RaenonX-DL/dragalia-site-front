@@ -88,12 +88,14 @@ export const SkillSection = ({info, unitId}: Props) => {
         </Col>
       </Row>
       <Row>
-        <Col className={styles.entries}>
-          <AttackingSkillOutput
-            displayConfig={displayConfig}
-            calculatedEntries={entries}
-            {...resources}
-          />
+        <Col>
+          <div className={styles.entries}>
+            <AttackingSkillOutput
+              displayConfig={displayConfig}
+              calculatedEntries={entries}
+              {...resources}
+            />
+          </div>
         </Col>
       </Row>
     </div>

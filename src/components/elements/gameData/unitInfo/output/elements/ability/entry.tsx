@@ -18,7 +18,7 @@ export const OfficialAbilityEntry = ({info}: EntryProps) => {
 
   return (
     <Form.Row className="mx-1">
-      <Col lg="auto">
+      <Col xs="auto">
         <Image
           src={DepotPaths.getAbilityIconURL(info.iconPath)}
           text={info.iconPath}

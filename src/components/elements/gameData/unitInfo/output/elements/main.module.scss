@@ -30,7 +30,8 @@ $item-margin: 0.75rem;
 .skill {
   .entries {
     max-height: 70vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
