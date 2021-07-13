@@ -24,4 +24,13 @@ describe('Advanced unit info page', () => {
 
     expect(await screen.findByText('Gala Reborn Nidhogg')).toBeInTheDocument();
   });
+
+  it('renders page not found for non-existing units', async () => {
+    renderReact(
+      () => <UnitInfo/>,
+      {contextParams: {unitId: 87}},
+    );
+
+    expect(await screen.findByText('The page does not exist.')).toBeInTheDocument();
+  });
 });

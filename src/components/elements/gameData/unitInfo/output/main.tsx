@@ -19,7 +19,7 @@ import {SkillSection} from './elements/skill/section';
 
 
 export const UnitInfo = () => {
-  const {lang} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   if (!context) {
@@ -36,7 +36,10 @@ export const UnitInfo = () => {
   fetchInfo();
 
   if (!info.data) {
-    return <Loading/>;
+    if (info.fetching) {
+      return <Loading/>;
+    }
+    return <span className="h2">{t((t) => t.meta.error['404'].description)}</span>;
   }
 
   return (
