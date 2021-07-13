@@ -12,7 +12,7 @@ import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/h
 import {useFetchState} from '../../../../common/fetch';
 import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
-import {AnalysisEntry} from './entry';
+import {UnitInfoEntry} from './entry';
 
 
 type AnalysisLookupOutputProps = {
@@ -69,7 +69,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
         [...unitInfoHasAnalysis, ...unitInfoNoAnalysis]
           .map((info) => (
             <Col key={info.id} md={6} className="mb-2">
-              <AnalysisEntry
+              <UnitInfoEntry
                 unitInfo={info}
                 isFetchingMeta={analysisMeta.fetching}
                 analysisMeta={analysisMeta.data.analyses[info.id]}

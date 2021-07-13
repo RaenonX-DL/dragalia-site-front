@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
-import {AnalysisEntry} from '../out/entry';
+import {UnitInfoEntry} from '../out/entry';
 
 
 type Props = {
@@ -25,7 +25,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
           })
           .map(({entry, unitInfo}) => (
             <Col lg className="mt-2 mt-lg-0" key={unitInfo.id}>
-              <AnalysisEntry
+              <UnitInfoEntry
                 unitInfo={unitInfo}
                 analysisMeta={entry}
                 isFetchingMeta={false}

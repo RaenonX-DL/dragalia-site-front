@@ -6,20 +6,20 @@ import Row from 'react-bootstrap/Row';
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../../api-def/resources';
 import {UnitIcon} from '../../../unitIcon';
-import {AnalysisEntryAvailable, AnalysisEntryAvailableProps} from './entryAvailable';
-import {AnalysisEntryUnavailable} from './entryUnavailable';
+import {EntryWithAnalysis, EntryWithAnalysisProps} from './entryHasAnalysis';
+import {EntryNoAnalysis} from './entryNoAnalysis';
 
 
-export type AnalysisEntryCommonProps = {
+export type EntryCommonProps = {
   unitInfo: UnitInfoData,
 }
 
-type AnalysisEntryProps = AnalysisEntryCommonProps & Omit<AnalysisEntryAvailableProps, 'analysisMeta'> & {
+type AnalysisEntryProps = EntryCommonProps & Omit<EntryWithAnalysisProps, 'analysisMeta'> & {
   analysisMeta?: UnitInfoLookupEntry,
   isFetchingMeta: boolean,
 }
 
-export const AnalysisEntry = ({unitInfo, analysisMeta, isFetchingMeta, simplified}: AnalysisEntryProps) => {
+export const UnitInfoEntry = ({unitInfo, analysisMeta, isFetchingMeta, simplified}: AnalysisEntryProps) => {
   return (
     <Row noGutters className="rounded bg-black-32 p-2">
       <Col xs="auto" className="mr-2">
@@ -28,8 +28,8 @@ export const AnalysisEntry = ({unitInfo, analysisMeta, isFetchingMeta, simplifie
       <Col>
         {
           analysisMeta ?
-            <AnalysisEntryAvailable unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={simplified}/> :
-            <AnalysisEntryUnavailable unitInfo={unitInfo} isFetchingMeta={isFetchingMeta}/>
+            <EntryWithAnalysis unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={simplified}/> :
+            <EntryNoAnalysis unitInfo={unitInfo} isFetchingMeta={isFetchingMeta}/>
         }
       </Col>
     </Row>

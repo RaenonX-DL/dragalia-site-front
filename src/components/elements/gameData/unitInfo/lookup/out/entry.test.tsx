@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {UnitInfoLookupEntry, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
@@ -8,7 +9,7 @@ import {UnitInfoData} from '../../../../../../api-def/resources';
 import {PostPath} from '../../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {makePostPath} from '../../../../../../utils/path/make';
-import {AnalysisEntry} from './entry';
+import {UnitInfoEntry} from './entry';
 
 
 describe('Analysis lookup entry', () => {
@@ -40,7 +41,7 @@ describe('Analysis lookup entry', () => {
 
   it('renders analysis with correct info and link to click', async () => {
     renderReact(() => (
-      <AnalysisEntry
+      <UnitInfoEntry
         unitInfo={unitInfo}
         analysisMeta={analysisMeta}
         isFetchingMeta={false}
@@ -50,9 +51,9 @@ describe('Analysis lookup entry', () => {
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
-    expect(unitName).not.toHaveClass('text-danger');
-    expect(unitName).not.toHaveClass('text-muted');
-    expect(unitName)
+    userEvent.click(unitName);
+
+    expect(await screen.findByText(translationEN.game.unitInfo.links.analysis))
       .toHaveAttribute(
         'href',
         makePostPath(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN}),
@@ -66,7 +67,7 @@ describe('Analysis lookup entry', () => {
 
   it('shows that the analysis meta is fetching', async () => {
     renderReact(() => (
-      <AnalysisEntry
+      <UnitInfoEntry
         unitInfo={unitInfo}
         isFetchingMeta
         simplified={false}
@@ -74,8 +75,6 @@ describe('Analysis lookup entry', () => {
     ));
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
-    const unitName = screen.getByText('Gala Leonidas');
-    expect(unitName).toHaveClass('text-muted');
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();
@@ -85,7 +84,7 @@ describe('Analysis lookup entry', () => {
 
   it('shows unavailable as expected', async () => {
     renderReact(() => (
-      <AnalysisEntry
+      <UnitInfoEntry
         unitInfo={unitInfo}
         isFetchingMeta={false}
         simplified={false}
@@ -94,7 +93,10 @@ describe('Analysis lookup entry', () => {
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
-    expect(unitName).toHaveClass('text-muted');
+    userEvent.click(unitName);
+
+    expect(await screen.findByText(translationEN.game.unitInfo.links.info)).toBeInTheDocument();
+    expect(screen.queryByText(translationEN.game.unitInfo.links.analysis)).not.toBeInTheDocument();
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();
@@ -105,7 +107,7 @@ describe('Analysis lookup entry', () => {
 
   it('shows available but simplified entry', async () => {
     renderReact(() => (
-      <AnalysisEntry
+      <UnitInfoEntry
         unitInfo={unitInfo}
         analysisMeta={analysisMeta}
         isFetchingMeta={false}
@@ -125,7 +127,7 @@ describe('Analysis lookup entry', () => {
 
   it('shows unavailable even if simplified', async () => {
     renderReact(() => (
-      <AnalysisEntry
+      <UnitInfoEntry
         unitInfo={unitInfo}
         isFetchingMeta={false}
         simplified
@@ -134,7 +136,10 @@ describe('Analysis lookup entry', () => {
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
-    expect(unitName).toHaveClass('text-muted');
+    userEvent.click(unitName);
+
+    expect(await screen.findByText(translationEN.game.unitInfo.links.info)).toBeInTheDocument();
+    expect(screen.queryByText(translationEN.game.unitInfo.links.analysis)).not.toBeInTheDocument();
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();

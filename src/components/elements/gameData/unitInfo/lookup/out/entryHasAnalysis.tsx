@@ -4,35 +4,29 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
-import {PostPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
-import {makePostPath} from '../../../../../../utils/path/make';
 import {TimeAgo} from '../../../../../../utils/timeago';
-import {AnalysisEntryCommonProps} from './entry';
+import {UnitLink} from '../../link';
+import {EntryCommonProps} from './entry';
 
 
-export type AnalysisEntryAvailableProps = AnalysisEntryCommonProps & {
+export type EntryWithAnalysisProps = EntryCommonProps & {
   analysisMeta: UnitInfoLookupEntry,
   simplified?: boolean,
 }
 
-export const AnalysisEntryAvailable = ({
+export const EntryWithAnalysis = ({
   unitInfo,
   analysisMeta,
   simplified = false,
-}: AnalysisEntryAvailableProps) => {
+}: EntryWithAnalysisProps) => {
   const {t, lang} = useI18n();
 
   return (
     <>
       <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
         <Col className="mr-2">
-          <a
-            className="h6"
-            href={makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang})}
-          >
-            {unitInfo.name[lang]}
-          </a>
+          <UnitLink className="h6" unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis/>
         </Col>
         {
           !simplified &&

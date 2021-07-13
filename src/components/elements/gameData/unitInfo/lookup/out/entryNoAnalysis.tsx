@@ -4,21 +4,22 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../i18n/hook';
-import {AnalysisEntryCommonProps} from './entry';
+import {UnitLink} from '../../link';
+import {EntryCommonProps} from './entry';
 
 
-type AnalysisEntryUnavailableProps = AnalysisEntryCommonProps & {
+type Props = EntryCommonProps & {
   isFetchingMeta: boolean
 }
 
-export const AnalysisEntryUnavailable = ({unitInfo, isFetchingMeta}: AnalysisEntryUnavailableProps) => {
+export const EntryNoAnalysis = ({unitInfo, isFetchingMeta}: Props) => {
   const {t, lang} = useI18n();
 
   return (
     <>
       <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
         <Col className="mr-2">
-          <span className="h6 text-muted">{unitInfo.name[lang]}</span>
+          <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis={false}/>
         </Col>
       </Row>
       <Row noGutters className="align-items-center" style={{height: '1.5rem'}}>
