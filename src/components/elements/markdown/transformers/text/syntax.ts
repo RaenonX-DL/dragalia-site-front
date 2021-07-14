@@ -17,7 +17,7 @@ const calcSyntax: Syntax = {
   Component: CalcExpression,
 };
 
-const unitSyntax: Syntax = {
+export const unitSyntax: Syntax = {
   start: '--',
   end: '--',
   Component: MarkdownUnitName,

@@ -5,6 +5,9 @@ import {useI18n} from '../../../../../i18n/hook';
 import {UnitLink} from '../../../gameData/unitInfo/link';
 
 
+// This should NOT be `|` because it conflicts with the markdown table syntax
+export const UNITNAME_SEPARATOR = '/';
+
 type Props = {
   children: string,
 }
@@ -17,7 +20,7 @@ export const MarkdownUnitName = ({children}: Props) => {
     return <></>;
   }
 
-  const [unitId, nameUsed] = children.split('|', 2);
+  const [unitId, nameUsed] = children.split(UNITNAME_SEPARATOR, 2);
 
   const unitInfo = context.simpleUnitInfo[String(unitId)];
 

@@ -4,7 +4,8 @@ import {
   generateBrunhildaInfo,
 } from '../../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../../api-def/api';
-import {DepotPaths} from '../../../api-def/resources/paths';
+import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
+import {UNITNAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
@@ -14,9 +15,7 @@ import {transformQuickReference} from './quickReference';
 
 const lang = SupportedLanguages.EN;
 
-const galaMymAnalysisLink = `[Gala Mym](${makePostPath(PostPath.ANALYSIS, {pid: 10550101, lang})})`;
-const galaMymImageMd = `![Gala Mym](${DepotPaths.getCharaIconURL('100010_04_r05')}[unitIcon])`;
-const galaMymMdTransformed = `${galaMymImageMd}${galaMymAnalysisLink}`;
+const galaMymMdTransformed = `${unitSyntax.start}10550101${UNITNAME_SEPARATOR}Gala Mym${unitSyntax.end}`;
 
 describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   it('transforms quest post link', async () => {
@@ -67,8 +66,7 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
       `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
-    const expectedAnalysis =
-      `${galaMymMdTransformed} Analysis`;
+    const expectedAnalysis = `${galaMymMdTransformed} Analysis`;
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${expectedAnalysis}`);
   });
 
@@ -79,8 +77,7 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
       `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
-    const expectedAnalysis =
-      `${galaMymMdTransformed} Analysis`;
+    const expectedAnalysis = `${galaMymMdTransformed} Analysis`;
     const text = `${expectedMisc} ${expectedQuest} ${expectedAnalysis}`;
 
     const result = await transformQuickReference({text, lang});
@@ -147,9 +144,7 @@ describe('Quick reference transformer (Analysis)', () => {
   });
 
   it('matches greedily', async () => {
-    const brunhildaExtAnalysisLink = `[BrunhildaExtended](${makePostPath(PostPath.ANALYSIS, {pid: 20050102, lang})})`;
-    const brunhildaExtImageMd = `![BrunhildaExtended](${DepotPaths.getDragonIconURL('210039_01')}[unitIcon])`;
-    const brunhildaExtMdTransformed = `${brunhildaExtImageMd}${brunhildaExtAnalysisLink}`;
+    const brunhildaExtMdTransformed = `--20050102/BrunhildaExtended--`;
 
     const text = ':BrunhildaExtended:';
 

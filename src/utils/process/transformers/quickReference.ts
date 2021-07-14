@@ -1,7 +1,9 @@
+import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
+import {UNITNAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
-import {getImageURL, getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
+import {getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
 import {sortDescending} from '../../sort';
 import {TextTransformer} from '../type';
 
@@ -38,13 +40,12 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
         return matched;
       }
 
-      const postPath = makePostPath(PostPath.ANALYSIS, {pid: unitInfo.id, lang});
-      const imageMd = `![${unitName}](${getImageURL(unitInfo)}[unitIcon])`;
+      const syntaxMarkdown = `${unitSyntax.start}${unitInfo.id}${UNITNAME_SEPARATOR}${unitName}${unitSyntax.end}`;
 
       leftRemainder = leftRemainder.replace(/:/g, '');
       rightRemainder = rightRemainder.replace(/:/g, '');
 
-      return `${leftRemainder || ''}${imageMd}[${unitName}](${postPath})${rightRemainder}`;
+      return `${leftRemainder || ''}${syntaxMarkdown}${rightRemainder}`;
     },
   );
 

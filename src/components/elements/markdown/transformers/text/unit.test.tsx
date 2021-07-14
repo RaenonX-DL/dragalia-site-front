@@ -20,7 +20,7 @@ describe('Unit link', () => {
   };
 
   it('transforms to unit link with both unit ID and name used', async () => {
-    const text = '10950101|Gala Leonidas';
+    const text = '10950101/Gala Leonidas';
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
@@ -44,7 +44,7 @@ describe('Unit link', () => {
   });
 
   it('shows original text if the unit info is not found', async () => {
-    const text = '10950102|Gala Leonidas';
+    const text = '10950102/Gala Leonidas';
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
