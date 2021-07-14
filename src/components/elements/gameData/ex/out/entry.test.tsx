@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {generateExAbilityDataEntry} from '../../../../../../test/data/mock/exAbilityData';
 import {renderReact} from '../../../../../../test/render/main';
@@ -27,7 +28,12 @@ describe('Co-ability output entry', () => {
       />
     ));
 
+    const unitLink = screen.getByText('EN name');
+    userEvent.click(unitLink);
+
     const expectedLink = makePostPath(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN});
-    expect(screen.getByText('EN name')).toHaveAttribute('href', expectedLink);
+
+    const analysisLink = await screen.findByText('Analysis');
+    expect(analysisLink).toHaveAttribute('href', expectedLink);
   });
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 
 import Button from 'react-bootstrap/Button';
 
@@ -54,9 +54,10 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
 
 type UnitLinkProps = Pick<ModalContentProps, 'unit' | 'hasAnalysis'> & {
   className?: string,
+  style?: CSSProperties,
 }
 
-export const UnitLink = ({unit, className, hasAnalysis = true}: UnitLinkProps) => {
+export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkProps) => {
   // DON'T use `useUnitInfo` hook because it will fetch many times upon initial load,
   // which severely impacts performance.
   const {t} = useI18n();
@@ -83,7 +84,7 @@ export const UnitLink = ({unit, className, hasAnalysis = true}: UnitLinkProps) =
   return (
     <>
       <CommonModal modalState={modalState} setModalState={setModalState} clearContentOnClose={false}/>
-      <a className={className || ''} onClick={onLinkClicked}>
+      <a className={className || ''} style={style} onClick={onLinkClicked}>
         {unit.name}
       </a>
     </>

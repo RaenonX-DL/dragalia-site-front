@@ -1,10 +1,8 @@
 import React from 'react';
 
 import {SkillIdentifierInfo} from '../../../../../../api-def/resources';
-import {PostPath} from '../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../i18n/hook';
-import {makePostPath} from '../../../../../../utils/path/make';
-import {NextLink} from '../../../../common/link';
+import {UnitLink} from '../../../unitInfo/link';
 import {SectionProps} from '../props';
 
 
@@ -18,9 +16,7 @@ export const SectionSkillName = ({atkSkillEntry, skillIdentifierInfo}: SectionSk
   return (
     <>
       <div className="h5 mb-1">
-        <NextLink href={makePostPath(PostPath.ANALYSIS, {pid: atkSkillEntry.unit.id, lang})}>
-          {atkSkillEntry.unit.name[lang]}
-        </NextLink>
+        <UnitLink unit={{id: atkSkillEntry.unit.id, name: atkSkillEntry.unit.name[lang]}}/>
       </div>
       <div className="text-white-50">
         {
