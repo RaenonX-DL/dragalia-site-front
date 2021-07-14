@@ -4,8 +4,8 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api';
-import {SimpleUnitInfo} from '../../../api-def/resources';
+import {SupportedLanguages, UnitType} from '../../../api-def/api';
+import {DepotPaths, SimpleUnitInfo} from '../../../api-def/resources';
 import {Markdown} from './main';
 
 
@@ -208,6 +208,8 @@ describe('Markdown', () => {
         [SupportedLanguages.EN]: 'EN',
         [SupportedLanguages.JP]: 'JP',
       },
+      type: UnitType.CHARACTER,
+      icon: '100013_04_r05',
     },
   };
 
@@ -218,6 +220,9 @@ describe('Markdown', () => {
       () => <Markdown>{markdown}</Markdown>,
       {simpleUnitInfo},
     );
+
+    const unitIcon = screen.getByText('', {selector: 'img'});
+    expect(unitIcon).toHaveAttribute('src', DepotPaths.getCharaIconURL('100013_04_r05'));
 
     const unitLink = screen.getByText('EN');
     userEvent.click(unitLink);
@@ -232,6 +237,9 @@ describe('Markdown', () => {
       () => <Markdown>{markdown}</Markdown>,
       {simpleUnitInfo},
     );
+
+    const unitIcon = screen.getByText('', {selector: 'img'});
+    expect(unitIcon).toHaveAttribute('src', DepotPaths.getCharaIconURL('100013_04_r05'));
 
     const unitLink = screen.getByText('EN');
     userEvent.click(unitLink);

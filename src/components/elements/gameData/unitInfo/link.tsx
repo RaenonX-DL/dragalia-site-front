@@ -94,8 +94,8 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
       {
         unit.icon &&
         <Image
-          src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
-          text=""
+          text="" src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
+          className="unitIcon"
         />
       }
       <a className={className || ''} style={style} onClick={onLinkClicked}>

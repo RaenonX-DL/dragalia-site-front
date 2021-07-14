@@ -29,5 +29,16 @@ export const MarkdownUnitName = ({children}: Props) => {
     return <>{nameUsed || unitId}</>;
   }
 
-  return <UnitLink unit={{id: +unitId, name: unitInfo.name[lang]}}/>;
+  return (
+    <UnitLink
+      unit={{
+        id: +unitId,
+        name: unitInfo.name[lang],
+        icon: {
+          type: unitInfo.type,
+          name: unitInfo.icon,
+        },
+      }}
+    />
+  );
 };
