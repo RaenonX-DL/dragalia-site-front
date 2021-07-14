@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {OverlayPopover} from '../overlay/popover';
+import {InfoPopover} from '../overlay/info';
 import {DetailedProps, InputProps} from '../types';
 
 
@@ -33,9 +33,9 @@ export const NumericInput = <T, >({
 
   return (
     <Row className="mb-3">
-      <OverlayPopover title={title} content={description}>
-        <Form.Label column className="text-center">{title}</Form.Label>
-      </OverlayPopover>
+      <Form.Label column className="text-center">
+        {title}&nbsp;<InfoPopover title={title} description={description}/>
+      </Form.Label>
       <Col>
         <Form.Control
           type="number"

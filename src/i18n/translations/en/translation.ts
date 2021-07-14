@@ -142,7 +142,7 @@ export const translation: TranslationStruct = {
         punisher: {
           title: {
             name: 'Punisher',
-            desc: 'Any parameter that relates to punisher',
+            desc: 'Any parameter that relates to punisher.',
           },
           bk: {
             name: 'BK Punisher (%)',
@@ -153,6 +153,21 @@ export const translation: TranslationStruct = {
             name: 'Other Punisher (%)',
             desc: 'Other punishers such as affliction punishers (wyrmprint), ' +
               'OD punisher, reduced Str/Def punisher (Gala Leif) are in this field.',
+          },
+        },
+        dragon: {
+          title: {
+            name: 'Dragon',
+            desc: 'Any parameter that relates to dragon damage.',
+          },
+          facility: {
+            name: 'Facility (%)',
+            desc: 'Mainly obtained from Dracolith. This info can be found in the info page of the castle.',
+          },
+          passive: {
+            name: 'Passive (%)',
+            desc: 'All effects related to dragon damage up, ' +
+              'such as the effect originated from a print or chained co-ability.',
           },
         },
         other: {
@@ -291,6 +306,8 @@ export const translation: TranslationStruct = {
         skillEnergized: 'Energized',
         punisher: 'Punisher - {{punisherVal}}',
         punisherData: 'BK {{punishersBkPct}}% / Other {{punishersOtherPct}}%',
+        dragon: 'Dragon - {{dragonVal}}',
+        dragonData: 'Facility +{{facilityPct}}% / Passive +{{passivePct}}%',
         target: 'Target Status',
         targetData: {
           element: 'Element: ',

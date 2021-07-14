@@ -37,6 +37,10 @@ export const overwriteInputData = (original: InputData, overwrite: DeepPartial<I
       bkPct: overwrite.params?.punishers?.bkPct ?? original.params.punishers.bkPct,
       othersPct: overwrite.params?.punishers?.othersPct ?? original.params.punishers.othersPct,
     },
+    dragon: {
+      facilityPct: overwrite.params?.dragon?.facilityPct ?? original.params.dragon.facilityPct,
+      passivePct: overwrite.params?.dragon?.passivePct ?? original.params.dragon.passivePct,
+    },
     others: {
       elemBonusPct: overwrite.params?.others?.elemBonusPct ?? original.params.others.elemBonusPct,
       currentHpPct: overwrite.params?.others?.currentHpPct ?? original.params.others.currentHpPct,
@@ -103,6 +107,10 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       punishers: {
         bkPct: 0,
         othersPct: 20,
+      },
+      dragon: {
+        facilityPct: 50,
+        passivePct: 0,
       },
       others: {
         elemBonusPct: 0,

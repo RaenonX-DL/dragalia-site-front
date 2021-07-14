@@ -138,6 +138,20 @@ export const translation: TranslationStruct = {
             desc: '其他特攻，例如異常狀態特攻 (護符)、OD 特攻、降攻 / 降防特攻 (龍絆日李弗) 都屬於此類別。',
           },
         },
+        dragon: {
+          title: {
+            name: '龍化',
+            desc: '泛指與龍化增傷有關的參數。',
+          },
+          facility: {
+            name: '建築 (%)',
+            desc: '目前主要由龍泣碑獲得。可以從主城中的加成頁面中查看。',
+          },
+          passive: {
+            name: '被動 (%)',
+            desc: '所有和增加龍化傷害相關效果屬於此類別，例如: 護符、CEX。',
+          },
+        },
         other: {
           title: {
             name: '其它',
@@ -266,6 +280,8 @@ export const translation: TranslationStruct = {
         skillEnergized: '超活力',
         punisher: '特攻 - {{punisherVal}}',
         punisherData: 'BK 特攻 {{punishersBkPct}}% / 其他特攻 {{punishersOtherPct}}%',
+        dragon: '龍化傷害 - {{dragonVal}}',
+        dragonData: '建築 +{{facilityPct}}% / 被動 +{{passivePct}}%',
         target: '目標狀態',
         targetData: {
           element: '屬性: ',

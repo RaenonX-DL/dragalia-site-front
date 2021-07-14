@@ -140,6 +140,20 @@ export const translation: TranslationStruct = {
             desc: 'その他特効。(例：状態異常特効、OD特効、攻防ダウン特効、など)',
           },
         },
+        dragon: {
+          title: {
+            name: '龍化',
+            desc: '泛指與龍化增傷有關的參數。',
+          },
+          facility: {
+            name: '建築 (%)',
+            desc: '目前主要由龍泣碑獲得。可以從主城中的加成頁面中查看。',
+          },
+          passive: {
+            name: '被動 (%)',
+            desc: '所有和增加龍化傷害相關效果屬於此類別，例如: 護符、CEX。',
+          },
+        },
         other: {
           title: {
             name: 'その他',
@@ -219,6 +233,7 @@ export const translation: TranslationStruct = {
             shared: 'シェアスキルのみ表示',
           },
         },
+
       },
       display: {
         title: '顯示資訊',
@@ -269,6 +284,8 @@ export const translation: TranslationStruct = {
         skillEnergized: '超やる気',
         punisher: '特効 - {{punisherVal}}',
         punisherData: 'BK 特効 {{punishersBkPct}}% / その他特効 {{punishersOtherPct}}%',
+        dragon: '龍化傷害 - {{dragonVal}}',
+        dragonData: '建築 +{{facilityPct}}% / 被動 +{{passivePct}}%',
         target: '目標状態',
         targetData: {
           element: 'Element: ',

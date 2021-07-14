@@ -45,6 +45,10 @@ export type InputData = {
       bkPct: number,
       othersPct: number,
     },
+    dragon: {
+      facilityPct: number,
+      passivePct: number,
+    },
     others: {
       elemBonusPct: number,
       currentHpPct: number,

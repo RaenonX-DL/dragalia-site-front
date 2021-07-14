@@ -138,6 +138,20 @@ export type TranslationStruct = {
             desc: string,
           },
         },
+        dragon: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          facility: {
+            name: string,
+            desc: string,
+          },
+          passive: {
+            name: string,
+            desc: string,
+          },
+        },
         other: {
           title: {
             name: string,
@@ -265,6 +279,8 @@ export type TranslationStruct = {
         skillEnergized: string,
         punisher: string,
         punisherData: string,
+        dragon: string,
+        dragonData: string,
         target: string,
         targetData: {
           element: string,
