@@ -1,4 +1,5 @@
 import {generateAttackingSkillEntry} from '../../../test/data/mock/skill';
+import {UnitType} from '../../api-def/api';
 import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {generateInputData} from '../../components/elements/gameData/skillAtk/in/utils/inputData';
@@ -122,5 +123,51 @@ describe('Damage calculation', () => {
     expect(Math.round(damage.expected)).toStrictEqual(0);
     expect(Math.round(damage.highest)).toStrictEqual(0);
     expect(damage.totalMods).toStrictEqual(147.7125);
+  });
+
+  it('calculates dragon skill with dragon-related parameters', async () => {
+    const inputData: InputData = generateInputData({display: {actualDamage: true}});
+
+    const attackingSkillData = {
+      ...attackingSkillDataTemplate,
+      skill: {
+        ...attackingSkillDataTemplate.skill,
+        modsMax: [40],
+      },
+      unit: {
+        ...attackingSkillDataTemplate.unit,
+        type: UnitType.DRAGON,
+      },
+    };
+
+    const damage: CalculateDamageReturn = calculateDamage(inputData, attackingSkillData, 1.5);
+
+    expect(Math.round(damage.lowest)).toStrictEqual(385290);
+    expect(Math.round(damage.expected)).toStrictEqual(405569);
+    expect(Math.round(damage.highest)).toStrictEqual(425847);
+    expect(damage.totalMods).toStrictEqual(40);
+  });
+
+  it('does not calculate character skills with dragon-related parameters', async () => {
+    const inputData: InputData = generateInputData({display: {actualDamage: true}});
+
+    const attackingSkillData = {
+      ...attackingSkillDataTemplate,
+      skill: {
+        ...attackingSkillDataTemplate.skill,
+        modsMax: [40],
+      },
+      unit: {
+        ...attackingSkillDataTemplate.unit,
+        type: UnitType.CHARACTER,
+      },
+    };
+
+    const damage: CalculateDamageReturn = calculateDamage(inputData, attackingSkillData, 1.5);
+
+    expect(Math.round(damage.lowest)).toStrictEqual(226641);
+    expect(Math.round(damage.expected)).toStrictEqual(238570);
+    expect(Math.round(damage.highest)).toStrictEqual(250498);
+    expect(damage.totalMods).toStrictEqual(40);
   });
 });

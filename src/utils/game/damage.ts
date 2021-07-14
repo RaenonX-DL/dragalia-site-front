@@ -1,3 +1,4 @@
+import {UnitType} from '../../api-def/api';
 import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
 import {ConditionCodes} from '../../const/gameData';
@@ -97,6 +98,15 @@ export const calculateDamage = (
     (inputData.target.state === ConditionCodes.TARGET_STATE_BK ? inputData.target.def.bkRate : 1) * // BK DEF change
     (1 - inputData.target.def.downPct / 100) // DEF down
   );
+
+  // Special - Dragon
+  if (attackingSkillData.unit.type === UnitType.DRAGON) {
+    damage *= (
+      1.2 + // Base rate
+      inputData.params.dragon.facilityPct / 100 +
+      inputData.params.dragon.passivePct / 100
+    );
+  }
 
   // Special - Bog
   damage *= inputData.target.afflictionCodes.includes(ConditionCodes.TARGET_BOGGED) ? 1.5 : 1;
