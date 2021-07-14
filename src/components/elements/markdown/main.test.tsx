@@ -1,8 +1,11 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
+import {SupportedLanguages} from '../../../api-def/api';
+import {SimpleUnitInfo} from '../../../api-def/resources';
 import {Markdown} from './main';
 
 
@@ -196,5 +199,43 @@ describe('Markdown', () => {
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
     expect(screen.getByText('something')).toBeInTheDocument();
+  });
+
+  const simpleUnitInfo: SimpleUnitInfo = {
+    '10950101': {
+      name: {
+        [SupportedLanguages.CHT]: 'CHT',
+        [SupportedLanguages.EN]: 'EN',
+        [SupportedLanguages.JP]: 'JP',
+      },
+    },
+  };
+
+  it('transforms to unit link', async () => {
+    const markdown = '--10950101--';
+
+    renderReact(
+      () => <Markdown>{markdown}</Markdown>,
+      {simpleUnitInfo},
+    );
+
+    const unitLink = screen.getByText('EN');
+    userEvent.click(unitLink);
+
+    expect(await screen.findByText('Analysis')).toBeInTheDocument();
+  });
+
+  it('transforms to unit link in a sentence', async () => {
+    const markdown = 'Some text --10950101-- about an unit.';
+
+    renderReact(
+      () => <Markdown>{markdown}</Markdown>,
+      {simpleUnitInfo},
+    );
+
+    const unitLink = screen.getByText('EN');
+    userEvent.click(unitLink);
+
+    expect(await screen.findByText('Analysis')).toBeInTheDocument();
   });
 });

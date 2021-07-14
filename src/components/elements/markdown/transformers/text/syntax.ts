@@ -2,6 +2,7 @@ import {CalcExpression} from '../math/main';
 import {ColoredText} from './color';
 import {EnlargedTextLevel2, EnlargedTextLevel3} from './enlarge';
 import {Syntax} from './types';
+import {MarkdownUnitName} from './unit';
 
 
 const colorSyntax: Syntax = {
@@ -14,6 +15,12 @@ const calcSyntax: Syntax = {
   start: '==',
   end: '==',
   Component: CalcExpression,
+};
+
+const unitSyntax: Syntax = {
+  start: '--',
+  end: '--',
+  Component: MarkdownUnitName,
 };
 
 const enlargeLv3Syntax: Syntax = {
@@ -32,6 +39,7 @@ const enlargeLv2Syntax: Syntax = {
 export const syntaxCollection = [
   colorSyntax,
   calcSyntax,
+  unitSyntax,
   enlargeLv3Syntax,
   enlargeLv2Syntax,
 ];
