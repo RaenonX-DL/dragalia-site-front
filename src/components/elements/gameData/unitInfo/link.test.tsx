@@ -4,7 +4,8 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../api-def/api';
+import {SupportedLanguages, UnitType} from '../../../../api-def/api';
+import {DepotPaths} from '../../../../api-def/resources';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {makePostPath, makeUnitPath} from '../../../../utils/path/make';
 import {UnitLink} from './link';
@@ -54,5 +55,30 @@ describe('Unit link', () => {
     userEvent.click(analysisLink);
 
     expect(await screen.findByText(/Loading/));
+  });
+
+  it('shows unit icon if icon name is given', async () => {
+    renderReact(
+      () => (
+        <UnitLink
+          unit={{
+            id: 10950101,
+            name: 'Gala Leonidas',
+            icon: {name: '100013_04_r05', type: UnitType.CHARACTER},
+          }}
+        />
+      ),
+    );
+
+    const imageElement = screen.getByText('', {selector: 'img'});
+    expect(imageElement).toHaveAttribute('src', DepotPaths.getCharaIconURL('100013_04_r05'));
+  });
+
+  it('hides unit icon if icon name is not given', async () => {
+    renderReact(
+      () => <UnitLink unit={{id: 10950101, name: 'Gala Leonidas'}}/>,
+    );
+
+    expect(screen.queryByText('', {selector: 'img'})).not.toBeInTheDocument();
   });
 });

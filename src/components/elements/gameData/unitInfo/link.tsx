@@ -2,9 +2,12 @@ import React, {CSSProperties} from 'react';
 
 import Button from 'react-bootstrap/Button';
 
+import {UnitType} from '../../../../api-def/api';
+import {DepotPaths} from '../../../../api-def/resources';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostPath, makeUnitPath} from '../../../../utils/path/make';
+import {Image} from '../../common/image';
 import {NextLink} from '../../common/link';
 import {Loading} from '../../common/loading';
 import {CommonModal, ModalState} from '../../common/modal';
@@ -13,6 +16,10 @@ import {CommonModal, ModalState} from '../../common/modal';
 type UnitInfo = {
   id: number,
   name: string,
+  icon?: {
+    type: UnitType,
+    name: string,
+  },
 }
 
 type ModalContentProps = {
@@ -84,6 +91,13 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
   return (
     <>
       <CommonModal modalState={modalState} setModalState={setModalState} clearContentOnClose={false}/>
+      {
+        unit.icon &&
+        <Image
+          src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
+          text=""
+        />
+      }
       <a className={className || ''} style={style} onClick={onLinkClicked}>
         {unit.name}
       </a>
