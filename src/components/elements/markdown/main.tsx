@@ -13,10 +13,8 @@ type Props = {
 }
 
 export const Markdown = ({children, overrideStyle = true}: Props) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-
   return (
-    <div ref={ref} className={overrideStyle ? styles.mdBody : ''}>
+    <div className={overrideStyle ? styles.mdBody : ''}>
       <ReactMarkdown plugins={[gfm]} components={components}>
         {children}
       </ReactMarkdown>
