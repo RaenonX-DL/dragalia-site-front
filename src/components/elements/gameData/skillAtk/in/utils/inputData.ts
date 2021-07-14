@@ -142,7 +142,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       spInfo: true,
       animationInfo: false,
     },
-    sortBy: 'damage',
+    sortBy: 'mods',
   },
   overwrite || {},
 );

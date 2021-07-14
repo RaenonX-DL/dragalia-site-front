@@ -312,7 +312,8 @@ export const translation: TranslationStruct = {
       },
       sort: {
         text: '排序: {{sortBy}}',
-        damageDesc: '傷害',
+        mods: '倍率',
+        damage: '實際傷害',
         sp: 'SP',
         ssp: 'SSP',
       },

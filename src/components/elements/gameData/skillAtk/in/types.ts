@@ -5,6 +5,7 @@ import {InputPanelCommonProps} from '../../../input/types';
 
 
 export type SortBy =
+  'mods' |
   'damage' |
   'sp' |
   'ssp' |

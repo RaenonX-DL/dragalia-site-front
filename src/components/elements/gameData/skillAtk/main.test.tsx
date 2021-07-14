@@ -230,7 +230,7 @@ describe('ATK skill lookup', () => {
     // Wait until all resources are loaded
     await waitForResourcesLoaded();
 
-    const sortOrderButton = screen.getByText('Order: Damage', {selector: 'button'});
+    const sortOrderButton = screen.getByText('Order: Mods', {selector: 'button'});
     userEvent.click(sortOrderButton);
 
     const sspOrderButton = screen.getByText(translationEN.game.skillAtk.spInfo.ssp);

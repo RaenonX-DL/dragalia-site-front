@@ -311,7 +311,8 @@ export type TranslationStruct = {
       },
       sort: {
         text: string,
-        damageDesc: string,
+        mods: string,
+        damage: string,
         sp: string,
         ssp: string,
       },

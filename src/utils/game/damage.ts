@@ -48,8 +48,8 @@ export const calculateDamage = (
     })
     .reduce((a, b) => a + b, 0);
 
-  // Omit numeric calculations if not to display
-  if (!inputData.display.actualDamage) {
+  // Omit numeric calculations if not to display or not sorted by actual damage
+  if (!inputData.display.actualDamage && inputData.sortBy !== 'damage') {
     return {lowest: 0, expected: 0, highest: 0, totalMods};
   }
 
