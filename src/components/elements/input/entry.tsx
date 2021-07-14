@@ -39,7 +39,7 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
   }
   if (inputEntry.type === 'inputCheckGroup') {
     return (
-      <div className="text-center">
+      <div className="mb-2 text-center">
         {
           inputEntry.checkboxes.map((checkboxProps, index) => (
             <CheckboxInput
