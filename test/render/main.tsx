@@ -38,6 +38,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
     session: options?.hasSession || options?.user ? session : null,
     alerts: options?.alerts || [],
     params: options?.contextParams || {},
+    simpleUnitInfo: options?.simpleUnitInfo || {},
   };
 
   return (

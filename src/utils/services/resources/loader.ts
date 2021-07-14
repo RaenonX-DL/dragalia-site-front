@@ -11,7 +11,7 @@ import {
   ExBuffParams,
   InfoDataAdvanced,
   NormalAttackChain,
-  ResourcePaths,
+  ResourcePaths, SimpleUnitInfo,
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
@@ -203,10 +203,21 @@ export class ResourceLoader {
   }
 
   /**
-   * Get the advanced unit info from an unit.
+   * Get the simplified unit info data.
    *
    * @function
-   * @param {number} unitId unit ID of the combo chain
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<NormalAttackChain>} promise after the callback
+   */
+  static getSimpleUnitInfo(callback?: (unitInfo: SimpleUnitInfo) => void): Promise<SimpleUnitInfo> {
+    return ResourceLoader.fetchResources<SimpleUnitInfo>(ResourcePaths.INFO_SIMPLE, callback);
+  }
+
+  /**
+   * Get the advanced unit info of a unit.
+   *
+   * @function
+   * @param {number} unitId unit ID to get the advanced unit info
    * @param {function?} callback function to be called after fetching the resource
    * @return {Promise<NormalAttackChain>} promise after the callback
    */
