@@ -12,10 +12,10 @@ type TypePickerProps = {
   setInputData: React.Dispatch<React.SetStateAction<InputData>>,
 }
 
-export const AnalysisTypePicker = ({inputData, setInputData}: TypePickerProps) => {
+export const UnitTypePicker = ({inputData, setInputData}: TypePickerProps) => {
   const {t} = useI18n();
 
-  const analysisTypes: Array<CheckOption & {code: UnitType}> = [
+  const unitTypes: Array<CheckOption & {code: UnitType}> = [
     {
       text: t((t) => t.posts.analysis.type.character),
       code: UnitType.CHARACTER,
@@ -27,15 +27,13 @@ export const AnalysisTypePicker = ({inputData, setInputData}: TypePickerProps) =
   ];
 
   return (
-    <>
-      <CheckboxGroup
-        options={analysisTypes}
-        inputData={inputData}
-        setInputData={setInputData}
-        getValue={(inputData) => inputData.types}
-        getUpdatedInputData={(types) => ({...inputData, types})}
-        getCheckOptionComparer={(option) => option.code}
-      />
-    </>
+    <CheckboxGroup
+      options={unitTypes}
+      inputData={inputData}
+      setInputData={setInputData}
+      getValue={(inputData) => inputData.types}
+      getUpdatedInputData={(types) => ({...inputData, types})}
+      getCheckOptionComparer={(option) => option.code}
+    />
   );
 };

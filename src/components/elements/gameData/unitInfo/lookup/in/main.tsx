@@ -10,7 +10,7 @@ import {useI18n} from '../../../../../../i18n/hook';
 import {useUnitProps} from '../../../../../hooks/unitProps';
 import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
 import {PostManageBar} from '../../../../posts/manageBar';
-import {AnalysisTypePicker} from './typePicker';
+import {UnitTypePicker} from './typePicker';
 import {InputData} from './types';
 
 
@@ -33,7 +33,7 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
   return (
     <>
       <div className="rounded bg-black-32 p-3 mb-2">
-        <AnalysisTypePicker inputData={inputData} setInputData={setInputData}/>
+        <UnitTypePicker inputData={inputData} setInputData={setInputData}/>
         <EnumCheckboxGroup
           options={elemEnums.elemental}
           inputData={inputData}
