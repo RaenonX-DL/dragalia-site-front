@@ -80,6 +80,15 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
       />
     );
   }
+  if (inputEntry.type === 'arrayCheckGroup') {
+    return (
+      <CheckboxGroup
+        {...inputEntry}
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+    );
+  }
 
   throw new Error(`Unhandled input entry: ${inputEntry}`);
 };
