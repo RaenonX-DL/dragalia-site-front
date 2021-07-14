@@ -43,4 +43,16 @@ describe('Unit link', () => {
     expect(await screen.findByText('Info')).toBeInTheDocument();
     expect(screen.queryByText('Analysis')).not.toBeInTheDocument();
   });
+
+  it('shows loading on clicking link', async () => {
+    renderReact(() => <UnitLink unit={{id: 10950101, name: 'Gala Leonidas'}}/>);
+
+    const linkElement = await screen.findByText('Gala Leonidas', {selector: 'a'});
+    userEvent.click(linkElement);
+
+    const analysisLink = await screen.findByText('Analysis');
+    userEvent.click(analysisLink);
+
+    expect(await screen.findByText(/Loading/));
+  });
 });
