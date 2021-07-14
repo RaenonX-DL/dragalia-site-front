@@ -1,8 +1,11 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
+import {SupportedLanguages, UnitType} from '../../../api-def/api';
+import {DepotPaths, SimpleUnitInfo} from '../../../api-def/resources';
 import {Markdown} from './main';
 
 
@@ -196,5 +199,51 @@ describe('Markdown', () => {
     renderReact(() => <Markdown>{markdown}</Markdown>);
 
     expect(screen.getByText('something')).toBeInTheDocument();
+  });
+
+  const simpleUnitInfo: SimpleUnitInfo = {
+    '10950101': {
+      name: {
+        [SupportedLanguages.CHT]: 'CHT',
+        [SupportedLanguages.EN]: 'EN',
+        [SupportedLanguages.JP]: 'JP',
+      },
+      type: UnitType.CHARACTER,
+      icon: '100013_04_r05',
+    },
+  };
+
+  it('transforms to unit link', async () => {
+    const markdown = '--10950101--';
+
+    renderReact(
+      () => <Markdown>{markdown}</Markdown>,
+      {simpleUnitInfo},
+    );
+
+    const unitIcon = screen.getByText('', {selector: 'img'});
+    expect(unitIcon).toHaveAttribute('src', DepotPaths.getCharaIconURL('100013_04_r05'));
+
+    const unitLink = screen.getByText('EN');
+    userEvent.click(unitLink);
+
+    expect(await screen.findByText('Analysis')).toBeInTheDocument();
+  });
+
+  it('transforms to unit link in a sentence', async () => {
+    const markdown = 'Some text --10950101-- about an unit.';
+
+    renderReact(
+      () => <Markdown>{markdown}</Markdown>,
+      {simpleUnitInfo},
+    );
+
+    const unitIcon = screen.getByText('', {selector: 'img'});
+    expect(unitIcon).toHaveAttribute('src', DepotPaths.getCharaIconURL('100013_04_r05'));
+
+    const unitLink = screen.getByText('EN');
+    userEvent.click(unitLink);
+
+    expect(await screen.findByText('Analysis')).toBeInTheDocument();
   });
 });

@@ -30,10 +30,6 @@ export type ExpressionReplaceReturn = {
   replacementUsed: { [name in ExpressionReplacementName]: boolean },
 }
 
-export type CalcExpressionProps = {
-  children: string,
-}
-
 export type ExpressionOutputProps = {
   exprExtractResult: ExtractExpressionReturn,
   expression: string,

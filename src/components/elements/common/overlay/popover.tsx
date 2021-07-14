@@ -8,7 +8,7 @@ import {OverlayBase, OverlayCommonProps} from './base';
 
 type PopoverProps = OverlayCommonProps & {
   title: string,
-  content: string | HTMLElement,
+  content: string | React.ReactElement,
 }
 
 export const OverlayPopover = ({title, placement, content, children}: PopoverProps) => (

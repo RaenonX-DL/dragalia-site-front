@@ -2,7 +2,7 @@ import {SupportedLanguages, UnitType} from '../../api-def/api';
 import {Element, Weapon} from '../../api-def/resources';
 import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
 import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
-import {InputData as AnalysisInput} from '../../components/elements/posts/analysis/lookup/in/types';
+import {InputData as UnitInfoInput} from '../../components/elements/gameData/unitInfo/lookup/in/types';
 
 
 enum GAEvent {
@@ -89,9 +89,9 @@ export class GoogleAnalytics {
   /**
    * Record the event of an analysis lookup.
    *
-   * @param {AnalysisInput} inputData input used to perform an analysis lookup
+   * @param {UnitInfoInput} inputData input used to perform an analysis lookup
    */
-  static analysisLookup(inputData: AnalysisInput) {
+  static analysisLookup(inputData: UnitInfoInput) {
     GoogleAnalytics.sendEvent(
       GAEvent.ANALYSIS_LOOKUP,
       {

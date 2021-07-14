@@ -19,10 +19,7 @@ export const getAbilityVariantEffectBadges = (
 ): Array<React.ReactElement> => {
   const {t, lang} = useI18n();
 
-  const badges = getConditionBadges({
-    conditionCodes: entry.conditions,
-    conditionEnums: conditionEnums,
-  });
+  const badges = getConditionBadges({conditionCodes: entry.conditions});
 
   if (entry.cooldownSec !== 0) {
     badges.push(

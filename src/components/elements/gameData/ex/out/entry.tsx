@@ -4,11 +4,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap, DepotPaths} from '../../../../../api-def/resources';
-import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostPath} from '../../../../../utils/path/make';
 import {ImageWithOverlay} from '../../../common/image';
-import {NextLink} from '../../../common/link';
+import {UnitLink} from '../../unitInfo/link';
 import {ExAbility} from './exUnit';
 
 
@@ -30,11 +28,10 @@ export const ExAbilityEntry = ({entry, conditionEnums}: ExAbilityEntryProps) => 
           <ImageWithOverlay src={charaIconURL} text={charaName} style={{height: '3rem'}}/>
         </Col>
         <Col className="text-center">
-          <span style={{fontSize: '1.1rem'}}>
-            <NextLink href={makePostPath(PostPath.ANALYSIS, {pid: entry.chara.id, lang})}>
-              {charaName}
-            </NextLink>
-          </span>
+          <UnitLink
+            unit={{id: entry.chara.id, name: entry.chara.name[lang]}}
+            style={{fontSize: '1.1rem'}}
+          />
         </Col>
       </Row>
       <hr className="m-1"/>

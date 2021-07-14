@@ -16,21 +16,21 @@ export const SectionEx = ({inputData, setInputData}: SectionProps) => {
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.ex),
-          description: t((t) => t.game.skillAtk.desc.ex),
+          title: t((t) => t.game.skillAtk.input.ex.title),
+          description: t((t) => t.game.skillAtk.input.ex.description),
         },
         {
           type: 'inputCheckGroup',
           checkboxes: [
             {
-              text: t((t) => t.game.skillAtk.name.exBlade),
+              text: t((t) => t.game.skillAtk.input.ex.blade),
               getValue: (inputData) => inputData.params.ex.blade,
               getUpdatedInputData: (newValue) => (
                 overwriteInputData(inputData, {params: {ex: {blade: newValue}}})
               ),
             },
             {
-              text: t((t) => t.game.skillAtk.name.exWand),
+              text: t((t) => t.game.skillAtk.input.ex.wand),
               getValue: (inputData) => inputData.params.ex.wand,
               getUpdatedInputData: (newValue) => (
                 overwriteInputData(inputData, {params: {ex: {wand: newValue}}})

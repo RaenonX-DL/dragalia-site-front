@@ -131,13 +131,36 @@ export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => 
                 (1 + inputData.params.punishers.othersPct / 100)
               ).toFixed(2),
           },
-        )}</h5>
+        )}
+      </h5>
       <p className={detailClassNames}>
         {t(
           (t) => t.game.skillAtk.summary.punisherData,
           {
             punishersBkPct: inputData.params.punishers.bkPct.toFixed(0),
             punishersOtherPct: inputData.params.punishers.othersPct.toFixed(0),
+          },
+        )}
+      </p>
+      <h5>
+        {t(
+          (t) => t.game.skillAtk.summary.dragon,
+          {
+            dragonVal:
+              (
+                1 + 0.2 +
+                inputData.params.dragon.facilityPct / 100 +
+                inputData.params.dragon.passivePct / 100
+              ).toFixed(2),
+          },
+        )}
+      </h5>
+      <p className={detailClassNames}>
+        {t(
+          (t) => t.game.skillAtk.summary.dragonData,
+          {
+            facilityPct: inputData.params.dragon.facilityPct.toFixed(0),
+            passivePct: inputData.params.dragon.passivePct.toFixed(0),
           },
         )}
       </p>

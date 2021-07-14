@@ -12,16 +12,24 @@ export type ModalState = {
 type CommonModalProps = {
   modalState: ModalState,
   setModalState: (modalState: ModalState) => void,
+  clearContentOnClose?: boolean,
 }
 
-export const CommonModal = ({modalState, setModalState}: CommonModalProps) => (
-  <Modal
-    show={modalState.show}
-    onHide={() => setModalState({show: false, title: '', message: ''})}
-  >
-    <Modal.Header closeButton>
-      <Modal.Title>{modalState.title}</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>{modalState.message}</Modal.Body>
-  </Modal>
-);
+export const CommonModal = ({modalState, setModalState, clearContentOnClose = true}: CommonModalProps) => {
+  const onHide = () => {
+    if (clearContentOnClose) {
+      setModalState({show: false, title: '', message: ''});
+    } else {
+      setModalState({...modalState, show: false});
+    }
+  };
+
+  return (
+    <Modal show={modalState.show} onHide={onHide} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>{modalState.title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{modalState.message}</Modal.Body>
+    </Modal>
+  );
+};

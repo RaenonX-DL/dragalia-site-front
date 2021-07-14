@@ -1,4 +1,5 @@
 import {generateAttackingSkillEntry} from '../../../../../../../test/data/mock/skill';
+import {UnitType} from '../../../../../../api-def/api';
 import {AttackingSkillData, ElementBonusData} from '../../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {InputData} from '../../in/types';
@@ -54,6 +55,38 @@ describe('Filter ATK skill entries', () => {
     expect(dataFiltered.map((entry) => entry.skill.dispelMax)).not.toContain(false);
   });
 
+  it('returns character skill only', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          type: [UnitType.CHARACTER],
+        },
+      },
+      data,
+    );
+    expect(dataFiltered.length).toBeGreaterThan(0);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.CHARACTER)).not.toContain(false);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.DRAGON)).not.toContain(true);
+  });
+
+  it('returns all types of skill', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          type: [],
+        },
+      },
+      data,
+    );
+    expect(dataFiltered.length).toBeGreaterThan(0);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.CHARACTER)).toBeTruthy();
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.DRAGON)).toBeTruthy();
+  });
+
   it('returns specified element only', async () => {
     const elemEnums = await ResourceLoader.getEnumElements();
 
@@ -71,7 +104,7 @@ describe('Filter ATK skill entries', () => {
         data,
       );
       expect(dataFiltered.length).toBeGreaterThan(0);
-      expect(dataFiltered.map((entry) => entry.chara.element === elemEnumCode)).not.toContain(false);
+      expect(dataFiltered.map((entry) => entry.unit.element === elemEnumCode)).not.toContain(false);
     });
   });
 
@@ -91,7 +124,7 @@ describe('Filter ATK skill entries', () => {
         },
         data,
       );
-      expect(dataFiltered.map((entry) => entry.chara.element === afflictionEnumCode)).not.toContain(false);
+      expect(dataFiltered.map((entry) => entry.unit.element === afflictionEnumCode)).not.toContain(false);
     });
   });
 });
@@ -105,6 +138,21 @@ describe('Sort ATK skill entries', () => {
   beforeAll(async () => {
     data = await ResourceLoader.getAttackingSkillEntries();
     elemBonusData = new ElementBonusData(await ResourceLoader.getElementBonusData());
+  });
+
+  it('sorts entries by mods', async () => {
+    const inputData: InputData = {
+      ...inputDataTemplate,
+      sortBy: 'mods',
+    };
+
+    const entries = calculateEntries(data, inputData, elemBonusData)
+      .map((entry) => entry.skillDamage.totalMods)
+      .filter((x, i, a) => !i || x !== a[i - 1]);
+    expect(entries[0]).toBeGreaterThan(entries[1]);
+    expect(entries[1]).toBeGreaterThan(entries[2]);
+    expect(entries[2]).toBeGreaterThan(entries[3]);
+    expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
   it('sorts entries by damage', async () => {
@@ -126,14 +174,14 @@ describe('Sort ATK skill entries', () => {
     expect(entries[3]).toBeGreaterThan(entries[4]);
   });
 
-  it('sorts entries by total mods if not displaying actual damage', async () => {
+  it('sorts entries by the actual damage even if not displaying it', async () => {
     const inputData: InputData = {
       ...inputDataTemplate,
       sortBy: 'damage',
     };
 
     const entries = calculateEntries(data, inputData, elemBonusData)
-      .map((entry) => entry.skillDamage.totalMods)
+      .map((entry) => entry.skillDamage.expected)
       .filter((x, i, a) => !i || x !== a[i - 1]);
     expect(entries[0]).toBeGreaterThan(entries[1]);
     expect(entries[1]).toBeGreaterThan(entries[2]);

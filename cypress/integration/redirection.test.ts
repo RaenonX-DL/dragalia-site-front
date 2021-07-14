@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../../src/api-def/api/other/lang';
+import {SupportedLanguages} from '../../src/api-def/api';
 import {DEFAULT_LANG} from '../../src/i18n/langCode';
 import {CookiesKeys} from '../../src/utils/cookies/keys';
 
@@ -13,6 +13,12 @@ describe('Page redirection behavior', () => {
     cy.visit('/')
       .location('pathname')
       .then((path) => expect(path).to.equal(`/${DEFAULT_LANG}`));
+  });
+
+  it('redirects legacy analysis index path to new path', () => {
+    cy.visit('/cht/analysis')
+      .location('pathname')
+      .then((path) => expect(path).to.equal('/cht/info'));
   });
 
   it('bypasses file requests', () => {

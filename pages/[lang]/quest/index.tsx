@@ -11,7 +11,7 @@ import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 const QuestList = () => {
   const {t, lang} = useI18n();
 
-  const title = t((t) => t.meta.inUse.questList.title);
+  const title = t((t) => t.meta.inUse.post.quest.list.title);
 
   return (
     <PostListPage

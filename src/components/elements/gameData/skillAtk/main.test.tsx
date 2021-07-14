@@ -215,7 +215,7 @@ describe('ATK skill lookup', () => {
     userEvent.click(searchButton);
 
     fnOverLengthCheck.mockClear();
-    const dispelOnly = screen.getByText(translationEN.game.skillAtk.name.filterDispelOnly);
+    const dispelOnly = screen.getByText(translationEN.game.skillAtk.input.filter.only.dispel);
     userEvent.click(dispelOnly);
     userEvent.click(searchButton);
 
@@ -230,7 +230,7 @@ describe('ATK skill lookup', () => {
     // Wait until all resources are loaded
     await waitForResourcesLoaded();
 
-    const sortOrderButton = screen.getByText('Order: Damage', {selector: 'button'});
+    const sortOrderButton = screen.getByText('Order: Mods', {selector: 'button'});
     userEvent.click(sortOrderButton);
 
     const sspOrderButton = screen.getByText(translationEN.game.skillAtk.spInfo.ssp);

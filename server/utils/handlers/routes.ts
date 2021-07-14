@@ -6,6 +6,8 @@ import {isSupportedLang} from '../../../src/api-def/api';
 import {DEFAULT_LANG} from '../../../src/i18n/langCode';
 import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {getCookies} from '../../../src/utils/cookies/utils';
+import {urlRemoveLang} from '../../../src/utils/path/process';
+import {redirectLookup} from '../../const/redirect';
 import {urlObjectToLegacy} from '../url';
 import {NextHandler, Server, ServerHasLang} from './types';
 
@@ -31,6 +33,33 @@ const handleByNext = async (req: FastifyRequest, res: FastifyReply, nextHandler:
   res.sent = true;
 };
 
+const checkEarlyTermination = async <R extends FastifyRequest<ServerHasLang>>(
+  req: R, res: FastifyReply, nextHandler: NextHandler,
+  urlOnLangUnsupported: (req: R) => string,
+): Promise<boolean> => {
+  // URLs to bypass language fixing?
+  if (isUrlToBypass(req.url)) {
+    await handleByNext(req, res, nextHandler, true);
+    return true;
+  }
+
+  // Language prefix check
+  if (!isSupportedLang(req.params.lang)) {
+    res.redirect(urlOnLangUnsupported(req));
+    return true;
+  }
+
+  // Legacy URL redirection
+  const redirectUrl = redirectLookup[urlRemoveLang(req.url)];
+  if (redirectUrl) {
+    // 301 for permanent redirect
+    res.redirect(301, redirectUrl);
+    return true;
+  }
+
+  return false;
+};
+
 export const registerRoutes = (fastifyApp: FastifyInstance, nextHandler: NextHandler) => {
   // Catch requests to site root
   fastifyApp.all<Server>('/', async (req, res) => {
@@ -39,12 +68,11 @@ export const registerRoutes = (fastifyApp: FastifyInstance, nextHandler: NextHan
 
   // Catch requests with a single depth
   fastifyApp.all<ServerHasLang>('/:lang', async (req, res) => {
-    if (isUrlToBypass(req.url)) {
-      await handleByNext(req, res, nextHandler, true);
-      return;
-    }
-    if (!isSupportedLang(req.params.lang)) {
-      res.redirect(`/${getLanguage(req)}/${req.params.lang}`);
+    const isEarlyTerminated = await checkEarlyTermination(
+      req, res, nextHandler,
+      (req) => `/${getLanguage(req)}/${req.params.lang}`,
+    );
+    if (isEarlyTerminated) {
       return;
     }
 
@@ -53,12 +81,11 @@ export const registerRoutes = (fastifyApp: FastifyInstance, nextHandler: NextHan
 
   // Catch requests with multiple levels
   fastifyApp.all<ServerHasLang>('/:lang/*', async (req, res) => {
-    if (isUrlToBypass(req.url)) {
-      await handleByNext(req, res, nextHandler, true);
-      return;
-    }
-    if (!isSupportedLang(req.params.lang)) {
-      res.redirect(`/${getLanguage(req)}${req.url}`);
+    const isEarlyTerminated = await checkEarlyTermination(
+      req, res, nextHandler,
+      (req) => `/${getLanguage(req)}${req.url}`,
+    );
+    if (isEarlyTerminated) {
       return;
     }
 

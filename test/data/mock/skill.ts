@@ -1,11 +1,13 @@
-import {SupportedLanguages} from '../../../src/api-def/api';
+import {SupportedLanguages, UnitType} from '../../../src/api-def/api';
 import {AttackingSkillData, Element} from '../../../src/api-def/resources';
 import {CalculatedSkillEntry} from '../../../src/components/elements/gameData/skillAtk/out/types';
 
 
 export const generateAttackingSkillEntry = (): AttackingSkillData => ({
-  chara: {
+  unit: {
+    type: UnitType.CHARACTER,
     id: 10999999,
+    rarity: 5,
     element: Element.FLAME,
     iconName: 'icon',
     name: {
@@ -13,6 +15,17 @@ export const generateAttackingSkillEntry = (): AttackingSkillData => ({
       [SupportedLanguages.EN]: 'EN name',
       [SupportedLanguages.JP]: 'JP name',
     },
+    cvEn: {
+      [SupportedLanguages.CHT]: 'CHT EN CV name',
+      [SupportedLanguages.EN]: 'EN EN CV name',
+      [SupportedLanguages.JP]: 'JP EN CV name',
+    },
+    cvJp: {
+      [SupportedLanguages.CHT]: 'CHT JP CV name',
+      [SupportedLanguages.EN]: 'EN JP CV name',
+      [SupportedLanguages.JP]: 'JP JP CV name',
+    },
+    releaseEpoch: 1,
   },
   condition: [],
   skill: {

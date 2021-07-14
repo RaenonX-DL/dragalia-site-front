@@ -16,13 +16,13 @@ export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.punisher),
-          description: t((t) => t.game.skillAtk.desc.punisher),
+          title: t((t) => t.game.skillAtk.input.punisher.title.name),
+          description: t((t) => t.game.skillAtk.input.punisher.title.desc),
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.punisherBk),
-          description: t((t) => t.game.skillAtk.desc.punisherBk),
+          title: t((t) => t.game.skillAtk.input.punisher.bk.name),
+          description: t((t) => t.game.skillAtk.input.punisher.bk.desc),
           getValue: (inputData) => inputData.params.punishers.bkPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {punishers: {bkPct: newValue}}})
@@ -30,11 +30,11 @@ export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.otherHp),
-          description: t((t) => t.game.skillAtk.desc.otherHp),
-          getValue: (inputData) => inputData.params.others.currentHpPct,
+          title: t((t) => t.game.skillAtk.input.punisher.others.name),
+          description: t((t) => t.game.skillAtk.input.punisher.others.desc),
+          getValue: (inputData) => inputData.params.punishers.othersPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {others: {currentHpPct: newValue}}})
+            overwriteInputData(inputData, {params: {punishers: {othersPct: newValue}}})
           ),
         },
       ]}

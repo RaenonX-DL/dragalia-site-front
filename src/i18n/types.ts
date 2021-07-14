@@ -1,6 +1,8 @@
+import {PageMetaResponse} from '../api-def/api';
 import {TranslationStruct} from './translations/definition';
 
-export type InterpolateParams = { [key in string]: string };
+
+export type InterpolateParams = PageMetaResponse['params'];
 
 export type LanguageCode = string | undefined;
 

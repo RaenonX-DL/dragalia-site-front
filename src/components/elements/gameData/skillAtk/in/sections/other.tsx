@@ -16,13 +16,13 @@ export const SectionOther = ({inputData, setInputData}: SectionProps) => {
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.other),
-          description: t((t) => t.game.skillAtk.desc.other),
+          title: t((t) => t.game.skillAtk.input.other.title.name),
+          description: t((t) => t.game.skillAtk.input.other.title.desc),
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.otherElementBonus),
-          description: t((t) => t.game.skillAtk.desc.otherElementBonus),
+          title: t((t) => t.game.skillAtk.input.other.elemBonus.name),
+          description: t((t) => t.game.skillAtk.input.other.elemBonus.desc),
           getValue: (inputData) => inputData.params.others.elemBonusPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {others: {elemBonusPct: newValue}}})
@@ -30,8 +30,8 @@ export const SectionOther = ({inputData, setInputData}: SectionProps) => {
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.otherHp),
-          description: t((t) => t.game.skillAtk.desc.otherHp),
+          title: t((t) => t.game.skillAtk.input.other.hp.name),
+          description: t((t) => t.game.skillAtk.input.other.hp.name),
           getValue: (inputData) => inputData.params.others.currentHpPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {others: {currentHpPct: newValue}}})

@@ -2,13 +2,13 @@ import React from 'react';
 
 import {evaluate} from 'mathjs';
 
+import {TextComponentProps} from '../text/types';
 import {replaceExpression} from './replacer';
-import {CalcExpressionProps} from './types';
 import {ExpressionOutput} from './unit';
 import {extractDecimal, extractExpressionLocation} from './utils';
 
 
-export const CalcExpression = ({children}: CalcExpressionProps) => {
+export const CalcExpression = ({children}: TextComponentProps) => {
   const decimalInfo = extractDecimal(children);
   children = decimalInfo.newExpression;
   const expressionInfo = extractExpressionLocation(children);

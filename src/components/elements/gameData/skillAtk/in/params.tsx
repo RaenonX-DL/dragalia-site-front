@@ -7,6 +7,7 @@ import {InputPanelCommonProps} from '../../../input/types';
 import {SectionAtk} from './sections/atk';
 import {SectionBuff} from './sections/buff';
 import {SectionCrt} from './sections/crt';
+import {SectionDragon} from './sections/dragon';
 import {SectionEx} from './sections/ex';
 import {SectionOther} from './sections/other';
 import {SectionPunisher} from './sections/punisher';
@@ -43,6 +44,8 @@ export const InputParameters = ({collapsed, inputData, setInputData, conditionEn
           <SectionSkill inputData={inputData} setInputData={setInputData}/>
           <hr/>
           <SectionPunisher inputData={inputData} setInputData={setInputData}/>
+          <hr/>
+          <SectionDragon inputData={inputData} setInputData={setInputData}/>
           <hr/>
           <SectionOther inputData={inputData} setInputData={setInputData}/>
           <hr/>

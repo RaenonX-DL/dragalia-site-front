@@ -1,29 +1,28 @@
 import React from 'react';
 
-import {Session} from 'next-auth';
 import {getSession} from 'next-auth/client';
-import App, {AppProps, AppContext, AppInitialProps as NextAppInitialProps} from 'next/app';
+import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
+
+import '../public/bootstrap.css';
+import '../public/index.css';
 
 import {Footer} from '../src/components/elements/footer';
 import {Navigation} from '../src/components/elements/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
 import {AppReactContext} from '../src/context/app/main';
+import {AppReactContextValue} from '../src/context/app/types';
 import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
-import {PageMeta} from '../src/utils/meta/types';
+import {ResourceLoader} from '../src/utils/services/resources/loader';
 import Error404 from './404';
 
-import '../public/bootstrap.css';
-import '../public/index.css';
 
-
-type PageProps = PageMeta & {
+type PageProps = AppReactContextValue & {
   isNotFound: boolean,
-  session: Session,
 }
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
@@ -73,11 +72,16 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   const appProps = await App.getInitialProps(appContext) as AppInitialProps;
   const session = await getSession(appContext.ctx);
 
-  appProps.pageProps = {
+  // Taking this variable out to force type checking on `pageProps`
+  // noinspection UnnecessaryLocalVariableJS
+  const pageProps: PageProps = {
     ...await getPageMeta(appContext),
     isNotFound: appContext.ctx.res?.statusCode === 404,
     session,
+    simpleUnitInfo: await ResourceLoader.getSimpleUnitInfo(),
   };
+
+  appProps.pageProps = pageProps;
 
   return appProps;
 };

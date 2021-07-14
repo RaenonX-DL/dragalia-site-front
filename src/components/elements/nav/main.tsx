@@ -40,8 +40,8 @@ export const Navigation = () => {
               text={t((t) => t.posts.quest.titleSelf)}
             />
             <NavItem
-              path={GeneralPath.ANALYSIS_LIST}
-              text={t((t) => t.posts.analysis.titleSelf)}
+              path={GeneralPath.INFO_LOOKUP}
+              text={t((t) => t.nav.unitInfo)}
             />
             <NavItem
               path={GeneralPath.MISC_LIST}

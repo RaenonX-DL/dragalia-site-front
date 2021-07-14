@@ -2,7 +2,7 @@ import {EnumEntry} from '../../../api-def/resources/types/enum';
 import {EnumChecksBoxProps} from '../common/check/enum/checkbox';
 import {EnumRadioGroupProps} from '../common/check/enum/radio';
 import {CheckboxInputProps} from '../common/check/item/checkbox';
-import {RadioGroupProps} from '../common/check/types';
+import {CheckboxGroupProps, RadioGroupProps} from '../common/check/types';
 import {NumericInputProps} from '../common/input/numeric';
 import {DetailedProps} from '../common/types';
 
@@ -30,6 +30,11 @@ export type InputEntryCheckboxGroup<T> = {
   checkboxes: Array<Omit<CheckboxInputProps<T>, keyof InputPanelCommonProps<T>>>,
 }
 
+export type InputEntryArrayCheckboxGroup<E, T> =
+  Omit<CheckboxGroupProps<E, T>, keyof InputPanelCommonProps<T>> & {
+  type: 'arrayCheckGroup',
+}
+
 export type InputEntryRadioGroup<E, T> =
   Omit<RadioGroupProps<E, T>, keyof InputPanelCommonProps<T>> & {
   type: 'inputRadioGroup'
@@ -51,6 +56,7 @@ export type InputEntry<E, E2 extends EnumEntry, T> =
   InputEntrySeparator |
   InputEntryNumber<T> |
   InputEntryCheckboxGroup<T> |
+  InputEntryArrayCheckboxGroup<E, T> |
   InputEntryRadioGroup<E, T> |
   InputEntryEnumRadioGroup<E2, T> |
   InputEntryEnumCheckGroup<E2, T>

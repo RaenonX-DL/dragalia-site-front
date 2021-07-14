@@ -3,6 +3,7 @@ import React from 'react';
 import {EnumEntry} from '../../../api-def/resources';
 import {EnumCheckboxGroup} from '../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../common/check/enum/radio';
+import {CheckboxGroup} from '../common/check/group/checkbox';
 import {RadioGroup} from '../common/check/group/radio';
 import {CheckboxInput} from '../common/check/item/checkbox';
 import {CheckOption} from '../common/check/types';
@@ -39,7 +40,7 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
   }
   if (inputEntry.type === 'inputCheckGroup') {
     return (
-      <div className="text-center">
+      <div className="mb-2 text-center">
         {
           inputEntry.checkboxes.map((checkboxProps, index) => (
             <CheckboxInput
@@ -74,6 +75,15 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
   if (inputEntry.type === 'enumRadioGroup') {
     return (
       <EnumRadioGroup
+        {...inputEntry}
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+    );
+  }
+  if (inputEntry.type === 'arrayCheckGroup') {
+    return (
+      <CheckboxGroup
         {...inputEntry}
         inputData={inputData}
         setInputData={setInputData}

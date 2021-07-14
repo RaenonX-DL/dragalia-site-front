@@ -10,7 +10,7 @@ export const ExpressionOutput = ({exprExtractResult, evalResult, expression}: Ex
     return (
       <OverlayTooltip key={expression} text={expression} placement="top">
         <span className={styles.calc}>
-          <i className="bi bi-calculator"/>
+          <i className="bi bi-calculator"/>&nbsp;
           {evalResult}
         </span>
       </OverlayTooltip>
@@ -19,7 +19,7 @@ export const ExpressionOutput = ({exprExtractResult, evalResult, expression}: Ex
 
   return (
     <span className={styles.calc}>
-      <i className="bi bi-calculator"/>
+      <i className="bi bi-calculator"/>&nbsp;
       {exprExtractResult.location === 'start' && `(${expression}) `}
       {evalResult}
       {exprExtractResult.location === 'end' && ` (${expression})`}

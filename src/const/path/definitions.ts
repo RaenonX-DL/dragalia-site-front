@@ -1,17 +1,18 @@
 export const PATH_ROOT = '/[lang]';
 
-// Must and only have `pid` as the key
+// Must and only have `id` as the key for unit ID
+export enum UnitPath {
+  UNIT_INFO = '/info/[id]',
+}
+
+// Must and only have `pid` as the key for post identifier
 export enum PostPath {
-  QUEST = `/quest/[pid]`,
+  QUEST = '/quest/[pid]',
   QUEST_EDIT = '/quest/[pid]/edit',
   ANALYSIS = '/analysis/[pid]',
   ANALYSIS_EDIT = '/analysis/[pid]/edit',
   MISC = '/misc/[pid]',
 }
-
-export const isPostPath = (path: string): path is PostPath => {
-  return Object.values(PostPath).some((postPath) => postPath === path);
-};
 
 export enum GeneralPath {
   // Home
@@ -25,6 +26,7 @@ export enum GeneralPath {
   MISC_LIST = '/misc',
   // In-game data
   EX = '/ex',
+  INFO_LOOKUP = '/info',
   SKILL_ATK = '/skill/atk',
   SKILL_SUP = '/skill/sup',
   STORY = '/story',
@@ -40,13 +42,9 @@ export enum AuthPath {
 }
 
 export const allPaths = ([] as Array<PagePath>).concat(
-  ...[PostPath, GeneralPath, AuthPath].map(
+  ...[UnitPath, PostPath, GeneralPath, AuthPath].map(
     (paths) => Object.values(paths),
   ),
 );
 
-export type PagePath = PostPath | GeneralPath | AuthPath;
-
-export const isPagePath = (path: string): path is PagePath => {
-  return allPaths.some((pagePath) => pagePath === path);
-};
+export type PagePath = UnitPath | PostPath | GeneralPath | AuthPath;

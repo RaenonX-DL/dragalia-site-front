@@ -16,13 +16,13 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.atk),
-          description: t((t) => t.game.skillAtk.desc.atk),
+          title: t((t) => t.game.skillAtk.input.atk.title.name),
+          description: t((t) => t.game.skillAtk.input.atk.title.desc),
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.atk),
-          description: t((t) => t.game.skillAtk.desc.atk),
+          title: t((t) => t.game.skillAtk.input.atk.inGame.name),
+          description: t((t) => t.game.skillAtk.input.atk.inGame.desc),
           getValue: (inputData) => inputData.params.atk.inGame,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {atk: {inGame: newValue}}})
@@ -30,8 +30,8 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.atkConditional),
-          description: t((t) => t.game.skillAtk.desc.atkConditional),
+          title: t((t) => t.game.skillAtk.input.atk.conditional.name),
+          description: t((t) => t.game.skillAtk.input.atk.conditional.desc),
           getValue: (inputData) => inputData.params.atk.conditionalPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {atk: {conditionalPct: newValue}}})
@@ -39,8 +39,8 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.atkBuff),
-          description: t((t) => t.game.skillAtk.desc.atkBuff),
+          title: t((t) => t.game.skillAtk.input.atk.buff.name),
+          description: t((t) => t.game.skillAtk.input.atk.buff.desc),
           getValue: (inputData) => inputData.params.atk.buffPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {atk: {buffPct: newValue}}})

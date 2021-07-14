@@ -1,7 +1,5 @@
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
-import {DepotPaths} from '../../../../api-def/resources/paths';
-import {UnitInfoData, UnitInfoMap} from '../../../../api-def/resources/types/unitInfo';
-import {toUnitInfoMap, toUnitInfoNameMap} from '../../../../api-def/resources/utils/unitInfo';
+import {DepotPaths, toUnitInfoMap, toUnitInfoNameMap, UnitInfoData, UnitInfoMap} from '../../../../api-def/resources';
 import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
 

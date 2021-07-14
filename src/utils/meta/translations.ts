@@ -1,20 +1,21 @@
-import {AuthPath, GeneralPath, PagePath, PostPath} from '../../const/path/definitions';
+import {AuthPath, GeneralPath, PagePath, PostPath, UnitPath} from '../../const/path/definitions';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../i18n/types';
 
 
 export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<PageMetaTranslations> } = {
   // In-production paths
-  [PostPath.QUEST]: (t) => t.meta.inUse.questPost,
-  [PostPath.QUEST_EDIT]: (t) => t.meta.inUse.questEdit,
-  [PostPath.ANALYSIS]: (t) => t.meta.inUse.analysisPost,
-  [PostPath.ANALYSIS_EDIT]: (t) => t.meta.inUse.analysisEdit,
+  [UnitPath.UNIT_INFO]: (t) => t.meta.inUse.unit.info,
+  [PostPath.QUEST]: (t) => t.meta.inUse.post.quest.post,
+  [PostPath.QUEST_EDIT]: (t) => t.meta.inUse.post.quest.edit,
+  [PostPath.ANALYSIS]: (t) => t.meta.inUse.post.analysis.post,
+  [PostPath.ANALYSIS_EDIT]: (t) => t.meta.inUse.post.analysis.edit,
   [GeneralPath.HOME]: (t) => t.meta.inUse.home,
-  [GeneralPath.QUEST_LIST]: (t) => t.meta.inUse.questList,
-  [GeneralPath.QUEST_NEW]: (t) => t.meta.inUse.questNew,
-  [GeneralPath.ANALYSIS_LIST]: (t) => t.meta.inUse.analysisIndex,
-  [GeneralPath.ANALYSIS_NEW_CHARA]: (t) => t.meta.inUse.analysisNewChara,
-  [GeneralPath.ANALYSIS_NEW_DRAGON]: (t) => t.meta.inUse.analysisNewDragon,
+  [GeneralPath.QUEST_LIST]: (t) => t.meta.inUse.post.quest.list,
+  [GeneralPath.QUEST_NEW]: (t) => t.meta.inUse.post.quest.new,
+  [GeneralPath.ANALYSIS_NEW_CHARA]: (t) => t.meta.inUse.post.analysis.newChara,
+  [GeneralPath.ANALYSIS_NEW_DRAGON]: (t) => t.meta.inUse.post.analysis.newDragon,
+  [GeneralPath.INFO_LOOKUP]: (t) => t.meta.inUse.gameData.info,
   [GeneralPath.EX]: (t) => t.meta.inUse.gameData.ex,
   [GeneralPath.SKILL_ATK]: (t) => t.meta.inUse.gameData.skillAtk,
   [GeneralPath.ABOUT]: (t) => t.meta.inUse.about,
@@ -26,4 +27,6 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.SKILL_SUP]: (t) => t.meta.temp.constructing,
   [GeneralPath.STORY]: (t) => t.meta.temp.constructing,
   [GeneralPath.ROTATION_CALC]: (t) => t.meta.temp.constructing,
+  // Legacy
+  [GeneralPath.ANALYSIS_LIST]: (t) => t.meta.inUse.gameData.info,
 };

@@ -8,5 +8,4 @@ export const providerIcon: Record<string, React.ReactNode> = {
   Discord: <i className="bi bi-discord"/>,
   GitHub: <i className="bi bi-github"/>,
   Twitch: <i className="bi bi-twitch"/>,
-  Twitter: <i className="bi bi-twitter"/>,
 };

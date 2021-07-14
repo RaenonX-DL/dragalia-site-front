@@ -1,3 +1,4 @@
+import {UnitType} from '../../../api-def/api/other/unit';
 import {TranslationStruct} from '../definition';
 
 export const translation: TranslationStruct = {
@@ -45,89 +46,194 @@ export const translation: TranslationStruct = {
       },
     },
     skillAtk: {
-      name: {
-        atk: '攻擊',
-        atkInGame: 'ゲーム内表示',
-        atkConditional: '条件付き攻UP (%)',
-        atkBuff: 'バフ (%)',
-        buffBoost: 'バフ個数',
-        buffCount: 'バフ個数',
-        buffZoneSelf: 'バフフィールドの数 (自身が作成)',
-        buffZoneAlly: 'バフフィールドの数 (味方が作成)',
-        ex: 'EXアビ',
-        exBlade: '刀',
-        exWand: 'ロッド',
-        crt: 'クリティカル',
-        crtRate: 'クリティカル率 (%)',
-        crtDamage: 'クリティカルダメージ (%)',
-        crtInspired: '超ヒラメキ',
-        skill: 'スキルダメージ',
-        skillBuff: 'バフ (%)',
-        skillPassive: 'パッシブのスキルダメ合計 (%)',
-        skillEnergized: '超やる気',
-        punisher: '特効',
-        punisherBk: 'ブレイク 特効 (%)',
-        punisherOthers: 'その他 特効 (%)',
-        other: 'その他',
-        otherElementBonus: '属性ダメージ (%)',
-        otherHp: 'HP (%)',
-        target: '攻撃ターゲット関係',
-        targetElement: '屬性',
-        targetAffliction: '状態異常',
-        targetState: {
-          title: '攻撃ターゲットのモードゲージ状態',
-          none: '通常',
-          od: 'OD',
-          bk: 'BK',
+      input: {
+        atk: {
+          title: {
+            name: '攻擊',
+            desc: '攻撃力に関するパラメータ全般。',
+          },
+          inGame: {
+            name: 'ゲーム内表示',
+            desc: '通称、攻ステ値。この値はキャラ詳細画面を開いた時の値で、武器、ドラゴン、護符、ボーナス他を含む値です。' +
+              '※将来的には、キャラ、武器、などを選択したら自動計算させる予定です。',
+          },
+          conditional: {
+            name: '条件付き攻UP (%)',
+            desc: '例：疾風怒濤、HP70%以上で、等。',
+          },
+          buff: {
+            name: 'バフ (%)',
+            desc: 'クエスト中、画面下に表示される攻撃バフアイコン。バフによるUP上限は200%。',
+          },
         },
-        targetDefDown: '防御ダウン (%)',
-        targetDef: '基礎防御力',
-        targetDefBk: 'BK 防御ダウン率',
-        filter: 'フィルタ',
-        filterElement: '屬性',
-        filterAffliction: '状態異常',
-        filterOther: 'その他',
-        filterSharedOnly: 'シェアスキルのみ表示',
-        filterDispelOnly: 'Dispel Only',
-      },
-      desc: {
-        atk: '攻撃力に関するパラメータ全般。',
-        atkInGame: '通称、攻ステ値。この値はキャラ詳細画面を開いた時の値で、武器、ドラゴン、護符、ボーナス他を含む値です。' +
-          '※将来的には、キャラ、武器、などを選択したら自動計算させる予定です。',
-        atkConditional: '例：疾風怒濤、HP70%以上で、等。',
-        atkBuff: 'クエスト中、画面下に表示される攻撃バフアイコン。バフによるUP上限は200%。',
-        buffBoost: 'バフの個数だけ【ブースト】がかかってダメージが増えるスキルがある。その計算用。',
-        buffCount: 'キャラにかかっているバフ個数。※ただし、ヒラメキ、やる気はレベルに関係なくバフ1個扱い。',
-        buffZoneSelf: '自身で作ったバフフィールドの数。',
-        buffZoneAlly: '味方が作ったバフフィールドの数。',
-        ex: 'サブキャラによるEXアビはパッシブ扱い。※例外的なEXアビ（例：屬性ダメ、攻防ダウン特効、クリティカルダメ、など）は' +
-          '直接各項目に入力してください。',
-        crt: 'クリティカルに関するパラメータ全般。',
-        crtRate: 'クリティカル率。なお斧キャラは基礎値4%、他武器種は基礎値2%を持ちます。※超ヒラメキを有効にしている場合、クリティカル率100%に置き換えて計算します。',
-        crtDamage: 'クリティカルダメージ率。基礎値170%を持ちますが既に含めて計算しています。バフによるUP上限は400%',
-        skill: 'スキルダメージに関するパラメータ全般。',
-        skillBuff: 'クエスト中、画面下に表示されるクリティカルダメバフアイコン。バフによるUP上限は200%。※闇竜ケットシーによるバフ+180% はここに入ります。',
-        skillPassive: 'ドラゴンや護符による効果はここに入ります。※闇竜ケットシーによる効果はパッシブ扱いではなくバフ扱いなので、ここには入りません。',
-        punisher: '特効に関するパラメータ全般。',
-        punisherBk: 'ブレイク特効は、その他特効と乗算関係にある。',
-        punisherOthers: 'その他特効。(例：状態異常特効、OD特効、攻防ダウン特効、など)',
-        other: 'その他、未分類のパラメータ全般。',
-        otherElementBonus: '属性ダメ。(例：光ピアニー、ブレイヴ系ドラゴン．など)',
-        otherHp: '現在HP',
-        target: '攻撃ターゲットの状態に関するパラメータ全般。',
-        targetElement: '攻撃ターゲットの属性。',
-        targetAffliction: '攻撃ターゲットに付与されている状態異常。',
-        targetState: {
-          title: '攻撃ターゲットのモードゲージの状態。(通常orオーバードライブ状態orブレイク状態)',
+        buff: {
+          boost: {
+            name: 'バフ',
+            desc: 'バフの個数だけ【ブースト】がかかってダメージが増えるスキルがある。その計算用。',
+          },
+          count: {
+            name: 'バフ個数',
+            desc: 'キャラにかかっているバフ個数。※ただし、ヒラメキ、やる気はレベルに関係なくバフ1個扱い。',
+          },
+          zone: {
+            self: {
+              name: 'バフフィールドの数 (自身が作成)',
+              desc: '自身で作ったバフフィールドの数。',
+            },
+            ally: {
+              name: 'バフフィールドの数 (味方が作成)',
+              desc: '味方が作ったバフフィールドの数。',
+            },
+          },
         },
-        targetDefDown: '付与した防御ダウンデバフ。(クエスト中、ボスHPバーの上に表示されるデバフアイコンのこと)',
-        targetDef: '攻撃ターゲットの基礎防御力。通常は 10。※光アギトカイエンは 15 (2020/12/20)。',
-        targetDefBk: '攻撃ターゲットのBK時の防御ダウン率。通常は 0.6。※闇アギトタルタロスや火アギトルヴ絕級は 0.8。(またバーサク状態では 1.25)。',
-        filter: '条件を選択してキャラスキル検索できます。複数選択した場合、いづれかに合致するキャラスキルが表示されます。何も選択していない場合、全てのキャラスキルが表示されます。',
-        filterElement: '例；火、風，を選択するとその２属性いづれかのキャラスキルだけが表示されます。',
-        filterAffliction: '例；火傷、毒を選択するといづれかを付与できるキャラスキルだけが表示されます。' +
-          '※状態異常付与できるスキルを検索する機能です。(状態異常特効を持つスキルを検索しているのではありません。)',
-        filterOther: 'その他フィルタリング条件。シェアスキルのみ検索可能です。',
+        ex: {
+          title: 'EXアビ',
+          description: 'サブキャラによるEXアビはパッシブ扱い。' +
+            '※例外的なEXアビ（例：屬性ダメ、攻防ダウン特効、クリティカルダメ、など）は直接各項目に入力してください。',
+          blade: '刀',
+          wand: 'ロッド',
+        },
+        crt: {
+          title: {
+            name: 'クリティカル',
+            desc: 'クリティカルに関するパラメータ全般。',
+          },
+          rate: {
+            name: 'クリティカル率 (%)',
+            desc: 'クリティカル率。なお斧キャラは基礎値4%、他武器種は基礎値2%を持ちます。' +
+              '※超ヒラメキを有効にしている場合、クリティカル率100%に置き換えて計算します。',
+          },
+          damage: {
+            name: 'クリティカルダメージ (%)',
+            desc: 'クリティカルダメージ率。基礎値170%を持ちますが既に含めて計算しています。バフによるUP上限は400%。',
+          },
+          inspired: '超ヒラメキ',
+        },
+        skill: {
+          title: {
+            name: 'スキルダメージ',
+            desc: 'スキルダメージに関するパラメータ全般。',
+          },
+          buff: {
+            name: 'バフ (%)',
+            desc: 'クエスト中、画面下に表示されるクリティカルダメバフアイコン。バフによるUP上限は200%。' +
+              '※闇竜ケットシーによるバフ+180%はここに入ります。',
+          },
+          passive: {
+            name: 'パッシブのスキルダメ合計 (%)',
+            desc: 'ドラゴンや護符による効果はここに入ります。' +
+              '※闇竜ケットシーによる効果はパッシブ扱いではなくバフ扱いなので、ここには入りません。',
+          },
+          energized: '超やる気',
+        },
+        punisher: {
+          title: {
+            name: '特効',
+            desc: '特効に関するパラメータ全般。',
+          },
+          bk: {
+            name: 'ブレイク 特効 (%)',
+            desc: 'ブレイク特効は、その他特効と乗算関係にある。',
+          },
+          others: {
+            name: 'その他 特効 (%)',
+            desc: 'その他特効。(例：状態異常特効、OD特効、攻防ダウン特効、など)',
+          },
+        },
+        dragon: {
+          title: {
+            name: '龍化',
+            desc: '泛指與龍化增傷有關的參數。',
+          },
+          facility: {
+            name: '建築 (%)',
+            desc: '目前主要由龍泣碑獲得。可以從主城中的加成頁面中查看。',
+          },
+          passive: {
+            name: '被動 (%)',
+            desc: '所有和增加龍化傷害相關效果屬於此類別，例如: 護符、CEX。',
+          },
+        },
+        other: {
+          title: {
+            name: 'その他',
+            desc: 'その他、未分類のパラメータ全般。',
+          },
+          elemBonus: {
+            name: '属性ダメージ (%)',
+            desc: '属性ダメ。(例：光ピアニー、ブレイヴ系ドラゴン．など)',
+          },
+          hp: {
+            name: 'HP (%)',
+            desc: '現在HP',
+          },
+        },
+        target: {
+          title: {
+            name: '攻撃ターゲット関係',
+            desc: '攻撃ターゲットの状態に関するパラメータ全般。',
+          },
+          element: {
+            name: '屬性',
+            desc: '攻撃ターゲットの属性。',
+          },
+          affliction: {
+            name: '状態異常',
+            desc: '攻撃ターゲットに付与されている状態異常。',
+          },
+          state: {
+            title: {
+              name: '攻撃ターゲットのモードゲージ状態',
+              desc: '攻撃ターゲットのモードゲージの状態。(通常orオーバードライブ状態orブレイク状態)',
+            },
+            none: '通常',
+            od: 'OD',
+            bk: 'BK',
+          },
+          def: {
+            base: {
+              name: '基礎防御力',
+              desc: '攻撃ターゲットの基礎防御力。通常は 10。※光アギトカイエンは 15 (2020/12/20)。',
+            },
+            down: {
+              name: '防御ダウン (%)',
+              desc: '付与した防御ダウンデバフ。(クエスト中、ボスHPバーの上に表示されるデバフアイコンのこと)',
+            },
+            bk: {
+              name: 'BK 防御ダウン率',
+              desc: '攻撃ターゲットのBK時の防御ダウン率。通常は 0.6。※闇アギトタルタロスや火アギトルヴ絕級は 0.8。(またバーサク状態では 1.25)。',
+            },
+          },
+        },
+        filter: {
+          title: {
+            name: 'フィルタ',
+            desc: '条件を選択してスキル検索できます。複数選択した場合、いづれかに合致するスキルが表示されます。' +
+              '何も選択していない場合、全てのスキルが表示されます。',
+          },
+          element: {
+            name: '屬性',
+            desc: '例；火、風，を選択するとその２属性いづれかのキャラスキルだけが表示されます。',
+          },
+          affliction: {
+            name: '状態異常',
+            desc: '例；火傷、毒を選択するといづれかを付与できるキャラスキルだけが表示されます。' +
+              '※状態異常付与できるスキルを検索する機能です。(状態異常特効を持つスキルを検索しているのではありません。)',
+          },
+          unitType: {
+            name: '',
+            desc: '',
+          },
+          other: {
+            name: 'その他',
+            desc: 'その他フィルタリング条件。シェアスキルのみ検索可能です。',
+          },
+          only: {
+            dispel: 'Dispel Only',
+            shared: 'シェアスキルのみ表示',
+          },
+        },
+
       },
       display: {
         title: '顯示資訊',
@@ -178,6 +284,8 @@ export const translation: TranslationStruct = {
         skillEnergized: '超やる気',
         punisher: '特効 - {{punisherVal}}',
         punisherData: 'BK 特効 {{punishersBkPct}}% / その他特効 {{punishersOtherPct}}%',
+        dragon: '龍化傷害 - {{dragonVal}}',
+        dragonData: '建築 +{{facilityPct}}% / 被動 +{{passivePct}}%',
         target: '目標状態',
         targetData: {
           element: 'Element: ',
@@ -208,7 +316,8 @@ export const translation: TranslationStruct = {
       },
       sort: {
         text: '排序: {{sortBy}}',
-        damageDesc: '傷害',
+        mods: '倍率',
+        damage: '實際傷害',
         sp: 'SP',
         ssp: 'SSP',
       },
@@ -236,6 +345,57 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: '他のツール',
       rotation: 'ルーティン計算',
+    },
+    unitInfo: {
+      header: {
+        combo: {
+          index: '#',
+          mods: '倍率',
+          hitCount: '攻擊次數',
+          sp: 'SP',
+          utp: 'UTP',
+          odRate: 'OD 倍率',
+          crisisMods: '壓血倍率',
+          nextComboSec: '下一 Combo 時間 (秒)',
+        },
+      },
+      title: {
+        passive: '被動技能',
+        coAbility: {
+          all: 'EX / CEX',
+          global: 'EX',
+          chained: 'CEX',
+        },
+        normalAttack: '普攻輪轉',
+        skills: {
+          all: '技能',
+          official: '官方說明',
+          parsed: {
+            atk: '攻擊技能',
+          },
+        },
+      },
+      info: {
+        passive: 'These are official texts. ' +
+          'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+        coAbility: 'These are official texts. Welcome to [Co-ability searching]({{exLookup}}) feature.\n\n' +
+          'Co-ability is applied regardless the unit element. The effect is unstackable. ' +
+          'Chained co-ability is limited to same element only in general. However, the effect is stackable.',
+        skill: {
+          official: 'These are official texts. ' +
+            'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
+          parsed: 'These are automatically parsed. Some content might be inaccurate. ' +
+            'Welcome to use the [ATK skill lookup]({{atkSearch}}) for searching.',
+        },
+      },
+      links: {
+        analysis: 'Analysis',
+        info: 'Info',
+      },
+      text: {
+        total: '(總計)',
+        relatedLinks: '相關連結',
+      },
     },
   },
   userControl: {
@@ -290,45 +450,9 @@ export const translation: TranslationStruct = {
         title: 'サイトについて',
         description: 'description',
       },
-      analysisIndex: {
-        title: '評価のカタログ',
-        description: 'description',
-      },
-      analysisNewChara: {
-        title: '新キャラの評価',
-        description: 'description',
-      },
-      analysisNewDragon: {
-        title: '新ドラゴンの評価',
-        description: 'description',
-      },
-      analysisEdit: {
-        title: '評価の編集 - {{name}}',
-        description: '{{name}}を編集するページ。',
-      },
-      analysisPost: {
-        title: '【評価】{{name}}',
-        description: '{{name}}の評価',
-      },
       home: {
         title: 'ホームページ',
         description: 'description',
-      },
-      questEdit: {
-        title: 'クエスト攻略の編集 #Q{{title}}',
-        description: 'クエスト攻略 #Q{{pid}}の編集ページ。',
-      },
-      questList: {
-        title: 'クエスト攻略カタログ',
-        description: 'クエスト攻略のカタログ。',
-      },
-      questNew: {
-        title: 'クエスト攻略の追加',
-        description: 'description',
-      },
-      questPost: {
-        title: '【攻略】{{title}}',
-        description: 'TBA',
       },
       site: {
         title: 'ドラガリ攻略サイト by OM',
@@ -338,7 +462,49 @@ export const translation: TranslationStruct = {
         title: 'ご協力に感謝',
         description: 'description',
       },
+      post: {
+        analysis: {
+          newChara: {
+            title: '新キャラの評価',
+            description: 'description',
+          },
+          newDragon: {
+            title: '新ドラゴンの評価',
+            description: 'description',
+          },
+          edit: {
+            title: '評価の編集 - {{name}}',
+            description: '{{name}}を編集するページ。',
+          },
+          post: {
+            title: '【評価】{{name}}',
+            description: '{{name}}の評価',
+          },
+        },
+        quest: {
+          edit: {
+            title: 'クエスト攻略の編集 #Q{{title}}',
+            description: 'クエスト攻略 #Q{{pid}}の編集ページ。',
+          },
+          list: {
+            title: 'クエスト攻略カタログ',
+            description: 'クエスト攻略のカタログ。',
+          },
+          new: {
+            title: 'クエスト攻略の追加',
+            description: 'description',
+          },
+          post: {
+            title: '【攻略】{{title}}',
+            description: 'TBA',
+          },
+        },
+      },
       gameData: {
+        info: {
+          title: 'キャラ/ドラゴン情報カタログ',
+          description: 'description',
+        },
         ex: {
           title: 'TBA',
           description: 'description',
@@ -352,6 +518,12 @@ export const translation: TranslationStruct = {
         signIn: {
           title: 'Login',
           description: 'Sign-in to the website to enable more features.',
+        },
+      },
+      unit: {
+        info: {
+          title: '{{unitName}}',
+          description: 'Unit info of {{unitName}}.',
         },
       },
     },
@@ -373,9 +545,11 @@ export const translation: TranslationStruct = {
     },
     suffix: ' | ドラガリ攻略 by OM',
   },
+  nav: {
+    unitInfo: 'キャラ/ドラゴン情報',
+  },
   posts: {
     analysis: {
-      titleSelf: 'ユニット評価',
       forceStrike: 'バーストアタック',
       keywords: 'キーワード',
       normalAttack: '通常攻撃',
@@ -463,6 +637,12 @@ export const translation: TranslationStruct = {
       tips: 'ポイント',
       title: 'お題',
       video: '関する動画',
+    },
+  },
+  enum: {
+    unitType: {
+      [UnitType.CHARACTER]: 'キャラ',
+      [UnitType.DRAGON]: 'ドラゴン',
     },
   },
 };

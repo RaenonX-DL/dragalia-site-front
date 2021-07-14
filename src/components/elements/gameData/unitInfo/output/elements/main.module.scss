@@ -1,0 +1,54 @@
+@use "../../../../../../../public/colors";
+
+@import "../../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../../../../../styles/table";
+
+$markdown-bg-color: colors.$color-black-32;
+$item-margin: 0.75rem;
+
+.text {
+  overflow: auto;
+  background-color: $markdown-bg-color;
+  border: transparent solid $item-margin;
+  border-radius: 0.25rem;
+  margin-bottom: $item-margin;
+  white-space: pre-line;
+}
+
+.ability {
+  @include media-breakpoint-up(lg) {
+    .container {
+      position: relative;
+      padding-top: 100%;
+      overflow: auto;
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+    }
+  }
+}
+
+.skill {
+  .entries {
+    max-height: 70vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.normalAttack {
+  table {
+    @extend %standard-table;
+
+    margin-bottom: 0;
+
+    th,
+    td {
+      padding: 0.3rem 1.5rem;
+    }
+  }
+}

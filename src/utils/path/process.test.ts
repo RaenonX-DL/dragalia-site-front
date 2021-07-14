@@ -1,7 +1,29 @@
-import {SupportedLanguages} from '../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../api-def/api';
 import {DEFAULT_LANG} from '../../i18n/langCode';
-import {getLangFromQuery, mergePlaceholders, pathnameRemoveLang} from './process';
+import {getLangFromQuery, mergePlaceholders, pathnameRemoveLang, urlRemoveLang} from './process';
 
+
+describe('Remove prefixed language in URL', () => {
+  it('returns root removes `/cht`', async () => {
+    const processed = urlRemoveLang(`/${SupportedLanguages.CHT}`);
+    expect(processed).toBe('/');
+  });
+
+  it('returns the leftovers after the removal', async () => {
+    const processed = urlRemoveLang(`/${SupportedLanguages.CHT}/aaa`);
+    expect(processed).toBe('/aaa');
+  });
+
+  it('leave the URL intact if the prefix is not a supported language', async () => {
+    const processed = urlRemoveLang(`/b/aaa`);
+    expect(processed).toBe('/b/aaa');
+  });
+
+  it('leaves the URl intact if the supported language is not the prefix', async () => {
+    const processed = urlRemoveLang(`/b/${SupportedLanguages.CHT}/aaa`);
+    expect(processed).toBe(`/b/${SupportedLanguages.CHT}/aaa`);
+  });
+});
 
 describe('Remove `lang` prefix in path', () => {
   it('removes `[lang]` in pathname', async () => {

@@ -1,6 +1,6 @@
 import {SupportedLanguages} from '../../../api-def/api/other/lang';
 import {EnumEntry} from '../../../api-def/resources';
-import {reverseEnumTransLookup} from './utils';
+import {reverseEnumLookup, reverseEnumTransLookup} from './utils';
 
 
 describe('Resource utils', () => {
@@ -37,5 +37,17 @@ describe('Resource utils', () => {
     const foundEnum = reverseEnumTransLookup(enums, 3, SupportedLanguages.EN, 'not found');
 
     expect(foundEnum).toBe('not found');
+  });
+
+  it('returns the reverse found enum', async () => {
+    const foundEnum = reverseEnumLookup(enums, 1);
+
+    expect(foundEnum).toStrictEqual(enums[0]);
+  });
+
+  it('returns undefined if reverse lookup does not find anything', async () => {
+    const foundEnum = reverseEnumLookup(enums, 3);
+
+    expect(foundEnum).toBeUndefined();
   });
 });

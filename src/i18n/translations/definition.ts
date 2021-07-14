@@ -1,3 +1,4 @@
+import {UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
 
 export type PageMetaTranslations = {
@@ -48,86 +49,186 @@ export type TranslationStruct = {
       },
     },
     skillAtk: {
-      name: {
-        atk: string,
-        atkInGame: string,
-        atkConditional: string,
-        atkBuff: string,
-        buffBoost: string,
-        buffCount: string,
-        buffZoneSelf: string,
-        buffZoneAlly: string,
-        ex: string,
-        exBlade: string,
-        exWand: string,
-        crt: string,
-        crtRate: string,
-        crtDamage: string,
-        crtInspired: string,
-        skill: string,
-        skillBuff: string,
-        skillPassive: string,
-        skillEnergized: string,
-        punisher: string,
-        punisherBk: string,
-        punisherOthers: string,
-        other: string,
-        otherElementBonus: string,
-        otherHp: string,
-        target: string,
-        targetElement: string,
-        targetAffliction: string,
-        targetState: {
-          title: string,
-          none: string,
-          od: string,
-          bk: string,
+      input: {
+        atk: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          inGame: {
+            name: string,
+            desc: string,
+          },
+          conditional: {
+            name: string,
+            desc: string,
+          },
+          buff: {
+            name: string,
+            desc: string,
+          },
         },
-        targetDefDown: string,
-        targetDef: string,
-        targetDefBk: string,
-        filter: string,
-        filterElement: string,
-        filterAffliction: string,
-        filterOther: string,
-        filterSharedOnly: string,
-        filterDispelOnly: string,
-      },
-      desc: {
-        atk: string,
-        atkInGame: string,
-        atkConditional: string,
-        atkBuff: string,
-        buffBoost: string,
-        buffCount: string,
-        buffZoneSelf: string,
-        buffZoneAlly: string,
-        ex: string,
-        crt: string,
-        crtRate: string,
-        crtDamage: string,
-        skill: string,
-        skillBuff: string,
-        skillPassive: string,
-        punisher: string,
-        punisherBk: string,
-        punisherOthers: string,
-        other: string,
-        otherElementBonus: string,
-        otherHp: string,
-        target: string,
-        targetElement: string,
-        targetAffliction: string,
-        targetState: {
-          title: string,
+        buff: {
+          boost: {
+            name: string,
+            desc: string,
+          },
+          count: {
+            name: string,
+            desc: string,
+          },
+          zone: {
+            self: {
+              name: string,
+              desc: string,
+            },
+            ally: {
+              name: string,
+              desc: string,
+            },
+          },
         },
-        targetDefDown: string,
-        targetDef: string,
-        targetDefBk: string,
-        filter: string,
-        filterElement: string,
-        filterAffliction: string,
-        filterOther: string,
+        ex: {
+          title: string,
+          description: string,
+          blade: string,
+          wand: string,
+        },
+        crt: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          rate: {
+            name: string,
+            desc: string,
+          },
+          damage: {
+            name: string,
+            desc: string,
+          },
+          inspired: string,
+        },
+        skill: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          buff: {
+            name: string,
+            desc: string,
+          },
+          passive: {
+            name: string,
+            desc: string,
+          },
+          energized: string,
+        },
+        punisher: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          bk: {
+            name: string,
+            desc: string,
+          },
+          others: {
+            name: string,
+            desc: string,
+          },
+        },
+        dragon: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          facility: {
+            name: string,
+            desc: string,
+          },
+          passive: {
+            name: string,
+            desc: string,
+          },
+        },
+        other: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          elemBonus: {
+            name: string,
+            desc: string,
+          },
+          hp: {
+            name: string,
+            desc: string,
+          },
+        },
+        target: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          element: {
+            name: string,
+            desc: string,
+          },
+          affliction: {
+            name: string,
+            desc: string,
+          },
+          state: {
+            title: {
+              name: string,
+              desc: string,
+            },
+            none: string,
+            od: string,
+            bk: string,
+          },
+          def: {
+            base: {
+              name: string,
+              desc: string,
+            },
+            down: {
+              name: string,
+              desc: string,
+            },
+            bk: {
+              name: string,
+              desc: string,
+            },
+          },
+        },
+        filter: {
+          title: {
+            name: string,
+            desc: string,
+          },
+          element: {
+            name: string,
+            desc: string,
+          },
+          affliction: {
+            name: string,
+            desc: string,
+          },
+          unitType: {
+            name: string,
+            desc: string,
+          },
+          other: {
+            name: string,
+            desc: string,
+          },
+          only: {
+            dispel: string,
+            shared: string,
+          },
+        },
       },
       display: {
         title: string,
@@ -178,6 +279,8 @@ export type TranslationStruct = {
         skillEnergized: string,
         punisher: string,
         punisherData: string,
+        dragon: string,
+        dragonData: string,
         target: string,
         targetData: {
           element: string,
@@ -208,13 +311,14 @@ export type TranslationStruct = {
       },
       sort: {
         text: string,
-        damageDesc: string,
+        mods: string,
+        damage: string,
         sp: string,
         ssp: string,
       },
       spInfo: {
         efficiencyIndexes: string,
-        efficiency: {[index in keyof Omit<Efficiency, 'spFullFillSec'>]: string},
+        efficiency: { [index in keyof Omit<Efficiency, 'spFullFillSec'>]: string },
         sp: string,
         spGradualFill: string,
         spPctPerSec: string,
@@ -231,6 +335,52 @@ export type TranslationStruct = {
     tools: {
       titleSelf: string,
       rotation: string,
+    },
+    unitInfo: {
+      header: {
+        combo: {
+          index: string,
+          mods: string,
+          hitCount: string,
+          sp: string,
+          utp: string,
+          odRate: string,
+          crisisMods: string,
+          nextComboSec: string,
+        },
+      },
+      title: {
+        passive: string,
+        coAbility: {
+          all: string,
+          global: string,
+          chained: string,
+        },
+        normalAttack: string,
+        skills: {
+          all: string,
+          official: string,
+          parsed: {
+            atk: string,
+          },
+        },
+      },
+      info: {
+        passive: string,
+        coAbility: string,
+        skill: {
+          official: string,
+          parsed: string,
+        },
+      },
+      links: {
+        analysis: string,
+        info: string,
+      },
+      text: {
+        total: string,
+        relatedLinks: string,
+      },
     },
   },
   userControl: {
@@ -275,25 +425,34 @@ export type TranslationStruct = {
   meta: {
     inUse: {
       about: PageMetaTranslations,
-      analysisIndex: PageMetaTranslations,
-      analysisNewChara: PageMetaTranslations,
-      analysisNewDragon: PageMetaTranslations,
-      analysisEdit: PageMetaTranslations,
-      analysisPost: PageMetaTranslations,
       home: PageMetaTranslations,
-      questEdit: PageMetaTranslations,
-      questList: PageMetaTranslations,
-      questNew: PageMetaTranslations,
-      questPost: PageMetaTranslations,
       site: PageMetaTranslations,
       thanks: PageMetaTranslations,
+      post: {
+        analysis: {
+          newChara: PageMetaTranslations,
+          newDragon: PageMetaTranslations,
+          edit: PageMetaTranslations,
+          post: PageMetaTranslations
+        },
+        quest: {
+          edit: PageMetaTranslations,
+          list: PageMetaTranslations,
+          new: PageMetaTranslations,
+          post: PageMetaTranslations,
+        },
+      },
       gameData: {
+        info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
       },
       auth: {
         signIn: PageMetaTranslations,
-      }
+      },
+      unit: {
+        info: PageMetaTranslations,
+      },
     },
     error: {
       401: PageMetaTranslations,
@@ -304,9 +463,11 @@ export type TranslationStruct = {
     },
     suffix: string,
   },
+  nav: {
+    unitInfo: string,
+  },
   posts: {
     analysis: {
-      titleSelf: string,
       forceStrike: string,
       keywords: string,
       normalAttack: string,
@@ -389,5 +550,8 @@ export type TranslationStruct = {
       title: string,
       video: string,
     },
+  },
+  enum: {
+    unitType: { [U in UnitType]: string },
   },
 }

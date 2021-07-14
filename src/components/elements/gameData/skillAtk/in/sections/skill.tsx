@@ -16,13 +16,13 @@ export const SectionSkill = ({inputData, setInputData}: SectionProps) => {
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.skill),
-          description: t((t) => t.game.skillAtk.desc.skill),
+          title: t((t) => t.game.skillAtk.input.skill.title.name),
+          description: t((t) => t.game.skillAtk.input.skill.title.desc),
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.skillPassive),
-          description: t((t) => t.game.skillAtk.desc.skillPassive),
+          title: t((t) => t.game.skillAtk.input.skill.passive.name),
+          description: t((t) => t.game.skillAtk.input.skill.passive.desc),
           getValue: (inputData) => inputData.params.skill.passivePct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {params: {skill: {passivePct: newValue}}})
@@ -33,7 +33,7 @@ export const SectionSkill = ({inputData, setInputData}: SectionProps) => {
           type: 'inputCheckGroup',
           checkboxes: [
             {
-              text: t((t) => t.game.skillAtk.name.skillEnergized),
+              text: t((t) => t.game.skillAtk.input.skill.energized),
               getValue: (inputData) => inputData.params.skill.energized,
               getUpdatedInputData: (newValue) => (
                 overwriteInputData(inputData, {params: {skill: {energized: newValue}}})

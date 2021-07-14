@@ -1,9 +1,11 @@
+import {UnitType} from '../../../../../api-def/api/other/unit';
 import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources/types/export/enums';
 import {ConditionCodes} from '../../../../../const/gameData';
 import {InputPanelCommonProps} from '../../../input/types';
 
 
 export type SortBy =
+  'mods' |
   'damage' |
   'sp' |
   'ssp' |
@@ -44,6 +46,10 @@ export type InputData = {
       bkPct: number,
       othersPct: number,
     },
+    dragon: {
+      facilityPct: number,
+      passivePct: number,
+    },
     others: {
       elemBonusPct: number,
       currentHpPct: number,
@@ -64,6 +70,7 @@ export type InputData = {
     afflictionCondCode: Array<number>,
     sharedOnly: boolean,
     dispelOnly: boolean,
+    type: Array<UnitType>,
   },
   display: {
     actualDamage: boolean,
@@ -75,7 +82,7 @@ export type InputData = {
     spInfo: boolean,
     // Hit timings, cancellation info, animation duration
     animationInfo: boolean,
-  }
+  },
   sortBy: SortBy,
 }
 

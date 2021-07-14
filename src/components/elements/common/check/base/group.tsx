@@ -16,7 +16,7 @@ export const CheckGroup = <E, >({
   optionToProps,
 }: Props<E>) => {
   return (
-    <Form.Group className="mb-3 text-center">
+    <Form.Group className="mb-2 text-center">
       {options.map((option, idx) => <CheckItem key={idx} {...optionToProps(option)}/>)}
     </Form.Group>
   );

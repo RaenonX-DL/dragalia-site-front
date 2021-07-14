@@ -8,6 +8,8 @@ export const normalize = (numbers: Array<number>, padding: number = 0) => {
   });
 };
 
+export const sum = (numbers: Array<number>): number => numbers.reduce((a, b) => a + b, 0);
+
 export const accumulate = (numbers: Array<number>) =>
   numbers.map(((sum) => (value: number) => sum += value)(0));
 

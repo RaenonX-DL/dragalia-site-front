@@ -17,10 +17,15 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
     atkSkillEntries = atkSkillEntries.filter((entry) => entry.skill.dispelMax);
   }
 
+  // Filter skill by unit type if set
+  if (inputData.filter.type.length) {
+    atkSkillEntries = atkSkillEntries.filter((entry) => inputData.filter.type.includes(entry.unit.type));
+  }
+
   // Filter element if specified
   if (inputData.filter.elemCodes.length) {
     atkSkillEntries = atkSkillEntries
-      .filter((entry) => inputData.filter.elemCodes.includes(entry.chara.element));
+      .filter((entry) => inputData.filter.elemCodes.includes(entry.unit.element));
   }
 
   // Filter affliction condition if specified
@@ -43,7 +48,7 @@ export const calculateEntries = (
     .map((skillEntry: AttackingSkillData) => {
       // Element bonus rate
       const charaElementRate = elemBonusData.getElementBonus(
-        String(skillEntry.chara.element),
+        String(skillEntry.unit.element),
         String(inputData.target.elemCondCode),
       );
 
