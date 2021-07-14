@@ -33,6 +33,7 @@ describe('Unit info utils', () => {
     rarity: 5,
     releaseEpoch: 0,
     weapon: Weapon.SWORD,
+    type: UnitType.CHARACTER,
   };
 
   const dragonInfo: DragonInfoData = {
@@ -56,6 +57,7 @@ describe('Unit info utils', () => {
     },
     rarity: 5,
     releaseEpoch: 0,
+    type: UnitType.DRAGON,
   };
 
   const unitNameRefResponse: UnitNameRefResponse = {
