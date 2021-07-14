@@ -20,7 +20,7 @@ describe('ATK skill input', () => {
     renderReact(() => <AttackingSkillInput onSearchRequested={fnOnSearch} isAllFetched/>);
 
     const inspireButton = screen.queryByText(
-      translationEN.game.skillAtk.name.crtInspired,
+      translationEN.game.skillAtk.input.crt.inspired,
       {selector: '.collapse.show'},
     );
     expect(inspireButton).not.toBeInTheDocument();

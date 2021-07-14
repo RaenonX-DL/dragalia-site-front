@@ -16,7 +16,7 @@ export enum ConditionCodes {
 }
 
 export const conditionNameTransFunc: { [code in ConditionCodes]?: GetTranslationFunction } = {
-  [ConditionCodes.NONE]: (t) => t.game.skillAtk.name.targetState.none,
-  [ConditionCodes.TARGET_STATE_OD]: (t) => t.game.skillAtk.name.targetState.od,
-  [ConditionCodes.TARGET_STATE_BK]: (t) => t.game.skillAtk.name.targetState.bk,
+  [ConditionCodes.NONE]: (t) => t.game.skillAtk.input.target.state.none,
+  [ConditionCodes.TARGET_STATE_OD]: (t) => t.game.skillAtk.input.target.state.od,
+  [ConditionCodes.TARGET_STATE_BK]: (t) => t.game.skillAtk.input.target.state.bk,
 };

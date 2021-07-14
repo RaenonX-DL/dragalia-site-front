@@ -26,13 +26,13 @@ export const Filter = ({
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.filter),
-          description: t((t) => t.game.skillAtk.desc.filter),
+          title: t((t) => t.game.skillAtk.input.filter.title.name),
+          description: t((t) => t.game.skillAtk.input.filter.title.desc),
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.filterElement),
-          description: t((t) => t.game.skillAtk.desc.filterElement),
+          title: t((t) => t.game.skillAtk.input.filter.element.name),
+          description: t((t) => t.game.skillAtk.input.filter.element.desc),
         },
         {
           type: 'enumCheckGroup',
@@ -42,8 +42,8 @@ export const Filter = ({
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.filterAffliction),
-          description: t((t) => t.game.skillAtk.desc.filterAffliction),
+          title: t((t) => t.game.skillAtk.input.filter.affliction.name),
+          description: t((t) => t.game.skillAtk.input.filter.affliction.desc),
         },
         {
           type: 'enumCheckGroup',
@@ -53,19 +53,19 @@ export const Filter = ({
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.filterOther),
-          description: t((t) => t.game.skillAtk.desc.filterOther),
+          title: t((t) => t.game.skillAtk.input.filter.other.name),
+          description: t((t) => t.game.skillAtk.input.filter.other.desc),
         },
         {
           type: 'inputCheckGroup',
           checkboxes: [
             {
-              text: t((t) => t.game.skillAtk.name.filterSharedOnly),
+              text: t((t) => t.game.skillAtk.input.filter.only.shared),
               getValue: (inputData) => inputData.filter.sharedOnly,
               getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {sharedOnly: newValue}}),
             },
             {
-              text: t((t) => t.game.skillAtk.name.filterDispelOnly),
+              text: t((t) => t.game.skillAtk.input.filter.only.dispel),
               getValue: (inputData) => inputData.filter.dispelOnly,
               getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {dispelOnly: newValue}}),
             },

@@ -1,3 +1,4 @@
+import {UnitType} from '../../../api-def/api/other/unit';
 import {TranslationStruct} from '../definition';
 
 
@@ -53,105 +54,192 @@ export const translation: TranslationStruct = {
       },
     },
     skillAtk: {
-      name: {
-        atk: 'STR',
-        atkInGame: 'In game',
-        atkConditional: 'Cond. STR (%)',
-        atkBuff: 'Buff (%)',
-        buffBoost: 'Buff Stacks',
-        buffCount: 'Buff Count',
-        buffZoneSelf: 'Buff Zone (Self)',
-        buffZoneAlly: 'Buff Zone (Team)',
-        ex: 'CoAb',
-        exBlade: 'Blade',
-        exWand: 'Wand',
-        crt: 'CRT',
-        crtRate: 'CRT (%)',
-        crtDamage: 'CDMG (%)',
-        crtInspired: 'Inspiration',
-        skill: 'SD',
-        skillBuff: 'Buff (%)',
-        skillPassive: 'Passive SD (%)',
-        skillEnergized: 'Energize',
-        punisher: 'Punisher',
-        punisherBk: 'BK Punisher (%)',
-        punisherOthers: 'Other Punisher (%)',
-        other: 'Other',
-        otherElementBonus: 'Elemental Bonus (%)',
-        otherHp: 'HP (%)',
-        target: 'Target',
-        targetElement: 'Target Element',
-        targetAffliction: 'Target Affliction',
-        targetState: {
-          title: 'State',
-          none: 'None',
-          od: 'OD',
-          bk: 'BK',
+      input: {
+        atk: {
+          title: {
+            name: 'STR',
+            desc: 'Any parameter that relates to strength.',
+          },
+          inGame: {
+            name: 'In game',
+            desc: 'Also known as base strength. ' +
+              'This parameter refers to the displayed STR when you open a character’s info. ' +
+              'Includes dragon, wyrmprints, and augments. ' +
+              'This parameter is temporary. ' +
+              'A function will be added in the future to automatically choose dragons and weapons' +
+              ' after you pick the character.',
+          },
+          conditional: {
+            name: 'Cond. STR (%)',
+            desc: 'Any conditional STR buff. For example: Flurry STR, HP > 70%, etc.',
+          },
+          buff: {
+            name: 'Buff (%)',
+            desc: 'During a quest, the STR buff value that is displayed, capped at 200%.',
+          },
         },
-        targetDefDown: 'Def Down (%)',
-        targetDef: 'Base Def',
-        targetDefBk: 'BK Def Rate',
-        filter: 'Filter',
-        filterElement: 'Element',
-        filterAffliction: 'Affliction',
-        filterOther: 'Other',
-        filterSharedOnly: 'Shared Skill Only',
-        filterDispelOnly: 'Dispel Only',
-      },
-      desc: {
-        atk: 'Any parameter that relates to strength',
-        atkInGame: 'Also known as base strength. ' +
-          'This parameter refers to the displayed STR when you open a character’s info. ' +
-          'Includes dragon, wyrmprints, and augments. ' +
-          'This parameter is temporary. ' +
-          'A function will be added in the future to automatically choose dragons and weapons' +
-          ' after you pick the character.',
-        atkConditional: 'Any conditional STR buff. For example: Flurry STR, HP > 70%, etc.',
-        atkBuff: 'During a quest, the STR buff value that is displayed, capped at 200%.',
-        buffBoost: 'For any skill that scales with buff counts.',
-        buffCount: 'Amount of buffs applied. ' +
-          'Note: Energize and Inspiration, no matter what stage, are considered as 1 buff.',
-        buffZoneSelf: 'Number of self-cast buff zones you are in.',
-        buffZoneAlly: 'Number of ally-cast buff zones you are in.',
-        ex: 'Co-ability. For elemental damage (Peony), Reduced Str/Def punisher (Gala Leif), ' +
-          'CDMG (H!Mym, V!Melody) please input directly in their respective fields.',
-        crt: 'Any parameter that relates to crit.',
-        crtRate: 'Crit rate. Note: If inspired is checked, ' +
-          'no matter what is inputted here the calculation will assume crit.',
-        crtDamage: 'Crit damage % increase. The base 1.7x crit damage is already included.',
-        skill: 'Any parameter that relates to skill damage.',
-        skillBuff: 'During a quest, the skill damage buff value that is displayed, capped at 200%. ' +
-          'Note: Cat Sith’s +180% SD is in this field.',
-        skillPassive: 'SD% from dragon and wyrmprints. ' +
-          'Note: Cat Sith’s passive is a buff and not in this field.',
-        punisher: 'Any parameter that relates to punisher',
-        punisherBk: 'Punisher to enemies in the break state. ' +
-          'Note: The def reduction from break state is not in this field.',
-        punisherOthers: 'Other punishers such as affliction punishers (wyrmprint), ' +
-          'OD punisher, reduced Str/Def punisher (Gala Leif) are in this field.',
-        other: 'Other parameters that increase damage such as elemental damage.',
-        otherElementBonus: 'Other elemental bonus such as Peony’s co-ability and Gala Reborn Poseidon’s passive.',
-        otherHp: 'Current HP',
-        target: 'Any parameter relating to the target',
-        targetElement: 'Target element',
-        targetAffliction: 'Affliction applied to target',
-        targetState: {
-          title: 'Target’s current state',
+        buff: {
+          boost: {
+            name: 'Buff Stacks',
+            desc: 'For any skill that scales with buff counts.',
+          },
+          count: {
+            name: 'Buff Count',
+            desc: 'Amount of buffs applied. ' +
+              'Note: Energize and Inspiration, no matter what stage, are considered as 1 buff.',
+          },
+          zone: {
+            self: {
+              name: 'Buff Zone (Self)',
+              desc: 'Number of self-casted buff zones you are in.',
+            },
+            ally: {
+              name: 'Buff Zone (Team)',
+              desc: 'Number of ally-casted buff zones you are in.',
+            },
+          },
         },
-        targetDefDown: 'Def down applied to target. Displayed above the boss’s HP bar during the quest.',
-        targetDef: 'Target’s base def. Usually 10; Kai Yan is 15 (2020/12/20).',
-        targetDefBk: 'Target’s def reduction during break state. Usual 0.6; ' +
-          'Tartarus and LVolk are 0.8 (BSK 1.25)',
-        filter: 'If any filter is selected, then the parameters that apply will be listed. ' +
-          'Otherwise, they will be skipped.',
-        filterElement: 'If multiple elements are selected, such as flame and wind, ' +
-          'then all flame and wind characters’ skills will be listed, otherwise they will be skipped.',
-        filterAffliction: 'If multiple afflictions are selected, such as poison and burn, ' +
-          'then anything that applies poison or burn will be listed, otherwise they will be skipped. ' +
-          'Note: This filters for skills that apply afflictions, not ones that have affliction punishers.',
-        filterOther: 'Other filter options. ' +
-          'If Shared Skill Only is selected, then when filtering and calculating, ' +
-          'only shared skills will be considered and displayed.',
+        ex: {
+          title: 'CoAb',
+          description: 'Co-ability. For elemental damage (Peony), Reduced Str/Def punisher (Gala Leif), ' +
+            'CDMG (H!Mym, V!Melody) please input directly in their respective fields.',
+          blade: 'Blade',
+          wand: 'Wand',
+        },
+        crt: {
+          title: {
+            name: 'CRT',
+            desc: 'Any parameter that relates to crit.',
+          },
+          rate: {
+            name: 'CRT (%)',
+            desc: 'Crit rate. Note: If inspired is checked, ' +
+              'no matter what is inputted here the calculation will assume crit.',
+          },
+          damage: {
+            name: 'CDMG (%)',
+            desc: 'Crit damage % increase. The base 1.7x crit damage is already included.',
+          },
+          inspired: 'Inspiration',
+        },
+        skill: {
+          title: {
+            name: 'SD',
+            desc: 'Any parameter that relates to skill damage.',
+          },
+          buff: {
+            name: 'Buff (%)',
+            desc: 'During a quest, the skill damage buff value that is displayed, capped at 200%. ' +
+              'Note: Cat Sith\'s +180% SD is in this field.',
+          },
+          passive: {
+            name: 'Passive SD (%)',
+            desc: 'SD% from dragon and wyrmprints. ' +
+              'Note: Cat Sith\'s passive is a buff and not in this field.',
+          },
+          energized: 'Energized',
+        },
+        punisher: {
+          title: {
+            name: 'Punisher',
+            desc: 'Any parameter that relates to punisher',
+          },
+          bk: {
+            name: 'BK Punisher (%)',
+            desc: 'Punisher to enemies in the break state. ' +
+              'Note: The def reduction from break state is not in this field.',
+          },
+          others: {
+            name: 'Other Punisher (%)',
+            desc: 'Other punishers such as affliction punishers (wyrmprint), ' +
+              'OD punisher, reduced Str/Def punisher (Gala Leif) are in this field.',
+          },
+        },
+        other: {
+          title: {
+            name: 'Other',
+            desc: 'Other parameters that increase damage such as elemental damage.',
+          },
+          elemBonus: {
+            name: 'Elemental Bonus (%)',
+            desc: 'Other elemental bonus such as Peony’s co-ability and Gala Reborn Poseidon’s passive.',
+          },
+          hp: {
+            name: 'HP (%)',
+            desc: 'Current HP',
+          },
+        },
+        target: {
+          title: {
+            name: 'Target',
+            desc: 'Any parameter relating to the target',
+          },
+          element: {
+            name: 'Target Element',
+            desc: 'Target element',
+          },
+          affliction: {
+            name: 'Target Affliction',
+            desc: 'Affliction applied to target',
+          },
+          state: {
+            title: {
+              name: 'State',
+              desc: 'Target’s current state',
+            },
+            none: 'None',
+            od: 'OD',
+            bk: 'BK',
+          },
+          def: {
+            base: {
+              name: 'Base Def',
+              desc: 'Target\'s base def. Usually 10; Kai Yan is 15 (2020/12/20).',
+            },
+            down: {
+              name: 'Def Down (%)',
+              desc: 'Def down applied to target. Displayed above the boss’s HP bar during the quest.',
+            },
+            bk: {
+              name: 'BK Def Rate',
+              desc: 'Target\'s def reduction during break state. Usual 0.6; ' +
+                'Tartarus and LVolk are 0.8 (BSK 1.25)',
+            },
+          },
+        },
+        filter: {
+          title: {
+            name: 'Filter',
+            desc: 'If any filter is selected, then the parameters that apply will be listed. ' +
+              'Otherwise, they will be skipped.',
+          },
+          element: {
+            name: 'Element',
+            desc: 'If multiple elements are selected, such as flame and wind, ' +
+              'then all flame and wind characters’ skills will be listed, otherwise they will be skipped.',
+          },
+          affliction: {
+            name: 'Affliction',
+            desc: 'If multiple afflictions are selected, such as poison and burn, ' +
+              'then anything that applies poison or burn will be listed, otherwise they will be skipped. ' +
+              'Note: This filters for skills that apply afflictions, not ones that have affliction punishers.',
+          },
+          unitType: {
+            name: 'Unit Type',
+            desc: 'Unit type of the skill. ' +
+              'All skills from all types of units will be returned if none of the options are selected.',
+          },
+          other: {
+            name: 'Other',
+            desc: 'Other filter options. ' +
+              'If Shared Skill Only is selected, then when filtering and calculating, ' +
+              'only shared skills will be considered and displayed.',
+          },
+          only: {
+            dispel: 'Shared Skill Only',
+            shared: 'Dispel Only',
+          },
+        },
       },
       display: {
         title: 'Info to Display',
@@ -563,6 +651,12 @@ export const translation: TranslationStruct = {
       tips: 'Tips',
       title: 'Title',
       video: 'Video',
+    },
+  },
+  enum: {
+    unitType: {
+      [UnitType.CHARACTER]: 'Character',
+      [UnitType.DRAGON]: 'Dragon',
     },
   },
 };

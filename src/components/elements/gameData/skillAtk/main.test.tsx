@@ -215,7 +215,7 @@ describe('ATK skill lookup', () => {
     userEvent.click(searchButton);
 
     fnOverLengthCheck.mockClear();
-    const dispelOnly = screen.getByText(translationEN.game.skillAtk.name.filterDispelOnly);
+    const dispelOnly = screen.getByText(translationEN.game.skillAtk.input.filter.only.dispel);
     userEvent.click(dispelOnly);
     userEvent.click(searchButton);
 

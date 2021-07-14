@@ -32,13 +32,13 @@ export const SectionTarget = ({
       inputEntries={[
         {
           type: 'title',
-          title: t((t) => t.game.skillAtk.name.target),
-          description: t((t) => t.game.skillAtk.desc.target),
+          title: t((t) => t.game.skillAtk.input.target.title.name),
+          description: t((t) => t.game.skillAtk.input.target.title.desc),
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.targetElement),
-          description: t((t) => t.game.skillAtk.desc.targetElement),
+          title: t((t) => t.game.skillAtk.input.target.element.name),
+          description: t((t) => t.game.skillAtk.input.target.element.desc),
         },
         {
           type: 'enumRadioGroup',
@@ -51,8 +51,8 @@ export const SectionTarget = ({
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.targetAffliction),
-          description: t((t) => t.game.skillAtk.desc.targetAffliction),
+          title: t((t) => t.game.skillAtk.input.target.affliction.name),
+          description: t((t) => t.game.skillAtk.input.target.affliction.desc),
         },
         {
           type: 'enumCheckGroup',
@@ -64,8 +64,8 @@ export const SectionTarget = ({
         },
         {
           type: 'subTitle',
-          title: t((t) => t.game.skillAtk.name.targetState.title),
-          description: t((t) => t.game.skillAtk.desc.targetState.title),
+          title: t((t) => t.game.skillAtk.input.target.state.title.name),
+          description: t((t) => t.game.skillAtk.input.target.state.title.desc),
         },
         {
           type: 'inputRadioGroup',
@@ -79,8 +79,8 @@ export const SectionTarget = ({
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.targetDefDown),
-          description: t((t) => t.game.skillAtk.desc.targetDefDown),
+          title: t((t) => t.game.skillAtk.input.target.def.down.name),
+          description: t((t) => t.game.skillAtk.input.target.def.down.desc),
           getValue: (inputData) => inputData.target.def.downPct,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {target: {def: {downPct: newValue}}})
@@ -90,8 +90,8 @@ export const SectionTarget = ({
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.targetDef),
-          description: t((t) => t.game.skillAtk.desc.targetDef),
+          title: t((t) => t.game.skillAtk.input.target.def.base.name),
+          description: t((t) => t.game.skillAtk.input.target.def.base.desc),
           getValue: (inputData) => inputData.target.def.base,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {target: {def: {base: newValue}}})
@@ -100,8 +100,8 @@ export const SectionTarget = ({
         },
         {
           type: 'inputNumber',
-          title: t((t) => t.game.skillAtk.name.targetDefBk),
-          description: t((t) => t.game.skillAtk.desc.targetDefBk),
+          title: t((t) => t.game.skillAtk.input.target.def.bk.name),
+          description: t((t) => t.game.skillAtk.input.target.def.bk.desc),
           getValue: (inputData) => inputData.target.def.bkRate,
           getUpdatedInputData: (newValue) => (
             overwriteInputData(inputData, {target: {def: {bkRate: newValue}}})

@@ -1,3 +1,4 @@
+import {UnitType} from '../../../api-def/api/other/unit';
 import {TranslationStruct} from '../definition';
 
 
@@ -46,89 +47,175 @@ export const translation: TranslationStruct = {
       },
     },
     skillAtk: {
-      name: {
-        atk: '攻擊',
-        atkInGame: '遊戲顯示',
-        atkConditional: '條件增攻 (%)',
-        atkBuff: 'Buff (%)',
-        buffBoost: 'Buff 數增傷',
-        buffCount: 'Buff 擁有數',
-        buffZoneSelf: 'Buff 區域 (自己)',
-        buffZoneAlly: 'Buff 區域 (隊友)',
-        ex: 'EX',
-        exBlade: '刀',
-        exWand: '法',
-        crt: '爆擊',
-        crtRate: '爆擊機率 (%)',
-        crtDamage: '爆擊傷害 (%)',
-        crtInspired: '超靈感',
-        skill: '技能傷害',
-        skillBuff: 'Buff (%)',
-        skillPassive: '被動總和 (%)',
-        skillEnergized: '超活力',
-        punisher: '特攻',
-        punisherBk: 'BK 特攻 (%)',
-        punisherOthers: '其他特攻 (%)',
-        other: '其它',
-        otherElementBonus: '屬性增傷 (%)',
-        otherHp: 'HP (%)',
-        target: '目標相關',
-        targetElement: '屬性',
-        targetAffliction: '異常狀態',
-        targetState: {
-          title: '目標狀態',
-          none: '無',
-          od: 'OD',
-          bk: 'BK',
+      input: {
+        atk: {
+          title: {
+            name: '攻擊',
+            desc: '泛指所有遊戲內與攻擊力有關的參數。',
+          },
+          inGame: {
+            name: '遊戲顯示',
+            desc: '俗稱表攻。此數值為直接打開角色資訊頁面時，包含龍、護符、加值在內的攻擊力。' +
+              '此為暫時欄位，日後預計新增直接選擇角色並且自動配置龍、武器的功能。',
+          },
+          conditional: {
+            name: '條件增攻 (%)',
+            desc: '任何需要條件的攻擊上升屬於此類別。例如: 疾風怒濤、HP > 70% 等。',
+          },
+          buff: {
+            name: 'Buff (%)',
+            desc: '任務中，下方 Buff 列所顯示的攻擊增益。此項目上限值為 200%。',
+          },
         },
-        targetDefDown: '降防 (%)',
-        targetDef: '基礎防禦',
-        targetDefBk: 'BK 降防率',
-        filter: '條件篩選',
-        filterElement: '屬性',
-        filterAffliction: '異常狀態',
-        filterOther: '其他',
-        filterSharedOnly: '限定共享技',
-        filterDispelOnly: '限定可驅散',
-      },
-      desc: {
-        atk: '泛指所有遊戲內與攻擊力有關的參數。',
-        atkInGame: '俗稱表攻。此數值為直接打開角色資訊頁面時，包含龍、護符、加值在內的攻擊力。' +
-          '此為暫時欄位，日後預計新增直接選擇角色並且自動配置龍、武器的功能。',
-        atkConditional: '任何需要條件的攻擊上升屬於此類別。例如: 疾風怒濤、HP > 70% 等。',
-        atkBuff: '任務中，下方 Buff 列所顯示的攻擊增益。此項目上限值為 200%。',
-        buffBoost: '泛指所有藉由 Buff 數量提升傷害的參數。',
-        buffCount: '當前身上所擁有的 Buff 數。注意，靈感、活力無論等級，都只算做 1 個 Buff。',
-        buffZoneSelf: '當前所在由自己建立的 Buff 區域數量。',
-        buffZoneAlly: '當前所在由隊友建立的 Buff 區域內的數量。',
-        ex: '後台 EX 被動。屬性增傷 (皮亞尼)、降攻 / 降防特攻 (龍絆日李弗)、爆擊傷害 (萬聖慕慕、情人女僕斧) ' +
-          '請直接輸入至對應區塊內。',
-        crt: '泛指所有和爆擊相關的參數。',
-        crtRate: '爆擊機率。注意，如果超靈感有勾選的話，無論此項數值為何，計算過程都會直接認定絕對爆擊。',
-        crtDamage: '爆擊傷害提升率。遊戲內所計算的 1.7x 爆擊增傷已經計算在內。',
-        skill: '泛指所有和技能傷害有關的參數。',
-        skillBuff: '任務中，下方 Buff 列所顯示的技能增傷。此項目上限值為 200%。注意，貓的技能傷害 +180% 屬於此類別。',
-        skillPassive: '龍、護符的技能傷害增益。注意，貓的被動屬於 Buff，不屬於此類別。',
-        punisher: '泛指所有和特攻有關的參數。',
-        punisherBk: '敵人於 Break 狀態中的特攻。注意，BK 後的降防不屬於此類別。',
-        punisherOthers: '其他特攻，例如異常狀態特攻 (護符)、OD 特攻、降攻 / 降防特攻 (龍絆日李弗) 都屬於此類別。',
-        other: '泛指所有未歸類的增傷手段，例如屬性增傷。',
-        otherElementBonus: '其它屬性增傷。皮亞尼、波賽頓．勇的屬性增傷屬於此類別。',
-        otherHp: '當前血量。',
-        target: '泛指所有和目標相關的參數。',
-        targetElement: '目標的屬性。',
-        targetAffliction: '目標當前擁有的異常狀態。',
-        targetState: {
-          title: '目標當前的狀態。',
+        buff: {
+          boost: {
+            name: 'Buff 數增傷',
+            desc: '泛指所有藉由 Buff 數量提升傷害的參數。',
+          },
+          count: {
+            name: 'Buff 擁有數',
+            desc: '當前身上所擁有的 Buff 數。注意，靈感、活力無論等級，都只算做 1 個 Buff。',
+          },
+          zone: {
+            self: {
+              name: 'Buff 區域 (自己)',
+              desc: '當前所在由自己建立的 Buff 區域數量。',
+            },
+            ally: {
+              name: 'Buff 區域 (隊友)',
+              desc: '當前所在由隊友建立的 Buff 區域內的數量。',
+            },
+          },
         },
-        targetDefDown: '對目標有效的降防。任務中，Boss 血條上方可以查看。',
-        targetDef: '目標基礎防禦。通常為 10；光牙為 15 (2020/12/20)。',
-        targetDefBk: 'BK 時，目標的防禦變動係數。通常為 0.6；暗牙、絕牙為 0.8 (BSK 1.25)。',
-        filter: '如果此區塊中有任何條件被勾選，則符合任一勾選條件的技能條目將會被列入，否則略過。',
-        filterElement: '如果複選屬性，例如: 火、風，則所有火屬性角色或風屬性角色的技能條目將會被列入，否則略過。',
-        filterAffliction: '如果複選異常狀態，例如: 毒、火燒，則所有會上毒或火燒的條目將會被列入，否則略過。' +
-          '注意，這邊的條件篩選指的是技能本身所帶的異常狀態，並非異常特攻。',
-        filterOther: '其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。',
+        ex: {
+          title: 'EX',
+          description: '後台 EX 被動。屬性增傷 (皮亞尼)、降攻 / 降防特攻 (龍絆日李弗)、爆擊傷害 (萬聖慕慕、情人女僕斧) ' +
+            '請直接輸入至對應區塊內。',
+          blade: '刀',
+          wand: '法',
+        },
+        crt: {
+          title: {
+            name: '爆擊',
+            desc: '泛指所有和爆擊相關的參數。',
+          },
+          rate: {
+            name: '爆擊機率 (%)',
+            desc: '爆擊機率。注意，如果超靈感有勾選的話，無論此項數值為何，計算過程都會直接認定絕對爆擊。',
+          },
+          damage: {
+            name: '爆擊傷害 (%)',
+            desc: '爆擊傷害提升率。遊戲內所計算的 1.7x 爆擊增傷已經計算在內。',
+          },
+          inspired: '超靈感',
+        },
+        skill: {
+          title: {
+            name: '技能傷害',
+            desc: '泛指所有和技能傷害有關的參數。',
+          },
+          buff: {
+            name: 'Buff (%)',
+            desc: '任務中，下方 Buff 列所顯示的技能增傷。此項目上限值為 200%。注意，貓的技能傷害 +180% 屬於此類別。',
+          },
+          passive: {
+            name: '被動總和 (%)',
+            desc: '龍、護符的技能傷害增益。注意，貓的被動屬於 Buff，不屬於此類別。',
+          },
+          energized: '超活力',
+        },
+        punisher: {
+          title: {
+            name: '特攻',
+            desc: '泛指所有和特攻有關的參數。',
+          },
+          bk: {
+            name: 'BK 特攻 (%)',
+            desc: '敵人於 Break 狀態中的特攻。注意，BK 後的降防不屬於此類別。',
+          },
+          others: {
+            name: '其他特攻 (%)',
+            desc: '其他特攻，例如異常狀態特攻 (護符)、OD 特攻、降攻 / 降防特攻 (龍絆日李弗) 都屬於此類別。',
+          },
+        },
+        other: {
+          title: {
+            name: '其它',
+            desc: '泛指所有未歸類的增傷手段，例如屬性增傷。',
+          },
+          elemBonus: {
+            name: '屬性增傷 (%)',
+            desc: '其它屬性增傷。皮亞尼、波賽頓．勇的屬性增傷屬於此類別。',
+          },
+          hp: {
+            name: 'HP (%)',
+            desc: '當前血量。',
+          },
+        },
+        target: {
+          title: {
+            name: '目標相關',
+            desc: '泛指所有和目標相關的參數。',
+          },
+          element: {
+            name: '屬性',
+            desc: '目標的屬性。',
+          },
+          affliction: {
+            name: '異常狀態',
+            desc: '目標當前擁有的異常狀態。',
+          },
+          state: {
+            title: {
+              name: '目標狀態',
+              desc: '目標當前的狀態。',
+            },
+            none: '無',
+            od: 'OD',
+            bk: 'BK',
+          },
+          def: {
+            base: {
+              name: '基礎防禦',
+              desc: '目標基礎防禦。通常為 10；光牙為 15 (2020/12/20)。',
+            },
+            down: {
+              name: '降防 (%)',
+              desc: '對目標有效的降防。任務中，Boss 血條上方可以查看。',
+            },
+            bk: {
+              name: 'BK 降防率',
+              desc: 'BK 時，目標的防禦變動係數。通常為 0.6；暗牙、絕牙為 0.8 (BSK 1.25)。',
+            },
+          },
+        },
+        filter: {
+          title: {
+            name: '條件篩選',
+            desc: '如果此區塊中有任何條件被勾選，則符合任一勾選條件的技能條目將會被列入，否則略過。',
+          },
+          element: {
+            name: '屬性',
+            desc: '如果複選屬性，例如: 火、風，則所有火屬性角色或風屬性角色的技能條目將會被列入，否則略過。',
+          },
+          affliction: {
+            name: '異常狀態',
+            desc: '如果複選異常狀態，例如: 毒、火燒，則所有會上毒或火燒的條目將會被列入，否則略過。' +
+              '注意，這邊的條件篩選指的是技能本身所帶的異常狀態，並非異常特攻。',
+          },
+          unitType: {
+            name: '種類',
+            desc: '技能來源。沒有選擇任何選項的話，所有技能來源都會顯示。',
+          },
+          other: {
+            name: '其他',
+            desc: '其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。',
+          },
+          only: {
+            dispel: '限定共享技',
+            shared: '限定可驅散',
+          },
+        },
       },
       display: {
         title: '顯示資訊',
@@ -524,6 +611,12 @@ export const translation: TranslationStruct = {
       tips: '要點',
       title: '標題',
       video: '影片',
+    },
+  },
+  enum: {
+    unitType: {
+      [UnitType.CHARACTER]: '角色',
+      [UnitType.DRAGON]: '龍族',
     },
   },
 };
