@@ -1,5 +1,8 @@
 @use "../../../../../../../public/colors";
 
+@import "../../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
 @import "../../../../../../../styles/table";
 
 $markdown-bg-color: colors.$color-black-32;
@@ -15,15 +18,17 @@ $item-margin: 0.75rem;
 }
 
 .ability {
-  .container {
-    position: relative;
-    padding-top: 100%;
-    overflow: auto;
-  }
+  @include media-breakpoint-up(lg) {
+    .container {
+      position: relative;
+      padding-top: 100%;
+      overflow: auto;
+    }
 
-  .content {
-    position: absolute;
-    inset: 0;
+    .content {
+      position: absolute;
+      inset: 0;
+    }
   }
 }
 

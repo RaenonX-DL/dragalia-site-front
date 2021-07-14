@@ -51,7 +51,7 @@ export const UnitInfo = () => {
       <UnitNameBlock info={info.data.basic}/>
       <div className="my-2"/>
       <RelatedLinks unitId={info.data.basic.id}/>
-      <hr className="my-2"/>
+      <hr className="my-3"/>
       <Row className="mb-3">
         <Col lg={6}>
           <Image

@@ -35,14 +35,16 @@
   white-space: pre-line;
 }
 
-.ability .container {
-  position: relative;
-  padding-top: 100%;
-  overflow: auto;
-}
-.ability .content {
-  position: absolute;
-  inset: 0;
+@media (min-width: 992px) {
+  .ability .container {
+    position: relative;
+    padding-top: 100%;
+    overflow: auto;
+  }
+  .ability .content {
+    position: absolute;
+    inset: 0;
+  }
 }
 
 .skill .entries {
