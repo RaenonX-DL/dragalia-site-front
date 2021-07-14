@@ -17,6 +17,11 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
     atkSkillEntries = atkSkillEntries.filter((entry) => entry.skill.dispelMax);
   }
 
+  // Filter skill by unit type if set
+  if (inputData.filter.type.length) {
+    atkSkillEntries = atkSkillEntries.filter((entry) => inputData.filter.type.includes(entry.unit.type));
+  }
+
   // Filter element if specified
   if (inputData.filter.elemCodes.length) {
     atkSkillEntries = atkSkillEntries

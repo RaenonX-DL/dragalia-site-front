@@ -3,6 +3,7 @@ import React from 'react';
 import {EnumEntry} from '../../../api-def/resources';
 import {EnumCheckboxGroup} from '../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../common/check/enum/radio';
+import {CheckboxGroup} from '../common/check/group/checkbox';
 import {RadioGroup} from '../common/check/group/radio';
 import {CheckboxInput} from '../common/check/item/checkbox';
 import {CheckOption} from '../common/check/types';

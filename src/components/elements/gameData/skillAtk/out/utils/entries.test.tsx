@@ -1,4 +1,5 @@
 import {generateAttackingSkillEntry} from '../../../../../../../test/data/mock/skill';
+import {UnitType} from '../../../../../../api-def/api';
 import {AttackingSkillData, ElementBonusData} from '../../../../../../api-def/resources';
 import {ResourceLoader} from '../../../../../../utils/services/resources';
 import {InputData} from '../../in/types';
@@ -52,6 +53,38 @@ describe('Filter ATK skill entries', () => {
     );
     expect(dataFiltered.length).toBeGreaterThan(0);
     expect(dataFiltered.map((entry) => entry.skill.dispelMax)).not.toContain(false);
+  });
+
+  it('returns character skill only', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          type: [UnitType.CHARACTER],
+        },
+      },
+      data,
+    );
+    expect(dataFiltered.length).toBeGreaterThan(0);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.CHARACTER)).not.toContain(false);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.DRAGON)).not.toContain(true);
+  });
+
+  it('returns all types of skill', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          type: [],
+        },
+      },
+      data,
+    );
+    expect(dataFiltered.length).toBeGreaterThan(0);
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.CHARACTER)).toBeTruthy();
+    expect(dataFiltered.map((entry) => entry.unit.type === UnitType.DRAGON)).toBeTruthy();
   });
 
   it('returns specified element only', async () => {

@@ -1,3 +1,4 @@
+import {UnitType} from '../../../../../api-def/api/other/unit';
 import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources/types/export/enums';
 import {ConditionCodes} from '../../../../../const/gameData';
 import {InputPanelCommonProps} from '../../../input/types';
@@ -64,6 +65,7 @@ export type InputData = {
     afflictionCondCode: Array<number>,
     sharedOnly: boolean,
     dispelOnly: boolean,
+    type: Array<UnitType>,
   },
   display: {
     actualDamage: boolean,

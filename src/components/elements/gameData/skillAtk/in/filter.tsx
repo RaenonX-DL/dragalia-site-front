@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {UnitType} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
@@ -50,6 +51,22 @@ export const Filter = ({
           options: conditionEnums.afflictions,
           getValue: (inputData) => inputData.filter.afflictionCondCode,
           getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {afflictionCondCode: newValue}}),
+        },
+        {
+          type: 'subTitle',
+          title: t((t) => t.game.skillAtk.input.filter.unitType.name),
+          description: t((t) => t.game.skillAtk.input.filter.unitType.desc),
+        },
+        {
+          type: 'arrayCheckGroup',
+          options: Object.keys(UnitType).filter((item) => !isNaN(+item)).map((item) => {
+            const code = +item as UnitType;
+
+            return {text: t((t) => t.enum.unitType[code]), code};
+          }),
+          getValue: (inputData) => inputData.filter.type,
+          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {type: newValue}}),
+          getCheckOptionComparer: (option) => option.code,
         },
         {
           type: 'subTitle',

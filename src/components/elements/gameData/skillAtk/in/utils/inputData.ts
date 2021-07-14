@@ -124,6 +124,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       afflictionCondCode: [],
       sharedOnly: false,
       dispelOnly: false,
+      type: [],
     },
     display: {
       actualDamage: false,
