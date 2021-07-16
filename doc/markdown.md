@@ -13,8 +13,6 @@ such as [quick reference](/doc/quickReference.md).
 
 `[R]` means required; `[O]` means optional.
 
-**These syntaxes must not nest with general markdown syntaxes.
-
 ### Text coloring
 
 ```
@@ -75,6 +73,16 @@ Show the expression and the result in 2 decimals at the end:
   - Default to 0 decimals i.e., the answer will be an integer if not set.
 
 > Both `*` and `x` mean multiply.
+
+### Unit link
+
+```
+--<UnitID>/<Name>--
+```
+
+- `[R]` `<UnitID>` is the unit ID of the link.
+- `[O]` `<Name>` is the named used for getting the ID.
+  - This will be the customized unit name instead of the real unit name.
 
 #### References
 
