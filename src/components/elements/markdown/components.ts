@@ -1,9 +1,11 @@
 import {Components} from 'react-markdown/src/ast-to-react';
 
+import {renderHeading} from './components/heading';
 import {renderImage} from './components/image';
 import {renderLink} from './components/link';
 import {renderListItem} from './components/listItem';
 import {renderParagraph} from './components/paragraph';
+import {renderStrong} from './components/strong';
 import {renderTable, renderTableCell, renderTableRow} from './components/table';
 
 
@@ -15,6 +17,13 @@ export const components: Components = {
   // @ts-ignore
   a: renderLink,
   p: renderParagraph,
+  h1: renderHeading,
+  h2: renderHeading,
+  h3: renderHeading,
+  h4: renderHeading,
+  h5: renderHeading,
+  h6: renderHeading,
+  strong: renderStrong,
   table: renderTable,
   tr: renderTableRow,
   td: renderTableCell,
