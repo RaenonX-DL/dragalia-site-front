@@ -226,8 +226,8 @@ export const translation: TranslationStruct = {
             desc: '其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。',
           },
           only: {
-            dispel: '限定共享技',
-            shared: '限定可驅散',
+            dispel: '限定可驅散',
+            shared: '限定共享技',
           },
         },
       },

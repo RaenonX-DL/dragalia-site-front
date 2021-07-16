@@ -251,8 +251,8 @@ export const translation: TranslationStruct = {
               'only shared skills will be considered and displayed.',
           },
           only: {
-            dispel: 'Shared Skill Only',
-            shared: 'Dispel Only',
+            dispel: 'Dispel Only',
+            shared: 'Shared Skill Only',
           },
         },
       },
