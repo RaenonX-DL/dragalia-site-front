@@ -5,7 +5,7 @@ import {
 } from '../../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../../api-def/api';
 import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
-import {UNITNAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
+import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
@@ -15,7 +15,7 @@ import {transformQuickReference} from './quickReference';
 
 const lang = SupportedLanguages.EN;
 
-const galaMymMdTransformed = `${unitSyntax.start}10550101${UNITNAME_SEPARATOR}Gala Mym${unitSyntax.end}`;
+const galaMymMdTransformed = `${unitSyntax.start}10550101${UNIT_NAME_SEPARATOR}Gala Mym${unitSyntax.end}`;
 
 describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   it('transforms quest post link', async () => {

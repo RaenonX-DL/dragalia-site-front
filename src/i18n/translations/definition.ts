@@ -352,7 +352,8 @@ export type TranslationStruct = {
       title: {
         passive: string,
         coAbility: {
-          all: string,
+          official: string,
+          parsed: string,
           global: string,
           chained: string,
         },

@@ -385,7 +385,8 @@ export const translation: TranslationStruct = {
       title: {
         passive: 'Passive',
         coAbility: {
-          all: 'Co-abilities',
+          official: 'Co-abilities (Official)',
+          parsed: 'Co-abilities (Parsed)',
           global: 'Co-ability',
           chained: 'Chained Co-ability',
         },

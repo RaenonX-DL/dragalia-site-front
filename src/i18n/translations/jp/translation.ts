@@ -362,7 +362,8 @@ export const translation: TranslationStruct = {
       title: {
         passive: '被動技能',
         coAbility: {
-          all: 'EX / CEX',
+          official: 'EX / CEX (官方說明)',
+          parsed: 'EX / CEX (自動解析)',
           global: 'EX',
           chained: 'CEX',
         },
