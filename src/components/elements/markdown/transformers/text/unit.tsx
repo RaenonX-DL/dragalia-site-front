@@ -33,7 +33,7 @@ export const MarkdownUnitName = ({children}: Props) => {
     <UnitLink
       unit={{
         id: +unitId,
-        name: unitInfo.name[lang],
+        name: nameUsed || unitInfo.name[lang],
         icon: {
           type: unitInfo.type,
           name: unitInfo.icon,
