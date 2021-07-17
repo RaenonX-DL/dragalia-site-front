@@ -7,9 +7,8 @@ import {DistributionBar} from '../../../charts';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 import {EnumDataPack} from './props';
-import {SectionAffliction} from './sections/affliction';
+import {SectionAdditional} from './sections/additional';
 import {SectionAnimation} from './sections/animation';
-import {SectionBadges} from './sections/badges';
 import {SectionImageIcon} from './sections/icon';
 import {SectionSkillDamage} from './sections/skillDamage';
 import {SectionSkillInfo} from './sections/skillInfo';
@@ -18,7 +17,7 @@ import {SectionSpInfo} from './sections/sp/main';
 import {CalculatedSkillEntry} from './types';
 
 
-type SkillEntryProps = EnumDataPack & {
+export type SkillEntryProps = EnumDataPack & {
   displayConfig: InputData['display'],
   calculatedData: CalculatedSkillEntry,
 }
@@ -46,6 +45,10 @@ export const AttackingSkillEntry = ({
           displayConfig.damageInfo &&
           <Col xs="auto" sm="auto" className="text-right my-auto">
             <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
+            {
+              !displayConfig.actualDamage &&
+              <ConditionBadges conditionCodes={calculatedData.skillEntry.condition}/>
+            }
           </Col>
         }
         {
@@ -64,13 +67,11 @@ export const AttackingSkillEntry = ({
           </Col>
         </Row>
       }
-      <Row>
-        {
-          displayConfig.affliction &&
-          <SectionAffliction atkSkillEntry={atkSkillEntry} statusEnums={statusEnums}/>
-        }
-        <SectionBadges atkSkillEntry={atkSkillEntry}/>
-      </Row>
+      <SectionAdditional
+        atkSkillEntry={atkSkillEntry}
+        statusEnums={statusEnums}
+        displayConfig={displayConfig}
+      />
       {
         displayConfig.animationInfo &&
         <SectionAnimation atkSkillEntry={atkSkillEntry} skillEnums={skillEnums} conditionEnumMap={conditionEnumMap}/>
