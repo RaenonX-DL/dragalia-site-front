@@ -1,4 +1,4 @@
-name: Node CI
+name: CI & CD
 
 on: [ push ]
 
@@ -121,3 +121,34 @@ jobs:
             .cypress/screenshots
             .cypress/videos
           if-no-files-found: error
+
+  deploy:
+    name: Deploy
+
+    if: success() && github.ref == 'refs/heads/main'
+
+    needs: [test, build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure SSH
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/remote.key
+          chmod 600 ~/.ssh/remote.key
+          cat >>~/.ssh/config <<END
+          Host remote
+            HostName $SSH_HOST
+            User $SSH_USERNAME
+            IdentityFile ~/.ssh/remote.key
+            StrictHostKeyChecking no
+          END
+
+      - name: Deploy
+        run: |
+          ssh remote './deploy.sh ${{ github.repository }}'

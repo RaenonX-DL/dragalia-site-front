@@ -3,7 +3,7 @@ import next from 'next';
 import {NextServer} from 'next/dist/server/next';
 
 import {registerHandlers} from './init/handlers';
-import {isAppOnHeroku, isProduction} from './misc';
+import {isProduction} from './misc';
 
 
 type CreateAppReturn = {
@@ -27,7 +27,7 @@ export const createApp = async (): Promise<CreateAppReturn> => {
       },
     ignoreTrailingSlash: true,
     connectionTimeout: 20000, // 20 seconds
-    trustProxy: isAppOnHeroku(),
+    trustProxy: true,
   });
 
   // Wait for `next` server to prepare
