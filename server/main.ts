@@ -1,3 +1,7 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 import {createApp} from './utils/init';
 import {initHttp} from './utils/init/http';
 import {isProduction} from './utils/misc';
