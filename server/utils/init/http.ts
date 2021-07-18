@@ -2,6 +2,7 @@ import {FastifyInstance} from 'fastify';
 
 import {isProduction} from '../misc';
 
+
 export const initHttp = async (app: FastifyInstance) => {
   await app.listen(
     process.env.PORT || 3000,

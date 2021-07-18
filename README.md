@@ -1,6 +1,5 @@
 # dragalia-site-front
 
-[![front-deployment]][front-site]
 [![front-ci]][front-ci-link]
 [![front-time-badge]][front-time-link]
 
@@ -53,10 +52,9 @@ where stores the dumped game assets.
 -   Check https://github.com/RaenonX-DL/dragalia-data-depot for all available resources.
 
 [front-repo]: https://github.com/RaenonX-DL/dragalia-site-front
-[front-deployment]: https://pyheroku-badge.herokuapp.com/?app=dragalia-site-front
 [front-site]: https://dl.raenonx.cc
-[front-ci]: https://github.com/RaenonX-DL/dragalia-site-front/workflows/Node%20CI/badge.svg
-[front-ci-link]: https://github.com/RaenonX-DL/dragalia-site-front/actions?query=workflow%3A%22Node+CI%22
+[front-ci]: https://github.com/RaenonX-DL/dragalia-site-front/workflows/CI%20%26%20CD/badge.svg
+[front-ci-link]: https://github.com/RaenonX-DL/dragalia-site-front/actions/workflows/app.yml
 [front-time-badge]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front.svg
 [front-time-link]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front
 [front-site-status]: https://badgen.net/uptime-robot/status/m787223686-f1d10f084c18dd5d5389f456?cache=300
