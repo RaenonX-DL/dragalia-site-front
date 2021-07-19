@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {DistributionBar} from '../../../charts';
+import {DistributionBar} from '../../../charts/distBar';
 import {ConditionBadges} from '../../elements/conditionBadges';
 import {InputData} from '../in/types';
 import {EnumDataPack} from './props';

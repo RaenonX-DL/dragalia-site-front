@@ -12,7 +12,8 @@
     "dev": "nodemon",
     "test": "jest --config jest.config.ts --maxWorkers=50% --colors",
     "test:cypress": "cypress run",
-    "test:ci": "start-test 3000 test:cypress",
+    "test:ci-jest": "npm run test -- --ci --reporters=default --reporters=jest-junit --coverage",
+    "test:ci-e2e": "start-test 3000 test:cypress",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:css": "stylelint **/*.scss",
     "lint:fix": "eslint src --fix --ext .ts,.tsx",
@@ -79,6 +80,7 @@
     "eslint-plugin-testing-library": "^4.6.0",
     "eslint-plugin-unused-imports": "^1.1.1",
     "jest": "^26.6.3",
+    "jest-junit": "^12.2.0",
     "msw": "^0.29.0",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
@@ -106,5 +108,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest-junit": {
+    "suiteNameTemplate": "{filepath}",
+    "outputDirectory": ".",
+    "outputName": "junit.xml"
   }
 }

@@ -53,6 +53,7 @@ const config: Config.InitialOptions = {
   coverageDirectory: '.',
   coverageReporters: [
     'clover',
+    'cobertura',
   ],
 };
 

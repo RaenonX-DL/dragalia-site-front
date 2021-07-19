@@ -1,8 +1,19 @@
 apps:
   - name: 'dragalia-site-front'
+    # Entry point
     script: './dist/server/main.js'
+    # Execution configs
+    exec_mode: 'cluster'
     instances: 6
+    # Watch
+    watch_delay: 10000
+    ignore_watch:
+      - 'node_modules'
+    # Environments
     env:
       NODE_ENV: 'development'
     env_production:
       NODE_ENV: 'production'
+    # Others
+    cron_restart: '0 0 * * *'
+    time: true  # Log timestamp in logs

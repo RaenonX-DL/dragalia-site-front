@@ -8,8 +8,9 @@
 
 # testing
 /.cypress
-/coverage
 clover.xml
+cobertura-coverage.xml
+junit.xml
 
 # production
 .next
