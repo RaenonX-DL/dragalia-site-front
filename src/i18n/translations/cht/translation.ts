@@ -357,6 +357,7 @@ export const translation: TranslationStruct = {
           odRate: 'OD 倍率',
           crisisMods: '壓血倍率',
           nextComboSec: '下一 Combo 時間 (秒)',
+          spPerSec: 'SP / 秒',
         },
       },
       title: {

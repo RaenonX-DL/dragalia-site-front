@@ -361,6 +361,7 @@ export const translation: TranslationStruct = {
           odRate: 'OD 倍率',
           crisisMods: '背水倍率',
           nextComboSec: '次の Combo 時間 (秒)',
+          spPerSec: 'SP / 秒',
         },
       },
       title: {

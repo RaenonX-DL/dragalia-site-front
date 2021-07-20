@@ -351,6 +351,7 @@ export type TranslationStruct = {
           odRate: string,
           crisisMods: string,
           nextComboSec: string,
+          spPerSec: string,
         },
       },
       title: {

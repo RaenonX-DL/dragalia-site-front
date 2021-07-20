@@ -385,6 +385,7 @@ export const translation: TranslationStruct = {
           odRate: 'OD Rate',
           crisisMods: 'Crisis Mods',
           nextComboSec: 'Next combo after (sec)',
+          spPerSec: 'SP / sec',
         },
       },
       title: {
