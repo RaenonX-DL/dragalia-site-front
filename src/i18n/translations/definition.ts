@@ -224,6 +224,10 @@ export type TranslationStruct = {
             name: string,
             desc: string,
           },
+          ssCostMax: {
+            name: string,
+            desc: string,
+          },
           only: {
             dispel: string,
             shared: string,

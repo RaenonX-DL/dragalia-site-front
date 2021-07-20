@@ -142,16 +142,16 @@ export const translation: TranslationStruct = {
         },
         dragon: {
           title: {
-            name: '龍化',
-            desc: '泛指與龍化增傷有關的參數。',
+            name: '竜化',
+            desc: '竜化ダメージアップに関する全て。',
           },
           facility: {
             name: '建築 (%)',
-            desc: '目前主要由龍泣碑獲得。可以從主城中的加成頁面中查看。',
+            desc: '竜哭碑獲得量。聖城の城詳細で強化値が見える。',
           },
           passive: {
-            name: '被動 (%)',
-            desc: '所有和增加龍化傷害相關效果屬於此類別，例如: 護符、CEX。',
+            name: 'パッシブ (%)',
+            desc: '竜化ダメージアップ効果の全て、例: 護符、リンクEX。',
           },
         },
         other: {
@@ -228,6 +228,10 @@ export const translation: TranslationStruct = {
             name: 'その他',
             desc: 'その他フィルタリング条件。シェアスキルのみ検索可能です。',
           },
+          ssCostMax: {
+            name: 'SS Cost (上限)',
+            desc: '輸入為 0 時，不使用此條件。否則，顯示 SS Cost 等於或小於輸入值的技能。',
+          },
           only: {
             dispel: 'Dispel Only',
             shared: 'シェアスキルのみ表示',
@@ -236,15 +240,15 @@ export const translation: TranslationStruct = {
 
       },
       display: {
-        title: '顯示資訊',
-        desc: '選擇想要在結果中看到的資訊。',
+        title: '情報',
+        desc: '結果から現す情報を選択する。',
         options: {
-          actualDamage: '實際傷害',
-          damageInfo: '傷害資訊',
-          damageDistribution: '傷害分布',
-          affliction: '異常狀態',
-          spInfo: 'SP 效率/資訊',
-          animationInfo: '動畫資訊',
+          actualDamage: '実際のダメージ',
+          damageInfo: 'ダメージ情報',
+          damageDistribution: 'ダメージ割合',
+          affliction: '状態異常',
+          spInfo: 'SP 效率/情報',
+          animationInfo: 'アニメーション情報',
         },
       },
       entry: {
@@ -284,9 +288,9 @@ export const translation: TranslationStruct = {
         skillEnergized: '超やる気',
         punisher: '特効 - {{punisherVal}}',
         punisherData: 'BK 特効 {{punishersBkPct}}% / その他特効 {{punishersOtherPct}}%',
-        dragon: '龍化傷害 - {{dragonVal}}',
-        dragonData: '建築 +{{facilityPct}}% / 被動 +{{passivePct}}%',
-        target: '目標状態',
+        dragon: '竜化ダメージ - {{dragonVal}}',
+        dragonData: '建築 +{{facilityPct}}% / アビリティ+{{passivePct}}%',
+        target: 'ターゲット状態',
         targetData: {
           element: 'Element: ',
           afflictions: 'Afflictions: ',
@@ -317,12 +321,12 @@ export const translation: TranslationStruct = {
       sort: {
         text: '排序: {{sortBy}}',
         mods: '倍率',
-        damage: '實際傷害',
+        damage: '実際のダメージ',
         sp: 'SP',
         ssp: 'SSP',
       },
       spInfo: {
-        efficiencyIndexes: '效率指標',
+        efficiencyIndexes: '效率基準',
         efficiency: {
           modPctPer1KSp: '% / 1K SP',
           modPctPer1KSsp: '% / 1K SSP',
@@ -336,10 +340,10 @@ export const translation: TranslationStruct = {
         ssCost: 'SS Cost',
       },
       info: {
-        affliction: '部分異常狀態的時效為浮動值 (冰凍、暈眩較為常見)。以下計算中所使用的秒數為最大值。',
-        animation: '動畫資訊和實際可能有所落差。對應角色評測中有實際技能動畫。',
-        preset: '點選分享按鈕以生成參數網址。',
-        presetExpiry: '網址將於最後使用日期起 30 日後刪除。',
+        affliction: '一部の状態異常の有効時間の振れ幅 (主に凍結、気絶)は計算中に使用した秒数は最大值。',
+        animation: 'アニメーションと実際は差があります。キャラの評価に実際のスキルモーションがあります。',
+        preset: 'シェアボタンを押すとサイトリンク生産。',
+        presetExpiry: 'リンクが生産した日から30日に渡って削除する。',
       },
     },
     tools: {
@@ -351,28 +355,28 @@ export const translation: TranslationStruct = {
         combo: {
           index: '#',
           mods: '倍率',
-          hitCount: '攻擊次數',
+          hitCount: '攻撃回数',
           sp: 'SP',
           utp: 'UTP',
           odRate: 'OD 倍率',
-          crisisMods: '壓血倍率',
-          nextComboSec: '下一 Combo 時間 (秒)',
+          crisisMods: '背水倍率',
+          nextComboSec: '次の Combo 時間 (秒)',
         },
       },
       title: {
-        passive: '被動技能',
+        passive: 'アビリティ',
         coAbility: {
-          official: 'EX / CEX (官方說明)',
-          parsed: 'EX / CEX (自動解析)',
+          official: 'EX / リンクEX (公式から)',
+          parsed: 'EX / リンクEX (自動分析)',
           global: 'EX',
-          chained: 'CEX',
+          chained: 'リンクEX',
         },
-        normalAttack: '普攻輪轉',
+        normalAttack: '通常殴り回転',
         skills: {
-          all: '技能',
-          official: '官方說明',
+          all: 'スキル',
+          official: '公式説明',
           parsed: {
-            atk: '攻擊技能',
+            atk: '攻撃スキル',
           },
         },
       },
@@ -390,12 +394,12 @@ export const translation: TranslationStruct = {
         },
       },
       links: {
-        analysis: 'Analysis',
-        info: 'Info',
+        analysis: '評価',
+        info: 'キャラ情報',
       },
       text: {
-        total: '(總計)',
-        relatedLinks: '相關連結',
+        total: '(総計)',
+        relatedLinks: 'に関するリンク',
       },
     },
   },
@@ -412,9 +416,9 @@ export const translation: TranslationStruct = {
   message: {
     donation: {
       url: '寄付先URL',
-      info: '寄付ありがとうございます！Ko-Fi、Paypalで寄付ができます。寄付額が$1を超えている間、広告なしでご利用できます。' +
-        '広告なしでご利用できるのは１ヶ月です。\n\n' +
-        '広告なしを有効にするためには、寄付に用いたのと同じEmailアドレスでログインしてください。',
+      info: 'ご協力いただき、誠にありがとうございます！Ko-Fi、Paypalなど寄付ができます。寄付額が$1を超えた場合、広告なしでご利用は可能です。' +
+        '広告なしでご利用はその日から１ヶ月です。\n\n' +
+        '広告なしを起動にするためには、寄付に使ったメールアドレスでログインしてください。',
     },
     warning: {
       adminOnly: 'You must have admin privilege to access this page.',
@@ -530,8 +534,8 @@ export const translation: TranslationStruct = {
     },
     error: {
       401: {
-        title: '權限不足',
-        description: '權限不足，請檢查是否已登入。',
+        title: '権限が不足',
+        description: '権限が不足ため、ログインの検査してください。',
       },
       404: {
         title: 'ページが存在しません',

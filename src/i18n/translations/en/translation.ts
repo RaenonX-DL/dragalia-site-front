@@ -250,6 +250,11 @@ export const translation: TranslationStruct = {
               'If Shared Skill Only is selected, then when filtering and calculating, ' +
               'only shared skills will be considered and displayed.',
           },
+          ssCostMax: {
+            name: 'SS Cost (Max)',
+            desc: 'All skills will be returned when this is 0. ' +
+              'Otherwise, show skills which SS cost is equal to or less than the given value.',
+          },
           only: {
             dispel: 'Dispel Only',
             shared: 'Shared Skill Only',

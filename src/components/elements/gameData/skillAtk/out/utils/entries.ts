@@ -38,6 +38,12 @@ export const filterSkillEntries = (inputData: InputData, atkSkillEntries: Array<
       });
   }
 
+  // Filter SS <= given cost
+  if (inputData.filter.ssCostMax) {
+    atkSkillEntries = atkSkillEntries
+      .filter((entry) => entry.skill.ssCost <= inputData.filter.ssCostMax);
+  }
+
   return atkSkillEntries;
 };
 

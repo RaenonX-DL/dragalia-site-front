@@ -62,6 +62,7 @@ export const overwriteInputData = (original: InputData, overwrite: DeepPartial<I
     sharedOnly: overwrite.filter?.sharedOnly ?? original.filter.sharedOnly,
     dispelOnly: overwrite.filter?.dispelOnly ?? original.filter.dispelOnly,
     type: overwrite.filter?.type ?? original.filter.type,
+    ssCostMax: overwrite.filter?.ssCostMax ?? original.filter.ssCostMax,
   },
   display: {
     actualDamage: overwrite.display?.actualDamage ?? original.display.actualDamage,
@@ -133,6 +134,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       sharedOnly: false,
       dispelOnly: false,
       type: [],
+      ssCostMax: 0,
     },
     display: {
       actualDamage: false,
