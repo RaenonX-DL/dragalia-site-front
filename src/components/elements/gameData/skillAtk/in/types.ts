@@ -71,6 +71,7 @@ export type InputData = {
     sharedOnly: boolean,
     dispelOnly: boolean,
     type: Array<UnitType>,
+    ssCostMax: number,
   },
   display: {
     actualDamage: boolean,

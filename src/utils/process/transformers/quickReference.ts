@@ -1,5 +1,5 @@
 import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
-import {UNITNAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
+import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
 import {makePostPath} from '../../path/make';
@@ -40,7 +40,7 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
         return matched;
       }
 
-      const syntaxMarkdown = `${unitSyntax.start}${unitInfo.id}${UNITNAME_SEPARATOR}${unitName}${unitSyntax.end}`;
+      const syntaxMarkdown = `${unitSyntax.start}${unitInfo.id}${UNIT_NAME_SEPARATOR}${unitName}${unitSyntax.end}`;
 
       leftRemainder = leftRemainder.replace(/:/g, '');
       rightRemainder = rightRemainder.replace(/:/g, '');

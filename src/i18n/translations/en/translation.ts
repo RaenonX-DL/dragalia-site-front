@@ -250,9 +250,14 @@ export const translation: TranslationStruct = {
               'If Shared Skill Only is selected, then when filtering and calculating, ' +
               'only shared skills will be considered and displayed.',
           },
+          ssCostMax: {
+            name: 'SS Cost (Max)',
+            desc: 'All skills will be returned when this is 0. ' +
+              'Otherwise, show skills which SS cost is equal to or less than the given value.',
+          },
           only: {
-            dispel: 'Shared Skill Only',
-            shared: 'Dispel Only',
+            dispel: 'Dispel Only',
+            shared: 'Shared Skill Only',
           },
         },
       },
@@ -380,12 +385,14 @@ export const translation: TranslationStruct = {
           odRate: 'OD Rate',
           crisisMods: 'Crisis Mods',
           nextComboSec: 'Next combo after (sec)',
+          spPerSec: 'SP / sec',
         },
       },
       title: {
         passive: 'Passive',
         coAbility: {
-          all: 'Co-abilities',
+          official: 'Co-abilities (Official)',
+          parsed: 'Co-abilities (Parsed)',
           global: 'Co-ability',
           chained: 'Chained Co-ability',
         },

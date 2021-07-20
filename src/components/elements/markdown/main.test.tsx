@@ -18,6 +18,48 @@ describe('Markdown', () => {
     expect(linkElement).toHaveAttribute('target', '_blank');
   });
 
+  it('uses custom syntax within <strong>', async () => {
+    renderReact(() => <Markdown>{'**==5+5==**'}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'strong > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h1>', async () => {
+    renderReact(() => <Markdown>{'# ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h1 > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h2>', async () => {
+    renderReact(() => <Markdown>{'## ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h2 > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h3>', async () => {
+    renderReact(() => <Markdown>{'### ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h3 > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h4>', async () => {
+    renderReact(() => <Markdown>{'#### ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h4 > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h5>', async () => {
+    renderReact(() => <Markdown>{'##### ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h5 > span'})).toBeInTheDocument();
+  });
+
+  it('uses custom syntax within <h6>', async () => {
+    renderReact(() => <Markdown>{'###### ==5+5=='}</Markdown>);
+
+    expect(screen.getByText('10', {selector: 'h6 > span'})).toBeInTheDocument();
+  });
+
   it('renders long youtube video link as embed', async () => {
     renderReact(() => <Markdown>{'https://www.youtube.com/watch?v=m8B_tlk-pl0'}</Markdown>);
 

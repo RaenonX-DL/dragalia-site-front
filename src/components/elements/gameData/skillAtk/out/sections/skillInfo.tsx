@@ -11,7 +11,7 @@ type SectionSkillInfoProps = SectionProps & {
 export const SectionSkillInfo = ({atkSkillEntry, calculatedData}: SectionSkillInfoProps) => (
   <>
     <span className="h5">{`${(calculatedData.skillDamage.totalMods * 100).toFixed(0)}%`}</span>
-    <br/>
+    &nbsp;
     <small>{atkSkillEntry.skill.hitsMax}&nbsp;HIT</small>
   </>
 );

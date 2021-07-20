@@ -88,6 +88,15 @@ export const Filter = ({
             },
           ],
         },
+        {
+          type: 'inputNumber',
+          title: t((t) => t.game.skillAtk.input.filter.ssCostMax.name),
+          description: t((t) => t.game.skillAtk.input.filter.ssCostMax.desc),
+          getValue: (inputData) => inputData.filter.ssCostMax,
+          getUpdatedInputData: (newValue) => (
+            overwriteInputData(inputData, {filter: {ssCostMax: newValue}})
+          ),
+        },
       ]}
     />
   );

@@ -29,8 +29,8 @@ describe('Unit link', () => {
       {simpleUnitInfo},
     );
 
-    expect(screen.getByText('EN')).toBeInTheDocument();
-    expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
+    expect(screen.getByText('Gala Leonidas')).toBeInTheDocument();
+    expect(screen.queryByText('EN')).not.toBeInTheDocument();
   });
 
   it('transforms to unit link with unit ID only', async () => {
@@ -42,7 +42,7 @@ describe('Unit link', () => {
     );
 
     expect(screen.getByText('EN')).toBeInTheDocument();
-    expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
+    expect(screen.queryByText('10950101')).not.toBeInTheDocument();
   });
 
   it('shows unit icon', async () => {

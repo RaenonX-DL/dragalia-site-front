@@ -225,9 +225,13 @@ export const translation: TranslationStruct = {
             name: '其他',
             desc: '其他篩選條件。如果有勾選限定共享技，則篩選、計算時，只會考慮、顯示共享技能。',
           },
+          ssCostMax: {
+            name: 'SS Cost (上限)',
+            desc: '輸入為 0 時，不使用此條件。否則，顯示 SS Cost 等於或小於輸入值的技能。',
+          },
           only: {
-            dispel: '限定共享技',
-            shared: '限定可驅散',
+            dispel: '限定可驅散',
+            shared: '限定共享技',
           },
         },
       },
@@ -353,12 +357,14 @@ export const translation: TranslationStruct = {
           odRate: 'OD 倍率',
           crisisMods: '壓血倍率',
           nextComboSec: '下一 Combo 時間 (秒)',
+          spPerSec: 'SP / 秒',
         },
       },
       title: {
         passive: '被動技能',
         coAbility: {
-          all: 'EX / CEX',
+          official: 'EX / CEX (官方說明)',
+          parsed: 'EX / CEX (自動解析)',
           global: 'EX',
           chained: 'CEX',
         },

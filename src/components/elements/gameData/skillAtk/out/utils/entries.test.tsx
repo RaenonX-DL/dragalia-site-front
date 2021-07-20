@@ -127,6 +127,35 @@ describe('Filter ATK skill entries', () => {
       expect(dataFiltered.map((entry) => entry.unit.element === afflictionEnumCode)).not.toContain(false);
     });
   });
+
+  it('returns skills <= specific ss cost', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          ssCostMax: 4,
+        },
+      },
+      data,
+    );
+    expect(dataFiltered.length).toBeGreaterThan(0);
+    expect(dataFiltered.map((entry) => entry.skill.ssCost <= 4)).not.toContain(false);
+  });
+
+  it('does not filter by SS cost if max set to 0', async () => {
+    const dataFiltered = filterSkillEntries(
+      {
+        ...inputDataTemplate,
+        filter: {
+          ...inputDataTemplate.filter,
+          ssCostMax: 0,
+        },
+      },
+      data,
+    );
+    expect(data.length).toBe(dataFiltered.length);
+  });
 });
 
 describe('Sort ATK skill entries', () => {

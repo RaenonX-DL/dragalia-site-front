@@ -36,6 +36,7 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
               <td>{t((t) => t.game.unitInfo.header.combo.odRate)}</td>
               {branchedChain.hasCrisis && <td>{t((t) => t.game.unitInfo.header.combo.crisisMods)}</td>}
               <td>{t((t) => t.game.unitInfo.header.combo.nextComboSec)}</td>
+              <td>{t((t) => t.game.unitInfo.header.combo.spPerSec)}</td>
             </tr>
           </thead>
           <tbody>
@@ -65,7 +66,13 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
                         </Markdown>
                       </td>
                     }
-                    <td>{combo.cancelToNextSec && combo.cancelToNextSec.toFixed(2)}</td>
+                    {
+                      combo.cancelToNextSec &&
+                      <>
+                        <td>{combo.cancelToNextSec.toFixed(2)}</td>
+                        <td>{(combo.sp / combo.cancelToNextSec).toFixed(2)}</td>
+                      </>
+                    }
                   </tr>
                 );
               })
@@ -74,26 +81,18 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
               <tr>
                 <td>{t((t) => t.game.unitInfo.text.total)}</td>
                 <td>
-                  <Markdown overrideStyle={false}>
-                    {`==(${branchedChain.combos.map((combo) => sum(combo.mods)).join(' + ')}) x 100%[2f]==`}
-                  </Markdown>
+                  {(sum(branchedChain.combos.map((combo) => sum(combo.mods))) * 100).toFixed(2)}&nbsp;%
                 </td>
                 <td>
-                  <Markdown overrideStyle={false}>
-                    {`==${branchedChain.combos.map((combo) => combo.mods.length).join(' + ')}==`}
-                  </Markdown>
+                  {sum(branchedChain.combos.map((combo) => combo.mods.length)).toFixed(0)}
                 </td>
                 <td>
-                  <Markdown overrideStyle={false}>
-                    {`==${branchedChain.combos.map((combo) => combo.sp).join(' + ')}==`}
-                  </Markdown>
+                  {sum(branchedChain.combos.map((combo) => combo.sp)).toFixed(0)}
                 </td>
                 {
                   branchedChain.hasUtp &&
                   <td>
-                    <Markdown overrideStyle={false}>
-                      {`==${branchedChain.combos.map((combo) => combo.utp).join(' + ')}[2f]==`}
-                    </Markdown>
+                    {sum(branchedChain.combos.map((combo) => combo.utp)).toFixed(2)}
                   </td>
                 }
                 <td>-</td>
@@ -102,9 +101,13 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
                   <td>-</td>
                 }
                 <td>
-                  <Markdown overrideStyle={false}>
-                    {`==${branchedChain.combos.map((combo) => combo.cancelToNextSec).join(' + ')}[2f]==`}
-                  </Markdown>
+                  {sum(branchedChain.combos.map((combo) => combo.cancelToNextSec || 0)).toFixed(2)}
+                </td>
+                <td>
+                  {(
+                    sum(branchedChain.combos.map((combo) => combo.sp)) /
+                    sum(branchedChain.combos.map((combo) => combo.cancelToNextSec || 0))
+                  ).toFixed(2)}
                 </td>
               </tr>
             }

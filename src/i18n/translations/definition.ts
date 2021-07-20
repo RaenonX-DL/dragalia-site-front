@@ -224,6 +224,10 @@ export type TranslationStruct = {
             name: string,
             desc: string,
           },
+          ssCostMax: {
+            name: string,
+            desc: string,
+          },
           only: {
             dispel: string,
             shared: string,
@@ -347,12 +351,14 @@ export type TranslationStruct = {
           odRate: string,
           crisisMods: string,
           nextComboSec: string,
+          spPerSec: string,
         },
       },
       title: {
         passive: string,
         coAbility: {
-          all: string,
+          official: string,
+          parsed: string,
           global: string,
           chained: string,
         },

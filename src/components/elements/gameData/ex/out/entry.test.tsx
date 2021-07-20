@@ -23,7 +23,7 @@ describe('Co-ability output entry', () => {
   it('renders unit name as a link to their analysis', async () => {
     renderReact(() => (
       <ExAbilityEntry
-        entry={generateExAbilityDataEntry()}
+        {...generateExAbilityDataEntry()}
         conditionEnums={conditionEnumMap}
       />
     ));
