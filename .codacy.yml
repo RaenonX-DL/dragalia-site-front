@@ -6,3 +6,6 @@ engines:
       - "**.test.ts"
       # Test data
       - "test/data/**"
+exclude_paths:
+  # Official New Relic EUM js
+  - "public/js/newRelicEum.js"

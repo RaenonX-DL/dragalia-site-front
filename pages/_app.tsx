@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 
 import '../public/bootstrap.css';
 import '../public/index.css';
-
+import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Navigation} from '../src/components/elements/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
@@ -46,6 +46,11 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         {
           !pageProps.session?.user.adsFreeExpiry &&
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
+        }
+        {/* New Relic EUM header */}
+        {
+          isProduction() &&
+          <script async type="text/javascript" src="/js/newRelicEum.js"/>
         }
       </Head>
       <AppReactContext.Provider value={{...pageProps}}>
