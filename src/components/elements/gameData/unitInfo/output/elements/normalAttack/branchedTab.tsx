@@ -24,7 +24,7 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
           conditionCodes={branchedChain.conditions.length ? branchedChain.conditions : [ConditionCodes.NONE]}
         />
       </SectionSubTitle>
-      <div className="mb-1">
+      <div className="mb-1 overflow-auto">
         <table>
           <thead>
             <tr>
