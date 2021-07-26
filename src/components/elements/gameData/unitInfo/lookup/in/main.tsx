@@ -87,6 +87,7 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
               title: t((t) => t.posts.manage.addDragon),
             },
           ]}
+          bottomMarginClass="mb-2"
         />
       }
     </>
