@@ -588,6 +588,13 @@ export const translation: TranslationStruct = {
         character: '角色',
         dragon: '龍族',
       },
+      sort: {
+        title: '排序依據 {{order}}',
+        unitId: '角色 ID',
+        published: '發布時間',
+        lastModified: '修改時間',
+        viewCount: '瀏覽次數',
+      },
     },
     info: {
       titleSelf: '貼文資訊',

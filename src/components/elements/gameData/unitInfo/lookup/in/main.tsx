@@ -2,6 +2,8 @@ import React, {FormEvent} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 
 import {GeneralPath} from '../../../../../../const/path/definitions';
@@ -10,8 +12,9 @@ import {useI18n} from '../../../../../../i18n/hook';
 import {useUnitProps} from '../../../../../hooks/unitProps';
 import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
 import {PostManageBar} from '../../../../posts/manageBar';
+import {orderName} from './sort/lookup';
 import {UnitTypePicker} from './typePicker';
-import {InputData} from './types';
+import {InputData, SortOrder} from './types';
 import {generateInputData} from './utils';
 
 
@@ -25,6 +28,11 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
 
   const [inputData, setInputData] = React.useState<InputData>(generateInputData());
   const {elemEnums, weaponEnums} = useUnitProps();
+
+  const sortTitle = t(
+    (t) => t.posts.analysis.sort.title,
+    {order: t(orderName[inputData.sortBy])},
+  );
 
   return (
     <>
@@ -58,6 +66,17 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
                   keyword: e.target.value,
                 })}
               />
+            </Col>
+            <Col xs="auto">
+              <DropdownButton title={sortTitle} variant="outline-light">
+                {Object.entries(orderName).map(([sortBy, getNameFunc], idx) => (
+                  <Dropdown.Item
+                    key={idx} onClick={() => setInputData({...inputData, sortBy: sortBy as SortOrder})}
+                  >
+                    {t(getNameFunc)}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
             </Col>
             <Col xs="auto" className="text-right">
               <Button

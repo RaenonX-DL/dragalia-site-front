@@ -10,6 +10,7 @@ import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../common/fetch';
+import {sortFunc} from '../in/sort/lookup';
 import {InputData} from '../in/types';
 import {getUnitInfo} from '../utils';
 import {UnitInfoEntry} from './entry';
@@ -52,8 +53,13 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
 
   const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
   // Split to prioritize the units that have analysis
-  const unitInfoHasAnalysis = unitInfoFiltered.filter((info) => info.id in analysisMeta.data.analyses);
-  const unitInfoNoAnalysis = unitInfoFiltered.filter((info) => !(info.id in analysisMeta.data.analyses));
+  const unitInfoHasAnalysis = unitInfoFiltered
+    .filter((info) => info.id in analysisMeta.data.analyses)
+    .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}))
+    .sort(sortFunc[inputData.sortBy]);
+  const unitInfoNoAnalysis = unitInfoFiltered
+    .filter((info) => !(info.id in analysisMeta.data.analyses))
+    .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}));
 
   if (charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
     return (
@@ -68,11 +74,11 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
       {
         [...unitInfoHasAnalysis, ...unitInfoNoAnalysis]
           .map((info) => (
-            <Col key={info.id} md={6} className="mb-2">
+            <Col key={info.unitInfo.id} md={6} className="mb-2">
               <UnitInfoEntry
-                unitInfo={info}
+                unitInfo={info.unitInfo}
                 isFetchingMeta={analysisMeta.fetching}
-                analysisMeta={analysisMeta.data.analyses[info.id]}
+                analysisMeta={info.lookupInfo}
               />
             </Col>
           ))

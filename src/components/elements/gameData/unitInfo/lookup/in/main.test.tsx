@@ -171,6 +171,23 @@ describe('Input of analysis lookup', () => {
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
 
+  it('passes input data with sort order', async () => {
+    renderReact(() => (<UnitInfoLookupInput onSearchRequested={onSearchRequested}/>));
+
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
+
+    const sorter = await screen.findByText(/Sort by/);
+    userEvent.click(sorter);
+    const sortByViewCount = await screen.findByText(/View Count/);
+    userEvent.click(sortByViewCount);
+
+    clickSearchButton();
+
+    const expectedInput: InputData = overrideInputData(generateInputData(), {sortBy: 'viewCount'});
+
+    expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
+  });
+
   it('passes input data with multiple conditions', async () => {
     renderReact(() => (<UnitInfoLookupInput onSearchRequested={onSearchRequested}/>));
 
