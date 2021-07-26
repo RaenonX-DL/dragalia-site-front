@@ -12,6 +12,7 @@ import {EnumCheckboxGroup} from '../../../../common/check/enum/checkbox';
 import {PostManageBar} from '../../../../posts/manageBar';
 import {UnitTypePicker} from './typePicker';
 import {InputData} from './types';
+import {generateInputData} from './utils';
 
 
 type LookupInputProps = {
@@ -22,12 +23,7 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
   const {t} = useI18n();
   const context = React.useContext(AppReactContext);
 
-  const [inputData, setInputData] = React.useState<InputData>({
-    keyword: '',
-    types: [],
-    elements: [],
-    weaponTypes: [],
-  });
+  const [inputData, setInputData] = React.useState<InputData>(generateInputData());
   const {elemEnums, weaponEnums} = useUnitProps();
 
   return (

@@ -18,6 +18,7 @@ import * as scrollUtils from '../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {InputData} from './in/types';
+import {generateInputData, overrideInputData} from './in/utils';
 import {UnitInfoLookup} from './main';
 
 
@@ -218,12 +219,13 @@ describe('Analysis lookup page', () => {
     userEvent.click(axeButton);
     userEvent.click(searchButton);
 
-    const expectedInput: InputData = {
-      types: [],
-      elements: [2, 3],
-      weaponTypes: [4],
-      keyword: '',
-    };
+    const expectedInput: InputData = overrideInputData(
+      generateInputData(),
+      {
+        elements: [2, 3],
+        weaponTypes: [4],
+      },
+    );
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);
