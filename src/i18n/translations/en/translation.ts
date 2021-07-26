@@ -403,6 +403,7 @@ export const translation: TranslationStruct = {
           chained: 'Chained Co-ability',
         },
         normalAttack: 'Normal Attack Combo Chain',
+        fs: 'FS Combo Chain',
         skills: {
           all: 'Skills',
           official: 'Official Texts',

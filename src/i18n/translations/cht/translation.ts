@@ -375,6 +375,7 @@ export const translation: TranslationStruct = {
           chained: 'CEX',
         },
         normalAttack: '普攻輪轉',
+        fs: '蓄力輪轉',
         skills: {
           all: '技能',
           official: '官方說明',

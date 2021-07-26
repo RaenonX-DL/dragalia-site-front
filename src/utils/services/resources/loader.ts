@@ -1,6 +1,5 @@
 import {
   AttackingSkillData,
-  BuffParamEnums,
   CategorizedConditionEnums,
   CharaExAbilityDataEntry,
   CharaInfo,
@@ -10,12 +9,13 @@ import {
   ElementEnums,
   ExBuffParams,
   InfoDataAdvanced,
-  NormalAttackChain,
-  ResourcePaths, SimpleUnitInfo,
+  ResourcePaths,
+  SimpleUnitInfo,
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
   WeaponTypeEnums,
+  AutoFsData,
 } from '../../../api-def/resources';
 
 
@@ -40,19 +40,6 @@ export class ResourceLoader {
   // endregion
 
   // region Enums
-  /**
-   * Get the buff parameter enums.
-   *
-   * @function
-   * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<BuffParamEnums>} promise after the callback
-   */
-  static getEnumBuffParam(
-    callback?: (categorizedConditionEnums: BuffParamEnums) => void,
-  ): Promise<BuffParamEnums> {
-    return ResourceLoader.fetchResources<BuffParamEnums>(ResourcePaths.ENUMS_BUFF_PARAM, callback);
-  }
-
   /**
    * Get the categorized condition enums.
    *
@@ -194,12 +181,12 @@ export class ResourceLoader {
    * @function
    * @param {number} unitId unit ID of the combo chain
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<NormalAttackChain>} promise after the callback
+   * @return {Promise<AutoFsData>} promise after the callback
    */
-  static getNormalAttackChain(
-    unitId: number, callback?: (attackChain: Array<NormalAttackChain>) => void,
-  ): Promise<Array<NormalAttackChain>> {
-    return ResourceLoader.fetchResources<Array<NormalAttackChain>>(ResourcePaths.getComboURL(unitId), callback);
+  static getAutoFsChain(
+    unitId: number, callback?: (autoFsChain: AutoFsData) => void,
+  ): Promise<AutoFsData> {
+    return ResourceLoader.fetchResources<AutoFsData>(ResourcePaths.getAutoFsURL(unitId), callback);
   }
 
   /**
@@ -207,7 +194,7 @@ export class ResourceLoader {
    *
    * @function
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<NormalAttackChain>} promise after the callback
+   * @return {Promise<SimpleUnitInfo>} promise after the callback
    */
   static getSimpleUnitInfo(callback?: (unitInfo: SimpleUnitInfo) => void): Promise<SimpleUnitInfo> {
     return ResourceLoader.fetchResources<SimpleUnitInfo>(ResourcePaths.INFO_SIMPLE, callback);
@@ -219,7 +206,7 @@ export class ResourceLoader {
    * @function
    * @param {number} unitId unit ID to get the advanced unit info
    * @param {function?} callback function to be called after fetching the resource
-   * @return {Promise<NormalAttackChain>} promise after the callback
+   * @return {Promise<InfoDataAdvanced>} promise after the callback
    */
   static getAdvancedUnitInfo(
     unitId: number, callback?: (advancedInfo: InfoDataAdvanced) => void,

@@ -372,6 +372,7 @@ export type TranslationStruct = {
           chained: string,
         },
         normalAttack: string,
+        fs: string,
         skills: {
           all: string,
           official: string,

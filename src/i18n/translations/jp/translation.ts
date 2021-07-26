@@ -378,7 +378,8 @@ export const translation: TranslationStruct = {
           global: 'EX',
           chained: 'リンクEX',
         },
-        normalAttack: '通常殴り回転',
+        normalAttack: '通常殴りのシフト',
+        fs: 'FS 輪轉',
         skills: {
           all: 'スキル',
           official: '公式説明',

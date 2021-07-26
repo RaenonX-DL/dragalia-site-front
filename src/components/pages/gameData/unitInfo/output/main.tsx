@@ -13,7 +13,7 @@ import {useUnitId} from '../../../../elements/gameData/hook';
 import {AbilityBlock} from './elements/ability/main';
 import {RelatedLinks} from './elements/links';
 import {UnitNameBlock} from './elements/name';
-import {NormalAttackSection} from './elements/normalAttack/section';
+import {AutoFsSection} from './elements/normalAttack/section';
 import {SkillSection} from './elements/skill/section';
 
 
@@ -59,7 +59,7 @@ export const UnitInfo = () => {
       </Row>
       <SkillSection unitId={info.data.basic.id} info={info.data.skill}/>
       <div className="mb-3"/>
-      <NormalAttackSection unitId={info.data.basic.id}/>
+      <AutoFsSection unitId={info.data.basic.id}/>
     </>
   );
 };

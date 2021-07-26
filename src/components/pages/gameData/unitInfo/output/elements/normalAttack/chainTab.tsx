@@ -1,19 +1,19 @@
 import React from 'react';
 
-import {NormalAttackChain} from '../../../../../../../api-def/resources';
-import {NormalAttackBranchedTab} from './branchedTab';
+import {AutoFsChain} from '../../../../../../../api-def/resources';
+import {AutoFsBranchedTab} from './branchedTab';
 
 
 export type ChainTabProps = {
-  chain: NormalAttackChain,
+  chain: AutoFsChain,
 }
 
-export const NormalAttackChainTab = ({chain}: ChainTabProps) => {
+export const AutoFsChainTab = ({chain}: ChainTabProps) => {
   return (
     <>
       {
         chain.chain.map((branchedChain, idx) => (
-          <NormalAttackBranchedTab branchedChain={branchedChain} key={idx}/>
+          <AutoFsBranchedTab branchedChain={branchedChain} key={idx}/>
         ))
       }
     </>

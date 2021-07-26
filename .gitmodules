@@ -1,7 +1,8 @@
 [submodule "dragalia-site-api-definition"]
 	path = src/api-def
 	url = https://github.com/RaenonX-DL/dragalia-site-api-definition
-	branch = main
+	branch = fs
 [submodule "test/data/resources"]
 	path = test/data/resources
 	url = https://github.com/RaenonX-DL/dragalia-site-resources
+	branch = fs
