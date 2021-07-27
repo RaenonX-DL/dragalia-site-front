@@ -5,7 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {InputData, SortBy} from '../in/types';
-import {overwriteInputData} from '../in/utils/inputData';
+import {overrideInputData} from '../in/utils/inputData';
 import {orderName} from './lookup';
 
 
@@ -21,7 +21,7 @@ export const AttackingSkillSorter = ({inputData, onOrderPicked}: Props) => {
   const title = t((t) => t.game.skillAtk.sort.text, {sortBy});
 
   const onItemPicked = (sortBy: SortBy) => () => {
-    const newInputData = overwriteInputData(inputData, {sortBy});
+    const newInputData = overrideInputData(inputData, {sortBy});
     onOrderPicked(newInputData);
   };
 

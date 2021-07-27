@@ -1,81 +1,16 @@
 import {SupportedLanguages} from '../../../../../../api-def/api';
 import {ConditionCodes} from '../../../../../../const/gameData';
 import {translations} from '../../../../../../i18n/translations/main';
+import {overrideObject} from '../../../../../../utils/override';
 import {DeepPartial} from '../../../../../../utils/types';
 import {InputData} from '../types';
 
 
-export const overwriteInputData = (original: InputData, overwrite: DeepPartial<InputData>): InputData => ({
-  params: {
-    atk: {
-      inGame: overwrite.params?.atk?.inGame ?? original.params.atk.inGame,
-      conditionalPct: overwrite.params?.atk?.conditionalPct ?? original.params.atk.conditionalPct,
-      buffPct: overwrite.params?.atk?.buffPct ?? original.params.atk.buffPct,
-    },
-    buff: {
-      count: overwrite.params?.buff?.count ?? original.params.buff.count,
-      zone: {
-        self: overwrite.params?.buff?.zone?.self ?? original.params.buff.zone.self,
-        ally: overwrite.params?.buff?.zone?.ally ?? original.params.buff.zone.ally,
-      },
-    },
-    ex: {
-      blade: overwrite.params?.ex?.blade ?? original.params.ex.blade,
-      wand: overwrite.params?.ex?.wand ?? original.params.ex.wand,
-    },
-    crt: {
-      ratePct: overwrite.params?.crt?.ratePct ?? original.params.crt.ratePct,
-      damagePct: overwrite.params?.crt?.damagePct ?? original.params.crt.damagePct,
-      inspired: overwrite.params?.crt?.inspired ?? original.params.crt.inspired,
-    },
-    skill: {
-      buffPct: overwrite.params?.skill?.buffPct ?? original.params.skill.buffPct,
-      passivePct: overwrite.params?.skill?.passivePct ?? original.params.skill.passivePct,
-      energized: overwrite.params?.skill?.energized ?? original.params.skill.energized,
-    },
-    punishers: {
-      bkPct: overwrite.params?.punishers?.bkPct ?? original.params.punishers.bkPct,
-      othersPct: overwrite.params?.punishers?.othersPct ?? original.params.punishers.othersPct,
-    },
-    dragon: {
-      facilityPct: overwrite.params?.dragon?.facilityPct ?? original.params.dragon.facilityPct,
-      passivePct: overwrite.params?.dragon?.passivePct ?? original.params.dragon.passivePct,
-    },
-    others: {
-      elemBonusPct: overwrite.params?.others?.elemBonusPct ?? original.params.others.elemBonusPct,
-      currentHpPct: overwrite.params?.others?.currentHpPct ?? original.params.others.currentHpPct,
-    },
-  },
-  target: {
-    elemCondCode: overwrite.target?.elemCondCode ?? original.target.elemCondCode,
-    afflictionCodes: overwrite.target?.afflictionCodes ?? original.target.afflictionCodes,
-    def: {
-      base: overwrite.target?.def?.base ?? original.target.def.base,
-      downPct: overwrite.target?.def?.downPct ?? original.target.def.downPct,
-      bkRate: overwrite.target?.def?.bkRate ?? original.target.def.bkRate,
-    },
-    state: overwrite.target?.state ?? original.target.state,
-  },
-  filter: {
-    elemCodes: overwrite.filter?.elemCodes ?? original.filter.elemCodes,
-    afflictionCondCode: overwrite.filter?.afflictionCondCode ?? original.filter.afflictionCondCode,
-    sharedOnly: overwrite.filter?.sharedOnly ?? original.filter.sharedOnly,
-    dispelOnly: overwrite.filter?.dispelOnly ?? original.filter.dispelOnly,
-    type: overwrite.filter?.type ?? original.filter.type,
-    ssCostMax: overwrite.filter?.ssCostMax ?? original.filter.ssCostMax,
-  },
-  display: {
-    actualDamage: overwrite.display?.actualDamage ?? original.display.actualDamage,
-    damageInfo: overwrite.display?.damageInfo ?? original.display.damageInfo,
-    damageDist: overwrite.display?.damageDist ?? original.display.damageDist,
-    affliction: overwrite.display?.affliction ?? original.display.affliction,
-    spInfo: overwrite.display?.spInfo ?? original.display.spInfo,
-    animationInfo: overwrite.display?.animationInfo ?? original.display.animationInfo,
-  },
-  sortBy: overwrite.sortBy ?? original.sortBy,
-});
+export const overrideInputData = (
+  original: InputData, override: DeepPartial<InputData>,
+): InputData => overrideObject(original, override);
 
-export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData => overwriteInputData(
+export const generateInputData = (override?: DeepPartial<InputData>): InputData => overrideInputData(
   {
     // These default values will be used when initializing the parameter input for ATK skill lookup
     params: {
@@ -146,7 +81,7 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
     },
     sortBy: 'mods',
   },
-  overwrite || {},
+  override || {},
 );
 
 export const validateInputData = (

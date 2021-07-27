@@ -1,16 +1,13 @@
+import {overrideObject} from '../../../../../utils/override';
 import {DeepPartial} from '../../../../../utils/types';
 import {InputData} from './types';
 
 
-export const overwriteInputData = (original: InputData, overwrite: DeepPartial<InputData>): InputData => ({
-  filter: {
-    elements: overwrite?.filter?.elements ?? original.filter.elements,
-    exBuffParams: overwrite?.filter?.exBuffParams ?? original.filter.exBuffParams,
-    cexBuffParams: overwrite?.filter?.cexBuffParams ?? original.filter.cexBuffParams,
-  },
-});
+export const overrideInputData = (
+  original: InputData, override: DeepPartial<InputData>,
+): InputData => overrideObject(original, override);
 
-export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData => overwriteInputData(
+export const generateInputData = (override?: DeepPartial<InputData>): InputData => overrideInputData(
   {
     // These default values will be used when initializing the parameter input for ATK skill lookup
     filter: {
@@ -19,5 +16,5 @@ export const generateInputData = (overwrite?: DeepPartial<InputData>): InputData
       cexBuffParams: [],
     },
   },
-  overwrite || {},
+  override || {},
 );

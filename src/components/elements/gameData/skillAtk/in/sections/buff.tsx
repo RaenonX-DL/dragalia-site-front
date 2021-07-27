@@ -3,7 +3,7 @@ import React from 'react';
 import {useI18n} from '../../../../../../i18n/hook';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
@@ -25,7 +25,7 @@ export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.buff.count.desc),
           getValue: (inputData) => inputData.params.buff.count,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {buff: {count: newValue}}})
+            overrideInputData(inputData, {params: {buff: {count: newValue}}})
           ),
         },
         {
@@ -34,7 +34,7 @@ export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.buff.zone.self.desc),
           getValue: (inputData) => inputData.params.buff.zone.self,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {buff: {zone: {self: newValue}}}})
+            overrideInputData(inputData, {params: {buff: {zone: {self: newValue}}}})
           ),
         },
         {
@@ -43,7 +43,7 @@ export const SectionBuff = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.buff.zone.ally.desc),
           getValue: (inputData) => inputData.params.buff.zone.ally,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {buff: {zone: {ally: newValue}}}})
+            overrideInputData(inputData, {params: {buff: {zone: {ally: newValue}}}})
           ),
         },
       ]}

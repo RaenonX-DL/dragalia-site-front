@@ -3,7 +3,7 @@ import React from 'react';
 import {useI18n} from '../../../../../../i18n/hook';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 export const SectionEx = ({inputData, setInputData}: SectionProps) => {
@@ -26,14 +26,14 @@ export const SectionEx = ({inputData, setInputData}: SectionProps) => {
               text: t((t) => t.game.skillAtk.input.ex.blade),
               getValue: (inputData) => inputData.params.ex.blade,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {params: {ex: {blade: newValue}}})
+                overrideInputData(inputData, {params: {ex: {blade: newValue}}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.input.ex.wand),
               getValue: (inputData) => inputData.params.ex.wand,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {params: {ex: {wand: newValue}}})
+                overrideInputData(inputData, {params: {ex: {wand: newValue}}})
               ),
             },
           ],

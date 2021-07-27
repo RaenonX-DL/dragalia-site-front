@@ -41,11 +41,15 @@ describe('Unit info lookup output', () => {
     });
   });
 
-  it('sorts the output', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {sortBy: 'viewCount'});
+  it(
+    'sorts the output',
+    async () => {
+      const inputData: InputData = overrideInputData(generateInputData(), {sortBy: 'viewCount'});
 
-    renderReact(() => <UnitInfoLookupOutput inputData={inputData}/>);
+      renderReact(() => <UnitInfoLookupOutput inputData={inputData}/>);
 
-    await waitFor(() => expect(fnSortByViewCount).toHaveBeenCalled());
-  });
+      await waitFor(() => expect(fnSortByViewCount).toHaveBeenCalled());
+    },
+    10000,
+  );
 });

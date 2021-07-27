@@ -4,7 +4,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from './types';
-import {overwriteInputData} from './utils/inputData';
+import {overrideInputData} from './utils/inputData';
 
 
 export const DisplayItemPicker = ({inputData, setInputData}: InputPanelCommonProps<InputData>) => {
@@ -27,42 +27,42 @@ export const DisplayItemPicker = ({inputData, setInputData}: InputPanelCommonPro
               text: t((t) => t.game.skillAtk.display.options.damageInfo),
               getValue: (inputData) => inputData.display.damageInfo,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {damageInfo: newValue}})
+                overrideInputData(inputData, {display: {damageInfo: newValue}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.display.options.affliction),
               getValue: (inputData) => inputData.display.affliction,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {affliction: newValue}})
+                overrideInputData(inputData, {display: {affliction: newValue}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.display.options.spInfo),
               getValue: (inputData) => inputData.display.spInfo,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {spInfo: newValue}})
+                overrideInputData(inputData, {display: {spInfo: newValue}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.display.options.actualDamage),
               getValue: (inputData) => inputData.display.actualDamage,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {actualDamage: newValue}})
+                overrideInputData(inputData, {display: {actualDamage: newValue}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.display.options.damageDistribution),
               getValue: (inputData) => inputData.display.damageDist,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {damageDist: newValue}})
+                overrideInputData(inputData, {display: {damageDist: newValue}})
               ),
             },
             {
               text: t((t) => t.game.skillAtk.display.options.animationInfo),
               getValue: (inputData) => inputData.display.animationInfo,
               getUpdatedInputData: (newValue) => (
-                overwriteInputData(inputData, {display: {animationInfo: newValue}})
+                overrideInputData(inputData, {display: {animationInfo: newValue}})
               ),
             },
           ],

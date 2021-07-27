@@ -12,7 +12,7 @@ import * as warnings from '../warnings/overLength';
 import {PRESET_QUERY_NAME} from './hooks/preset';
 import * as calc from './in/utils/calculate';
 import * as utils from './in/utils/inputData';
-import {generateInputData, overwriteInputData} from './in/utils/inputData';
+import {generateInputData, overrideInputData} from './in/utils/inputData';
 import {AttackingSkillLookup} from './main';
 import * as output from './out/main';
 
@@ -36,7 +36,7 @@ describe('ATK skill lookup', () => {
 
   it('only display damage info', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
-      overwriteInputData(
+      overrideInputData(
         inputDataTemplate,
         {
           filter: {
@@ -77,7 +77,7 @@ describe('ATK skill lookup', () => {
 
   it('only display affliction', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
-      overwriteInputData(
+      overrideInputData(
         inputDataTemplate,
         {
           filter: {
@@ -118,7 +118,7 @@ describe('ATK skill lookup', () => {
 
   it('only display damage distribution', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
-      overwriteInputData(
+      overrideInputData(
         inputDataTemplate,
         {
           filter: {
@@ -159,7 +159,7 @@ describe('ATK skill lookup', () => {
 
   it('only display actual damage', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
-      overwriteInputData(
+      overrideInputData(
         inputDataTemplate,
         {
           filter: {
@@ -201,7 +201,7 @@ describe('ATK skill lookup', () => {
 
   it('does not change the sort order if search again', async () => {
     jest.spyOn(utils, 'generateInputData').mockImplementation(() => (
-      overwriteInputData(inputDataTemplate, {sortBy: 'sp'})
+      overrideInputData(inputDataTemplate, {sortBy: 'sp'})
     ));
 
     renderReact(() => <AttackingSkillLookup/>);

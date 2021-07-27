@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import {renderReact} from '../../../../../../test/render/main';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {AttackingSkillInput} from './main';
-import {generateInputData, overwriteInputData} from './utils/inputData';
+import {generateInputData, overrideInputData} from './utils/inputData';
 
 
 describe('ATK skill input', () => {
@@ -66,7 +66,7 @@ describe('ATK skill input', () => {
 
     expect(fnOnSearch).toHaveBeenCalledTimes(1);
     expect(fnOnSearch)
-      .toHaveBeenLastCalledWith(overwriteInputData(generateInputData(), {display: {affliction: false}}));
+      .toHaveBeenLastCalledWith(overrideInputData(generateInputData(), {display: {affliction: false}}));
   });
 
   it.todo('expands');

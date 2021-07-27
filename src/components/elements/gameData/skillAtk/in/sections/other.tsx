@@ -3,7 +3,7 @@ import React from 'react';
 import {useI18n} from '../../../../../../i18n/hook';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 export const SectionOther = ({inputData, setInputData}: SectionProps) => {
@@ -25,7 +25,7 @@ export const SectionOther = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.other.elemBonus.desc),
           getValue: (inputData) => inputData.params.others.elemBonusPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {others: {elemBonusPct: newValue}}})
+            overrideInputData(inputData, {params: {others: {elemBonusPct: newValue}}})
           ),
         },
         {
@@ -34,7 +34,7 @@ export const SectionOther = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.other.hp.name),
           getValue: (inputData) => inputData.params.others.currentHpPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {others: {currentHpPct: newValue}}})
+            overrideInputData(inputData, {params: {others: {currentHpPct: newValue}}})
           ),
         },
       ]}
