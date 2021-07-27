@@ -53,4 +53,17 @@ describe('Object override utils', () => {
     expect(overridden.a).toStrictEqual([2]);
     expect(overridden.b).toStrictEqual([3]);
   });
+
+  it('returns original if override not provided', async () => {
+    const original = {
+      a: [1],
+      b: [3],
+    };
+    const overridden = overrideObject(original, undefined);
+
+    expect(overridden).toStrictEqual({
+      a: [1],
+      b: [3],
+    });
+  });
 });

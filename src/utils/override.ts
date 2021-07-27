@@ -1,7 +1,11 @@
 import {DeepPartial} from './types';
 
 
-export const overrideObject = <T, >(original: T, override: DeepPartial<T>): T => {
+export const overrideObject = <T, >(original: T, override?: DeepPartial<T> | null): T => {
+  if (!override) {
+    return original;
+  }
+
   return Object.fromEntries(Object
     .entries(original)
     .map(([key, value]) => {
