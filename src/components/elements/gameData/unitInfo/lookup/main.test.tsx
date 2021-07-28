@@ -134,7 +134,7 @@ describe('Analysis lookup page', () => {
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
     expect(fnScroll).toHaveBeenCalledTimes(3);
-  }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
+  }, 15000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
   it('searches by element and type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
