@@ -14,19 +14,15 @@ import {FormTop} from './top';
 
 export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditResponse | AnalysisPublishResponse>({
   formState,
-  setFormState,
-  fnSendRequest,
   fnProcessPayload,
   renderMain,
-  renderOnPreloaded,
+  ...props
 }: PostFormBaseProps<P, R>) => {
   const {lang} = useI18n();
 
   return (
     <PostFormBase
       formState={formState}
-      setFormState={setFormState}
-      fnSendRequest={fnSendRequest}
       renderMain={(setPayload, setAvailability) => (
         <>
           <FormAnalysisMeta
@@ -40,7 +36,6 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
           <FormBottom formState={formState} setPayload={setPayload}/>
         </>
       )}
-      renderOnPreloaded={renderOnPreloaded}
       fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
       fnGetRedirectId={(response) => response.unitId}
       fnProcessPayload={async (payload) => ({
@@ -54,6 +49,7 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
         story: await processText({text: payload.story, lang}),
         keywords: await processText({text: payload.keywords, lang}),
       })}
+      {...props}
     />
   );
 };
