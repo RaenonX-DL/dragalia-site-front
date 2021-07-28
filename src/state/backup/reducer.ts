@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {CharaAnalysisPublishPayload, DragonAnalysisPublishPayload, QuestPostPublishPayload} from '../../api-def/api';
 import {backupDispatchers} from './dispatchers';
 import {BACKUP_STATE_NAME, BackupDispatcherName, BackupState} from './types';
 
@@ -13,15 +12,15 @@ const initialState: BackupState = {
   quest: null,
 };
 
-export const backupCharaReducer = (state: BackupState, {payload}: {payload: CharaAnalysisPublishPayload}) => {
+export const backupCharaReducer = (state: BackupState, {payload}: {payload: BackupState['analysis']['chara']}) => {
   state.analysis.chara = payload;
 };
 
-export const backupDragonReducer = (state: BackupState, {payload}: {payload: DragonAnalysisPublishPayload}) => {
+export const backupDragonReducer = (state: BackupState, {payload}: {payload: BackupState['analysis']['dragon']}) => {
   state.analysis.dragon = payload;
 };
 
-export const backupQuestReducer = (state: BackupState, {payload}: {payload: QuestPostPublishPayload}) => {
+export const backupQuestReducer = (state: BackupState, {payload}: {payload: BackupState['quest']}) => {
   state.quest = payload;
 };
 

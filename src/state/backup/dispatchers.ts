@@ -1,16 +1,15 @@
 import {createAction} from '@reduxjs/toolkit';
 
-import {CharaAnalysisPublishPayload, DragonAnalysisPublishPayload, QuestPostPublishPayload} from '../../api-def/api';
-import {BackupDispatcherName} from './types';
+import {BackupDispatcherName, BackupState} from './types';
 
 
 export const backupDispatchers = {
   [BackupDispatcherName.BACKUP_CHARA_ANALYSIS]:
-    createAction<CharaAnalysisPublishPayload>(BackupDispatcherName.BACKUP_CHARA_ANALYSIS),
+    createAction<BackupState['analysis']['chara']>(BackupDispatcherName.BACKUP_CHARA_ANALYSIS),
   [BackupDispatcherName.BACKUP_DRAGON_ANALYSIS]:
-    createAction<DragonAnalysisPublishPayload>(BackupDispatcherName.BACKUP_DRAGON_ANALYSIS),
+    createAction<BackupState['analysis']['dragon']>(BackupDispatcherName.BACKUP_DRAGON_ANALYSIS),
   [BackupDispatcherName.BACKUP_QUEST_GUIDE]:
-    createAction<QuestPostPublishPayload>(BackupDispatcherName.BACKUP_QUEST_GUIDE),
+    createAction<BackupState['quest']>(BackupDispatcherName.BACKUP_QUEST_GUIDE),
   [BackupDispatcherName.CLEAR_CHARA_ANALYSIS]:
     createAction(BackupDispatcherName.CLEAR_CHARA_ANALYSIS),
   [BackupDispatcherName.CLEAR_DRAGON_ANALYSIS]:
