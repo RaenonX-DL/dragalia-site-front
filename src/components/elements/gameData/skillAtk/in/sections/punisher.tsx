@@ -3,7 +3,7 @@ import React from 'react';
 import {useI18n} from '../../../../../../i18n/hook';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
@@ -25,7 +25,7 @@ export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.punisher.bk.desc),
           getValue: (inputData) => inputData.params.punishers.bkPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {punishers: {bkPct: newValue}}})
+            overrideInputData(inputData, {params: {punishers: {bkPct: newValue}}})
           ),
         },
         {
@@ -34,7 +34,7 @@ export const SectionPunisher = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.punisher.others.desc),
           getValue: (inputData) => inputData.params.punishers.othersPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {punishers: {othersPct: newValue}}})
+            overrideInputData(inputData, {params: {punishers: {othersPct: newValue}}})
           ),
         },
       ]}

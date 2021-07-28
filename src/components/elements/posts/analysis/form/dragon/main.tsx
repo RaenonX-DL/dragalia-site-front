@@ -11,23 +11,18 @@ import {AnalysisFormBase} from '../base';
 import {DragonAnalysisForm} from './body';
 
 
-type Props<P extends DragonAnalysisPublishPayload, R extends AnalysisPublishResponse> = Pick<PostFormProps<P, R>,
-  'formState' | 'setFormState' | 'fnSendRequest' | 'fnProcessPayload' | 'renderOnPreloaded'>;
+type Props<P extends DragonAnalysisPublishPayload, R extends AnalysisPublishResponse> = PostFormProps<P, R>;
 
 export const AnalysisFormDragon = <P extends DragonAnalysisPublishPayload, R extends AnalysisPublishResponse>({
   formState,
-  setFormState,
-  fnSendRequest,
   fnProcessPayload,
-  renderOnPreloaded,
+  ...props
 }: Props<P, R>) => {
   const {lang} = useI18n();
 
   return (
     <AnalysisFormBase
       formState={formState}
-      setFormState={setFormState}
-      fnSendRequest={fnSendRequest}
       fnProcessPayload={async (payload) => ({
         ...payload,
         ...(fnProcessPayload ? await fnProcessPayload(payload) : {}),
@@ -41,7 +36,7 @@ export const AnalysisFormDragon = <P extends DragonAnalysisPublishPayload, R ext
           setPayload={setPayload}
         />
       )}
-      renderOnPreloaded={renderOnPreloaded}
+      {...props}
     />
   );
 };

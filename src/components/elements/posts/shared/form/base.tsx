@@ -26,6 +26,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   fnGetRedirectPath,
   fnGetRedirectId,
   fnProcessPayload,
+  onSubmitSuccess,
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
@@ -78,6 +79,10 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
       const data = await fnSendRequest(formState.payload);
 
       if (data.success) {
+        if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
+
         window.onbeforeunload = null;
         dispatch(alertDispatchers.showAlert({
           message: t((t) => t.posts.message.published),

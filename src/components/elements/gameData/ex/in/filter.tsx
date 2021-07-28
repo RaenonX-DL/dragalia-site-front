@@ -5,7 +5,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from './types';
-import {overwriteInputData} from './utils';
+import {overrideInputData} from './utils';
 
 
 type SectionProps = InputPanelCommonProps<InputData> & {
@@ -35,7 +35,7 @@ export const Filter = ({
           type: 'enumCheckGroup',
           options: elementEnums.elemental,
           getValue: (inputData) => inputData.filter.elements,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {elements: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {elements: newValue}}),
         },
         {
           type: 'title',
@@ -46,7 +46,7 @@ export const Filter = ({
           type: 'enumCheckGroup',
           options: exBuffParams.exBuffParam,
           getValue: (inputData) => inputData.filter.exBuffParams,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {exBuffParams: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {exBuffParams: newValue}}),
           imageHeight: '2rem',
         },
         {
@@ -58,7 +58,7 @@ export const Filter = ({
           type: 'enumCheckGroup',
           options: exBuffParams.chainedExBuffParam,
           getValue: (inputData) => inputData.filter.cexBuffParams,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {cexBuffParams: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {cexBuffParams: newValue}}),
           imageHeight: '2rem',
         },
       ]}

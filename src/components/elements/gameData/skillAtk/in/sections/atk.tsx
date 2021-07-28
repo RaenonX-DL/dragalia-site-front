@@ -3,7 +3,7 @@ import React from 'react';
 import {useI18n} from '../../../../../../i18n/hook';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
@@ -25,7 +25,7 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.atk.inGame.desc),
           getValue: (inputData) => inputData.params.atk.inGame,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {atk: {inGame: newValue}}})
+            overrideInputData(inputData, {params: {atk: {inGame: newValue}}})
           ),
         },
         {
@@ -34,7 +34,7 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.atk.conditional.desc),
           getValue: (inputData) => inputData.params.atk.conditionalPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {atk: {conditionalPct: newValue}}})
+            overrideInputData(inputData, {params: {atk: {conditionalPct: newValue}}})
           ),
         },
         {
@@ -43,7 +43,7 @@ export const SectionAtk = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.atk.buff.desc),
           getValue: (inputData) => inputData.params.atk.buffPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {params: {atk: {buffPct: newValue}}})
+            overrideInputData(inputData, {params: {atk: {buffPct: newValue}}})
           ),
           maxValue: 200,
         },

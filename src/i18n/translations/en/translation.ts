@@ -628,6 +628,13 @@ export const translation: TranslationStruct = {
         character: 'Character',
         dragon: 'Dragon',
       },
+      sort: {
+        title: 'Sort by {{order}}',
+        unitId: 'Unit ID',
+        published: 'Published',
+        lastModified: 'Last Modified',
+        viewCount: 'View Count',
+      },
     },
     info: {
       titleSelf: 'Post Information',

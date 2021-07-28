@@ -597,6 +597,13 @@ export const translation: TranslationStruct = {
         character: 'キャラ',
         dragon: 'ドラゴン',
       },
+      sort: {
+        title: '',
+        unitId: '',
+        published: '',
+        lastModified: '',
+        viewCount: '',
+      },
     },
     info: {
       titleSelf: '本ページの情報',

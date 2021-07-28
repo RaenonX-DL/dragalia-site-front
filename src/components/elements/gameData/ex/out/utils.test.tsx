@@ -1,6 +1,6 @@
 import {ResourceLoader} from '../../../../../utils/services/resources';
 import {InputData} from '../in/types';
-import {generateInputData, overwriteInputData} from '../in/utils';
+import {generateInputData, overrideInputData} from '../in/utils';
 import {filterExAbilityData} from './utils';
 
 
@@ -33,7 +33,7 @@ describe('(chained) ex ability filtering function', () => {
 
           const dataFiltered = filterExAbilityData(
             data,
-            overwriteInputData(inputDataTemplate, {filter: {elements: [elemEnumCode]}}),
+            overrideInputData(inputDataTemplate, {filter: {elements: [elemEnumCode]}}),
           );
           expect(dataFiltered.length).toBeGreaterThan(0);
           expect(dataFiltered.map((entry) => entry.chara.element === elemEnumCode)).not.toContain(false);
@@ -52,7 +52,7 @@ describe('(chained) ex ability filtering function', () => {
 
           const dataFiltered = filterExAbilityData(
             data,
-            overwriteInputData(inputDataTemplate, {filter: {exBuffParams: [exBuffParamCode]}}),
+            overrideInputData(inputDataTemplate, {filter: {exBuffParams: [exBuffParamCode]}}),
           );
           expect(dataFiltered.map(
             (entry) => {
@@ -77,7 +77,7 @@ describe('(chained) ex ability filtering function', () => {
 
             const dataFiltered = filterExAbilityData(
               data,
-              overwriteInputData(
+              overrideInputData(
                 inputDataTemplate,
                 {filter: {exBuffParams: [exBuffParamCode], elements: [elemEnumCode]}},
               ),
@@ -103,7 +103,7 @@ describe('(chained) ex ability filtering function', () => {
 
         const dataFiltered = filterExAbilityData(
           data,
-          overwriteInputData(inputDataTemplate, {filter: {elements: firstTwoElemCode}}),
+          overrideInputData(inputDataTemplate, {filter: {elements: firstTwoElemCode}}),
         );
         expect(dataFiltered.map(
           (entry) => {
@@ -123,7 +123,7 @@ describe('(chained) ex ability filtering function', () => {
 
           const dataFiltered = filterExAbilityData(
             data,
-            overwriteInputData(inputDataTemplate, {filter: {cexBuffParams: [cexBuffParamCode]}}),
+            overrideInputData(inputDataTemplate, {filter: {cexBuffParams: [cexBuffParamCode]}}),
           );
           expect(dataFiltered.map((entry) => {
             return entry.chainedEx.some((effectUnit) => effectUnit.parameter.code === cexBuffParamCode);

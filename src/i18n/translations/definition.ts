@@ -1,5 +1,6 @@
 import {UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
+import {SortOrder} from '../../components/elements/gameData/unitInfo/lookup/in/types';
 
 export type PageMetaTranslations = {
   title: string,
@@ -509,6 +510,9 @@ export type TranslationStruct = {
         character: string,
         dragon: string,
       },
+      sort: {
+        title: string,
+      } & { [order in SortOrder]: string },
     },
     info: {
       titleSelf: string,

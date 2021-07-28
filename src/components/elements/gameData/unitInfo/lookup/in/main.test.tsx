@@ -4,15 +4,13 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../test/render/main';
-import {
-  SupportedLanguages,
-  UnitType,
-} from '../../../../../../api-def/api';
+import {SupportedLanguages, UnitType} from '../../../../../../api-def/api';
 import {ElementEnums, WeaponTypeEnums} from '../../../../../../api-def/resources';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ResourceLoader} from '../../../../../../utils/services/resources/loader';
 import {UnitInfoLookupInput} from './main';
 import {InputData} from './types';
+import {generateInputData, overrideInputData} from './utils';
 
 
 describe('Input of analysis lookup', () => {
@@ -106,12 +104,7 @@ describe('Input of analysis lookup', () => {
   it('passes empty input data if no condition specified', async () => {
     renderReact(() => (<UnitInfoLookupInput onSearchRequested={onSearchRequested}/>));
 
-    const expectedInput: InputData = {
-      keyword: '',
-      types: [],
-      elements: [],
-      weaponTypes: [],
-    };
+    const expectedInput: InputData = generateInputData();
 
     clickSearchButton();
 
@@ -128,12 +121,7 @@ describe('Input of analysis lookup', () => {
 
     clickSearchButton();
 
-    const expectedInput: InputData = {
-      keyword: '',
-      types: [UnitType.CHARACTER],
-      elements: [],
-      weaponTypes: [],
-    };
+    const expectedInput: InputData = overrideInputData(generateInputData(), {types: [UnitType.CHARACTER]});
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
@@ -148,12 +136,7 @@ describe('Input of analysis lookup', () => {
 
     clickSearchButton();
 
-    const expectedInput: InputData = {
-      keyword: '',
-      types: [],
-      elements: [1],
-      weaponTypes: [],
-    };
+    const expectedInput: InputData = overrideInputData(generateInputData(), {elements: [1]});
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
@@ -168,12 +151,7 @@ describe('Input of analysis lookup', () => {
 
     clickSearchButton();
 
-    const expectedInput: InputData = {
-      keyword: '',
-      types: [],
-      elements: [],
-      weaponTypes: [2],
-    };
+    const expectedInput: InputData = overrideInputData(generateInputData(), {weaponTypes: [2]});
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
@@ -188,12 +166,24 @@ describe('Input of analysis lookup', () => {
 
     clickSearchButton();
 
-    const expectedInput: InputData = {
-      keyword: 'test',
-      types: [],
-      elements: [],
-      weaponTypes: [],
-    };
+    const expectedInput: InputData = overrideInputData(generateInputData(), {keyword: 'test'});
+
+    expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
+  });
+
+  it('passes input data with sort order', async () => {
+    renderReact(() => (<UnitInfoLookupInput onSearchRequested={onSearchRequested}/>));
+
+    expect(getEnumElements).toHaveBeenCalledTimes(1);
+
+    const sorter = await screen.findByText(/Sort by/);
+    userEvent.click(sorter);
+    const sortByViewCount = await screen.findByText(/View Count/);
+    userEvent.click(sortByViewCount);
+
+    clickSearchButton();
+
+    const expectedInput: InputData = overrideInputData(generateInputData(), {sortBy: 'viewCount'});
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
@@ -214,12 +204,15 @@ describe('Input of analysis lookup', () => {
 
     clickSearchButton();
 
-    const expectedInput: InputData = {
-      keyword: 'test',
-      types: [UnitType.CHARACTER],
-      elements: [1],
-      weaponTypes: [2],
-    };
+    const expectedInput: InputData = overrideInputData(
+      generateInputData(),
+      {
+        keyword: 'test',
+        types: [UnitType.CHARACTER],
+        elements: [1],
+        weaponTypes: [2],
+      },
+    );
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
@@ -233,12 +226,7 @@ describe('Input of analysis lookup', () => {
     userEvent.type(searchInput, 'test');
     userEvent.type(searchInput, '{enter}');
 
-    const expectedInput: InputData = {
-      keyword: 'test',
-      types: [],
-      elements: [],
-      weaponTypes: [],
-    };
+    const expectedInput: InputData = overrideInputData(generateInputData(), {keyword: 'test'});
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });

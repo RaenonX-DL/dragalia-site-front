@@ -6,7 +6,7 @@ import {getConditionName} from '../../../../../../utils/game/conditionName';
 import {CheckOption} from '../../../../common/check/types';
 import {InputPanel} from '../../../../input/main';
 import {SectionProps, SectionPropsCondEnums} from '../types';
-import {overwriteInputData} from '../utils/inputData';
+import {overrideInputData} from '../utils/inputData';
 
 
 type SectionTargetProps = SectionProps & SectionPropsCondEnums;
@@ -45,7 +45,7 @@ export const SectionTarget = ({
           options: conditionEnums.elements,
           getValue: (inputData) => inputData.target.elemCondCode,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {elemCondCode: newValue}})
+            overrideInputData(inputData, {target: {elemCondCode: newValue}})
           ),
           groupName: 'targetElement',
         },
@@ -59,7 +59,7 @@ export const SectionTarget = ({
           options: conditionEnums.afflictions,
           getValue: (inputData) => inputData.target.afflictionCodes,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {afflictionCodes: newValue}})
+            overrideInputData(inputData, {target: {afflictionCodes: newValue}})
           ),
         },
         {
@@ -72,7 +72,7 @@ export const SectionTarget = ({
           options: stateLabels,
           getValue: (inputData) => inputData.target.state,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {state: newValue}})
+            overrideInputData(inputData, {target: {state: newValue}})
           ),
           getCheckOptionComparer: (option) => option.code,
           groupName: 'targetState',
@@ -83,7 +83,7 @@ export const SectionTarget = ({
           description: t((t) => t.game.skillAtk.input.target.def.down.desc),
           getValue: (inputData) => inputData.target.def.downPct,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {def: {downPct: newValue}}})
+            overrideInputData(inputData, {target: {def: {downPct: newValue}}})
           ),
           minValue: 0,
           maxValue: 50,
@@ -94,7 +94,7 @@ export const SectionTarget = ({
           description: t((t) => t.game.skillAtk.input.target.def.base.desc),
           getValue: (inputData) => inputData.target.def.base,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {def: {base: newValue}}})
+            overrideInputData(inputData, {target: {def: {base: newValue}}})
           ),
           minValue: 0.0001,
         },
@@ -104,7 +104,7 @@ export const SectionTarget = ({
           description: t((t) => t.game.skillAtk.input.target.def.bk.desc),
           getValue: (inputData) => inputData.target.def.bkRate,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {target: {def: {bkRate: newValue}}})
+            overrideInputData(inputData, {target: {def: {bkRate: newValue}}})
           ),
           minValue: 0.0001,
         },

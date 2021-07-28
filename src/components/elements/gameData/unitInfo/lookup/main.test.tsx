@@ -18,6 +18,7 @@ import * as scrollUtils from '../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {InputData} from './in/types';
+import {generateInputData, overrideInputData} from './in/utils';
 import {UnitInfoLookup} from './main';
 
 
@@ -133,7 +134,7 @@ describe('Analysis lookup page', () => {
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
     expect(fnScroll).toHaveBeenCalledTimes(3);
-  }, 10000); // Finding `Gala Leonidas` is time-consuming, causing false negative
+  }, 15000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
   it('searches by element and type', async () => {
     fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
@@ -218,12 +219,13 @@ describe('Analysis lookup page', () => {
     userEvent.click(axeButton);
     userEvent.click(searchButton);
 
-    const expectedInput: InputData = {
-      types: [],
-      elements: [2, 3],
-      weaponTypes: [4],
-      keyword: '',
-    };
+    const expectedInput: InputData = overrideInputData(
+      generateInputData(),
+      {
+        elements: [2, 3],
+        weaponTypes: [4],
+      },
+    );
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     expect(fnGaAnalysisLookup).toHaveBeenCalledTimes(1);

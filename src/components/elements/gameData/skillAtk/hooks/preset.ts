@@ -7,7 +7,7 @@ import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {FetchStatusSimple, isNotFetched} from '../../../common/fetch';
 import {InputPanelCommonProps} from '../../../input/types';
 import {InputData} from '../in/types';
-import {generateInputData, overwriteInputData} from '../in/utils/inputData';
+import {generateInputData, overrideInputData} from '../in/utils/inputData';
 
 
 export const PRESET_QUERY_NAME = 'preset';
@@ -40,7 +40,7 @@ export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputRet
             fetched: true,
             fetching: false,
           });
-          setInputData(overwriteInputData(inputData, response.preset));
+          setInputData(overrideInputData(inputData, response.preset));
         });
       GoogleAnalytics.presetLoaded('atkSkill');
     } else {

@@ -4,7 +4,7 @@ import {UnitType} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../input/main';
 import {SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
-import {overwriteInputData} from './utils/inputData';
+import {overrideInputData} from './utils/inputData';
 
 
 type SectionFilterProps =
@@ -39,7 +39,7 @@ export const Filter = ({
           type: 'enumCheckGroup',
           options: elementEnums.elemental,
           getValue: (inputData) => inputData.filter.elemCodes,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {elemCodes: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {elemCodes: newValue}}),
         },
         {
           type: 'subTitle',
@@ -50,7 +50,7 @@ export const Filter = ({
           type: 'enumCheckGroup',
           options: conditionEnums.afflictions,
           getValue: (inputData) => inputData.filter.afflictionCondCode,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {afflictionCondCode: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {afflictionCondCode: newValue}}),
         },
         {
           type: 'subTitle',
@@ -65,7 +65,7 @@ export const Filter = ({
             return {text: t((t) => t.enum.unitType[code]), code};
           }),
           getValue: (inputData) => inputData.filter.type,
-          getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {type: newValue}}),
+          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {type: newValue}}),
           getCheckOptionComparer: (option) => option.code,
         },
         {
@@ -79,12 +79,12 @@ export const Filter = ({
             {
               text: t((t) => t.game.skillAtk.input.filter.only.shared),
               getValue: (inputData) => inputData.filter.sharedOnly,
-              getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {sharedOnly: newValue}}),
+              getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {sharedOnly: newValue}}),
             },
             {
               text: t((t) => t.game.skillAtk.input.filter.only.dispel),
               getValue: (inputData) => inputData.filter.dispelOnly,
-              getUpdatedInputData: (newValue) => overwriteInputData(inputData, {filter: {dispelOnly: newValue}}),
+              getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {dispelOnly: newValue}}),
             },
           ],
         },
@@ -94,7 +94,7 @@ export const Filter = ({
           description: t((t) => t.game.skillAtk.input.filter.ssCostMax.desc),
           getValue: (inputData) => inputData.filter.ssCostMax,
           getUpdatedInputData: (newValue) => (
-            overwriteInputData(inputData, {filter: {ssCostMax: newValue}})
+            overrideInputData(inputData, {filter: {ssCostMax: newValue}})
           ),
         },
       ]}

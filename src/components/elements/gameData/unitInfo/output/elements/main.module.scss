@@ -9,7 +9,6 @@ $markdown-bg-color: colors.$color-black-32;
 $item-margin: 0.75rem;
 
 .text {
-  overflow: auto;
   background-color: $markdown-bg-color;
   border: transparent solid $item-margin;
   border-radius: 0.25rem;

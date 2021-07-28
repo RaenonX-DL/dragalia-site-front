@@ -11,15 +11,13 @@ import {AnalysisFormBase} from '../base';
 import {CharaAnalysisForm} from './body';
 
 
-type Props<P extends CharaAnalysisPublishPayload, R extends AnalysisPublishResponse> = Pick<PostFormProps<P, R>,
-  'formState' | 'setFormState' | 'fnSendRequest' | 'fnProcessPayload' | 'renderOnPreloaded'>;
+type Props<P extends CharaAnalysisPublishPayload, R extends AnalysisPublishResponse> = PostFormProps<P, R>;
 
 export const AnalysisFormChara = <P extends CharaAnalysisPublishPayload, R extends AnalysisPublishResponse>({
   formState,
   setFormState,
-  fnSendRequest,
   fnProcessPayload,
-  renderOnPreloaded,
+  ...props
 }: Props<P, R>) => {
   const {lang} = useI18n();
 
@@ -27,7 +25,6 @@ export const AnalysisFormChara = <P extends CharaAnalysisPublishPayload, R exten
     <AnalysisFormBase
       formState={formState}
       setFormState={setFormState}
-      fnSendRequest={fnSendRequest}
       fnProcessPayload={async (payload) => ({
         ...payload,
         ...(fnProcessPayload ? await fnProcessPayload(payload) : {}),
@@ -47,7 +44,7 @@ export const AnalysisFormChara = <P extends CharaAnalysisPublishPayload, R exten
           setPayload={setPayload}
         />
       )}
-      renderOnPreloaded={renderOnPreloaded}
+      {...props}
     />
   );
 };
