@@ -24,8 +24,7 @@ export type QuestPostWriteResponse = QuestPostEditResponse | QuestPostPublishRes
 export const QuestPostForm = <P extends QuestPostPublishPayload, R extends QuestPostWriteResponse>({
   formState,
   setFormState,
-  fnSendRequest,
-  renderOnPreloaded,
+  ...props
 }: PostFormProps<P, R>) => {
   const {t, lang} = useI18n();
 
@@ -33,7 +32,6 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
     <PostFormBase
       formState={formState}
       setFormState={setFormState}
-      fnSendRequest={fnSendRequest}
       fnGetRedirectPath={(pid) => makePostPath(PostPath.QUEST, {pid, lang})}
       fnGetRedirectId={(response) => response.seqId}
       fnProcessPayload={async (payload) => ({
@@ -66,7 +64,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
           <FormAddendum formState={formState} setPayload={setPayload}/>
         </>
       )}
-      renderOnPreloaded={renderOnPreloaded}
+      {...props}
     />
   );
 };
