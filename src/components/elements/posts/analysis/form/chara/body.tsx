@@ -52,7 +52,7 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
         minLength={2}
         getArray={(payload) => payload.skills}
         setArray={setSkills}
-        updateElementValue={(element, key, value) => element[key] = value}
+        getUpdatedElement={(element, key, value) => ({...element, [key]: value})}
         generateNewElement={generateNewCharaSkill}
         renderEntries={(skill, onChange) => (
           <div className="mt-2">

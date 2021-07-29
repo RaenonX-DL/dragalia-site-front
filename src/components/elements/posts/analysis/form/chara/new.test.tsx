@@ -172,7 +172,6 @@ describe('New character analysis form', () => {
           backup: {
             analysis: {
               chara: {
-                uid: 'uid',
                 unitId: 10950101,
                 type: UnitType.CHARACTER,
                 lang: SupportedLanguages.CHT,
@@ -203,5 +202,35 @@ describe('New character analysis form', () => {
     userEvent.click(publishButton);
 
     await waitFor(() => expect(fnClear).toHaveBeenCalled());
+  });
+
+  it('should not backup UID', async () => {
+    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_CHARA_ANALYSIS);
+
+    const {rerender} = renderReact(
+      () => <AnalysisFormCharaNew/>,
+      {
+        user: {isAdmin: true},
+        preloadState: {
+          backup: {
+            analysis: {
+              chara: {
+                ...generatePayload(SupportedLanguages.EN, 'admin'),
+                summary: 'sum',
+              },
+              dragon: null,
+            },
+            quest: null,
+          },
+        },
+      },
+    );
+
+    const summary = screen.getByText('sum');
+    typeInput(summary, 'summary', {rerender});
+
+    // @ts-ignore
+    const {uid} = fnBackup.mock.calls[0][0];
+    expect(uid).toBeUndefined();
   });
 });

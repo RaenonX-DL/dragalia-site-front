@@ -173,7 +173,6 @@ describe('New quest post form', () => {
             analysis: {chara: null, dragon: null},
             quest: {
               seqId: 7,
-              uid: 'googleUid',
               lang: SupportedLanguages.CHT,
               title: 'ttl',
               general: 'gen',
@@ -200,5 +199,29 @@ describe('New quest post form', () => {
     userEvent.click(publishButton);
 
     await waitFor(() => expect(fnClear).toHaveBeenCalled());
+  });
+
+  it('should not backup UID', async () => {
+    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_QUEST_GUIDE);
+
+    const {rerender} = renderReact(
+      () => <QuestNewForm/>,
+      {
+        user: {isAdmin: true},
+        preloadState: {
+          backup: {
+            analysis: {chara: null, dragon: null},
+            quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
+          },
+        },
+      },
+    );
+
+    const addendum = screen.getByText('add');
+    typeInput(addendum, 'addendum', {rerender});
+
+    // @ts-ignore
+    const {uid} = fnBackup.mock.calls[0][0];
+    expect(uid).toBeUndefined();
   });
 });

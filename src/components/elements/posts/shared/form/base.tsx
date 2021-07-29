@@ -27,6 +27,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   fnGetRedirectId,
   fnProcessPayload,
   onSubmitSuccess,
+  onUpdated,
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
@@ -49,10 +50,13 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     };
   });
 
-  const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => setFormState({
-    ...formState,
-    payload: {...formState.payload, [key]: newValue},
-  });
+  const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
+    const payload: P = {...formState.payload, [key]: newValue};
+    if (onUpdated) {
+      onUpdated(payload);
+    }
+    setFormState({...formState, payload});
+  };
 
   const setAvailability = (availability: boolean) => setFormState({
     ...formState,

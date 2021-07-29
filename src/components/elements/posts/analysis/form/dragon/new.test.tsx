@@ -173,7 +173,6 @@ describe('New dragon analysis form', () => {
             analysis: {
               chara: null,
               dragon: {
-                uid: '',
                 unitId: 20950101,
                 lang: SupportedLanguages.EN,
                 type: UnitType.DRAGON,
@@ -203,5 +202,35 @@ describe('New dragon analysis form', () => {
     userEvent.click(publishButton);
 
     await waitFor(() => expect(fnClear).toHaveBeenCalled());
+  });
+
+  it('should not backup UID', async () => {
+    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_DRAGON_ANALYSIS);
+
+    const {rerender} = renderReact(
+      () => <AnalysisFormDragonNew/>,
+      {
+        user: {isAdmin: true},
+        preloadState: {
+          backup: {
+            analysis: {
+              chara: null,
+              dragon: {
+                ...generatePayload(SupportedLanguages.EN, 'admin'),
+                summary: 'sum',
+              },
+            },
+            quest: null,
+          },
+        },
+      },
+    );
+
+    const summary = screen.getByText('sum');
+    typeInput(summary, 'summary', {rerender});
+
+    // @ts-ignore
+    const {uid} = fnBackup.mock.calls[0][0];
+    expect(uid).toBeUndefined();
   });
 });

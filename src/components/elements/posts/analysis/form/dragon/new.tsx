@@ -29,12 +29,13 @@ export const AnalysisFormDragonNew = () => {
   return (
     <AnalysisFormDragon
       formState={formState}
-      setFormState={(newState) => {
-        dispatch(backupDispatchers.backupDragonAnalysis(newState.payload));
-        setFormState(newState);
-      }}
+      setFormState={setFormState}
       fnSendRequest={ApiRequestSender.analysisPublishDragon}
       onSubmitSuccess={() => dispatch(backupDispatchers.clearDragonAnalysis())}
+      onUpdated={(payload) => {
+        const {uid, ...rest} = payload;
+        dispatch(backupDispatchers.backupDragonAnalysis(rest));
+      }}
     />
   );
 };

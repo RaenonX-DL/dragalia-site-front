@@ -29,12 +29,13 @@ export const QuestNewForm = () => {
   return (
     <QuestPostForm
       formState={formState}
-      setFormState={(newState) => {
-        dispatch(backupDispatchers.backupQuestGuide(newState.payload));
-        setFormState(newState);
-      }}
+      setFormState={setFormState}
       fnSendRequest={ApiRequestSender.questPublish}
       onSubmitSuccess={() => dispatch(backupDispatchers.clearQuestGuide())}
+      onUpdated={(payload) => {
+        const {uid, ...rest} = payload;
+        dispatch(backupDispatchers.backupQuestGuide(rest));
+      }}
     />
   );
 };

@@ -59,7 +59,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
           <hr/>
           <FormGeneralInfo formState={formState} setPayload={setPayload}/>
           <hr/>
-          <FormPositional formState={formState} setState={setFormState}/>
+          <FormPositional formState={formState} setPayload={setPayload}/>
           <hr/>
           <FormAddendum formState={formState} setPayload={setPayload}/>
         </>

@@ -20,14 +20,14 @@ describe('Array data form', () => {
   let payload: Payload;
   let getArrayFunc: jest.Mock<Array<Enum>, [Payload]>;
   let setArrayFunc: jest.Mock<void, [Array<Enum>]>;
-  let updateElemValueFunc: jest.Mock<void, [Enum, 'code', string]>;
+  let getUpdatedElemFunc: jest.Mock<Enum, [Enum, 'code', string]>;
   let generateNewElemFunc: jest.Mock<Enum, []>;
   let renderEntriesFunc: jest.Mock;
 
   beforeEach(() => {
     getArrayFunc = jest.fn().mockImplementation((payload) => payload.enums);
     setArrayFunc = jest.fn().mockImplementation((array) => payload.enums = array);
-    updateElemValueFunc = jest.fn().mockImplementation((elem, key, value) => elem[key] = value);
+    getUpdatedElemFunc = jest.fn().mockImplementation((element, key, value) => ({...element, [key]: value}));
     generateNewElemFunc = jest.fn().mockImplementation(() => ({code: 7}));
     renderEntriesFunc = jest.fn();
   });
@@ -51,7 +51,7 @@ describe('Array data form', () => {
         minLength={2}
         getArray={getArrayFunc}
         setArray={setArrayFunc}
-        updateElementValue={updateElemValueFunc}
+        getUpdatedElement={getUpdatedElemFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
       />
@@ -85,7 +85,7 @@ describe('Array data form', () => {
         minLength={2}
         getArray={getArrayFunc}
         setArray={setArrayFunc}
-        updateElementValue={updateElemValueFunc}
+        getUpdatedElement={getUpdatedElemFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
       />
@@ -116,7 +116,7 @@ describe('Array data form', () => {
         minLength={2}
         getArray={getArrayFunc}
         setArray={setArrayFunc}
-        updateElementValue={updateElemValueFunc}
+        getUpdatedElement={getUpdatedElemFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
       />
