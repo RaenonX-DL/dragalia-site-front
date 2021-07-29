@@ -42,7 +42,7 @@ export type PostFormFetchProps<P extends PostMeta, R extends PostEditResponse> =
  */
 export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = PostFormFetchProps<P, R> & {
   formState: PostFormState<P>,
-  setFormState: (newState: PostFormState<P>) => void,
+  setFormState: React.Dispatch<React.SetStateAction<PostFormState<P>>>,
   renderMain: (
     setPayload: PostFormSetPayloadFunc<P>,
     setAvailability: (availability: boolean) => void,
@@ -51,13 +51,15 @@ export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = 
     setPayload: PostFormSetPayloadFunc<P>,
   ) => React.ReactElement,
   onSubmitSuccess?: () => void,
+  onUpdated?: (payload: P) => void,
 }
 
 /**
  * Props of the main post form.
  */
 export type PostFormProps<P extends PostMeta, R extends PostEditResponse> = Pick<PostFormBaseProps<P, R>,
-  'formState' | 'setFormState' | 'fnSendRequest' | 'fnProcessPayload' | 'renderOnPreloaded' | 'onSubmitSuccess'>;
+  'formState' | 'setFormState' | 'fnSendRequest' | 'fnProcessPayload' | 'renderOnPreloaded' | 'onSubmitSuccess' |
+  'onUpdated'>;
 
 export const isFormStateValid = <P extends PostMeta>({isIdAvailable, isPreloaded}: PostFormState<P>) => {
   return isIdAvailable || isPreloaded;

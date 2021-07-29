@@ -8,7 +8,7 @@ type CharaAnalysisFormProps<P extends PostMeta, E> = {
   minLength: number,
   getArray: (payload: P) => Array<E>,
   setArray: (newArray: Array<E>) => void,
-  updateElementValue: (element: E, key: keyof E, value: string) => void,
+  getUpdatedElement: (element: E, key: keyof E, value: string) => E,
   generateNewElement: () => E,
   renderEntries: (
     element: E,
@@ -17,12 +17,12 @@ type CharaAnalysisFormProps<P extends PostMeta, E> = {
 }
 
 
-export const ArrayDataForm = <P extends PostMeta, E>({
+export const ArrayDataForm = <P extends PostMeta, E extends object>({
   payload,
   minLength,
   getArray,
   setArray,
-  updateElementValue,
+  getUpdatedElement,
   generateNewElement,
   renderEntries,
 }: CharaAnalysisFormProps<P, E>) => {
@@ -41,9 +41,7 @@ export const ArrayDataForm = <P extends PostMeta, E>({
         return elem;
       }
 
-      // Update the data
-      updateElementValue(elem, key, newValue);
-      return elem;
+      return getUpdatedElement(elem, key, newValue);
     }));
   };
   const onAdded = () => {
