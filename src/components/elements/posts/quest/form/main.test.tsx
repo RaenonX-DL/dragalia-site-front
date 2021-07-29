@@ -185,7 +185,7 @@ describe('Quest form (New/Edit)', () => {
       {user: {isAdmin: true}},
     );
 
-    const addButton = screen.getByText(translationEN.misc.add);
+    const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
     userEvent.click(addButton);
     rerender();
 
@@ -221,7 +221,7 @@ describe('Quest form (New/Edit)', () => {
       {user: {isAdmin: true}},
     );
 
-    const removeButton = screen.getByText(translationEN.misc.remove);
+    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'});
     userEvent.click(removeButton);
     rerender();
 
@@ -240,7 +240,7 @@ describe('Quest form (New/Edit)', () => {
       {user: {isAdmin: true}},
     );
 
-    const removeButton = screen.getByText(translationEN.misc.remove);
+    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'});
     userEvent.click(removeButton);
     rerender();
 

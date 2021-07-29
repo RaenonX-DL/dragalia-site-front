@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {useI18n} from '../../../../../i18n/hook';
-
 
 type Props = {
   onAdded: () => void,
@@ -18,8 +16,6 @@ export const ArrayControl = ({
   onRemoved,
   isRemoveAllowed,
 }: Props) => {
-  const {t} = useI18n();
-
   return (
     <Row className="mt-2">
       <Col>
@@ -29,14 +25,14 @@ export const ArrayControl = ({
           onClick={onRemoved}
           disabled={!isRemoveAllowed()}
         >
-          {t((t) => t.misc.remove)}
+          <i className="bi bi-x-lg"/>
         </Button>
         <Button
           className="d-inline float-right"
           variant="outline-success"
           onClick={onAdded}
         >
-          {t((t) => t.misc.add)}
+          <i className="bi bi-plus-lg"/>
         </Button>
       </Col>
     </Row>

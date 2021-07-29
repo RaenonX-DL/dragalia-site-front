@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {PostMeta, SupportedLanguages} from '../../../../../api-def/api';
-import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {ArrayDataForm} from './array';
 
 describe('Array data form', () => {
@@ -57,7 +56,7 @@ describe('Array data form', () => {
       />
     ));
 
-    const removeButton = screen.getByText(translationEN.misc.remove);
+    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'}).parentElement;
     expect(removeButton).toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
@@ -91,7 +90,7 @@ describe('Array data form', () => {
       />
     ));
 
-    const removeButton = screen.getByText(translationEN.misc.remove);
+    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'});
     expect(removeButton).not.toBeDisabled();
     expect(getArrayFunc).toHaveBeenCalledTimes(2); // Check for disable remove or not & render
     expect(renderEntriesFunc).toHaveBeenCalledTimes(3);
@@ -122,7 +121,7 @@ describe('Array data form', () => {
       />
     ));
 
-    const addButton = screen.getByText(translationEN.misc.add);
+    const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
     userEvent.click(addButton);
 
     expect(payload.enums.length).toBe(3);

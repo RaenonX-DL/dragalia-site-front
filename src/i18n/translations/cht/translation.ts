@@ -437,11 +437,9 @@ export const translation: TranslationStruct = {
     },
   },
   misc: {
-    add: '新增',
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
     openGif: '點擊以開啟 GIF 圖片',
-    remove: '移除',
     search: '搜尋',
     searchKeyword: '關鍵字',
   },

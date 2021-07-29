@@ -421,11 +421,9 @@ export type TranslationStruct = {
     }
   },
   misc: {
-    add: string,
     omMember: string,
     omGroup: string,
     openGif: string,
-    remove: string,
     search: string,
     searchKeyword: string,
   },
