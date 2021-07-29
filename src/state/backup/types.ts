@@ -15,10 +15,10 @@ export enum BackupDispatcherName {
 
 export type BackupData = {
   analysis: {
-    chara: CharaAnalysisPublishPayload | null,
-    dragon: DragonAnalysisPublishPayload | null,
+    chara: Omit<CharaAnalysisPublishPayload, 'uid'> | null,
+    dragon: Omit<DragonAnalysisPublishPayload, 'uid'> | null,
   },
-  quest: QuestPostPublishPayload | null,
+  quest: Omit<QuestPostPublishPayload, 'uid'> | null,
 }
 
 export type BackupState = StateBase & BackupData;

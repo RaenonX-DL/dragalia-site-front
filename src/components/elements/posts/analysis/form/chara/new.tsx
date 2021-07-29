@@ -29,12 +29,13 @@ export const AnalysisFormCharaNew = () => {
   return (
     <AnalysisFormChara
       formState={formState}
-      setFormState={(newState) => {
-        dispatch(backupDispatchers.backupCharaAnalysis(newState.payload));
-        setFormState(newState);
-      }}
+      setFormState={setFormState}
       fnSendRequest={ApiRequestSender.analysisPublishChara}
       onSubmitSuccess={() => dispatch(backupDispatchers.clearCharaAnalysis())}
+      onUpdated={(payload) => {
+        const {uid, ...rest} = payload;
+        dispatch(backupDispatchers.backupCharaAnalysis(rest));
+      }}
     />
   );
 };
