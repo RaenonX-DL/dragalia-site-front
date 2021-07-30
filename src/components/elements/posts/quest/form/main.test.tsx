@@ -221,7 +221,7 @@ describe('Quest form (New/Edit)', () => {
       {user: {isAdmin: true}},
     );
 
-    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'});
+    const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[0];
     userEvent.click(removeButton);
     rerender();
 
