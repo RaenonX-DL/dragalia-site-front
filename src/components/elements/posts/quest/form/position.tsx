@@ -24,18 +24,16 @@ export const FormPositional = <P extends QuestPostPublishPayload>({formState, se
         getUpdatedElement={(element, key, value) => ({...element, [key]: value})}
         generateNewElement={generateNewPositionInfo}
         renderEntries={(posInfo, onChange) => (
-          <div className="mt-2">
-            <QuestPositionUnit
-              positionName={posInfo.position}
-              builds={posInfo.builds}
-              rotations={posInfo.rotations}
-              tips={posInfo.tips}
-              onPositionNameChanged={onChange('position')}
-              onBuildsChanged={onChange('builds')}
-              onRotationsChanged={onChange('rotations')}
-              onTipsChanged={onChange('tips')}
-            />
-          </div>
+          <QuestPositionUnit
+            positionName={posInfo.position}
+            builds={posInfo.builds}
+            rotations={posInfo.rotations}
+            tips={posInfo.tips}
+            onPositionNameChanged={onChange('position')}
+            onBuildsChanged={onChange('builds')}
+            onRotationsChanged={onChange('rotations')}
+            onTipsChanged={onChange('tips')}
+          />
         )}
       />
     </>

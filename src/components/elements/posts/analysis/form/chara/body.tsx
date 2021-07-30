@@ -55,19 +55,17 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
         getUpdatedElement={(element, key, value) => ({...element, [key]: value})}
         generateNewElement={generateNewCharaSkill}
         renderEntries={(skill, onChange) => (
-          <div className="mt-2">
-            <AnalysisSkillInput
-              name={skill.name}
-              info={skill.info}
-              rotations={skill.rotations}
-              tips={skill.tips}
-              onNameChanged={onChange('name')}
-              onInfoChanged={onChange('info')}
-              onRotationsChanged={onChange('rotations')}
-              onTipsChanged={onChange('tips')}
-              required={['info']}
-            />
-          </div>
+          <AnalysisSkillInput
+            name={skill.name}
+            info={skill.info}
+            rotations={skill.rotations}
+            tips={skill.tips}
+            onNameChanged={onChange('name')}
+            onInfoChanged={onChange('info')}
+            onRotationsChanged={onChange('rotations')}
+            onTipsChanged={onChange('tips')}
+            required={['info']}
+          />
         )}
       />
       <hr/>
