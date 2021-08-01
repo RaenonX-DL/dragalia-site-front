@@ -48,7 +48,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     return () => {
       window.onbeforeunload = null;
     };
-  });
+  }, [formState]);
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
     const payload: P = {...formState.payload, [key]: newValue};
@@ -83,11 +83,12 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
       const data = await fnSendRequest(formState.payload);
 
       if (data.success) {
+        window.onbeforeunload = null;
+
         if (onSubmitSuccess) {
           onSubmitSuccess();
         }
 
-        window.onbeforeunload = null;
         dispatch(alertDispatchers.showAlert({
           message: t((t) => t.posts.message.published),
           variant: 'success',
