@@ -143,6 +143,16 @@ describe('Markdown', () => {
   });
 
   it('colors text in table', async () => {
+    const markdown = 'head | ::[red]col 2::\n:---: | :---:\nX | Y';
+
+    renderReact(() => <Markdown>{markdown}</Markdown>);
+
+    const headCell = screen.getByText('col 2', {selector: 'span'});
+    expect(headCell).toHaveStyle({color: 'red'});
+    expect(headCell.parentElement?.tagName).toBe('TH');
+  });
+
+  it('colors text in table header', async () => {
     const markdown = 'head | col 2\n:---: | :---:\nX | ::[red]Y::';
 
     renderReact(() => <Markdown>{markdown}</Markdown>);

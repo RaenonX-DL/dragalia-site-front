@@ -6,7 +6,7 @@ import {renderLink} from './components/link';
 import {renderListItem} from './components/listItem';
 import {renderParagraph} from './components/paragraph';
 import {renderStrong} from './components/strong';
-import {renderTable, renderTableCell, renderTableRow} from './components/table';
+import {renderTable, renderTableCell, renderTableHeader, renderTableRow} from './components/table';
 
 
 // Key correspondences:
@@ -25,6 +25,7 @@ export const components: Components = {
   h6: renderHeading,
   strong: renderStrong,
   table: renderTable,
+  th: renderTableHeader,
   tr: renderTableRow,
   td: renderTableCell,
   li: renderListItem,
