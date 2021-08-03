@@ -9,7 +9,8 @@ export const overrideObject = <T, >(original: T, override?: DeepPartial<T> | nul
   return Object.fromEntries(Object
     .entries(original)
     .map(([key, value]) => {
-      if (typeof value === 'object' && !Array.isArray(value)) {
+      // !!value for `undefined` and `null` because those are typeof object
+      if (!!value && typeof value === 'object' && !Array.isArray(value)) {
         const subOverride = override[key as keyof T];
         if (!subOverride) {
           return [key, value];
@@ -18,7 +19,9 @@ export const overrideObject = <T, >(original: T, override?: DeepPartial<T> | nul
         return [key, overrideObject(value, subOverride)];
       }
 
-      return [key, override[key as keyof T] ?? value];
+      const newValue = override[key as keyof T];
+
+      return [key, newValue === undefined ? value : newValue];
     }),
   ) as T;
 };
