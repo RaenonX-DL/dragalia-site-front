@@ -4,23 +4,25 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {PostMeta} from '../../../../../api-def/api';
 
-type CharaAnalysisFormProps<P extends PostMeta, E> = {
+export type ArrayDataFormOnChangedHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
+
+type ArrayDataFormProps<P, E> = {
   payload: P,
   minLength: number,
   getArray: (payload: P) => Array<E>,
   setArray: (newArray: Array<E>) => void,
-  getUpdatedElement: (element: E, key: keyof E, value: string) => E,
+  getUpdatedElement: <K extends keyof E>(element: E, key: K, value: E[K]) => E,
   generateNewElement: () => E,
   renderEntries: (
     element: E,
-    onChangeHandler: (key: keyof E) => (newValue: string) => void,
+    onChangeHandler: ArrayDataFormOnChangedHandler<E>,
+    idx: number,
   ) => React.ReactElement,
 }
 
 
-export const ArrayDataForm = <P extends PostMeta, E extends object>({
+export const ArrayDataForm = <P, E extends object>({
   payload,
   minLength,
   getArray,
@@ -28,7 +30,7 @@ export const ArrayDataForm = <P extends PostMeta, E extends object>({
   getUpdatedElement,
   generateNewElement,
   renderEntries,
-}: CharaAnalysisFormProps<P, E>) => {
+}: ArrayDataFormProps<P, E>) => {
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
   //   removing the first entry only removes the underlying 1st data.
@@ -36,12 +38,10 @@ export const ArrayDataForm = <P extends PostMeta, E extends object>({
   // No related tests implemented because the caching behavior doesn't seem existed in JSDOM
   const [counter, setCounter] = React.useState([...Array(getArray(payload).length).keys()]);
 
-  const onChangeHandler = (
-    changedIdx: number,
+  const onChangeHandler = <K extends keyof E>(changedIdx: number) => (
+    key: K,
   ) => (
-    key: keyof E,
-  ) => (
-    newValue: string,
+    newValue: E[K],
   ) => {
     setArray(getArray(payload).map((elem, elemIdx) => {
       if (changedIdx !== elemIdx) {
@@ -76,7 +76,7 @@ export const ArrayDataForm = <P extends PostMeta, E extends object>({
           <React.Fragment key={counter[elemIdx]}>
             <Row noGutters className="mt-2">
               <Col>
-                {renderEntries(elem, onChangeHandler(elemIdx))}
+                {renderEntries(elem, onChangeHandler(elemIdx), elemIdx)}
               </Col>
               <Col xs="auto">
                 <Button
