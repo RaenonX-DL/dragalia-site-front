@@ -363,7 +363,7 @@ export class ApiRequestSender {
   static getUnitNameRefManage(uid: string, lang: SupportedLanguages) {
     return ApiRequestSender.sendRequest<UnitNameRefManageResponse | FailedResponse, UnitNameRefManagePayload>(
       'GET',
-      ApiEndPoints.INFO_UNIT_NAME_REF,
+      ApiEndPoints.MANAGE_UNIT_NAME_REF,
       {uid, lang},
     );
   }
@@ -379,7 +379,7 @@ export class ApiRequestSender {
   static updateUnitNameRefs(uid: string, lang: SupportedLanguages, refs: UnitNameRefManageResponse['refs']) {
     return ApiRequestSender.sendRequest<UnitNameRefUpdateResponse | FailedResponse, UnitNameRefUpdatePayload>(
       'POST',
-      ApiEndPoints.INFO_UNIT_NAME_REF,
+      ApiEndPoints.MANAGE_UNIT_NAME_REF,
       {uid, lang, refs},
     );
   }
