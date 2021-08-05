@@ -10,6 +10,7 @@ import {
   UnitNameRefEntry as UnitNameRefEntryApi, ApiResponseCodeUtil,
 } from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
+import {getElementCounter} from '../../../../utils/counter';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
@@ -40,7 +41,13 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
     isInit: true,
   });
   const {unitInfoMap} = useUnitInfo();
-  const isValid = refsStatus.refs.every((entry) => !!unitInfoMap.get(entry.unitId) && !!entry.name);
+
+  const nameCounter = getElementCounter(refsStatus.refs.map((ref) => ref.name));
+
+  const isValid = (
+    refsStatus.refs.every((entry) => !!unitInfoMap.get(entry.unitId) && !!entry.name) &&
+    [...nameCounter.values()].every((count) => count === 1)
+  );
   const isJustUpdated = !!refsStatus.updateStatus && ApiResponseCodeUtil.isSuccess(refsStatus.updateStatus);
 
   const generateNewElement: () => UnitNameRefEntryApi = () => ({
@@ -80,7 +87,12 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
           [key]: newValue,
         })}
         generateNewElement={generateNewElement}
-        renderEntries={(element, onChange) => <UnitNameRefEntry entry={element} onChanged={onChange}/>}
+        renderEntries={(element, onChange) => (
+          <UnitNameRefEntry
+            entry={element} onChanged={onChange}
+            isNameInvalid={(nameCounter.get(element.name) || 0) > 1}
+          />
+        )}
       />
       <hr/>
       <Row className="float-right">

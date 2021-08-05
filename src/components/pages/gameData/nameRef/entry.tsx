@@ -14,9 +14,10 @@ import {ArrayDataFormOnChangedHandler} from '../../../elements/posts/form/array'
 type UnitNameRefEntryProps = {
   entry: UnitNameRefEntryApi,
   onChanged: ArrayDataFormOnChangedHandler<UnitNameRefEntryApi>,
+  isNameInvalid: boolean,
 }
 
-export const UnitNameRefEntry = ({entry, onChanged}: UnitNameRefEntryProps) => {
+export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid}: UnitNameRefEntryProps) => {
   const {t, lang} = useI18n();
   const {unitInfoMap} = useUnitInfo();
 
@@ -25,7 +26,7 @@ export const UnitNameRefEntry = ({entry, onChanged}: UnitNameRefEntryProps) => {
   // This is the height of `form-control`
   const unitIconHeight = 'calc(1.5em + 0.75rem + 2px)';
 
-  const isValid = !!unitInfo;
+  const isNameInputAllowed = !!unitInfo;
 
   return (
     <div className="bg-black-32 rounded p-2">
@@ -33,7 +34,7 @@ export const UnitNameRefEntry = ({entry, onChanged}: UnitNameRefEntryProps) => {
         <Col lg={2}>
           <Form.Label>{t((t) => t.game.nameRef.unitId)}</Form.Label>
           <Form.Control
-            isValid={isValid} isInvalid={!isValid}
+            isValid={isNameInputAllowed} isInvalid={!isNameInputAllowed}
             onChange={(e) => {
               if (Number(e.target.value) || !e.target.value) {
                 onChanged('unitId')(+e.target.value);
@@ -70,8 +71,8 @@ export const UnitNameRefEntry = ({entry, onChanged}: UnitNameRefEntryProps) => {
           <Form.Label>{t((t) => t.game.nameRef.desiredName)}</Form.Label>
           <Form.Control
             onChange={(e) => onChanged('name')(e.target.value)}
-            isInvalid={!entry.name}
-            disabled={!isValid}
+            isInvalid={!entry.name || isNameInvalid}
+            disabled={!isNameInputAllowed}
             value={entry.name}
           />
         </Col>

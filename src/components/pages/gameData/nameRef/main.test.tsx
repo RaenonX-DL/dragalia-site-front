@@ -236,4 +236,17 @@ describe('Name reference management', () => {
     typeInput(unitIdInput, '10950101', {rerender});
     expect(updateButton).toBeEnabled();
   });
+
+  it('disables update if multiple units share the same name', async () => {
+    const {rerender} = renderReact(() => <UnitNameRefPage/>, {hasSession: true, user: {isAdmin: true}});
+
+    const unitNameInput = await screen.findByDisplayValue('Furis');
+    userEvent.clear(unitNameInput);
+    typeInput(unitNameInput, 'G!Leon', {rerender});
+
+    await waitFor(() => expect(unitNameInput).toHaveClass('is-invalid'));
+
+    const updateButton = screen.getByText(translationEN.misc.update);
+    expect(updateButton).toBeDisabled();
+  });
 });
