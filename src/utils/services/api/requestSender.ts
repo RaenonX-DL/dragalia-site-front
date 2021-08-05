@@ -52,7 +52,7 @@ import {
   UnitPageMetaResponse,
   UnitType,
 } from '../../../api-def/api';
-import {InputData as AtkSkillInput} from '../../../components/elements/gameData/skillAtk/in/types';
+import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 

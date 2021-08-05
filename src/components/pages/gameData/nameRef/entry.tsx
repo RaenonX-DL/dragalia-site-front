@@ -8,7 +8,7 @@ import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {UnitIcon} from '../../../elements/gameData/unitIcon';
-import {ArrayDataFormOnChangedHandler} from '../../../elements/posts/shared/form/array';
+import {ArrayDataFormOnChangedHandler} from '../../../elements/posts/form/array';
 
 
 type UnitNameRefEntryProps = {

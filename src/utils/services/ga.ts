@@ -1,8 +1,8 @@
 import {SupportedLanguages, UnitType} from '../../api-def/api';
 import {Element, Weapon} from '../../api-def/resources';
-import {InputData as ExInputData} from '../../components/elements/gameData/ex/in/types';
-import {InputData as AtkInputData} from '../../components/elements/gameData/skillAtk/in/types';
-import {InputData as UnitInfoInput} from '../../components/elements/gameData/unitInfo/lookup/in/types';
+import {InputData as ExInputData} from '../../components/pages/gameData/ex/in/types';
+import {InputData as AtkInputData} from '../../components/pages/gameData/skillAtk/in/types';
+import {InputData as UnitInfoInput} from '../../components/pages/gameData/unitInfo/lookup/in/types';
 
 
 enum GAEvent {

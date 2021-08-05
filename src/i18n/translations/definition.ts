@@ -1,6 +1,7 @@
 import {UnitType} from '../../api-def/api';
-import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
-import {SortOrder} from '../../components/elements/gameData/unitInfo/lookup/in/types';
+import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
+import {SortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+
 
 export type PageMetaTranslations = {
   title: string,
