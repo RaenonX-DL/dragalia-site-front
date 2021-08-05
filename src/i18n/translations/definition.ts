@@ -389,6 +389,18 @@ export type TranslationStruct = {
         relatedLinks: string,
       },
     },
+    nameRef: {
+      unitId: string,
+      actualName: string,
+      desiredName: string,
+      error: {
+        invalidUnitId: string,
+      },
+      status: {
+        updated: string,
+        error: string,
+      },
+    },
   },
   userControl: {
     noUid: string,
@@ -426,6 +438,7 @@ export type TranslationStruct = {
     openGif: string,
     search: string,
     searchKeyword: string,
+    update: string,
   },
   meta: {
     inUse: {
@@ -457,6 +470,7 @@ export type TranslationStruct = {
       },
       unit: {
         info: PageMetaTranslations,
+        name: PageMetaTranslations,
       },
     },
     error: {

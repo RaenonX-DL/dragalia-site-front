@@ -32,6 +32,8 @@ export enum GeneralPath {
   STORY = '/story',
   // Tools
   ROTATION_CALC = '/rotations',
+  // Other data
+  UNIT_NAME_REF = '/name',
   // Not game related
   ABOUT = '/about',
   SPECIAL_THANKS = '/thanks',
