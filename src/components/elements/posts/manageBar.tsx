@@ -1,51 +1,47 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
-import {PagePath} from '../../../const/path/definitions';
 import {useI18n} from '../../../i18n/hook';
-import {NextLink} from '../common/link';
+import {ButtonBar, ButtonBarProps, ButtonEntry} from '../common/buttonBar';
 
 
-type NewButtonEntry = {
-  url: PagePath,
-  title?: string,
+type NewButtonEntry = Pick<ButtonEntry, 'url'> & {
+  text?: string,
 }
 
-export type PostManageBarProps = {
+export type PostManageBarProps = Pick<ButtonBarProps, 'bottomMarginClass'> & {
   newButtons: Array<NewButtonEntry>,
-  bottomMarginClass?: string,
+  otherButtons?: Array<ButtonEntry>,
   editPostUrl?: string
 }
 
-export const PostManageBar = ({newButtons, editPostUrl, bottomMarginClass}: PostManageBarProps) => {
+export const PostManageBar = ({newButtons, otherButtons, editPostUrl, bottomMarginClass}: PostManageBarProps) => {
   const {t} = useI18n();
 
-  const buttonClassNames = `float-right ml-2 ${bottomMarginClass ?? 'mb-3'}`;
+  // First is placed rightmost
+  const buttons: Array<ButtonEntry> = [];
+
+  if (editPostUrl) {
+    buttons.push({
+      url: editPostUrl,
+      variant: 'outline-info',
+      text: t((t) => t.posts.manage.edit),
+    });
+  }
+
+  buttons.push(...newButtons.map((entry) => ({
+    ...entry,
+    variant: 'outline-success',
+    text: entry.text || t((t) => t.posts.manage.add),
+  })));
+
+  if (otherButtons?.length) {
+    buttons.push(...otherButtons);
+  }
 
   return (
-    <Row>
-      <Col>
-        {
-          editPostUrl &&
-          <NextLink href={editPostUrl} passHref>
-            <Button variant="outline-info" className={buttonClassNames}>
-              {t((t) => t.posts.manage.edit)}
-            </Button>
-          </NextLink>
-        }
-        {
-          newButtons.map(({url, title}, idx) => (
-            <NextLink href={url} key={idx} passHref>
-              <Button variant="outline-success" className={buttonClassNames}>
-                {title || t((t) => t.posts.manage.add)}
-              </Button>
-            </NextLink>
-          ))
-        }
-      </Col>
-    </Row>
+    <ButtonBar
+      buttons={buttons}
+      bottomMarginClass={bottomMarginClass}
+    />
   );
 };

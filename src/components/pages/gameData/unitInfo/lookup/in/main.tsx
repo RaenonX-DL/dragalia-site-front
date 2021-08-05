@@ -95,11 +95,11 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
           newButtons={[
             {
               url: GeneralPath.ANALYSIS_NEW_CHARA,
-              title: t((t) => t.posts.manage.addChara),
+              text: t((t) => t.posts.manage.addChara),
             },
             {
               url: GeneralPath.ANALYSIS_NEW_DRAGON,
-              title: t((t) => t.posts.manage.addDragon),
+              text: t((t) => t.posts.manage.addDragon),
             },
           ]}
           bottomMarginClass="mb-2"
