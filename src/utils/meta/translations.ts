@@ -20,7 +20,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.SKILL_ATK]: (t) => t.meta.inUse.gameData.skillAtk,
   [GeneralPath.ABOUT]: (t) => t.meta.inUse.about,
   [GeneralPath.SPECIAL_THANKS]: (t) => t.meta.inUse.thanks,
-  [GeneralPath.UNIT_NAME_REF]: (t) => t.meta.inUse.unit.name,
+  [GeneralPath.UPDATE_UNIT_NAME_REF]: (t) => t.meta.inUse.unit.name,
   [AuthPath.SIGN_IN]: (t) => t.meta.inUse.auth.signIn,
   // Constructing paths
   [PostPath.MISC]: (t) => t.meta.temp.constructing,
