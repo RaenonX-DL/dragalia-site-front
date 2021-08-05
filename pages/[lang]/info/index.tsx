@@ -1,4 +1,4 @@
-import {UnitInfoLookup} from '../../../src/components/elements/gameData/unitInfo/lookup/main';
+import {UnitInfoLookup} from '../../../src/components/pages/gameData/unitInfo/lookup/main';
 
 
 export default UnitInfoLookup;

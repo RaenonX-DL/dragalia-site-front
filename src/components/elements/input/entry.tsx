@@ -8,8 +8,8 @@ import {RadioGroup} from '../common/check/group/radio';
 import {CheckboxInput} from '../common/check/item/checkbox';
 import {CheckOption} from '../common/check/types';
 import {NumericInput} from '../common/input/numeric';
-import {SectionSubTitle} from '../gameData/elements/subTitle';
-import {SectionTitle} from '../gameData/elements/title';
+import {SectionSubTitle} from '../gameData/subTitle';
+import {SectionTitle} from '../gameData/title';
 import {InputEntryProps} from './types';
 
 
