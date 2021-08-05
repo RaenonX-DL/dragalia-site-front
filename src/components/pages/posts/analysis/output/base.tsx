@@ -4,7 +4,7 @@ import {AnalysisGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../../elements/common/ads/main';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../../../elements/posts/output/alert';
@@ -40,7 +40,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
               text: t((t) => t.posts.manage.addDragon),
             },
           ]}
-          editPostUrl={makePostPath(PostPath.ANALYSIS_EDIT, {pid: analysis.unitId, lang})}
+          editPostUrl={makePostUrl(PostPath.ANALYSIS_EDIT, {pid: analysis.unitId, lang})}
         />
       }
       {analysis.isAltLang && <AlertIsAlternativeLanguage response={analysis}/>}

@@ -7,7 +7,7 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {processText} from '../../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../../utils/services/api';
 import {PostFormBase} from '../../../../elements/posts/form/base';
@@ -32,7 +32,7 @@ export const QuestPostForm = <P extends QuestPostPublishPayload, R extends Quest
     <PostFormBase
       formState={formState}
       setFormState={setFormState}
-      fnGetRedirectPath={(pid) => makePostPath(PostPath.QUEST, {pid, lang})}
+      fnGetRedirectUrl={(pid) => makePostUrl(PostPath.QUEST, {pid, lang})}
       fnGetRedirectId={(response) => response.seqId}
       fnProcessPayload={async (payload) => ({
         ...payload,

@@ -4,7 +4,7 @@ import {PostListPage} from '../../../src/components/elements/posts/list/page';
 import {QuestPostList} from '../../../src/components/pages/posts/quest/list/list';
 import {GeneralPath, PostPath} from '../../../src/const/path/definitions';
 import {useI18n} from '../../../src/i18n/hook';
-import {makePostPath} from '../../../src/utils/path/make';
+import {makePostUrl} from '../../../src/utils/path/make';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 
 
@@ -24,7 +24,7 @@ const QuestList = () => {
         <QuestPostList
           entries={response.posts}
           generateLink={(postId) => (
-            makePostPath(PostPath.QUEST, {pid: postId, lang})
+            makePostUrl(PostPath.QUEST, {pid: postId, lang})
           )}
         />
       )}

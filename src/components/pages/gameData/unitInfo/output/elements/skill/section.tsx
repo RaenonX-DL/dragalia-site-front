@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {SkillInfo} from '../../../../../../../api-def/resources';
 import {GeneralPath, PostPath} from '../../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../../i18n/hook';
-import {makePostPath} from '../../../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../../../utils/path/make';
 import {Loading} from '../../../../../../elements/common/loading';
 import {InfoPopoverMarkdown} from '../../../../../../elements/common/overlay/info';
 import {useAtkSkillResources} from '../../../../../../hooks/atkSkillResources';
@@ -60,7 +60,7 @@ export const SkillSection = ({info, unitId}: Props) => {
               title=""
               description={t(
                 (t) => t.game.unitInfo.info.skill.official,
-                {analysis: makePostPath(PostPath.ANALYSIS, {pid: unitId, lang})},
+                {analysis: makePostUrl(PostPath.ANALYSIS, {pid: unitId, lang})},
               )}
             />
           </SectionSubTitle>

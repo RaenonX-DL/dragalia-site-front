@@ -11,7 +11,7 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {QuestPostOutput} from './main';
 
 
@@ -110,7 +110,7 @@ describe('Quest post output', () => {
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.QUEST, {pid: postResponse.seqId, lang: SupportedLanguages.CHT}),
+      makePostUrl(PostPath.QUEST, {pid: postResponse.seqId, lang: SupportedLanguages.CHT}),
     );
   });
 

@@ -14,7 +14,7 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../../../elements/posts/form/types';
 import {QuestPostForm, QuestPostWriteResponse} from './main';
@@ -347,7 +347,7 @@ describe('Quest form (New/Edit)', () => {
 
     await waitFor(() => expect(fnSendRequest).toHaveBeenCalledTimes(1));
 
-    const expectedPostPath = makePostPath(
+    const expectedPostPath = makePostUrl(
       PostPath.QUEST,
       {pid: response.seqId, lang: SupportedLanguages.EN},
     );
@@ -358,7 +358,7 @@ describe('Quest form (New/Edit)', () => {
   it('transforms quick references in the payload', async () => {
     const originalText = 'Quest #Q3';
     const transformedText = `Quest [${translationEN.posts.quest.titleSelf} #3]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
 
     formState.payload = {
       uid: formState.payload.uid,

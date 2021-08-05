@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import {SupportedLanguageNames, PostGetResponse} from '../../../../api-def/api';
 import {PostPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
-import {makePostPath} from '../../../../utils/path/make';
+import {makePostUrl} from '../../../../utils/path/make';
 import {NextLink} from '../../common/link';
 
 
@@ -50,7 +50,7 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
       {
         response.otherLangs.map((lang) => (
           <li key={lang}>
-            <NextLink href={makePostPath(targetPath, {pid, lang})} passHref>
+            <NextLink href={makePostUrl(targetPath, {pid, lang})} passHref>
               <Alert.Link>
                 {SupportedLanguageNames[lang]}
               </Alert.Link>

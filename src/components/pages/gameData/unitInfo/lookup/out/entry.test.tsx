@@ -8,7 +8,7 @@ import {UnitInfoLookupEntry, SupportedLanguages, UnitType} from '../../../../../
 import {UnitInfoData} from '../../../../../../api-def/resources';
 import {PostPath} from '../../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {makePostPath} from '../../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../../utils/path/make';
 import {UnitInfoEntry} from './entry';
 
 
@@ -56,7 +56,7 @@ describe('Analysis lookup entry', () => {
     expect(await screen.findByText(translationEN.game.unitInfo.links.analysis))
       .toHaveAttribute(
         'href',
-        makePostPath(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN}),
+        makePostUrl(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN}),
       );
     expect(screen.queryByText(/777/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();

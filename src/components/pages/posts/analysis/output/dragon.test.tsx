@@ -12,7 +12,7 @@ import {
 } from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {AnalysisOutputDragon} from './dragon';
 
 
@@ -117,7 +117,7 @@ describe('Analysis output (Character)', () => {
     const altLangLink = screen.getAllByText(chtName)[0];
     expect(altLangLink).toHaveAttribute(
       'href',
-      makePostPath(PostPath.ANALYSIS, {pid: analysisResponse.unitId, lang: SupportedLanguages.CHT}),
+      makePostUrl(PostPath.ANALYSIS, {pid: analysisResponse.unitId, lang: SupportedLanguages.CHT}),
     );
   });
 

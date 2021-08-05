@@ -8,7 +8,7 @@ import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
 import {GeneralPath, PostPath} from '../const/path/definitions';
 import {CookiesKeys} from '../utils/cookies/keys';
 import * as cookiesUtils from '../utils/cookies/utils';
-import {makePostPath} from '../utils/path/make';
+import {makePostUrl} from '../utils/path/make';
 import {mergePlaceholders} from '../utils/path/process';
 import {GoogleAnalytics} from '../utils/services/ga';
 import * as i18nHook from './hook';
@@ -102,7 +102,7 @@ describe('Language Switch', () => {
     const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
     userEvent.click(langSwitch);
 
-    const destPath = makePostPath(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.CHT});
+    const destPath = makePostUrl(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.CHT});
 
     const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
     expect(chtLink).toHaveAttribute('href', destPath);

@@ -15,7 +15,7 @@ import {
 } from '../../../../../../api-def/api';
 import {PostPath} from '../../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {makePostPath} from '../../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../../../../elements/posts/form/types';
 import {AnalysisFormChara} from './main';
@@ -154,7 +154,7 @@ describe('Character analysis form', () => {
     const editButton = screen.getByText(translationEN.posts.manage.edit);
     userEvent.click(editButton);
 
-    const expectedPostPath = makePostPath(
+    const expectedPostPath = makePostUrl(
       PostPath.ANALYSIS,
       {pid: formState.payload.unitId, lang: SupportedLanguages.EN},
     );
@@ -194,7 +194,7 @@ describe('Character analysis form', () => {
   it('transforms quick references in the payload', async () => {
     const originalText = 'Quest #Q3';
     const transformedText = `Quest [${translationEN.posts.quest.titleSelf} #3]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 3, lang: SupportedLanguages.EN})})`;
 
     formState.payload = {
       uid: formState.payload.uid,

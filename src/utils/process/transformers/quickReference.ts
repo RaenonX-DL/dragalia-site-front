@@ -2,7 +2,7 @@ import {unitSyntax} from '../../../components/elements/markdown/transformers/tex
 import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
-import {makePostPath} from '../../path/make';
+import {makePostUrl} from '../../path/make';
 import {getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
 import {sortDescending} from '../../sort';
 import {TextTransformer} from '../type';
@@ -13,7 +13,7 @@ const transformQuestPost: TextTransformer = async ({text, lang}) => {
 
   text = text.replace(
     /#Q(\d+)/g,
-    (_, pid) => `[${postTypeName} #${pid}](${makePostPath(PostPath.QUEST, {pid, lang})})`,
+    (_, pid) => `[${postTypeName} #${pid}](${makePostUrl(PostPath.QUEST, {pid, lang})})`,
   );
 
   return text;
@@ -57,7 +57,7 @@ const transformMiscellaneous: TextTransformer = async ({text, lang}) => {
 
   text = text.replace(
     /#M(\d+)/g,
-    (_, pid) => `[${postTypeName} #${pid}](${makePostPath(PostPath.MISC, {pid, lang})})`,
+    (_, pid) => `[${postTypeName} #${pid}](${makePostUrl(PostPath.MISC, {pid, lang})})`,
   );
 
   return text;

@@ -6,7 +6,7 @@ import {UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
-import {makePostPath, makeUnitPath} from '../../../../utils/path/make';
+import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {Image} from '../../../elements/common/image';
 import {Loading} from '../../../elements/common/loading';
 import {CommonModal, ModalState} from '../../../elements/common/modal';
@@ -40,13 +40,13 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
       {
         hasAnalysis &&
         <Button variant="link">
-          <a href={makePostPath(PostPath.ANALYSIS, {pid: unit.id, lang})} onClick={onLinkClicked}>
+          <a href={makePostUrl(PostPath.ANALYSIS, {pid: unit.id, lang})} onClick={onLinkClicked}>
             {t((t) => t.game.unitInfo.links.analysis)}
           </a>
         </Button>
       }
       <Button variant="link">
-        <a href={makeUnitPath(UnitPath.UNIT_INFO, {id: unit.id, lang})} onClick={onLinkClicked}>
+        <a href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})} onClick={onLinkClicked}>
           {t((t) => t.game.unitInfo.links.info)}
         </a>
       </Button>

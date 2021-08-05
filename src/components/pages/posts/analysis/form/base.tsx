@@ -3,7 +3,7 @@ import React from 'react';
 import {AnalysisBody, AnalysisEditResponse, AnalysisPublishResponse} from '../../../../../api-def/api';
 import {PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostPath} from '../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../utils/path/make';
 import {processText} from '../../../../../utils/process/text';
 import {PostFormBase} from '../../../../elements/posts/form/base';
 import {PostFormBaseProps} from '../../../../elements/posts/form/types';
@@ -36,7 +36,7 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
           <FormBottom formState={formState} setPayload={setPayload}/>
         </>
       )}
-      fnGetRedirectPath={(pid) => makePostPath(PostPath.ANALYSIS, {pid, lang})}
+      fnGetRedirectUrl={(pid) => makePostUrl(PostPath.ANALYSIS, {pid, lang})}
       fnGetRedirectId={(response) => response.unitId}
       fnProcessPayload={async (payload) => ({
         ...payload,

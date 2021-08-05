@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import {AbilityInfo, ConditionEnumMap} from '../../../../../../../api-def/resources';
 import {GeneralPath, PostPath} from '../../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../../i18n/hook';
-import {makePostPath} from '../../../../../../../utils/path/make';
+import {makePostUrl} from '../../../../../../../utils/path/make';
 import {ResourceLoader} from '../../../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../../../../elements/common/fetch';
 import {InfoPopoverMarkdown} from '../../../../../../elements/common/overlay/info';
@@ -45,7 +45,7 @@ export const AbilityBlock = ({unitId, info}: AbilityBlockProps) => {
               title=""
               description={t(
                 (t) => t.game.unitInfo.info.passive,
-                {analysis: makePostPath(PostPath.ANALYSIS, {pid: unitId, lang})},
+                {analysis: makePostUrl(PostPath.ANALYSIS, {pid: unitId, lang})},
               )}
             />
           </SectionTitle>

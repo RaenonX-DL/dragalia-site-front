@@ -7,7 +7,7 @@ import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
-import {makePostPath, makeUnitPath} from '../../../../utils/path/make';
+import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {UnitLink} from './link';
 
 
@@ -27,11 +27,11 @@ describe('Unit link', () => {
     userEvent.click(linkElement);
 
     const analysisLink = await screen.findByText('Analysis');
-    const expectedAnalysisLink = makePostPath(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN});
+    const expectedAnalysisLink = makePostUrl(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN});
     expect(analysisLink).toHaveAttribute('href', expectedAnalysisLink);
 
     const infoLink = screen.getByText('Info');
-    const expectedInfoLink = makeUnitPath(UnitPath.UNIT_INFO, {id: 10950101, lang: SupportedLanguages.EN});
+    const expectedInfoLink = makeUnitUrl(UnitPath.UNIT_INFO, {id: 10950101, lang: SupportedLanguages.EN});
     expect(infoLink).toHaveAttribute('href', expectedInfoLink);
   });
 

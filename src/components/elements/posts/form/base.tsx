@@ -13,7 +13,7 @@ import {PostFormBaseProps} from './types';
 
 
 type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> = PostFormBaseProps<P, R> & {
-  fnGetRedirectPath: (redirectId: number) => string,
+  fnGetRedirectUrl: (redirectId: number) => string,
   fnGetRedirectId: (response: R) => number,
 }
 
@@ -23,7 +23,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   fnSendRequest,
   renderMain,
   renderOnPreloaded,
-  fnGetRedirectPath,
+  fnGetRedirectUrl,
   fnGetRedirectId,
   fnProcessPayload,
   onSubmitSuccess,
@@ -93,7 +93,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
           message: t((t) => t.posts.message.published),
           variant: 'success',
         }));
-        window.location.assign(fnGetRedirectPath(fnGetRedirectId(data)));
+        window.location.assign(fnGetRedirectUrl(fnGetRedirectId(data)));
       } else {
         setModalState({
           show: true,
