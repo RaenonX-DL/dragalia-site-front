@@ -391,6 +391,7 @@ export type TranslationStruct = {
       },
     },
     nameRef: {
+      manage: string,
       unitId: string,
       actualName: string,
       desiredName: string,

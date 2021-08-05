@@ -397,6 +397,7 @@ export const translation: TranslationStruct = {
       },
     },
     nameRef: {
+      manage: '名稱設定',
       unitId: '物件 ID',
       actualName: '實際名稱',
       desiredName: '自訂名稱',

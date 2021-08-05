@@ -429,6 +429,7 @@ export const translation: TranslationStruct = {
       },
     },
     nameRef: {
+      manage: 'Unit Name Config',
       unitId: 'Unit ID',
       actualName: 'Actual Name',
       desiredName: 'Desired Name',

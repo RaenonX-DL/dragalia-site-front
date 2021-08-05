@@ -404,6 +404,7 @@ export const translation: TranslationStruct = {
       },
     },
     nameRef: {
+      manage: 'Name Config',
       unitId: 'Unit ID',
       actualName: 'Actual Name',
       desiredName: 'Desired Name',

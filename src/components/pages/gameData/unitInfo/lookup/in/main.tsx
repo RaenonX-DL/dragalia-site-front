@@ -102,6 +102,11 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
               text: t((t) => t.posts.manage.addDragon),
             },
           ]}
+          otherButtons={[{
+            url: GeneralPath.UPDATE_UNIT_NAME_REF,
+            text: t((t) => t.game.nameRef.manage),
+            variant: 'outline-light',
+          }]}
           bottomMarginClass="mb-2"
         />
       }
