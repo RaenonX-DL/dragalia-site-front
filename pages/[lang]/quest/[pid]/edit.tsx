@@ -4,7 +4,7 @@ import {GetServerSideProps} from 'next';
 import {getSession} from 'next-auth/client';
 
 import {QuestPostGetResponse} from '../../../../src/api-def/api';
-import {QuestEditForm} from '../../../../src/components/elements/posts/quest/form/edit';
+import {QuestEditForm} from '../../../../src/components/pages/posts/quest/form/edit';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../../src/utils/ssr';
 import Error404 from '../../../404';

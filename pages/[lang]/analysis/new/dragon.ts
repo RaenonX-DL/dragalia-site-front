@@ -1,4 +1,4 @@
-import {AnalysisFormDragonNew} from '../../../../src/components/elements/posts/analysis/form/dragon/new';
+import {AnalysisFormDragonNew} from '../../../../src/components/pages/posts/analysis/form/dragon/new';
 
 
 export default AnalysisFormDragonNew;

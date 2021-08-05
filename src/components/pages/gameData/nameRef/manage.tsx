@@ -13,7 +13,7 @@ import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
-import {ArrayDataForm} from '../../../elements/posts/shared/form/array';
+import {ArrayDataForm} from '../../../elements/posts/form/array';
 import {UnitNameRefEntry} from './entry';
 import {NameRefUpdateStatus} from './status';
 
