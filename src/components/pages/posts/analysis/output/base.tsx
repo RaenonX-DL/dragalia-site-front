@@ -32,11 +32,11 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
         <PostManageBar
           newButtons={[
             {
-              url: GeneralPath.ANALYSIS_NEW_CHARA,
+              pathname: GeneralPath.ANALYSIS_NEW_CHARA,
               text: t((t) => t.posts.manage.addChara),
             },
             {
-              url: GeneralPath.ANALYSIS_NEW_DRAGON,
+              pathname: GeneralPath.ANALYSIS_NEW_DRAGON,
               text: t((t) => t.posts.manage.addDragon),
             },
           ]}

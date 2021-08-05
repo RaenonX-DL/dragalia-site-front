@@ -26,7 +26,7 @@ export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
       {
         context?.session?.user.isAdmin &&
         <PostManageBar
-          newButtons={[{url: GeneralPath.QUEST_NEW}]}
+          newButtons={[{pathname: GeneralPath.QUEST_NEW}]}
           editPostUrl={makePostPath(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}
         />
       }

@@ -4,7 +4,7 @@ import {useI18n} from '../../../i18n/hook';
 import {ButtonBar, ButtonBarProps, ButtonEntry} from '../common/buttonBar';
 
 
-type NewButtonEntry = Pick<ButtonEntry, 'url'> & {
+type NewButtonEntry = Pick<ButtonEntry, 'pathname'> & {
   text?: string,
 }
 
@@ -22,7 +22,7 @@ export const PostManageBar = ({newButtons, otherButtons, editPostUrl, bottomMarg
 
   if (editPostUrl) {
     buttons.push({
-      url: editPostUrl,
+      pathname: editPostUrl,
       variant: 'outline-info',
       text: t((t) => t.posts.manage.edit),
     });

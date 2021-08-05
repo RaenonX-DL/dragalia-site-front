@@ -13,11 +13,11 @@ describe('Post manage bar', () => {
     renderReact(() => (
       <PostManageBar newButtons={[
         {
-          url: GeneralPath.ABOUT,
+          pathname: GeneralPath.ABOUT,
           text: 'New',
         },
         {
-          url: GeneralPath.HOME,
+          pathname: GeneralPath.HOME,
           text: 'New 2',
         },
       ]}/>
@@ -30,7 +30,7 @@ describe('Post manage bar', () => {
   it('has `href` to edit a post', async () => {
     renderReact(() => (
       <PostManageBar
-        newButtons={[{url: GeneralPath.ABOUT, text: 'New'}]}
+        newButtons={[{pathname: GeneralPath.ABOUT, text: 'New'}]}
         editPostUrl={'/edit'}
       />
     ));

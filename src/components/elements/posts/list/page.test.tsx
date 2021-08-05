@@ -49,7 +49,7 @@ describe('Post list page', () => {
       () => (
         <PostListPage
           title={title}
-          postManageBarProps={{newButtons: [{url: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
+          postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
           renderPostEntries={() => <></>}
         />
@@ -71,7 +71,7 @@ describe('Post list page', () => {
       () => (
         <PostListPage
           title={title}
-          postManageBarProps={{newButtons: [{url: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
+          postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
           renderPostEntries={() => <></>}
         />

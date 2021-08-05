@@ -9,7 +9,7 @@ import {NextLink} from './link';
 
 
 export type ButtonEntry = {
-  url: string,
+  pathname: string,
   variant: ButtonVariant,
   text: string,
 }

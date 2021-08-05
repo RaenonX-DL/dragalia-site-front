@@ -18,7 +18,7 @@ const QuestList = () => {
       title={title}
       fnFetchList={ApiRequestSender.questList}
       postManageBarProps={{
-        newButtons: [{url: GeneralPath.QUEST_NEW}],
+        newButtons: [{pathname: GeneralPath.QUEST_NEW}],
       }}
       renderPostEntries={(response) => (
         <QuestPostList

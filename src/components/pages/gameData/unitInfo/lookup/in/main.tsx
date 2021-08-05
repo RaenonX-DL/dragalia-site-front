@@ -94,16 +94,16 @@ export const UnitInfoLookupInput = ({onSearchRequested}: LookupInputProps) => {
         <PostManageBar
           newButtons={[
             {
-              url: GeneralPath.ANALYSIS_NEW_CHARA,
+              pathname: GeneralPath.ANALYSIS_NEW_CHARA,
               text: t((t) => t.posts.manage.addChara),
             },
             {
-              url: GeneralPath.ANALYSIS_NEW_DRAGON,
+              pathname: GeneralPath.ANALYSIS_NEW_DRAGON,
               text: t((t) => t.posts.manage.addDragon),
             },
           ]}
           otherButtons={[{
-            url: GeneralPath.UPDATE_UNIT_NAME_REF,
+            pathname: GeneralPath.UPDATE_UNIT_NAME_REF,
             text: t((t) => t.game.nameRef.manage),
             variant: 'outline-light',
           }]}
