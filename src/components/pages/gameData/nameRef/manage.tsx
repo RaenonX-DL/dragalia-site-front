@@ -14,7 +14,7 @@ import {getElementCounter} from '../../../../utils/counter';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
-import {ArrayDataForm} from '../../../elements/posts/form/array';
+import {ArrayDataForm} from '../../../elements/posts/form/array/main';
 import {UnitNameRefEntry} from './entry';
 import {NameRefUpdateStatus} from './status';
 

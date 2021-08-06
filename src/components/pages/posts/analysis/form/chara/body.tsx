@@ -7,7 +7,7 @@ import {CharaAnalysisPayload, CharacterSkill} from '../../../../../../api-def/ap
 import {useI18n} from '../../../../../../i18n/hook';
 import {generateNewCharaSkill} from '../../../../../../utils/services/api/utils';
 import {MarkdownInput} from '../../../../../elements/markdown/input';
-import {ArrayDataForm} from '../../../../../elements/posts/form/array';
+import {ArrayDataForm} from '../../../../../elements/posts/form/array/main';
 import {PostFormDataProps, PostFormState} from '../../../../../elements/posts/form/types';
 import {AnalysisSkillInput} from './skill';
 

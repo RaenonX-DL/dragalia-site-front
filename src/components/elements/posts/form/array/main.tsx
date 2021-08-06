@@ -21,7 +21,6 @@ type ArrayDataFormProps<P, E> = {
   ) => React.ReactElement,
 }
 
-
 export const ArrayDataForm = <P, E extends object>({
   payload,
   minLength,

@@ -3,9 +3,9 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {PostMeta, SupportedLanguages} from '../../../../api-def/api';
-import {ArrayDataForm} from './array';
+import {renderReact} from '../../../../../../test/render/main';
+import {PostMeta, SupportedLanguages} from '../../../../../api-def/api';
+import {ArrayDataForm} from './main';
 
 
 describe('Array data form', () => {
@@ -202,5 +202,38 @@ describe('Array data form', () => {
     expect(setArrayFunc).toHaveBeenCalledTimes(1);
     expect(setArrayFunc.mock.calls[0][0].length).toBe(2);
     expect(setArrayFunc.mock.calls[0][0].map((item) => item.code)).toStrictEqual(['enum 2', 'enum 3']);
+  });
+
+  it('adds new data to the top if specified', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [
+        {
+          code: 'enum 1',
+        },
+        {
+          code: 'enum 2',
+        },
+      ],
+    };
+
+    renderReact(() => (
+      <ArrayDataForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
+    userEvent.click(addButton);
+
+    expect(payload.enums.length).toBe(3);
+    expect(setArrayFunc).toHaveBeenCalledTimes(1);
+    expect(generateNewElemFunc).toHaveBeenCalledTimes(1);
   });
 });
