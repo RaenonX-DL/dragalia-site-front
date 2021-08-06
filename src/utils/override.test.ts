@@ -83,4 +83,11 @@ describe('Object override utils', () => {
 
     expect(overridden).toStrictEqual({a: null});
   });
+
+  it('overrides object', async () => {
+    const original: {a: {[ID in number]: string}} = {a: {}};
+    const overridden = overrideObject(original, {a: {7: 'a'}});
+
+    expect(overridden).toStrictEqual({a: {7: 'a'}});
+  });
 });

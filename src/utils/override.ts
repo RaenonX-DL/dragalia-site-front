@@ -16,7 +16,9 @@ export const overrideObject = <T, >(original: T, override?: DeepPartial<T> | nul
           return [key, value];
         }
 
-        return [key, overrideObject(value, subOverride)];
+        // Just use `subOverride` if `value` is an empty object.
+        // Otherwise, call `overrideObject` on it.
+        return [key, Object.keys(value).length ? overrideObject(value, subOverride) : subOverride];
       }
 
       const newValue = override[key as keyof T];
