@@ -83,7 +83,10 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
     ...await getPageMeta(appContext),
     isNotFound: appContext.ctx.res?.statusCode === 404,
     session,
-    simpleUnitInfo: await ResourceLoader.getSimpleUnitInfo(),
+    resources: {
+      simpleUnitInfo: await ResourceLoader.getSimpleUnitInfo(),
+      afflictions: await ResourceLoader.getEnumAfflictionStatus(),
+    },
   };
 
   appProps.pageProps = pageProps;

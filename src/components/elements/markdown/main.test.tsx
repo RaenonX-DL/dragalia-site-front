@@ -270,7 +270,7 @@ describe('Markdown', () => {
 
     renderReact(
       () => <Markdown>{markdown}</Markdown>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     const unitIcon = screen.getByText('', {selector: 'img'});
@@ -287,7 +287,7 @@ describe('Markdown', () => {
 
     renderReact(
       () => <Markdown>{markdown}</Markdown>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     const unitIcon = screen.getByText('', {selector: 'img'});

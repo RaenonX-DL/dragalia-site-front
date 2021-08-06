@@ -4,8 +4,8 @@ import {screen} from '@testing-library/react';
 
 import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
 import {renderReact} from '../../../test/render/main';
-import {SupportedLanguages} from '../../api-def/api';
-import {SimpleUnitInfo} from '../../api-def/resources/types/simpleInfo';
+import {SupportedLanguages, UnitType} from '../../api-def/api';
+import {SimpleUnitInfo} from '../../api-def/resources';
 import {Markdown} from '../../components/elements/markdown/main';
 import {PostPath} from '../../const/path/definitions';
 import {translations} from '../../i18n/translations/main';
@@ -69,6 +69,8 @@ describe('Process text', () => {
         [SupportedLanguages.EN]: 'Gala Mym',
         [SupportedLanguages.JP]: 'JP',
       },
+      type: UnitType.CHARACTER,
+      icon: '',
     },
   };
 
@@ -79,7 +81,7 @@ describe('Process text', () => {
 
     renderReact(
       () => <Markdown>{result}</Markdown>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('Gala Mym')).toBeInTheDocument();

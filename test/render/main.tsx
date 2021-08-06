@@ -6,11 +6,13 @@ import {ObjectId} from 'mongodb';
 import {Session} from 'next-auth';
 import {RouterContext} from 'next/dist/next-server/lib/router-context';
 
+import {EnumEntry} from '../../src/api-def/resources';
 import {AppReactContext} from '../../src/context/app/main';
 import {AppReactContextValue} from '../../src/context/app/types';
 import {ReduxProvider} from '../../src/state/provider';
 import {createStore} from '../../src/state/store';
 import {ReduxStore} from '../../src/state/types';
+import {overrideObject} from '../../src/utils/override';
 import {makeRouter} from './router';
 import {RenderOptions, RenderAppReturns} from './types';
 
@@ -38,7 +40,15 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
     session: options?.hasSession || options?.user ? session : null,
     alerts: options?.alerts || [],
     params: options?.contextParams || {},
-    simpleUnitInfo: options?.simpleUnitInfo || {},
+    resources: overrideObject(
+      {
+        afflictions: {
+          status: [] as Array<EnumEntry>,
+        },
+        simpleUnitInfo: {},
+      },
+      options?.resources,
+    ),
   };
 
   return (

@@ -1,10 +1,13 @@
 import {Session} from 'next-auth';
 
-import {SimpleUnitInfo} from '../../api-def/resources';
+import {SimpleUnitInfo, StatusEnums} from '../../api-def/resources';
 import {PageMeta} from '../../utils/meta/types';
 
 
 export type AppReactContextValue = PageMeta & {
   session: Session | null,
-  simpleUnitInfo: SimpleUnitInfo,
+  resources: {
+    afflictions: StatusEnums,
+    simpleUnitInfo: SimpleUnitInfo,
+  },
 }

@@ -22,7 +22,7 @@ export const MarkdownUnitName = ({children}: Props) => {
 
   const [unitId, nameUsed] = children.split(UNIT_NAME_SEPARATOR, 2);
 
-  const unitInfo = context.simpleUnitInfo[String(unitId)];
+  const unitInfo = context.resources.simpleUnitInfo[String(unitId)];
 
   if (!unitInfo) {
     // If `children` does not contain the separator, then `unitId` will be the original text
