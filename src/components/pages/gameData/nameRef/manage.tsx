@@ -105,6 +105,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
             isNameInvalid={(nameCounter.get(element.name) || 0) > 1}
           />
         )}
+        addToTop
       />
     </form>
   );

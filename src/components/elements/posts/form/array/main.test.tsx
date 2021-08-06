@@ -171,15 +171,9 @@ describe('Array data form', () => {
     payload = {
       lang: SupportedLanguages.CHT,
       enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-        {
-          code: 'enum 3',
-        },
+        {code: 'enum 1'},
+        {code: 'enum 2'},
+        {code: 'enum 3'},
       ],
     };
 
@@ -226,14 +220,74 @@ describe('Array data form', () => {
         getUpdatedElement={getUpdatedElemFunc}
         generateNewElement={generateNewElemFunc}
         renderEntries={renderEntriesFunc}
+        addToTop
       />
     ));
 
     const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
     userEvent.click(addButton);
 
-    expect(payload.enums.length).toBe(3);
+    expect(payload.enums.map((element) => element.code)).toStrictEqual([7, 'enum 1', 'enum 2']);
     expect(setArrayFunc).toHaveBeenCalledTimes(1);
     expect(generateNewElemFunc).toHaveBeenCalledTimes(1);
+  });
+
+  it('removes added entry starting from an empty array', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [],
+    };
+
+    renderReact(() => (
+      <ArrayDataForm
+        payload={payload}
+        minLength={0}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
+    userEvent.click(addButton);
+
+    const removeButton = screen.getByText('', {selector: 'i.bi-x-lg'});
+    userEvent.click(removeButton);
+
+    expect(payload.enums.length).toBe(0);
+    expect(screen.queryByText('', {selector: 'i.bi-x-lg'})).not.toBeInTheDocument();
+  });
+
+  it('removes added entry starting from 1-element array in `addToTop`', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [
+        {code: 'a'},
+      ],
+    };
+
+    renderReact(() => (
+      <ArrayDataForm
+        payload={payload}
+        minLength={0}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+        addToTop
+      />
+    ));
+
+    const addButton = screen.getByText('', {selector: 'i.bi-plus-lg'});
+    userEvent.click(addButton);
+    userEvent.click(addButton);
+
+    const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[1];
+    userEvent.click(removeButton);
+
+    expect(payload.enums.map((entry) => entry.code)).toStrictEqual([7, 'a']);
   });
 });

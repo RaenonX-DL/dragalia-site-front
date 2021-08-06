@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {ArrayAddButtonRow} from './addButton';
+
 
 export type ArrayDataFormOnChangedHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
 
@@ -19,6 +21,7 @@ type ArrayDataFormProps<P, E> = {
     onChangeHandler: ArrayDataFormOnChangedHandler<E>,
     idx: number,
   ) => React.ReactElement,
+  addToTop?: boolean,
 }
 
 export const ArrayDataForm = <P, E extends object>({
@@ -29,13 +32,19 @@ export const ArrayDataForm = <P, E extends object>({
   getUpdatedElement,
   generateNewElement,
   renderEntries,
+  addToTop = false,
 }: ArrayDataFormProps<P, E>) => {
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
   //   removing the first entry only removes the underlying 1st data.
   //   The original text for the 1st data is still rendered.
   // No related tests implemented because the caching behavior doesn't seem existed in JSDOM
-  const [counter, setCounter] = React.useState([...Array(getArray(payload).length).keys()]);
+  const initialCounter = [...Array(getArray(payload).length).keys()];
+  if (addToTop) {
+    initialCounter.reverse();
+  }
+
+  const [counter, setCounter] = React.useState(initialCounter);
 
   const onChangeHandler = <K extends keyof E>(changedIdx: number) => (
     key: K,
@@ -53,8 +62,14 @@ export const ArrayDataForm = <P, E extends object>({
   };
 
   const onAdded = () => {
-    setArray(getArray(payload).concat([generateNewElement()]));
-    setCounter([...counter, counter[counter.length - 1] + 1]);
+    // Conditional statements for new counter to handle the case where counter is an empty array (no data)\
+    if (addToTop) {
+      setArray([generateNewElement(), ...getArray(payload)]);
+      setCounter([counter.length ? counter[0] + 1 : 0, ...counter]);
+    } else {
+      setArray([...getArray(payload), generateNewElement()]);
+      setCounter([...counter, counter.length ? counter[counter.length - 1] + 1 : 0]);
+    }
   };
 
   const onRemoved = (counterToRemove: number) => () => {
@@ -70,6 +85,7 @@ export const ArrayDataForm = <P, E extends object>({
 
   return (
     <>
+      {addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
       {
         array.map((elem, elemIdx) => (
           <React.Fragment key={counter[elemIdx]}>
@@ -91,17 +107,7 @@ export const ArrayDataForm = <P, E extends object>({
           </React.Fragment>
         ))
       }
-      <Row className="mt-2">
-        <Col>
-          <Button
-            className="d-inline float-right"
-            variant="outline-success"
-            onClick={onAdded}
-          >
-            <i className="bi bi-plus-lg"/>
-          </Button>
-        </Col>
-      </Row>
+      {!addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
     </>
   );
 };
