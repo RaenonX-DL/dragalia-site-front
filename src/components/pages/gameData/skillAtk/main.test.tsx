@@ -26,7 +26,7 @@ describe('ATK skill lookup', () => {
   };
 
   const waitForResourcesLoaded = async () => {
-    await waitFor(() => expect(screen.getByText(translationEN.misc.search)).not.toBeDisabled());
+    await waitFor(() => expect(screen.getByText(translationEN.misc.search)).not.toBeDisabled(), {timeout: 2000});
   };
 
   beforeEach(() => {
