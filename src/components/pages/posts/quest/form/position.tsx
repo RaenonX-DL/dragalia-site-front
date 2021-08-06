@@ -3,7 +3,7 @@ import React from 'react';
 import {QuestPostPublishPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {generateNewPositionInfo} from '../../../../../utils/services/api/utils';
-import {ArrayDataForm} from '../../../../elements/posts/form/array';
+import {ArrayDataForm} from '../../../../elements/posts/form/array/main';
 import {PostFormDataProps} from '../../../../elements/posts/form/types';
 import {QuestPositionUnit} from './positionUnit';
 

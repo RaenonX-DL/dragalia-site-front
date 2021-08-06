@@ -14,7 +14,7 @@ import {getElementCounter} from '../../../../utils/counter';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
-import {ArrayDataForm} from '../../../elements/posts/form/array';
+import {ArrayDataForm} from '../../../elements/posts/form/array/main';
 import {UnitNameRefEntry} from './entry';
 import {NameRefUpdateStatus} from './status';
 
@@ -77,6 +77,18 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
 
   return (
     <form onSubmit={onSubmit}>
+      <Row className="text-right">
+        <Col>
+          <NameRefUpdateStatus status={refsStatus.updateStatus}/>
+          <Button
+            type="submit" variant="outline-light" className="ml-2"
+            disabled={!isValid || isJustUpdated || refsStatus.updating || refsStatus.isInit}
+          >
+            {t((t) => t.misc.update)}
+          </Button>
+        </Col>
+      </Row>
+      <hr/>
       <ArrayDataForm
         payload={refsStatus}
         minLength={0}
@@ -93,19 +105,8 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
             isNameInvalid={(nameCounter.get(element.name) || 0) > 1}
           />
         )}
+        addToTop
       />
-      <hr/>
-      <Row className="float-right">
-        <Col>
-          <NameRefUpdateStatus status={refsStatus.updateStatus}/>
-          <Button
-            type="submit" variant="outline-light" className="ml-2"
-            disabled={!isValid || isJustUpdated || refsStatus.updating || refsStatus.isInit}
-          >
-            {t((t) => t.misc.update)}
-          </Button>
-        </Col>
-      </Row>
     </form>
   );
 };
