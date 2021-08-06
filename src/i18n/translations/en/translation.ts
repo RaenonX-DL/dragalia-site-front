@@ -428,6 +428,19 @@ export const translation: TranslationStruct = {
         relatedLinks: 'Related Links',
       },
     },
+    nameRef: {
+      manage: 'Unit Name Config',
+      unitId: 'Unit ID',
+      actualName: 'Actual Name',
+      desiredName: 'Desired Name',
+      error: {
+        invalidUnitId: 'Invalid Unit #',
+      },
+      status: {
+        updated: 'Updated!',
+        error: 'Failed to update: {{error}}',
+      },
+    },
   },
   userControl: {
     noUid: 'No user ID',
@@ -473,13 +486,12 @@ export const translation: TranslationStruct = {
     },
   },
   misc: {
-    add: 'Add',
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
     openGif: 'Click to open GIF',
-    remove: 'Remove',
     search: 'Search',
     searchKeyword: 'Keyword',
+    update: 'Update',
   },
   meta: {
     inUse: {
@@ -561,6 +573,10 @@ export const translation: TranslationStruct = {
         info: {
           title: '{{unitName}}',
           description: 'Unit info of {{unitName}}.',
+        },
+        name: {
+          title: 'Unit Name Config',
+          description: 'Page to configure the custom unit names.',
         },
       },
     },

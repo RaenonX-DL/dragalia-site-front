@@ -1,0 +1,57 @@
+.section p {
+  margin: 0;
+}
+
+.section table {
+  width: 100%;
+  padding-right: 30px;
+}
+
+.section table tr {
+  background-color: #0e0e0e;
+  border: 1px solid #656565;
+}
+
+.section table tr:last-child {
+  margin-bottom: 0;
+}
+
+.section table th,
+.section table td {
+  padding: 0.2rem 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.section table th.sp,
+.section table th.ssp,
+.section table td.sp,
+.section table td.ssp {
+  width: 40%;
+}
+
+.section table th.ssCost,
+.section table td.ssCost {
+  width: 20%;
+}
+
+.section table th.sp,
+.section table th.ssp,
+.section table th.ssCost,
+.section table td.sp,
+.section table td.ssp,
+.section table td.ssCost {
+  border: 1px solid #656565;
+}
+
+.section table tbody tr:nth-of-type(odd) {
+  background-color: #141414;
+}
+
+.section table tbody tr:nth-of-type(even) {
+  background-color: #202020;
+}
+
+.section table tbody tr:hover {
+  background-color: #042a3b;
+}

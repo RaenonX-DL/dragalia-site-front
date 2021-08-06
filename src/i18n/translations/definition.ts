@@ -1,6 +1,7 @@
 import {UnitType} from '../../api-def/api';
-import {Efficiency} from '../../components/elements/gameData/skillAtk/out/types';
-import {SortOrder} from '../../components/elements/gameData/unitInfo/lookup/in/types';
+import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
+import {SortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+
 
 export type PageMetaTranslations = {
   title: string,
@@ -389,6 +390,19 @@ export type TranslationStruct = {
         relatedLinks: string,
       },
     },
+    nameRef: {
+      manage: string,
+      unitId: string,
+      actualName: string,
+      desiredName: string,
+      error: {
+        invalidUnitId: string,
+      },
+      status: {
+        updated: string,
+        error: string,
+      },
+    },
   },
   userControl: {
     noUid: string,
@@ -421,13 +435,12 @@ export type TranslationStruct = {
     }
   },
   misc: {
-    add: string,
     omMember: string,
     omGroup: string,
     openGif: string,
-    remove: string,
     search: string,
     searchKeyword: string,
+    update: string,
   },
   meta: {
     inUse: {
@@ -459,6 +472,7 @@ export type TranslationStruct = {
       },
       unit: {
         info: PageMetaTranslations,
+        name: PageMetaTranslations,
       },
     },
     error: {

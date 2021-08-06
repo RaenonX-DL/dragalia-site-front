@@ -1,6 +1,6 @@
 import {SupportedLanguages, UnitType} from '../../../src/api-def/api';
 import {AttackingSkillData, Element} from '../../../src/api-def/resources';
-import {CalculatedSkillEntry} from '../../../src/components/elements/gameData/skillAtk/out/types';
+import {CalculatedSkillEntry} from '../../../src/components/pages/gameData/skillAtk/out/types';
 
 
 export const generateAttackingSkillEntry = (): AttackingSkillData => ({

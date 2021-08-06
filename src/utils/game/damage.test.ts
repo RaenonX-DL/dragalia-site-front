@@ -1,8 +1,8 @@
 import {generateAttackingSkillEntry} from '../../../test/data/mock/skill';
 import {UnitType} from '../../api-def/api';
 import {AttackingSkillData} from '../../api-def/resources';
-import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
-import {generateInputData} from '../../components/elements/gameData/skillAtk/in/utils/inputData';
+import {InputData} from '../../components/pages/gameData/skillAtk/in/types';
+import {generateInputData} from '../../components/pages/gameData/skillAtk/in/utils/inputData';
 import {ConditionCodes} from '../../const/gameData';
 import {calculateDamage, CalculateDamageReturn} from './damage';
 

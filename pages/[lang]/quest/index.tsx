@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {QuestPostList} from '../../../src/components/elements/posts/quest/list/list';
-import {PostListPage} from '../../../src/components/elements/posts/shared/list/page';
+import {PostListPage} from '../../../src/components/elements/posts/list/page';
+import {QuestPostList} from '../../../src/components/pages/posts/quest/list/list';
 import {GeneralPath, PostPath} from '../../../src/const/path/definitions';
 import {useI18n} from '../../../src/i18n/hook';
-import {makePostPath} from '../../../src/utils/path/make';
+import {makePostUrl} from '../../../src/utils/path/make';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 
 
@@ -18,13 +18,13 @@ const QuestList = () => {
       title={title}
       fnFetchList={ApiRequestSender.questList}
       postManageBarProps={{
-        newButtons: [{url: GeneralPath.QUEST_NEW}],
+        newButtons: [{pathname: GeneralPath.QUEST_NEW}],
       }}
       renderPostEntries={(response) => (
         <QuestPostList
           entries={response.posts}
           generateLink={(postId) => (
-            makePostPath(PostPath.QUEST, {pid: postId, lang})
+            makePostUrl(PostPath.QUEST, {pid: postId, lang})
           )}
         />
       )}

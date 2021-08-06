@@ -5,18 +5,19 @@ import {User} from 'next-auth';
 import {NextRouter} from 'next/router';
 
 import {AlertEntry, PageMetaResponse} from '../../src/api-def/api';
-import {SimpleUnitInfo} from '../../src/api-def/resources/types/simpleInfo';
+import {AppReactContextValue} from '../../src/context/app/types';
 import {PreloadedReduxState, ReduxStore} from '../../src/state/types';
+import {PageMeta} from '../../src/utils/meta/types';
+import {DeepPartial} from '../../src/utils/types';
 
 
-export type RenderOptions = {
+export type RenderOptions = DeepPartial<Omit<AppReactContextValue, keyof PageMeta | 'session'>> & {
   preloadState?: PreloadedReduxState,
   routerOptions?: Partial<NextRouter>,
   user?: Partial<User>,
   hasSession?: boolean,
   alerts?: Array<AlertEntry>,
   contextParams?: PageMetaResponse['params'],
-  simpleUnitInfo?: SimpleUnitInfo,
 }
 
 export type RenderAppReturns = RenderResult & {

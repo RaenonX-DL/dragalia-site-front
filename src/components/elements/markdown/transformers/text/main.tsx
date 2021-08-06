@@ -1,7 +1,10 @@
 import React from 'react';
 
+import {AppReactContext} from '../../../../../context/app/main';
+import {useI18n} from '../../../../../i18n/hook';
 import {syntaxCollection} from './syntax';
 import {TextComponentProps} from './types';
+import {injectMarkdownToText} from './utils';
 
 
 export const Text = ({children}: TextComponentProps) => {
@@ -44,6 +47,9 @@ type TextChildrenProps = {
 }
 
 export const TextChildren = ({children}: TextChildrenProps) => {
+  const {lang} = useI18n();
+  const context = React.useContext(AppReactContext);
+
   if (!children) {
     return <></>;
   }
@@ -53,7 +59,14 @@ export const TextChildren = ({children}: TextChildrenProps) => {
       {
         children.map((child, idx) => {
           if (typeof child === 'string') {
-            return <Text key={idx}>{child}</Text>;
+            const injected = injectMarkdownToText(
+              lang, child,
+              {
+                afflictions: context?.resources.afflictions.status || [],
+              },
+            );
+
+            return <Text key={idx}>{injected}</Text>;
           }
 
           return <React.Fragment key={idx}>{child}</React.Fragment>;

@@ -8,7 +8,7 @@ import {unitSyntax} from '../../../components/elements/markdown/transformers/tex
 import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
 import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
-import {makePostPath} from '../../path/make';
+import {makePostUrl} from '../../path/make';
 import * as unitInfoUtils from '../../services/resources/unitInfo/utils';
 import {transformQuickReference} from './quickReference';
 
@@ -23,8 +23,8 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
 
     const result = await transformQuickReference({text, lang});
     const expectedTitle = translations[lang].posts.quest.titleSelf;
-    const expectedPath = makePostPath(PostPath.QUEST, {pid: 1, lang});
-    const expectedText = `Quest post [${expectedTitle} #1](${expectedPath})`;
+    const expectedUrl = makePostUrl(PostPath.QUEST, {pid: 1, lang});
+    const expectedText = `Quest post [${expectedTitle} #1](${expectedUrl})`;
     expect(result).toBe(expectedText);
   });
 
@@ -42,8 +42,8 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
     const result = await transformQuickReference({text, lang});
 
     const expectedTitle = translations[lang].posts.misc.titleSelf;
-    const expectedPath = makePostPath(PostPath.MISC, {pid: 3, lang});
-    const expectedText = `Miscellaneous post [${expectedTitle} #3](${expectedPath})`;
+    const expectedUrl = makePostUrl(PostPath.MISC, {pid: 3, lang});
+    const expectedText = `Miscellaneous post [${expectedTitle} #3](${expectedUrl})`;
     expect(result).toBe(expectedText);
   });
 
@@ -62,10 +62,10 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
 
     const expectedMisc =
       `Miscellaneous post [${translations[lang].posts.misc.titleSelf} #3]` +
-      `(${makePostPath(PostPath.MISC, {pid: 3, lang})})`;
+      `(${makePostUrl(PostPath.MISC, {pid: 3, lang})})`;
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 1, lang})})`;
     const expectedAnalysis = `${galaMymMdTransformed} Analysis`;
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${expectedAnalysis}`);
   });
@@ -73,10 +73,10 @@ describe('Quick reference transformer (Quest/Misc/Mixed)', () => {
   it('keeps already transformed references intact', async () => {
     const expectedMisc =
       `Miscellaneous post [${translations[lang].posts.misc.titleSelf} #3]` +
-      `(${makePostPath(PostPath.MISC, {pid: 3, lang})})`;
+      `(${makePostUrl(PostPath.MISC, {pid: 3, lang})})`;
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 1, lang})})`;
     const expectedAnalysis = `${galaMymMdTransformed} Analysis`;
     const text = `${expectedMisc} ${expectedQuest} ${expectedAnalysis}`;
 

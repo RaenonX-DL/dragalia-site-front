@@ -33,6 +33,14 @@ export const renderTable = ({children, node}: MarkdownComponentProps) => {
   return <table>{children}</table>;
 };
 
+export const renderTableHeader = ({children}: MarkdownComponentProps) => (
+  <th>
+    <TextChildren>
+      {children}
+    </TextChildren>
+  </th>
+);
+
 export const renderTableRow: TableRowComponent = ({children}) => {
   idxCounter = 0;
 

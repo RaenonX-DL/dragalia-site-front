@@ -396,6 +396,19 @@ export const translation: TranslationStruct = {
         relatedLinks: '相關連結',
       },
     },
+    nameRef: {
+      manage: '名稱設定',
+      unitId: '物件 ID',
+      actualName: '實際名稱',
+      desiredName: '自訂名稱',
+      error: {
+        invalidUnitId: '物件 ID 不存在',
+      },
+      status: {
+        updated: '更新成功！',
+        error: '更新失敗: {{error}}',
+      },
+    },
   },
   userControl: {
     noUid: '無使用者 ID',
@@ -437,13 +450,12 @@ export const translation: TranslationStruct = {
     },
   },
   misc: {
-    add: '新增',
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
     openGif: '點擊以開啟 GIF 圖片',
-    remove: '移除',
     search: '搜尋',
     searchKeyword: '關鍵字',
+    update: '更新',
   },
   meta: {
     inUse: {
@@ -525,6 +537,10 @@ export const translation: TranslationStruct = {
         info: {
           title: '{{unitName}}',
           description: '{{unitName}} 的相關資訊。',
+        },
+        name: {
+          title: '物件名稱設定',
+          description: '設定物件名稱的頁面。',
         },
       },
     },

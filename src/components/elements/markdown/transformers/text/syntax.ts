@@ -1,9 +1,16 @@
 import {CalcExpression} from '../math/main';
 import {ColoredText} from './color';
 import {EnlargedTextLevel2, EnlargedTextLevel3} from './enlarge';
+import {Icon} from './icon/main';
 import {Syntax} from './types';
 import {MarkdownUnitName} from './unit';
 
+
+export const iconSyntax: Syntax = {
+  start: '{',
+  end: '}',
+  Component: Icon,
+};
 
 const colorSyntax: Syntax = {
   start: '::',
@@ -37,6 +44,7 @@ const enlargeLv2Syntax: Syntax = {
 
 // NOTE: Order matters!
 export const syntaxCollection = [
+  iconSyntax,
   colorSyntax,
   calcSyntax,
   unitSyntax,

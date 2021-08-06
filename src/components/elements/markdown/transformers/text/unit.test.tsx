@@ -26,7 +26,7 @@ describe('Unit link', () => {
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('Gala Leonidas')).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('Unit link', () => {
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('EN')).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('Unit link', () => {
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     const unitIcon = screen.getByText('', {selector: 'img'});
@@ -62,7 +62,7 @@ describe('Unit link', () => {
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('Gala Leonidas')).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe('Unit link', () => {
 
     renderReact(
       () => <MarkdownUnitName>{text}</MarkdownUnitName>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('Text')).toBeInTheDocument();

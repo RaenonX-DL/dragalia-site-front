@@ -42,13 +42,17 @@ import {
   UnitInfoLookupLandingResponse,
   UnitInfoLookupPayload,
   UnitInfoLookupResponse,
+  UnitNameRefManagePayload,
+  UnitNameRefManageResponse,
   UnitNameRefPayload,
   UnitNameRefResponse,
+  UnitNameRefUpdatePayload,
+  UnitNameRefUpdateResponse,
   UnitPageMetaPayload,
   UnitPageMetaResponse,
   UnitType,
 } from '../../../api-def/api';
-import {InputData as AtkSkillInput} from '../../../components/elements/gameData/skillAtk/in/types';
+import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
@@ -346,6 +350,37 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.DATA_UNIT_NAME_REF,
       {uid: '', lang},
+    );
+  }
+
+  /**
+   * Get all unit name references in a certain ``lang`` to update.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language to get the unit name references
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static getUnitNameRefManage(uid: string, lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<UnitNameRefManageResponse | FailedResponse, UnitNameRefManagePayload>(
+      'GET',
+      ApiEndPoints.MANAGE_UNIT_NAME_REF,
+      {uid, lang},
+    );
+  }
+
+  /**
+   * Update all unit name references in a certain ``lang``.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language to get the unit name references
+   * @param {Array<UnitNameRefEntry>} refs all unit name references in a certain language
+   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   */
+  static updateUnitNameRefs(uid: string, lang: SupportedLanguages, refs: UnitNameRefManageResponse['refs']) {
+    return ApiRequestSender.sendRequest<UnitNameRefUpdateResponse | FailedResponse, UnitNameRefUpdatePayload>(
+      'POST',
+      ApiEndPoints.MANAGE_UNIT_NAME_REF,
+      {uid, lang, refs},
     );
   }
 

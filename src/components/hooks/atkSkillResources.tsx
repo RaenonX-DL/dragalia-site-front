@@ -10,7 +10,7 @@ import {
 import {ResourceLoader} from '../../utils/services/resources/loader';
 import {DeepPartial} from '../../utils/types';
 import {useFetchState, useFetchStateProcessed} from '../elements/common/fetch';
-import {EnumDataPack} from '../elements/gameData/skillAtk/out/props';
+import {EnumDataPack} from '../pages/gameData/skillAtk/out/props';
 
 
 type AtkSkillResourceToFetch = 'all' | 'conditionEnumsOnly'

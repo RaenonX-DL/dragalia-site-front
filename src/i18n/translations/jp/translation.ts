@@ -403,6 +403,19 @@ export const translation: TranslationStruct = {
         relatedLinks: 'に関するリンク',
       },
     },
+    nameRef: {
+      manage: 'Name Config',
+      unitId: 'Unit ID',
+      actualName: 'Actual Name',
+      desiredName: 'Desired Name',
+      error: {
+        invalidUnitId: 'Invalid Unit #',
+      },
+      status: {
+        updated: '更新成功！',
+        error: '更新失敗: {{error}}',
+      },
+    },
   },
   userControl: {
     noUid: '該当するアカウントが見当たりません。',
@@ -442,13 +455,12 @@ export const translation: TranslationStruct = {
     },
   },
   misc: {
-    add: '追加',
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
     openGif: '點擊以開啟 GIF 圖片',
-    remove: '削除',
     search: '検索',
     searchKeyword: 'Keyword',
+    update: '更新',
   },
   meta: {
     inUse: {
@@ -530,6 +542,10 @@ export const translation: TranslationStruct = {
         info: {
           title: '{{unitName}}',
           description: 'Unit info of {{unitName}}.',
+        },
+        name: {
+          title: 'ユニット名前設定ページ',
+          description: 'ユニット名前を設定する。',
         },
       },
     },

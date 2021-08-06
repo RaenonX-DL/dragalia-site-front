@@ -1,4 +1,4 @@
-import {UnitInfo} from '../../../src/components/elements/gameData/unitInfo/output/main';
+import {UnitInfo} from '../../../src/components/pages/gameData/unitInfo/output/main';
 
 
 export default UnitInfo;

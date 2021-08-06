@@ -4,12 +4,12 @@ import {screen} from '@testing-library/react';
 
 import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
 import {renderReact} from '../../../test/render/main';
-import {SupportedLanguages} from '../../api-def/api';
-import {SimpleUnitInfo} from '../../api-def/resources/types/simpleInfo';
+import {SupportedLanguages, UnitType} from '../../api-def/api';
+import {SimpleUnitInfo} from '../../api-def/resources';
 import {Markdown} from '../../components/elements/markdown/main';
 import {PostPath} from '../../const/path/definitions';
 import {translations} from '../../i18n/translations/main';
-import {makePostPath} from '../path/make';
+import {makePostUrl} from '../path/make';
 import * as unitInfoUtils from '../services/resources/unitInfo/utils';
 import {processText} from './text';
 
@@ -33,10 +33,10 @@ describe('Process text', () => {
 
     const expectedMisc =
       `Miscellaneous post [${translations[lang].posts.misc.titleSelf} #3]` +
-      `(${makePostPath(PostPath.MISC, {pid: 3, lang})})`;
+      `(${makePostUrl(PostPath.MISC, {pid: 3, lang})})`;
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 1, lang})})`;
     expect(result).toBe(`${expectedMisc} ${expectedQuest} ${galaMymMdTransformed} Analysis`);
   });
 
@@ -51,10 +51,10 @@ describe('Process text', () => {
   it('keeps already transformed references intact', async () => {
     const expectedMisc =
       `Miscellaneous post [${translations[lang].posts.misc.titleSelf} #3]` +
-      `(${makePostPath(PostPath.MISC, {pid: 3, lang})})`;
+      `(${makePostUrl(PostPath.MISC, {pid: 3, lang})})`;
     const expectedQuest =
       `Quest Post [${translations[lang].posts.quest.titleSelf} #1]` +
-      `(${makePostPath(PostPath.QUEST, {pid: 1, lang})})`;
+      `(${makePostUrl(PostPath.QUEST, {pid: 1, lang})})`;
     const text = `${expectedMisc} ${expectedQuest} ${galaMymMdTransformed}`;
 
     const result = await processText({text, lang});
@@ -69,6 +69,8 @@ describe('Process text', () => {
         [SupportedLanguages.EN]: 'Gala Mym',
         [SupportedLanguages.JP]: 'JP',
       },
+      type: UnitType.CHARACTER,
+      icon: '',
     },
   };
 
@@ -79,7 +81,7 @@ describe('Process text', () => {
 
     renderReact(
       () => <Markdown>{result}</Markdown>,
-      {simpleUnitInfo},
+      {resources: {simpleUnitInfo}},
     );
 
     expect(screen.getByText('Gala Mym')).toBeInTheDocument();

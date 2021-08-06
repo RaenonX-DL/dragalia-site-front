@@ -10,8 +10,8 @@ import {
   DragonAnalysisBody,
   UnitType,
 } from '../../../../src/api-def/api';
-import {AnalysisFormCharaEdit} from '../../../../src/components/elements/posts/analysis/form/chara/edit';
-import {AnalysisFormDragonEdit} from '../../../../src/components/elements/posts/analysis/form/dragon/edit';
+import {AnalysisFormCharaEdit} from '../../../../src/components/pages/posts/analysis/form/chara/edit';
+import {AnalysisFormDragonEdit} from '../../../../src/components/pages/posts/analysis/form/dragon/edit';
 import {useI18n} from '../../../../src/i18n/hook';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {getServerSidePropsPost} from '../../../../src/utils/ssr';

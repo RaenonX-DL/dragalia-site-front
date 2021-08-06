@@ -1,7 +1,8 @@
 import {UnitType} from '../../api-def/api';
 import {AttackingSkillData} from '../../api-def/resources';
-import {InputData} from '../../components/elements/gameData/skillAtk/in/types';
+import {InputData} from '../../components/pages/gameData/skillAtk/in/types';
 import {ConditionCodes} from '../../const/gameData';
+
 
 export type CalculateDamageReturn = {
   lowest: number,
@@ -10,11 +11,9 @@ export type CalculateDamageReturn = {
   totalMods: number,
 };
 
-
 const calculateModOnCrisis = (originalMod: number, crisisMod: number, currentHpRate: number): number => {
   return originalMod * ((1 - currentHpRate) ** 2 * (crisisMod - 1) + 1);
 };
-
 
 export const calculateDamage = (
   inputData: InputData, attackingSkillData: AttackingSkillData, charaElementRate: number,
