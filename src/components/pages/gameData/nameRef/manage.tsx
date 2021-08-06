@@ -77,6 +77,18 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
 
   return (
     <form onSubmit={onSubmit}>
+      <Row className="text-right">
+        <Col>
+          <NameRefUpdateStatus status={refsStatus.updateStatus}/>
+          <Button
+            type="submit" variant="outline-light" className="ml-2"
+            disabled={!isValid || isJustUpdated || refsStatus.updating || refsStatus.isInit}
+          >
+            {t((t) => t.misc.update)}
+          </Button>
+        </Col>
+      </Row>
+      <hr/>
       <ArrayDataForm
         payload={refsStatus}
         minLength={0}
@@ -94,18 +106,6 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
           />
         )}
       />
-      <hr/>
-      <Row className="float-right">
-        <Col>
-          <NameRefUpdateStatus status={refsStatus.updateStatus}/>
-          <Button
-            type="submit" variant="outline-light" className="ml-2"
-            disabled={!isValid || isJustUpdated || refsStatus.updating || refsStatus.isInit}
-          >
-            {t((t) => t.misc.update)}
-          </Button>
-        </Col>
-      </Row>
     </form>
   );
 };
