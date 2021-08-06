@@ -42,9 +42,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
     params: options?.contextParams || {},
     resources: overrideObject(
       {
-        afflictions: {
-          status: [] as Array<EnumEntry>,
-        },
+        afflictions: {status: [] as Array<EnumEntry>},
         simpleUnitInfo: {},
       },
       options?.resources,

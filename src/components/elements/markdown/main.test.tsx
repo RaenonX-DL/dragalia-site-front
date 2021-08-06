@@ -5,8 +5,9 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../api-def/api';
-import {DepotPaths, SimpleUnitInfo} from '../../../api-def/resources';
+import {DepotPaths, SimpleUnitInfo, StatusEnums} from '../../../api-def/resources';
 import {Markdown} from './main';
+import {makeAfflictionIconMarkdown} from './transformers/text/icon/utils';
 
 
 describe('Markdown', () => {
@@ -312,6 +313,104 @@ describe('Markdown', () => {
       userEvent.click(unitLink);
 
       expect(await screen.findByText('Analysis')).toBeInTheDocument();
+    });
+  });
+
+  describe('Markdown - Affliction Icon', () => {
+    const status: StatusEnums['status'] = [
+      {
+        name: 'POISON',
+        code: 1,
+        imagePath: 'poison.png',
+        trans: {
+          [SupportedLanguages.CHT]: 'Poison CHT',
+          [SupportedLanguages.EN]: 'Poison',
+          [SupportedLanguages.JP]: 'Poison JP',
+        },
+      },
+    ];
+
+    it('shows affliction icon in sentence', async () => {
+      const markdown = 'Afflicts poison';
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getByText(/Poison/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+    });
+
+    it('does not show multiple affliction icons for one if already exists', async () => {
+      const markdown = `${makeAfflictionIconMarkdown(status[0])} poison`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getAllByText(/poison/).length).toBe(1);
+      expect(screen.getAllByText('', {selector: 'img'}).length).toBe(1);
+    });
+
+    it('shows multiple affliction icons for different afflictions', async () => {
+      const markdown = `Afflicts poison, also afflicts poison`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getAllByText('', {selector: 'img'}).length).toBe(2);
+    });
+
+    it('shows affliction icon in table cell', async () => {
+      const markdown = `head | col 2\n:---: | :---:\nX | poison`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getByText(/Poison/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+    });
+
+    it('shows affliction icon in <strong> text', async () => {
+      const markdown = `**Afflicts poison**.`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getByText(/Poison/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+    });
+
+    it('shows affliction icon in heading', async () => {
+      const markdown = `### Afflicts poison`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getByText(/Poison/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+    });
+
+    it('shows affliction icon in colored text', async () => {
+      const markdown = `::[green] Afflicts poison::`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: {status}}},
+      );
+
+      expect(screen.getByText(/Poison/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
     });
   });
 });
