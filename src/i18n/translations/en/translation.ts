@@ -549,6 +549,16 @@ export const translation: TranslationStruct = {
           },
         },
       },
+      tier: {
+        chara: {
+          title: 'Adventurer Tier List',
+          description: 'Adventurer tier list under different environment and its reasoning.',
+        },
+        dragon: {
+          title: 'Dragon Tier List',
+          description: 'Dragon tier list under different environment and its reasoning.',
+        },
+      },
       gameData: {
         info: {
           title: 'Chara/Dragon info lookup',

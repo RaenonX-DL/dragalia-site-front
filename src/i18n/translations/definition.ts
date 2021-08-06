@@ -462,6 +462,10 @@ export type TranslationStruct = {
           post: PageMetaTranslations,
         },
       },
+      tier: {
+        chara: PageMetaTranslations,
+        dragon: PageMetaTranslations,
+      },
       gameData: {
         info: PageMetaTranslations,
         ex: PageMetaTranslations,

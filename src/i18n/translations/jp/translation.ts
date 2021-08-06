@@ -518,6 +518,16 @@ export const translation: TranslationStruct = {
           },
         },
       },
+      tier: {
+        chara: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+        dragon: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+      },
       gameData: {
         info: {
           title: 'キャラ/ドラゴン情報カタログ',

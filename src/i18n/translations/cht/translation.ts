@@ -513,6 +513,16 @@ export const translation: TranslationStruct = {
           },
         },
       },
+      tier: {
+        chara: {
+          title: '角色排行',
+          description: '各角色在不同環境下的排行及其相關理由。',
+        },
+        dragon: {
+          title: '龍族排行',
+          description: '各龍族在不同環境下的排行及其相關理由。',
+        },
+      },
       gameData: {
         info: {
           title: '角色/龍族資訊目錄',

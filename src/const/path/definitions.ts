@@ -24,6 +24,8 @@ export enum GeneralPath {
   ANALYSIS_NEW_CHARA = '/analysis/new/chara',
   ANALYSIS_NEW_DRAGON = '/analysis/new/dragon',
   MISC_LIST = '/misc',
+  TIER_CHARA = '/tier/chara',
+  TIER_DRAGON = '/tier/dragon',
   // In-game data
   EX = '/ex',
   INFO_LOOKUP = '/info',
