@@ -456,6 +456,10 @@ export const translation: TranslationStruct = {
     search: '搜尋',
     searchKeyword: '關鍵字',
     update: '更新',
+    timestamp: {
+      lastModified: '最後修改於',
+      lastUpdated: '最後更新於',
+    },
   },
   meta: {
     inUse: {
@@ -625,7 +629,6 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '貼文資訊',
       id: 'ID',
-      lastModified: '最後修改於',
       published: '發布於',
       title: '標題',
       viewCount: '瀏覽次數',

@@ -47,7 +47,7 @@ export const PostEntry = <E extends SequencedPostInfo>({
       </Row>
       <Row>
         <Col lg={6} className="text-center">
-          {t((t) => t.posts.info.lastModified)}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
+          {t((t) => t.misc.timestamp.lastModified)}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
         </Col>
         <Col lg={6} className="text-center">
           {t((t) => t.posts.info.published)}:&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>

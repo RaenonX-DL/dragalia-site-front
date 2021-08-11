@@ -23,7 +23,7 @@ export const PostInfo = ({post}: PostInfoProps) => {
       <Row>
         <Col lg={4} className="pr-lg-2">
           <InfoCard
-            title={t((t) => t.posts.info.lastModified)}
+            title={t((t) => t.misc.timestamp.lastModified)}
             content={<TimeAgo epoch={post.modifiedEpoch}/>}
           />
           <div className="d-lg-none mb-3"/>

@@ -42,7 +42,7 @@ export const EntryWithAnalysis = ({
       </Row>
       <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
         <Col className="text-center">
-          {t((t) => t.posts.info.lastModified)}&nbsp;
+          {t((t) => t.misc.timestamp.lastModified)}&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
         </Col>
         {

@@ -492,6 +492,10 @@ export const translation: TranslationStruct = {
     search: 'Search',
     searchKeyword: 'Keyword',
     update: 'Update',
+    timestamp: {
+      lastModified: 'Last Modified',
+      lastUpdated: 'Last Updated',
+    },
   },
   meta: {
     inUse: {
@@ -665,7 +669,6 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: 'Post Information',
       id: 'ID',
-      lastModified: 'Last Modified',
       published: 'Published',
       title: 'Title',
       viewCount: 'View Count',

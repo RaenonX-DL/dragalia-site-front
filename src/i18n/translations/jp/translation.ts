@@ -461,6 +461,10 @@ export const translation: TranslationStruct = {
     search: '検索',
     searchKeyword: 'Keyword',
     update: '更新',
+    timestamp: {
+      lastModified: '最後編集は',
+      lastUpdated: '最後更新は',
+    },
   },
   meta: {
     inUse: {
@@ -634,7 +638,6 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '本ページの情報',
       id: 'ID',
-      lastModified: '最後編集は',
       published: '発表は',
       title: 'お題',
       viewCount: '閲覧回数',

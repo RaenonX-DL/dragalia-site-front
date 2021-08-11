@@ -441,6 +441,10 @@ export type TranslationStruct = {
     search: string,
     searchKeyword: string,
     update: string,
+    timestamp: {
+      lastModified: string,
+      lastUpdated: string,
+    },
   },
   meta: {
     inUse: {
@@ -535,7 +539,6 @@ export type TranslationStruct = {
     info: {
       titleSelf: string,
       id: string,
-      lastModified: string,
       published: string,
       title: string,
       viewCount: string,
