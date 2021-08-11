@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../../utils/timeago';
-import {UnitLink} from '../../link';
+import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {EntryCommonProps} from './entry';
 
 

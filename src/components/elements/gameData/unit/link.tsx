@@ -7,9 +7,9 @@ import {DepotPaths} from '../../../../api-def/resources';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
-import {Image} from '../../../elements/common/image';
-import {Loading} from '../../../elements/common/loading';
-import {CommonModal, ModalState} from '../../../elements/common/modal';
+import {Image} from '../../common/image';
+import {Loading} from '../../common/loading';
+import {CommonModal, ModalState} from '../../common/modal';
 
 
 type UnitInfo = {

@@ -2,15 +2,14 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
-import {UnitType} from '../../../api-def/api/other/unit';
-import {UnitInfoData} from '../../../api-def/resources/types/unitInfo';
-import * as utils from '../../../utils/services/resources/unitInfo/utils';
-import {UnitIcon} from './unitIcon';
+import {renderReact} from '../../../../../test/render/main';
+import {UnitType, SupportedLanguages} from '../../../../api-def/api';
+import {UnitInfoData} from '../../../../api-def/resources';
+import * as utils from '../../../../utils/services/resources/unitInfo/utils';
+import {UnitIcon} from './icon';
 
 
-describe('Unit info icon', () => {
+describe('Unit icon', () => {
   let getImageUrlFunc: jest.SpyInstance;
 
   beforeEach(() => {

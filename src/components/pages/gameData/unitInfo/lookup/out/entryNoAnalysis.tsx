@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../i18n/hook';
-import {UnitLink} from '../../link';
+import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {EntryCommonProps} from './entry';
 
 

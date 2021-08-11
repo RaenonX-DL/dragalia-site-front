@@ -2,7 +2,7 @@ import React from 'react';
 
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {UnitLink} from '../../../../pages/gameData/unitInfo/link';
+import {UnitLink} from '../../../gameData/unit/link';
 
 
 // This should NOT be `|` because it conflicts with the markdown table syntax
