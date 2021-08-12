@@ -470,6 +470,10 @@ export const translation: TranslationStruct = {
           description: 'Ranking when playing the normal quest ' +
             '(for example, Legend Agito, High Dragons Trial) as AI.',
         },
+        sharedSkill: {
+          name: 'Shared Skill',
+          description: 'Shared skill ranking. Adventurer only.',
+        },
       },
       sort: {
         unitId: 'Unit ID',

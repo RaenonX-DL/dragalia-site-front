@@ -13,6 +13,7 @@ export const RankingScore: { [ranking in Ranking]: number } = {
 export const Dimension = {
   conSolo: 'conSolo', conAi: 'conAi', conCoop: 'conCoop',
   normalSolo: 'normalSolo', normalAi: 'normalAi', normalCoop: 'normalCoop',
+  sharedSkill: 'sharedSkill',
 };
 
 export type DimensionKey = keyof typeof Dimension;
@@ -116,6 +117,11 @@ export const unitTierData: UnitTierData = {
       normalAi: {
         isCompDependent: false,
         ranking: 'S',
+        note: 'Some note.',
+      },
+      sharedSkill: {
+        isCompDependent: false,
+        ranking: 'C',
         note: 'Some note.',
       },
     },

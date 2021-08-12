@@ -438,6 +438,10 @@ export const translation: TranslationStruct = {
           name: '一般 (AI)',
           description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
         },
+        sharedSkill: {
+          name: '共享技能',
+          description: '共享技能評級。只限角色。',
+        },
       },
       sort: {
         unitId: 'Unit ID',
