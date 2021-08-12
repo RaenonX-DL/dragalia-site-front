@@ -22,7 +22,7 @@ describe('Advanced unit info page', () => {
       {contextParams: {unitId: 20050524}},
     );
 
-    expect(await screen.findByText('Gala Reborn Nidhogg')).toBeInTheDocument();
+    expect(await screen.findByText('Gala Reborn Nidhogg', undefined, {timeout: 2000})).toBeInTheDocument();
   });
 
   it('renders page not found for non-existing units', async () => {
