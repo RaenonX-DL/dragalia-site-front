@@ -1,6 +1,8 @@
 import {UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
-import {SortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+import {DimensionKey} from '../../components/pages/tier/mock';
+import {SortOrder as TierSortOrder} from '../../components/pages/tier/types';
 
 
 export type PageMetaTranslations = {
@@ -390,6 +392,14 @@ export type TranslationStruct = {
         relatedLinks: string,
       },
     },
+    unitTier: {
+      tips: {
+        main: string,
+        compIcon: string,
+      },
+      dimension: { [dim in DimensionKey]: {name: string, description: string} },
+      sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
+    },
     nameRef: {
       manage: string,
       unitId: string,
@@ -527,7 +537,7 @@ export type TranslationStruct = {
         rotations: string,
         tips: string,
       },
-      sort: { [order in SortOrder]: string },
+      sort: { [order in LookupSortOrder]: string },
     },
     info: {
       titleSelf: string,

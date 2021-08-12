@@ -403,6 +403,42 @@ export const translation: TranslationStruct = {
         relatedLinks: 'に関するリンク',
       },
     },
+    unitTier: {
+      tips: {
+        main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
+        compIcon: '需要搭配特定隊友以達到評級',
+      },
+      dimension: {
+        conSolo: {
+          name: '虛無 (單人)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以單人模式遊玩時的評級。',
+        },
+        conCoop: {
+          name: '虛無 (共鬥)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以共鬥模式遊玩時的評級。',
+        },
+        conAi: {
+          name: '虛無 (AI)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，作為 AI 時的評級。',
+        },
+        normalSolo: {
+          name: '一般 (單人)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以單人模式遊玩的評級。',
+        },
+        normalCoop: {
+          name: '一般 (共鬥)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以共鬥模式遊玩的評級。',
+        },
+        normalAi: {
+          name: '一般 (AI)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
+        },
+      },
+      sort: {
+        unitId: 'Unit ID',
+        avgRanking: 'Average Ranking',
+      },
+    },
     nameRef: {
       manage: 'Name Config',
       unitId: 'Unit ID',

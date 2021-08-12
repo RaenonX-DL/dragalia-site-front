@@ -1,0 +1,28 @@
+span.title {
+  font-size: 0.9rem;
+}
+span.ranking {
+  font-size: 1.5rem;
+}
+
+a.unitName {
+  font-size: 1.1rem;
+}
+a.tierNote {
+  border: 0;
+  font-size: 1.3rem;
+  color: #bebebe;
+  margin-left: 0.7rem;
+}
+a.tierNote:hover {
+  color: white;
+}
+
+img.unitIcon {
+  opacity: 0.2;
+  right: 0;
+  bottom: 0;
+  height: 5rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

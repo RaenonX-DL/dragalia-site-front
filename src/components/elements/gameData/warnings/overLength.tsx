@@ -11,7 +11,7 @@ type OverLengthWarningProps = {
   returned: number,
 }
 
-const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps) => {
+export const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps) => {
   const {t} = useI18n();
 
   return (

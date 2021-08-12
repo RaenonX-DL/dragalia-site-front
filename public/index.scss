@@ -38,10 +38,19 @@ img {
     margin: 0 0.2rem;
     height: 1.6rem;
   }
+
+  &.bg-img {
+    position: absolute;
+  }
 }
 
 div {
   &.footer {
     height: 15vh;
+  }
+
+  &.bg-img-wrap {
+    overflow: hidden;
+    position: relative;
   }
 }

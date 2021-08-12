@@ -428,6 +428,49 @@ export const translation: TranslationStruct = {
         relatedLinks: 'Related Links',
       },
     },
+    unitTier: {
+      tips: {
+        main: 'It is strongly recommended to read the unit analysis to know ' +
+          'the actual strength, how-to-use, and the other details!',
+        compIcon: 'Needs specific companion for the corresponding tier',
+      },
+      dimension: {
+        conSolo: {
+          name: 'CoN (Solo)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) in solo mode.',
+        },
+        conCoop: {
+          name: 'CoN (Co-op)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) in co-op mode.',
+        },
+        conAi: {
+          name: 'CoN (AI)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) as AI.',
+        },
+        normalSolo: {
+          name: 'Normal (Solo)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) in solo mode.',
+        },
+        normalCoop: {
+          name: 'Normal (Co-op)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) in co-op mode.',
+        },
+        normalAi: {
+          name: 'Normal (AI)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) as AI.',
+        },
+      },
+      sort: {
+        unitId: 'Unit ID',
+        avgRanking: 'Average Ranking',
+      },
+    },
     nameRef: {
       manage: 'Unit Name Config',
       unitId: 'Unit ID',
