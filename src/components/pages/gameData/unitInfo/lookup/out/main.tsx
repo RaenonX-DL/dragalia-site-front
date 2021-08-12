@@ -10,9 +10,9 @@ import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../../elements/common/fetch';
+import {getFilteredUnitInfo} from '../../../../../elements/gameData/unit/filter/utils';
 import {sortFunc} from '../in/sort/lookup';
 import {InputData} from '../in/types';
-import {getUnitInfo} from '../utils';
 import {UnitInfoEntry} from './entry';
 
 
@@ -51,7 +51,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
 
   fetchAnalysisMeta();
 
-  const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
+  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo);
   // Split to prioritize the units that have analysis
   const unitInfoHasAnalysis = unitInfoFiltered
     .filter((info) => info.id in analysisMeta.data.analyses)
