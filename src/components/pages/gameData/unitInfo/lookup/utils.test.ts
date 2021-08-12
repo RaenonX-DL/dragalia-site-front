@@ -1,8 +1,7 @@
 import charaData from '../../../../../../test/data/resources/info/chara.json';
 import dragonData from '../../../../../../test/data/resources/info/dragon.json';
-import {SupportedLanguages, UnitType} from '../../../../../api-def/api';
-import {DepotPaths, CharaInfo, DragonInfo, UnitInfoData} from '../../../../../api-def/resources';
-import {getImageURL} from '../../../../../utils/services/resources/unitInfo/utils';
+import {UnitType} from '../../../../../api-def/api';
+import {CharaInfo, DragonInfo} from '../../../../../api-def/resources';
 import {InputData} from './in/types';
 import {generateInputData, overrideInputData} from './in/utils';
 import {getUnitInfo} from './utils';
@@ -281,34 +280,5 @@ describe('Get unit info from input data', () => {
       .map((unit) => unit.id);
 
     expect(unitIds).toStrictEqual([]);
-  });
-});
-
-describe('Get image URL by type', () => {
-  const name = {
-    [SupportedLanguages.CHT]: 'name CHT',
-    [SupportedLanguages.EN]: 'name EN',
-    [SupportedLanguages.JP]: 'name JP',
-  };
-
-  const unitInfo: UnitInfoData = {
-    type: UnitType.CHARACTER,
-    name,
-    iconName: 'icon',
-    id: 11100000,
-    element: 1,
-    rarity: 5,
-    cvEn: name,
-    cvJp: name,
-    releaseEpoch: 0,
-  };
-
-  it('gets character image URL', () => {
-    expect(getImageURL(unitInfo)).toBe(DepotPaths.getCharaIconURL('icon'));
-  });
-
-  it('gets dragon image URL', () => {
-    expect(getImageURL({...unitInfo, type: UnitType.DRAGON, iconName: 'iconDragon'}))
-      .toBe(DepotPaths.getDragonIconURL('iconDragon'));
   });
 });
