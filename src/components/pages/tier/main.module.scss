@@ -9,19 +9,49 @@ span {
 }
 
 a {
+  @mixin clickableIcon() {
+    border: 0; // Disables underline for <a>
+    color: #bebebe;
+  }
+
+  @mixin clickableIconHover() {
+    @include clickableIcon;
+
+    color: white;
+  }
+
   &.unitName {
     font-size: 1.1rem;
   }
 
-  &.tierNote {
-    border: 0; // Disables underline for <a>
-    font-size: 1.3rem;
-    color: #bebebe;
+  @mixin tierNoteBase() {
     margin-left: 0.7rem;
   }
 
+  &.tierNote {
+    @include clickableIcon;
+    @include tierNoteBase;
+
+    font-size: 1.1rem;
+  }
+
   &.tierNote:hover {
-    color: white;
+    @include clickableIconHover;
+    @include tierNoteBase;
+  }
+
+  @mixin unitPointBase {
+    height: 80%; // Size of <small>
+  }
+
+  &.unitPoint {
+    @include clickableIcon;
+    @include unitPointBase;
+  }
+
+  &.unitPoint:hover {
+    @include clickableIconHover;
+    @include unitPointBase;
   }
 }
 

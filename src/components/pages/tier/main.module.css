@@ -10,12 +10,26 @@ a.unitName {
 }
 a.tierNote {
   border: 0;
-  font-size: 1.3rem;
   color: #bebebe;
   margin-left: 0.7rem;
+  font-size: 1.1rem;
 }
 a.tierNote:hover {
+  border: 0;
+  color: #bebebe;
   color: white;
+  margin-left: 0.7rem;
+}
+a.unitPoint {
+  border: 0;
+  color: #bebebe;
+  height: 80%;
+}
+a.unitPoint:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+  height: 80%;
 }
 
 img.unitIcon {

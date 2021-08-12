@@ -12,7 +12,7 @@ import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils'
 import {OverLengthWarning} from '../../../elements/gameData/warnings/overLength';
 import {MaxEntriesToDisplay, sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
-import {UnitTierData} from '../mock';
+import {KeyPointData, UnitTierData} from '../mock';
 import {InputData} from '../types';
 import {TierListEntry} from './entry';
 
@@ -20,9 +20,10 @@ import {TierListEntry} from './entry';
 type Props = {
   inputData: InputData,
   tierData: UnitTierData,
+  keyPointsData: KeyPointData,
 }
 
-export const TierListOutput = ({inputData, tierData}: Props) => {
+export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
   const {t} = useI18n();
   const {charaInfo, dragonInfo} = useUnitInfo();
 
@@ -60,9 +61,9 @@ export const TierListOutput = ({inputData, tierData}: Props) => {
         </Col>
       </Row>
       <Form.Row>{
-        unitInfoList.map(({unitInfo, tierNote}, idx) => (
-          <Col key={idx} lg={4}>
-            <TierListEntry entry={tierNote} unitInfo={unitInfo}/>
+        unitInfoList.map(({unitInfo, tierNote}) => (
+          <Col key={unitInfo.id} lg={4}>
+            <TierListEntry tierNote={tierNote} unitInfo={unitInfo} keyPointsData={keyPointsData}/>
           </Col>
         ))
       }</Form.Row>

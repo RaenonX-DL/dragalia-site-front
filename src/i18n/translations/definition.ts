@@ -397,6 +397,11 @@ export type TranslationStruct = {
         main: string,
         compIcon: string,
       },
+      points: {
+        title: string,
+        strength: string,
+        weakness: string,
+      },
       dimension: { [dim in DimensionKey]: {name: string, description: string} },
       sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
     },

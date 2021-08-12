@@ -434,6 +434,11 @@ export const translation: TranslationStruct = {
           'the actual strength, how-to-use, and the other details!',
         compIcon: 'Needs specific companion for the corresponding tier',
       },
+      points: {
+        title: 'Key Points',
+        strength: 'Strength',
+        weakness: 'Weakness',
+      },
       dimension: {
         conSolo: {
           name: 'CoN (Solo)',

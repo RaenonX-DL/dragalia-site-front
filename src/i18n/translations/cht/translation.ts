@@ -401,6 +401,11 @@ export const translation: TranslationStruct = {
         main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
         compIcon: '需要搭配特定隊友以達到評級',
       },
+      points: {
+        title: '要點',
+        strength: '強項',
+        weakness: '弱項',
+      },
       dimension: {
         conSolo: {
           name: '虛無 (單人)',
