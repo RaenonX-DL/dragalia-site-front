@@ -461,9 +461,14 @@ export const translation: TranslationStruct = {
     search: '検索',
     searchKeyword: 'Keyword',
     update: '更新',
+    sortBy: '',
     timestamp: {
       lastModified: '最後編集は',
       lastUpdated: '最後更新は',
+    },
+    unitType: {
+      [UnitType.CHARACTER]: 'キャラ',
+      [UnitType.DRAGON]: 'ドラゴン',
     },
   },
   meta: {
@@ -623,12 +628,7 @@ export const translation: TranslationStruct = {
         rotations: 'スキルのシフト',
         tips: 'スキルのポイント',
       },
-      type: {
-        character: 'キャラ',
-        dragon: 'ドラゴン',
-      },
       sort: {
-        title: '',
         unitId: '',
         published: '',
         lastModified: '',

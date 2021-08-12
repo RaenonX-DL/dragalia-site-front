@@ -456,9 +456,14 @@ export const translation: TranslationStruct = {
     search: '搜尋',
     searchKeyword: '關鍵字',
     update: '更新',
+    sortBy: '排序依據 {{order}}',
     timestamp: {
       lastModified: '最後修改於',
       lastUpdated: '最後更新於',
+    },
+    unitType: {
+      [UnitType.CHARACTER]: '角色',
+      [UnitType.DRAGON]: '龍族',
     },
   },
   meta: {
@@ -614,12 +619,7 @@ export const translation: TranslationStruct = {
         rotations: '技能輪轉',
         tips: '技能要點',
       },
-      type: {
-        character: '角色',
-        dragon: '龍族',
-      },
       sort: {
-        title: '排序依據 {{order}}',
         unitId: '角色 ID',
         published: '發布時間',
         lastModified: '修改時間',

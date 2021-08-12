@@ -441,10 +441,12 @@ export type TranslationStruct = {
     search: string,
     searchKeyword: string,
     update: string,
+    sortBy: string,
     timestamp: {
       lastModified: string,
       lastUpdated: string,
     },
+    unitType: {[type in UnitType]: string},
   },
   meta: {
     inUse: {
@@ -528,13 +530,7 @@ export type TranslationStruct = {
         rotations: string,
         tips: string,
       },
-      type: {
-        character: string,
-        dragon: string,
-      },
-      sort: {
-        title: string,
-      } & { [order in SortOrder]: string },
+      sort: { [order in SortOrder]: string },
     },
     info: {
       titleSelf: string,

@@ -492,9 +492,14 @@ export const translation: TranslationStruct = {
     search: 'Search',
     searchKeyword: 'Keyword',
     update: 'Update',
+    sortBy: 'Sort by {{order}}',
     timestamp: {
       lastModified: 'Last Modified',
       lastUpdated: 'Last Updated',
+    },
+    unitType: {
+      [UnitType.CHARACTER]: 'Character',
+      [UnitType.DRAGON]: 'Dragon',
     },
   },
   meta: {
@@ -654,12 +659,7 @@ export const translation: TranslationStruct = {
         rotations: 'Skill Rotations',
         tips: 'Skill Tips',
       },
-      type: {
-        character: 'Character',
-        dragon: 'Dragon',
-      },
       sort: {
-        title: 'Sort by {{order}}',
         unitId: 'Unit ID',
         published: 'Published',
         lastModified: 'Last Modified',
