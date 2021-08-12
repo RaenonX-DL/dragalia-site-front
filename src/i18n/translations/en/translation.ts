@@ -559,14 +559,8 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        chara: {
-          title: 'Adventurer Tier List',
-          description: 'Adventurer tier list under different environment and its reasoning.',
-        },
-        dragon: {
-          title: 'Dragon Tier List',
-          description: 'Dragon tier list under different environment and its reasoning.',
-        },
+        title: 'Tier List',
+        description: 'Tier list under different environment and its reasoning for all types of unit.',
       },
       gameData: {
         info: {
