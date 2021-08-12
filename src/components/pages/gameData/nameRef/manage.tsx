@@ -14,9 +14,9 @@ import {getElementCounter} from '../../../../utils/counter';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
+import {UpdateStatus} from '../../../elements/form/updateStatus';
 import {ArrayDataForm} from '../../../elements/posts/form/array/main';
 import {UnitNameRefEntry} from './entry';
-import {NameRefUpdateStatus} from './status';
 
 
 export type RefsState = {
@@ -79,7 +79,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
     <form onSubmit={onSubmit}>
       <Row className="text-right">
         <Col>
-          <NameRefUpdateStatus status={refsStatus.updateStatus}/>
+          <UpdateStatus status={refsStatus.updateStatus}/>
           <Button
             type="submit" variant="outline-light" className="ml-2"
             disabled={!isValid || isJustUpdated || refsStatus.updating || refsStatus.isInit}
