@@ -10,7 +10,7 @@ import {overrideObject} from '../../../../../utils/override';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {UnitFilter} from './main';
 import {UnitFilterInputData} from './types';
-import {generateInputData} from './utils';
+import {generateFilterInput} from './utils';
 
 
 describe('Unit filter input', () => {
@@ -97,7 +97,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -110,11 +110,11 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
-    const expectedInput: UnitFilterInputData<'unitId'> = generateInputData('unitId');
+    const expectedInput: UnitFilterInputData<'unitId'> = generateFilterInput('unitId');
 
     clickSearchButton();
 
@@ -126,7 +126,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -138,7 +138,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {types: [UnitType.CHARACTER]},
     );
 
@@ -150,7 +150,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -162,7 +162,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {elements: [1]},
     );
 
@@ -174,7 +174,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -186,7 +186,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {weaponTypes: [2]},
     );
 
@@ -198,7 +198,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -210,7 +210,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {keyword: 'test'},
     );
 
@@ -222,7 +222,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID', viewCount: () => 'View Count'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -236,7 +236,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId' | 'viewCount'> = overrideObject(
-      generateInputData('viewCount'),
+      generateFilterInput('viewCount'),
       {sortBy: 'viewCount'},
     );
 
@@ -248,7 +248,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -266,7 +266,7 @@ describe('Unit filter input', () => {
     clickSearchButton();
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {
         keyword: 'test',
         types: [UnitType.CHARACTER],
@@ -283,7 +283,7 @@ describe('Unit filter input', () => {
       <UnitFilter
         sortOrderNames={{unitId: () => 'Unit ID'}}
         onSearchRequested={onSearchRequested}
-        generateInputData={() => generateInputData('unitId')}
+        generateInputData={() => generateFilterInput('unitId')}
       />
     ));
 
@@ -294,7 +294,7 @@ describe('Unit filter input', () => {
     userEvent.type(searchInput, '{enter}');
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
-      generateInputData('unitId'),
+      generateFilterInput('unitId'),
       {keyword: 'test'},
     );
 

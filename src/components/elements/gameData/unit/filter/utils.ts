@@ -3,7 +3,7 @@ import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} fr
 import {UnitFilterInputData} from './types';
 
 
-export const generateInputData = <S extends string>(sortBy: S): UnitFilterInputData<S> => ({
+export const generateFilterInput = <S extends string>(sortBy: S): UnitFilterInputData<S> => ({
   keyword: '',
   types: [],
   elements: [],
