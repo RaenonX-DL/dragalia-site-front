@@ -607,8 +607,16 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        title: 'Tier List',
-        description: 'Tier list under different environment and its reasoning for all types of unit.',
+        index: {
+          title: 'Tier List',
+          description: 'Tier list under different environment and its reasoning for all types of unit.',
+        },
+        points: {
+          edit: {
+            title: 'Edit Key Points',
+            description: 'Page to edit the content of the key points.',
+          },
+        },
       },
       gameData: {
         info: {

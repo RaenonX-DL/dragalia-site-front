@@ -564,8 +564,16 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        title: '角色/龍族排行',
-        description: '各角色、龍族在不同環境下的排行及其相關原因。',
+        index: {
+          title: '角色/龍族排行',
+          description: '各角色、龍族在不同環境下的排行及其相關原因。',
+        },
+        points: {
+          edit: {
+            title: '要點編輯',
+            description: '編輯要點內容的頁面。',
+          },
+        },
       },
       gameData: {
         info: {

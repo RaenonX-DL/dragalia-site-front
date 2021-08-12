@@ -483,7 +483,12 @@ export type TranslationStruct = {
           post: PageMetaTranslations,
         },
       },
-      tier: PageMetaTranslations,
+      tier: {
+        index: PageMetaTranslations,
+        points: {
+          edit: PageMetaTranslations,
+        },
+      },
       gameData: {
         info: PageMetaTranslations,
         ex: PageMetaTranslations,
