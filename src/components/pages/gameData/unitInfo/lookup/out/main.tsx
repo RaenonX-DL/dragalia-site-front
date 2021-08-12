@@ -59,7 +59,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     .sort(sortFunc[inputData.sortBy]);
   const unitInfoNoAnalysis = unitInfoFiltered
     .filter((info) => !(info.id in analysisMeta.data.analyses))
-    .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}));
+    .map((info) => ({unitInfo: info, lookupInfo: undefined}));
 
   if (charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
     return (
