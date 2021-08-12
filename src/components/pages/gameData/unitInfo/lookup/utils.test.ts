@@ -2,8 +2,9 @@ import charaData from '../../../../../../test/data/resources/info/chara.json';
 import dragonData from '../../../../../../test/data/resources/info/dragon.json';
 import {UnitType} from '../../../../../api-def/api';
 import {CharaInfo, DragonInfo} from '../../../../../api-def/resources';
+import {overrideObject} from '../../../../../utils/override';
 import {InputData} from './in/types';
-import {generateInputData, overrideInputData} from './in/utils';
+import {generateInputData} from './in/utils';
 import {getUnitInfo} from './utils';
 
 
@@ -26,7 +27,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on single element', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {elements: [1]});
+    const inputData: InputData = overrideObject(generateInputData(), {elements: [1]});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -45,7 +46,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on multiple elements', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {elements: [1, 3]});
+    const inputData: InputData = overrideObject(generateInputData(), {elements: [1, 3]});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -64,7 +65,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on single analysis type', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {types: [UnitType.DRAGON]});
+    const inputData: InputData = overrideObject(generateInputData(), {types: [UnitType.DRAGON]});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -74,7 +75,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on multiple analysis types', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {types: [UnitType.CHARACTER, UnitType.DRAGON]},
     );
@@ -91,7 +92,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on single weapon type', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {weaponTypes: [1]});
+    const inputData: InputData = overrideObject(generateInputData(), {weaponTypes: [1]});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -105,7 +106,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on multiple weapon types', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {weaponTypes: [1, 3]});
+    const inputData: InputData = overrideObject(generateInputData(), {weaponTypes: [1, 3]});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -119,7 +120,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on unit name partially matched', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {keyword: 'T'});
+    const inputData: InputData = overrideObject(generateInputData(), {keyword: 'T'});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -136,7 +137,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on unit name fully matched', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {keyword: 'Tiki'});
+    const inputData: InputData = overrideObject(generateInputData(), {keyword: 'Tiki'});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id)
@@ -150,7 +151,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on flame, sword characters', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {
         types: [UnitType.CHARACTER],
@@ -171,7 +172,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on flame/shadow sword/dagger characters', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {
         types: [UnitType.CHARACTER],
@@ -192,7 +193,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on flame dragons', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {
         types: [UnitType.DRAGON],
@@ -213,7 +214,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('filters correctly on flame and shadow dragons', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {
         types: [UnitType.DRAGON],
@@ -233,7 +234,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('disregards weapon type and works correctly if type is dragon', async () => {
-    const inputData: InputData = overrideInputData(
+    const inputData: InputData = overrideObject(
       generateInputData(),
       {
         types: [UnitType.DRAGON],
@@ -274,7 +275,7 @@ describe('Get unit info from input data', () => {
   });
 
   it('returns an empty array if nothing match', async () => {
-    const inputData: InputData = overrideInputData(generateInputData(), {keyword: 'AAAA'});
+    const inputData: InputData = overrideObject(generateInputData(), {keyword: 'AAAA'});
 
     const unitIds = getUnitInfo(inputData, charaInfo, dragonInfo)
       .map((unit) => unit.id);

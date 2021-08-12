@@ -14,11 +14,12 @@ import {
   UnitType,
 } from '../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {overrideObject} from '../../../../../utils/override';
 import * as scrollUtils from '../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {InputData} from './in/types';
-import {generateInputData, overrideInputData} from './in/utils';
+import {generateInputData} from './in/utils';
 import {UnitInfoLookup} from './main';
 
 
@@ -219,7 +220,7 @@ describe('Analysis lookup page', () => {
     userEvent.click(axeButton);
     userEvent.click(searchButton);
 
-    const expectedInput: InputData = overrideInputData(
+    const expectedInput: InputData = overrideObject(
       generateInputData(),
       {
         elements: [2, 3],
