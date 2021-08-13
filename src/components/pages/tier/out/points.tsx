@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {useI18n} from '../../../../i18n/hook';
+import {IconPointsStrength, IconPointsWeakness} from '../icons';
 import {KeyPointData} from '../mock';
 
 type Props = {
@@ -28,7 +29,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         descStrength.length > 0 &&
         <div className="text-success">
           <h5>
-            <i className="bi bi-plus-circle"/>&nbsp;
+            <IconPointsStrength/>&nbsp;
             {t((t) => t.game.unitTier.points.strength)}
           </h5>
           <ul className="mb-0">
@@ -41,7 +42,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         descWeakness.length > 0 &&
         <div className="text-danger">
           <h5>
-            <i className="bi bi-dash-circle"/>&nbsp;
+            <IconPointsWeakness/>&nbsp;
             {t((t) => t.game.unitTier.points.weakness)}
           </h5>
           <ul className="mb-0">
