@@ -11,5 +11,5 @@ apps:
     env_production:
       NODE_ENV: 'production'
     # Others
-    cron_restart: '0 0 * * *'
+    cron_restart: '0 0 */3 * *'  # Restart every 3 days
     time: true  # Log timestamp in logs
