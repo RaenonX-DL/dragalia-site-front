@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
+import {formControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 import {ArrayDataFormOnChangedHandler} from '../../../elements/posts/form/array/main';
@@ -22,9 +23,6 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
   const {t, lang} = useI18n();
 
   const unitInfo = unitInfoMap.get(entry.unitId);
-
-  // This is the height of `form-control`
-  const unitIconHeight = 'calc(1.5em + 0.75rem + 2px)';
 
   const isNameInputAllowed = !!unitInfo;
 
@@ -50,7 +48,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
               unitInfo ?
                 <>
                   <Col xs="auto">
-                    <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: unitIconHeight}}/>
+                    <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: formControlHeight}}/>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-center">
                     <span className="h5 mb-0">{unitInfo.name[lang]}</span>
@@ -58,7 +56,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
                 </> :
                 <Col
                   className="d-flex align-items-center justify-content-center text-danger"
-                  style={{height: unitIconHeight}}
+                  style={{height: formControlHeight}}
                 >
                   <span className="h5 mb-0">
                     {t((t) => t.game.nameRef.error.invalidUnitId)}
