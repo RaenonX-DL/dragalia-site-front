@@ -44,7 +44,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
               const dimension = item as DimensionKey;
 
               return (
-                <Col key={unitInfo.id} xs={4}>
+                <Col key={item} xs={4}>
                   <TierNote
                     dimension={dimension}
                     tierNote={tierNote ? tierNote.tier[dimension] : undefined}
