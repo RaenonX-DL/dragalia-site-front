@@ -445,7 +445,7 @@ export class ApiRequestSender {
    * @return {Promise<KeyPointUpdateResponse>} promise returned from `fetch`
    */
   static updateKeyPointContent(uid: string, lang: SupportedLanguages, points: Array<KeyPointEntryUpdate>) {
-    return ApiRequestSender.sendRequest<KeyPointUpdateResponse, KeyPointUpdatePayload>(
+    return ApiRequestSender.sendRequest<KeyPointUpdateResponse | FailedResponse, KeyPointUpdatePayload>(
       'POST',
       ApiEndPoints.MANAGE_TIER_POINTS,
       {uid, lang, points},
