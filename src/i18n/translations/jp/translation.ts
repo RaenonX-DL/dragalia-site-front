@@ -410,6 +410,8 @@ export const translation: TranslationStruct = {
       },
       points: {
         title: '要點',
+        type: '種類',
+        description: '敘述',
         strength: '強項',
         weakness: '弱項',
       },

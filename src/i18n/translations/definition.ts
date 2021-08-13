@@ -399,6 +399,8 @@ export type TranslationStruct = {
       },
       points: {
         title: string,
+        type: string,
+        description: string,
         strength: string,
         weakness: string,
       },

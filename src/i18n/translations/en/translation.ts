@@ -436,6 +436,8 @@ export const translation: TranslationStruct = {
       },
       points: {
         title: 'Key Points',
+        type: 'Type',
+        description: 'Description',
         strength: 'Strength',
         weakness: 'Weakness',
       },

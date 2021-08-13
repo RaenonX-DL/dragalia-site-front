@@ -3,7 +3,7 @@ import {Property} from 'csstype';
 import {GetTranslationFunction} from '../../../i18n/types';
 import {sum} from '../../../utils/calc';
 import {sortAscending, sortDescending} from '../../../utils/sort';
-import {Dimension, DimensionKey, Ranking} from './mock';
+import {Dimension, DimensionKey, KeyPointType, Ranking} from './mock';
 import {EntryPack, SortOrder} from './types';
 import {getTierRanking} from './utils';
 
@@ -50,4 +50,9 @@ export const rankingColor: { [ranking in Ranking]: Property.Color } = {
   A: '#56d951',
   B: '#e8c945',
   C: '#e34f4b',
+};
+
+export const keyPointTypeName: { [type in KeyPointType]: GetTranslationFunction } = {
+  strength: (t) => t.game.unitTier.points.strength,
+  weakness: (t) => t.game.unitTier.points.weakness,
 };

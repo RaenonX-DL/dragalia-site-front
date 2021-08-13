@@ -18,7 +18,9 @@ import {
   DragonAnalysisPublishPayload,
   FailedResponse,
   GetAtkSkillPresetPayload,
-  GetAtkSkillPresetResponse,
+  GetAtkSkillPresetResponse, KeyPointEntryUpdate,
+  KeyPointManagePayload,
+  KeyPointManageResponse, KeyPointUpdatePayload, KeyPointUpdateResponse,
   PageMetaPayload,
   PageMetaResponse,
   PostPageMetaPayload,
@@ -212,7 +214,7 @@ export class ApiRequestSender {
    * Get an analysis post using its unit ID.
    *
    * @param {FetchPostOptions} options options to get an analysis
-   * @return {Promise<AnalysisGetResponse>} promise returned from `fetch`
+   * @return {Promise<AnalysisResponse>} promise returned from `fetch`
    */
   static analysisGet({uid, lang, postId, incCount}: FetchPostOptions<number | string>): Promise<AnalysisResponse> {
     return ApiRequestSender.sendRequest<AnalysisGetResponse, AnalysisGetPayload>(
@@ -237,9 +239,7 @@ export class ApiRequestSender {
    * @param {CharaAnalysisEditPayload} payload payload for editing a character analysis post
    * @return {Promise<AnalysisEditResponse>} promise returned from `fetch`
    */
-  static analysisEditChara(
-    payload: CharaAnalysisEditPayload,
-  ): Promise<AnalysisEditResponse> {
+  static analysisEditChara(payload: CharaAnalysisEditPayload): Promise<AnalysisEditResponse> {
     return ApiRequestSender.sendRequest<AnalysisEditResponse, CharaAnalysisEditPayload>(
       'POST',
       ApiEndPoints.POST_ANALYSIS_EDIT_CHARA,
@@ -253,9 +253,7 @@ export class ApiRequestSender {
    * @param {DragonAnalysisEditPayload} payload payload for editing a dragon analysis post
    * @return {Promise<AnalysisEditResponse>} promise returned from `fetch`
    */
-  static analysisEditDragon(
-    payload: DragonAnalysisEditPayload,
-  ): Promise<AnalysisEditResponse> {
+  static analysisEditDragon(payload: DragonAnalysisEditPayload): Promise<AnalysisEditResponse> {
     return ApiRequestSender.sendRequest<AnalysisEditResponse, DragonAnalysisEditPayload>(
       'POST',
       ApiEndPoints.POST_ANALYSIS_EDIT_DRAGON,
@@ -271,9 +269,7 @@ export class ApiRequestSender {
    * @param {SupportedLanguages} lang language code of the analysis post
    * @return {Promise<AnalysisIdCheckResponse>} promise returned from `fetch`
    */
-  static analysisIdCheck(
-    uid: string, unitId: number, lang: SupportedLanguages,
-  ): Promise<AnalysisIdCheckResponse> {
+  static analysisIdCheck(uid: string, unitId: number, lang: SupportedLanguages): Promise<AnalysisIdCheckResponse> {
     return ApiRequestSender.sendRequest<AnalysisIdCheckResponse, AnalysisIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_ANALYSIS_ID_CHECK,
@@ -308,7 +304,7 @@ export class ApiRequestSender {
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang post language
    * @param {number | string} unitIdentifier post identifier
-   * @return {Promise<PostPageMetaResponse | FailedResponse>} promise returned from `fetch`
+   * @return {Promise<UnitPageMetaResponse | FailedResponse>} promise returned from `fetch`
    */
   static getUnitMeta(uid: string, lang: SupportedLanguages, unitIdentifier: number | string) {
     return ApiRequestSender.sendRequest<UnitPageMetaResponse | FailedResponse, UnitPageMetaPayload>(
@@ -358,7 +354,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language to get the unit name references
-   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   * @return {Promise<UnitNameRefManageResponse | FailedResponse>} promise returned from `fetch`
    */
   static getUnitNameRefManage(uid: string, lang: SupportedLanguages) {
     return ApiRequestSender.sendRequest<UnitNameRefManageResponse | FailedResponse, UnitNameRefManagePayload>(
@@ -374,7 +370,7 @@ export class ApiRequestSender {
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language to get the unit name references
    * @param {Array<UnitNameRefEntry>} refs all unit name references in a certain language
-   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   * @return {Promise<UnitNameRefUpdateResponse | FailedResponse>} promise returned from `fetch`
    */
   static updateUnitNameRefs(uid: string, lang: SupportedLanguages, refs: UnitNameRefManageResponse['refs']) {
     return ApiRequestSender.sendRequest<UnitNameRefUpdateResponse | FailedResponse, UnitNameRefUpdatePayload>(
@@ -393,7 +389,7 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID
    * @param {string} presetId input preset ID
-   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   * @return {Promise<GetAtkSkillPresetResponse>} promise returned from `fetch`
    */
   static getPresetAtkSkill(uid: string, presetId: string) {
     return ApiRequestSender.sendRequest<GetAtkSkillPresetResponse, GetAtkSkillPresetPayload>(
@@ -408,13 +404,51 @@ export class ApiRequestSender {
    *
    * @param {string} uid user ID
    * @param {AtkSkillInput} preset ATK skill input data
-   * @return {Promise<UnitNameRefResponse>} promise returned from `fetch`
+   * @return {Promise<SetAtkSkillPresetResponse>} promise returned from `fetch`
    */
   static setPresetAtkSkill(uid: string, preset: AtkSkillInput) {
     return ApiRequestSender.sendRequest<SetAtkSkillPresetResponse, SetAtkSkillPresetPayload>(
       'POST',
       ApiEndPoints.PRESET_ATK_SKILL_INPUT,
       {uid, preset},
+    );
+  }
+
+  // endregion
+
+  // region Tier List
+
+  /**
+   * Get all key point entries for update.
+   *
+   * This returns the entries in `lang`.
+   * If there are no corresponding content in `lang`, return the content in `cht` > `en` > `jp` instead.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the key point entries
+   * @return {Promise<KeyPointManageResponse>} promise returned from `fetch`
+   */
+  static getKeyPointsManage(uid: string, lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<KeyPointManageResponse, KeyPointManagePayload>(
+      'GET',
+      ApiEndPoints.MANAGE_TIER_POINTS,
+      {uid, lang},
+    );
+  }
+
+  /**
+   * Update the content of key point entries.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the key point entries to update
+   * @param {Array<KeyPointEntryUpdate>} points update key point entries
+   * @return {Promise<KeyPointUpdateResponse>} promise returned from `fetch`
+   */
+  static updateKeyPointContent(uid: string, lang: SupportedLanguages, points: Array<KeyPointEntryUpdate>) {
+    return ApiRequestSender.sendRequest<KeyPointUpdateResponse, KeyPointUpdatePayload>(
+      'POST',
+      ApiEndPoints.MANAGE_TIER_POINTS,
+      {uid, lang, points},
     );
   }
 
