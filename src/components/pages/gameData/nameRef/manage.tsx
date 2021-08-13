@@ -35,7 +35,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
       generateNewElement={() => ({unitId: 0, name: ''})}
       renderEntries={(element, onChange, _, counter) => (
         <UnitNameRefEntry
-          entry={element} onChanged={onChange}
+          entry={element} onChanged={onChange} unitInfoMap={unitInfoMap}
           isNameInvalid={(counter.get(element.name) || 0) > 1}
         />
       )}

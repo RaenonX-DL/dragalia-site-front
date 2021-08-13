@@ -16,7 +16,8 @@ import {UnitNameRefPage} from './main';
 describe('Name reference management', () => {
   let fnGetRefs: jest.SpyInstance;
   let fnSetRefs: jest.SpyInstance;
-  let fnGetUnitInfo: jest.SpyInstance;
+  let fnGetCharaInfo: jest.SpyInstance;
+  let fnGetDragonInfo: jest.SpyInstance;
 
   beforeEach(() => {
     fnGetRefs = jest.spyOn(ApiRequestSender, 'getUnitNameRefManage').mockResolvedValue({
@@ -37,7 +38,7 @@ describe('Name reference management', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
     });
-    fnGetUnitInfo = jest.spyOn(ResourceLoader, 'getCharacterInfo').mockResolvedValue([
+    fnGetCharaInfo = jest.spyOn(ResourceLoader, 'getCharacterInfo').mockResolvedValue([
       {
         id: 10950101,
         element: Element.FLAME,
@@ -114,6 +115,7 @@ describe('Name reference management', () => {
         type: UnitType.CHARACTER,
       },
     ]);
+    fnGetDragonInfo = jest.spyOn(ResourceLoader, 'getDragonInfo').mockResolvedValue([]);
   });
 
   it('gets all references on load', async () => {
@@ -148,7 +150,7 @@ describe('Name reference management', () => {
 
   it('allows update if no invalid input', async () => {
     const {rerender} = renderReact(() => <UnitNameRefPage/>, {hasSession: true, user: {isAdmin: true}});
-    await waitFor(() => expect(fnGetUnitInfo).toHaveBeenCalled());
+    await waitFor(() => expect(fnGetCharaInfo).toHaveBeenCalled());
 
     const unitIdInput = await screen.findByDisplayValue('10950101');
     userEvent.clear(unitIdInput);
@@ -247,5 +249,15 @@ describe('Name reference management', () => {
 
     const updateButton = screen.getByText(translationEN.misc.update);
     expect(updateButton).toBeDisabled();
+  });
+
+  it('only loads unit info exactly once on load', async () => {
+    renderReact(() => <UnitNameRefPage/>, {hasSession: true, user: {isAdmin: true}});
+
+    // Check entries are loaded
+    await screen.findByDisplayValue('Furis');
+
+    expect(fnGetCharaInfo).toHaveBeenCalledTimes(1);
+    expect(fnGetDragonInfo).toHaveBeenCalledTimes(1);
   });
 });
