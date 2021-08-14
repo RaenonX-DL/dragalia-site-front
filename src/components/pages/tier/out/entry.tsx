@@ -3,6 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {KeyPointData} from '../../../../api-def/api';
 import {UnitInfoData} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
@@ -10,7 +11,7 @@ import {CommonModal, ModalState} from '../../../elements/common/modal';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../elements/gameData/unit/link';
 import styles from '../main.module.css';
-import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../mock';
+import {Dimension, DimensionKey, UnitTierNote} from '../mock';
 import {TierNote} from './note';
 import {TierKeyPoints} from './points';
 

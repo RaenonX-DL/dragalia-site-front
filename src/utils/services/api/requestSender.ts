@@ -18,9 +18,14 @@ import {
   DragonAnalysisPublishPayload,
   FailedResponse,
   GetAtkSkillPresetPayload,
-  GetAtkSkillPresetResponse, KeyPointEntryUpdate,
+  GetAtkSkillPresetResponse,
+  KeyPointEntryUpdate,
+  KeyPointGetPayload,
+  KeyPointGetResponse,
   KeyPointManagePayload,
-  KeyPointManageResponse, KeyPointUpdatePayload, KeyPointUpdateResponse,
+  KeyPointManageResponse,
+  KeyPointUpdatePayload,
+  KeyPointUpdateResponse,
   PageMetaPayload,
   PageMetaResponse,
   PostPageMetaPayload,
@@ -417,6 +422,21 @@ export class ApiRequestSender {
   // endregion
 
   // region Tier List
+
+  /**
+   * Get unit key point data.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the key point entries
+   * @return {Promise<KeyPointManageResponse>} promise returned from `fetch`
+   */
+  static getKeyPointsData(uid: string, lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<KeyPointGetResponse, KeyPointGetPayload>(
+      'GET',
+      ApiEndPoints.TIER_KEY_POINTS,
+      {uid, lang},
+    );
+  }
 
   /**
    * Get all key point entries for update.

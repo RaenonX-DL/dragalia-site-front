@@ -32,36 +32,7 @@ export type UnitTierNote = {
 
 export type UnitTierData = { [unitId in number]: UnitTierNote }
 
-export const KeyPointTypeEnum = {
-  strength: 'strength',
-  weakness: 'weakness',
-};
-
-export type KeyPointType = keyof typeof KeyPointTypeEnum
-
-export type KeyPointEntry = {
-  type: KeyPointType,
-  description: string,
-}
-
-export type KeyPointEntryManage = KeyPointEntry & {
-  id?: string,
-}
-
-export type KeyPointData = { [entryId in string]: KeyPointEntry }
-
 // ----------------------- DATA
-
-export const keyPoints: KeyPointData = {
-  objectId0001: {
-    type: 'strength',
-    description: 'Guarantees affliction.',
-  },
-  objectId0002: {
-    type: 'weakness',
-    description: 'No buff = no damage.',
-  },
-};
 
 export const unitTierData: UnitTierData = {
   10650503: {

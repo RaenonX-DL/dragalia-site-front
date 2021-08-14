@@ -1,13 +1,13 @@
 import React from 'react';
 
+import {KeyPointEntryUpdate} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {EntryManagement} from '../../../../elements/form/manageEntries';
-import {KeyPointEntryManage} from '../../mock';
 import {KeyPointEntry} from './entry';
 
 type Props = {
-  points: Array<KeyPointEntryManage>,
+  points: Array<KeyPointEntryUpdate>,
   uid: string,
 }
 
@@ -24,7 +24,7 @@ export const KeyPointsManagement = ({points, uid}: Props) => {
       generateNewElement={() => ({
         type: 'strength',
         description: '',
-      } as KeyPointEntryManage)}
+      } as KeyPointEntryUpdate)}
       renderEntries={(element, onChange, _, counter) => (
         <KeyPointEntry
           entry={element} onChanged={onChange}

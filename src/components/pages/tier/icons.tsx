@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {KeyPointType} from './mock';
+import {KeyPointType} from '../../../api-def/api';
 
 
 export const IconCompDependent = () => <i className="bi bi-people-fill"/>;

@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {KeyPointData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {IconPointsStrength, IconPointsWeakness} from '../icons';
-import {KeyPointData} from '../mock';
 
 type Props = {
   keyPointsIds: Array<string>,
