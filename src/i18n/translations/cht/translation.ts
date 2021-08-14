@@ -633,6 +633,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: '角色/龍族資訊',
+    unitTier: '角色/龍族評級',
   },
   posts: {
     analysis: {

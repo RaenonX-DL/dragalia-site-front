@@ -676,6 +676,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: 'Chara/Dragon Info',
+    unitTier: 'Tier List',
   },
   posts: {
     analysis: {

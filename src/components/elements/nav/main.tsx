@@ -44,6 +44,10 @@ export const Navigation = () => {
               text={t((t) => t.nav.unitInfo)}
             />
             <NavItem
+              path={GeneralPath.TIER}
+              text={t((t) => t.nav.unitTier)}
+            />
+            <NavItem
               path={GeneralPath.MISC_LIST}
               text={t((t) => t.posts.misc.titleSelf)}
             />

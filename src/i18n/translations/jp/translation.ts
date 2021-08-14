@@ -526,15 +526,15 @@ export const translation: TranslationStruct = {
         description: 'description',
       },
       home: {
-        title: 'ホームページ',
+        title: 'ホーム',
         description: 'description',
       },
       site: {
-        title: 'ドラガリ攻略サイト by OM',
+        title: 'ドラガリ攻略 by OM',
         description: 'description',
       },
       thanks: {
-        title: 'ご協力に感謝',
+        title: '協力感謝',
         description: 'description',
       },
       post: {
@@ -638,6 +638,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: 'キャラ/ドラゴン情報',
+    unitTier: '角色/龍族評級',
   },
   posts: {
     analysis: {

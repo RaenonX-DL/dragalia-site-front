@@ -516,6 +516,7 @@ export type TranslationStruct = {
   },
   nav: {
     unitInfo: string,
+    unitTier: string,
   },
   posts: {
     analysis: {
