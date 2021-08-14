@@ -615,8 +615,12 @@ export const translation: TranslationStruct = {
       },
       tier: {
         index: {
-          title: 'Tier List',
-          description: 'Tier list under different environment and its reasoning for all types of unit.',
+          title: 'Unit Tier',
+          description: 'Unit tier under different environment and its reasoning for all types of unit.',
+        },
+        edit: {
+          title: 'Edit unit tier',
+          description: 'Page to edit the rankings and the related info of each unit.',
         },
         points: {
           edit: {

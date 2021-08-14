@@ -488,6 +488,7 @@ export type TranslationStruct = {
       },
       tier: {
         index: PageMetaTranslations,
+        edit: PageMetaTranslations,
         points: {
           edit: PageMetaTranslations,
         },

@@ -577,8 +577,12 @@ export const translation: TranslationStruct = {
       },
       tier: {
         index: {
-          title: '角色/龍族排行',
-          description: '各角色、龍族在不同環境下的排行及其相關原因。',
+          title: '角色/龍族評級',
+          description: '各角色、龍族在不同環境下的評級及其相關原因。',
+        },
+        edit: {
+          title: '編輯物件評級',
+          description: '編輯各角色、龍族評級及其相關資訊的頁面。',
         },
         points: {
           edit: {

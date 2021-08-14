@@ -16,6 +16,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.ANALYSIS_NEW_CHARA]: (t) => t.meta.inUse.post.analysis.newChara,
   [GeneralPath.ANALYSIS_NEW_DRAGON]: (t) => t.meta.inUse.post.analysis.newDragon,
   [GeneralPath.TIER]: (t) => t.meta.inUse.tier.index,
+  [GeneralPath.TIER_EDIT]: (t) => t.meta.inUse.tier.edit,
   [GeneralPath.TIER_POINTS_EDIT]: (t) => t.meta.inUse.tier.points.edit,
   [GeneralPath.INFO_LOOKUP]: (t) => t.meta.inUse.gameData.info,
   [GeneralPath.EX]: (t) => t.meta.inUse.gameData.ex,
