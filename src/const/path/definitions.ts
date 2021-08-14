@@ -3,6 +3,7 @@ export const PATH_ROOT = '/[lang]';
 // Must and only have `id` as the key for unit ID
 export enum UnitPath {
   UNIT_INFO = '/info/[id]',
+  UNIT_TIER_EDIT = '/tier/edit/[id]'
 }
 
 // Must and only have `pid` as the key for post identifier
@@ -24,7 +25,6 @@ export enum GeneralPath {
   ANALYSIS_NEW_CHARA = '/analysis/new/chara',
   ANALYSIS_NEW_DRAGON = '/analysis/new/dragon',
   TIER = '/tier',
-  TIER_EDIT = '/tier/edit',
   TIER_POINTS_EDIT = '/tier/points/edit',
   MISC_LIST = '/misc',
   // In-game data
