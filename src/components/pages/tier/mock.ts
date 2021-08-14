@@ -36,7 +36,7 @@ export type UnitTierData = { [unitId in number]: UnitTierNote }
 
 export const unitTierData: UnitTierData = {
   10650503: {
-    points: ['objectId0001'],
+    points: ['61174cef5dc5094fe82e9ee9'],
     tier: {
       conSolo: {
         isCompDependent: false,
@@ -67,7 +67,7 @@ export const unitTierData: UnitTierData = {
     lastUpdateEpoch: 1618734262003,
   },
   10750404: {
-    points: ['objectId0001', 'objectId0002'],
+    points: ['61174cef5dc5094fe82e9eea', '61174cef5dc5094fe82e9ee9'],
     tier: {
       conSolo: {
         isCompDependent: false,

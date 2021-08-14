@@ -31,6 +31,16 @@ a.unitPoint:hover {
   color: white;
   height: 80%;
 }
+a.editIcon {
+  border: 0;
+  color: #bebebe;
+  font-size: 1.25rem;
+}
+a.editIcon:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
 
 img.unitIcon {
   opacity: 0.2;

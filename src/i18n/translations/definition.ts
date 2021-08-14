@@ -398,6 +398,7 @@ export type TranslationStruct = {
         compIcon: string,
       },
       points: {
+        edit: string,
         title: string,
         type: string,
         description: string,

@@ -6,15 +6,16 @@ import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {IconEdit} from '../../../elements/common/icons';
 import {IconPointsStrength, IconPointsWeakness} from '../icons';
+import styles from '../main.module.css';
 
 type Props = {
   keyPointsIds: Array<string>,
   keyPointsData: KeyPointData,
 }
 
-
 export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
   const {t} = useI18n();
+  const context = React.useContext(AppReactContext);
 
   const descStrength = keyPointsIds
     .filter((id) => id in keyPointsData && keyPointsData[id].type === 'strength')
@@ -52,6 +53,17 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
             {descWeakness.map((desc, idx) => <li key={idx}>{desc}</li>)}
           </ul>
         </div>
+      }
+      {
+        context?.session?.user.isAdmin &&
+        <>
+          <hr className="my-2"/>
+          <div className="text-right">
+            <a className={styles.editIcon} href={GeneralPath.TIER_POINTS_EDIT}>
+              <IconEdit/>
+            </a>
+          </div>
+        </>
       }
     </>
   );

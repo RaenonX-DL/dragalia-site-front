@@ -435,6 +435,7 @@ export const translation: TranslationStruct = {
         compIcon: 'Needs specific companion for the corresponding tier',
       },
       points: {
+        edit: 'Edit Key Point Content',
         title: 'Key Points',
         type: 'Type',
         description: 'Description',

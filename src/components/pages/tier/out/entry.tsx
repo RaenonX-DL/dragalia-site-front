@@ -29,7 +29,6 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const [modalState, setModalState] = React.useState<ModalStateFix>({
     show: false,
     title: t((t) => t.game.unitTier.points.title),
-    message: <TierKeyPoints keyPointsIds={tierNote?.points || []} keyPointsData={keyPointsData}/>,
   });
 
   return (
@@ -63,7 +62,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
       <Row>
         {
           tierNote && tierNote.points && tierNote.points.length > 0 &&
-          <Col>
+          <Col xs="auto">
             <a className={styles.unitPoint} onClick={() => setModalState({...modalState, show: true})}>
               <IconRadar/>
             </a>

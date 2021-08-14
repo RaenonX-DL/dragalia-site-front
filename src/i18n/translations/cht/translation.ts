@@ -402,6 +402,7 @@ export const translation: TranslationStruct = {
         compIcon: '需要搭配特定隊友以達到對應評級',
       },
       points: {
+        edit: '編輯要點內容',
         title: '要點',
         type: '種類',
         description: '敘述',

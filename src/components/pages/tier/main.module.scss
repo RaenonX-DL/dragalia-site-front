@@ -53,6 +53,16 @@ a {
     @include clickableIconHover;
     @include unitPointBase;
   }
+
+  &.editIcon {
+    @include clickableIcon;
+
+    font-size: 1.25rem;
+  }
+
+  &.editIcon:hover {
+    @include clickableIconHover;
+  }
 }
 
 img {
