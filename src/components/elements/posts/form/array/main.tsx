@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {IconDelete} from '../../../common/icons';
 import {ArrayAddButtonRow} from './addButton';
 
 
@@ -100,7 +101,7 @@ export const ArrayDataForm = <P, E extends object>({
                   onClick={onRemoved(counter[elemIdx])}
                   disabled={array.length <= minLength}
                 >
-                  <i className="bi bi-x-lg"/>
+                  <IconDelete/>
                 </Button>
               </Col>
             </Row>

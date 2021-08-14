@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
+import {IconClipboard, IconOk, IconShare} from '../../../../elements/common/icons';
 import {CommonModal} from '../../../../elements/common/modal';
 import {PRESET_QUERY_NAME} from '../hooks/preset';
 import {InputData} from '../in/types';
@@ -15,10 +16,10 @@ import {PresetState, PresetStatus} from './types';
 
 
 const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
-  notCreated: <i className="bi bi-share-fill"/>,
+  notCreated: <IconShare/>,
   creating: <Spinner animation="grow" size="sm"/>,
-  copied: <i className="bi bi-check2"/>,
-  createdNotCopied: <i className="bi bi-clipboard"/>,
+  copied: <IconOk/>,
+  createdNotCopied: <IconClipboard/>,
 };
 
 type Props = {

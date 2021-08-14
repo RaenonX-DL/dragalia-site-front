@@ -1,7 +1,10 @@
 import React from 'react';
 
 import {KeyPointData} from '../../../../api-def/api';
+import {GeneralPath} from '../../../../const/path/definitions';
+import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
+import {IconEdit} from '../../../elements/common/icons';
 import {IconPointsStrength, IconPointsWeakness} from '../icons';
 
 type Props = {

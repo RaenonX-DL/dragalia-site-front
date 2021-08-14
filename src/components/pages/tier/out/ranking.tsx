@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {IconNotes} from '../../../elements/common/icons';
 import {CommonModal, ModalState} from '../../../elements/common/modal';
 import {rankingColor} from '../const';
 import {IconCompDependent} from '../icons';
@@ -30,7 +31,7 @@ export const TierRanking = ({tierNote}: RankingProps) => {
         {tierNote && tierNote.isCompDependent && <>&nbsp;<IconCompDependent/></>}
       </div>
       <a className={styles.tierNote} onClick={() => setModalState({...modalState, show: true})}>
-        <i className="bi bi-card-text"/>
+        <IconNotes/>
       </a>
     </>
   );

@@ -7,6 +7,7 @@ import {KeyPointData} from '../../../../api-def/api';
 import {UnitInfoData} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
+import {IconRadar} from '../../../elements/common/icons';
 import {CommonModal, ModalState} from '../../../elements/common/modal';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../elements/gameData/unit/link';
@@ -61,7 +62,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
           tierNote && tierNote.points && tierNote.points.length > 0 &&
           <Col>
             <a className={styles.unitPoint} onClick={() => setModalState({...modalState, show: true})}>
-              <i className="bi bi-bullseye"/>
+              <IconRadar/>
             </a>
           </Col>
         }

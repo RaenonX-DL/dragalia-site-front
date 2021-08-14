@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {IconAdd} from '../../../common/icons';
+
 
 type Props = {
   onAdded: MouseEventHandler,
@@ -17,7 +19,7 @@ export const ArrayAddButtonRow = ({onAdded}: Props) => (
         variant="outline-success"
         onClick={onAdded}
       >
-        <i className="bi bi-plus-lg"/>
+        <IconAdd/>
       </Button>
     </Col>
   </Row>

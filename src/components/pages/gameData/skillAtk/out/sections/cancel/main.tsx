@@ -6,6 +6,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import {CancelUnit} from '../../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../../i18n/hook';
 import {reverseEnumTransLookup} from '../../../../../../../utils/services/resources/utils';
+import {IconCollapse} from '../../../../../../elements/common/icons';
 import {SectionAnimationProps} from '../animation';
 
 
@@ -28,7 +29,7 @@ export const CancelAction = ({cancelUnits, skillEnums, conditionEnumMap}: Props)
         variant="outline-light" size="sm"
         onClick={() => setShow(!show)} disabled={!isAvailable}
       >
-        <i className="bi bi-arrows-collapse"/>&nbsp;
+        <IconCollapse/>&nbsp;
         {t((t) => t.game.skillAtk.animation.cancelInfo)}&nbsp;-&nbsp;
         {
           isAvailable ?

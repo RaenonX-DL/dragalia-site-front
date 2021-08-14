@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
+import {IconImage} from '../../../common/icons';
 import {Image} from '../../../common/image';
 import {CommonModal, ModalState} from '../../../common/modal';
 import {IMAGE_REGEX} from './const';
@@ -35,7 +36,7 @@ export const ImageInHTML = ({src, alt}: ImageProps) => {
       <>
         <CommonModal modalState={modalState} setModalState={setModalState}/>
         <Button className="p-0" variant="link" onClick={() => openGifModal()}>
-          <i className="bi bi-image"/>&nbsp;
+          <IconImage/>&nbsp;
           {t((t) => t.misc.openGif)}
         </Button>
       </>
