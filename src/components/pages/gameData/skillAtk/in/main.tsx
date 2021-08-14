@@ -7,7 +7,8 @@ import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/re
 import {useI18n} from '../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../../elements/common/fetch';
-import {CommonModal, ModalState} from '../../../../elements/common/modal';
+import {ModalFlexContent} from '../../../../elements/common/modal/flex';
+import {ModalStateFlex} from '../../../../elements/common/modal/types';
 import {useAtkSkillInput} from '../hooks/preset';
 import {DisplayItemPicker} from './display';
 import {Filter} from './filter';
@@ -25,7 +26,7 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
   const {t, lang} = useI18n();
 
   const [collapsed, setCollapsed] = React.useState(true);
-  const [modalState, setModalState] = React.useState<ModalState>({
+  const [modalState, setModalState] = React.useState<ModalStateFlex>({
     show: false,
     title: '',
     message: '',
@@ -55,7 +56,7 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
 
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState}/>
+      <ModalFlexContent state={modalState} setState={setModalState}/>
       <Filter
         inputData={inputData}
         setInputData={setInputData}

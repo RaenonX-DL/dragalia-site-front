@@ -7,7 +7,8 @@ import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
 import {ProtectedLayout} from '../../../pages/layout/protected';
-import {CommonModal, ModalState} from '../../common/modal';
+import {ModalFlexContent} from '../../common/modal/flex';
+import {ModalStateFlex} from '../../common/modal/types';
 import {FormControl} from './control';
 import {PostFormBaseProps} from './types';
 
@@ -33,7 +34,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const dispatch = useDispatch();
   const context = React.useContext(AppReactContext);
 
-  const [modalState, setModalState] = React.useState<ModalState>({
+  const [modalState, setModalState] = React.useState<ModalStateFlex>({
     show: false,
     title: '',
     message: '',
@@ -112,7 +113,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 
   return (
     <ProtectedLayout>
-      <CommonModal modalState={modalState} setModalState={setModalState}/>
+      <ModalFlexContent state={modalState} setState={setModalState}/>
       <form onSubmit={onSubmit}>
         {renderMain(setPayload, setAvailability)}
         <div className="mb-3"/>

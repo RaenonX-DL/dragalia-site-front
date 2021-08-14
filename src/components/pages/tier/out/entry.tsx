@@ -8,7 +8,8 @@ import {UnitInfoData} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
 import {IconRadar} from '../../../elements/common/icons';
-import {CommonModal, ModalState} from '../../../elements/common/modal';
+import {ModalFixedContent} from '../../../elements/common/modal/fix';
+import {ModalStateFix} from '../../../elements/common/modal/types';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../elements/gameData/unit/link';
 import styles from '../main.module.css';
@@ -25,7 +26,7 @@ type Props = {
 
 export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();
-  const [modalState, setModalState] = React.useState<ModalState>({
+  const [modalState, setModalState] = React.useState<ModalStateFix>({
     show: false,
     title: t((t) => t.game.unitTier.points.title),
     message: <TierKeyPoints keyPointsIds={tierNote?.points || []} keyPointsData={keyPointsData}/>,
@@ -33,7 +34,9 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
 
   return (
     <div className="bg-black-32 rounded p-2 mb-2">
-      <CommonModal modalState={modalState} setModalState={setModalState} clearContentOnClose={false}/>
+      <ModalFixedContent state={modalState} setState={setModalState}>
+        <TierKeyPoints keyPointsIds={tierNote?.points || []} keyPointsData={keyPointsData}/>
+      </ModalFixedContent>
       <div className="mb-2 text-center">
         <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} className={styles.unitName}/>
       </div>

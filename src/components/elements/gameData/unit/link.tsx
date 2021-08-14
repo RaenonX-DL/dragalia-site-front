@@ -9,8 +9,11 @@ import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {Image} from '../../common/image';
 import {Loading} from '../../common/loading';
-import {CommonModal, ModalState} from '../../common/modal';
+import {ModalMappedContent} from '../../common/modal/mapped';
+import {ModalStateMapped} from '../../common/modal/types';
 
+
+type ModalState = ModalStateMapped<'content' | 'loading'>
 
 type UnitInfo = {
   id: number,
@@ -32,7 +35,7 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
   const {t, lang} = useI18n();
 
   const onLinkClicked = () => {
-    setModalState({...modalState, show: true, message: <Loading/>});
+    setModalState({...modalState, show: true, key: 'loading'});
   };
 
   return (
@@ -67,25 +70,28 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
   const [modalState, setModalState] = React.useState<ModalState>({
     show: false,
     title: t((t) => t.game.unitInfo.text.relatedLinks),
-    message: '',
+    key: 'content',
   });
 
-  const onLinkClicked = () => setModalState({
-    ...modalState,
-    show: true,
-    message: (
-      <ModalContent
-        unit={unit} hasAnalysis={hasAnalysis}
-        modalState={modalState} setModalState={setModalState}
-      />
-    ),
-  });
+  const onLinkClicked = () => setModalState({...modalState, show: true});
 
   // Empty string as the class name to ensure the link is rendered using its default style
   // Reboot CSS disables link styling if the <a> tag has no `href` and no `class`
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState} clearContentOnClose={false}/>
+      <ModalMappedContent
+        state={modalState}
+        setState={setModalState}
+        lookup={{
+          content: (
+            <ModalContent
+              unit={unit} hasAnalysis={hasAnalysis}
+              modalState={modalState} setModalState={setModalState}
+            />
+          ),
+          loading: <Loading/>,
+        }}
+      />
       {
         unit.icon &&
         <Image

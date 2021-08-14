@@ -13,16 +13,14 @@ export const InputPanel = <E extends CheckOption, E2 extends EnumEntry, T>({
 }: InputPanelProps<E, E2, T>) => {
   return (
     <>
-      {
-        inputEntries.map((inputEntry, idx) => (
-          <InputPanelEntry
-            key={idx}
-            inputEntry={inputEntry}
-            inputData={inputData}
-            setInputData={setInputData}
-          />
-        ))
-      }
+      {inputEntries.map((inputEntry, idx) => (
+        <InputPanelEntry
+          key={idx}
+          inputEntry={inputEntry}
+          inputData={inputData}
+          setInputData={setInputData}
+        />
+      ))}
     </>
   );
 };

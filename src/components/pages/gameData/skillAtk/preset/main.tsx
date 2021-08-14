@@ -9,7 +9,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {IconClipboard, IconOk, IconShare} from '../../../../elements/common/icons';
-import {CommonModal} from '../../../../elements/common/modal';
+import {ModalFlexContent} from '../../../../elements/common/modal/flex';
 import {PRESET_QUERY_NAME} from '../hooks/preset';
 import {InputData} from '../in/types';
 import {PresetState, PresetStatus} from './types';
@@ -97,9 +97,9 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
 
   return (
     <>
-      <CommonModal
-        modalState={state.modal}
-        setModalState={(modalState) => setState({...state, modal: modalState})}
+      <ModalFlexContent
+        state={state.modal}
+        setState={(modalState) => setState({...state, modal: modalState})}
       />
       <InputGroup className="mb-2 mr-sm-2">
         <FormControl

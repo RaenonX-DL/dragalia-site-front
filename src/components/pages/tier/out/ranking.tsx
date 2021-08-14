@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {IconNotes} from '../../../elements/common/icons';
-import {CommonModal, ModalState} from '../../../elements/common/modal';
+import {ModalFixedContent} from '../../../elements/common/modal/fix';
+import {ModalStateFix} from '../../../elements/common/modal/types';
 import {rankingColor} from '../const';
 import {IconCompDependent} from '../icons';
 import styles from '../main.module.css';
@@ -13,10 +14,9 @@ export type RankingProps = {
 }
 
 export const TierRanking = ({tierNote}: RankingProps) => {
-  const [modalState, setModalState] = React.useState<ModalState>({
+  const [modalState, setModalState] = React.useState<ModalStateFix>({
     show: false,
     title: '',
-    message: tierNote?.note,
   });
 
   if (!tierNote) {
@@ -25,7 +25,9 @@ export const TierRanking = ({tierNote}: RankingProps) => {
 
   return (
     <>
-      <CommonModal modalState={modalState} setModalState={setModalState} clearContentOnClose={false}/>
+      <ModalFixedContent state={modalState} setState={setModalState}>
+        {tierNote?.note}
+      </ModalFixedContent>
       <div className="d-inline">
         <span className={styles.ranking} style={{color: rankingColor[tierNote.ranking]}}>{tierNote.ranking}</span>
         {tierNote && tierNote.isCompDependent && <>&nbsp;<IconCompDependent/></>}
