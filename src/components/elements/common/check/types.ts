@@ -23,6 +23,7 @@ export type CheckItemProps = {
   checked?: boolean,
   onChange: (checked: boolean) => void,
   image?: CheckItemImageOptions,
+  disabled?: boolean,
 } & ({
   type: 'radio',
   groupName: string,

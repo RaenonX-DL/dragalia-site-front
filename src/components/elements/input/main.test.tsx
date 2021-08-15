@@ -311,6 +311,37 @@ describe('Input collection', () => {
     expect(fnSetInputData).toHaveBeenLastCalledWith({num: 2});
   });
 
+  it('disables checkboxes', async () => {
+    inputData = {check1: false};
+
+    renderReact(() => (
+      <InputPanel
+        inputEntries={[{
+          type: 'inputCheckGroup',
+          checkboxes: [
+            {
+              text: 'check 1',
+              getValue: (inputData) => inputData.check1 ?? false,
+              getUpdatedInputData: (newValue) => ({...inputData, check1: newValue}),
+              disabled: true,
+            },
+          ],
+        }]}
+        inputData={inputData}
+        setInputData={fnSetInputData}
+      />
+    ));
+
+    const button = screen.getByText('check 1');
+
+    const actualButton = button.parentElement?.children[0];
+    expect(actualButton).toBeDisabled();
+
+    userEvent.click(button);
+
+    expect(fnSetInputData).not.toHaveBeenCalled();
+  });
+
   it('renders multiple inputs', async () => {
     inputData = {check1: false, check2: false};
 

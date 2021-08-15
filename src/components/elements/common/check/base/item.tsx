@@ -15,6 +15,7 @@ export const CheckItem = ({
   image,
   type,
   groupName,
+  disabled,
 }: CheckItemProps) => {
   const label = image?.url ?
     <ImageWithOverlay src={image.url} text={text} style={{height: image.height || '1.5rem'}}/> :
@@ -31,6 +32,7 @@ export const CheckItem = ({
         onChange={(e) => onChange(e.target.checked)}
         name={groupName}
         value="1"
+        disabled={disabled}
       >
         {label}
       </ToggleButton>
