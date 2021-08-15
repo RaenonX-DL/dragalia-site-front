@@ -3,6 +3,7 @@ import React from 'react';
 import {IconNotes} from '../../../elements/common/icons';
 import {ModalFixedContent} from '../../../elements/common/modal/fix';
 import {ModalStateFix} from '../../../elements/common/modal/types';
+import {Markdown} from '../../../elements/markdown/main';
 import {rankingColor} from '../const';
 import {IconCompDependent} from '../icons';
 import styles from '../main.module.css';
@@ -26,7 +27,9 @@ export const TierRanking = ({tierNote}: RankingProps) => {
   return (
     <>
       <ModalFixedContent state={modalState} setState={setModalState}>
-        {tierNote?.note}
+        <Markdown>
+          {tierNote?.note}
+        </Markdown>
       </ModalFixedContent>
       <div className="d-inline">
         <span className={styles.ranking} style={{color: rankingColor[tierNote.ranking]}}>{tierNote.ranking}</span>
