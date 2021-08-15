@@ -3,15 +3,13 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {UnitMetaParams} from '../../../../../api-def/api';
 import {DepotPaths, InfoDataAdvanced} from '../../../../../api-def/resources';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {useNextRouter} from '../../../../../utils/router';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../../elements/common/fetch';
 import {Image} from '../../../../elements/common/image';
 import {Loading} from '../../../../elements/common/loading';
+import {useUnitId} from '../../../../elements/gameData/hook';
 import {AbilityBlock} from './elements/ability/main';
 import {RelatedLinks} from './elements/links';
 import {UnitNameBlock} from './elements/name';
@@ -21,16 +19,12 @@ import {SkillSection} from './elements/skill/section';
 
 export const UnitInfo = () => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
-  const {query} = useNextRouter();
+  const unitId = useUnitId();
 
-  if (!context) {
+  if (!unitId) {
     return <></>;
   }
 
-  // `context.params` contains the unit ID via direct visit
-  // `query.id` will contains the unit ID via in-site redirection
-  const unitId = (context.params as UnitMetaParams).unitId || +(query.id as string);
   const {fetchStatus: info, fetchFunction: fetchInfo} = useFetchState<InfoDataAdvanced | undefined>(
     undefined,
     () => ResourceLoader.getAdvancedUnitInfo(unitId),
