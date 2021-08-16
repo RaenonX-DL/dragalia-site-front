@@ -33,6 +33,11 @@ const SpecialThanks = () => {
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
+          Kevin&nbsp;
+          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+        </li>
+        <li>
           N.O.-09&nbsp;
           <Badge variant="primary">{t((t) => t.donation.tierS2)}</Badge>
         </li>
