@@ -28,21 +28,6 @@ describe('Object override utils', () => {
     expect(overridden).toStrictEqual({a: 1, b: 4, c: 3, d: {e: 8, f: 6}});
   });
 
-  it('overrides multi-level object', async () => {
-    const original = {
-      a: 1,
-      b: 2,
-      c: 3,
-      d: {
-        e: 5,
-        f: 6,
-      },
-    };
-    const overridden = overrideObject(original, {b: 4, d: {e: 8}});
-
-    expect(overridden).toStrictEqual({a: 1, b: 4, c: 3, d: {e: 8, f: 6}});
-  });
-
   it('overrides array object', async () => {
     const original = {
       a: [1],
@@ -84,10 +69,17 @@ describe('Object override utils', () => {
     expect(overridden).toStrictEqual({a: null});
   });
 
-  it('overrides object', async () => {
+  it('overrides with nested object', async () => {
     const original: {a: {[ID in number]: string}} = {a: {}};
     const overridden = overrideObject(original, {a: {7: 'a'}});
 
     expect(overridden).toStrictEqual({a: {7: 'a'}});
+  });
+
+  it('adds new property if existed in `original` but not `override`', async () => {
+    const original: {a: number, b?: number} = {a: 7};
+    const overridden = overrideObject(original, {b: 3});
+
+    expect(overridden).toStrictEqual({a: 7, b: 3});
   });
 });
