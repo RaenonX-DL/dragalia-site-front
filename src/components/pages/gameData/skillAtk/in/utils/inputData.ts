@@ -8,7 +8,7 @@ import {InputData} from '../types';
 
 export const overrideInputData = (
   original: InputData, override: DeepPartial<InputData>,
-): InputData => overrideObject(original, override);
+): InputData => overrideObject(original, override, {originalOnly: true});
 
 export const generateInputData = (override?: DeepPartial<InputData>): InputData => overrideInputData(
   {
