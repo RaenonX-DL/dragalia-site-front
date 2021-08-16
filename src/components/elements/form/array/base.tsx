@@ -17,7 +17,7 @@ export type ArrayFormProps<P, E> = {
   reversed?: boolean,
 }
 
-export const ArrayFormBase = <P, E extends object>({
+export const ArrayFormBase = <P, E>({
   payload,
   minLength,
   getArray,

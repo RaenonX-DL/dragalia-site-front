@@ -5,7 +5,7 @@ import {ArrayFormBase, ArrayFormProps} from './base';
 
 type Props<P, E> = Omit<ArrayFormProps<P, E>, 'counterState'>
 
-export const ArrayFormRemoveOnly = <P, E extends object>(props: Props<P, E>) => {
+export const ArrayFormRemoveOnly = <P, E>(props: Props<P, E>) => {
   const {getArray, payload, reversed} = props;
 
   // Can't use element index for render because the components are cached after removal.
