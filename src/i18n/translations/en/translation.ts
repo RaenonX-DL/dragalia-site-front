@@ -429,6 +429,11 @@ export const translation: TranslationStruct = {
       },
     },
     unitTier: {
+      tier: {
+        title: 'Ranking',
+        ranking: 'Ranking',
+        isCompDependent: 'Comp-dependent',
+      },
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +
           'the actual strength, how-to-use, and the other details!',

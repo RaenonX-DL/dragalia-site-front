@@ -1,3 +1,6 @@
+import {ApiResponseCode, BaseResponse} from '../../../api-def/api';
+
+
 // ----------------------- TYPES
 
 export type Ranking = 'S' | 'A' | 'B' | 'C'
@@ -24,13 +27,28 @@ export type TierNote = {
   note: string,
 }
 
+export type TierNoteEdit = {
+  isCompDependent: boolean,
+  ranking: Ranking,
+  note: string,
+  toDelete?: boolean,
+}
+
 export type UnitTierNote = {
   points?: Array<string>,
   tier: { [dim in DimensionKey]?: TierNote },
   lastUpdateEpoch: number,
 }
 
+export type UnitTierNoteEdit = Omit<UnitTierNote, 'lastUpdateEpoch' | 'tier'> & {
+  tier: { [dim in DimensionKey]?: TierNoteEdit },
+}
+
 export type UnitTierData = { [unitId in number]: UnitTierNote }
+
+export type UnitTierNoteEditResponse = BaseResponse & {
+  data: UnitTierNoteEdit,
+}
 
 // ----------------------- DATA
 
@@ -99,11 +117,6 @@ export const unitTierData: UnitTierData = {
         ranking: 'S',
         note: 'Some note.',
       },
-      sharedSkill: {
-        isCompDependent: false,
-        ranking: 'C',
-        note: 'Some note.',
-      },
     },
     lastUpdateEpoch: 1578734262003,
   },
@@ -123,3 +136,9 @@ export const unitTierData: UnitTierData = {
     lastUpdateEpoch: 1598734262003,
   },
 };
+
+export const getUnitTierDataEdit = async () => ({
+  code: ApiResponseCode.SUCCESS,
+  success: true,
+  data: unitTierData[10750404],
+});

@@ -393,6 +393,11 @@ export type TranslationStruct = {
       },
     },
     unitTier: {
+      tier: {
+        title: string,
+        ranking: string,
+        isCompDependent: string,
+      },
       tips: {
         main: string,
         compIcon: string,
