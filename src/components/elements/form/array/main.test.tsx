@@ -8,7 +8,7 @@ import {PostMeta, SupportedLanguages} from '../../../../api-def/api';
 import {ArrayForm} from './main';
 
 
-describe('Array data form', () => {
+describe('Array form', () => {
   type Enum = {
     code: string,
   }
