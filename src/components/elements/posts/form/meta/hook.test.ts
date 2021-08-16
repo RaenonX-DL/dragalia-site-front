@@ -99,7 +99,7 @@ describe('Form meta hook', () => {
     formState.payload.lang = SupportedLanguages.CHT;
     rerender();
 
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
 
     await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());
     expect(setAvailability).toHaveBeenCalledWith(true);
@@ -134,7 +134,7 @@ describe('Form meta hook', () => {
     formState.payload.lang = SupportedLanguages.CHT;
     rerender();
 
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     rerender();
 
     await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());

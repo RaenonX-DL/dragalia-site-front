@@ -52,7 +52,7 @@ describe('ATK skill input preset manager', () => {
     userEvent.click(shareButton);
 
     await waitFor(() => expect(fnMakePreset).toHaveBeenCalled());
-    jest.runTimersToTime(7000);
+    jest.advanceTimersByTime(7000);
     await waitFor(() => expect(screen.getByText('', {selector: 'i.bi-clipboard'})).toBeInTheDocument());
     expect(screen.getByDisplayValue(`http://localhost/?${PRESET_QUERY_NAME}=presetLink`)).toBeInTheDocument();
 
@@ -71,7 +71,7 @@ describe('ATK skill input preset manager', () => {
     userEvent.click(shareButton);
 
     await waitFor(() => expect(fnMakePreset).toHaveBeenCalled());
-    jest.runTimersToTime(7000);
+    jest.advanceTimersByTime(7000);
 
     const clipboardButton = screen.getByText('', {selector: 'i.bi-clipboard'});
     userEvent.click(clipboardButton);
