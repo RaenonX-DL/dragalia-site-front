@@ -1,11 +1,7 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
-import {IconDelete} from '../../common/icons';
 import {ArrayAddButtonRow} from './addButton';
+import {ArrayFormBase} from './base';
 
 
 export type ArrayFormOnChangeHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
@@ -45,7 +41,8 @@ export const ArrayForm = <P, E extends object>({
     initialCounter.reverse();
   }
 
-  const [counter, setCounter] = React.useState(initialCounter);
+  const counterState = React.useState(initialCounter);
+  const [counter, setCounter] = counterState;
 
   const onChangeHandler = <K extends keyof E>(changedIdx: number) => (
     key: K,
@@ -73,41 +70,18 @@ export const ArrayForm = <P, E extends object>({
     }
   };
 
-  const onRemoved = (counterToRemove: number) => () => {
-    const idxToRemove = counter.indexOf(counterToRemove);
-
-    setArray(getArray(payload).filter(
-      (element, elemIdx) => elemIdx !== idxToRemove,
-    ));
-    setCounter(counter.filter((count) => count !== counterToRemove));
-  };
-
-  const array = getArray(payload);
-
   return (
     <>
       {addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
-      {
-        array.map((elem, elemIdx) => (
-          <React.Fragment key={counter[elemIdx]}>
-            <Row noGutters className="mt-2">
-              <Col>
-                {renderEntries(elem, onChangeHandler(elemIdx), elemIdx)}
-              </Col>
-              <Col xs="auto">
-                <Button
-                  className="d-inline float-right ml-2"
-                  variant="outline-danger"
-                  onClick={onRemoved(counter[elemIdx])}
-                  disabled={array.length <= minLength}
-                >
-                  <IconDelete/>
-                </Button>
-              </Col>
-            </Row>
-          </React.Fragment>
-        ))
-      }
+      <ArrayFormBase
+        payload={payload}
+        minLength={minLength}
+        getArray={getArray}
+        setArray={setArray}
+        renderEntries={(elem, elemIdx) => renderEntries(elem, onChangeHandler(elemIdx), elemIdx)}
+        reversed={addToTop}
+        counterState={counterState}
+      />
       {!addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
     </>
   );
