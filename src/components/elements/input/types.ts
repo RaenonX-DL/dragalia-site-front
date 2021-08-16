@@ -50,6 +50,16 @@ export type InputEntryEnumCheckGroup<E2 extends EnumEntry, T> =
   type: 'enumCheckGroup'
 }
 
+export type InputEntrySelect<E, T> = {
+  type: 'select',
+  title: string,
+  defaultEntry: E,
+  values: Array<E>,
+  getUpdatedInputData: (selected: string) => T,
+  getValue: (entry: E) => string,
+  getText?: (entry: E) => string,
+}
+
 export type InputEntry<E, E2 extends EnumEntry, T> =
   InputEntryTitle |
   InputEntrySubTitle |
@@ -59,7 +69,8 @@ export type InputEntry<E, E2 extends EnumEntry, T> =
   InputEntryArrayCheckboxGroup<E, T> |
   InputEntryRadioGroup<E, T> |
   InputEntryEnumRadioGroup<E2, T> |
-  InputEntryEnumCheckGroup<E2, T>
+  InputEntryEnumCheckGroup<E2, T> |
+  InputEntrySelect<E, T>
 
 export type InputEntries<E, E2 extends EnumEntry, T> = Array<InputEntry<E, E2, T>>
 

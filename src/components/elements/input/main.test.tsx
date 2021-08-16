@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {screen} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
@@ -15,8 +15,9 @@ describe('Input collection', () => {
     nums?: Array<number>,
     check1?: boolean,
     check2?: boolean,
+    selected?: string,
   };
-  let fnSetInputData: jest.Mock;
+  let fnSetInputData: jest.Mock<void, [typeof inputData]>;
 
   beforeEach(() => {
     fnSetInputData = jest.fn().mockImplementation((newData) => inputData = newData);
@@ -381,5 +382,64 @@ describe('Input collection', () => {
     expect(screen.getByText('', {selector: 'hr'})).toBeInTheDocument();
     expect(screen.getByText('check 1')).toBeInTheDocument();
     expect(screen.getByText('check 2')).toBeInTheDocument();
+  });
+
+  it('renders multi-select input', async () => {
+    inputData = {selected: 'a'};
+
+    const entries = [
+      {text: 'a'},
+      {text: 'b'},
+    ];
+
+    renderReact(() => (
+      <InputPanel
+        inputEntries={[
+          {
+            type: 'select',
+            title: 'title',
+            defaultEntry: entries[0],
+            values: entries,
+            getUpdatedInputData: (selected) => ({...inputData, selected}),
+            getValue: (entry) => entry.text,
+          },
+        ]}
+        inputData={inputData}
+        setInputData={fnSetInputData}
+      />
+    ));
+
+    expect(screen.getByText('a')).toBeInTheDocument();
+  });
+
+  it('changes input data on option selected', async () => {
+    inputData = {selected: 'a'};
+
+    const entries = [
+      {text: 'a'},
+      {text: 'b'},
+    ];
+
+    renderReact(() => (
+      <InputPanel
+        inputEntries={[
+          {
+            type: 'select',
+            title: 'title',
+            defaultEntry: entries[0],
+            values: entries,
+            getUpdatedInputData: (selected) => ({...inputData, selected}),
+            getValue: (entry) => entry.text,
+          },
+        ]}
+        inputData={inputData}
+        setInputData={fnSetInputData}
+      />
+    ));
+
+    userEvent.selectOptions(screen.getByText('', {selector: 'select'}), 'b');
+
+    await waitFor(() => expect(fnSetInputData).toHaveBeenCalled());
+    expect(fnSetInputData.mock.calls[0][0]).toStrictEqual({selected: 'b'});
   });
 });
