@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
 
 import '../public/bootstrap.css';
+import '../public/bs-icons.css';
 import '../public/index.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
