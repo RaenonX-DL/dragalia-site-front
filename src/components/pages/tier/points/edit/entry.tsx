@@ -6,14 +6,14 @@ import Row from 'react-bootstrap/Row';
 
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {ArrayDataFormOnChangedHandler} from '../../../../elements/posts/form/array/main';
+import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/main';
 import {keyPointTypeName} from '../../const';
 import {PointTypeIcon} from '../../icons';
 
 
 type Props = {
   entry: KeyPointEntryUpdate,
-  onChanged: ArrayDataFormOnChangedHandler<KeyPointEntryUpdate>,
+  onChanged: ArrayFormOnChangeHandler<KeyPointEntryUpdate>,
   isDescriptionInvalid: boolean,
 }
 

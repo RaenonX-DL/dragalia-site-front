@@ -8,7 +8,7 @@ import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
-import {ArrayDataForm, ArrayDataFormOnChangedHandler} from '../posts/form/array/main';
+import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
 
 
@@ -28,7 +28,7 @@ type Props<E, I, R extends BaseResponse> = {
   generateNewElement: () => E,
   renderEntries: (
     element: E,
-    onChangeHandler: ArrayDataFormOnChangedHandler<E>,
+    onChangeHandler: ArrayFormOnChangeHandler<E>,
     idx: number,
     counter: Map<I, number>,
   ) => React.ReactElement,
@@ -93,7 +93,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         </Col>
       </Row>
       <hr/>
-      <ArrayDataForm
+      <ArrayForm
         payload={state}
         minLength={0}
         getArray={(state) => state.data}

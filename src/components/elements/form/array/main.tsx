@@ -4,13 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {IconDelete} from '../../../common/icons';
+import {IconDelete} from '../../common/icons';
 import {ArrayAddButtonRow} from './addButton';
 
 
-export type ArrayDataFormOnChangedHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
+export type ArrayFormOnChangeHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
 
-type ArrayDataFormProps<P, E> = {
+type Props<P, E> = {
   payload: P,
   minLength: number,
   getArray: (payload: P) => Array<E>,
@@ -19,13 +19,13 @@ type ArrayDataFormProps<P, E> = {
   generateNewElement: () => E,
   renderEntries: (
     element: E,
-    onChangeHandler: ArrayDataFormOnChangedHandler<E>,
+    onChangeHandler: ArrayFormOnChangeHandler<E>,
     idx: number,
   ) => React.ReactElement,
   addToTop?: boolean,
 }
 
-export const ArrayDataForm = <P, E extends object>({
+export const ArrayForm = <P, E extends object>({
   payload,
   minLength,
   getArray,
@@ -34,7 +34,7 @@ export const ArrayDataForm = <P, E extends object>({
   generateNewElement,
   renderEntries,
   addToTop = false,
-}: ArrayDataFormProps<P, E>) => {
+}: Props<P, E>) => {
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
   //   removing the first entry only removes the underlying 1st data.

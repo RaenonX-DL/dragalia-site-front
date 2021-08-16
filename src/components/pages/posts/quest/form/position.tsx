@@ -3,7 +3,7 @@ import React from 'react';
 import {QuestPostPublishPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {generateNewPositionInfo} from '../../../../../utils/services/api/utils';
-import {ArrayDataForm} from '../../../../elements/posts/form/array/main';
+import {ArrayForm} from '../../../../elements/form/array/main';
 import {PostFormDataProps} from '../../../../elements/posts/form/types';
 import {QuestPositionUnit} from './positionUnit';
 
@@ -16,7 +16,7 @@ export const FormPositional = <P extends QuestPostPublishPayload>({formState, se
   return (
     <>
       <h5>{t((t) => t.posts.quest.positional)}</h5>
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={1}
         getArray={(payload) => payload.positional}

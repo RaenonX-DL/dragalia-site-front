@@ -8,13 +8,13 @@ import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
 import {formControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
+import {ArrayFormOnChangeHandler} from '../../../elements/form/array/main';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
-import {ArrayDataFormOnChangedHandler} from '../../../elements/posts/form/array/main';
 
 
 type UnitNameRefEntryProps = {
   entry: UnitNameRefEntryApi,
-  onChanged: ArrayDataFormOnChangedHandler<UnitNameRefEntryApi>,
+  onChanged: ArrayFormOnChangeHandler<UnitNameRefEntryApi>,
   isNameInvalid: boolean,
   unitInfoMap: UnitInfoMap<number>,
 }

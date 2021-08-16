@@ -3,9 +3,9 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../../test/render/main';
-import {PostMeta, SupportedLanguages} from '../../../../../api-def/api';
-import {ArrayDataForm} from './main';
+import {renderReact} from '../../../../../test/render/main';
+import {PostMeta, SupportedLanguages} from '../../../../api-def/api';
+import {ArrayForm} from './main';
 
 
 describe('Array data form', () => {
@@ -46,7 +46,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -80,7 +80,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -111,7 +111,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -147,7 +147,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -178,7 +178,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -212,7 +212,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={getArrayFunc}
@@ -239,7 +239,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={0}
         getArray={getArrayFunc}
@@ -269,7 +269,7 @@ describe('Array data form', () => {
     };
 
     renderReact(() => (
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={0}
         getArray={getArrayFunc}
