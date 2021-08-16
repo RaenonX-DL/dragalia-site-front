@@ -82,4 +82,11 @@ describe('Object override utils', () => {
 
     expect(overridden).toStrictEqual({a: 7, b: 3});
   });
+
+  it('does not add new property if set', async () => {
+    const original: {a: number, b?: number} = {a: 7};
+    const overridden = overrideObject(original, {b: 3}, {originalOnly: false});
+
+    expect(overridden).toStrictEqual({a: 7, b: 3});
+  });
 });
