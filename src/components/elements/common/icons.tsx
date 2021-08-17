@@ -3,7 +3,7 @@ import React from 'react';
 
 export const IconImage = () => <i className="bi bi-image"/>;
 
-export const IconEdit = () => <i className="bi bi-pencil-square"/>;
+export const IconEdit = () => <i className="bi bi-pencil-fill"/>;
 
 export const IconAdd = () => <i className="bi bi-plus-lg"/>;
 

@@ -100,7 +100,8 @@ describe('Tier list entry', () => {
     userEvent.click(keyPointsIcon);
 
     expect(await screen.findByText('point')).toBeInTheDocument();
-    expect(screen.getByText('', {selector: 'i.bi-pencil-square'})).toBeInTheDocument();
+    // 1 for tier note (besides unit name), 1 for key points
+    expect(screen.getAllByText('', {selector: 'i.bi-pencil-fill'})).toHaveLength(2);
   });
 
   it('hides key point edit icon for non-admins', async () => {
@@ -118,6 +119,34 @@ describe('Tier list entry', () => {
     userEvent.click(keyPointsIcon);
 
     expect(await screen.findByText('point')).toBeInTheDocument();
-    expect(screen.queryByText('', {selector: 'i.bi-pencil-square'})).not.toBeInTheDocument();
+    expect(screen.queryByText('', {selector: 'i.bi-pencil-fill'})).not.toBeInTheDocument();
+  });
+
+  it('shows tier note edit icon for admins', async () => {
+    renderReact(
+      () => (
+        <TierListEntry
+          tierNote={overrideObject(tierNote, {tier: {conCoop: {isCompDependent: false}}})}
+          keyPointsData={keyPointsData} unitInfo={unitInfo}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
+  });
+
+  it('hides tier note edit icon for non-admins', async () => {
+    renderReact(
+      () => (
+        <TierListEntry
+          tierNote={overrideObject(tierNote, {tier: {conCoop: {isCompDependent: false}}})}
+          keyPointsData={keyPointsData} unitInfo={unitInfo}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: false}},
+    );
+
+    expect(screen.queryByText('', {selector: 'i.bi-pencil-fill'})).not.toBeInTheDocument();
   });
 });
