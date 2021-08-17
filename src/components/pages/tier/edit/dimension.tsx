@@ -85,7 +85,7 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
           rows={3}
           onChanged={(e) => setInputData(overrideObject(inputData, {note: e.target.value}))}
           value={inputData?.note || ''}
-          disabled={disabled}
+          disabled={disabled} required={!disabled}
         />
       </Col>
     </Row>
