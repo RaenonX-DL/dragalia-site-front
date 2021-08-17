@@ -27,7 +27,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type)}</Form.Label>
           <Row noGutters>
-            <Col xs="auto" className={styles.pointEntry}>
+            <Col xs="auto" className={styles.pointIcon}>
               {PointTypeIcon[entry.type]}
             </Col>
             <Col>

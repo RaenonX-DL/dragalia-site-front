@@ -56,7 +56,9 @@ import {
   UnitNameRefUpdatePayload,
   UnitNameRefUpdateResponse,
   UnitPageMetaPayload,
-  UnitPageMetaResponse, UnitTierNote, UnitTierNoteEditPayload, UnitTierNoteEditResponse,
+  UnitPageMetaResponse,
+  UnitTierNoteEditPayload,
+  UnitTierNoteEditResponse,
   UnitTierNoteGetPayload,
   UnitTierNoteGetResponse,
   UnitTierNoteUpdatePayload,
@@ -513,10 +515,15 @@ export class ApiRequestSender {
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language of the tier note
    * @param {number} unitId unit ID of the tier note
-   * @param {UnitTierNote} data updated unit tier note
+   * @param {Omit<UnitTierNote, 'lastUpdateEpoch'>} data updated unit tier note
    * @return {Promise<UnitTierNoteUpdateResponse>} promise returned from `fetch`
    */
-  static updateUnitTierNote(uid: string, lang: SupportedLanguages, unitId: number, data: UnitTierNote) {
+  static updateUnitTierNote(
+    uid: string,
+    lang: SupportedLanguages,
+    unitId: number,
+    data: UnitTierNoteUpdatePayload['data'],
+  ) {
     return ApiRequestSender.sendRequest<UnitTierNoteUpdateResponse, UnitTierNoteUpdatePayload>(
       'POST',
       ApiEndPoints.MANAGE_TIER_NOTE,

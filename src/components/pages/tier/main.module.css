@@ -4,12 +4,21 @@ span.title {
 span.ranking {
   font-size: 1.5rem;
 }
+span.pointIcon {
+  font-size: 1.3em;
+  margin-right: 0.25rem;
+}
 
-div.pointEntry {
+div.pointIcon {
   font-size: 1.5em;
   width: 1.5em;
   margin-right: 0.5rem;
   text-align: center;
+}
+div.pointEntry {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 a.unitName {

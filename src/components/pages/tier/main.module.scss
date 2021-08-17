@@ -6,14 +6,25 @@ span {
   &.ranking {
     font-size: 1.5rem;
   }
+
+  &.pointIcon {
+    font-size: 1.3em;
+    margin-right: 0.25rem;
+  }
 }
 
 div {
-  &.pointEntry {
+  &.pointIcon {
     font-size: 1.5em;
     width: 1.5em;
     margin-right: 0.5rem;
     text-align: center;
+  }
+
+  &.pointEntry {
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 }
 
