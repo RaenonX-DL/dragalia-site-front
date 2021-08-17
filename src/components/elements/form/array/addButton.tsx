@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const ArrayAddButtonRow = ({onAdded}: Props) => (
-  <Row className="mt-2">
+  <Row className="mb-2">
     <Col>
       <Button
         className="d-inline float-right"

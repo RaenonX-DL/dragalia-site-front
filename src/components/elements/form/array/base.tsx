@@ -57,7 +57,7 @@ export const ArrayFormBase = <P, E>({
     <>
       {array.map((elem, elemIdx) => (
         <React.Fragment key={counter[elemIdx]}>
-          <Row noGutters className="mt-2">
+          <Row noGutters className={elemIdx === 0 ? '' : 'mt-2'}>
             <Col>
               {renderEntries(elem, elemIdx)}
             </Col>
