@@ -19,6 +19,7 @@ type Props = {
 
 export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) => {
   const {t} = useI18n();
+  const iconSize = '1.5em';
 
   return (
     <div className="bg-black-32 rounded p-2">
@@ -26,7 +27,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type)}</Form.Label>
           <Row noGutters>
-            <Col xs="auto" className="mr-2" style={{fontSize: '1.5em'}}>
+            <Col xs="auto" className="mr-2 text-center" style={{fontSize: iconSize, width: iconSize}}>
               {PointTypeIcon[entry.type]}
             </Col>
             <Col>
