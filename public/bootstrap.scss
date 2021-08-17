@@ -52,6 +52,7 @@ $theme-colors: (
   "dark-red": colors.$color-dark-red,
   "black-32": colors.$color-black-32,
   "black-50": colors.$color-black-50,
+  "light-gray": colors.$color-light-gray,
   // Override the "cyan" color and "info" variable in bootstrap definition
   "info": lighten(#17a2b8, 7.5%),
 );
