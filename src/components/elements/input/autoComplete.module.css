@@ -1,0 +1,50 @@
+div.searchResult {
+  overflow-y: auto;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0.6rem #939393;
+  height: 10rem;
+}
+div.selected {
+  overflow-y: auto;
+  max-height: 10rem;
+  border-radius: 5px;
+  border: #707070 1px solid;
+  padding: 0.5rem;
+}
+div.optionSelected {
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  color: #60fa5a;
+}
+div.optionSelected:hover {
+  cursor: pointer;
+  background-color: #202020;
+  transition: background-color 100ms linear;
+}
+div.optionSelected:active {
+  background-color: #505050;
+}
+div.optionSelected:not(:last-child) {
+  border-bottom: gray 1px solid;
+}
+div.optionSelectable {
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+}
+div.optionSelectable:hover {
+  cursor: pointer;
+  background-color: #202020;
+  transition: background-color 100ms linear;
+}
+div.optionSelectable:active {
+  background-color: #505050;
+}
+div.optionSelectable:not(:last-child) {
+  border-bottom: gray 1px solid;
+}
+div.optionIcon {
+  font-size: 1.3rem;
+  text-align: right;
+}
+
+/*# sourceMappingURL=autoComplete.module.css.map */

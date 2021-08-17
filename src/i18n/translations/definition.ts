@@ -11,6 +11,12 @@ export type PageMetaTranslations = {
 }
 
 export type TranslationStruct = {
+  autoComplete: {
+    selected: string,
+    inputPlaceholder: string,
+    noMatchingOptions: string,
+    noneSelected: string,
+  },
   donation: {
     tierS1: string,
     tierS2: string,

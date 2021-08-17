@@ -3,6 +3,12 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  autoComplete: {
+    selected: 'Selected',
+    inputPlaceholder: 'Enter keyword here',
+    noMatchingOptions: 'No available options.',
+    noneSelected: 'None selected.',
+  },
   donation: {
     tierS1: 'Tier S-1',
     tierS2: 'Tier S-2',

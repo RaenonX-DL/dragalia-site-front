@@ -2,6 +2,12 @@ import {UnitType} from '../../../api-def/api/other/unit';
 import {TranslationStruct} from '../definition';
 
 export const translation: TranslationStruct = {
+  autoComplete: {
+    selected: '已選擇',
+    inputPlaceholder: '輸入關鍵字',
+    noMatchingOptions: '無可用選項。',
+    noneSelected: '尚未選擇任何選項。',
+  },
   donation: {
     tierS1: 'Tier S-1',
     tierS2: 'Tier S-2',

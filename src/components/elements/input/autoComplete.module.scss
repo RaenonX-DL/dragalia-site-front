@@ -1,0 +1,58 @@
+@use '../../../../public/colors';
+
+div {
+  @mixin section {
+    overflow-y: auto;
+  }
+
+  &.searchResult {
+    @include section;
+
+    border-radius: 5px;
+    box-shadow: inset 0 0 0.6rem #939393;
+    height: 10rem;
+  }
+
+  &.selected {
+    @include section;
+
+    max-height: 10rem;
+    border-radius: 5px;
+    border: #707070 1px solid;
+    padding: 0.5rem;
+  }
+
+  @mixin searchOptions {
+    &:hover {
+      cursor: pointer;
+      background-color: colors.$color-black-32;
+      transition: background-color 100ms linear;
+    }
+
+    &:active {
+      background-color: colors.$color-black-80;
+    }
+
+    &:not(:last-child) {
+      border-bottom: gray 1px solid;
+    }
+
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+  }
+
+  &.optionSelected {
+    @include searchOptions;
+
+    color: #60fa5a;
+  }
+
+  &.optionSelectable {
+    @include searchOptions;
+  }
+
+  &.optionIcon {
+    font-size: 1.3rem;
+    text-align: right;
+  }
+}
