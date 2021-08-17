@@ -9,6 +9,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/main';
 import {keyPointTypeName} from '../../const';
 import {PointTypeIcon} from '../../icons';
+import styles from '../../main.module.css';
 
 
 type Props = {
@@ -19,7 +20,6 @@ type Props = {
 
 export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) => {
   const {t} = useI18n();
-  const iconSize = '1.5em';
 
   return (
     <div className="bg-black-32 rounded p-2">
@@ -27,7 +27,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type)}</Form.Label>
           <Row noGutters>
-            <Col xs="auto" className="mr-2 text-center" style={{fontSize: iconSize, width: iconSize}}>
+            <Col xs="auto" className={styles.pointEntry}>
               {PointTypeIcon[entry.type]}
             </Col>
             <Col>
