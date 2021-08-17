@@ -5,10 +5,10 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {PostMeta, SupportedLanguages} from '../../../../api-def/api';
-import {ArrayFormRemoveOnly} from './removeOnly';
+import {ArrayFormBase} from './base';
 
 
-describe('Array form (remove only)', () => {
+describe('Array form (base)', () => {
   type Enum = {
     code: string,
   }
@@ -21,6 +21,17 @@ describe('Array form (remove only)', () => {
   let getArrayFunc: jest.Mock<Array<Enum>, [Payload]>;
   let setArrayFunc: jest.Mock<void, [Array<Enum>]>;
   let renderEntriesFunc: jest.Mock;
+
+  const ArrayFormWrapper = () => (
+    <ArrayFormBase
+      payload={payload}
+      minLength={2}
+      getArray={getArrayFunc}
+      setArray={setArrayFunc}
+      renderEntries={renderEntriesFunc}
+      counterState={React.useState([...Array(payload.enums.length).keys()])}
+    />
+  );
 
   beforeEach(() => {
     getArrayFunc = jest.fn().mockImplementation((payload) => payload.enums);
@@ -41,19 +52,12 @@ describe('Array form (remove only)', () => {
       ],
     };
 
-    renderReact(() => (
-      <ArrayFormRemoveOnly
-        payload={payload}
-        minLength={2}
-        getArray={getArrayFunc}
-        setArray={setArrayFunc}
-        renderEntries={renderEntriesFunc}
-      />
-    ));
+    renderReact(() => <ArrayFormWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[0].parentElement;
     expect(removeButton).toBeDisabled();
-    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(getArrayFunc).toHaveBeenCalledTimes(1);
+    // 2 entries
     expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
   });
 
@@ -73,19 +77,12 @@ describe('Array form (remove only)', () => {
       ],
     };
 
-    renderReact(() => (
-      <ArrayFormRemoveOnly
-        payload={payload}
-        minLength={2}
-        getArray={getArrayFunc}
-        setArray={setArrayFunc}
-        renderEntries={renderEntriesFunc}
-      />
-    ));
+    renderReact(() => <ArrayFormWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[2];
     expect(removeButton).not.toBeDisabled();
-    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(getArrayFunc).toHaveBeenCalledTimes(1);
+    // 3 entries
     expect(renderEntriesFunc).toHaveBeenCalledTimes(3);
   });
 
@@ -105,15 +102,7 @@ describe('Array form (remove only)', () => {
       ],
     };
 
-    renderReact(() => (
-      <ArrayFormRemoveOnly
-        payload={payload}
-        minLength={2}
-        getArray={getArrayFunc}
-        setArray={setArrayFunc}
-        renderEntries={renderEntriesFunc}
-      />
-    ));
+    renderReact(() => <ArrayFormWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[1];
     expect(removeButton).not.toBeDisabled();
@@ -134,15 +123,7 @@ describe('Array form (remove only)', () => {
       ],
     };
 
-    renderReact(() => (
-      <ArrayFormRemoveOnly
-        payload={payload}
-        minLength={2}
-        getArray={getArrayFunc}
-        setArray={setArrayFunc}
-        renderEntries={renderEntriesFunc}
-      />
-    ));
+    renderReact(() => <ArrayFormWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[0];
     expect(removeButton).not.toBeDisabled();
