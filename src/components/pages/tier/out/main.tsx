@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {KeyPointData} from '../../../../api-def/api';
+import {KeyPointData, UnitTierData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
@@ -13,7 +13,6 @@ import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils'
 import {OverLengthWarning} from '../../../elements/gameData/warnings/overLength';
 import {MaxEntriesToDisplay, sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
-import {UnitTierData} from '../mock';
 import {InputData} from '../types';
 import {TierListEntry} from './entry';
 

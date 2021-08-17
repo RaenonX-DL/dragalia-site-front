@@ -1,7 +1,6 @@
-import {UnitType} from '../../api-def/api';
+import {DimensionKey, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
-import {DimensionKey} from '../../components/pages/tier/mock';
 import {SortOrder as TierSortOrder} from '../../components/pages/tier/types';
 
 

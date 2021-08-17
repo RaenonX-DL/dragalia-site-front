@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {Dimension, DimensionKey} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';

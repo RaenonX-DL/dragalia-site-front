@@ -56,7 +56,11 @@ import {
   UnitNameRefUpdatePayload,
   UnitNameRefUpdateResponse,
   UnitPageMetaPayload,
-  UnitPageMetaResponse,
+  UnitPageMetaResponse, UnitTierNote, UnitTierNoteEditPayload, UnitTierNoteEditResponse,
+  UnitTierNoteGetPayload,
+  UnitTierNoteGetResponse,
+  UnitTierNoteUpdatePayload,
+  UnitTierNoteUpdateResponse,
   UnitType,
 } from '../../../api-def/api';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
@@ -469,6 +473,54 @@ export class ApiRequestSender {
       'POST',
       ApiEndPoints.MANAGE_TIER_POINTS,
       {uid, lang, points},
+    );
+  }
+
+  /**
+   * Get tier note of an unit.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the tier note
+   * @return {Promise<UnitTierNoteGetResponse>} promise returned from `fetch`
+   */
+  static getUnitTierNote(uid: string, lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<UnitTierNoteGetResponse, UnitTierNoteGetPayload>(
+      'GET',
+      ApiEndPoints.TIER_NOTES,
+      {uid, lang},
+    );
+  }
+
+  /**
+   * Get tier note of an unit for editing.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the tier note
+   * @param {number} unitId unit ID of the tier note
+   * @return {Promise<UnitTierNoteEditResponse>} promise returned from `fetch`
+   */
+  static getUnitTierNoteManage(uid: string, lang: SupportedLanguages, unitId: number) {
+    return ApiRequestSender.sendRequest<UnitTierNoteEditResponse, UnitTierNoteEditPayload>(
+      'GET',
+      ApiEndPoints.MANAGE_TIER_NOTE,
+      {uid, lang, unitId},
+    );
+  }
+
+  /**
+   * Get tier note of an unit for editing.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the tier note
+   * @param {number} unitId unit ID of the tier note
+   * @param {UnitTierNote} data updated unit tier note
+   * @return {Promise<UnitTierNoteUpdateResponse>} promise returned from `fetch`
+   */
+  static updateUnitTierNote(uid: string, lang: SupportedLanguages, unitId: number, data: UnitTierNote) {
+    return ApiRequestSender.sendRequest<UnitTierNoteUpdateResponse, UnitTierNoteUpdatePayload>(
+      'POST',
+      ApiEndPoints.MANAGE_TIER_NOTE,
+      {uid, lang, unitId, data},
     );
   }
 

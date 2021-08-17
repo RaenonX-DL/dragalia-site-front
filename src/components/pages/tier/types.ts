@@ -1,3 +1,4 @@
+import {DimensionKey, Ranking, UnitTierNote} from '../../../api-def/api';
 import {UnitInfoData} from '../../../api-def/resources';
 import {UnitFilterInputData} from '../../elements/gameData/unit/filter/types';
 import {DimensionKey, UnitTierNote} from './mock';

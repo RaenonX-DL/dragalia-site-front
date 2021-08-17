@@ -1,5 +1,5 @@
+import {DimensionKey, RankingScore, UnitTierNote} from '../../../api-def/api';
 import {generateFilterInput} from '../../elements/gameData/unit/filter/utils';
-import {DimensionKey, RankingScore, UnitTierNote} from './mock';
 import {InputData} from './types';
 
 

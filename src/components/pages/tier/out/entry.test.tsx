@@ -4,10 +4,9 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
-import {KeyPointData, SupportedLanguages, UnitType} from '../../../../api-def/api';
+import {KeyPointData, SupportedLanguages, UnitTierNote, UnitType} from '../../../../api-def/api';
 import {Element, UnitInfoData} from '../../../../api-def/resources';
 import {overrideObject} from '../../../../utils/override';
-import {UnitTierNote} from '../mock';
 import {TierListEntry} from './entry';
 
 

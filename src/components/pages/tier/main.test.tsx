@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {screen} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
@@ -12,12 +12,47 @@ import {TierList} from './main';
 
 
 describe('Tier list page', () => {
+  let fnFetchTierNote: jest.SpyInstance;
+
   beforeEach(() => {
     jest.spyOn(ApiRequestSender, 'getKeyPointsData').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: {},
     });
+    fnFetchTierNote = jest.spyOn(ApiRequestSender, 'getUnitTierNote').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: {
+        10650503: {
+          points: ['61174cef5dc5094fe82e9ee9'],
+          tier: {
+            conSolo: {
+              isCompDependent: false,
+              ranking: 'S',
+              note: 'Some note.',
+            },
+          },
+          lastUpdateEpoch: 1628734262003,
+        },
+        10950501: {
+          tier: {
+            conCoop: {
+              isCompDependent: false,
+              ranking: 'A',
+              note: 'Some note.',
+            },
+          },
+          lastUpdateEpoch: 1628534262003,
+        },
+      },
+    });
+  });
+
+  it('fetches unit tier note on load', async () => {
+    renderReact(() => <TierList/>);
+
+    await waitFor(() => expect(fnFetchTierNote).toHaveBeenCalledTimes(1));
   });
 
   it('performs search and return results without error', async () => {
@@ -26,6 +61,7 @@ describe('Tier list page', () => {
     const searchButton = screen.getByText('Search');
     userEvent.click(searchButton);
 
+    // Partial text of the tier note tips
     expect(await screen.findByText(/tier/)).toBeInTheDocument();
   });
 

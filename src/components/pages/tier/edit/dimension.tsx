@@ -3,13 +3,14 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {DimensionKey, Ranking, RankingScore} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {DeepPartial} from '../../../../utils/types';
 import {InputPanel} from '../../../elements/input/main';
 import {InputPanelCommonProps} from '../../../elements/input/types';
 import {MarkdownInput} from '../../../elements/markdown/input';
-import {DimensionKey, Ranking, RankingScore, TierNoteEdit} from '../mock';
+import {TierNoteEdit} from '../types';
 
 
 const rankingNA = '-';

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {typeInput} from '../../../../../test/utils/event';
-import {TierNote} from '../mock';
+import {TierNote} from '../../../../api-def/api';
 import {TierNoteDimensionEntry} from './dimension';
 
 

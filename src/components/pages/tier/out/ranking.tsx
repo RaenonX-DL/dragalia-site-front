@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {TierNote} from '../../../../api-def/api';
 import {IconNotes} from '../../../elements/common/icons';
 import {ModalFixedContent} from '../../../elements/common/modal/fix';
 import {ModalStateFix} from '../../../elements/common/modal/types';
@@ -7,7 +8,6 @@ import {Markdown} from '../../../elements/markdown/main';
 import {rankingColor} from '../const';
 import {IconCompDependent} from '../icons';
 import styles from '../main.module.css';
-import {TierNote} from '../mock';
 
 
 export type RankingProps = {

@@ -1,7 +1,6 @@
-import {UnitType} from '../../../api-def/api';
+import {UnitTierNote, UnitType} from '../../../api-def/api';
 import {UnitInfoData} from '../../../api-def/resources';
 import {sortFunc} from './const';
-import {UnitTierNote} from './mock';
 import {EntryPack} from './types';
 
 

@@ -1,10 +1,9 @@
 import {Property} from 'csstype';
 
-import {KeyPointType} from '../../../api-def/api';
+import {Dimension, DimensionKey, KeyPointType, Ranking} from '../../../api-def/api';
 import {GetTranslationFunction} from '../../../i18n/types';
 import {sum} from '../../../utils/calc';
 import {sortAscending, sortDescending} from '../../../utils/sort';
-import {Dimension, DimensionKey, Ranking} from './mock';
 import {EntryPack, SortOrder} from './types';
 import {getTierRanking} from './utils';
 
