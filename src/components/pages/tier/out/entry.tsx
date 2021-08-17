@@ -74,7 +74,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
       </Row>
       <Row>
         {
-          tierNote && tierNote.points && tierNote.points.length > 0 &&
+          tierNote && tierNote.points.length > 0 &&
           <Col xs="auto">
             <a className={styles.unitPoint} onClick={() => setModalState({...modalState, show: true})}>
               <IconRadar/>

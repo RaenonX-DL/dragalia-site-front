@@ -30,10 +30,10 @@ export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceRe
     fetchFunction: fetchUnitTierNote,
     setFetchStatus: setUnitTierNote,
   } = useFetchStateProcessed<UnitTierNoteEdit, UnitTierNoteEditResponse>(
-    {tier: {}},
+    {tier: {}, points: []},
     () => ApiRequestSender.getUnitTierNoteManage(context?.session?.user.id.toString() || '', lang, unitId),
     'Failed to fetch unit tier note for edit.',
-    (response) => response.data || {tier: {}},
+    (response) => response.data || {tier: {}, points: []},
   );
   const {
     fetchStatus: keyPointEntries,

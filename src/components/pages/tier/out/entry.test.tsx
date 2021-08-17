@@ -84,6 +84,34 @@ describe('Tier list entry', () => {
     expect(screen.queryByText('', {selector: 'i.bi-people-fill'})).not.toBeInTheDocument();
   });
 
+  it('shows key point icon if there are any associated key points', async () => {
+    renderReact(
+      () => (
+        <TierListEntry
+          tierNote={overrideObject(tierNote, {points: ['id1']})}
+          keyPointsData={keyPointsData} unitInfo={unitInfo}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    expect(screen.getByText('', {selector: 'i.bi-bullseye'})).toBeInTheDocument();
+  });
+
+  it('hides key point icon if no associated key points', async () => {
+    renderReact(
+      () => (
+        <TierListEntry
+          tierNote={overrideObject(tierNote, {points: []})}
+          keyPointsData={keyPointsData} unitInfo={unitInfo}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    expect(screen.queryByText('', {selector: 'i.bi-bullseye'})).not.toBeInTheDocument();
+  });
+
   it('shows key point edit icon for admins', async () => {
     renderReact(
       () => (

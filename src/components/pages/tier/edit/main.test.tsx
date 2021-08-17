@@ -21,6 +21,7 @@ describe('Unit tier note editing UI', () => {
       data: {
         tier: {},
         lastUpdateEpoch: 0,
+        points: [],
       },
     });
     jest.spyOn(ApiRequestSender, 'getKeyPointsManage').mockResolvedValue({

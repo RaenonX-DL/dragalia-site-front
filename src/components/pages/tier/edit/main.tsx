@@ -111,10 +111,10 @@ export const TierNoteEdit = () => {
           options={keyPointEntries}
           getText={(option) => option.description}
           getValue={(option) => option.id}
-          isOptionSelected={(option) => unitTierNote.points?.includes(option.id) || false}
+          isOptionSelected={(option) => unitTierNote.points.includes(option.id)}
           payload={unitTierNote}
           minLength={0}
-          getArray={(payload) => payload.points || []}
+          getArray={(payload) => payload.points}
           setArray={(points: Array<string>) => setUnitTierNote(overrideObject(unitTierNote, {points}))}
           renderOption={(option) => (
             <div className={styles.pointEntry}>
