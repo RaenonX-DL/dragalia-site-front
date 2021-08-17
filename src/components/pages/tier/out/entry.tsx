@@ -5,9 +5,12 @@ import Row from 'react-bootstrap/Row';
 
 import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../api-def/api';
 import {UnitInfoData} from '../../../../api-def/resources';
+import {UnitPath} from '../../../../const/path/definitions';
+import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
+import {makeUnitUrl} from '../../../../utils/path/make';
 import {TimeAgo} from '../../../../utils/timeago';
-import {IconRadar} from '../../../elements/common/icons';
+import {IconEdit, IconRadar} from '../../../elements/common/icons';
 import {ModalFixedContent} from '../../../elements/common/modal/fix';
 import {ModalStateFix} from '../../../elements/common/modal/types';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
@@ -25,6 +28,7 @@ type Props = {
 
 export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();
+  const context = React.useContext(AppReactContext);
   const [modalState, setModalState] = React.useState<ModalStateFix>({
     show: false,
     title: t((t) => t.game.unitTier.points.title),
@@ -35,10 +39,20 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
       <ModalFixedContent state={modalState} setState={setModalState}>
         <TierKeyPoints keyPointsIds={tierNote?.points || []} keyPointsData={keyPointsData}/>
       </ModalFixedContent>
-      <div className="mb-2 text-center">
-        <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} className={styles.unitName}/>
-      </div>
-      <hr className="m-2"/>
+      <Row className="mb-2 text-center align-items-center">
+        <Col>
+          <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} className={styles.unitName}/>
+        </Col>
+        {
+          context?.session?.user.isAdmin &&
+          <Col xs="auto">
+            <a className={styles.editIcon} href={makeUnitUrl(UnitPath.UNIT_TIER_EDIT, {id: unitInfo.id, lang})}>
+              <IconEdit/>
+            </a>
+          </Col>
+        }
+      </Row>
+      <hr className="my-2"/>
       <Row noGutters className="align-items-center bg-img-wrap">
         <UnitIcon unitInfo={unitInfo} className={`bg-img ${styles.unitIcon}`}/>
         <Col>
