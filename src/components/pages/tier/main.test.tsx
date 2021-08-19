@@ -36,6 +36,7 @@ describe('Tier list page', () => {
           lastUpdateEpoch: 1628734262003,
         },
         10950501: {
+          points: [],
           tier: {
             conCoop: {
               isCompDependent: false,
@@ -63,6 +64,18 @@ describe('Tier list page', () => {
 
     // Partial text of the tier note tips
     expect(await screen.findByText(/tier/)).toBeInTheDocument();
+  });
+
+  it('loads the tier notes correctly', async () => {
+    renderReact(() => <TierList/>);
+
+    const searchButton = screen.getByText('Search');
+    userEvent.click(searchButton);
+
+    // S tier of 10650503 CoN Solo
+    expect(await screen.findByText('S')).toBeInTheDocument();
+    // A tier of 10950501 CoN Coop
+    expect(await screen.findByText('A')).toBeInTheDocument();
   });
 
   it('shows key point edit page button for admin', async () => {
