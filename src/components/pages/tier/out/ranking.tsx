@@ -27,7 +27,7 @@ export const TierRanking = ({tierNote}: RankingProps) => {
   return (
     <>
       <ModalFixedContent state={modalState} setState={setModalState}>
-        <Markdown>
+        <Markdown overrideStyle={false}>
           {tierNote?.note}
         </Markdown>
       </ModalFixedContent>
