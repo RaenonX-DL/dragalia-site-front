@@ -18,7 +18,7 @@ import {TierListEntry} from './entry';
 
 
 type Props = {
-  inputData: InputData,
+  inputData: InputData | undefined,
   tierData: UnitTierData,
   keyPointsData: KeyPointData,
 }
@@ -35,6 +35,10 @@ export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
   React.useEffect(() => {
     scrollRefToTop(elemRef);
   }, [inputData]);
+
+  if (!inputData) {
+    return <></>;
+  }
 
   const unitInfoHasTierData = unitInfoFiltered
     .filter((info) => info.id in tierData)

@@ -67,10 +67,7 @@ export const TierList = () => {
         />
       }
       <hr/>
-      {
-        inputData &&
-        <TierListOutput inputData={inputData} tierData={tierData} keyPointsData={keyPointResponse.data.data}/>
-      }
+      <TierListOutput inputData={inputData} tierData={tierData} keyPointsData={keyPointResponse.data.data}/>
     </>
   );
 };
