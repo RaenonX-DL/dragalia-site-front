@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Alert from 'react-bootstrap/Alert';
+
 import {FailedResponse, isFailedResponse, KeyPointManageResponse} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
@@ -12,7 +14,7 @@ import {KeyPointsManagement} from './form';
 
 
 export const KeyPointsEdit = () => {
-  const {lang} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   if (!context?.session?.user.isAdmin) {
@@ -38,6 +40,9 @@ export const KeyPointsEdit = () => {
 
   return (
     <ProtectedLayout>
+      <Alert variant="warning">
+        {t((t) => t.game.unitTier.alert.refRemoval)}
+      </Alert>
       <KeyPointsManagement points={keyPoints.data.points} uid={uid}/>
     </ProtectedLayout>
   );

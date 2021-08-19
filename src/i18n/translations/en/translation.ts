@@ -493,6 +493,10 @@ export const translation: TranslationStruct = {
         unitId: 'Unit ID',
         avgRanking: 'Average Ranking',
       },
+      alert: {
+        refRemoval: 'If the removed key point entry is used by any unit, ' +
+          'the key point reference of the linked unit is also removed.',
+      },
     },
     nameRef: {
       manage: 'Unit Name Config',

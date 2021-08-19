@@ -417,6 +417,9 @@ export type TranslationStruct = {
       },
       dimension: { [dim in DimensionKey]: {name: string, description: string} },
       sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
+      alert: {
+        refRemoval: string,
+      },
     },
     nameRef: {
       manage: string,

@@ -461,6 +461,9 @@ export const translation: TranslationStruct = {
         unitId: 'Unit ID',
         avgRanking: 'Average Ranking',
       },
+      alert: {
+        refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
+      },
     },
     nameRef: {
       manage: 'Name Config',
