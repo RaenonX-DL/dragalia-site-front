@@ -19,6 +19,7 @@ type TierNoteEditResourceReturn = {
   keyPointEntries: Array<KeyPointEntryFromBack>,
   keyPointLookup: KeyPointData,
   setUnitTierNote: (newNote: UnitTierNoteEdit) => void,
+  isFetchingResources: boolean,
 }
 
 export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceReturn => {
@@ -55,5 +56,6 @@ export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceRe
     keyPointLookup: Object.fromEntries(
       keyPointEntries.data.map((entry) => ([entry.id, entry])),
     ),
+    isFetchingResources: unitTierNote.fetching || keyPointEntries.fetching,
   };
 };

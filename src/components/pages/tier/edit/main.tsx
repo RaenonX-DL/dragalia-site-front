@@ -12,6 +12,7 @@ import {overrideObject} from '../../../../utils/override';
 import {makeGeneralUrl} from '../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
+import {Loading} from '../../../elements/common/loading';
 import {ModalFlexContent} from '../../../elements/common/modal/flex';
 import {ModalStateFlex} from '../../../elements/common/modal/types';
 import {useUnitId} from '../../../elements/gameData/hook';
@@ -46,7 +47,12 @@ export const TierNoteEdit = () => {
     setUnitTierNote,
     keyPointEntries,
     keyPointLookup,
+    isFetchingResources,
   } = useTierNoteEditResources(unitId);
+
+  if (isFetchingResources) {
+    return <Loading/>;
+  }
 
   const unitInfo = unitInfoMap.get(unitId);
   if (!unitInfo) {

@@ -90,7 +90,10 @@ describe('Unit tier note editing UI', () => {
 
     expect(await screen.findByText('CoN AI')).toBeInTheDocument();
     expect(screen.getByText('CoN Solo')).toBeInTheDocument();
-    // 1 for option, 1 for selected
+    // Selected S rank in CoN AI and CoN Solo
+    // - S rank options will have 7+ results because each corresponds to a rank option of a dimension
+    expect(screen.getAllByText('S').filter((option) => (option as HTMLOptionElement).selected)).toHaveLength(2);
+    // Key point: 1 for option, 1 for selected
     expect(screen.getAllByText('S1')).toHaveLength(2);
   });
 

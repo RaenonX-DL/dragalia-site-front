@@ -9,7 +9,7 @@ import {SupportedLanguages} from '../../../api-def/api/other/lang';
 import {InputPanel} from './main';
 
 
-describe('Input collection', () => {
+describe('Input panel', () => {
   let inputData: {
     num?: number,
     nums?: Array<number>,
@@ -441,5 +441,35 @@ describe('Input collection', () => {
 
     await waitFor(() => expect(fnSetInputData).toHaveBeenCalled());
     expect(fnSetInputData.mock.calls[0][0]).toStrictEqual({selected: 'b'});
+  });
+
+  it('selects the default entry on load', async () => {
+    inputData = {selected: 'b'};
+
+    const entries = [
+      {text: 'a'},
+      {text: 'b'},
+    ];
+
+    renderReact(() => (
+      <InputPanel
+        inputEntries={[
+          {
+            type: 'select',
+            title: 'title',
+            defaultEntry: entries[1],
+            values: entries,
+            getUpdatedInputData: (selected) => ({...inputData, selected}),
+            getValue: (entry) => entry.text,
+          },
+        ]}
+        inputData={inputData}
+        setInputData={fnSetInputData}
+      />
+    ));
+
+    screen.debug();
+
+    expect((screen.getByText('b') as HTMLOptionElement).selected).toBeTruthy();
   });
 });
