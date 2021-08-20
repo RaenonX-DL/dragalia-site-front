@@ -12,6 +12,7 @@ import {UserControlButton} from '../elements/common/userControl/button/main';
 import {TITLE_NAV_HTML_ID} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
+import {NavDropdownTierNote} from './tier';
 import {NavDropdownUtils} from './utils';
 
 
@@ -43,10 +44,7 @@ export const Navigation = () => {
               path={GeneralPath.INFO_LOOKUP}
               text={t((t) => t.nav.unitInfo)}
             />
-            <NavItem
-              path={GeneralPath.TIER_LOOKUP}
-              text={t((t) => t.nav.unitTier)}
-            />
+            <NavDropdownTierNote/>
             <NavItem
               path={GeneralPath.MISC_LIST}
               text={t((t) => t.posts.misc.titleSelf)}

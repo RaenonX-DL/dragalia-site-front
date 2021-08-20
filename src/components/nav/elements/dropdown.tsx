@@ -20,21 +20,19 @@ export const NavDropdownMenu = ({title, items}: Props) => {
       title={title} id={title}
       active={items.some((item) => item.type === 'item' && item.path === pathnameNoLang)}
     >
-      {
-        items.map((item, idx) => {
-          if (item.type === 'header') {
-            return <NavDropdown.Header key={idx}>{item.text}</NavDropdown.Header>;
-          }
+      {items.map((item, idx) => {
+        if (item.type === 'header') {
+          return <NavDropdown.Header key={idx}>{item.text}</NavDropdown.Header>;
+        }
 
-          if (item.type === 'item') {
-            return <NavDropdownItem key={idx} path={item.path} text={item.text}/>;
-          }
+        if (item.type === 'item') {
+          return <NavDropdownItem key={idx} path={item.path} text={item.text}/>;
+        }
 
-          if (item.type === 'divider') {
-            return <NavDropdown.Divider data-testid="divider" key={idx}/>;
-          }
-        })
-      }
+        if (item.type === 'divider') {
+          return <NavDropdown.Divider data-testid="divider" key={idx}/>;
+        }
+      })}
     </NavDropdown>
   );
 };

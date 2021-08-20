@@ -674,7 +674,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: 'キャラ/ドラゴン情報',
-    unitTier: 'キャラ/ドラゴンのランキング',
+    unitTier: 'ランキング',
   },
   posts: {
     analysis: {
