@@ -1,21 +1,8 @@
 @use '../../../../../public/colors';
 
 div {
-  @mixin section {
-    overflow-y: auto;
-  }
-
-  &.searchResult {
-    @include section;
-
-    border-radius: 5px;
-    box-shadow: inset 0 0 0.6rem #939393;
-    height: 15rem;
-  }
-
   &.selected {
-    @include section;
-
+    overflow-y: auto;
     max-height: 15rem;
     border-radius: 5px;
     border: #707070 1px solid;
