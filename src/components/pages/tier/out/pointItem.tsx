@@ -5,12 +5,10 @@ import {useI18n} from '../../../../i18n/hook';
 import {makeDataUrl} from '../../../../utils/path/make';
 import {IconInfo} from '../../../elements/common/icons';
 import styles from '../main.module.css';
+import {PointListItemEntry} from './types';
 
 
-type Props = {
-  content: string,
-  id: string,
-}
+type Props = PointListItemEntry
 
 export const KeyPointListItem = ({content, id}: Props) => {
   const {lang} = useI18n();

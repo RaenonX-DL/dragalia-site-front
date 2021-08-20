@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/main';
-import {keyPointTypeName} from '../../const';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';
 
@@ -37,7 +36,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
               >
                 {Object.keys(KeyPointTypeEnum).map((type) => (
                   <option key={type} value={type}>
-                    {t(keyPointTypeName[type as KeyPointType])}
+                    {t((t) => t.game.unitTier.points.type[type as KeyPointType])}
                   </option>
                 ))}
               </Form.Control>

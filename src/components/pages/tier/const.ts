@@ -52,7 +52,8 @@ export const rankingColor: { [ranking in Ranking]: Property.Color } = {
   C: '#e34f4b',
 };
 
-export const keyPointTypeName: { [type in KeyPointType]: GetTranslationFunction } = {
-  strength: (t) => t.game.unitTier.points.type.strength,
-  weakness: (t) => t.game.unitTier.points.type.weakness,
+export const pointTypeWrapperClassName: { [type in KeyPointType]: string } = {
+  strength: 'text-success',
+  weakness: 'text-danger',
+  trait: 'text-light-gray',
 };
