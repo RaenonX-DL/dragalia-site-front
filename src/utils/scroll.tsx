@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {TITLE_NAV_HTML_ID} from '../components/elements/nav/const';
+import {TITLE_NAV_HTML_ID} from '../components/nav/const';
 
 
 export const scrollRefToTop = <T extends HTMLElement>(refElement?: React.RefObject<T>) => {

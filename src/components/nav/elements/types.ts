@@ -1,4 +1,5 @@
-import {GeneralPath} from '../../../../const/path/definitions';
+import {GeneralPath} from '../../../const/path/definitions';
+
 
 export type NavProps = {
   path: GeneralPath,

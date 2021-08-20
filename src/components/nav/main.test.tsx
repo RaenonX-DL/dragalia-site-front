@@ -3,9 +3,9 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../test/render/main';
-import {GeneralPath} from '../../../const/path/definitions';
-import {translation as translationEN} from '../../../i18n/translations/en/translation';
+import {renderReact} from '../../../test/render/main';
+import {GeneralPath} from '../../const/path/definitions';
+import {translation as translationEN} from '../../i18n/translations/en/translation';
 import {Navigation} from './main';
 
 

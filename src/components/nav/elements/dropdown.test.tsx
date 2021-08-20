@@ -3,10 +3,11 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {GeneralPath} from '../../../../const/path/definitions';
+import {renderReact} from '../../../../test/render/main';
+import {GeneralPath} from '../../../const/path/definitions';
 import {NavDropdownMenu} from './dropdown';
 import {NavDropdownEntry} from './types';
+
 
 describe('Nav dropdown', () => {
   const navDropdownTitle = 'nav title';

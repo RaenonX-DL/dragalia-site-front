@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {GeneralPath} from '../../../const/path/definitions';
-import {useI18n} from '../../../i18n/hook';
+import {GeneralPath} from '../../const/path/definitions';
+import {useI18n} from '../../i18n/hook';
 import {NavDropdownMenu} from './elements/dropdown';
+
 
 export const NavDropdownUtils = () => {
   const {t} = useI18n();
