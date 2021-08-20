@@ -2,7 +2,7 @@ import React from 'react';
 
 import {UnitType} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {InputPanel} from '../../../../elements/input/main';
+import {InputPanel} from '../../../../elements/input/panel/main';
 import {SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
 import {overrideInputData} from './utils/inputData';
 

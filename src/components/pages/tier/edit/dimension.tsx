@@ -7,8 +7,8 @@ import {DimensionKey, Ranking, RankingScore} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {DeepPartial} from '../../../../utils/types';
-import {InputPanel} from '../../../elements/input/main';
-import {InputPanelCommonProps} from '../../../elements/input/types';
+import {InputPanel} from '../../../elements/input/panel/main';
+import {InputPanelCommonProps} from '../../../elements/input/panel/types';
 import {MarkdownInput} from '../../../elements/markdown/input';
 import {TierNoteEdit} from '../types';
 

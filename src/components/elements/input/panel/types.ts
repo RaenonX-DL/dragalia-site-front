@@ -1,10 +1,10 @@
-import {EnumEntry} from '../../../api-def/resources/types/enum';
-import {EnumChecksBoxProps} from '../common/check/enum/checkbox';
-import {EnumRadioGroupProps} from '../common/check/enum/radio';
-import {CheckboxInputProps} from '../common/check/item/checkbox';
-import {CheckboxGroupProps, RadioGroupProps} from '../common/check/types';
-import {NumericInputProps} from '../common/input/numeric';
-import {DetailedProps} from '../common/types';
+import {EnumEntry} from '../../../../api-def/resources';
+import {EnumChecksBoxProps} from '../../common/check/enum/checkbox';
+import {EnumRadioGroupProps} from '../../common/check/enum/radio';
+import {CheckboxInputProps} from '../../common/check/item/checkbox';
+import {CheckboxGroupProps, RadioGroupProps} from '../../common/check/types';
+import {NumericInputProps} from '../../common/input/numeric';
+import {DetailedProps} from '../../common/types';
 
 
 export type InputEntryTitle = DetailedProps & {

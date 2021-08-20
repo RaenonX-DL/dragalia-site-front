@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {EnumEntry} from '../../../api-def/resources/types/enum';
-import {CheckOption} from '../common/check/types';
+import {EnumEntry} from '../../../../api-def/resources';
+import {CheckOption} from '../../common/check/types';
 import {InputPanelEntry} from './entry';
 import {InputPanelProps} from './types';
 

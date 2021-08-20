@@ -4,7 +4,7 @@ import {ConditionCodes} from '../../../../../../const/gameData';
 import {useI18n} from '../../../../../../i18n/hook';
 import {getConditionName} from '../../../../../../utils/game/conditionName';
 import {CheckOption} from '../../../../../elements/common/check/types';
-import {InputPanel} from '../../../../../elements/input/main';
+import {InputPanel} from '../../../../../elements/input/panel/main';
 import {SectionProps, SectionPropsCondEnums} from '../types';
 import {overrideInputData} from '../utils/inputData';
 

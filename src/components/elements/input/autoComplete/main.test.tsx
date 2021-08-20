@@ -3,10 +3,10 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../test/render/main';
-import {typeInput} from '../../../../test/utils/event';
-import {translation as translationEN} from '../../../i18n/translations/en/translation';
-import {AutoComplete} from './autoComplete';
+import {renderReact} from '../../../../../test/render/main';
+import {typeInput} from '../../../../../test/utils/event';
+import {translation as translationEN} from '../../../../i18n/translations/en/translation';
+import {AutoComplete} from './main';
 
 
 describe('Auto-complete input', () => {

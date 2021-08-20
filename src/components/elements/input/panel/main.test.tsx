@@ -3,9 +3,9 @@ import React from 'react';
 import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../test/render/main';
-import {typeInput} from '../../../../test/utils/event';
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
+import {renderReact} from '../../../../../test/render/main';
+import {typeInput} from '../../../../../test/utils/event';
+import {SupportedLanguages} from '../../../../api-def/api';
 import {InputPanel} from './main';
 
 

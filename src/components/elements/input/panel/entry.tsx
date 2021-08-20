@@ -4,16 +4,16 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {EnumEntry} from '../../../api-def/resources';
-import {EnumCheckboxGroup} from '../common/check/enum/checkbox';
-import {EnumRadioGroup} from '../common/check/enum/radio';
-import {CheckboxGroup} from '../common/check/group/checkbox';
-import {RadioGroup} from '../common/check/group/radio';
-import {CheckboxInput} from '../common/check/item/checkbox';
-import {CheckOption} from '../common/check/types';
-import {NumericInput} from '../common/input/numeric';
-import {SectionSubTitle} from '../gameData/subTitle';
-import {SectionTitle} from '../gameData/title';
+import {EnumEntry} from '../../../../api-def/resources';
+import {EnumCheckboxGroup} from '../../common/check/enum/checkbox';
+import {EnumRadioGroup} from '../../common/check/enum/radio';
+import {CheckboxGroup} from '../../common/check/group/checkbox';
+import {RadioGroup} from '../../common/check/group/radio';
+import {CheckboxInput} from '../../common/check/item/checkbox';
+import {CheckOption} from '../../common/check/types';
+import {NumericInput} from '../../common/input/numeric';
+import {SectionSubTitle} from '../../gameData/subTitle';
+import {SectionTitle} from '../../gameData/title';
 import {InputEntryProps} from './types';
 
 

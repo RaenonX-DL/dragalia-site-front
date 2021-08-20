@@ -4,10 +4,10 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {useI18n} from '../../../i18n/hook';
-import {ArrayFormBase, ArrayFormProps} from '../form/array/base';
-import styles from './autoComplete.module.css';
+import {useI18n} from '../../../../i18n/hook';
+import {ArrayFormBase, ArrayFormProps} from '../../form/array/base';
 import {IconSelectable, IconSelected} from './icons';
+import styles from './main.module.css';
 
 
 type Props<P, E, O> = Omit<ArrayFormProps<P, E>, 'counterState'> & {

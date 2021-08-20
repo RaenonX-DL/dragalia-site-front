@@ -16,7 +16,7 @@ import {Loading} from '../../../elements/common/loading';
 import {ModalFlexContent} from '../../../elements/common/modal/flex';
 import {ModalStateFlex} from '../../../elements/common/modal/types';
 import {useUnitId} from '../../../elements/gameData/hook';
-import {AutoComplete} from '../../../elements/input/autoComplete';
+import {AutoComplete} from '../../../elements/input/autoComplete/main';
 import {ProtectedLayout} from '../../layout/protected';
 import styles from '../main.module.css';
 import {TierNoteDimensionEntry} from './dimension';

@@ -3,7 +3,7 @@ import React from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 
 import {CategorizedConditionEnums} from '../../../../../api-def/resources';
-import {InputPanelCommonProps} from '../../../../elements/input/types';
+import {InputPanelCommonProps} from '../../../../elements/input/panel/types';
 import {SectionAtk} from './sections/atk';
 import {SectionBuff} from './sections/buff';
 import {SectionCrt} from './sections/crt';

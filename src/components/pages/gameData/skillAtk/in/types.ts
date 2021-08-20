@@ -1,7 +1,7 @@
-import {UnitType} from '../../../../../api-def/api/other/unit';
-import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources/types/export/enums';
+import {UnitType} from '../../../../../api-def/api';
+import {CategorizedConditionEnums, ElementEnums} from '../../../../../api-def/resources';
 import {ConditionCodes} from '../../../../../const/gameData';
-import {InputPanelCommonProps} from '../../../../elements/input/types';
+import {InputPanelCommonProps} from '../../../../elements/input/panel/types';
 
 
 export type SortBy =

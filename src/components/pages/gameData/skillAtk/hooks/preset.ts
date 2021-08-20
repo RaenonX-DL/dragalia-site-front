@@ -5,7 +5,7 @@ import {useNextRouter} from '../../../../../utils/router';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {FetchStatusSimple, isNotFetched} from '../../../../elements/common/fetch';
-import {InputPanelCommonProps} from '../../../../elements/input/types';
+import {InputPanelCommonProps} from '../../../../elements/input/panel/types';
 import {InputData} from '../in/types';
 import {generateInputData, overrideInputData} from '../in/utils/inputData';
 
