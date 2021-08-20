@@ -638,6 +638,11 @@ export const translation: TranslationStruct = {
           description: 'Page to edit the rankings and the related info of each unit.',
         },
         points: {
+          usage: {
+            title: 'Key Point: {{title}}',
+            description: 'Information about the key point: {{title}}. ' +
+              'Things like the adventurers/dragons having this key point are displayed here.',
+          },
           edit: {
             title: 'Edit Key Points',
             description: 'Page to edit the content of the key points.',

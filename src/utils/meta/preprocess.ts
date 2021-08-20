@@ -2,7 +2,7 @@ import {getSession} from 'next-auth/client';
 import {AppContext} from 'next/app';
 
 import {FailedResponse, PageMetaResponse, SupportedLanguages} from '../../api-def/api';
-import {isPostPath, isUnitPath} from '../../const/path/utils';
+import {isDataPath, isPostPath, isUnitPath} from '../../const/path/utils';
 import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
 
@@ -19,6 +19,15 @@ export const getPageMetaPromise = async ({
   const uid = (await getSession(context.ctx))?.user?.id.toString() || '';
 
   let responsePromise = ApiRequestSender.getPageMeta(uid, lang);
+
+  if (isDataPath(pathnameNoLang)) {
+    responsePromise = ApiRequestSender.getDataMeta(
+      uid,
+      lang,
+      'tierKeyPoint',
+      context.router.query.id as string,
+    );
+  }
 
   if (isPostPath(pathnameNoLang)) {
     responsePromise = ApiRequestSender.getPostMeta(

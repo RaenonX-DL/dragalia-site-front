@@ -12,7 +12,7 @@ import {
   BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisGetResponse,
-  CharaAnalysisPublishPayload,
+  CharaAnalysisPublishPayload, DataPageMetaPayload, DataPageMetaResponse, DataType,
   DragonAnalysisEditPayload,
   DragonAnalysisGetResponse,
   DragonAnalysisPublishPayload,
@@ -291,6 +291,23 @@ export class ApiRequestSender {
   // endregion
 
   // region Page meta
+
+  /**
+   * Send a request to get the data page meta.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang data page language
+   * @param {DataType} type type of the data
+   * @param {string} id id of the data
+   * @return {Promise<DataPageMetaResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getDataMeta(uid: string, lang: SupportedLanguages, type: DataType, id: string) {
+    return ApiRequestSender.sendRequest<DataPageMetaResponse | FailedResponse, DataPageMetaPayload>(
+      'GET',
+      ApiEndPoints.PAGE_META_DATA,
+      {uid, lang, type, id},
+    );
+  }
 
   /**
    * Send a request to get the post page meta.

@@ -503,6 +503,7 @@ export type TranslationStruct = {
         index: PageMetaTranslations,
         edit: PageMetaTranslations,
         points: {
+          usage: PageMetaTranslations,
           edit: PageMetaTranslations,
         },
       },

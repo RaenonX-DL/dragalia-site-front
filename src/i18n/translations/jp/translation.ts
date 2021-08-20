@@ -599,6 +599,10 @@ export const translation: TranslationStruct = {
           description: '編輯各角色、龍族評級及其相關資訊的頁面。',
         },
         points: {
+          usage: {
+            title: '要點【{{title}}】',
+            description: '顯示要點【{{title}}】的相關資訊，例如具有此要點的角色、龍族...等。',
+          },
           edit: {
             title: '要點編輯',
             description: '編輯要點內容的頁面。',

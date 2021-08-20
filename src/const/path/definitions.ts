@@ -1,5 +1,10 @@
 export const PATH_ROOT = '/[lang]';
 
+// Must and only have `id` as te key for data ID
+export enum DataPath {
+  TIER_KEY_POINT = '/tier/points/[id]',
+}
+
 // Must and only have `id` as the key for unit ID
 export enum UnitPath {
   UNIT_INFO = '/info/[id]',
@@ -47,9 +52,9 @@ export enum AuthPath {
 }
 
 export const allPaths = ([] as Array<PagePath>).concat(
-  ...[UnitPath, PostPath, GeneralPath, AuthPath].map(
+  ...[DataPath, UnitPath, PostPath, GeneralPath, AuthPath].map(
     (paths) => Object.values(paths),
   ),
 );
 
-export type PagePath = UnitPath | PostPath | GeneralPath | AuthPath;
+export type PagePath = DataPath | UnitPath | PostPath | GeneralPath | AuthPath;
