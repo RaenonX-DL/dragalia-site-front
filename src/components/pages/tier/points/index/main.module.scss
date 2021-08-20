@@ -1,0 +1,20 @@
+@use '../../../../../../public/colors';
+
+span {
+  &.typeIcon {
+    font-size: 1.5rem;
+  }
+}
+
+div {
+  &.entry {
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    border-bottom: gray 1px solid;
+  }
+
+  &.typeEntry {
+    // No gutter row is voiding this, therefore `!important` is needed
+    padding: 0 0.6rem !important;
+  }
+}
