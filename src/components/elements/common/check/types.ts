@@ -32,9 +32,7 @@ export type CheckItemProps = {
   groupName?: never,
 })
 
-export type CheckGroupProps<E, T, V, V2 = V> =
-  ChecksPropsReadonly<E, T, V2> &
-  InputProps<T, V2> & {
+export type CheckGroupProps<E, T, V, V2 = V> = ChecksPropsReadonly<E, T, V2> & InputProps<T, V2> & {
   getCheckOptionComparer: (option: E) => V,
   getImageUrl?: (option: E) => CheckItemImageOptions['url'],
   imageHeight?: CheckItemImageOptions['height'],

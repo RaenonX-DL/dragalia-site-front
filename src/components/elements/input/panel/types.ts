@@ -19,9 +19,10 @@ export type InputEntrySeparator = {
   type: 'separator'
 }
 
-export type InputEntryNumber<T> =
-  DetailedProps &
-  Omit<NumericInputProps<T>, keyof DetailedProps | keyof InputPanelCommonProps<T>> & {
+export type InputEntryNumber<T> = DetailedProps & Omit<
+  NumericInputProps<T>,
+  keyof DetailedProps | keyof InputPanelCommonProps<T>
+> & {
   type: 'inputNumber'
 }
 
@@ -30,23 +31,31 @@ export type InputEntryCheckboxGroup<T> = {
   checkboxes: Array<Omit<CheckboxInputProps<T>, keyof InputPanelCommonProps<T>>>,
 }
 
-export type InputEntryArrayCheckboxGroup<E, T> =
-  Omit<CheckboxGroupProps<E, T>, keyof InputPanelCommonProps<T>> & {
+export type InputEntryArrayCheckboxGroup<E, T> = Omit<
+  CheckboxGroupProps<E, T>,
+  keyof InputPanelCommonProps<T>
+> & {
   type: 'arrayCheckGroup',
 }
 
-export type InputEntryRadioGroup<E, T> =
-  Omit<RadioGroupProps<E, T>, keyof InputPanelCommonProps<T>> & {
+export type InputEntryRadioGroup<E, T> = Omit<
+  RadioGroupProps<E, T>,
+  keyof InputPanelCommonProps<T>
+> & {
   type: 'inputRadioGroup'
 }
 
-export type InputEntryEnumRadioGroup<E2 extends EnumEntry, T> =
-  Omit<EnumRadioGroupProps<E2, T>, keyof InputPanelCommonProps<T>> & {
+export type InputEntryEnumRadioGroup<E2 extends EnumEntry, T> = Omit<
+  EnumRadioGroupProps<E2, T>,
+  keyof InputPanelCommonProps<T>
+> & {
   type: 'enumRadioGroup'
 }
 
-export type InputEntryEnumCheckGroup<E2 extends EnumEntry, T> =
-  Omit<EnumChecksBoxProps<E2, T>, keyof InputPanelCommonProps<T>> & {
+export type InputEntryEnumCheckGroup<E2 extends EnumEntry, T> = Omit<
+  EnumChecksBoxProps<E2, T>,
+  keyof InputPanelCommonProps<T>
+> & {
   type: 'enumCheckGroup'
 }
 

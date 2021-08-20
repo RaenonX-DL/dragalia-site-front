@@ -43,13 +43,20 @@ rules:
       argsIgnorePattern: "^[_]+$"
       ignoreRestSiblings: true
 
+  # Needs to disable local no-unused-vars for this rule to work properly
   no-unused-vars:
     - off
 
-  indent:
+  "@typescript-eslint/indent":
     - error
     - 2
-    - MemberExpression: 1
+    - ignoredNodes:
+      - TSTypeParameterInstantiation
+      MemberExpression: 1
+
+  # Needs to disable local indent for this rule to work properly
+  indent:
+    - off
 
   linebreak-style:
     - error
