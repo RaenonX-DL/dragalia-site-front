@@ -452,6 +452,8 @@ export const translation: TranslationStruct = {
         description: 'Description',
         strength: 'Strength',
         weakness: 'Weakness',
+        tipsOnClick: 'Clicking on the "i" icon to get more details, ' +
+          'such as the list of adventurers/dragons sharing the same key point.',
       },
       dimension: {
         conSolo: {

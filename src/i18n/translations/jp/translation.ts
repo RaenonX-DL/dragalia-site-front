@@ -426,6 +426,7 @@ export const translation: TranslationStruct = {
         description: '敘述',
         strength: '強項',
         weakness: '弱項',
+        tipsOnClick: '點擊 "i" 按鈕可以瀏覽該要點的相關資訊，例如同時擁有該要點的角色清單...等。',
       },
       dimension: {
         conSolo: {

@@ -57,6 +57,15 @@ a.editIcon:hover {
   color: #bebebe;
   color: white;
 }
+a.pointInfo {
+  border: 0;
+  color: #bebebe;
+}
+a.pointInfo:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
 
 img.unitIcon {
   opacity: 0.2;
