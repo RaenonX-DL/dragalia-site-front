@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ApiResponseCode, KeyPointGetResponse, UnitTierNoteGetResponse} from '../../../api-def/api';
+import {ApiResponseCode, UnitTierNoteGetResponse} from '../../../api-def/api';
 import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
@@ -9,6 +9,7 @@ import {ButtonBar} from '../../elements/common/buttonBar';
 import {useFetchState} from '../../elements/common/fetch';
 import {UnitFilter} from '../../elements/gameData/unit/filter/main';
 import {orderName} from './const';
+import {useKeyPointData} from './hooks';
 import {TierListOutput} from './out/main';
 import {InputData} from './types';
 import {generateInputData} from './utils';
@@ -20,18 +21,7 @@ export const TierList = () => {
 
   const context = React.useContext(AppReactContext);
 
-  const {
-    fetchStatus: keyPointResponse,
-    fetchFunction: fetchKeyPointData,
-  } = useFetchState<KeyPointGetResponse>(
-    {
-      code: ApiResponseCode.NOT_EXECUTED,
-      success: false,
-      data: {},
-    },
-    () => ApiRequestSender.getKeyPointsData(context?.session?.user.id.toString() || '', lang),
-    'Failed to fetch the unit key point data.',
-  );
+  const {keyPointData} = useKeyPointData();
   const {
     fetchStatus: tierData,
     fetchFunction: fetchTierNotes,
@@ -45,7 +35,6 @@ export const TierList = () => {
     'Failed to fetch tier note data.',
   );
 
-  fetchKeyPointData();
   fetchTierNotes();
 
   return (
@@ -70,7 +59,7 @@ export const TierList = () => {
       <TierListOutput
         inputData={inputData}
         tierData={tierData.data.data}
-        keyPointsData={keyPointResponse.data.data}
+        keyPointsData={keyPointData}
       />
     </>
   );
