@@ -19,7 +19,10 @@ export const KeyPointListItem = ({content, id}: Props) => {
     <li>
       <div className="text-right">
         <span className="float-left">{content}</span>
-        <a className={styles.pointInfo} href={makeDataUrl(DataPath.TIER_KEY_POINT, {lang, id})}>
+        <a
+          className={styles.pointInfo} href={makeDataUrl(DataPath.TIER_KEY_POINT, {lang, id})}
+          target="_blank" rel="noreferrer"
+        >
           <IconInfo/>
         </a>
       </div>

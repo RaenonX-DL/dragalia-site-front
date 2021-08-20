@@ -427,6 +427,12 @@ export const translation: TranslationStruct = {
         strength: '強さ',
         weakness: '不利',
         tipsOnClick: ' "i" をクリックすると、ポイントの情報がご覧になれます。例: ポイントのアビリティが持っているキャラ。',
+        info: {
+          linkedUnits: '具有此要點的角色 / 龍族',
+          error: {
+            noLinkedUnits: '沒有角色 / 龍族具有此要點。',
+          },
+        },
       },
       dimension: {
         conSolo: {
@@ -761,5 +767,3 @@ export const translation: TranslationStruct = {
     },
   },
 };
-
-

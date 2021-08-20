@@ -1,4 +1,4 @@
-import {KeyPointInfo} from '../../../../src/components/pages/tier/points/info/main';
+import {KeyPointInfoPage} from '../../../../src/components/pages/tier/points/info/main';
 
 
-export default KeyPointInfo;
+export default KeyPointInfoPage;

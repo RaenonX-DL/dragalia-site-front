@@ -420,6 +420,12 @@ export const translation: TranslationStruct = {
         strength: '強項',
         weakness: '弱項',
         tipsOnClick: '點擊 "i" 按鈕可以瀏覽該要點的相關資訊，例如同時擁有該要點的角色清單...等。',
+        info: {
+          linkedUnits: '具有此要點的角色 / 龍族',
+          error: {
+            noLinkedUnits: '沒有角色 / 龍族具有此要點。',
+          },
+        },
       },
       dimension: {
         conSolo: {

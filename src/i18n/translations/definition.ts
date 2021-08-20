@@ -415,6 +415,12 @@ export type TranslationStruct = {
         strength: string,
         weakness: string,
         tipsOnClick: string,
+        info: {
+          linkedUnits: string,
+          error: {
+            noLinkedUnits: string,
+          },
+        },
       },
       dimension: { [dim in DimensionKey]: {name: string, description: string} },
       sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
@@ -478,7 +484,7 @@ export type TranslationStruct = {
       lastModified: string,
       lastUpdated: string,
     },
-    unitType: {[type in UnitType]: string},
+    unitType: { [type in UnitType]: string },
   },
   meta: {
     inUse: {

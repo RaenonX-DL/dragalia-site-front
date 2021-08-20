@@ -454,6 +454,12 @@ export const translation: TranslationStruct = {
         weakness: 'Weakness',
         tipsOnClick: 'Clicking on the "i" icon to get more details, ' +
           'such as the list of adventurers/dragons sharing the same key point.',
+        info: {
+          linkedUnits: 'Adventurers / Dragons who has this key point',
+          error: {
+            noLinkedUnits: 'No adventurers / dragons are sharing this key point.',
+          },
+        },
       },
       dimension: {
         conSolo: {

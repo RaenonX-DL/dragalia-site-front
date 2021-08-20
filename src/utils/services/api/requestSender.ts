@@ -21,7 +21,7 @@ import {
   GetAtkSkillPresetResponse,
   KeyPointEntryUpdate,
   KeyPointGetPayload,
-  KeyPointGetResponse,
+  KeyPointGetResponse, KeyPointInfoPayload, KeyPointInfoResponse,
   KeyPointManagePayload,
   KeyPointManageResponse,
   KeyPointUpdatePayload,
@@ -405,6 +405,22 @@ export class ApiRequestSender {
       'POST',
       ApiEndPoints.MANAGE_UNIT_NAME_REF,
       {uid, lang, refs},
+    );
+  }
+
+  /**
+   * Get the info of a key point.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the key point description
+   * @param {string} id key point ID
+   * @return {Promise<KeyPointInfoResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getKeyPointInfo(uid: string, lang: SupportedLanguages, id: string) {
+    return ApiRequestSender.sendRequest<KeyPointInfoResponse | FailedResponse, KeyPointInfoPayload>(
+      'GET',
+      ApiEndPoints.DATA_KEY_POINT,
+      {uid, lang, id},
     );
   }
 
