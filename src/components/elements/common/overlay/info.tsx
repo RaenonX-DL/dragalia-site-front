@@ -13,7 +13,10 @@ type InfoPopoverProps = TitledProps & {
 export const InfoPopover = ({title, description}: InfoPopoverProps) => {
   return (
     <OverlayPopover title={title} content={description}>
-      <IconInfo/>
+      {/* Needs an intermediate HTML element to accept `ref` for this to work properly */}
+      <span>
+        <IconInfo/>
+      </span>
     </OverlayPopover>
   );
 };
