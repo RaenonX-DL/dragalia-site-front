@@ -3,20 +3,28 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {DepotPaths, AbilityVariantEffectUnitData} from '../../../../../api-def/resources';
+import {DepotPaths, AbilityVariantEffectUnitData, ConditionEnumMap} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {ImageWithOverlay} from '../../../../elements/common/image';
 import {OverlayTooltip} from '../../../../elements/common/overlay/tooltip';
+import {BsBadge} from '../../../../elements/gameData/badges/main';
+import {useAbilityVariantEffectBadges} from './hooks';
 
 
 type ExEffectUnitProps = {
   effectUnit: AbilityVariantEffectUnitData,
-  rate: number,
-  badges: Array<React.ReactElement>,
+  conditionEnums: ConditionEnumMap,
+  isEx?: boolean,
 }
 
-export const ExEffectUnit = ({effectUnit, rate, badges}: ExEffectUnitProps) => {
+export const ExEffectUnit = ({effectUnit, conditionEnums, isEx}: ExEffectUnitProps) => {
   const {lang} = useI18n();
+  const badges = useAbilityVariantEffectBadges(effectUnit, conditionEnums, isEx);
+
+  let rate = effectUnit.rate;
+  if (effectUnit.paramUnit.isPercentage) {
+    rate *= 100;
+  }
 
   return (
     <Row className="align-items-center">
@@ -33,15 +41,11 @@ export const ExEffectUnit = ({effectUnit, rate, badges}: ExEffectUnitProps) => {
         </OverlayTooltip>
       </Col>
       <Col>
-        {
-          badges.map((badge, idx: number) => {
-            return (
-              <React.Fragment key={idx}>
-                {idx > 0 && ' '}{badge}
-              </React.Fragment>
-            );
-          })
-        }
+        {badges.map((badge, idx: number) => (
+          <React.Fragment key={idx}>
+            {idx > 0 && ' '}<BsBadge entry={badge}/>
+          </React.Fragment>
+        ))}
       </Col>
     </Row>
   );
