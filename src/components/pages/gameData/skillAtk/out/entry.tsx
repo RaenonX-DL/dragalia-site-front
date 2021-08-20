@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {DistributionBar} from '../../../../elements/charts/distBar';
-import {ConditionBadges} from '../../../../elements/gameData/conditionBadges';
+import {ConditionBadges} from '../../../../elements/gameData/badges/conditions';
 import {InputData} from '../in/types';
 import {EnumDataPack} from './props';
 import {SectionAdditional} from './sections/additional';

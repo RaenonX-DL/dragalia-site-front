@@ -8,7 +8,7 @@ import {
   ConditionEnumMap,
 } from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {getConditionBadges} from '../../../../elements/gameData/conditionBadges';
+import {getConditionBadges} from '../../../../elements/gameData/badges/conditions';
 import {InputData} from '../in/types';
 
 
