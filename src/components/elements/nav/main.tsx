@@ -44,7 +44,7 @@ export const Navigation = () => {
               text={t((t) => t.nav.unitInfo)}
             />
             <NavItem
-              path={GeneralPath.TIER}
+              path={GeneralPath.TIER_LOOKUP}
               text={t((t) => t.nav.unitTier)}
             />
             <NavItem

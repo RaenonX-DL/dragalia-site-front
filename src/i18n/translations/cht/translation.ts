@@ -595,7 +595,7 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        index: {
+        lookup: {
           title: '角色/龍族評級',
           description: '各角色、龍族在不同環境下的評級及其相關原因。',
         },
@@ -604,6 +604,10 @@ export const translation: TranslationStruct = {
           description: '編輯各角色、龍族評級及其相關資訊的頁面。',
         },
         points: {
+          index: {
+            title: '要點索引',
+            description: '角色、龍族要點的索引。',
+          },
           usage: {
             title: '要點【{{title}}】',
             description: '顯示要點【{{title}}】的相關資訊，例如具有此要點的角色、龍族...等。',

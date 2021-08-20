@@ -29,7 +29,8 @@ export enum GeneralPath {
   ANALYSIS_LIST = '/analysis',
   ANALYSIS_NEW_CHARA = '/analysis/new/chara',
   ANALYSIS_NEW_DRAGON = '/analysis/new/dragon',
-  TIER = '/tier',
+  TIER_LOOKUP = '/tier',
+  TIER_POINTS_INDEX = '/tier/points',
   TIER_POINTS_EDIT = '/tier/points/edit',
   MISC_LIST = '/misc',
   // In-game data

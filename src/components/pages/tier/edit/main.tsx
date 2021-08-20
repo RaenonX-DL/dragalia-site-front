@@ -83,7 +83,7 @@ export const TierNoteEdit = () => {
           return;
         }
 
-        window.location.assign(makeGeneralUrl(GeneralPath.TIER, {lang}));
+        window.location.assign(makeGeneralUrl(GeneralPath.TIER_LOOKUP, {lang}));
       })
       .catch((e) => {
         console.error(e);

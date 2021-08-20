@@ -600,7 +600,7 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        index: {
+        lookup: {
           title: 'キャラ/ドラゴンのランキング',
           description: 'クエスト中、キャラ／ドラゴンのランキングとその理由。',
         },
@@ -609,6 +609,10 @@ export const translation: TranslationStruct = {
           description: 'キャラ/ドラゴンのランキングの編集ページ。',
         },
         points: {
+          index: {
+            title: '要點索引',
+            description: '角色、龍族要點的索引。',
+          },
           usage: {
             title: 'ポイント【{{title}}】',
             description: 'ポイント【{{title}}】に関する情報、例: ポイントのアビリティが持っているキャラ、ドラゴン。',

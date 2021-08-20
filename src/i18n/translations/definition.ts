@@ -509,9 +509,10 @@ export type TranslationStruct = {
         },
       },
       tier: {
-        index: PageMetaTranslations,
+        lookup: PageMetaTranslations,
         edit: PageMetaTranslations,
         points: {
+          index: PageMetaTranslations,
           usage: PageMetaTranslations,
           edit: PageMetaTranslations,
         },

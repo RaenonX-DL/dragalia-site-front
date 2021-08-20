@@ -640,7 +640,7 @@ export const translation: TranslationStruct = {
         },
       },
       tier: {
-        index: {
+        lookup: {
           title: 'Unit Tier',
           description: 'Unit tier under different environment and its reasoning for all types of unit.',
         },
@@ -649,6 +649,10 @@ export const translation: TranslationStruct = {
           description: 'Page to edit the rankings and the related info of each unit.',
         },
         points: {
+          index: {
+            title: 'Key Point Index',
+            description: 'Adventurers/Dragons key point index.',
+          },
           usage: {
             title: 'Key Point: {{title}}',
             description: 'Information about the key point: {{title}}. ' +
