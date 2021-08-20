@@ -1,4 +1,4 @@
-import {DimensionKey, Ranking, UnitTierNote} from '../../../api-def/api';
+import {DimensionKey, KeyPointEntry, KeyPointType, Ranking, UnitTierNote} from '../../../api-def/api';
 import {UnitInfoData} from '../../../api-def/resources';
 import {UnitFilterInputData} from '../../elements/gameData/unit/filter/types';
 
@@ -19,3 +19,10 @@ export type TierNoteEdit = {
 export type UnitTierNoteEdit = Omit<UnitTierNote, 'lastUpdateEpoch' | 'tier'> & {
   tier: { [dim in DimensionKey]?: TierNoteEdit },
 }
+
+export type KeyPointsOfType = {
+  type: KeyPointType,
+  entries: Array<KeyPointEntry & {id: string}>
+};
+
+export type CategorizedKeyPoints = Array<KeyPointsOfType>;

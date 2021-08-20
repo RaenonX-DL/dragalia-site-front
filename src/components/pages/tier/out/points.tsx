@@ -2,7 +2,7 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
-import {KeyPointData, KeyPointType, KeyPointTypeEnum} from '../../../../api-def/api';
+import {KeyPointData} from '../../../../api-def/api';
 import {GeneralPath} from '../../../../const/path/definitions';
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
@@ -10,8 +10,9 @@ import {IconEdit} from '../../../elements/common/icons';
 import {pointTypeWrapperClassName} from '../const';
 import {PointTypeIcon} from '../icons';
 import styles from '../main.module.css';
+import {categorizeKeyPoints} from '../utils';
 import {KeyPointListItem} from './pointItem';
-import {PointListItemEntry} from './types';
+import {CategorizedPointEntries} from './types';
 
 
 type Props = {
@@ -23,15 +24,12 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
   const {t} = useI18n();
   const context = React.useContext(AppReactContext);
 
-  const pointListItems: Array<[KeyPointType, Array<PointListItemEntry>]> = Object.keys(KeyPointTypeEnum)
-    .map((key) => {
-      const type = key as KeyPointType;
-      const listItem: Array<PointListItemEntry> = keyPointsIds
-        .filter((id) => id in keyPointsData && keyPointsData[id].type === type)
-        .sort()
-        .map((id) => ({id, content: keyPointsData[id].description}));
-
-      return [type, listItem];
+  const pointListItems: Array<CategorizedPointEntries> = categorizeKeyPoints(keyPointsData, keyPointsIds)
+    .map(({type, entries}) => {
+      return {
+        type,
+        entries: entries.map((entry) => ({id: entry.id, content: entry.description})),
+      };
     });
 
   return (
@@ -39,8 +37,8 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
       <Alert variant="info">
         {t((t) => t.game.unitTier.points.tipsOnClick)}
       </Alert>
-      {pointListItems.map(([type, listItemData]) => {
-        if (!listItemData.length) {
+      {pointListItems.map(({type, entries}) => {
+        if (!entries.length) {
           return <React.Fragment key={type}/>;
         }
 
@@ -51,7 +49,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
               {t((t) => t.game.unitTier.points.type[type])}
             </h5>
             <ul className="mb-0">
-              {listItemData.map((point, idx) => <KeyPointListItem key={idx} {...point}/>)}
+              {entries.map((entry, idx) => <KeyPointListItem key={idx} {...entry}/>)}
             </ul>
           </div>
         );
