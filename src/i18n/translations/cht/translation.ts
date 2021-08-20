@@ -415,10 +415,13 @@ export const translation: TranslationStruct = {
       points: {
         edit: '編輯要點內容',
         title: '要點',
-        type: '種類',
+        type: {
+          title: '種類',
+          strength: '強項',
+          weakness: '弱項',
+          trait: '特點',
+        },
         description: '敘述',
-        strength: '強項',
-        weakness: '弱項',
         tipsOnClick: '點擊 "i" 按鈕可以瀏覽該要點的相關資訊，例如同時擁有該要點的角色清單...等。',
         info: {
           linkedUnits: '具有此要點的角色 / 龍族',

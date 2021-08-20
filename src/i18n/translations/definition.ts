@@ -1,4 +1,4 @@
-import {DimensionKey, UnitType} from '../../api-def/api';
+import {DimensionKey, KeyPointType, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
 import {SortOrder as TierSortOrder} from '../../components/pages/tier/types';
@@ -410,10 +410,12 @@ export type TranslationStruct = {
       points: {
         edit: string,
         title: string,
-        type: string,
+        type: {
+          title: string
+        } & {
+          [type in KeyPointType]: string
+        },
         description: string,
-        strength: string,
-        weakness: string,
         tipsOnClick: string,
         info: {
           linkedUnits: string,

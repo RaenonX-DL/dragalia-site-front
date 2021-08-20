@@ -422,10 +422,13 @@ export const translation: TranslationStruct = {
       points: {
         edit: '記事を編集する',
         title: 'ポイント',
-        type: '種類',
+        type: {
+          title: '種類',
+          strength: '強さ',
+          weakness: '不利',
+          trait: '特點',
+        },
         description: '叙述',
-        strength: '強さ',
-        weakness: '不利',
         tipsOnClick: ' "i" をクリックすると、ポイントの情報がご覧になれます。例: ポイントのアビリティが持っているキャラ。',
         info: {
           linkedUnits: '具有此要點的角色 / 龍族',

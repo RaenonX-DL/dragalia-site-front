@@ -41,7 +41,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         <div className="text-success">
           <h5>
             <IconPointsStrength/>&nbsp;
-            {t((t) => t.game.unitTier.points.strength)}
+            {t((t) => t.game.unitTier.points.type.strength)}
           </h5>
           <ul className="mb-0">
             {descStrength.map((point, idx) => <KeyPointListItem key={idx} {...point}/>)}
@@ -54,7 +54,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         <div className="text-danger">
           <h5>
             <IconPointsWeakness/>&nbsp;
-            {t((t) => t.game.unitTier.points.weakness)}
+            {t((t) => t.game.unitTier.points.type.weakness)}
           </h5>
           <ul className="mb-0">
             {descWeakness.map((point, idx) => <KeyPointListItem key={idx} {...point}/>)}

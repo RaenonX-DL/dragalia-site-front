@@ -448,10 +448,13 @@ export const translation: TranslationStruct = {
       points: {
         edit: 'Edit Key Point Content',
         title: 'Key Points',
-        type: 'Type',
+        type: {
+          title: 'Type',
+          strength: 'Strength',
+          weakness: 'Weakness',
+          trait: 'Trait',
+        },
         description: 'Description',
-        strength: 'Strength',
-        weakness: 'Weakness',
         tipsOnClick: 'Clicking on the "i" icon to get more details, ' +
           'such as the list of adventurers/dragons sharing the same key point.',
         info: {
