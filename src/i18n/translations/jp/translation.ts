@@ -3,10 +3,10 @@ import {TranslationStruct} from '../definition';
 
 export const translation: TranslationStruct = {
   autoComplete: {
-    selected: '已選擇',
-    inputPlaceholder: '輸入關鍵字',
-    noMatchingOptions: '無可用選項。',
-    noneSelected: '尚未選擇任何選項。',
+    selected: '選択済み',
+    inputPlaceholder: '検索キーワードを入力',
+    noMatchingOptions: '一致する結果が見つかりません。',
+    noneSelected: '選択していない。',
   },
   donation: {
     tierS1: 'Tier S-1',
@@ -236,10 +236,10 @@ export const translation: TranslationStruct = {
           },
           ssCostMax: {
             name: 'SS Cost (上限)',
-            desc: '輸入為 0 時，不使用此條件。否則，顯示 SS Cost 等於或小於輸入值的技能。',
+            desc: '数値は 0 の時、この条件は無効になる。SS上限を入力した時、数値以内のスキルが表示されます。',
           },
           only: {
-            dispel: 'Dispel Only',
+            dispel: 'バフ解除のみ表示',
             shared: 'シェアスキルのみ表示',
           },
         },
@@ -264,8 +264,8 @@ export const translation: TranslationStruct = {
         unstackable: '重複不可',
         affliction: '{{affliction}} @ {{afflictionTime}} 秒 ({{afflictionProbabilityPct}}% / {{afflictionDuration}} 秒)',
         buffCount: 'バフ個数が多いほどダメUP',
-        buffCountDescCapped: '+{{each}}% of the total mod for each buff; Capped at {{limit}}%',
-        buffCountDescUncapped: '+{{each}}% of the total mod for each buff; Uncapped',
+        buffCountDescCapped: 'バフ1個の総計倍率の最大値 +{{each}}% ; 上限 {{limit}}%',
+        buffCountDescUncapped: 'バフ1個の総計倍率の最大値+{{each}}% ; 上限なし',
         buffZone: 'バフフィールド個数が多いほどダメUP',
         buffZoneDesc: '自身の作ったフィールド上の敵に{{selfBoost}}% 追加ダメ1ヒット / 味方の作ったフィールド上の敵に{{allyBoost}}% 追加ダメ1ヒット',
         dispel: 'バフ解除',
@@ -298,30 +298,30 @@ export const translation: TranslationStruct = {
         dragonData: '建築 +{{facilityPct}}% / アビリティ+{{passivePct}}%',
         target: 'ターゲット状態',
         targetData: {
-          element: 'Element: ',
-          afflictions: 'Afflictions: ',
-          state: 'State: {{state}}',
-          def: 'Base DEF {{def}} / DEF Down -{{defDownPct}}% / BK Rate {{defBkRate}}',
+          element: '属性: ',
+          afflictions: '状態異常: ',
+          state: '状態: {{state}}',
+          def: '基礎防御力 {{def}} / 防御ダウン -{{defDownPct}}% / BK 防御ダウン率 {{defBkRate}}',
         },
         other: 'その他',
         otherData: '属性ダメ +{{otherElemBonusPct}}% / HP {{otherCurrentHpPct}}%',
       },
       collapse: '展開 / 折り畳み',
       error: {
-        noInfoToDisplay: 'Please select at least 1 info to display.',
-        noResult: 'No available results.',
-        presetMustLogin: 'You must login to use the input parameter preset via link.',
+        noInfoToDisplay: '表示する情報を1つ以上選択してください。',
+        noResult: '一致する結果が見つかりません。',
+        presetMustLogin: 'プリセットを使用するため、ログインが必要です',
       },
       animation: {
-        earliest: '{{time}} sec @ Earliest',
-        earliestUnavailable: 'Unavailable',
-        hitTiming: 'Hit Timing',
-        hitTimingHeader: 'Hit Timing (sec)',
-        cancelInfo: 'Cancel Info',
+        earliest: '一番早い {{time}} 秒 ',
+        earliestUnavailable: '利用不可',
+        hitTiming: 'ヒットする時間',
+        hitTimingHeader: 'ヒットする時間 (秒)',
+        cancelInfo: 'データをキャンセルする',
         cancelHeader: {
-          action: 'Action',
-          time: 'Time (sec)',
-          preConditions: 'Other Conditions',
+          action: '行動',
+          time: '時間 (秒)',
+          preConditions: '他の条件',
         },
       },
       sort: {
@@ -336,12 +336,12 @@ export const translation: TranslationStruct = {
         efficiency: {
           modPctPer1KSp: '% / 1K SP',
           modPctPer1KSsp: '% / 1K SSP',
-          secPer1KSp: '異常效期 (秒) / 1K SP',
-          secPer1KSsp: '異常效期 (秒) / 1K SSP',
+          secPer1KSp: '異常有効期限 (秒) / 1K SP',
+          secPer1KSsp: '異常有効期限 (秒) / 1K SSP',
         },
         sp: 'SP',
-        spGradualFill: '{{secs}} secs ({{sp}})',
-        spPctPerSec: 'SP Regen % / sec',
+        spGradualFill: '{{secs}} 秒 ({{sp}})',
+        spPctPerSec: 'SP回復量 % / 秒',
         ssp: 'SSP',
         ssCost: 'SS Cost',
       },
@@ -366,7 +366,7 @@ export const translation: TranslationStruct = {
           utp: 'UTP',
           odRate: 'OD 倍率',
           crisisMods: '背水倍率',
-          nextComboSec: '次の Combo 時間 (秒)',
+          nextComboSec: '次のコンボ 時間 (秒)',
           spPerSec: 'SP / 秒',
         },
       },
@@ -388,16 +388,16 @@ export const translation: TranslationStruct = {
         },
       },
       info: {
-        passive: 'These are official texts. ' +
-          'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
-        coAbility: 'These are official texts. Welcome to [Co-ability searching]({{exLookup}}) feature.\n\n' +
-          'Co-ability is applied regardless the unit element. The effect is unstackable. ' +
-          'Chained co-ability is limited to same element only in general. However, the effect is stackable.',
+        passive: '下のは公式説明。' +
+          '詳しい情報をもらいたいの方は [キャラの評価]({{analysis}}) へご覧ください。',
+        coAbility: '下のは公式説明。[EX/リンクEXの検索]({{exLookup}}機能へようこそ。) feature.\n\n' +
+          'EXアビリティはいずれか属性にも有効。効果は重複不可。 ' +
+          'リンクEXは同じ属性キャラ (通常) には有効。効果は重複可能。',
         skill: {
-          official: 'These are official texts. ' +
-            'Consult [the corresponding analysis]({{analysis}}) for better breakdown and details.',
-          parsed: 'These are automatically parsed. Some content might be inaccurate. ' +
-            'Welcome to use the [ATK skill lookup]({{atkSearch}}) for searching.',
+          official: '下のは公式説明。' +
+            '詳しい情報をもらいたいの方は [キャラの評価]({{analysis}}) へご覧ください。',
+          parsed: '下のは自動分析の結果。データに一部誤りがあるかもしれません。' +
+            '[攻撃スキルの検索]({{atkSearch}})機能へようこそ。',
         },
       },
       links: {
@@ -411,56 +411,56 @@ export const translation: TranslationStruct = {
     },
     unitTier: {
       tier: {
-        title: '評級',
-        ranking: '評級',
-        isCompDependent: '依賴組合',
+        title: '評価',
+        ranking: 'ランキング',
+        isCompDependent: 'チームのサポートが必要。',
       },
       tips: {
-        main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
-        compIcon: '需要搭配特定隊友以達到對應評級',
+        main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
+        compIcon: '固定のサポートキャラが必要。',
       },
       points: {
-        edit: '編輯要點內容',
-        title: '要點',
+        edit: '記事を編集する',
+        title: 'ポイント',
         type: '種類',
-        description: '敘述',
-        strength: '強項',
-        weakness: '弱項',
-        tipsOnClick: '點擊 "i" 按鈕可以瀏覽該要點的相關資訊，例如同時擁有該要點的角色清單...等。',
+        description: '叙述',
+        strength: '強さ',
+        weakness: '不利',
+        tipsOnClick: ' "i" をクリックすると、ポイントの情報がご覧になれます。例: ポイントのアビリティが持っているキャラ。',
       },
       dimension: {
         conSolo: {
-          name: '虛無 (單人)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以單人模式遊玩時的評級。',
+          name: '虚無 (ソロ)',
+          description: '虚無有効のクエスト中(ソロ)、キャラの評価 (例: ディアボロス)。',
         },
         conCoop: {
-          name: '虛無 (共鬥)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以共鬥模式遊玩時的評級。',
+          name: '虚無 (マルチ)',
+          description: '虚無有効のクエスト中(マルチ)、キャラの評価 (例: ディアボロス)。',
         },
         conAi: {
-          name: '虛無 (AI)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，作為 AI 時的評級。',
+          name: '虚無 (AI)',
+          description: '虚無有効のクエスト中(例: ディアボロス)、AIにとしての評価。',
         },
         normalSolo: {
-          name: '一般 (單人)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以單人模式遊玩的評級。',
+          name: '通常 (ソロ)',
+          description: '通常クエスト中(ソロ)、キャラの評価 (例: 真竜、絶級アギト)。',
         },
         normalCoop: {
-          name: '一般 (共鬥)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以共鬥模式遊玩的評級。',
+          name: '通常 (マルチ)',
+          description: '通常クエスト中(マルチ)、キャラの評価 (例: 真竜、絶級アギト)。',
         },
         normalAi: {
-          name: '一般 (AI)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
+          name: '通常 (AI)',
+          description: '通常クエスト中(例: 真竜、絶級アギト)、AIにとしての評価。',
         },
         sharedSkill: {
-          name: '共享技能',
-          description: '共享技能評級。只限角色。',
+          name: 'シェアスキル',
+          description: 'シェアスキルの評価。(キャラ限定)',
         },
       },
       sort: {
-        unitId: 'Unit ID',
-        avgRanking: 'Average Ranking',
+        unitId: 'ユニット ID',
+        avgRanking: '平均ランキング',
       },
       alert: {
         refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
@@ -498,7 +498,7 @@ export const translation: TranslationStruct = {
         '広告なしを起動にするためには、寄付に使ったメールアドレスでログインしてください。',
     },
     warning: {
-      adminOnly: 'You must have admin privilege to access this page.',
+      adminOnly: 'このページにアクセスするには、管理者アカウントでログインする必要があります。',
       truncated: '検索結果が多過ぎるため、一部だけ表示しています。({{displayed}} 表示中 / 全 {{returned}})。' +
         '第{{displayed}}個目以降の検索結果を見たい場合は検索結果が少なくなるよう再検索してください。',
     },
@@ -513,18 +513,18 @@ export const translation: TranslationStruct = {
     },
     error: {
       auth: {
-        noProvider: 'No authentication providers available.',
+        noProvider: 'ログインサービスは利用できません。',
       },
     },
   },
   misc: {
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
-    openGif: '點擊以開啟 GIF 圖片',
+    openGif: 'クリックすると GIF が開きます',
     search: '検索',
-    searchKeyword: 'Keyword',
+    searchKeyword: 'キーワード',
     update: '更新',
-    sortBy: '',
+    sortBy: '並び替え {{order}}',
     timestamp: {
       lastModified: '最後編集は',
       lastUpdated: '最後更新は',
@@ -538,19 +538,19 @@ export const translation: TranslationStruct = {
     inUse: {
       about: {
         title: 'サイトについて',
-        description: 'description',
+        description: 'サイトについて',
       },
       home: {
         title: 'ホーム',
-        description: 'description',
+        description: 'ようこそ ドラガリ攻略 by OM へ！',
       },
       site: {
         title: 'ドラガリ攻略 by OM',
-        description: 'description',
+        description: 'Oasis of the Maniacs メンバーによる共同制作サイト',
       },
       thanks: {
         title: '協力感謝',
-        description: 'description',
+        description: '協力メンバーの方々',
       },
       post: {
         analysis: {
@@ -592,21 +592,21 @@ export const translation: TranslationStruct = {
       },
       tier: {
         index: {
-          title: '角色/龍族評級',
-          description: '各角色、龍族在不同環境下的評級及其相關原因。',
+          title: 'キャラ/ドラゴンのランキング',
+          description: 'クエスト中、キャラ／ドラゴンのランキングとその理由。',
         },
         edit: {
-          title: '編輯物件評級',
-          description: '編輯各角色、龍族評級及其相關資訊的頁面。',
+          title: 'ユニットランキングの編集',
+          description: 'キャラ/ドラゴンのランキングの編集ページ。',
         },
         points: {
           usage: {
-            title: '要點【{{title}}】',
-            description: '顯示要點【{{title}}】的相關資訊，例如具有此要點的角色、龍族...等。',
+            title: 'ポイント【{{title}}】',
+            description: 'ポイント【{{title}}】に関する情報、例: ポイントのアビリティが持っているキャラ、ドラゴン。',
           },
           edit: {
-            title: '要點編輯',
-            description: '編輯要點內容的頁面。',
+            title: 'ポイントの編集',
+            description: 'ポイントの編集ページ。',
           },
         },
       },
@@ -626,14 +626,14 @@ export const translation: TranslationStruct = {
       },
       auth: {
         signIn: {
-          title: 'Login',
-          description: 'Sign-in to the website to enable more features.',
+          title: 'ログイン',
+          description: '他の機能を使用するにはログインが必要です。',
         },
       },
       unit: {
         info: {
           title: '{{unitName}}',
-          description: 'Unit info of {{unitName}}.',
+          description: ' {{unitName}}に関する情報',
         },
         name: {
           title: 'ユニット名前設定ページ',
@@ -648,7 +648,7 @@ export const translation: TranslationStruct = {
       },
       404: {
         title: 'ページが存在しません',
-        description: 'description',
+        description: 'このページが存在しません。',
       },
     },
     temp: {
@@ -661,7 +661,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: 'キャラ/ドラゴン情報',
-    unitTier: '角色/龍族評級',
+    unitTier: 'キャラ/ドラゴンのランキング',
   },
   posts: {
     analysis: {
@@ -678,14 +678,13 @@ export const translation: TranslationStruct = {
       summary: '結論',
       summonResult: '個人のガチャ結果',
       summonExplanation: {
-        title: 'About this section',
-        description: 'Some people may wonder why this is listed in my analysis. ' +
-          'When I started writing analysis, ' +
-          'I wanted to let people know that getting lucky is pure luck; ' +
-          'getting unlucky is just a usual thing. ' +
-          'I never thought that I would end up dedicating writing analysis like this, ' +
-          'and I still want to let people know what was mentioned about luck, ' +
-          'so I decided to leave it instead of removing it.',
+        title: '個人のガチャ結果について',
+        description: 'なぜガチャ結果が【評価】ページに掲載されたのか? 皆さんはそれを疑問に思うかも知れません。 ' +
+          '分析を書き始めたとき、 ' +
+          '私は皆さんに「召喚の結果は純粋な運である」を知ってほしかった。 ' +
+          '分析を書くことに集中するなんて思わなかったけど、 ' +
+          '【結果と運】のことを皆さんに伝えたくて、' +
+          '【個人のガチャ結果】は保存されました。',
       },
       tipsBuilds: 'ポイント & おすすめ装備編成',
       ultimate: '必殺技',
@@ -694,7 +693,7 @@ export const translation: TranslationStruct = {
         noPostId: '文章 ID 未指定。',
         noResult: '検索結果あありませんでした。条件を変更して再度検索してください。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
-        unavailable: 'Analysis Unavailable',
+        unavailable: 'bu Unavailable',
       },
       skill: {
         name: 'スキルの名前',
@@ -762,3 +761,5 @@ export const translation: TranslationStruct = {
     },
   },
 };
+
+
