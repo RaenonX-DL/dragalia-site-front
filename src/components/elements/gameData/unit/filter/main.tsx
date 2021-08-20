@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import {useI18n} from '../../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../../i18n/types';
 import {useUnitProps} from '../../../../hooks/unitProps';
-import {EnumCheckboxGroup} from '../../../common/check/enum/checkbox';
+import {InputPanel} from '../../../input/panel/main';
 import {UnitTypePicker} from './typePicker';
 import {UnitFilterInputData} from './types';
 
@@ -38,19 +38,23 @@ export const UnitFilter = <S extends string, D extends UnitFilterInputData<S>>({
   return (
     <div className="rounded bg-black-32 p-3 mb-2">
       <UnitTypePicker inputData={inputData} setInputData={setInputData}/>
-      <EnumCheckboxGroup
-        options={elemEnums.elemental}
+      <InputPanel
         inputData={inputData}
         setInputData={setInputData}
-        getValue={(inputData) => inputData.elements}
-        getUpdatedInputData={(newValue) => ({...inputData, elements: newValue})}
-      />
-      <EnumCheckboxGroup
-        options={weaponEnums.weapon}
-        inputData={inputData}
-        setInputData={setInputData}
-        getValue={(inputData) => inputData.weaponTypes}
-        getUpdatedInputData={(newValue) => ({...inputData, weaponTypes: newValue})}
+        inputEntries={[
+          {
+            type: 'enumCheckGroup',
+            options: elemEnums.elemental,
+            getValue: (inputData) => inputData.elements,
+            getUpdatedInputData: (elements) => ({...inputData, elements}),
+          },
+          {
+            type: 'enumCheckGroup',
+            options: weaponEnums.weapon,
+            getValue: (inputData) => inputData.weaponTypes,
+            getUpdatedInputData: (weaponTypes) => ({...inputData, weaponTypes}),
+          },
+        ]}
       />
       <Form onSubmit={(e) => {
         e.preventDefault();
@@ -79,10 +83,7 @@ export const UnitFilter = <S extends string, D extends UnitFilterInputData<S>>({
             </DropdownButton>
           </Col>
           <Col xs="auto" className="text-right">
-            <Button
-              variant="outline-info"
-              type="submit"
-            >
+            <Button variant="outline-info" type="submit">
               {t((t) => t.misc.search)}
             </Button>
           </Col>
