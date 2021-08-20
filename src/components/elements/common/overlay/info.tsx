@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Markdown} from '../../markdown/main';
+import {IconInfo} from '../icons';
 import {TitledProps} from '../types';
 import {OverlayPopover} from './popover';
 
@@ -12,7 +13,7 @@ type InfoPopoverProps = TitledProps & {
 export const InfoPopover = ({title, description}: InfoPopoverProps) => {
   return (
     <OverlayPopover title={title} content={description}>
-      <i className="bi bi-info-circle"/>
+      <IconInfo/>
     </OverlayPopover>
   );
 };
