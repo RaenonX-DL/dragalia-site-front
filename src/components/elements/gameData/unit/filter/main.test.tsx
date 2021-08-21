@@ -300,4 +300,21 @@ describe('Unit filter input', () => {
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
+
+  it('renders additional input', async () => {
+    renderReact(() => (
+      <UnitFilter
+        sortOrderNames={{unitId: () => 'Unit ID'}}
+        onSearchRequested={onSearchRequested}
+        generateInputData={() => generateFilterInput('unitId')}
+        getAdditionalInputs={() => [{
+          type: 'title',
+          title: 'Title',
+          description: 'Description',
+        }]}
+      />
+    ));
+
+    expect(await screen.findByText('Title')).toBeInTheDocument();
+  });
 });

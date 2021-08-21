@@ -6,25 +6,33 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 
+import {EnumEntry} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../../i18n/types';
 import {useUnitProps} from '../../../../hooks/unitProps';
+import {CheckOption} from '../../../common/check/types';
 import {InputPanel} from '../../../input/panel/main';
+import {InputEntries} from '../../../input/panel/types';
 import {UnitTypePicker} from './typePicker';
 import {UnitFilterInputData} from './types';
 
 
-type LookupInputProps<S extends string, D extends UnitFilterInputData<S>> = {
+type LookupInputProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry> = {
   onSearchRequested: (inputData: D) => (event: FormEvent<HTMLFormElement>) => void,
   sortOrderNames: { [sortBy in S]: GetTranslationFunction },
   generateInputData: () => D,
+  getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D>,
 }
 
-export const UnitFilter = <S extends string, D extends UnitFilterInputData<S>>({
+export const UnitFilter = <S extends string,
+  D extends UnitFilterInputData<S>,
+  E extends CheckOption,
+  E2 extends EnumEntry>({
   onSearchRequested,
   sortOrderNames,
   generateInputData,
-}: LookupInputProps<S, D>) => {
+  getAdditionalInputs,
+}: LookupInputProps<S, D, E, E2>) => {
   const {t} = useI18n();
 
   const [inputData, setInputData] = React.useState<D>(generateInputData());
@@ -34,6 +42,8 @@ export const UnitFilter = <S extends string, D extends UnitFilterInputData<S>>({
     (t) => t.misc.sortBy,
     {order: t(sortOrderNames[inputData.sortBy])},
   );
+
+  const additionalInputs = getAdditionalInputs ? getAdditionalInputs(inputData) : [];
 
   return (
     <div className="rounded bg-black-32 p-3 mb-2">
@@ -56,6 +66,10 @@ export const UnitFilter = <S extends string, D extends UnitFilterInputData<S>>({
           },
         ]}
       />
+      {
+        additionalInputs.length > 0 &&
+        <InputPanel inputData={inputData} setInputData={setInputData} inputEntries={additionalInputs}/>
+      }
       <Form onSubmit={(e) => {
         e.preventDefault();
         onSearchRequested(inputData)(e);
