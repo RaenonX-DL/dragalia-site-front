@@ -2,17 +2,17 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
-import {KeyPointData} from '../../../../api-def/api';
-import {GeneralPath} from '../../../../const/path/definitions';
-import {AppReactContext} from '../../../../context/app/main';
-import {useI18n} from '../../../../i18n/hook';
-import {IconEdit} from '../../../elements/common/icons';
-import {pointTypeWrapperClassName} from '../const';
-import {PointTypeIcon} from '../icons';
-import styles from '../main.module.css';
-import {categorizeKeyPoints} from '../utils';
+import {KeyPointData} from '../../../../../api-def/api';
+import {GeneralPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
+import {useI18n} from '../../../../../i18n/hook';
+import {IconEdit} from '../../../../elements/common/icons';
+import {pointTypeWrapperClassName} from '../../const';
+import {PointTypeIcon} from '../../icons';
+import styles from '../../main.module.css';
+import {categorizeKeyPoints} from '../../utils';
+import {CategorizedPointEntries} from '../types';
 import {KeyPointListItem} from './pointItem';
-import {CategorizedPointEntries} from './types';
 
 
 type Props = {
@@ -25,12 +25,10 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
   const context = React.useContext(AppReactContext);
 
   const pointListItems: Array<CategorizedPointEntries> = categorizeKeyPoints(keyPointsData, keyPointsIds)
-    .map(({type, entries}) => {
-      return {
-        type,
-        entries: entries.map((entry) => ({id: entry.id, content: entry.description})),
-      };
-    });
+    .map(({type, entries}) => ({
+      type,
+      entries: entries.map((entry) => ({id: entry.id, content: entry.description})),
+    }));
 
   return (
     <>

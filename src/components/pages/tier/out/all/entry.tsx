@@ -3,21 +3,21 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../api-def/api';
-import {UnitInfoData} from '../../../../api-def/resources';
-import {UnitPath} from '../../../../const/path/definitions';
-import {AppReactContext} from '../../../../context/app/main';
-import {useI18n} from '../../../../i18n/hook';
-import {makeUnitUrl} from '../../../../utils/path/make';
-import {TimeAgo} from '../../../../utils/timeago';
-import {IconEdit, IconRadar} from '../../../elements/common/icons';
-import {ModalFixedContent} from '../../../elements/common/modal/fix';
-import {ModalStateFix} from '../../../elements/common/modal/types';
-import {UnitIcon} from '../../../elements/gameData/unit/icon';
-import {UnitLink} from '../../../elements/gameData/unit/link';
-import styles from '../main.module.css';
-import {TierNote} from './note';
-import {TierKeyPoints} from './points';
+import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../../api-def/api';
+import {UnitInfoData} from '../../../../../api-def/resources';
+import {UnitPath} from '../../../../../const/path/definitions';
+import {AppReactContext} from '../../../../../context/app/main';
+import {useI18n} from '../../../../../i18n/hook';
+import {makeUnitUrl} from '../../../../../utils/path/make';
+import {TimeAgo} from '../../../../../utils/timeago';
+import {IconEdit, IconRadar} from '../../../../elements/common/icons';
+import {ModalFixedContent} from '../../../../elements/common/modal/fix';
+import {ModalStateFix} from '../../../../elements/common/modal/types';
+import {UnitIcon} from '../../../../elements/gameData/unit/icon';
+import {UnitLink} from '../../../../elements/gameData/unit/link';
+import styles from '../../main.module.css';
+import {TierNote} from '../elements/note';
+import {TierKeyPoints} from '../elements/points';
 
 
 type Props = {

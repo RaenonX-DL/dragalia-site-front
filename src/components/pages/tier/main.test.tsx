@@ -96,4 +96,8 @@ describe('Tier list page', () => {
 
     expect(screen.queryByText(translationEN.game.unitTier.points.edit)).not.toBeInTheDocument();
   });
+
+  it('shows categorized tier note if displaying certain dimension only', async () => {
+
+  });
 });

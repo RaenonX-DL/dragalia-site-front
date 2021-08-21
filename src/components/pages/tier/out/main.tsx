@@ -2,10 +2,9 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import {KeyPointData, UnitTierData} from '../../../../api-def/api';
+import {UnitTierData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
@@ -13,14 +12,13 @@ import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils'
 import {OverLengthWarning} from '../../../elements/gameData/warnings/overLength';
 import {MaxEntriesToDisplay, sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
-import {InputData} from '../types';
-import {TierListEntry} from './entry';
+import {InputData, PropsUseKeyPointData} from '../types';
+import {TierListOutputShowAll} from './all/main';
 
 
-type Props = {
+type Props = PropsUseKeyPointData & {
   inputData: InputData | undefined,
   tierData: UnitTierData,
-  keyPointsData: KeyPointData,
 }
 
 export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
@@ -64,13 +62,7 @@ export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
           <IconCompDependent/>&nbsp;=&nbsp;{t((t) => t.game.unitTier.tips.compIcon)}
         </Col>
       </Row>
-      <Form.Row>{
-        unitInfoList.map(({unitInfo, tierNote}) => (
-          <Col key={unitInfo.id} lg={4}>
-            <TierListEntry tierNote={tierNote} unitInfo={unitInfo} keyPointsData={keyPointsData}/>
-          </Col>
-        ))
-      }</Form.Row>
+      <TierListOutputShowAll unitInfoList={unitInfoList} keyPointsData={keyPointsData}/>
     </div>
   );
 };

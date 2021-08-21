@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {DataPath} from '../../../../const/path/definitions';
-import {useI18n} from '../../../../i18n/hook';
-import {makeDataUrl} from '../../../../utils/path/make';
-import {IconInfo} from '../../../elements/common/icons';
-import styles from '../main.module.css';
-import {PointListItemEntry} from './types';
+import {DataPath} from '../../../../../const/path/definitions';
+import {useI18n} from '../../../../../i18n/hook';
+import {makeDataUrl} from '../../../../../utils/path/make';
+import {IconInfo} from '../../../../elements/common/icons';
+import styles from '../../main.module.css';
+import {PointListItemEntry} from '../types';
 
 
 type Props = PointListItemEntry

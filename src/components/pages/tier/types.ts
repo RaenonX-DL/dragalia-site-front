@@ -1,4 +1,4 @@
-import {DimensionKey, KeyPointEntry, KeyPointType, Ranking, UnitTierNote} from '../../../api-def/api';
+import {DimensionKey, KeyPointData, KeyPointEntry, KeyPointType, Ranking, UnitTierNote} from '../../../api-def/api';
 import {UnitInfoData} from '../../../api-def/resources';
 import {UnitFilterInputData} from '../../elements/gameData/unit/filter/types';
 
@@ -14,9 +14,16 @@ export type DisplayOption = {
 
 export type InputData = UnitFilterInputData<SortOrder> & {
   display: Display,
-};
+}
 
-export type EntryPack = {unitInfo: UnitInfoData, tierNote: UnitTierNote};
+export type EntryPack = {
+  unitInfo: UnitInfoData,
+  tierNote: UnitTierNote
+}
+
+export type EntryPackOutput = Omit<EntryPack, 'tierNote'> & {
+  tierNote?: UnitTierNote,
+}
 
 export type TierNoteEdit = {
   isCompDependent: boolean,
@@ -35,3 +42,7 @@ export type KeyPointsOfType = {
 };
 
 export type CategorizedKeyPoints = Array<KeyPointsOfType>;
+
+export type PropsUseKeyPointData = {
+  keyPointsData: KeyPointData,
+}

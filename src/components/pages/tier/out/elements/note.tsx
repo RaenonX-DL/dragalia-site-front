@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {DimensionKey} from '../../../../api-def/api';
-import {useI18n} from '../../../../i18n/hook';
-import styles from '../main.module.css';
+import {DimensionKey} from '../../../../../api-def/api';
+import {useI18n} from '../../../../../i18n/hook';
+import styles from '../../main.module.css';
 import {RankingProps, TierRanking} from './ranking';
 
 

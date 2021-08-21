@@ -3,10 +3,10 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../test/render/main';
-import {KeyPointData, SupportedLanguages, UnitTierNote, UnitType} from '../../../../api-def/api';
-import {Element, UnitInfoData} from '../../../../api-def/resources';
-import {overrideObject} from '../../../../utils/override';
+import {renderReact} from '../../../../../../test/render/main';
+import {KeyPointData, SupportedLanguages, UnitTierNote, UnitType} from '../../../../../api-def/api';
+import {Element, UnitInfoData} from '../../../../../api-def/resources';
+import {overrideObject} from '../../../../../utils/override';
 import {TierListEntry} from './entry';
 
 
