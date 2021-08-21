@@ -3,9 +3,13 @@ import {UnitInfoData} from '../../../api-def/resources';
 import {UnitFilterInputData} from '../../elements/gameData/unit/filter/types';
 
 
-export type SortOrder = 'unitId' | DimensionKey | 'avgRanking';
+export type SortOrder = DimensionKey | 'unitId' | 'avgRanking';
 
-export type InputData = UnitFilterInputData<SortOrder>;
+export type Display = DimensionKey | 'all';
+
+export type InputData = UnitFilterInputData<SortOrder> & {
+  display: Display,
+};
 
 export type EntryPack = {unitInfo: UnitInfoData, tierNote: UnitTierNote};
 

@@ -10,7 +10,10 @@ import {generateFilterInput} from '../../elements/gameData/unit/filter/utils';
 import {CategorizedKeyPoints, InputData} from './types';
 
 
-export const generateInputData = (): InputData => generateFilterInput('avgRanking');
+export const generateInputData = (): InputData => ({
+  ...generateFilterInput('avgRanking'),
+  display: 'all',
+});
 
 export const getTierRanking = (tierNote: UnitTierNote, tierDimension: DimensionKey) => {
   const tierNoteDimension = tierNote.tier[tierDimension];
