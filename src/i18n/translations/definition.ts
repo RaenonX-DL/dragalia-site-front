@@ -1,7 +1,7 @@
 import {DimensionKey, KeyPointType, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
-import {SortOrder as TierSortOrder} from '../../components/pages/tier/types';
+import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/types';
 
 
 export type PageMetaTranslations = {
@@ -425,6 +425,7 @@ export type TranslationStruct = {
         },
       },
       dimension: { [dim in DimensionKey]: {name: string, description: string} },
+      display: { [display in Display]: string },
       sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
       alert: {
         refRemoval: string,

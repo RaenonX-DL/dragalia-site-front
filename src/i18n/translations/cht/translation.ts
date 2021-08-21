@@ -460,6 +460,16 @@ export const translation: TranslationStruct = {
           description: '共享技能評級。只限角色。',
         },
       },
+      display: {
+        conSolo: '虛無 (單人)',
+        conCoop: '虛無 (共鬥)',
+        conAi: '虛無 (AI)',
+        normalSolo: '一般 (單人)',
+        normalCoop: '一般 (共鬥)',
+        normalAi: '一般 (AI)',
+        sharedSkill: '共享',
+        all: '全部',
+      },
       sort: {
         unitId: '物件 ID',
         avgRanking: '平均評級',

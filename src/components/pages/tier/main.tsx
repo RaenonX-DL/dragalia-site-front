@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {ApiResponseCode, UnitTierNoteGetResponse} from '../../../api-def/api';
+import {ApiResponseCode, Dimension, UnitTierNoteGetResponse} from '../../../api-def/api';
 import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
+import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {ButtonBar} from '../../elements/common/buttonBar';
 import {useFetchState} from '../../elements/common/fetch';
@@ -11,7 +12,7 @@ import {UnitFilter} from '../../elements/gameData/unit/filter/main';
 import {orderName} from './const';
 import {useKeyPointData} from './hooks';
 import {TierListOutput} from './out/main';
-import {InputData} from './types';
+import {Display, DisplayOption, InputData} from './types';
 import {generateInputData} from './utils';
 
 
@@ -35,6 +36,12 @@ export const TierList = () => {
     'Failed to fetch tier note data.',
   );
 
+  const options: Array<DisplayOption> = (Object.keys(Dimension).concat('all') as Array<Display>).map((display) => {
+    const key = display as Display;
+
+    return {key, text: t((t) => t.game.unitTier.display[key])};
+  });
+
   fetchTierNotes();
 
   return (
@@ -43,6 +50,14 @@ export const TierList = () => {
         onSearchRequested={(inputData) => () => setInputData(inputData)}
         sortOrderNames={orderName}
         generateInputData={generateInputData}
+        getAdditionalInputs={(inputData) => [{
+          type: 'inputRadioGroup',
+          options,
+          getValue: (inputData: InputData) => inputData.display,
+          getValueOfOption: (option: DisplayOption) => option.key,
+          getUpdatedInputData: (display: Display) => overrideObject(inputData, {display}),
+          groupName: 'display',
+        }]}
       />
       {
         context?.session?.user.isAdmin &&

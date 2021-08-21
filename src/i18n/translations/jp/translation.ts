@@ -467,6 +467,16 @@ export const translation: TranslationStruct = {
           description: 'シェアスキルの評価。(キャラ限定)',
         },
       },
+      display: {
+        conSolo: '虚無 (ソロ)',
+        conCoop: '虚無 (マルチ)',
+        conAi: '虚無 (AI)',
+        normalSolo: '通常 (ソロ)',
+        normalCoop: '通常 (マルチ)',
+        normalAi: '通常 (AI)',
+        sharedSkill: 'シェア',
+        all: '全部',
+      },
       sort: {
         unitId: 'ユニット ID',
         avgRanking: '平均ランキング',

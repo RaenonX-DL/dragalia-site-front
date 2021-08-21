@@ -7,6 +7,11 @@ export type SortOrder = DimensionKey | 'unitId' | 'avgRanking';
 
 export type Display = DimensionKey | 'all';
 
+export type DisplayOption = {
+  key: Display,
+  text: string,
+}
+
 export type InputData = UnitFilterInputData<SortOrder> & {
   display: Display,
 };

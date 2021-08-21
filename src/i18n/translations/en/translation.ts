@@ -500,6 +500,16 @@ export const translation: TranslationStruct = {
           description: 'Shared skill ranking. Adventurer only.',
         },
       },
+      display: {
+        conSolo: 'CoN (Solo)',
+        conCoop: 'CoN (Co-op)',
+        conAi: 'CoN (AI)',
+        normalSolo: 'Normal (Solo)',
+        normalCoop: 'Normal (AI)',
+        normalAi: 'Normal (AI)',
+        sharedSkill: 'SS',
+        all: 'Show All',
+      },
       sort: {
         unitId: 'Unit ID',
         avgRanking: 'Average Ranking',
