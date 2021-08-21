@@ -6,7 +6,7 @@ import {CheckboxGroup} from '../group/checkbox';
 import {CheckboxGroupProps} from '../types';
 
 
-export type EnumChecksBoxProps<E extends EnumEntry, T> = Omit<CheckboxGroupProps<E, T>, 'getCheckOptionComparer'>
+export type EnumChecksBoxProps<E extends EnumEntry, T> = Omit<CheckboxGroupProps<E, T, number>, 'getValueOfOption'>
 
 export const EnumCheckboxGroup = <E extends EnumEntry, T>({
   options,
@@ -25,7 +25,7 @@ export const EnumCheckboxGroup = <E extends EnumEntry, T>({
       setInputData={setInputData}
       getValue={getValue}
       getUpdatedInputData={getUpdatedInputData}
-      getCheckOptionComparer={(option) => option.code}
+      getValueOfOption={(option) => option.code}
       getImageUrl={(option) => option.imagePath ? DepotPaths.getImageURL(option.imagePath) : undefined}
       imageHeight={imageHeight}
     />

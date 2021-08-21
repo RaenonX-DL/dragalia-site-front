@@ -6,11 +6,11 @@ import {InputPanelEntry} from './entry';
 import {InputPanelProps} from './types';
 
 
-export const InputPanel = <E extends CheckOption, E2 extends EnumEntry, T>({
+export const InputPanel = <E extends CheckOption, E2 extends EnumEntry, T, V>({
   inputEntries,
   inputData,
   setInputData,
-}: InputPanelProps<E, E2, T>) => {
+}: InputPanelProps<E, E2, T, V>) => {
   return (
     <>
       {inputEntries.map((inputEntry, idx) => (

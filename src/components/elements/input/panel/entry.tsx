@@ -17,11 +17,11 @@ import {SectionTitle} from '../../gameData/title';
 import {InputEntryProps} from './types';
 
 
-export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>({
+export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T, V>({
   inputEntry,
   inputData,
   setInputData,
-}: InputEntryProps<E, E2, T>) => {
+}: InputEntryProps<E, E2, T, V>) => {
   if (inputEntry.type === 'title') {
     return <SectionTitle title={inputEntry.title} description={inputEntry.description}/>;
   }
@@ -57,40 +57,16 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T>(
     );
   }
   if (inputEntry.type === 'inputRadioGroup') {
-    return (
-      <RadioGroup
-        {...inputEntry}
-        inputData={inputData}
-        setInputData={setInputData}
-      />
-    );
+    return <RadioGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'enumCheckGroup') {
-    return (
-      <EnumCheckboxGroup
-        {...inputEntry}
-        inputData={inputData}
-        setInputData={setInputData}
-      />
-    );
+    return <EnumCheckboxGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'enumRadioGroup') {
-    return (
-      <EnumRadioGroup
-        {...inputEntry}
-        inputData={inputData}
-        setInputData={setInputData}
-      />
-    );
+    return <EnumRadioGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'arrayCheckGroup') {
-    return (
-      <CheckboxGroup
-        {...inputEntry}
-        inputData={inputData}
-        setInputData={setInputData}
-      />
-    );
+    return <CheckboxGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'select') {
     const {defaultEntry, title, getValue, getText, getUpdatedInputData} = inputEntry;

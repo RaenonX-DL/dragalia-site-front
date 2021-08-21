@@ -6,13 +6,13 @@ export type DetailedProps = TitledProps & {
   description: string,
 }
 
-export type ReadonlyInputProps<T, V> = {
+export type InputProps<T> = {
   inputData: T,
-  getValue: (inputData: T) => V,
+  setInputData: (newInput: T) => void,
 }
 
-export type InputProps<T, V> = ReadonlyInputProps<T, V> & {
-  setInputData: (newInput: T) => void,
+export type InputPropsExtended<T, V> = InputProps<T> & {
+  getValue: (inputData: T) => V,
   getUpdatedInputData: (newValue: V) => T,
 }
 

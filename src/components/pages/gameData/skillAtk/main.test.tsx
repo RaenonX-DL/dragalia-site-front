@@ -182,7 +182,7 @@ describe('ATK skill lookup', () => {
     const searchButton = await screen.findByText(
       translationEN.misc.search,
       {selector: 'button:enabled'},
-      {timeout: 2000},
+      {timeout: 3000},
     );
     userEvent.click(searchButton);
 

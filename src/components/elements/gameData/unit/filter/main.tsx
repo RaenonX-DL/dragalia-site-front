@@ -17,22 +17,24 @@ import {UnitTypePicker} from './typePicker';
 import {UnitFilterInputData} from './types';
 
 
-type LookupInputProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry> = {
+type LookupInputProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry, V> = {
   onSearchRequested: (inputData: D) => (event: FormEvent<HTMLFormElement>) => void,
   sortOrderNames: { [sortBy in S]: GetTranslationFunction },
   generateInputData: () => D,
-  getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D>,
+  getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D, V>,
 }
 
 export const UnitFilter = <S extends string,
   D extends UnitFilterInputData<S>,
   E extends CheckOption,
-  E2 extends EnumEntry>({
+  E2 extends EnumEntry,
+  V
+>({
   onSearchRequested,
   sortOrderNames,
   generateInputData,
   getAdditionalInputs,
-}: LookupInputProps<S, D, E, E2>) => {
+}: LookupInputProps<S, D, E, E2, V>) => {
   const {t} = useI18n();
 
   const [inputData, setInputData] = React.useState<D>(generateInputData());

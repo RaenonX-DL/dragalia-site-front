@@ -35,8 +35,8 @@ export const UnitTypePicker = <S extends string, D extends UnitFilterInputData<S
       inputData={inputData}
       setInputData={setInputData}
       getValue={(inputData) => inputData.types}
+      getValueOfOption={(option) => option.code}
       getUpdatedInputData={(types) => ({...inputData, types})}
-      getCheckOptionComparer={(option) => option.code}
     />
   );
 };

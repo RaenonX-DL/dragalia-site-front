@@ -3,7 +3,7 @@ import React from 'react';
 import {UnitType} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {InputPanel} from '../../../../elements/input/panel/main';
-import {SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
+import {InputData, SectionProps, SectionPropsCondEnums, SectionPropsElemEnums} from './types';
 import {overrideInputData} from './utils/inputData';
 
 
@@ -38,8 +38,10 @@ export const Filter = ({
         {
           type: 'enumCheckGroup',
           options: elementEnums.elemental,
-          getValue: (inputData) => inputData.filter.elemCodes,
-          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {elemCodes: newValue}}),
+          getValue: (inputData: InputData) => inputData.filter.elemCodes,
+          getUpdatedInputData: (newValue: Array<number>) => (
+            overrideInputData(inputData, {filter: {elemCodes: newValue}})
+          ),
         },
         {
           type: 'subTitle',
@@ -49,8 +51,10 @@ export const Filter = ({
         {
           type: 'enumCheckGroup',
           options: conditionEnums.afflictions,
-          getValue: (inputData) => inputData.filter.afflictionCondCode,
-          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {afflictionCondCode: newValue}}),
+          getValue: (inputData: InputData) => inputData.filter.afflictionCondCode,
+          getUpdatedInputData: (newValue: Array<number>) => (
+            overrideInputData(inputData, {filter: {afflictionCondCode: newValue}})
+          ),
         },
         {
           type: 'subTitle',
@@ -65,8 +69,8 @@ export const Filter = ({
             return {text: t((t) => t.enum.unitType[code]), code};
           }),
           getValue: (inputData) => inputData.filter.type,
-          getUpdatedInputData: (newValue) => overrideInputData(inputData, {filter: {type: newValue}}),
-          getCheckOptionComparer: (option) => option.code,
+          getValueOfOption: (option) => option.code,
+          getUpdatedInputData: (type: Array<UnitType>) => overrideInputData(inputData, {filter: {type}}),
         },
         {
           type: 'subTitle',

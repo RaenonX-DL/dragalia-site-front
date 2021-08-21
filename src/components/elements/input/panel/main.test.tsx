@@ -10,13 +10,14 @@ import {InputPanel} from './main';
 
 
 describe('Input panel', () => {
-  let inputData: {
+  type Input = {
     num?: number,
     nums?: Array<number>,
     check1?: boolean,
     check2?: boolean,
     selected?: string,
   };
+  let inputData: Input;
   let fnSetInputData: jest.Mock<void, [typeof inputData]>;
 
   beforeEach(() => {
@@ -169,9 +170,9 @@ describe('Input panel', () => {
               {text: 'option 2', code: 2},
               {text: 'option 3', code: 3},
             ],
-            getValue: (inputData) => inputData.num || 1,
-            getUpdatedInputData: (newValue) => ({num: newValue}),
-            getCheckOptionComparer: (option) => option.code,
+            getValue: (inputData: Input) => inputData.num || 1,
+            getValueOfOption: (option) => option.code,
+            getUpdatedInputData: (num) => ({num}),
             groupName: 'group',
           },
         ]}
@@ -280,8 +281,8 @@ describe('Input panel', () => {
                 },
               },
             ],
-            getValue: (inputData) => inputData.num ?? 1,
-            getUpdatedInputData: (newValue) => ({num: newValue}),
+            getValue: (input) => input.num ?? 1,
+            getUpdatedInputData: (num) => ({num}),
             groupName: 'group',
           },
         ]}
@@ -467,8 +468,6 @@ describe('Input panel', () => {
         setInputData={fnSetInputData}
       />
     ));
-
-    screen.debug();
 
     expect((screen.getByText('b') as HTMLOptionElement).selected).toBeTruthy();
   });

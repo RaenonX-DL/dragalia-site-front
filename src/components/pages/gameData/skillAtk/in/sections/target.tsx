@@ -5,17 +5,13 @@ import {useI18n} from '../../../../../../i18n/hook';
 import {getConditionName} from '../../../../../../utils/game/conditionName';
 import {CheckOption} from '../../../../../elements/common/check/types';
 import {InputPanel} from '../../../../../elements/input/panel/main';
-import {SectionProps, SectionPropsCondEnums} from '../types';
+import {InputData, SectionProps, SectionPropsCondEnums} from '../types';
 import {overrideInputData} from '../utils/inputData';
 
 
 type SectionTargetProps = SectionProps & SectionPropsCondEnums;
 
-export const SectionTarget = ({
-  inputData,
-  setInputData,
-  conditionEnums,
-}: SectionTargetProps) => {
+export const SectionTarget = ({inputData, setInputData, conditionEnums}: SectionTargetProps) => {
   const {t} = useI18n();
 
   const stateLabels: Array<CheckOption & {code: number}> = [
@@ -43,10 +39,8 @@ export const SectionTarget = ({
         {
           type: 'enumRadioGroup',
           options: conditionEnums.elements,
-          getValue: (inputData) => inputData.target.elemCondCode,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {elemCondCode: newValue}})
-          ),
+          getValue: (inputData: InputData) => inputData.target.elemCondCode,
+          getUpdatedInputData: (elemCondCode: number) => overrideInputData(inputData, {target: {elemCondCode}}),
           groupName: 'targetElement',
         },
         {
@@ -58,9 +52,7 @@ export const SectionTarget = ({
           type: 'enumCheckGroup',
           options: conditionEnums.afflictions,
           getValue: (inputData) => inputData.target.afflictionCodes,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {afflictionCodes: newValue}})
-          ),
+          getUpdatedInputData: (afflictionCodes) => overrideInputData(inputData, {target: {afflictionCodes}}),
         },
         {
           type: 'subTitle',
@@ -71,10 +63,10 @@ export const SectionTarget = ({
           type: 'inputRadioGroup',
           options: stateLabels,
           getValue: (inputData) => inputData.target.state,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {state: newValue}})
+          getValueOfOption: (option) => option.code,
+          getUpdatedInputData: (state: InputData['target']['state']) => (
+            overrideInputData(inputData, {target: {state}})
           ),
-          getCheckOptionComparer: (option) => option.code,
           groupName: 'targetState',
         },
         {
@@ -82,9 +74,7 @@ export const SectionTarget = ({
           title: t((t) => t.game.skillAtk.input.target.def.down.name),
           description: t((t) => t.game.skillAtk.input.target.def.down.desc),
           getValue: (inputData) => inputData.target.def.downPct,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {def: {downPct: newValue}}})
-          ),
+          getUpdatedInputData: (downPct) => overrideInputData(inputData, {target: {def: {downPct}}}),
           minValue: 0,
           maxValue: 50,
         },
@@ -93,9 +83,7 @@ export const SectionTarget = ({
           title: t((t) => t.game.skillAtk.input.target.def.base.name),
           description: t((t) => t.game.skillAtk.input.target.def.base.desc),
           getValue: (inputData) => inputData.target.def.base,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {def: {base: newValue}}})
-          ),
+          getUpdatedInputData: (base) => overrideInputData(inputData, {target: {def: {base}}}),
           minValue: 0.0001,
         },
         {
@@ -103,9 +91,7 @@ export const SectionTarget = ({
           title: t((t) => t.game.skillAtk.input.target.def.bk.name),
           description: t((t) => t.game.skillAtk.input.target.def.bk.desc),
           getValue: (inputData) => inputData.target.def.bkRate,
-          getUpdatedInputData: (newValue) => (
-            overrideInputData(inputData, {target: {def: {bkRate: newValue}}})
-          ),
+          getUpdatedInputData: (bkRate) => overrideInputData(inputData, {target: {def: {bkRate}}}),
           minValue: 0.0001,
         },
       ]}

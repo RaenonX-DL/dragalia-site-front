@@ -4,16 +4,16 @@ import {CheckGroup} from '../base/group';
 import {CheckboxGroupProps, CheckOption} from '../types';
 
 
-export const CheckboxGroup = <E extends CheckOption, T>({
+export const CheckboxGroup = <E extends CheckOption, T, V>({
   options,
   inputData,
   setInputData,
   getValue,
+  getValueOfOption,
   getUpdatedInputData,
-  getCheckOptionComparer,
   getImageUrl,
   imageHeight,
-}: CheckboxGroupProps<E, T>) => {
+}: CheckboxGroupProps<E, T, V>) => {
   return (
     <CheckGroup
       options={options}
@@ -21,14 +21,14 @@ export const CheckboxGroup = <E extends CheckOption, T>({
         type: 'checkbox',
         onChange: (checked) => {
           const currentValue = getValue(inputData);
-          const currentOption = getCheckOptionComparer(option);
+          const optionValue = getValueOfOption(option);
 
           setInputData(getUpdatedInputData(checked ?
-            currentValue.concat([currentOption]) :
-            currentValue.filter((option) => option !== currentOption),
+            currentValue.concat([optionValue]) :
+            currentValue.filter((option) => option !== optionValue),
           ));
         },
-        checked: getValue(inputData).includes(getCheckOptionComparer(option)),
+        checked: getValue(inputData).includes(getValueOfOption(option)),
         text: option.text,
         image: {
           height: imageHeight,

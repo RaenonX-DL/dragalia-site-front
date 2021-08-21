@@ -1,15 +1,11 @@
 import * as CSS from 'csstype';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {InputProps, ReadonlyInputProps} from '../types';
+import {InputPropsExtended} from '../types';
 
 
 export type CheckOption = {
   text: string,
-}
-
-export type ChecksPropsReadonly<E, T, V> = ReadonlyInputProps<T, V> & {
-  options: Array<E>,
 }
 
 export type CheckItemImageOptions = {
@@ -32,16 +28,15 @@ export type CheckItemProps = {
   groupName?: never,
 })
 
-export type CheckGroupProps<E, T, V, V2 = V> = ChecksPropsReadonly<E, T, V2> & InputProps<T, V2> & {
-  getCheckOptionComparer: (option: E) => V,
+export type CheckGroupProps<E, T, VO, VI> = InputPropsExtended<T, VI> & {
+  options: Array<E>,
+  getValueOfOption: (option: E) => VO,
   getImageUrl?: (option: E) => CheckItemImageOptions['url'],
   imageHeight?: CheckItemImageOptions['height'],
 }
 
-// `V` needs to be explicit or the type inference will fail
-export type RadioGroupProps<E, T> = CheckGroupProps<E, T, number> & {
+export type RadioGroupProps<E, T, V> = CheckGroupProps<E, T, V, V> & {
   groupName: string,
 }
 
-// `V` needs to be explicit or the type inference will fail
-export type CheckboxGroupProps<E, T> = CheckGroupProps<E, T, number, Array<number>>
+export type CheckboxGroupProps<E, T, V> = CheckGroupProps<E, T, V, Array<V>>
