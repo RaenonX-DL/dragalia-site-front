@@ -40,10 +40,6 @@ div {
 }
 
 a {
-  &.unitName {
-    font-size: 1.1rem;
-  }
-
   @mixin tierNoteBase() {
     margin-left: 0.7rem;
   }

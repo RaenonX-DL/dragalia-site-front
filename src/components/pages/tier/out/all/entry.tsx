@@ -41,7 +41,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
       </ModalFixedContent>
       <Row className="mb-2 text-center align-items-center">
         <Col>
-          <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} className={styles.unitName}/>
+          <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
         </Col>
         {
           context?.session?.user.isAdmin &&
