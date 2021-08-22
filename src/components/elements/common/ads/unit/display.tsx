@@ -9,13 +9,13 @@ import {AdsUnitProps} from './types';
 
 type Props = AdsUnitProps
 
-export const AdsUnitDisplay = ({slot, testId, style}: Props) => (
+export const AdsUnitDisplay = ({slot, testId}: Props) => (
   <AdsWrapper>
     <Adsense
       client={AdsClientId}
       slot={slot}
-      style={{...style, display: 'block'}}
-      format="auto"
+      style={{display: 'block'}}
+      format="rectangle"
       responsive="true"
       data-testid={testId}
     />

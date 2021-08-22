@@ -25,7 +25,6 @@ export const AdsPageTop = () => (
   <AdsUnitMatchedContent
     slot="4904550853"
     testId="ads-page-top"
-    style={{maxHeight: '12rem'}}
   />
 );
 
@@ -33,6 +32,5 @@ export const AdsUnitSearchBottom = () => (
   <AdsUnitDisplay
     slot="4716848598"
     testId="ads-unit-search-bottom"
-    style={{maxHeight: '10rem'}}
   />
 );
