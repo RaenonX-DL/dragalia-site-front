@@ -3,15 +3,21 @@ import React from 'react';
 import {AppReactContext} from '../../../../context/app/main';
 
 
-export const AdsWrapper = ({children}: React.PropsWithChildren<{}>) => {
+type Props = React.PropsWithChildren<{
+  className?: string,
+}>
+
+export const AdsWrapper = ({children, className}: Props) => {
   const context = React.useContext(AppReactContext);
 
+  const divClassName = className ?? 'mb-3';
+
   if (context?.session?.user.adsFreeExpiry) {
-    return <div className="mb-3"/>;
+    return <div className={divClassName}/>;
   }
 
   return (
-    <div className="mb-3">
+    <div className={divClassName}>
       {children}
     </div>
   );
