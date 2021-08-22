@@ -73,10 +73,10 @@ describe('Tier list page', () => {
     userEvent.click(searchButton);
 
     // S tier of 10650503 CoN Solo
-    expect(await screen.findByText('S')).toBeInTheDocument();
+    expect(await screen.findByText('S', undefined, {timeout: 3000})).toBeInTheDocument();
     // A tier of 10950501 CoN Coop
     expect(await screen.findByText('A')).toBeInTheDocument();
-  });
+  }, 10000); // Takes longer to perform unconditioned search
 
   it('shows key point edit page button for admin', async () => {
     renderReact(
@@ -98,6 +98,21 @@ describe('Tier list page', () => {
   });
 
   it('shows categorized tier note if displaying certain dimension only', async () => {
+    renderReact(
+      () => <TierList/>,
+      {hasSession: true, user: {isAdmin: false}},
+    );
 
+    const ssOnlyButton = screen.getByText('SS');
+    userEvent.click(ssOnlyButton);
+
+    const searchButton = screen.getByText('Search');
+    userEvent.click(searchButton);
+
+    // S / A / B / C should appear exactly once
+    expect(screen.queryByText('S')).toBeInTheDocument();
+    expect(screen.getByText('A')).toBeInTheDocument();
+    expect(screen.getByText('B')).toBeInTheDocument();
+    expect(screen.getByText('C')).toBeInTheDocument();
   });
 });

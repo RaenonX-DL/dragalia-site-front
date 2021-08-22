@@ -58,13 +58,13 @@ describe('Unit info searching page', () => {
     expect(lookupLandingFunc).toHaveBeenCalledTimes(1);
   });
 
-  it('shows at least 3 ads', () => {
+  it('shows ads', () => {
     renderReact(
       () => <AnalysisLookup/>,
       {user: {isAdmin: true}},
     );
 
-    expect(screen.queryAllByTestId('ads-post-list').length).toBeGreaterThanOrEqual(1);
+    expect(screen.queryAllByTestId('ads-page-top').length).toBeGreaterThanOrEqual(1);
     expect(lookupLandingFunc).toHaveBeenCalledTimes(1);
   });
 
@@ -74,7 +74,7 @@ describe('Unit info searching page', () => {
       {user: {adsFreeExpiry: new Date()}},
     );
 
-    expect(screen.queryByTestId('ads-post-list')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('ads-page-top')).not.toBeInTheDocument();
     expect(lookupLandingFunc).toHaveBeenCalledTimes(1);
   });
 });
