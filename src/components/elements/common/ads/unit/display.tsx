@@ -15,7 +15,7 @@ export const AdsUnitDisplay = ({slot, testId}: Props) => (
       client={AdsClientId}
       slot={slot}
       style={{display: 'block'}}
-      format="rectangle"
+      format="horizontal"
       responsive="true"
       data-testid={testId}
     />
