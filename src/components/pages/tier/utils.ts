@@ -3,11 +3,12 @@ import {
   KeyPointData,
   KeyPointType,
   KeyPointTypeEnum,
+  Ranking,
   RankingScore,
   UnitTierNote,
 } from '../../../api-def/api';
 import {generateFilterInput} from '../../elements/gameData/unit/filter/utils';
-import {CategorizedKeyPoints, InputData} from './types';
+import {EntryPack, EntryPackOfRanking, InputData, KeyPointsOfType} from './types';
 
 
 export const generateInputData = (): InputData => ({
@@ -26,7 +27,7 @@ export const getTierRanking = (tierNote: UnitTierNote, tierDimension: DimensionK
 
 export const categorizeKeyPoints = (
   keyPointsData: KeyPointData, keyPointsIds?: Array<string>,
-): CategorizedKeyPoints => {
+): Array<KeyPointsOfType> => {
   // Not specifying `keyPointsIds` means to categorize all data from `keyPointsData`
   const idsToInclude = keyPointsIds || Object.keys(keyPointsData);
 
@@ -39,3 +40,13 @@ export const categorizeKeyPoints = (
         .map((id) => ({...keyPointsData[id], id})),
     }));
 };
+
+export const categorizeEntryPack = (
+  dimension: DimensionKey, entryPacks: Array<EntryPack>,
+): Array<EntryPackOfRanking> => (
+  Object.keys(RankingScore)
+    .map((key) => ({
+      ranking: key as Ranking,
+      entries: entryPacks.filter((entry) => entry.tierNote.tier[dimension]?.ranking === key),
+    }))
+);

@@ -21,6 +21,10 @@ export type EntryPack = {
   tierNote: UnitTierNote
 }
 
+export type EntryPackNoTierNote = Omit<EntryPack, 'tierNote'> & {
+  tierNote: undefined,
+}
+
 export type EntryPackOutput = Omit<EntryPack, 'tierNote'> & {
   tierNote?: UnitTierNote,
 }
@@ -41,8 +45,16 @@ export type KeyPointsOfType = {
   entries: Array<KeyPointEntry & {id: string}>
 };
 
-export type CategorizedKeyPoints = Array<KeyPointsOfType>;
+export type EntryPackOfRanking = {
+  ranking: Ranking,
+  entries: Array<EntryPack>,
+}
 
 export type PropsUseKeyPointData = {
   keyPointsData: KeyPointData,
+}
+
+export type PropsUseEntryPack = {
+  entryPackHasTierNote: Array<EntryPack>,
+  entryPackNoTierNote: Array<EntryPackNoTierNote>,
 }
