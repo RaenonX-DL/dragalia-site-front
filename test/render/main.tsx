@@ -4,7 +4,7 @@ import {render} from '@testing-library/react';
 import {renderHook} from '@testing-library/react-hooks';
 import {ObjectId} from 'mongodb';
 import {Session} from 'next-auth';
-import {RouterContext} from 'next/dist/next-server/lib/router-context';
+import {RouterContext} from 'next/dist/shared/lib/router-context';
 
 import {EnumEntry} from '../../src/api-def/resources';
 import {AppReactContext} from '../../src/context/app/main';

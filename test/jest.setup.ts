@@ -8,6 +8,7 @@ dotenv.config();
 import {initMockApi} from './init/api';
 import {initMockConsoleBehavior} from './init/console';
 
+jest.retryTimes(3);
 
 initMockApi();
 initMockConsoleBehavior();
