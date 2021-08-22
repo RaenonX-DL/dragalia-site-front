@@ -1,11 +1,13 @@
-import {AuthPath, GeneralPath, PagePath, PostPath, UnitPath} from '../../const/path/definitions';
+import {AuthPath, DataPath, GeneralPath, PagePath, PostPath, UnitPath} from '../../const/path/definitions';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../i18n/types';
 
 
 export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<PageMetaTranslations> } = {
   // In-production paths
+  [DataPath.TIER_KEY_POINT]: (t) => t.meta.inUse.tier.points.usage,
   [UnitPath.UNIT_INFO]: (t) => t.meta.inUse.unit.info,
+  [UnitPath.UNIT_TIER_EDIT]: (t) => t.meta.inUse.tier.edit,
   [PostPath.QUEST]: (t) => t.meta.inUse.post.quest.post,
   [PostPath.QUEST_EDIT]: (t) => t.meta.inUse.post.quest.edit,
   [PostPath.ANALYSIS]: (t) => t.meta.inUse.post.analysis.post,
@@ -15,6 +17,9 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.QUEST_NEW]: (t) => t.meta.inUse.post.quest.new,
   [GeneralPath.ANALYSIS_NEW_CHARA]: (t) => t.meta.inUse.post.analysis.newChara,
   [GeneralPath.ANALYSIS_NEW_DRAGON]: (t) => t.meta.inUse.post.analysis.newDragon,
+  [GeneralPath.TIER_LOOKUP]: (t) => t.meta.inUse.tier.lookup,
+  [GeneralPath.TIER_POINTS_INDEX]: (t) => t.meta.inUse.tier.points.index,
+  [GeneralPath.TIER_POINTS_EDIT]: (t) => t.meta.inUse.tier.points.edit,
   [GeneralPath.INFO_LOOKUP]: (t) => t.meta.inUse.gameData.info,
   [GeneralPath.EX]: (t) => t.meta.inUse.gameData.ex,
   [GeneralPath.SKILL_ATK]: (t) => t.meta.inUse.gameData.skillAtk,

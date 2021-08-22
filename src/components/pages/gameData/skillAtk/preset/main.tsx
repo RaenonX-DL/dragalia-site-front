@@ -8,17 +8,18 @@ import Spinner from 'react-bootstrap/Spinner';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
-import {CommonModal} from '../../../../elements/common/modal';
+import {IconClipboard, IconOk, IconShare} from '../../../../elements/common/icons';
+import {ModalFlexContent} from '../../../../elements/common/modal/flex';
 import {PRESET_QUERY_NAME} from '../hooks/preset';
 import {InputData} from '../in/types';
 import {PresetState, PresetStatus} from './types';
 
 
 const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
-  notCreated: <i className="bi bi-share-fill"/>,
+  notCreated: <IconShare/>,
   creating: <Spinner animation="grow" size="sm"/>,
-  copied: <i className="bi bi-check2"/>,
-  createdNotCopied: <i className="bi bi-clipboard"/>,
+  copied: <IconOk/>,
+  createdNotCopied: <IconClipboard/>,
 };
 
 type Props = {
@@ -96,9 +97,9 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
 
   return (
     <>
-      <CommonModal
-        modalState={state.modal}
-        setModalState={(modalState) => setState({...state, modal: modalState})}
+      <ModalFlexContent
+        state={state.modal}
+        setState={(modalState) => setState({...state, modal: modalState})}
       />
       <InputGroup className="mb-2 mr-sm-2">
         <FormControl

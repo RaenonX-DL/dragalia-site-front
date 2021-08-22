@@ -6,6 +6,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import Form from 'react-bootstrap/Form';
 
 import {useI18n} from '../../../../../../i18n/hook';
+import {IconCollapse} from '../../../../../elements/common/icons';
 import {EnumDataPack, SectionProps} from '../props';
 import {CancelAction} from './cancel/main';
 import styles from './section.module.css';
@@ -21,7 +22,7 @@ const HitTiming = ({atkSkillEntry}: SectionProps) => {
   return (
     <>
       <Button variant="outline-light" size="sm" className="mt-2" onClick={() => setShow(!show)}>
-        <i className="bi bi-arrows-collapse"/>&nbsp;
+        <IconCollapse/>&nbsp;
         {t((t) => t.game.skillAtk.animation.hitTiming)}&nbsp;-&nbsp;
         {t((t) => t.game.skillAtk.animation.earliest, {time: earliest.toFixed(2)})}
       </Button>

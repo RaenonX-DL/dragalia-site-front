@@ -15,7 +15,8 @@ describe('Checkboxes', () => {
     {text: 'check 3', code: 3},
   ];
 
-  let inputData: {selected: Array<number>};
+  type Input = {selected: Array<number>}
+  let inputData: Input;
 
   let setInputDataFunc: jest.Mock;
 
@@ -31,9 +32,9 @@ describe('Checkboxes', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
         getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
@@ -50,9 +51,9 @@ describe('Checkboxes', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
         getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
@@ -71,9 +72,9 @@ describe('Checkboxes', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
         getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
       />
     ));
 
@@ -95,9 +96,9 @@ describe('Checkboxes', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
         getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
       />
     ));
 

@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 import {CharaAnalysisPayload, CharacterSkill} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {generateNewCharaSkill} from '../../../../../../utils/services/api/utils';
+import {ArrayForm} from '../../../../../elements/form/array/main';
 import {MarkdownInput} from '../../../../../elements/markdown/input';
-import {ArrayDataForm} from '../../../../../elements/posts/form/array/main';
 import {PostFormDataProps, PostFormState} from '../../../../../elements/posts/form/types';
 import {AnalysisSkillInput} from './skill';
 
@@ -47,7 +47,7 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
         </Col>
       </Row>
       <hr/>
-      <ArrayDataForm
+      <ArrayForm
         payload={payload}
         minLength={2}
         getArray={(payload) => payload.skills}

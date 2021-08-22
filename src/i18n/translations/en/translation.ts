@@ -3,6 +3,12 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  autoComplete: {
+    selected: 'Selected',
+    inputPlaceholder: 'Enter keyword here',
+    noMatchingOptions: 'No available options.',
+    noneSelected: 'None selected.',
+  },
   donation: {
     tierS1: 'Tier S-1',
     tierS2: 'Tier S-2',
@@ -428,6 +434,93 @@ export const translation: TranslationStruct = {
         relatedLinks: 'Related Links',
       },
     },
+    unitTier: {
+      tier: {
+        title: 'Ranking',
+        ranking: 'Ranking',
+        isCompDependent: 'Comp-dependent',
+        notRanked: 'Not Ranked',
+      },
+      tips: {
+        main: 'It is strongly recommended to read the unit analysis to know ' +
+          'the actual strength, how-to-use, and the other details!',
+        compIcon: 'Needs specific companion for the corresponding tier',
+      },
+      points: {
+        edit: 'Edit Key Point Content',
+        title: 'Key Points',
+        type: {
+          title: 'Type',
+          strength: 'Strength',
+          weakness: 'Weakness',
+          trait: 'Trait',
+        },
+        description: 'Description',
+        tipsOnClick: 'Clicking on the "i" icon to get more details, ' +
+          'such as the list of adventurers/dragons sharing the same key point.',
+        info: {
+          linkedUnits: 'Adventurers / Dragons who has this key point',
+          error: {
+            noLinkedUnits: 'No adventurers / dragons are sharing this key point.',
+          },
+        },
+      },
+      dimension: {
+        conSolo: {
+          name: 'CoN (Solo)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) in solo mode.',
+        },
+        conCoop: {
+          name: 'CoN (Co-op)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) in co-op mode.',
+        },
+        conAi: {
+          name: 'CoN (AI)',
+          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
+            '(for example, Lilith\'s encroaching shadow) as AI.',
+        },
+        normalSolo: {
+          name: 'Normal (Solo)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) in solo mode.',
+        },
+        normalCoop: {
+          name: 'Normal (Co-op)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) in co-op mode.',
+        },
+        normalAi: {
+          name: 'Normal (AI)',
+          description: 'Ranking when playing the normal quest ' +
+            '(for example, Legend Agito, High Dragons Trial) as AI.',
+        },
+        sharedSkill: {
+          name: 'Shared Skill',
+          description: 'Shared skill ranking. Adventurer only.',
+        },
+      },
+      display: {
+        conSolo: 'CoN (Solo)',
+        conCoop: 'CoN (Co-op)',
+        conAi: 'CoN (AI)',
+        normalSolo: 'Normal (Solo)',
+        normalCoop: 'Normal (AI)',
+        normalAi: 'Normal (AI)',
+        sharedSkill: 'SS',
+        all: 'Show All',
+      },
+      sort: {
+        unitId: 'Unit ID',
+        avgRanking: 'Average Ranking',
+      },
+      alert: {
+        refRemoval: 'If the removed key point entry is used by any unit, ' +
+          'the key point reference of the linked unit is also removed.',
+        noUnitInRank: 'No adventurers / dragons fall into this rank.',
+      },
+    },
     nameRef: {
       manage: 'Unit Name Config',
       unitId: 'Unit ID',
@@ -492,6 +585,15 @@ export const translation: TranslationStruct = {
     search: 'Search',
     searchKeyword: 'Keyword',
     update: 'Update',
+    sortBy: 'Sort by {{order}}',
+    timestamp: {
+      lastModified: 'Last Modified',
+      lastUpdated: 'Last Updated',
+    },
+    unitType: {
+      [UnitType.CHARACTER]: 'Character',
+      [UnitType.DRAGON]: 'Dragon',
+    },
   },
   meta: {
     inUse: {
@@ -549,6 +651,31 @@ export const translation: TranslationStruct = {
           },
         },
       },
+      tier: {
+        lookup: {
+          title: 'Unit Tier',
+          description: 'Unit tier under different environment and its reasoning for all types of unit.',
+        },
+        edit: {
+          title: 'Edit unit tier',
+          description: 'Page to edit the rankings and the related info of each unit.',
+        },
+        points: {
+          index: {
+            title: 'Key Point Index',
+            description: 'Adventurers/Dragons key point index.',
+          },
+          usage: {
+            title: 'Key Point: {{title}}',
+            description: 'Information about the key point: {{title}}. ' +
+              'Things like the adventurers/dragons having this key point are displayed here.',
+          },
+          edit: {
+            title: 'Edit Key Points',
+            description: 'Page to edit the content of the key points.',
+          },
+        },
+      },
       gameData: {
         info: {
           title: 'Chara/Dragon info lookup',
@@ -600,6 +727,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: 'Chara/Dragon Info',
+    unitTier: 'Tier List',
   },
   posts: {
     analysis: {
@@ -640,12 +768,7 @@ export const translation: TranslationStruct = {
         rotations: 'Skill Rotations',
         tips: 'Skill Tips',
       },
-      type: {
-        character: 'Character',
-        dragon: 'Dragon',
-      },
       sort: {
-        title: 'Sort by {{order}}',
         unitId: 'Unit ID',
         published: 'Published',
         lastModified: 'Last Modified',
@@ -655,7 +778,6 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: 'Post Information',
       id: 'ID',
-      lastModified: 'Last Modified',
       published: 'Published',
       title: 'Title',
       viewCount: 'View Count',

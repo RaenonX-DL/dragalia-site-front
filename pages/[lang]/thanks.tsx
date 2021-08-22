@@ -23,10 +23,6 @@ const SpecialThanks = () => {
           <Badge variant="orange">{t((t) => t.misc.omGroup)}</Badge>
         </li>
         <li>
-          Yu&nbsp;
-          <Badge variant="primary">{t((t) => t.donation.tierSSS)}</Badge>
-        </li>
-        <li>
           Andy&nbsp;
           <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
@@ -35,6 +31,15 @@ const SpecialThanks = () => {
           Ellie&nbsp;
           <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+        </li>
+        <li>
+          Kevin&nbsp;
+          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+        </li>
+        <li>
+          N.O.-09&nbsp;
+          <Badge variant="primary">{t((t) => t.donation.tierS2)}</Badge>
         </li>
         <li>
           皮皮熊艹&nbsp;

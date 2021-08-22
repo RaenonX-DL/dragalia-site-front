@@ -1,4 +1,4 @@
-import {ModalState} from '../../../../elements/common/modal';
+import {ModalStateFlex} from '../../../../elements/common/modal/types';
 
 
 export type PresetStatus =
@@ -10,5 +10,5 @@ export type PresetStatus =
 export type PresetState = {
   status: PresetStatus,
   link: string,
-  modal: ModalState,
+  modal: ModalStateFlex,
 }

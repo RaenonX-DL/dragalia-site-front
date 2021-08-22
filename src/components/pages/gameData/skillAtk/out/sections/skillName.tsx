@@ -2,7 +2,7 @@ import React from 'react';
 
 import {SkillIdentifierInfo} from '../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../i18n/hook';
-import {UnitLink} from '../../../unitInfo/link';
+import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {SectionProps} from '../props';
 
 

@@ -1,0 +1,96 @@
+span.title {
+  font-size: 0.9rem;
+}
+span.ranking {
+  font-size: 1.5rem;
+}
+span.pointIcon {
+  font-size: 1.3em;
+  margin-right: 0.25rem;
+}
+span.dimensionPointIcon {
+  font-size: 1.1rem;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+div.pointIcon {
+  font-size: 1.5em;
+  width: 1.5em;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+div.pointEntry {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+div.dimensionEntryBar {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+  margin-bottom: -0.3rem;
+}
+
+a.tierNote, a.tierNoteDimension {
+  border: 0;
+  color: #bebebe;
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+}
+a.tierNote:hover, a.tierNoteDimension:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
+a.tierNoteDimension {
+  font-size: 1.1rem;
+  margin-left: 0;
+  margin-right: 0.5rem;
+  float: left;
+}
+a.tierNoteDimension:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
+a.unitPoint {
+  border: 0;
+  color: #bebebe;
+  height: 80%;
+}
+a.unitPoint:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+  height: 80%;
+}
+a.editIcon {
+  border: 0;
+  color: #bebebe;
+  font-size: 1rem;
+}
+a.editIcon:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
+a.pointInfo {
+  border: 0;
+  color: #bebebe;
+}
+a.pointInfo:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
+}
+
+img.unitIcon {
+  opacity: 0.2;
+  right: 0;
+  bottom: 0;
+  height: 5rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

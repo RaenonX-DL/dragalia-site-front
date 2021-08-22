@@ -1,6 +1,7 @@
-import {UnitType} from '../../api-def/api';
+import {DimensionKey, KeyPointType, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
-import {SortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
+import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/types';
 
 
 export type PageMetaTranslations = {
@@ -9,6 +10,12 @@ export type PageMetaTranslations = {
 }
 
 export type TranslationStruct = {
+  autoComplete: {
+    selected: string,
+    inputPlaceholder: string,
+    noMatchingOptions: string,
+    noneSelected: string,
+  },
   donation: {
     tierS1: string,
     tierS2: string,
@@ -390,6 +397,42 @@ export type TranslationStruct = {
         relatedLinks: string,
       },
     },
+    unitTier: {
+      tier: {
+        title: string,
+        ranking: string,
+        isCompDependent: string,
+        notRanked: string,
+      },
+      tips: {
+        main: string,
+        compIcon: string,
+      },
+      points: {
+        edit: string,
+        title: string,
+        type: {
+          title: string
+        } & {
+          [type in KeyPointType]: string
+        },
+        description: string,
+        tipsOnClick: string,
+        info: {
+          linkedUnits: string,
+          error: {
+            noLinkedUnits: string,
+          },
+        },
+      },
+      dimension: { [dim in DimensionKey]: {name: string, description: string} },
+      display: { [display in Display]: string },
+      sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
+      alert: {
+        refRemoval: string,
+        noUnitInRank: string,
+      },
+    },
     nameRef: {
       manage: string,
       unitId: string,
@@ -441,6 +484,12 @@ export type TranslationStruct = {
     search: string,
     searchKeyword: string,
     update: string,
+    sortBy: string,
+    timestamp: {
+      lastModified: string,
+      lastUpdated: string,
+    },
+    unitType: { [type in UnitType]: string },
   },
   meta: {
     inUse: {
@@ -460,6 +509,15 @@ export type TranslationStruct = {
           list: PageMetaTranslations,
           new: PageMetaTranslations,
           post: PageMetaTranslations,
+        },
+      },
+      tier: {
+        lookup: PageMetaTranslations,
+        edit: PageMetaTranslations,
+        points: {
+          index: PageMetaTranslations,
+          usage: PageMetaTranslations,
+          edit: PageMetaTranslations,
         },
       },
       gameData: {
@@ -486,6 +544,7 @@ export type TranslationStruct = {
   },
   nav: {
     unitInfo: string,
+    unitTier: string,
   },
   posts: {
     analysis: {
@@ -520,18 +579,11 @@ export type TranslationStruct = {
         rotations: string,
         tips: string,
       },
-      type: {
-        character: string,
-        dragon: string,
-      },
-      sort: {
-        title: string,
-      } & { [order in SortOrder]: string },
+      sort: { [order in LookupSortOrder]: string },
     },
     info: {
       titleSelf: string,
       id: string,
-      lastModified: string,
       published: string,
       title: string,
       viewCount: string,

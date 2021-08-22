@@ -4,17 +4,17 @@ import {CheckGroup} from '../base/group';
 import {CheckOption, RadioGroupProps} from '../types';
 
 
-export const RadioGroup = <E extends CheckOption, T>({
+export const RadioGroup = <E extends CheckOption, T, V>({
   options,
   inputData,
   setInputData,
   getValue,
+  getValueOfOption,
   getUpdatedInputData,
-  getCheckOptionComparer,
   getImageUrl,
   groupName,
   imageHeight,
-}: RadioGroupProps<E, T>) => {
+}: RadioGroupProps<E, T, V>) => {
   return (
     <CheckGroup
       options={options}
@@ -25,9 +25,9 @@ export const RadioGroup = <E extends CheckOption, T>({
             return;
           }
 
-          setInputData(getUpdatedInputData(getCheckOptionComparer(option)));
+          setInputData(getUpdatedInputData(getValueOfOption(option)));
         },
-        checked: getValue(inputData) === getCheckOptionComparer(option),
+        checked: getValue(inputData) === getValueOfOption(option),
         text: option.text,
         groupName,
         image: {

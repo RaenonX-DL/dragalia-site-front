@@ -3,11 +3,11 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {CharaExAbilityDataEntry, ConditionEnumMap, DepotPaths} from '../../../../../api-def/resources';
+import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {Optional} from '../../../../../utils/types';
-import {ImageWithOverlay} from '../../../../elements/common/image';
-import {UnitLink} from '../../unitInfo/link';
+import {UnitIcon} from '../../../../elements/gameData/unit/icon';
+import {UnitLink} from '../../../../elements/gameData/unit/link';
 import {ExAbility} from './exUnit';
 
 
@@ -25,17 +25,10 @@ export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbility
         <>
           <Row noGutters className="align-items-center">
             <Col xs="auto">
-              <ImageWithOverlay
-                src={DepotPaths.getCharaIconURL(chara.iconName)}
-                text={chara.name[lang]}
-                style={{height: '3rem'}}
-              />
+              <UnitIcon unitInfo={chara} style={{height: '3rem'}}/>
             </Col>
             <Col className="text-center">
-              <UnitLink
-                unit={{id: chara.id, name: chara.name[lang]}}
-                style={{fontSize: '1.1rem'}}
-              />
+              <UnitLink unit={{id: chara.id, name: chara.name[lang]}} style={{fontSize: '1.1rem'}}/>
             </Col>
           </Row>
           <hr className="m-1"/>

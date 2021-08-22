@@ -17,9 +17,16 @@ type MarkdownInputProps = {
   onChanged?: ChangeEventHandler<HTMLTextAreaElement>,
   value?: string,
   required?: boolean
+  disabled?: boolean,
 };
 
-export const MarkdownInput = ({rows, onChanged, value = '', required = false}: MarkdownInputProps) => {
+export const MarkdownInput = ({
+  rows,
+  onChanged,
+  value = '',
+  required = false,
+  disabled = false,
+}: MarkdownInputProps) => {
   const {t} = useI18n();
 
   const [content, setContent] = React.useState(value);
@@ -47,7 +54,7 @@ export const MarkdownInput = ({rows, onChanged, value = '', required = false}: M
       <Tab eventKey={EventKey.MARKDOWN} title={t((t) => t.posts.manage.md)}>
         <textarea
           className="form-control" rows={rows} onChange={updateContent}
-          required={required} value={content}
+          required={required} value={content} disabled={disabled}
         />
       </Tab>
       <Tab eventKey={EventKey.PREVIEW} title={t((t) => t.posts.manage.preview)}>

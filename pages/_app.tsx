@@ -6,10 +6,11 @@ import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
 
 import '../public/bootstrap.css';
+import '../public/bs-icons.css';
 import '../public/index.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
-import {Navigation} from '../src/components/elements/nav/main';
+import {Navigation} from '../src/components/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
 import {AppReactContext} from '../src/context/app/main';

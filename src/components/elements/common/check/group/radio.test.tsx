@@ -15,7 +15,9 @@ describe('Radio checks', () => {
     {text: 'check 3', code: 3},
   ];
 
-  let inputData: {selected: number};
+  type Input = {selected: number, another?: number};
+
+  let inputData: Input;
   let setInputDataFunc: jest.Mock;
 
   beforeEach(() => {
@@ -30,9 +32,9 @@ describe('Radio checks', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
-        getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
+        getUpdatedInputData={(selected) => ({...inputData, selected})}
         groupName="radio"
       />
     ));
@@ -50,9 +52,9 @@ describe('Radio checks', () => {
         options={options}
         inputData={inputData}
         setInputData={setInputDataFunc}
-        getValue={(inputData) => inputData.selected}
-        getUpdatedInputData={(newValue) => ({selected: newValue})}
-        getCheckOptionComparer={(option) => option.code}
+        getValue={(inputData: Input) => inputData.selected}
+        getValueOfOption={(option) => option.code}
+        getUpdatedInputData={(selected) => ({...inputData, selected})}
         groupName="radio"
       />
     ));
@@ -77,19 +79,19 @@ describe('Radio checks', () => {
           options={options}
           inputData={inputData}
           setInputData={setInputDataFunc}
-          getValue={(inputData) => inputData.selected}
-          getUpdatedInputData={(newValue) => ({...inputData, selected: newValue})}
-          getCheckOptionComparer={(option) => option.code}
+          getValue={(inputData: Input) => inputData.selected}
+          getValueOfOption={(option) => option.code}
+          getUpdatedInputData={(selected) => ({...inputData, selected})}
           groupName="radio"
         />
         <RadioGroup
           options={options}
           inputData={inputData}
           setInputData={setInputDataFunc}
-          getValue={(inputData) => inputData.another}
-          getUpdatedInputData={(newValue) => ({...inputData, another: newValue})}
-          getCheckOptionComparer={(option) => option.code}
-          groupName="radio"
+          getValue={(inputData: Input) => inputData.another}
+          getValueOfOption={(option) => option.code}
+          getUpdatedInputData={(another) => ({...inputData, another: another || 0})}
+          groupName="radio2"
         />
       </>
     ));

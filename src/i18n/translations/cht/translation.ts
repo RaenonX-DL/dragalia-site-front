@@ -3,6 +3,12 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  autoComplete: {
+    noMatchingOptions: '無可用選項。',
+    selected: '已選擇',
+    noneSelected: '尚未選擇任何選項。',
+    inputPlaceholder: '輸入關鍵字',
+  },
   donation: {
     tierS1: 'Tier S-1',
     tierS2: 'Tier S-2',
@@ -396,6 +402,84 @@ export const translation: TranslationStruct = {
         relatedLinks: '相關連結',
       },
     },
+    unitTier: {
+      tier: {
+        title: '評級',
+        ranking: '評級',
+        isCompDependent: '依賴組合',
+        notRanked: '未評級',
+      },
+      tips: {
+        main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
+        compIcon: '需要搭配特定隊友以達到對應評級',
+      },
+      points: {
+        edit: '編輯要點內容',
+        title: '要點',
+        type: {
+          title: '種類',
+          strength: '強項',
+          weakness: '弱項',
+          trait: '特點',
+        },
+        description: '敘述',
+        tipsOnClick: '點擊 "i" 按鈕可以瀏覽該要點的相關資訊，例如同時擁有該要點的角色清單...等。',
+        info: {
+          linkedUnits: '具有此要點的角色 / 龍族',
+          error: {
+            noLinkedUnits: '沒有角色 / 龍族具有此要點。',
+          },
+        },
+      },
+      dimension: {
+        conSolo: {
+          name: '虛無 (單人)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以單人模式遊玩時的評級。',
+        },
+        conCoop: {
+          name: '虛無 (共鬥)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以共鬥模式遊玩時的評級。',
+        },
+        conAi: {
+          name: '虛無 (AI)',
+          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，作為 AI 時的評級。',
+        },
+        normalSolo: {
+          name: '一般 (單人)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以單人模式遊玩的評級。',
+        },
+        normalCoop: {
+          name: '一般 (共鬥)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以共鬥模式遊玩的評級。',
+        },
+        normalAi: {
+          name: '一般 (AI)',
+          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
+        },
+        sharedSkill: {
+          name: '共享技能',
+          description: '共享技能評級。只限角色。',
+        },
+      },
+      display: {
+        conSolo: '虛無 (單人)',
+        conCoop: '虛無 (共鬥)',
+        conAi: '虛無 (AI)',
+        normalSolo: '一般 (單人)',
+        normalCoop: '一般 (共鬥)',
+        normalAi: '一般 (AI)',
+        sharedSkill: '共享',
+        all: '全部',
+      },
+      sort: {
+        unitId: '物件 ID',
+        avgRanking: '平均評級',
+      },
+      alert: {
+        refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
+        noUnitInRank: '無相關角色 / 龍族屬於此評級。',
+      },
+    },
     nameRef: {
       manage: '名稱設定',
       unitId: '物件 ID',
@@ -456,6 +540,15 @@ export const translation: TranslationStruct = {
     search: '搜尋',
     searchKeyword: '關鍵字',
     update: '更新',
+    sortBy: '排序依據 {{order}}',
+    timestamp: {
+      lastModified: '最後修改於',
+      lastUpdated: '最後更新於',
+    },
+    unitType: {
+      [UnitType.CHARACTER]: '角色',
+      [UnitType.DRAGON]: '龍族',
+    },
   },
   meta: {
     inUse: {
@@ -513,6 +606,30 @@ export const translation: TranslationStruct = {
           },
         },
       },
+      tier: {
+        lookup: {
+          title: '角色/龍族評級',
+          description: '各角色、龍族在不同環境下的評級及其相關原因。',
+        },
+        edit: {
+          title: '編輯物件評級',
+          description: '編輯各角色、龍族評級及其相關資訊的頁面。',
+        },
+        points: {
+          index: {
+            title: '要點索引',
+            description: '角色、龍族要點的索引。',
+          },
+          usage: {
+            title: '要點【{{title}}】',
+            description: '顯示要點【{{title}}】的相關資訊，例如具有此要點的角色、龍族...等。',
+          },
+          edit: {
+            title: '要點編輯',
+            description: '編輯要點內容的頁面。',
+          },
+        },
+      },
       gameData: {
         info: {
           title: '角色/龍族資訊目錄',
@@ -564,6 +681,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     unitInfo: '角色/龍族資訊',
+    unitTier: '評級',
   },
   posts: {
     analysis: {
@@ -600,12 +718,7 @@ export const translation: TranslationStruct = {
         rotations: '技能輪轉',
         tips: '技能要點',
       },
-      type: {
-        character: '角色',
-        dragon: '龍族',
-      },
       sort: {
-        title: '排序依據 {{order}}',
         unitId: '角色 ID',
         published: '發布時間',
         lastModified: '修改時間',
@@ -615,7 +728,6 @@ export const translation: TranslationStruct = {
     info: {
       titleSelf: '貼文資訊',
       id: 'ID',
-      lastModified: '最後修改於',
       published: '發布於',
       title: '標題',
       viewCount: '瀏覽次數',

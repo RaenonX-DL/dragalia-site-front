@@ -1,13 +1,14 @@
 import React from 'react';
 
-import {waitFor} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../../test/render/main';
 import {ApiResponseCode, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
+import {overrideObject} from '../../../../../../utils/override';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {sortFunc} from '../in/sort/lookup';
 import {InputData} from '../in/types';
-import {generateInputData, overrideInputData} from '../in/utils';
+import {generateInputData} from '../in/utils';
 import {UnitInfoLookupOutput} from './main';
 
 
@@ -41,15 +42,17 @@ describe('Unit info lookup output', () => {
     });
   });
 
-  it(
-    'sorts the output',
-    async () => {
-      const inputData: InputData = overrideInputData(generateInputData(), {sortBy: 'viewCount'});
+  it('sorts the output', async () => {
+    const inputData: InputData = overrideObject(generateInputData(), {sortBy: 'viewCount'});
 
-      renderReact(() => <UnitInfoLookupOutput inputData={inputData}/>);
+    renderReact(() => <UnitInfoLookupOutput inputData={inputData}/>);
 
-      await waitFor(() => expect(fnSortByViewCount).toHaveBeenCalled());
-    },
-    10000,
-  );
+    await waitFor(() => expect(fnSortByViewCount).toHaveBeenCalled());
+  }, 10000);
+
+  it('limits the output count', async () => {
+    renderReact(() => <UnitInfoLookupOutput inputData={generateInputData()}/>);
+
+    expect(await screen.findByText(/excessive/)).toBeInTheDocument();
+  });
 });

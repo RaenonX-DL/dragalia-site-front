@@ -60,7 +60,7 @@ describe('Analysis lookup entry', () => {
       );
     expect(screen.queryByText(/777/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
     expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
@@ -77,7 +77,7 @@ describe('Analysis lookup entry', () => {
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.message.info.fetching)).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
@@ -99,7 +99,7 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(translationEN.game.unitInfo.links.analysis)).not.toBeInTheDocument();
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     const unavailable = screen.getByText(translationEN.posts.analysis.error.unavailable);
     expect(unavailable).toHaveClass('text-danger');
@@ -120,7 +120,7 @@ describe('Analysis lookup entry', () => {
     expect(unitName).not.toHaveClass('text-muted');
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
     expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
@@ -142,7 +142,7 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(translationEN.game.unitInfo.links.analysis)).not.toBeInTheDocument();
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.lastModified}`))).not.toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     const unavailable = screen.getByText(translationEN.posts.analysis.error.unavailable);
     expect(unavailable).toHaveClass('text-danger');

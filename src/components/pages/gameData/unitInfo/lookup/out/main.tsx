@@ -10,9 +10,11 @@ import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../../elements/common/fetch';
+import {getFilteredUnitInfo} from '../../../../../elements/gameData/unit/filter/utils';
+import {OverLengthWarning} from '../../../../../elements/gameData/warnings/overLength';
 import {sortFunc} from '../in/sort/lookup';
 import {InputData} from '../in/types';
-import {getUnitInfo} from '../utils';
+import {MaxEntriesToDisplay} from './const';
 import {UnitInfoEntry} from './entry';
 
 
@@ -51,7 +53,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
 
   fetchAnalysisMeta();
 
-  const unitInfoFiltered = getUnitInfo(inputData, charaInfo, dragonInfo);
+  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo);
   // Split to prioritize the units that have analysis
   const unitInfoHasAnalysis = unitInfoFiltered
     .filter((info) => info.id in analysisMeta.data.analyses)
@@ -59,7 +61,9 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     .sort(sortFunc[inputData.sortBy]);
   const unitInfoNoAnalysis = unitInfoFiltered
     .filter((info) => !(info.id in analysisMeta.data.analyses))
-    .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}));
+    .map((info) => ({unitInfo: info, lookupInfo: undefined}));
+  const unitInfoSorted = [...unitInfoHasAnalysis, ...unitInfoNoAnalysis];
+  const unitInfoSortedLength = unitInfoSorted.length;
 
   if (charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
     return (
@@ -69,20 +73,25 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     );
   }
 
+  const isUnitInfoOverLength = unitInfoSortedLength > MaxEntriesToDisplay;
+  if (isUnitInfoOverLength) {
+    unitInfoSorted.splice(MaxEntriesToDisplay);
+  }
+
   return (
-    <Form.Row ref={rowElem}>
-      {
-        [...unitInfoHasAnalysis, ...unitInfoNoAnalysis]
-          .map((info) => (
-            <Col key={info.unitInfo.id} md={6} className="mb-2">
-              <UnitInfoEntry
-                unitInfo={info.unitInfo}
-                isFetchingMeta={analysisMeta.fetching}
-                analysisMeta={info.lookupInfo}
-              />
-            </Col>
-          ))
-      }
-    </Form.Row>
+    <>
+      {isUnitInfoOverLength && <OverLengthWarning displayed={MaxEntriesToDisplay} returned={unitInfoSortedLength}/>}
+      <Form.Row ref={rowElem}>
+        {unitInfoSorted.map((info) => (
+          <Col key={info.unitInfo.id} md={6} className="mb-2">
+            <UnitInfoEntry
+              unitInfo={info.unitInfo}
+              isFetchingMeta={analysisMeta.fetching}
+              analysisMeta={info.lookupInfo}
+            />
+          </Col>
+        ))}
+      </Form.Row>
+    </>
   );
 };

@@ -30,18 +30,16 @@ export const LanguageSwitch = () => {
       <NavDropdown.Header>{t((t) => t.lang.inUse)}</NavDropdown.Header>
       <NavDropdown.Item disabled>{currentLangName}</NavDropdown.Item>
       <NavDropdown.Divider/>
-      {
-        Object.values(SupportedLanguages).map((newLang) => (
-          <NextLink key={newLang} href={neutralUrl} locale={newLang} passHref>
-            <NavDropdown.Item
-              key={newLang}
-              onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
-            >
-              {SupportedLanguageNames[newLang]}
-            </NavDropdown.Item>
-          </NextLink>
-        ))
-      }
+      {Object.values(SupportedLanguages).map((newLang) => (
+        <NextLink key={newLang} href={neutralUrl} locale={newLang} passHref>
+          <NavDropdown.Item
+            key={newLang}
+            onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
+          >
+            {SupportedLanguageNames[newLang]}
+          </NavDropdown.Item>
+        </NextLink>
+      ))}
     </NavDropdown>
   );
 };

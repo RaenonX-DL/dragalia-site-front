@@ -1,0 +1,8 @@
+div.searchResult {
+  overflow-y: auto;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0.6rem #939393;
+  height: 15rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

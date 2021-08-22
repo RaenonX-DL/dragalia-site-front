@@ -2,8 +2,8 @@ import React from 'react';
 
 import {ElementEnums, ExBuffParams} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {InputPanel} from '../../../../elements/input/main';
-import {InputPanelCommonProps} from '../../../../elements/input/types';
+import {InputPanel} from '../../../../elements/input/panel/main';
+import {InputPanelCommonProps} from '../../../../elements/input/panel/types';
 import {InputData} from './types';
 import {overrideInputData} from './utils';
 

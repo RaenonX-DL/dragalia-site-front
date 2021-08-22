@@ -5,12 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {InfoPopover} from '../overlay/info';
-import {DetailedProps, InputProps} from '../types';
+import {DetailedProps, InputPropsExtended} from '../types';
 
 
-export type NumericInputProps<T> =
-  DetailedProps &
-  InputProps<T, number> & {
+export type NumericInputProps<T> = DetailedProps & InputPropsExtended<T, number> & {
   required?: boolean,
   minValue?: number,
   maxValue?: number

@@ -38,6 +38,6 @@ describe('Analysis lookup top section upon landing', () => {
   it('shows analyses on fetched', async () => {
     renderReact(() => (<UnitInfoLookupLanding analyses={analyses}/>));
 
-    await waitFor(() => screen.getByText('Gala Leonidas'));
+    await waitFor(() => screen.getByText('Gala Leonidas'), {timeout: 2000});
   });
 });

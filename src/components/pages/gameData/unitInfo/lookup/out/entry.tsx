@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../../api-def/resources';
-import {UnitIcon} from '../../../../../elements/gameData/unitIcon';
+import {UnitIcon} from '../../../../../elements/gameData/unit/icon';
 import {EntryWithAnalysis, EntryWithAnalysisProps} from './entryHasAnalysis';
 import {EntryNoAnalysis} from './entryNoAnalysis';
 

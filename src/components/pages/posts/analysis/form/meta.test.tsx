@@ -92,7 +92,7 @@ describe('Analysis form meta input', () => {
     typeInput(idField, 'string', {rerender});
 
     expect(state.payload.unitId).toBe(10950101);
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     await waitFor(() => expect(state.payload.unitId).toBe(10950101));
   });
 
@@ -115,7 +115,7 @@ describe('Analysis form meta input', () => {
     typeInput(idField, '10950102', {rerender, clear: true});
 
     expect(fnToUnitInfoMap).toHaveBeenCalled();
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(true));
     expect(idField).toHaveClass('is-valid');
     screen.getByAltText(name[SupportedLanguages.EN]);
@@ -147,7 +147,7 @@ describe('Analysis form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(false));
     expect(idField).toHaveClass('is-invalid');
   });
@@ -170,7 +170,7 @@ describe('Analysis form meta input', () => {
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
 
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(3);
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
@@ -194,7 +194,7 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(1);
   });
@@ -218,7 +218,7 @@ describe('Analysis form meta input', () => {
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
     rerender();
 
-    jest.runTimersToTime(100);
+    jest.advanceTimersByTime(100);
     expect(setPayload).toHaveBeenCalledTimes(1);
     expect(fnIdCheck).toHaveBeenCalledTimes(0);
   });

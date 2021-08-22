@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../../utils/timeago';
-import {UnitLink} from '../../link';
+import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {EntryCommonProps} from './entry';
 
 
@@ -42,7 +42,7 @@ export const EntryWithAnalysis = ({
       </Row>
       <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
         <Col className="text-center">
-          {t((t) => t.posts.info.lastModified)}&nbsp;
+          {t((t) => t.misc.timestamp.lastModified)}&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
         </Col>
         {

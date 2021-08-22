@@ -1,5 +1,5 @@
 import {SupportedLanguages} from '../../api-def/api';
-import {PostPath, UnitPath} from '../../const/path/definitions';
+import {DataPath, GeneralPath, PostPath, UnitPath} from '../../const/path/definitions';
 
 
 const generateUrl = (path: string, args: { [key in string]: string | number }) => {
@@ -15,6 +15,19 @@ const generateUrl = (path: string, args: { [key in string]: string | number }) =
 type PathArgs = {
   lang: SupportedLanguages,
 }
+
+export const makeGeneralUrl = (path: GeneralPath, args: PathArgs) => {
+  return generateUrl(`/${args.lang}${path}`, args);
+};
+
+// Needs to match the key names used in `DataPath`
+type DataPathArgs = PathArgs & {
+  id: string,
+}
+
+export const makeDataUrl = (path: DataPath, args: DataPathArgs) => {
+  return generateUrl(`/${args.lang}${path}`, args);
+};
 
 // Needs to match the key names used in `PostPath`
 type PostPathArgs = PathArgs & {

@@ -36,7 +36,7 @@ describe('State alert', () => {
 
     expect(screen.getByText('ALERT')).toBeInTheDocument();
 
-    jest.runTimersToTime(alertDuration + 100);
+    jest.advanceTimersByTime(alertDuration + 100);
 
     expect(screen.queryByText('ALERT')).not.toBeInTheDocument();
   });
@@ -58,7 +58,7 @@ describe('State alert', () => {
 
     unmount();
 
-    jest.runTimersToTime(alertDuration + 100);
+    jest.advanceTimersByTime(alertDuration + 100);
     expect(fnCloseAlert).not.toHaveBeenCalled();
   });
 });

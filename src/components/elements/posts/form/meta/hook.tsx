@@ -51,7 +51,6 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
 
       if (checkState.checkTimer) {
         clearTimeout(checkState.checkTimer);
-        setCheckState({...checkState, checkTimer: null});
       }
 
       const checkTimer = setTimeout(() => {

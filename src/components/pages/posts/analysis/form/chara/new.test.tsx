@@ -21,7 +21,7 @@ describe('New character analysis form', () => {
     const unitId = screen.getByDisplayValue(0);
     userEvent.clear(unitId);
     userEvent.type(unitId, '10950101');
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
     await waitFor(() => expect(unitId).toHaveClass('is-valid'));
   };
 

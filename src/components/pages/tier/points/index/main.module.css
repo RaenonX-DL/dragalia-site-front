@@ -1,0 +1,14 @@
+span.typeIcon {
+  font-size: 1.5rem;
+}
+
+div.entry {
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  border-bottom: gray 1px solid;
+}
+div.typeEntry {
+  padding: 0 0.6rem !important;
+}
+
+/*# sourceMappingURL=main.module.css.map */

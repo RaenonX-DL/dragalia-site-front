@@ -1,5 +1,9 @@
-import {allPaths, PagePath, PostPath, UnitPath} from './definitions';
+import {allPaths, DataPath, PagePath, PostPath, UnitPath} from './definitions';
 
+
+export const isDataPath = (path: string): path is DataPath => {
+  return Object.values(DataPath).some((dataPath) => dataPath === path);
+};
 
 export const isUnitPath = (path: string): path is UnitPath => {
   return Object.values(UnitPath).some((unitPath) => unitPath === path);

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {OverlayTooltip} from '../../../common/overlay/tooltip';
 import styles from '../../main.module.css';
+import {IconMath} from './icons';
 import {ExpressionOutputProps} from './types';
 
 
@@ -10,7 +11,7 @@ export const ExpressionOutput = ({exprExtractResult, evalResult, expression}: Ex
     return (
       <OverlayTooltip key={expression} text={expression} placement="top">
         <span className={styles.calc}>
-          <i className="bi bi-calculator"/>&nbsp;
+          <IconMath/>&nbsp;
           {evalResult}
         </span>
       </OverlayTooltip>
@@ -19,7 +20,7 @@ export const ExpressionOutput = ({exprExtractResult, evalResult, expression}: Ex
 
   return (
     <span className={styles.calc}>
-      <i className="bi bi-calculator"/>&nbsp;
+      <IconMath/>&nbsp;
       {exprExtractResult.location === 'start' && `(${expression}) `}
       {evalResult}
       {exprExtractResult.location === 'end' && ` (${expression})`}

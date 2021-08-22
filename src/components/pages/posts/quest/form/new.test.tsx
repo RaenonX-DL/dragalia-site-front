@@ -48,7 +48,7 @@ describe('New quest post form', () => {
 
     const seqId = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(seqId, '7', {clear: true, rerender});
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
 
     expect(seqId).toHaveClass('is-valid');
   });
@@ -67,7 +67,7 @@ describe('New quest post form', () => {
 
     const seqId = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(seqId, '7', {clear: true, rerender});
-    jest.runTimersToTime(1100);
+    jest.advanceTimersByTime(1100);
 
     await waitFor(() => expect(seqId).toHaveClass('is-invalid'));
   });

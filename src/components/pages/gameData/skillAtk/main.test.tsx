@@ -26,7 +26,7 @@ describe('ATK skill lookup', () => {
   };
 
   const waitForResourcesLoaded = async () => {
-    await waitFor(() => expect(screen.getByText(translationEN.misc.search)).not.toBeDisabled());
+    await waitFor(() => expect(screen.getByText(translationEN.misc.search)).not.toBeDisabled(), {timeout: 2000});
   };
 
   beforeEach(() => {
@@ -182,7 +182,7 @@ describe('ATK skill lookup', () => {
     const searchButton = await screen.findByText(
       translationEN.misc.search,
       {selector: 'button:enabled'},
-      {timeout: 2000},
+      {timeout: 3000},
     );
     userEvent.click(searchButton);
 

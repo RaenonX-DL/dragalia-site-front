@@ -2,6 +2,7 @@ import React from 'react';
 
 import {ApiResponseCode, ApiResponseCodeUtil} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
+import {IconUpdated, IconUpdateFailed} from '../../../elements/common/icons';
 
 
 type Props = {
@@ -18,7 +19,7 @@ export const NameRefUpdateStatus = ({status}: Props) => {
   if (ApiResponseCodeUtil.isSuccess(status)) {
     return (
       <span className="text-success">
-        <i className="bi bi-cloud-check"/>&nbsp;
+        <IconUpdated/>&nbsp;
         {t((t) => t.game.nameRef.status.updated)}
       </span>
     );
@@ -26,7 +27,7 @@ export const NameRefUpdateStatus = ({status}: Props) => {
 
   return (
     <span className="text-danger">
-      <i className="bi bi-exclamation-circle"/>&nbsp;
+      <IconUpdateFailed/>&nbsp;
       {t((t) => t.game.nameRef.status.error, {error: ApiResponseCode[status]})}
     </span>
   );

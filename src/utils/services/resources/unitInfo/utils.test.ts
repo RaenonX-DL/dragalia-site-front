@@ -1,11 +1,11 @@
 import {ApiResponseCode, SupportedLanguages, UnitNameRefResponse, UnitType} from '../../../../api-def/api';
-import {CharaInfoData, DragonInfoData, Element, Weapon} from '../../../../api-def/resources';
+import {CharaInfoData, DepotPaths, DragonInfoData, Element, UnitInfoData, Weapon} from '../../../../api-def/resources';
 import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
-import {getUnitNameInfoMap} from './utils';
+import {getImageURL, getUnitNameInfoMap} from './utils';
 
 
-describe('Unit info utils', () => {
+describe('Unit Info Name Map', () => {
   let fnGetCharaInfo: jest.SpyInstance;
   let fnGetDragonInfo: jest.SpyInstance;
   let fnGetUnitNameRef: jest.SpyInstance;
@@ -122,5 +122,34 @@ describe('Unit info utils', () => {
     expect(nameIdMap.get('Non-existent')).toBeUndefined();
     expect(nameIdMap.get('CHARA JP')).toBeUndefined();
     expect(nameIdMap.get('DRAGON EN')).toStrictEqual({...dragonInfo, type: UnitType.DRAGON});
+  });
+});
+
+describe('Get image URL using unit info', () => {
+  const name = {
+    [SupportedLanguages.CHT]: 'name CHT',
+    [SupportedLanguages.EN]: 'name EN',
+    [SupportedLanguages.JP]: 'name JP',
+  };
+
+  const unitInfo: UnitInfoData = {
+    type: UnitType.CHARACTER,
+    name,
+    iconName: 'icon',
+    id: 11100000,
+    element: 1,
+    rarity: 5,
+    cvEn: name,
+    cvJp: name,
+    releaseEpoch: 0,
+  };
+
+  it('gets character image URL', () => {
+    expect(getImageURL(unitInfo)).toBe(DepotPaths.getCharaIconURL('icon'));
+  });
+
+  it('gets dragon image URL', () => {
+    expect(getImageURL({...unitInfo, type: UnitType.DRAGON, iconName: 'iconDragon'}))
+      .toBe(DepotPaths.getDragonIconURL('iconDragon'));
   });
 });
