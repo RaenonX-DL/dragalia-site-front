@@ -11,12 +11,12 @@ type Props = AdsUnitProps & {
   layoutKey: string,
 }
 
-export const AdsUnitInFeed = ({slot, layoutKey, testId}: Props) => (
+export const AdsUnitInFeed = ({slot, layoutKey, testId, style}: Props) => (
   <AdsWrapper>
     <Adsense
       client={AdsClientId}
       slot={slot}
-      style={{display: 'block'}}
+      style={{...style, display: 'block'}}
       layoutKey={layoutKey}
       format="fluid"
       data-testid={testId}
