@@ -17,23 +17,21 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
 
   return (
     <Form.Row className="mb-2">
-      {
-        analyses
-          .flatMap((entry) => {
-            const unitInfo = unitInfoMap.get(entry.unitId);
-            return unitInfo ? [{entry, unitInfo}] : [];
-          })
-          .map(({entry, unitInfo}) => (
-            <Col lg className="mt-2 mt-lg-0" key={unitInfo.id}>
-              <UnitInfoEntry
-                unitInfo={unitInfo}
-                analysisMeta={entry}
-                isFetchingMeta={false}
-                simplified
-              />
-            </Col>
-          ))
-      }
+      {analyses
+        .flatMap((entry) => {
+          const unitInfo = unitInfoMap.get(entry.unitId);
+          return unitInfo ? [{entry, unitInfo}] : [];
+        })
+        .map(({entry, unitInfo}) => (
+          <Col lg className="mt-2 mt-lg-0" key={unitInfo.id}>
+            <UnitInfoEntry
+              unitInfo={unitInfo}
+              analysisMeta={entry}
+              isFetchingMeta={false}
+              simplified
+            />
+          </Col>
+        ))}
     </Form.Row>
   );
 };

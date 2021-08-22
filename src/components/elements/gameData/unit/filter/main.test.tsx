@@ -317,4 +317,12 @@ describe('Unit filter input', () => {
 
     expect(await screen.findByText('Title')).toBeInTheDocument();
   });
+
+  it('shows ads', async () => {
+
+  });
+
+  it('hides ads', async () => {
+
+  });
 });

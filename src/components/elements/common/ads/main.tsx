@@ -1,7 +1,9 @@
 import React from 'react';
 
+import {AdsUnitDisplay} from './unit/display';
 import {AdsUnitInArticle} from './unit/inArticle';
 import {AdsUnitInFeed} from './unit/inFeed';
+import {AdsUnitMatchedContent} from './unit/matched';
 
 
 export const AdsInPost = () => (
@@ -16,5 +18,21 @@ export const AdsPostList = () => (
     slot="3962363338"
     layoutKey="-f7+5u+4t-da+6l"
     testId="ads-post-list"
+  />
+);
+
+export const AdsPageTop = () => (
+  <AdsUnitMatchedContent
+    slot="4904550853"
+    testId="ads-page-top"
+    style={{maxHeight: '12rem'}}
+  />
+);
+
+export const AdsUnitSearchBottom = () => (
+  <AdsUnitDisplay
+    slot="4716848598"
+    testId="ads-unit-search-bottom"
+    style={{maxHeight: '10rem'}}
   />
 );
