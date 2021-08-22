@@ -8,6 +8,7 @@ import {UnitTierData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
+import {AdsTierResultsEnd} from '../../../elements/common/ads/main';
 import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils';
 import {sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
@@ -68,6 +69,7 @@ export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
             keyPointsData={keyPointsData}
           />
       }
+      {(entryPackHasTierNote.length || entryPackNoTierNote.length) && <AdsTierResultsEnd/>}
     </div>
   );
 };

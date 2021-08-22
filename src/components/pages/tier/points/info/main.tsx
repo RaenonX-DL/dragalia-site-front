@@ -9,6 +9,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
+import {AdsPageTop, AdsUnitKeyPointInfo} from '../../../../elements/common/ads/main';
 import {useFetchStateProcessed} from '../../../../elements/common/fetch';
 import {Loading} from '../../../../elements/common/loading';
 import {PointTypeIcon} from '../../icons';
@@ -43,11 +44,13 @@ export const KeyPointInfoPage = () => {
 
   return (
     <>
+      <AdsPageTop/>
       <h4>
         {PointTypeIcon[entry.type]}&nbsp;
         {entry.description}
       </h4>
       <hr/>
+      <AdsUnitKeyPointInfo/>
       <h5>{t((t) => t.game.unitTier.points.info.linkedUnits)}</h5>
       <Form.Row>
         {
@@ -70,6 +73,7 @@ export const KeyPointInfoPage = () => {
             </Col>
         }
       </Form.Row>
+      <AdsUnitKeyPointInfo/>
     </>
   );
 };

@@ -34,3 +34,31 @@ export const AdsUnitSearchBottom = () => (
     testId="ads-unit-search-bottom"
   />
 );
+
+export const AdsTierResultsEnd = () => (
+  <AdsUnitMatchedContent
+    slot="9965305840"
+    testId="ads-tier-results-end"
+  />
+);
+
+export const AdsUnitKeyPointTop = () => (
+  <AdsUnitDisplay
+    slot="8652224172"
+    testId="ads-unit-key-point-top"
+  />
+);
+
+export const AdsUnitKeyPointIndexEnd = () => (
+  <AdsUnitDisplay
+    slot="8260507781"
+    testId="ads-unit-key-point-index-end"
+  />
+);
+
+export const AdsUnitKeyPointInfo = () => (
+  <AdsUnitDisplay
+    slot="9366061111"
+    testId="ads-unit-key-point-info"
+  />
+);
