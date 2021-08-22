@@ -8,15 +8,12 @@ import {UnitInfoData} from '../../../../../api-def/resources';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
-import {IconRadar} from '../../../../elements/common/icons';
-import {ModalFixedContent} from '../../../../elements/common/modal/fix';
-import {ModalStateFix} from '../../../../elements/common/modal/types';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
 import styles from '../../main.module.css';
 import {TierNoteEditIcon} from '../elements/editIcon';
 import {TierNote} from '../elements/note';
-import {TierKeyPoints} from '../elements/points';
+import {TierNotePointIcon} from '../elements/pointIcon';
 
 
 type Props = {
@@ -28,16 +25,9 @@ type Props = {
 export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
-  const [modalState, setModalState] = React.useState<ModalStateFix>({
-    show: false,
-    title: t((t) => t.game.unitTier.points.title),
-  });
 
   return (
     <div className="bg-black-32 rounded p-2 mb-2">
-      <ModalFixedContent state={modalState} setState={setModalState}>
-        <TierKeyPoints keyPointsIds={tierNote?.points || []} keyPointsData={keyPointsData}/>
-      </ModalFixedContent>
       <Row className="mb-2 text-center align-items-center">
         <Col>
           <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
@@ -73,9 +63,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
         {
           tierNote && tierNote.points.length > 0 &&
           <Col xs="auto">
-            <a className={styles.unitPoint} onClick={() => setModalState({...modalState, show: true})}>
-              <IconRadar/>
-            </a>
+            <TierNotePointIcon pointIds={tierNote.points} keyPointsData={keyPointsData}/>
           </Col>
         }
         <Col className="text-right">
