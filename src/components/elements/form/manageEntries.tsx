@@ -8,6 +8,7 @@ import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
+import {useOnBeforeUnload} from '../../hooks/onBeforeUnload';
 import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
 
@@ -51,6 +52,8 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
     isInit: true,
   });
 
+  const {clearUnload} = useOnBeforeUnload([state.data]);
+
   const elementCounter = getElementCounter(state.data.map((entry) => getElementUniqueIdentifier(entry)));
 
   const isValid = (
@@ -65,6 +68,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
 
     getSubmitPromise(state.data)
       .then((response) => {
+        clearUnload();
         setState(overrideObject(state, {updateStatus: response.code, updating: false}));
       })
       .catch((error) => {
