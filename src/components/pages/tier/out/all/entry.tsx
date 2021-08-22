@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 
 import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../api-def/resources';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
@@ -24,7 +23,6 @@ type Props = {
 
 export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
 
   return (
     <div className="bg-black-32 rounded p-2 mb-2">
@@ -32,12 +30,9 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
         <Col>
           <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
         </Col>
-        {
-          context?.session?.user.isAdmin &&
-          <Col xs="auto">
-            <TierNoteEditIcon unitId={unitInfo.id}/>
-          </Col>
-        }
+        <Col xs="auto">
+          <TierNoteEditIcon unitId={unitInfo.id}/>
+        </Col>
       </Row>
       <hr className="my-2"/>
       <Row noGutters className="align-items-center bg-img-wrap">
