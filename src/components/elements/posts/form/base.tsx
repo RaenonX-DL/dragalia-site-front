@@ -6,6 +6,7 @@ import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../api-def/a
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
+import {useOnBeforeUnload} from '../../../hooks/onBeforeUnload';
 import {ProtectedLayout} from '../../../pages/layout/protected';
 import {ModalFlexContent} from '../../common/modal/flex';
 import {ModalStateFlex} from '../../common/modal/types';
@@ -40,16 +41,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     message: '',
   });
 
-  React.useEffect(() => {
-    window.onbeforeunload = (e) => {
-      e.preventDefault();
-      return (e.returnValue = '');
-    };
-
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, [formState]);
+  const {clearUnload} = useOnBeforeUnload([formState]);
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
     const payload: P = {...formState.payload, [key]: newValue};
@@ -84,7 +76,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
       const data = await fnSendRequest(formState.payload);
 
       if (data.success) {
-        window.onbeforeunload = null;
+        clearUnload();
 
         if (onSubmitSuccess) {
           onSubmitSuccess();
