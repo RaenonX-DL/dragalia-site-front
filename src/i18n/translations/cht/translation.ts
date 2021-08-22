@@ -407,6 +407,7 @@ export const translation: TranslationStruct = {
         title: '評級',
         ranking: '評級',
         isCompDependent: '依賴組合',
+        notRanked: '未評級',
       },
       tips: {
         main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
@@ -476,6 +477,7 @@ export const translation: TranslationStruct = {
       },
       alert: {
         refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
+        noUnitInRank: '無相關角色 / 龍族屬於此評級。',
       },
     },
     nameRef: {

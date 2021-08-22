@@ -9,11 +9,11 @@ import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils';
-import {OverLengthWarning} from '../../../elements/gameData/warnings/overLength';
-import {MaxEntriesToDisplay, sortFunc} from '../const';
+import {sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
 import {InputData, PropsUseKeyPointData} from '../types';
 import {TierListOutputShowAll} from './all/main';
+import {TierListOutputDimensional} from './dimensional/main';
 
 
 type Props = PropsUseKeyPointData & {
@@ -38,31 +38,36 @@ export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
     return <></>;
   }
 
-  const unitInfoHasTierData = unitInfoFiltered
+  const entryPackHasTierNote = unitInfoFiltered
     .filter((info) => info.id in tierData)
     .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}))
     .sort(sortFunc[inputData.sortBy]);
-  const unitInfoNoTierData = unitInfoFiltered
+  const entryPackNoTierNote = unitInfoFiltered
     .filter((info) => !(info.id in tierData))
     .map((info) => ({unitInfo: info, tierNote: undefined}));
 
-  const unitInfoList = [...unitInfoHasTierData, ...unitInfoNoTierData];
-  const unitInfoLength = unitInfoList.length;
-  const isUnitInfoOverLength = unitInfoLength > MaxEntriesToDisplay;
-  if (isUnitInfoOverLength) {
-    unitInfoList.splice(MaxEntriesToDisplay);
-  }
-
   return (
     <div ref={elemRef}>
-      <Alert variant="info">{t((t) => t.game.unitTier.tips.main)}</Alert>
-      {isUnitInfoOverLength && <OverLengthWarning displayed={MaxEntriesToDisplay} returned={unitInfoLength}/>}
+      <Alert variant="info" className="mb-2">{t((t) => t.game.unitTier.tips.main)}</Alert>
       <Row className="text-right mb-2">
         <Col>
           <IconCompDependent/>&nbsp;=&nbsp;{t((t) => t.game.unitTier.tips.compIcon)}
         </Col>
       </Row>
-      <TierListOutputShowAll unitInfoList={unitInfoList} keyPointsData={keyPointsData}/>
+      {
+        inputData.display === 'all' ?
+          <TierListOutputShowAll
+            entryPackHasTierNote={entryPackHasTierNote}
+            entryPackNoTierNote={entryPackNoTierNote}
+            keyPointsData={keyPointsData}
+          /> :
+          <TierListOutputDimensional
+            dimension={inputData.display}
+            entryPackHasTierNote={entryPackHasTierNote}
+            entryPackNoTierNote={entryPackNoTierNote}
+            keyPointsData={keyPointsData}
+          />
+      }
     </div>
   );
 };

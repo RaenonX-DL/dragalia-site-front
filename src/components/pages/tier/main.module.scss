@@ -22,6 +22,12 @@ span {
     font-size: 1.3em;
     margin-right: 0.25rem;
   }
+
+  &.dimensionPointIcon {
+    font-size: 1.1rem;
+    float: left;
+    margin-right: 0.5rem;
+  }
 }
 
 div {
@@ -37,23 +43,39 @@ div {
     align-items: center;
     height: 100%;
   }
+
+  &.dimensionEntryBar {
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    margin-bottom: -0.3rem;
+  }
 }
 
 a {
-  @mixin tierNoteBase() {
-    margin-left: 0.7rem;
-  }
-
   &.tierNote {
     @include clickableIcon;
-    @include tierNoteBase;
 
     font-size: 1.1rem;
+    margin-left: 0.7rem;
   }
 
   &.tierNote:hover {
     @include clickableIconHover;
-    @include tierNoteBase;
+  }
+
+  &.tierNoteDimension {
+    @extend .tierNote;
+
+    font-size: 1.1rem;
+    margin-left: 0;
+    margin-right: 0.5rem;
+    float: left;
+  }
+
+  &.tierNoteDimension:hover {
+    @include clickableIconHover;
   }
 
   @mixin unitPointBase {

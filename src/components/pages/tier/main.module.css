@@ -8,6 +8,11 @@ span.pointIcon {
   font-size: 1.3em;
   margin-right: 0.25rem;
 }
+span.dimensionPointIcon {
+  font-size: 1.1rem;
+  float: left;
+  margin-right: 0.5rem;
+}
 
 div.pointIcon {
   font-size: 1.5em;
@@ -20,18 +25,35 @@ div.pointEntry {
   align-items: center;
   height: 100%;
 }
+div.dimensionEntryBar {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+  margin-bottom: -0.3rem;
+}
 
-a.tierNote {
+a.tierNote, a.tierNoteDimension {
   border: 0;
   color: #bebebe;
-  margin-left: 0.7rem;
   font-size: 1.1rem;
+  margin-left: 0.7rem;
 }
-a.tierNote:hover {
+a.tierNote:hover, a.tierNoteDimension:hover {
   border: 0;
   color: #bebebe;
   color: white;
-  margin-left: 0.7rem;
+}
+a.tierNoteDimension {
+  font-size: 1.1rem;
+  margin-left: 0;
+  margin-right: 0.5rem;
+  float: left;
+}
+a.tierNoteDimension:hover {
+  border: 0;
+  color: #bebebe;
+  color: white;
 }
 a.unitPoint {
   border: 0;

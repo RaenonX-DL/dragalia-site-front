@@ -414,6 +414,7 @@ export const translation: TranslationStruct = {
         title: '評価',
         ranking: 'ランキング',
         isCompDependent: 'チームのサポートが必要。',
+        notRanked: '未評級',
       },
       tips: {
         main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
@@ -483,6 +484,7 @@ export const translation: TranslationStruct = {
       },
       alert: {
         refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
+        noUnitInRank: '無相關角色 / 龍族。',
       },
     },
     nameRef: {

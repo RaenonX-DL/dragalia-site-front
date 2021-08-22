@@ -402,6 +402,7 @@ export type TranslationStruct = {
         title: string,
         ranking: string,
         isCompDependent: string,
+        notRanked: string,
       },
       tips: {
         main: string,
@@ -429,6 +430,7 @@ export type TranslationStruct = {
       sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
       alert: {
         refRemoval: string,
+        noUnitInRank: string,
       },
     },
     nameRef: {

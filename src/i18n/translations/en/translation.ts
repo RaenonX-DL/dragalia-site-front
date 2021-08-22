@@ -439,6 +439,7 @@ export const translation: TranslationStruct = {
         title: 'Ranking',
         ranking: 'Ranking',
         isCompDependent: 'Comp-dependent',
+        notRanked: 'Not Ranked',
       },
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +
@@ -517,6 +518,7 @@ export const translation: TranslationStruct = {
       alert: {
         refRemoval: 'If the removed key point entry is used by any unit, ' +
           'the key point reference of the linked unit is also removed.',
+        noUnitInRank: 'No adventurers / dragons fall into this rank.',
       },
     },
     nameRef: {
