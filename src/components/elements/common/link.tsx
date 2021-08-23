@@ -22,6 +22,7 @@ type Props<T, A extends HTMLAnchorElement> = {
   content?: never,
   anchorProps?: never,
   style?: never,
+  newWindow?: never,
 } | {
   // If not `passHref`, children must not exist and `text` must be provided - `<a>` is used
   // - Setting `children` gives false-negative type checking result,
@@ -31,19 +32,35 @@ type Props<T, A extends HTMLAnchorElement> = {
   content: React.ReactNode,
   anchorProps?: React.AnchorHTMLAttributes<A>,
   style?: React.CSSProperties,
+  newWindow?: boolean,
 })
 
 export const Link = <T, A extends HTMLAnchorElement>({
-  className, style, locale, href, onClick, passHref, children, content, anchorProps,
+  className, style, locale, href, onClick, passHref, children, content, anchorProps, newWindow,
 }: Props<T, A>) => {
+  let props: React.AnchorHTMLAttributes<A> = {
+    ...anchorProps,
+    style,
+    className,
+    onClick,
+  };
+
+  if (newWindow) {
+    props = {
+      ...props,
+      target: '_blank',
+      rel: 'noreferrer',
+    };
+  }
+
   if (!href) {
-    return <a style={style} className={className} onClick={onClick}>{content}</a>;
+    return <a {...props}>{content}</a>;
   }
 
   href = `/${locale}${urlRemoveLang(href)}`;
 
   if (!passHref || !children) {
-    return <a style={style} className={className} href={href} {...anchorProps}>{content}</a>;
+    return <a href={href} {...props}>{content}</a>;
   }
 
   return <>{React.cloneElement(children, {href, className})}</>;
