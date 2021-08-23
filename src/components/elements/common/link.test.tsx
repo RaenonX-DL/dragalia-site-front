@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api';
@@ -22,7 +23,7 @@ describe('Link element', () => {
   });
 
   it('renders as <a> if no `passHref`', async () => {
-    renderReact(() => <Link href={GeneralPath.HOME} locale={SupportedLanguages.CHT} text="a"/>);
+    renderReact(() => <Link href={GeneralPath.HOME} locale={SupportedLanguages.CHT} content="a"/>);
 
     const anchorElem = screen.getByText('a', {selector: 'a'});
     expect(anchorElem).toHaveAttribute('href', makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.CHT}));
@@ -33,11 +34,22 @@ describe('Link element', () => {
       <Link
         href={makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.EN})}
         locale={SupportedLanguages.CHT}
-        text="a"
+        content="a"
       />
     ));
 
     const anchorElem = screen.getByText('a', {selector: 'a'});
     expect(anchorElem).toHaveAttribute('href', makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.CHT}));
+  });
+
+  it('triggers `onClick`', async () => {
+    const fnOnClick = jest.fn();
+
+    renderReact(() => <Link onClick={fnOnClick} content="A"/>);
+
+    const anchorElem = screen.getByText('A');
+    userEvent.click(anchorElem);
+
+    expect(fnOnClick).toHaveBeenCalled();
   });
 });
