@@ -10,7 +10,7 @@ type Props<T, A extends HTMLAnchorElement> = {
   // Provide either `href` or `onClick`
   href: string,
   locale: SupportedLanguages,
-  onClick?: never,
+  onClick?: () => void,
 } | {
   href?: never,
   locale?: never,
