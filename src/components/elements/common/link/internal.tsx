@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {SupportedLanguages} from '../../../api-def/api';
-import {urlRemoveLang} from '../../../utils/path/process';
+import {SupportedLanguages} from '../../../../api-def/api';
+import {urlRemoveLang} from '../../../../utils/path/process';
 
 
 type Props<T, A extends HTMLAnchorElement> = {
@@ -35,7 +35,7 @@ type Props<T, A extends HTMLAnchorElement> = {
   newWindow?: boolean,
 })
 
-export const Link = <T, A extends HTMLAnchorElement>({
+export const InternalLink = <T, A extends HTMLAnchorElement>({
   className, style, locale, href, onClick, passHref, children, content, anchorProps, newWindow,
 }: Props<T, A>) => {
   let props: React.AnchorHTMLAttributes<A> = {

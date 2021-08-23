@@ -7,6 +7,7 @@ import {DataPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeDataUrl} from '../../../../../utils/path/make';
 import {AdsPageTop, AdsUnitKeyPointIndexEnd} from '../../../../elements/common/ads/main';
+import {InternalLink} from '../../../../elements/common/link/internal';
 import {Loading} from '../../../../elements/common/loading';
 import {Search} from '../../../../elements/input/search/main';
 import {useKeyPointData} from '../../hooks';

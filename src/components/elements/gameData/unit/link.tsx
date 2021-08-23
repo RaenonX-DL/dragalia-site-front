@@ -8,6 +8,7 @@ import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {Image} from '../../common/image';
+import {InternalLink} from '../../common/link/internal';
 import {Loading} from '../../common/loading';
 import {ModalMappedContent} from '../../common/modal/mapped';
 import {ModalStateMapped} from '../../common/modal/types';

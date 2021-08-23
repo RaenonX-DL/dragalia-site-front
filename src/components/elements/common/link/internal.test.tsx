@@ -3,19 +3,19 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api';
-import {GeneralPath} from '../../../const/path/definitions';
-import {makeGeneralUrl} from '../../../utils/path/make';
-import {Link} from './link';
+import {renderReact} from '../../../../../test/render/main';
+import {SupportedLanguages} from '../../../../api-def/api';
+import {GeneralPath} from '../../../../const/path/definitions';
+import {makeGeneralUrl} from '../../../../utils/path/make';
+import {InternalLink} from './internal';
 
 
 describe('Link element', () => {
   it('passes `href` to its children if specified', async () => {
     renderReact(() => (
-      <Link href={GeneralPath.HOME} locale={SupportedLanguages.CHT} passHref>
+      <InternalLink href={GeneralPath.HOME} locale={SupportedLanguages.CHT} passHref>
         <span/>
-      </Link>
+      </InternalLink>
     ));
 
     const anchorElem = screen.getByText('', {selector: 'span'});
@@ -23,7 +23,7 @@ describe('Link element', () => {
   });
 
   it('renders as <a> if no `passHref`', async () => {
-    renderReact(() => <Link href={GeneralPath.HOME} locale={SupportedLanguages.CHT} content="a"/>);
+    renderReact(() => <InternalLink href={GeneralPath.HOME} locale={SupportedLanguages.CHT} content="a"/>);
 
     const anchorElem = screen.getByText('a', {selector: 'a'});
     expect(anchorElem).toHaveAttribute('href', makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.CHT}));
@@ -31,7 +31,7 @@ describe('Link element', () => {
 
   it('disregards language in `href`', async () => {
     renderReact(() => (
-      <Link
+      <InternalLink
         href={makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.EN})}
         locale={SupportedLanguages.CHT}
         content="a"
@@ -45,7 +45,7 @@ describe('Link element', () => {
   it('triggers `onClick`', async () => {
     const fnOnClick = jest.fn();
 
-    renderReact(() => <Link onClick={fnOnClick} content="A"/>);
+    renderReact(() => <InternalLink onClick={fnOnClick} content="A"/>);
 
     const anchorElem = screen.getByText('A');
     userEvent.click(anchorElem);
@@ -55,7 +55,7 @@ describe('Link element', () => {
 
   it('accepts props for <a> if used', async () => {
     renderReact(() => (
-      <Link
+      <InternalLink
         href={makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.EN})}
         locale={SupportedLanguages.CHT}
         content="a"

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {IconRadar} from '../../../../elements/common/icons';
+import {InternalLink} from '../../../../elements/common/link/internal';
 import {ModalFixedContent} from '../../../../elements/common/modal/fix';
 import {ModalStateFix} from '../../../../elements/common/modal/types';
 import styles from '../../main.module.css';

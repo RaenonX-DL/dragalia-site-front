@@ -3,7 +3,7 @@ import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
-import {Link} from '../components/elements/common/link';
+import {InternalLink} from '../components/elements/common/link/internal';
 import {CookiesKeys} from '../utils/cookies/keys';
 import {setCookies} from '../utils/cookies/utils';
 import {mergePlaceholders} from '../utils/path/process';
@@ -31,14 +31,14 @@ export const LanguageSwitch = () => {
       <NavDropdown.Item disabled>{currentLangName}</NavDropdown.Item>
       <NavDropdown.Divider/>
       {Object.values(SupportedLanguages).map((newLang) => (
-        <Link key={newLang} href={neutralUrl} locale={newLang} passHref>
+        <InternalLink key={newLang} href={neutralUrl} locale={newLang} passHref>
           <NavDropdown.Item
             key={newLang}
             onClick={onLangChanged(newLang)} className={lang === newLang ? 'active' : ''}
           >
             {SupportedLanguageNames[newLang]}
           </NavDropdown.Item>
-        </Link>
+        </InternalLink>
       ))}
     </NavDropdown>
   );

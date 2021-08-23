@@ -8,6 +8,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsUnitKeyPointTop} from '../../../../elements/common/ads/main';
 import {IconEdit} from '../../../../elements/common/icons';
+import {InternalLink} from '../../../../elements/common/link/internal';
 import {pointTypeWrapperClassName} from '../../const';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';

@@ -6,7 +6,7 @@ import {SupportedLanguageNames, PostGetResponse} from '../../../../api-def/api';
 import {PostPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl} from '../../../../utils/path/make';
-import {Link} from '../../common/link';
+import {InternalLink} from '../../common/link/internal';
 
 
 type AlertProps<R extends PostGetResponse> = {
@@ -47,11 +47,11 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
       <br/>
       {response.otherLangs.map((lang) => (
         <li key={lang}>
-          <Link href={makePostUrl(targetPath, {pid, lang})} locale={lang} passHref>
+          <InternalLink href={makePostUrl(targetPath, {pid, lang})} locale={lang} passHref>
             <Alert.Link href={makePostUrl(targetPath, {pid, lang})}>
               {SupportedLanguageNames[lang]}
             </Alert.Link>
-          </Link>
+          </InternalLink>
         </li>
       ))}
     </Alert>
