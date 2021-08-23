@@ -52,4 +52,18 @@ describe('Link element', () => {
 
     expect(fnOnClick).toHaveBeenCalled();
   });
+
+  it('accepts props for <a> if used', async () => {
+    renderReact(() => (
+      <Link
+        href={makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.EN})}
+        locale={SupportedLanguages.CHT}
+        content="a"
+        anchorProps={{target: '_blank'}}
+      />
+    ));
+
+    const anchorElem = screen.getByText('a', {selector: 'a'});
+    expect(anchorElem).toHaveAttribute('target', '_blank');
+  });
 });
