@@ -27,7 +27,6 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
 
   const {isValid, isChecking} = useFormMeta({
     formState,
-    setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
       ApiRequestSender.analysisIdCheck(context?.session?.user.id.toString() || '', payload.unitId, payload.lang)

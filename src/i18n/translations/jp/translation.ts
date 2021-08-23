@@ -26,7 +26,7 @@ export const translation: TranslationStruct = {
     },
     ex: {
       name: {
-        filterElement: '屬性',
+        filterElement: '属性',
         filterExBuffParam: 'EXアビリティ',
         filterChainedExBuffParam: 'リンクEXアビリティ',
         exAbility: 'EXアビ効果',
@@ -95,7 +95,7 @@ export const translation: TranslationStruct = {
         ex: {
           title: 'EXアビ',
           description: 'サブキャラによるEXアビはパッシブ扱い。' +
-            '※例外的なEXアビ（例：屬性ダメ、攻防ダウン特効、クリティカルダメ、など）は直接各項目に入力してください。',
+            '※例外的なEXアビ（例：属性ダメ、攻防ダウン特効、クリティカルダメ、など）は直接各項目に入力してください。',
           blade: '刀',
           wand: 'ロッド',
         },
@@ -180,7 +180,7 @@ export const translation: TranslationStruct = {
             desc: '攻撃ターゲットの状態に関するパラメータ全般。',
           },
           element: {
-            name: '屬性',
+            name: '属性',
             desc: '攻撃ターゲットの属性。',
           },
           affliction: {
@@ -218,7 +218,7 @@ export const translation: TranslationStruct = {
               '何も選択していない場合、全てのスキルが表示されます。',
           },
           element: {
-            name: '屬性',
+            name: '属性',
             desc: '例；火、風，を選択するとその２属性いづれかのキャラスキルだけが表示されます。',
           },
           affliction: {
@@ -378,7 +378,7 @@ export const translation: TranslationStruct = {
           global: 'EX',
           chained: 'リンクEX',
         },
-        normalAttack: '通常殴り回転',
+        normalAttack: '通常殴りのシフト',
         skills: {
           all: 'スキル',
           official: '公式説明',
@@ -414,7 +414,7 @@ export const translation: TranslationStruct = {
         title: '評価',
         ranking: 'ランキング',
         isCompDependent: 'チームのサポートが必要。',
-        notRanked: '未評級',
+        notRanked: '未評価',
       },
       tips: {
         main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
@@ -427,14 +427,14 @@ export const translation: TranslationStruct = {
           title: '種類',
           strength: '強さ',
           weakness: '不利',
-          trait: '特點',
+          trait: '特性',
         },
         description: '叙述',
         tipsOnClick: ' "i" をクリックすると、ポイントの情報がご覧になれます。例: ポイントのアビリティが持っているキャラ。',
         info: {
-          linkedUnits: '具有此要點的角色 / 龍族',
+          linkedUnits: '該当するキャラ／ドラゴン',
           error: {
-            noLinkedUnits: '沒有角色 / 龍族具有此要點。',
+            noLinkedUnits: '該当するキャラ／ドラゴンなし。',
           },
         },
       },
@@ -483,8 +483,8 @@ export const translation: TranslationStruct = {
         avgRanking: '平均ランキング',
       },
       alert: {
-        refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
-        noUnitInRank: '無相關角色 / 龍族。',
+        refRemoval: '特性タグが削除された場合、該当するキャラリストは閲覧不可になります。',
+        noUnitInRank: '該当するキャラ／ドラゴンなし。',
       },
     },
     nameRef: {
@@ -607,7 +607,7 @@ export const translation: TranslationStruct = {
           },
           post: {
             title: '【攻略】{{title}}',
-            description: 'TBA',
+            description: '詳しい情報は下記のページをご覧ください。',
           },
         },
       },
@@ -622,8 +622,8 @@ export const translation: TranslationStruct = {
         },
         points: {
           index: {
-            title: '要點索引',
-            description: '角色、龍族要點的索引。',
+            title: '特性タグの検索',
+            description: 'キャラ／ドラゴンの特性検索',
           },
           usage: {
             title: 'ポイント【{{title}}】',
@@ -641,12 +641,12 @@ export const translation: TranslationStruct = {
           description: 'description',
         },
         ex: {
-          title: 'TBA',
-          description: 'description',
+          title: 'EX／リンクアビリティ',
+          description: 'EX／リンクアビリティの検索',
         },
         skillAtk: {
-          title: 'TBA',
-          description: 'description',
+          title: '攻撃スキル',
+          description: '攻撃スキルの検索',
         },
       },
       auth: {
@@ -786,3 +786,4 @@ export const translation: TranslationStruct = {
     },
   },
 };
+

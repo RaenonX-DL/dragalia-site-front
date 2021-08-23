@@ -17,6 +17,7 @@ import {ModalFlexContent} from '../../../elements/common/modal/flex';
 import {ModalStateFlex} from '../../../elements/common/modal/types';
 import {useUnitId} from '../../../elements/gameData/hook';
 import {AutoComplete} from '../../../elements/input/autoComplete/main';
+import {useOnBeforeUnload} from '../../../hooks/onBeforeUnload';
 import {ProtectedLayout} from '../../layout/protected';
 import styles from '../main.module.css';
 import {TierNoteDimensionEntry} from './dimension';
@@ -49,6 +50,8 @@ export const TierNoteEdit = () => {
     keyPointLookup,
     isFetchingResources,
   } = useTierNoteEditResources(unitId);
+
+  const {clearUnload} = useOnBeforeUnload([unitTierNote]);
 
   if (isFetchingResources) {
     return <Loading/>;
@@ -83,6 +86,7 @@ export const TierNoteEdit = () => {
           return;
         }
 
+        clearUnload();
         window.location.assign(makeGeneralUrl(GeneralPath.TIER_LOOKUP, {lang}));
       })
       .catch((e) => {

@@ -7,7 +7,7 @@ import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {useNextRouter} from '../../../../utils/router';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
-import {AdsInPostList} from '../../common/ads/main';
+import {AdsPostList} from '../../common/ads/main';
 import {FetchStatusSimple, isNotFetched} from '../../common/fetch';
 import {Paginator} from '../../common/pagination/paginator';
 import {PaginationState} from '../../common/pagination/types';
@@ -118,7 +118,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
 
   return (
     <>
-      <AdsInPostList/>
+      <AdsPostList/>
       <Jumbotron className="mb-3">
         <h4>{title}</h4>
       </Jumbotron>

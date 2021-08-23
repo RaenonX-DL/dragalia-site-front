@@ -1,4 +1,4 @@
-import {NextApiRequestCookies} from 'next/dist/next-server/server/api-utils';
+import {NextApiRequestCookies} from 'next/dist/server/api-utils';
 import Cookies from 'universal-cookie';
 
 import {CookiesKeys} from './keys';

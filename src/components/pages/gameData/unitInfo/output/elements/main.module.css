@@ -3,31 +3,25 @@
   padding-right: 30px;
   margin-bottom: 0.75rem;
 }
-
 .normalAttack table tr {
   background-color: #0e0e0e;
   border: 1px solid #656565;
 }
-
 .normalAttack table tr:last-child {
   margin-bottom: 0;
 }
-
 .normalAttack table th,
 .normalAttack table td {
   padding: 0.65rem 1.5rem;
   text-align: center;
   white-space: nowrap;
 }
-
 .normalAttack table tbody tr:nth-of-type(odd) {
   background-color: #141414;
 }
-
 .normalAttack table tbody tr:nth-of-type(even) {
   background-color: #202020;
 }
-
 .normalAttack table tbody tr:hover {
   background-color: #042a3b;
 }
@@ -46,7 +40,6 @@
     padding-top: 100%;
     overflow: auto;
   }
-
   .ability .content {
     position: absolute;
     inset: 0;
@@ -62,8 +55,9 @@
 .normalAttack table {
   margin-bottom: 0;
 }
-
 .normalAttack table th,
 .normalAttack table td {
   padding: 0.3rem 1.5rem;
 }
+
+/*# sourceMappingURL=main.module.css.map */

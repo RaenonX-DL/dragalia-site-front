@@ -6,6 +6,7 @@ import {KeyPointData} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../const/path/definitions';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
+import {AdsUnitKeyPointTop} from '../../../../elements/common/ads/main';
 import {IconEdit} from '../../../../elements/common/icons';
 import {pointTypeWrapperClassName} from '../../const';
 import {PointTypeIcon} from '../../icons';
@@ -32,6 +33,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
 
   return (
     <>
+      <AdsUnitKeyPointTop/>
       <Alert variant="info">
         {t((t) => t.game.unitTier.points.tipsOnClick)}
       </Alert>

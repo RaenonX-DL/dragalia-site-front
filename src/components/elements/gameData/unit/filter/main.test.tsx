@@ -317,4 +317,31 @@ describe('Unit filter input', () => {
 
     expect(await screen.findByText('Title')).toBeInTheDocument();
   });
+
+  it('shows ads', async () => {
+    renderReact(() => (
+      <UnitFilter
+        sortOrderNames={{unitId: () => 'Unit ID'}}
+        onSearchRequested={onSearchRequested}
+        generateInputData={() => generateFilterInput('unitId')}
+      />
+    ));
+
+    expect(screen.getByTestId('ads-page-top')).toBeInTheDocument();
+  });
+
+  it('hides ads', async () => {
+    renderReact(
+      () => (
+        <UnitFilter
+          sortOrderNames={{unitId: () => 'Unit ID'}}
+          onSearchRequested={onSearchRequested}
+          generateInputData={() => generateFilterInput('unitId')}
+        />
+      ),
+      {hasSession: true, user: {adsFreeExpiry: new Date()}},
+    );
+
+    expect(screen.queryByText('ads-page-top')).not.toBeInTheDocument();
+  });
 });

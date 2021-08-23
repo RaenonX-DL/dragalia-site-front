@@ -1,37 +1,64 @@
 import React from 'react';
 
-import {Adsense} from '@ctrl/react-adsense';
+import {AdsUnitDisplay} from './unit/display';
+import {AdsUnitInArticle} from './unit/inArticle';
+import {AdsUnitInFeed} from './unit/inFeed';
+import {AdsUnitMatchedContent} from './unit/matched';
 
-import {AdsWrapper} from './wrapper';
 
+export const AdsInPost = () => (
+  <AdsUnitInArticle
+    slot="1322282773"
+    testId="ads-in-post"
+  />
+);
 
-export const AdsInPost = () => {
-  return (
-    <AdsWrapper>
-      <Adsense
-        client="ca-pub-1535004092052078"
-        slot="1322282773"
-        style={{display: 'block'}}
-        layout="in-article"
-        format="fluid"
-        data-testid="ads-in-post"
-      />
-    </AdsWrapper>
-  );
-};
+export const AdsPostList = () => (
+  <AdsUnitInFeed
+    slot="3962363338"
+    layoutKey="-f7+5u+4t-da+6l"
+    testId="ads-post-list"
+  />
+);
 
-export const AdsInPostList = () => {
-  return (
-    <AdsWrapper>
-      <Adsense
-        client="ca-pub-1535004092052078"
-        slot="3962363338"
-        style={{display: 'block'}}
-        layout="in-article"
-        layoutKey="-f7+5u+4t-da+6l"
-        format="fluid"
-        data-testid="ads-post-list"
-      />
-    </AdsWrapper>
-  );
-};
+export const AdsPageTop = () => (
+  <AdsUnitMatchedContent
+    slot="4904550853"
+    testId="ads-page-top"
+  />
+);
+
+export const AdsUnitSearchBottom = () => (
+  <AdsUnitDisplay
+    slot="4716848598"
+    testId="ads-unit-search-bottom"
+  />
+);
+
+export const AdsTierResultsEnd = () => (
+  <AdsUnitMatchedContent
+    slot="9965305840"
+    testId="ads-tier-results-end"
+  />
+);
+
+export const AdsUnitKeyPointTop = () => (
+  <AdsUnitDisplay
+    slot="8652224172"
+    testId="ads-unit-key-point-top"
+  />
+);
+
+export const AdsUnitKeyPointIndexEnd = () => (
+  <AdsUnitDisplay
+    slot="8260507781"
+    testId="ads-unit-key-point-index-end"
+  />
+);
+
+export const AdsUnitKeyPointInfo = () => (
+  <AdsUnitDisplay
+    slot="9366061111"
+    testId="ads-unit-key-point-info"
+  />
+);

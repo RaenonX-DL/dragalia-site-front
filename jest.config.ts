@@ -29,6 +29,8 @@ const config: Config.InitialOptions = {
     // Exclude cypress files
     ...cypressExclusionGlobs,
   ],
+  // Avoid some long-running test giving false-positive
+  testTimeout: 20000,
   // Setup / Teardown
   setupFiles: [
     'dotenv/config',

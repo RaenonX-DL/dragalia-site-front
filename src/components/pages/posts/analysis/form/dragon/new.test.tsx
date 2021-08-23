@@ -45,6 +45,7 @@ describe('New dragon analysis form', () => {
       {user: {isAdmin: true}},
     );
 
+    jest.advanceTimersByTime(1100); // Meta checks only after 1 sec
     await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());
   });
 
@@ -157,6 +158,7 @@ describe('New dragon analysis form', () => {
   });
 
   it('clears the backup after publishing', async () => {
+    jest.useRealTimers(); // Have to call this for dispatcher spy to work properly
     const fnClear = jest.spyOn(backupDispatchers, BackupDispatcherName.CLEAR_DRAGON_ANALYSIS);
     jest.spyOn(ApiRequestSender, 'analysisPublishDragon').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,

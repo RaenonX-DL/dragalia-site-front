@@ -9,7 +9,6 @@ import {useFormMeta} from './hook';
 describe('Form meta hook', () => {
   let formState: PostFormState<PostMeta>;
   let setAvailability: jest.Mock;
-  let setPayload: jest.Mock;
 
   beforeEach(() => {
     formState = {
@@ -20,7 +19,6 @@ describe('Form meta hook', () => {
       },
     };
     setAvailability = jest.fn().mockImplementation((available) => formState.isIdAvailable = available);
-    setPayload = jest.fn();
   });
 
   it('does not run the check if the user is not an admin', async () => {
@@ -30,7 +28,6 @@ describe('Form meta hook', () => {
       () => useFormMeta({
         formState,
         setAvailability,
-        setPayload,
         fnIdCheck,
         getEffectDependency: (payload) => [payload.lang],
       }),
@@ -46,11 +43,15 @@ describe('Form meta hook', () => {
 
     expect(setAvailability).toHaveBeenCalledWith(false);
     expect(fnIdCheck).not.toHaveBeenCalled();
-    expect(result.current.isValid).toBe(false);
+    expect(result.current.isValid).toBeFalsy();
   });
 
   it('loads initial validity state', async () => {
-    const fnIdCheck = jest.fn();
+    const fnIdCheck = jest.fn().mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
 
     const {result} = renderReactHook(
       () => useFormMeta({
@@ -59,18 +60,13 @@ describe('Form meta hook', () => {
           isIdAvailable: true,
         },
         setAvailability,
-        setPayload,
         fnIdCheck,
         getEffectDependency: (payload) => [payload.lang],
       }),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
 
-    expect(result.current.isValid).toBe(true);
+    await waitFor(() => expect(result.current.isValid).toBeTruthy());
   });
 
   it('returns valid if the check passed', async () => {
@@ -85,7 +81,6 @@ describe('Form meta hook', () => {
       () => useFormMeta({
         formState,
         setAvailability,
-        setPayload,
         fnIdCheck,
         getEffectDependency: (payload) => [payload.lang],
       }),
@@ -120,7 +115,6 @@ describe('Form meta hook', () => {
       () => useFormMeta({
         formState,
         setAvailability,
-        setPayload,
         fnIdCheck,
         getEffectDependency: (payload) => [payload.lang],
       }),
