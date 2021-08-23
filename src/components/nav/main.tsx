@@ -7,7 +7,7 @@ import {GeneralPath} from '../../const/path/definitions';
 import {AppReactContext} from '../../context/app/main';
 import {useI18n} from '../../i18n/hook';
 import {LanguageSwitch} from '../../i18n/switch';
-import {NextLink} from '../elements/common/link';
+import {Link} from '../elements/common/link';
 import {UserControlButton} from '../elements/common/userControl/button/main';
 import {TITLE_NAV_HTML_ID} from './const';
 import {NavItem} from './elements/item';
@@ -17,17 +17,17 @@ import {NavDropdownUtils} from './utils';
 
 
 export const Navigation = () => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   return (
     <>
       <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
-        <NextLink href={GeneralPath.HOME} passHref>
+        <Link href={GeneralPath.HOME} locale={lang} passHref>
           <Navbar.Brand>
             {t((t) => t.meta.inUse.site.title)}
           </Navbar.Brand>
-        </NextLink>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}

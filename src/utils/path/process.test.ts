@@ -1,6 +1,8 @@
 import {SupportedLanguages} from '../../api-def/api';
+import {GeneralPath} from '../../const/path/definitions';
 import {DEFAULT_LANG} from '../../i18n/langCode';
-import {getLangFromQuery, mergePlaceholders, pathnameRemoveLang, urlRemoveLang} from './process';
+import {makeGeneralUrl} from './make';
+import {getLangFromQuery, makeLangUrl, mergePlaceholders, pathnameRemoveLang, urlRemoveLang} from './process';
 
 
 describe('Remove prefixed language in URL', () => {
@@ -83,5 +85,17 @@ describe('Merge placeholders', () => {
   it('merges even if query is empty', async () => {
     const merged = mergePlaceholders('/quest', {});
     expect(merged).toBe('/quest');
+  });
+});
+
+describe('Make lang-sensitive URL', () => {
+  it('makes URL from neutral path', async () => {
+    const url = makeLangUrl(GeneralPath.HOME, SupportedLanguages.CHT);
+    expect(url).toBe(makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.CHT}));
+  });
+
+  it('disregards the language in `url`', async () => {
+    const url = makeLangUrl(makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.CHT}), SupportedLanguages.EN);
+    expect(url).toBe(makeGeneralUrl(GeneralPath.HOME, {lang: SupportedLanguages.EN}));
   });
 });

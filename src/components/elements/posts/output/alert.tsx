@@ -6,7 +6,7 @@ import {SupportedLanguageNames, PostGetResponse} from '../../../../api-def/api';
 import {PostPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl} from '../../../../utils/path/make';
-import {NextLink} from '../../common/link';
+import {Link} from '../../common/link';
 
 
 type AlertProps<R extends PostGetResponse> = {
@@ -18,15 +18,13 @@ export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}
 
   return (
     <Alert variant="warning">
-      {
-        t(
-          (t) => t.posts.message.altLang,
-          {
-            langUi: SupportedLanguageNames[lang],
-            langPost: SupportedLanguageNames[response.lang],
-          },
-        )
-      }
+      {t(
+        (t) => t.posts.message.altLang,
+        {
+          langUi: SupportedLanguageNames[lang],
+          langPost: SupportedLanguageNames[response.lang],
+        },
+      )}
     </Alert>
   );
 };
@@ -47,17 +45,15 @@ export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
     <Alert variant="info">
       {t((t) => t.posts.message.otherLang)}
       <br/>
-      {
-        response.otherLangs.map((lang) => (
-          <li key={lang}>
-            <NextLink href={makePostUrl(targetPath, {pid, lang})} passHref>
-              <Alert.Link>
-                {SupportedLanguageNames[lang]}
-              </Alert.Link>
-            </NextLink>
-          </li>
-        ))
-      }
+      {response.otherLangs.map((lang) => (
+        <li key={lang}>
+          <Link href={makePostUrl(targetPath, {pid, lang})} locale={lang} passHref>
+            <Alert.Link href={makePostUrl(targetPath, {pid, lang})}>
+              {SupportedLanguageNames[lang]}
+            </Alert.Link>
+          </Link>
+        </li>
+      ))}
     </Alert>
   );
 };
