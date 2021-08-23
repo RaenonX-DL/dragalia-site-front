@@ -22,7 +22,7 @@ export const RelatedLinks = ({unitId}: Props) => {
         <InternalLink
           href={makePostUrl(PostPath.ANALYSIS, {pid: unitId, lang})}
           locale={lang}
-          text={t((t) => t.game.unitInfo.links.analysis)}
+          content={t((t) => t.game.unitInfo.links.analysis)}
         />
       </Col>
     </Row>

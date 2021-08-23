@@ -36,9 +36,12 @@ export const KeyPointIndexPage = () => {
               <small>{t((t) => t.game.unitTier.points.type[type])}</small>
             </Col>
             <Col>
-              <a href={makeDataUrl(DataPath.TIER_KEY_POINT, {id, lang})} target="_blank" rel="noreferrer">
-                {description}
-              </a>
+              <InternalLink
+                href={makeDataUrl(DataPath.TIER_KEY_POINT, {id, lang})}
+                locale={lang}
+                content={description}
+                newWindow
+              />
             </Col>
           </Row>
         )}

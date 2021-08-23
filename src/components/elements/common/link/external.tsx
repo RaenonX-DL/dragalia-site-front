@@ -2,6 +2,8 @@ import React from 'react';
 
 
 type Props<A extends HTMLAnchorElement> = React.AnchorHTMLAttributes<A> & {
+  // Having this to require `href`
+  href: string,
   newWindow?: boolean,
   children: React.ReactNode,
 }

@@ -2,6 +2,7 @@ import React from 'react';
 
 import Badge from 'react-bootstrap/Badge';
 
+import {ExternalLink} from '../../src/components/elements/common/link/external';
 import {Markdown} from '../../src/components/elements/markdown/main';
 import {useI18n} from '../../src/i18n/hook';
 
@@ -12,9 +13,7 @@ const SpecialThanks = () => {
   return (
     <>
       <h3>
-        <a href="https://patreon.com/RaenonX" target="_blank" rel="noreferrer">
-          Patreon
-        </a>
+        <ExternalLink href="https://patreon.com/RaenonX" newWindow>Patreon</ExternalLink>
       </h3>
       <ul>
         <li>
@@ -61,9 +60,9 @@ const SpecialThanks = () => {
         <h4>{t((t) => t.message.donation.url)}</h4>
         <Markdown>{t((t) => t.message.donation.info)}</Markdown>
         <ul>
-          <li><a href="https://patreon.com/RaenonX" target="_blank" rel="noreferrer">Patreon</a></li>
-          <li><a href="https://ko-fi.com/RaenonX" target="_blank" rel="noreferrer">Ko-Fi</a></li>
-          <li><a href="https://rnnx.cc/Paypal" target="_blank" rel="noreferrer">Paypal</a></li>
+          <li><ExternalLink href="https://patreon.com/RaenonX" newWindow>Patreon</ExternalLink></li>
+          <li><ExternalLink href="https://ko-fi.com/RaenonX" newWindow>Ko-Fi</ExternalLink></li>
+          <li><ExternalLink href="https://rnnx.cc/Paypal" newWindow>Paypal</ExternalLink></li>
         </ul>
       </div>
     </>

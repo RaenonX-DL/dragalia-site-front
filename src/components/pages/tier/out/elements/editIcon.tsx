@@ -22,8 +22,11 @@ export const TierNoteEditIcon = ({unitId}: Props) => {
   }
 
   return (
-    <a className={styles.editIcon} href={makeUnitUrl(UnitPath.UNIT_TIER_EDIT, {id: unitId, lang})}>
-      <IconEdit/>
-    </a>
+    <InternalLink
+      className={styles.editIcon}
+      href={makeUnitUrl(UnitPath.UNIT_TIER_EDIT, {id: unitId, lang})}
+      locale={lang}
+      content={<IconEdit/>}
+    />
   );
 };

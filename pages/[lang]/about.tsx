@@ -1,31 +1,33 @@
 import React from 'react';
 
+import {ExternalLink} from '../../src/components/elements/common/link/external';
+
 
 const About = () => {
   return (
     <>
       <h3>Source Code</h3>
       <p className="h5">
-        <a href="https://github.com/RaenonX-DL/dragalia-site-front" target="_blank" rel="noreferrer">
+        <ExternalLink href="https://github.com/RaenonX-DL/dragalia-site-front" newWindow>
           Github Repo (Frontend)
-        </a>
+        </ExternalLink>
       </p>
       <p className="h5">
-        <a href="https://github.com/RaenonX-DL/dragalia-site-back-2" target="_blank" rel="noreferrer">
+        <ExternalLink href="https://github.com/RaenonX-DL/dragalia-site-back-2" newWindow>
           Github Repo (Backend)
-        </a>
+        </ExternalLink>
       </p>
       <p className="h6">
-        <a href="https://github.com/RaenonX-DL/dragalia-site-back" target="_blank" rel="noreferrer">
+        <ExternalLink href="https://github.com/RaenonX-DL/dragalia-site-back" newWindow>
           Github Repo (Backend - Deprecated)
-        </a>
+        </ExternalLink>
       </p>
       <hr/>
       <h3>Others</h3>
       <p className="h5">
-        <a href="https://twitter.com/gonzarez1938/status/1424390835240529921" target="_blank" rel="noreferrer">
+        <ExternalLink href="https://twitter.com/gonzarez1938/status/1424390835240529921" newWindow>
           Website Icon
-        </a>
+        </ExternalLink>
       </p>
     </>
   );

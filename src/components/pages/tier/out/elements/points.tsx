@@ -23,7 +23,7 @@ type Props = {
 }
 
 export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   const pointListItems: Array<CategorizedPointEntries> = categorizeKeyPoints(keyPointsData, keyPointsIds)
@@ -60,9 +60,12 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         <>
           <hr className="my-2"/>
           <div className="text-right">
-            <a className={styles.editIcon} href={GeneralPath.TIER_POINTS_EDIT}>
-              <IconEdit/>
-            </a>
+            <InternalLink
+              className={styles.editIcon}
+              href={GeneralPath.TIER_POINTS_EDIT}
+              locale={lang}
+              content={<IconEdit/>}
+            />
           </div>
         </>
       }

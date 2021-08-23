@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {ExternalLink} from '../../common/link/external';
 import {ImageInHTML} from '../transformers/image/main';
 import {isImage} from '../transformers/image/utils';
 import {EmbeddedYoutubeVideo, extractVideoId} from '../transformers/youtube';
@@ -20,5 +21,5 @@ export const renderLink = ({children, href}: LinkComponentProps) => {
     return <ImageInHTML src={href} alt="image"/>;
   }
 
-  return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
+  return <ExternalLink href={href} newWindow>{children}</ExternalLink>;
 };

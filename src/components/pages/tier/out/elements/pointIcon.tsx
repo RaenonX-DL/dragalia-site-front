@@ -26,9 +26,11 @@ export const TierNotePointIcon = ({pointIds, keyPointsData}: Props) => {
       <ModalFixedContent state={modalState} setState={setModalState}>
         <TierKeyPoints keyPointsIds={pointIds} keyPointsData={keyPointsData}/>
       </ModalFixedContent>
-      <a className={styles.unitPoint} onClick={() => setModalState({...modalState, show: true})}>
-        <IconRadar/>
-      </a>
+      <InternalLink
+        className={styles.unitPoint}
+        onClick={() => setModalState({...modalState, show: true})}
+        content={<IconRadar/>}
+      />
     </>
   );
 };

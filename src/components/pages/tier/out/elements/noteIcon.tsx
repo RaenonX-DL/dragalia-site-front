@@ -26,9 +26,11 @@ export const TierNoteIcon = ({iconClassName, tierNote}: Props) => {
           {tierNote.note}
         </Markdown>
       </ModalFixedContent>
-      <a className={iconClassName} onClick={() => setModalState({...modalState, show: true})}>
-        <IconNotes/>
-      </a>
+      <InternalLink
+        className={iconClassName}
+        onClick={() => setModalState({...modalState, show: true})}
+        content={<IconNotes/>}
+      />
     </>
   );
 };
