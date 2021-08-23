@@ -6,7 +6,10 @@ import {DelayedCheckState} from '../../../common/types';
 import {isFormStateValid, PostFormControlProps} from '../types';
 
 
-type FormMetaHookProps<P extends PostMeta, R extends PostIdCheckResponse> = PostFormControlProps<P> & {
+type FormMetaHookProps<P extends PostMeta, R extends PostIdCheckResponse> = Omit<
+  PostFormControlProps<P>,
+  'setPayload'
+> & {
   fnIdCheck: (payload: P) => Promise<R>,
   getEffectDependency: (payload: P) => React.DependencyList,
 }
@@ -33,6 +36,11 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   const isValid = context?.session?.user.isAdmin ? isFormStateValid(formState) : false;
 
   const checkAvailability = (payload: P) => {
+    if (!context?.session?.user.isAdmin) {
+      setAvailability(false);
+      return;
+    }
+
     setCheckState({...checkState, isChecking: true});
     fnIdCheck(payload)
       .then((data) => setAvailability(data.available))
@@ -40,8 +48,10 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
       .finally(() => setCheckState({...checkState, isChecking: false}));
   };
 
-  // Check availability on `payload.seqId` or `payload.lang` changed
+  // Check availability on dependency changed
   // - `timeout` for delaying the availability check
+  // - No need to check availability on load because it's unlikely an user will submit within 1 sec after load.
+  //   Even if submitted, it's likely to fail.
   React.useEffect(
     () => {
       if (!context?.session?.user.isAdmin) {

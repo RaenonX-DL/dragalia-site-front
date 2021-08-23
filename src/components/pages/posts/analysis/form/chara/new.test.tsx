@@ -17,14 +17,6 @@ import {generatePayload} from './utils';
 describe('New character analysis form', () => {
   let fnIdCheck: jest.SpyInstance;
 
-  const changeToValidUnitIdAndWaitPass = async () => {
-    const unitId = screen.getByDisplayValue(0);
-    userEvent.clear(unitId);
-    userEvent.type(unitId, '10950101');
-    jest.advanceTimersByTime(1100);
-    await waitFor(() => expect(unitId).toHaveClass('is-valid'));
-  };
-
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.useFakeTimers();
@@ -45,16 +37,22 @@ describe('New character analysis form', () => {
       {user: {isAdmin: true}},
     );
 
+    jest.advanceTimersByTime(1100); // Meta checks only after 1 sec
     await waitFor(() => expect(fnIdCheck).toHaveBeenCalled());
   });
 
   it('shows valid after typing in ID', async () => {
-    renderReact(
+    const {rerender} = renderReact(
       () => <AnalysisFormCharaNew/>,
       {user: {isAdmin: true}},
     );
 
-    await changeToValidUnitIdAndWaitPass();
+    const unitId = screen.getByDisplayValue(0);
+    userEvent.clear(unitId);
+    typeInput(unitId, '10950101', {rerender});
+
+    jest.advanceTimersByTime(1100);
+    await waitFor(() => expect(unitId).toHaveClass('is-valid'));
   });
 
   it('loads backup data', async () => {
@@ -157,6 +155,7 @@ describe('New character analysis form', () => {
   });
 
   it('clears the backup after publishing', async () => {
+    jest.useRealTimers(); // Have to call this for dispatcher spy to work properly
     const fnClear = jest.spyOn(backupDispatchers, BackupDispatcherName.CLEAR_CHARA_ANALYSIS);
     jest.spyOn(ApiRequestSender, 'analysisPublishChara').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
@@ -172,7 +171,7 @@ describe('New character analysis form', () => {
           backup: {
             analysis: {
               chara: {
-                unitId: 10950101,
+                unitId: 10550101,
                 type: UnitType.CHARACTER,
                 lang: SupportedLanguages.CHT,
                 summary: 'summary',
@@ -197,7 +196,6 @@ describe('New character analysis form', () => {
     const publishButton = await screen.findByText(
       translationEN.posts.manage.publish,
       {selector: 'button:enabled'},
-      {timeout: 2000},
     );
     userEvent.click(publishButton);
 

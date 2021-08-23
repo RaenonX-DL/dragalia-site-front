@@ -35,7 +35,6 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
 
   const {isValid, isChecking} = useFormMeta({
     formState,
-    setPayload,
     setAvailability,
     fnIdCheck: (payload) => (
       fnIdCheck(context?.session?.user.id.toString() || '', Number(payload.seqId) || null, payload.lang)

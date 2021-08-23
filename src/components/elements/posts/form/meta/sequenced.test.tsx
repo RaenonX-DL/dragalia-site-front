@@ -63,11 +63,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
@@ -96,11 +92,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
@@ -121,11 +113,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
     typeInput(idField, '577', {rerender});
@@ -146,11 +134,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     typeInput(titleField, 'Another Title', {rerender});
@@ -171,11 +155,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
@@ -199,11 +179,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const langField = screen.getByTestId('langSelect');
     fireEvent.change(langField, {target: {value: SupportedLanguages.JP}});
@@ -223,11 +199,7 @@ describe('Sequenced form meta input', () => {
           fnIdCheck={fnIdCheck}
         />
       ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
+      {user: {isAdmin: true}},
     );
     const titleField = screen.getByPlaceholderText(titlePlaceholder);
     typeInput(titleField, 'Another Title', {rerender});
