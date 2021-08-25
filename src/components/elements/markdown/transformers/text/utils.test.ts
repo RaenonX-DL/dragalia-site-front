@@ -18,6 +18,16 @@ describe('Text injection', () => {
         [SupportedLanguages.JP]: 'Poison JP',
       },
     },
+    {
+      name: 'FLASHBURN',
+      code: 1,
+      imagePath: 'flashburn.png',
+      trans: {
+        [SupportedLanguages.CHT]: '閃熱',
+        [SupportedLanguages.EN]: 'Flashburn',
+        [SupportedLanguages.JP]: '閃熱',
+      },
+    },
   ];
 
   it('does not inject anything', async () => {
@@ -39,9 +49,9 @@ describe('Text injection', () => {
   });
 
   it('injects affliction icon in a continuous word', async () => {
-    const injected = injectMarkdownToText(SupportedLanguages.EN, 'ApplyPoison', {afflictions});
+    const injected = injectMarkdownToText(SupportedLanguages.CHT, '上閃熱', {afflictions});
 
-    expect(injected).toBe(`Apply${makeAfflictionIconMarkdown(afflictions[0])}Poison`);
+    expect(injected).toBe(`上${makeAfflictionIconMarkdown(afflictions[1])}閃熱`);
   });
 
   it('injects affliction icon case-insensitively', async () => {

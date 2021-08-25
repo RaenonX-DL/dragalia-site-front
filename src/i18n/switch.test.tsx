@@ -54,7 +54,7 @@ describe('Language Switch', () => {
     userEvent.click(langSwitch);
 
     const enItems = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    expect(enItems.length).toBe(3);
+    expect(enItems.length).toBe(3); // 1 already showing; 1 showing as active; 1 to be selected
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT])).toBeInTheDocument();
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.JP])).toBeInTheDocument();
     expect(enItems[2]).toHaveClass('active');
