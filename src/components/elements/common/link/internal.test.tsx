@@ -66,4 +66,27 @@ describe('Link element', () => {
     const anchorElem = screen.getByText('a', {selector: 'a'});
     expect(anchorElem).toHaveAttribute('target', '_blank');
   });
+
+  it('passed down class names', async () => {
+    renderReact(() => (
+      <InternalLink href={GeneralPath.HOME} locale={SupportedLanguages.CHT} className="class" passHref>
+        <span/>
+      </InternalLink>
+    ));
+
+    const child = screen.getByText('', {selector: 'span'});
+    expect(child).toHaveClass('class');
+  });
+
+  it('keeps the class names of the children', async () => {
+    renderReact(() => (
+      <InternalLink href={GeneralPath.HOME} locale={SupportedLanguages.CHT} className="class" passHref>
+        <span className="class2"/>
+      </InternalLink>
+    ));
+
+    const child = screen.getByText('', {selector: 'span'});
+    expect(child).toHaveClass('class');
+    expect(child).toHaveClass('class2');
+  });
 });

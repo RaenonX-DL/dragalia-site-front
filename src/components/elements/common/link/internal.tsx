@@ -63,5 +63,5 @@ export const InternalLink = <T, A extends HTMLAnchorElement>({
     return <a href={href} {...props}>{content}</a>;
   }
 
-  return <>{React.cloneElement(children, {href, className})}</>;
+  return <>{React.cloneElement(children, {href, className: `${className} ${children.props.className}`})}</>;
 };
