@@ -3,9 +3,10 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import status from '../../../../test/data/resources/enums/status.json';
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../api-def/api';
-import {DepotPaths, SimpleUnitInfo, StatusEnums} from '../../../api-def/resources';
+import {DepotPaths, SimpleUnitInfo} from '../../../api-def/resources';
 import {Markdown} from './main';
 import {makeAfflictionIconMarkdown} from './transformers/text/icon/utils';
 
@@ -317,37 +318,24 @@ describe('Markdown', () => {
   });
 
   describe('Markdown - Affliction Icon', () => {
-    const status: StatusEnums['status'] = [
-      {
-        name: 'POISON',
-        code: 1,
-        imagePath: 'poison.png',
-        trans: {
-          [SupportedLanguages.CHT]: 'Poison CHT',
-          [SupportedLanguages.EN]: 'Poison',
-          [SupportedLanguages.JP]: 'Poison JP',
-        },
-      },
-    ];
-
     it('shows affliction icon in sentence', async () => {
       const markdown = 'Afflicts poison';
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getByText(/Poison/)).toBeInTheDocument();
-      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Poison');
     });
 
     it('does not show multiple affliction icons for one if already exists', async () => {
-      const markdown = `${makeAfflictionIconMarkdown(status[0])} poison`;
+      const markdown = `${makeAfflictionIconMarkdown(status.status[0])} poison`;
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getAllByText(/poison/).length).toBe(1);
@@ -359,7 +347,7 @@ describe('Markdown', () => {
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getAllByText('', {selector: 'img'}).length).toBe(2);
@@ -370,11 +358,11 @@ describe('Markdown', () => {
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getByText(/Poison/)).toBeInTheDocument();
-      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Poison');
     });
 
     it('shows affliction icon in <strong> text', async () => {
@@ -382,11 +370,11 @@ describe('Markdown', () => {
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getByText(/Poison/)).toBeInTheDocument();
-      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Poison');
     });
 
     it('shows affliction icon in heading', async () => {
@@ -394,11 +382,11 @@ describe('Markdown', () => {
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getByText(/Poison/)).toBeInTheDocument();
-      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Poison');
     });
 
     it('shows affliction icon in colored text', async () => {
@@ -406,11 +394,23 @@ describe('Markdown', () => {
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,
-        {resources: {afflictions: {status}}},
+        {resources: {afflictions: status}},
       );
 
       expect(screen.getByText(/Poison/)).toBeInTheDocument();
-      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('src', DepotPaths.getImageURL('poison.png'));
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Poison');
+    });
+
+    it('shows correct icon for Flashburn', async () => {
+      const markdown = `::[green] Afflicts Flashburn::`;
+
+      renderReact(
+        () => <Markdown>{markdown}</Markdown>,
+        {resources: {afflictions: status}},
+      );
+
+      expect(screen.getByText(/Flashburn/)).toBeInTheDocument();
+      expect(screen.getByText('', {selector: 'img'})).toHaveAttribute('alt', 'Flashburn');
     });
   });
 });
