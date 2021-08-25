@@ -1,4 +1,4 @@
-import {UnitType} from '../../../../../api-def/api';
+import {UnitNameRefData, UnitType} from '../../../../../api-def/api';
 import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} from '../../../../../api-def/resources';
 import {UnitFilterInputData} from './types';
 
@@ -15,6 +15,7 @@ export const getFilteredUnitInfo = <S extends string>(
   inputData: UnitFilterInputData<S> | undefined,
   charaInfo: CharaInfo,
   dragonInfo: DragonInfo,
+  unitNameRef: UnitNameRefData,
 ): Array<UnitInfoData> => {
   if (!inputData) {
     return [];
@@ -32,11 +33,17 @@ export const getFilteredUnitInfo = <S extends string>(
     if (!inputData.keyword) {
       return true;
     }
+
     const keywordLower = inputData.keyword.toLowerCase();
 
-    return Object
+    const isKeywordPartialUnitName = Object
       .values(unit.name)
       .some((name) => name.toLowerCase().indexOf(keywordLower) >= 0);
+    const isKeywordPartialCustomName = Object.entries(unitNameRef)
+      .filter(([_, referencedUnitId]) => unit.id === referencedUnitId)
+      .some(([name, _]) => name.toLowerCase().indexOf(keywordLower) >= 0);
+
+    return isKeywordPartialUnitName || isKeywordPartialCustomName;
   };
 
   if (inputData.type === UnitType.CHARACTER) {

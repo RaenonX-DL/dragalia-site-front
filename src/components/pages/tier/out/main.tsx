@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import {UnitTierData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../utils/scroll';
-import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
+import {useUnitData, useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {AdsTierResultsEnd} from '../../../elements/common/ads/main';
 import {getFilteredUnitInfo} from '../../../elements/gameData/unit/filter/utils';
 import {sortFunc} from '../const';
@@ -25,10 +25,11 @@ type Props = PropsUseKeyPointData & {
 export const TierListOutput = ({inputData, tierData, keyPointsData}: Props) => {
   const {t} = useI18n();
   const {charaInfo, dragonInfo} = useUnitInfo();
+  const {nameRef} = useUnitData();
 
   const elemRef = React.useRef<HTMLDivElement>(null);
 
-  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo);
+  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, nameRef);
 
   // Scroll after input data has changed
   React.useEffect(() => {

@@ -8,7 +8,7 @@ import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
-import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
+import {useUnitData, useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../../elements/common/fetch';
 import {getFilteredUnitInfo} from '../../../../../elements/gameData/unit/filter/utils';
 import {OverLengthWarning} from '../../../../../elements/gameData/warnings/overLength';
@@ -29,6 +29,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
   const rowElem = React.useRef<HTMLDivElement>(null);
 
   const {charaInfo, dragonInfo} = useUnitInfo();
+  const {nameRef} = useUnitData();
   const {
     fetchStatus: analysisMeta,
     fetchFunction: fetchAnalysisMeta,
@@ -53,7 +54,7 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
 
   fetchAnalysisMeta();
 
-  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo);
+  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, nameRef);
   // Split to prioritize the units that have analysis
   const unitInfoHasAnalysis = unitInfoFiltered
     .filter((info) => info.id in analysisMeta.data.analyses)
