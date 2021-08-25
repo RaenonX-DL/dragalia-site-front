@@ -139,7 +139,7 @@ describe('Unit filter input', () => {
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
-      {types: [UnitType.CHARACTER]},
+      {type: UnitType.CHARACTER},
     );
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
@@ -269,7 +269,7 @@ describe('Unit filter input', () => {
       generateFilterInput('unitId'),
       {
         keyword: 'test',
-        types: [UnitType.CHARACTER],
+        type: UnitType.CHARACTER,
         elements: [1],
         weaponTypes: [2],
       },

@@ -5,7 +5,7 @@ import {UnitFilterInputData} from './types';
 
 export const generateFilterInput = <S extends string>(sortBy: S): UnitFilterInputData<S> => ({
   keyword: '',
-  types: [],
+  type: UnitType.CHARACTER,
   elements: [],
   weaponTypes: [],
   sortBy,
@@ -39,8 +39,7 @@ export const getFilteredUnitInfo = <S extends string>(
       .some((name) => name.toLowerCase().indexOf(keywordLower) >= 0);
   };
 
-  // Add characters
-  if (!inputData.types.length || inputData.types.includes(UnitType.CHARACTER)) {
+  if (inputData.type === UnitType.CHARACTER) {
     ret.push(
       ...charaInfo
         .filter((chara) => (
@@ -48,15 +47,7 @@ export const getFilteredUnitInfo = <S extends string>(
         ))
         .map((info) => ({...info, type: UnitType.CHARACTER, analysisMeta: null})),
     );
-  }
-  // Add dragons
-  if (
-    // Specified to get the dragon analysis
-    inputData.types.includes(UnitType.DRAGON) ||
-    // No type and weapon type specified
-    // (if specified weapon type, then dragon analyses should be disregarded)
-    (!inputData.types.length && !inputData.weaponTypes.length)
-  ) {
+  } else if (inputData.type === UnitType.DRAGON) {
     ret.push(
       ...dragonInfo
         .filter((chara) => isUnitElementMatch(chara) && isUnitNameMatch(chara))

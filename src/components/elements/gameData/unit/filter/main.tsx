@@ -29,7 +29,8 @@ export const UnitFilter = <S extends string,
   D extends UnitFilterInputData<S>,
   E extends CheckOption,
   E2 extends EnumEntry,
-  V>({
+  V
+>({
   onSearchRequested,
   sortOrderNames,
   generateInputData,
