@@ -4,7 +4,7 @@ import {TranslationStruct} from '../definition';
 export const translation: TranslationStruct = {
   autoComplete: {
     selected: '選択済み',
-    inputPlaceholder: '検索キーワードを入力',
+    inputPlaceholder: '検索キーワードを入力する',
     noMatchingOptions: '一致する結果が見つかりません。',
     noneSelected: '選択していない。',
   },
@@ -33,13 +33,13 @@ export const translation: TranslationStruct = {
         chainedExAbility: 'リンクEXアビ効果',
       },
       desc: {
-        filterElement: '属性を選択してキャラ検索できます。火、風，などと複数属性も選択可能です。' +
-          '属性を１つも選択していない場合、全属性が表示されます。',
-        filterExBuffParam: 'EXアビを選択してキャラ検索できます。複数選択した場合、いづれかに合致するキャラが表示されます。何も選択していない場合、全てのキャラが表示されます。',
-        filterChainedExBuffParam: 'リンクEXアビを選択してキャラ検索できます。複数選択した場合、いづれかに合致するキャラが表示されます。何も選択していない場合、全てのキャラが表示されます。',
+        filterElement: '属性を選択して、キャラが検索できます。火、風，などと複数属性も選択可能です。' +
+          '属性１つも選択していない場合、全属性が表示されます。',
+        filterExBuffParam: 'EXアビを選択して、キャラが検索できます。複数を選択した場合、いずれかに合致するキャラが表示されます。何も選択していない場合、全てのキャラが表示されます。',
+        filterChainedExBuffParam: 'リンクEXアビを選択して、キャラ検索できます。複数選択した場合、いずれかに合致するキャラが表示されます。何も選択していない場合、全てのキャラが表示されます。',
         exAbility: 'EXアビの効果はパーティ内全員にかかります。またキャラ同士の属性が異なっても効果が得られます。しかし同種のEXアビが重複した場合は最も高い効果のみが有効になります。',
-        chainedExAbility: 'EXアビの効果はパーティ内全員にかかります。EXアビと異なるのは２点、１：基本的にキャラの属性が一致している同士でのみ効果が得られ、' +
-          '２：同種のEXアビが重複した場合は効果が加算されます。',
+        chainedExAbility: 'リンクEXアビの効果はパーティ内全員にかかります。EXアビと異なるのが、基本的に同じ属性同士のみに有効する' +
+          '同種のリンクEXアビが重複して、効果が加算されます。',
       },
       badge: {
         infoCooldown: 'クールタイム {{cooldownSec}} 秒',
@@ -214,21 +214,21 @@ export const translation: TranslationStruct = {
         filter: {
           title: {
             name: 'フィルタ',
-            desc: '条件を選択してスキル検索できます。複数選択した場合、いづれかに合致するスキルが表示されます。' +
+            desc: '条件を選択して、スキルが検索できます。複数選択した場合、いずれかに合致するスキルが表示されます。' +
               '何も選択していない場合、全てのスキルが表示されます。',
           },
           element: {
             name: '属性',
-            desc: '例；火、風，を選択するとその２属性いづれかのキャラスキルだけが表示されます。',
+            desc: '例；火、風を選択するとその２属性いずれかのキャラスキルだけが表示されます。',
           },
           affliction: {
             name: '状態異常',
-            desc: '例；火傷、毒を選択するといづれかを付与できるキャラスキルだけが表示されます。' +
-              '※状態異常付与できるスキルを検索する機能です。(状態異常特効を持つスキルを検索しているのではありません。)',
+            desc: '例；火傷、毒を選択するといずれかを付与できるキャラスキルだけが表示されます。' +
+              '※状態異常付与できるスキルを検索する機能です。(状態異常特効を持つスキルではありません。)',
           },
           unitType: {
-            name: '',
-            desc: '',
+            name: '種類',
+            desc: '選択してない場合、全てのスキルの元が表示されます',
           },
           other: {
             name: 'その他',
@@ -313,7 +313,7 @@ export const translation: TranslationStruct = {
         presetMustLogin: 'プリセットを使用するため、ログインが必要です',
       },
       animation: {
-        earliest: '一番早い {{time}} 秒 ',
+        earliest: '最速 {{time}} 秒 ',
         earliestUnavailable: '利用不可',
         hitTiming: 'ヒットする時間',
         hitTimingHeader: 'ヒットする時間 (秒)',
@@ -349,7 +349,7 @@ export const translation: TranslationStruct = {
         affliction: '一部の状態異常の有効時間の振れ幅 (主に凍結、気絶)は計算中に使用した秒数は最大值。',
         animation: 'アニメーションと実際は差があります。キャラの評価に実際のスキルモーションがあります。',
         preset: 'シェアボタンを押すとサイトリンク生産。',
-        presetExpiry: 'リンクが生産した日から30日に渡って削除する。',
+        presetExpiry: 'リンクが生産した日から30日に渡って削除されます。',
       },
     },
     tools: {
@@ -425,12 +425,12 @@ export const translation: TranslationStruct = {
         title: 'ポイント',
         type: {
           title: '種類',
-          strength: '強さ',
-          weakness: '不利',
+          strength: '長所',
+          weakness: '短所',
           trait: '特性',
         },
-        description: '叙述',
-        tipsOnClick: ' "i" をクリックすると、ポイントの情報がご覧になれます。例: ポイントのアビリティが持っているキャラ。',
+        description: '説明',
+        tipsOnClick: ' "i" をクリックすると、重要な情報がご覧になれます。例: ポイントになるアビリティが持っているキャラ。',
         info: {
           linkedUnits: '該当するキャラ／ドラゴン',
           error: {
@@ -488,12 +488,12 @@ export const translation: TranslationStruct = {
       },
     },
     nameRef: {
-      manage: 'Name Config',
-      unitId: 'Unit ID',
-      actualName: 'Actual Name',
-      desiredName: 'Desired Name',
+      manage: '名前設定',
+      unitId: 'ユニット ID',
+      actualName: '実際の名前',
+      desiredName: 'カスタマイズの名前',
       error: {
-        invalidUnitId: 'Invalid Unit #',
+        invalidUnitId: '無効のユニットID#',
       },
       status: {
         updated: '更新成功！',
@@ -571,17 +571,17 @@ export const translation: TranslationStruct = {
       },
       thanks: {
         title: '協力感謝',
-        description: '協力メンバーの方々',
+        description: '協力したメンバーの方々',
       },
       post: {
         analysis: {
           newChara: {
             title: '新キャラの評価',
-            description: 'description',
+            description: '新しく追加されたキャラのページ',
           },
           newDragon: {
             title: '新ドラゴンの評価',
-            description: 'description',
+            description: '新しく追加されたドラゴンのページ',
           },
           edit: {
             title: '評価の編集 - {{name}}',
@@ -603,7 +603,7 @@ export const translation: TranslationStruct = {
           },
           new: {
             title: 'クエスト攻略の追加',
-            description: 'description',
+            description: '追加されたクエスト攻略',
           },
           post: {
             title: '【攻略】{{title}}',
@@ -638,7 +638,7 @@ export const translation: TranslationStruct = {
       gameData: {
         info: {
           title: 'キャラ/ドラゴン情報カタログ',
-          description: 'description',
+          description: '各キャラ、ドラゴンのページ',
         },
         ex: {
           title: 'EX／リンクアビリティ',
@@ -679,7 +679,7 @@ export const translation: TranslationStruct = {
     temp: {
       constructing: {
         title: '工事中',
-        description: 'description',
+        description: 'このページが工事中',
       },
     },
     suffix: ' | ドラガリ攻略 by OM',
@@ -704,11 +704,11 @@ export const translation: TranslationStruct = {
       summonResult: '個人のガチャ結果',
       summonExplanation: {
         title: '個人のガチャ結果について',
-        description: 'なぜガチャ結果が【評価】ページに掲載されたのか? 皆さんはそれを疑問に思うかも知れません。 ' +
-          '分析を書き始めたとき、 ' +
-          '私は皆さんに「召喚の結果は純粋な運である」を知ってほしかった。 ' +
-          '分析を書くことに集中するなんて思わなかったけど、 ' +
-          '【結果と運】のことを皆さんに伝えたくて、' +
+        description: 'なぜガチャ結果が【評価】ページに掲載されたのか? 皆様は疑問を持つかも知れません。 ' +
+          '分析を書き始めた頃、 ' +
+          '自分が皆様に「召喚の結果は純粋な運であること」を伝えてほしかったです。 ' +
+          'その時、真面目に分析を書き続けることなんて、思わなかったです。 ' +
+          '「出るまで数百連、天井まで引くことが普通だと」皆様に伝えたくて、' +
           '【個人のガチャ結果】は保存されました。',
       },
       tipsBuilds: 'ポイント & おすすめ装備編成',
@@ -718,7 +718,7 @@ export const translation: TranslationStruct = {
         noPostId: '文章 ID 未指定。',
         noResult: '検索結果あありませんでした。条件を変更して再度検索してください。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
-        unavailable: 'bu Unavailable',
+        unavailable: '無効のページ',
       },
       skill: {
         name: 'スキルの名前',
@@ -727,10 +727,10 @@ export const translation: TranslationStruct = {
         tips: 'スキルのポイント',
       },
       sort: {
-        unitId: '',
-        published: '',
-        lastModified: '',
-        viewCount: '',
+        unitId: 'キャラID',
+        published: '発表時間',
+        lastModified: '修正時間',
+        viewCount: '閲覧回数',
       },
     },
     info: {
@@ -745,7 +745,7 @@ export const translation: TranslationStruct = {
       add: '文を追加する',
       addChara: '文を追加する (キャラ)',
       addDragon: '文を追加する(ドラゴン)',
-      addNote: '指定 IDあれば，文が多国言語版もあります。サイトはその ID と言語検査する。対応できない文のID は使えない。',
+      addNote: '指定 IDあれば、この文は多国言語版もあります。サイトはその ID と言語検査する。対応できない文のID は使えない。',
       collapse: 'ズームイン/アウト',
       edit: '文を編集',
       fetchListFailed: '文のリスト獲得失敗。({{error}})',
@@ -786,4 +786,3 @@ export const translation: TranslationStruct = {
     },
   },
 };
-
