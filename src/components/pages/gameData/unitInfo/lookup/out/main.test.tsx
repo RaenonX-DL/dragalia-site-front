@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {screen, waitFor} from '@testing-library/react';
+import {waitFor} from '@testing-library/react';
 
+import unitInfo from '../../../../../../../test/data/resources/info/chara.json';
 import {renderReact} from '../../../../../../../test/render/main';
 import {ApiResponseCode, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
 import {overrideObject} from '../../../../../../utils/override';
@@ -45,14 +46,8 @@ describe('Unit info lookup output', () => {
   it('sorts the output', async () => {
     const inputData: InputData = overrideObject(generateInputData(), {sortBy: 'viewCount'});
 
-    renderReact(() => <UnitInfoLookupOutput inputData={inputData}/>);
+    renderReact(() => <UnitInfoLookupOutput inputData={inputData} processedUnitInfo={unitInfo}/>);
 
     await waitFor(() => expect(fnSortByViewCount).toHaveBeenCalled());
   }, 10000);
-
-  it('limits the output count', async () => {
-    renderReact(() => <UnitInfoLookupOutput inputData={generateInputData()}/>);
-
-    expect(await screen.findByText(/excessive/)).toBeInTheDocument();
-  });
 });

@@ -40,6 +40,7 @@ export const useUnitInfo = (): UseUnitInfoReturn => {
     dragonInfo: dragonInfo.data,
     unitInfoMap,
     getUnitName: (unitId, lang) => unitInfoMap.get(unitId)?.name[lang],
+    isFetched: charaInfo.fetched && dragonInfo.fetched,
   };
 };
 

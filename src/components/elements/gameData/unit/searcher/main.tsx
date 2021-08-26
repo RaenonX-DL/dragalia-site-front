@@ -43,7 +43,7 @@ export const UnitSearcher = <
   renderCount,
 }: Props<S, D, E, E2, V>) => {
   const {t} = useI18n();
-  const {charaInfo, dragonInfo} = useUnitInfo();
+  const {charaInfo, dragonInfo, isFetched} = useUnitInfo();
   const {nameRef} = useUnitData();
 
   const context = React.useContext(AppReactContext);
@@ -76,6 +76,7 @@ export const UnitSearcher = <
         sortOrderNames={sortOrderNames}
         generateInputData={generateInputData}
         getAdditionalInputs={getAdditionalInputs}
+        disabled={!isFetched}
       />
       {context?.session?.user.isAdmin && renderIfAdmin}
       <hr/>

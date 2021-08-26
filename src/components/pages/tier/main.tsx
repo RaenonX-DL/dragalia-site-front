@@ -44,37 +44,35 @@ export const TierList = () => {
   fetchTierNotes();
 
   return (
-    <>
-      <UnitSearcher
-        sortOrderNames={orderName}
-        generateInputData={generateInputData}
-        getAdditionalInputs={(inputData) => [{
-          type: 'inputRadioGroup',
-          options,
-          getValue: (inputData: InputData) => inputData.display,
-          getValueOfOption: (option: DisplayOption) => option.key,
-          getUpdatedInputData: (display: Display) => overrideObject(inputData, {display}),
-          groupName: 'display',
-        }]}
-        renderIfAdmin={
-          <ButtonBar
-            buttons={[{
-              variant: 'outline-light',
-              text: t((t) => t.game.unitTier.points.edit),
-              pathname: GeneralPath.TIER_POINTS_EDIT,
-            }]}
-            bottomMarginClass="mb-0"
-          />
-        }
-        renderOutput={(props) => (
-          <TierListOutput
-            tierData={tierData}
-            keyPointsData={keyPointData}
-            {...props}
-          />
-        )}
-        renderCount={MaxEntriesToDisplay}
-      />
-    </>
+    <UnitSearcher
+      sortOrderNames={orderName}
+      generateInputData={generateInputData}
+      getAdditionalInputs={(inputData) => [{
+        type: 'inputRadioGroup',
+        options,
+        getValue: (inputData: InputData) => inputData.display,
+        getValueOfOption: (option: DisplayOption) => option.key,
+        getUpdatedInputData: (display: Display) => overrideObject(inputData, {display}),
+        groupName: 'display',
+      }]}
+      renderIfAdmin={
+        <ButtonBar
+          buttons={[{
+            variant: 'outline-light',
+            text: t((t) => t.game.unitTier.points.edit),
+            pathname: GeneralPath.TIER_POINTS_EDIT,
+          }]}
+          bottomMarginClass="mb-0"
+        />
+      }
+      renderOutput={(props) => (
+        <TierListOutput
+          tierData={tierData}
+          keyPointsData={keyPointData}
+          {...props}
+        />
+      )}
+      renderCount={MaxEntriesToDisplay}
+    />
   );
 };

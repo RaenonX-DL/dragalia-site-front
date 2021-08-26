@@ -34,11 +34,10 @@ describe('Unit searcher', () => {
       />
     ));
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
-    // 1st, 2nd, 3rd call happen when chara/dragon info, unit name ref fetched; 4th is render when searched
-    await waitFor(() => expect(fnRenderOutput.mock.calls[3][0].processedUnitInfo).toHaveLength(3));
+    await waitFor(() => expect(fnRenderOutput.mock.calls[0][0].processedUnitInfo).toHaveLength(3));
   });
 
   it('hides buttons if the result count does not reach the limit', async () => {
@@ -51,7 +50,7 @@ describe('Unit searcher', () => {
       />
     ));
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     await waitFor(() => expect(fnRenderOutput).toHaveBeenCalled());
@@ -69,15 +68,14 @@ describe('Unit searcher', () => {
       />
     ));
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     const showMoreButton = await screen.findByText(translationEN.misc.showMore);
     userEvent.click(showMoreButton);
 
     await waitFor(() => expect(fnRenderOutput).toHaveBeenCalled());
-    // 1st, 2nd, 3rd call happen when chara/dragon info, unit name ref fetched; 4th is initial output render
-    expect(fnRenderOutput.mock.calls[4][0].processedUnitInfo).toHaveLength(6);
+    expect(fnRenderOutput.mock.calls[2][0].processedUnitInfo).toHaveLength(6);
   });
 
   it('shows all results', async () => {
@@ -90,15 +88,14 @@ describe('Unit searcher', () => {
       />
     ));
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     const showAllButton = await screen.findByText(translationEN.misc.showAll);
     userEvent.click(showAllButton);
 
     await waitFor(() => expect(fnRenderOutput).toHaveBeenCalled());
-    // 1st, 2nd, 3rd call happen when chara/dragon info, unit name ref fetched; 4th is initial output render
-    expect(fnRenderOutput.mock.calls[4][0].processedUnitInfo.length).toBeGreaterThan(3);
+    expect(fnRenderOutput.mock.calls[2][0].processedUnitInfo.length).toBeGreaterThan(3);
   });
 
   it('hides buttons when there are no more results to display', async () => {
@@ -111,16 +108,13 @@ describe('Unit searcher', () => {
       />
     ));
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     const showAllButton = await screen.findByText(translationEN.misc.showAll);
     userEvent.click(showAllButton);
 
-    // 1st, 2nd, 3rd call happen when chara/dragon info, unit name ref fetched
-    // 4th is initial output render
-    // 5th is show all render
-    await waitFor(() => expect(fnRenderOutput).toHaveBeenCalledTimes(5));
+    await waitFor(() => expect(fnRenderOutput).toHaveBeenCalledTimes(3));
     expect(screen.queryByText(translationEN.misc.showAll)).not.toBeInTheDocument();
   });
 
@@ -155,7 +149,7 @@ describe('Unit searcher', () => {
     userEvent.click(searchButton);
 
     // Should only have 50 results
-    expect(fnRenderOutput.mock.calls[4][0].processedUnitInfo).toHaveLength(3);
+    expect(fnRenderOutput.mock.calls[0][0].processedUnitInfo).toHaveLength(3);
     expect(screen.queryByText(translationEN.misc.showAll)).toBeInTheDocument();
   });
 });
