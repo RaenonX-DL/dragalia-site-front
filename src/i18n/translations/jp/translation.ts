@@ -544,6 +544,8 @@ export const translation: TranslationStruct = {
     openGif: 'クリックすると GIF が開きます',
     search: '検索',
     searchKeyword: 'キーワード',
+    showMore: 'TBA',
+    showAll: 'TBA',
     update: '更新',
     sortBy: '並び替え {{order}}',
     timestamp: {

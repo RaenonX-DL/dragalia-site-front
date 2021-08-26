@@ -6,30 +6,20 @@ import Form from 'react-bootstrap/Form';
 import {ApiResponseCode} from '../../../../../../api-def/api';
 import {AppReactContext} from '../../../../../../context/app/main';
 import {useI18n} from '../../../../../../i18n/hook';
-import {scrollRefToTop} from '../../../../../../utils/scroll';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
-import {useUnitData, useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {useFetchState} from '../../../../../elements/common/fetch';
-import {getFilteredUnitInfo} from '../../../../../elements/gameData/unit/filter/utils';
-import {OverLengthWarning} from '../../../../../elements/gameData/warnings/overLength';
+import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
 import {sortFunc} from '../in/sort/lookup';
-import {InputData} from '../in/types';
-import {MaxEntriesToDisplay} from './const';
+import {InputData, SortOrder} from '../in/types';
 import {UnitInfoEntry} from './entry';
 
 
-type AnalysisLookupOutputProps = {
-  inputData: InputData | undefined,
-}
+type AnalysisLookupOutputProps = UnitSearchOutputProps<SortOrder, InputData>
 
-export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => {
+export const UnitInfoLookupOutput = ({inputData, processedUnitInfo}: AnalysisLookupOutputProps) => {
   const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
-  const rowElem = React.useRef<HTMLDivElement>(null);
-
-  const {charaInfo, dragonInfo} = useUnitInfo();
-  const {nameRef} = useUnitData();
   const {
     fetchStatus: analysisMeta,
     fetchFunction: fetchAnalysisMeta,
@@ -43,30 +33,19 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     'Failed to fetch analysis meta.',
   );
 
-  // Scroll after input data has changed
-  React.useEffect(() => {
-    scrollRefToTop(rowElem);
-  }, [inputData]);
-
-  if (!inputData) {
-    return <></>;
-  }
-
   fetchAnalysisMeta();
 
-  const unitInfoFiltered = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, nameRef);
   // Split to prioritize the units that have analysis
-  const unitInfoHasAnalysis = unitInfoFiltered
+  const unitInfoHasAnalysis = processedUnitInfo
     .filter((info) => info.id in analysisMeta.data.analyses)
     .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}))
     .sort(sortFunc[inputData.sortBy]);
-  const unitInfoNoAnalysis = unitInfoFiltered
+  const unitInfoNoAnalysis = processedUnitInfo
     .filter((info) => !(info.id in analysisMeta.data.analyses))
     .map((info) => ({unitInfo: info, lookupInfo: undefined}));
   const unitInfoSorted = [...unitInfoHasAnalysis, ...unitInfoNoAnalysis];
-  const unitInfoSortedLength = unitInfoSorted.length;
 
-  if (charaInfo.length && dragonInfo.length && !unitInfoFiltered.length) {
+  if (!processedUnitInfo.length) {
     return (
       <h5 className="text-danger text-center">
         {t((t) => t.posts.analysis.error.noResult)}
@@ -74,25 +53,17 @@ export const UnitInfoLookupOutput = ({inputData}: AnalysisLookupOutputProps) => 
     );
   }
 
-  const isUnitInfoOverLength = unitInfoSortedLength > MaxEntriesToDisplay;
-  if (isUnitInfoOverLength) {
-    unitInfoSorted.splice(MaxEntriesToDisplay);
-  }
-
   return (
-    <>
-      {isUnitInfoOverLength && <OverLengthWarning displayed={MaxEntriesToDisplay} returned={unitInfoSortedLength}/>}
-      <Form.Row ref={rowElem}>
-        {unitInfoSorted.map((info) => (
-          <Col key={info.unitInfo.id} md={6} className="mb-2">
-            <UnitInfoEntry
-              unitInfo={info.unitInfo}
-              isFetchingMeta={analysisMeta.fetching}
-              analysisMeta={info.lookupInfo}
-            />
-          </Col>
-        ))}
-      </Form.Row>
-    </>
+    <Form.Row>
+      {unitInfoSorted.map((info) => (
+        <Col key={info.unitInfo.id} md={6} className="mb-2">
+          <UnitInfoEntry
+            unitInfo={info.unitInfo}
+            isFetchingMeta={analysisMeta.fetching}
+            analysisMeta={info.lookupInfo}
+          />
+        </Col>
+      ))}
+    </Form.Row>
   );
 };

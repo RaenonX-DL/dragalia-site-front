@@ -8,8 +8,8 @@ import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {ButtonBar} from '../../elements/common/buttonBar';
 import {useFetchState} from '../../elements/common/fetch';
-import {UnitFilter} from '../../elements/gameData/unit/filter/main';
-import {orderName} from './const';
+import {UnitSearcher} from '../../elements/gameData/unit/searcher/main';
+import {MaxEntriesToDisplay, orderName} from './const';
 import {useKeyPointData} from './hooks';
 import {TierListOutput} from './out/main';
 import {Display, DisplayOption, InputData} from './types';
@@ -18,7 +18,6 @@ import {generateInputData} from './utils';
 
 export const TierList = () => {
   const {t, lang} = useI18n();
-  const [inputData, setInputData] = React.useState<InputData>();
 
   const context = React.useContext(AppReactContext);
 
@@ -46,8 +45,7 @@ export const TierList = () => {
 
   return (
     <>
-      <UnitFilter
-        onSearchRequested={(inputData) => () => setInputData(inputData)}
+      <UnitSearcher
         sortOrderNames={orderName}
         generateInputData={generateInputData}
         getAdditionalInputs={(inputData) => [{
@@ -58,23 +56,24 @@ export const TierList = () => {
           getUpdatedInputData: (display: Display) => overrideObject(inputData, {display}),
           groupName: 'display',
         }]}
-      />
-      {
-        context?.session?.user.isAdmin &&
-        <ButtonBar
-          buttons={[{
-            variant: 'outline-light',
-            text: t((t) => t.game.unitTier.points.edit),
-            pathname: GeneralPath.TIER_POINTS_EDIT,
-          }]}
-          bottomMarginClass="mb-0"
-        />
-      }
-      <hr/>
-      <TierListOutput
-        inputData={inputData}
-        tierData={tierData.data.data}
-        keyPointsData={keyPointData}
+        renderIfAdmin={
+          <ButtonBar
+            buttons={[{
+              variant: 'outline-light',
+              text: t((t) => t.game.unitTier.points.edit),
+              pathname: GeneralPath.TIER_POINTS_EDIT,
+            }]}
+            bottomMarginClass="mb-0"
+          />
+        }
+        renderOutput={(props) => (
+          <TierListOutput
+            tierData={tierData}
+            keyPointsData={keyPointData}
+            {...props}
+          />
+        )}
+        renderCount={MaxEntriesToDisplay}
       />
     </>
   );

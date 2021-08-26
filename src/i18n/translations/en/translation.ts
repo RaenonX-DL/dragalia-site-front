@@ -584,6 +584,8 @@ export const translation: TranslationStruct = {
     openGif: 'Click to open GIF',
     search: 'Search',
     searchKeyword: 'Keyword',
+    showMore: 'Show More',
+    showAll: 'Show All',
     update: 'Update',
     sortBy: 'Sort by {{order}}',
     timestamp: {

@@ -539,6 +539,8 @@ export const translation: TranslationStruct = {
     openGif: '點擊以開啟 GIF 圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
+    showMore: '顯示更多',
+    showAll: '顯示全部',
     update: '更新',
     sortBy: '排序依據 {{order}}',
     timestamp: {

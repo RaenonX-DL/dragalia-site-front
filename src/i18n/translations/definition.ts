@@ -483,6 +483,8 @@ export type TranslationStruct = {
     openGif: string,
     search: string,
     searchKeyword: string,
+    showMore: string,
+    showAll: string,
     update: string,
     sortBy: string,
     timestamp: {
