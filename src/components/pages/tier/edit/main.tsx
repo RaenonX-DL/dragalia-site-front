@@ -10,6 +10,7 @@ import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {makeGeneralUrl} from '../../../../utils/path/make';
+import {processText} from '../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {Loading} from '../../../elements/common/loading';
@@ -62,20 +63,22 @@ export const TierNoteEdit = () => {
     return <></>;
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Remove tier note marked to be deleted in payload before send
     const tierNoteToSend = {
       ...unitTierNote,
       tier: Object.fromEntries(
-        Object.entries(unitTierNote.tier)
+        await Promise.all(Object.entries(unitTierNote.tier)
           .filter(([_, value]) => !value.toDelete)
-          .map(([key, value]) => {
+          .map(async ([key, value]) => {
             const {toDelete, ...processed} = value;
 
+            processed.note = await processText({lang, text: processed.note});
+
             return [key, processed];
-          }),
+          })),
       ),
     };
 

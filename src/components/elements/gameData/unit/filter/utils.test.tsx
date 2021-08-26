@@ -11,86 +11,43 @@ describe('Get filtered unit info', () => {
   const charaInfo: CharaInfo = charaData;
   const dragonInfo: DragonInfo = dragonData;
 
-  it('returns all IDs if input data is empty', async () => {
-    const inputData: UnitFilterInputData<'unitId'> = generateFilterInput('unitId');
-
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
-      .map((unit) => unit.id)
-      .sort((a, b) => a - b);
-
-    expect(unitIds).toStrictEqual(
-      charaInfo
-        .map((chara) => chara.id)
-        .concat(dragonInfo.map((dragon) => dragon.id)),
-    );
-  });
-
   it('filters correctly on single element', async () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(generateFilterInput('unitId'), {elements: [1]});
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
     expect(unitIds).toStrictEqual(
-      charaInfo
-        .filter((chara) => chara.element === 1)
-        .map((chara) => chara.id)
-        .concat(
-          dragonInfo
-            .filter((dragon) => dragon.element === 1)
-            .map((dragon) => dragon.id),
-        ),
+      charaInfo.filter((chara) => chara.element === 1).map((chara) => chara.id),
     );
   });
 
   it('filters correctly on multiple elements', async () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(generateFilterInput('unitId'), {elements: [1, 3]});
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
     expect(unitIds).toStrictEqual(
       charaInfo
         .filter((chara) => [1, 3].includes(chara.element))
-        .map((chara) => chara.id)
-        .concat(
-          dragonInfo
-            .filter((dragon) => [1, 3].includes(dragon.element))
-            .map((dragon) => dragon.id),
-        ),
+        .map((chara) => chara.id),
     );
   });
 
   it('filters correctly on single analysis type', async () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
-      {types: [UnitType.DRAGON]},
+      {type: UnitType.DRAGON},
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
     expect(unitIds).toStrictEqual(dragonInfo.map((dragon) => dragon.id));
-  });
-
-  it('filters correctly on multiple analysis types', async () => {
-    const inputData: UnitFilterInputData<'unitId'> = overrideObject(
-      generateFilterInput('unitId'),
-      {types: [UnitType.CHARACTER, UnitType.DRAGON]},
-    );
-
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
-      .map((unit) => unit.id)
-      .sort((a, b) => a - b);
-
-    expect(unitIds).toStrictEqual(
-      charaInfo
-        .map((chara) => chara.id)
-        .concat(dragonInfo.map((dragon) => dragon.id)),
-    );
   });
 
   it('filters correctly on single weapon type', async () => {
@@ -99,7 +56,7 @@ describe('Get filtered unit info', () => {
       {weaponTypes: [1]},
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -116,7 +73,7 @@ describe('Get filtered unit info', () => {
       {weaponTypes: [1, 3]},
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -130,24 +87,21 @@ describe('Get filtered unit info', () => {
   it('filters correctly on unit name partially matched', async () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(generateFilterInput('unitId'), {keyword: 'T'});
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
     expect(unitIds).toStrictEqual(
       charaInfo
         .filter((chara) => Object.values(chara.name).some((name) => name.match(/[Tt]/)))
-        .map((chara) => chara.id)
-        .concat(dragonInfo
-          .filter((dragon) => Object.values(dragon.name).some((name) => name.match(/[Tt]/)))
-          .map((dragon) => dragon.id)),
+        .map((chara) => chara.id),
     );
   });
 
   it('filters correctly on unit name fully matched', async () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(generateFilterInput('unitId'), {keyword: 'Tiki'});
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -162,13 +116,13 @@ describe('Get filtered unit info', () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
       {
-        types: [UnitType.CHARACTER],
+        type: UnitType.CHARACTER,
         elements: [1],
         weaponTypes: [1],
       },
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -183,13 +137,13 @@ describe('Get filtered unit info', () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
       {
-        types: [UnitType.CHARACTER],
+        type: UnitType.CHARACTER,
         elements: [1, 5],
         weaponTypes: [1, 3],
       },
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -204,13 +158,13 @@ describe('Get filtered unit info', () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
       {
-        types: [UnitType.DRAGON],
+        type: UnitType.DRAGON,
         elements: [1],
         weaponTypes: [1, 3],
       },
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -225,12 +179,12 @@ describe('Get filtered unit info', () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
       {
-        types: [UnitType.DRAGON],
+        type: UnitType.DRAGON,
         elements: [1, 5],
       },
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -245,13 +199,13 @@ describe('Get filtered unit info', () => {
     const inputData: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
       {
-        types: [UnitType.DRAGON],
+        type: UnitType.DRAGON,
         elements: [1, 5],
         weaponTypes: [1, 3],
       },
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id)
       .sort((a, b) => a - b);
 
@@ -265,7 +219,7 @@ describe('Get filtered unit info', () => {
   it('sorts by type, rarity 5-3, element, then weapon', async () => {
     const inputData: UnitFilterInputData<'unitId'> = generateFilterInput('unitId');
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo).map((unit) => unit.id);
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {}).map((unit) => unit.id);
 
     const expectedOrder = [
       // Chara
@@ -275,8 +229,6 @@ describe('Get filtered unit info', () => {
       10150404, 10550405, 10650402, 10850402, // R5 Light
       10150503, 10350504, 10350505, 10750505, // R5 Shadow
       10340203, // R4 Water Chara
-      // Dragon
-      20050116, 20050315, 20050414, // R5
     ];
 
     expect(unitIds.filter((unitId) => expectedOrder.includes(unitId))).toStrictEqual(expectedOrder);
@@ -288,9 +240,21 @@ describe('Get filtered unit info', () => {
       {keyword: 'AAAA'},
     );
 
-    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo)
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
       .map((unit) => unit.id);
 
     expect(unitIds).toStrictEqual([]);
+  });
+
+  it('filters by custom name', async () => {
+    const inputData: UnitFilterInputData<'unitId'> = overrideObject(
+      generateFilterInput('unitId'),
+      {keyword: 'AAAA'},
+    );
+
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {'AAAAA': 10750404})
+      .map((unit) => unit.id);
+
+    expect(unitIds).toStrictEqual([10750404]);
   });
 });

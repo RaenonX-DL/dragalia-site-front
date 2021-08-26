@@ -75,7 +75,11 @@ describe('Analysis lookup page', () => {
 
   beforeEach(() => {
     fnScroll = jest.spyOn(scrollUtils, 'scrollRefToTop').mockImplementation(() => void 0);
-    fnGetLookup = jest.spyOn(ApiRequestSender, 'analysisLookup');
+    fnGetLookup = jest.spyOn(ApiRequestSender, 'analysisLookup').mockResolvedValue({
+      code: ApiResponseCode.NOT_EXECUTED,
+      success: false,
+      analyses: [],
+    });
     fnGetLookupLanding = jest.spyOn(ApiRequestSender, 'unitInfoLookupLanding')
       .mockImplementation(async () => lookupLandingResponse);
     fnGaAnalysisLookup = jest.spyOn(GoogleAnalytics, 'analysisLookup');
@@ -87,7 +91,7 @@ describe('Analysis lookup page', () => {
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
@@ -101,7 +105,7 @@ describe('Analysis lookup page', () => {
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.type(keywordInput, 'AAA');
     userEvent.click(searchButton);
 
@@ -117,7 +121,7 @@ describe('Analysis lookup page', () => {
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.type(keywordInput, 'AAA');
     userEvent.click(searchButton);
 
@@ -145,7 +149,7 @@ describe('Analysis lookup page', () => {
     await waitFor(() => expect(screen.getByAltText('Flame')).toBeInTheDocument());
 
     const flameElemButton = screen.getByAltText('Flame');
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(flameElemButton);
     userEvent.click(searchButton);
 
@@ -162,7 +166,7 @@ describe('Analysis lookup page', () => {
     await waitFor(() => expect(screen.getByAltText('Axe')).toBeInTheDocument());
 
     const flameElemButton = screen.getByAltText('Axe');
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(flameElemButton);
     userEvent.click(searchButton);
 
@@ -178,7 +182,7 @@ describe('Analysis lookup page', () => {
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     typeInput(keywordInput, 'Karina', {rerender});
     userEvent.click(searchButton);
 
@@ -214,7 +218,7 @@ describe('Analysis lookup page', () => {
     const waterElemButton = screen.getByAltText('Water');
     const windElemButton = screen.getByAltText('Wind');
     const axeButton = screen.getByAltText('Axe');
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(waterElemButton);
     userEvent.click(windElemButton);
     userEvent.click(axeButton);
@@ -240,7 +244,7 @@ describe('Analysis lookup page', () => {
     renderReact(() => <UnitInfoLookup/>);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    const searchButton = screen.getByText(translationEN.misc.search);
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.type(keywordInput, 'AAAA');
     userEvent.click(searchButton);
 

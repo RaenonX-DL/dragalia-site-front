@@ -1,11 +1,7 @@
-import {UrlObject} from 'url';
-
 import {NextRouter, useRouter} from 'next/router';
 
 import {pathnameRemoveLang} from './path/process';
 
-
-export type NextUrl = UrlObject | string;
 
 type UseNextRouterReturn = NextRouter & {
   pathnameNoLang: string,

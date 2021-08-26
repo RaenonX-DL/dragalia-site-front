@@ -1,11 +1,11 @@
-import {UnitType} from '../../../../../api-def/api';
+import {UnitNameRefData, UnitType} from '../../../../../api-def/api';
 import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} from '../../../../../api-def/resources';
 import {UnitFilterInputData} from './types';
 
 
 export const generateFilterInput = <S extends string>(sortBy: S): UnitFilterInputData<S> => ({
   keyword: '',
-  types: [],
+  type: UnitType.CHARACTER,
   elements: [],
   weaponTypes: [],
   sortBy,
@@ -15,6 +15,7 @@ export const getFilteredUnitInfo = <S extends string>(
   inputData: UnitFilterInputData<S> | undefined,
   charaInfo: CharaInfo,
   dragonInfo: DragonInfo,
+  unitNameRef: UnitNameRefData,
 ): Array<UnitInfoData> => {
   if (!inputData) {
     return [];
@@ -32,35 +33,32 @@ export const getFilteredUnitInfo = <S extends string>(
     if (!inputData.keyword) {
       return true;
     }
+
     const keywordLower = inputData.keyword.toLowerCase();
 
-    return Object
+    const isKeywordPartialUnitName = Object
       .values(unit.name)
       .some((name) => name.toLowerCase().indexOf(keywordLower) >= 0);
+    const isKeywordPartialCustomName = Object.entries(unitNameRef)
+      .filter(([_, referencedUnitId]) => unit.id === referencedUnitId)
+      .some(([name, _]) => name.toLowerCase().indexOf(keywordLower) >= 0);
+
+    return isKeywordPartialUnitName || isKeywordPartialCustomName;
   };
 
-  // Add characters
-  if (!inputData.types.length || inputData.types.includes(UnitType.CHARACTER)) {
+  if (inputData.type === UnitType.CHARACTER) {
     ret.push(
       ...charaInfo
         .filter((chara) => (
           isUnitElementMatch(chara) && isUnitWeaponMatch(chara) && isUnitNameMatch(chara)
         ))
-        .map((info) => ({...info, type: UnitType.CHARACTER, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.CHARACTER})),
     );
-  }
-  // Add dragons
-  if (
-    // Specified to get the dragon analysis
-    inputData.types.includes(UnitType.DRAGON) ||
-    // No type and weapon type specified
-    // (if specified weapon type, then dragon analyses should be disregarded)
-    (!inputData.types.length && !inputData.weaponTypes.length)
-  ) {
+  } else if (inputData.type === UnitType.DRAGON) {
     ret.push(
       ...dragonInfo
         .filter((chara) => isUnitElementMatch(chara) && isUnitNameMatch(chara))
-        .map((info) => ({...info, type: UnitType.DRAGON, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.DRAGON})),
     );
   }
 

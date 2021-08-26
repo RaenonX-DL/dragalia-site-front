@@ -10,10 +10,15 @@ import {pathnameRemoveLang, urlRemoveLang} from '../../../utils/path/process';
 
 
 export type ButtonEntry = {
-  pathname: string,
   variant: ButtonVariant,
   text: string,
-}
+} & ({
+  pathname?: never,
+  onClick: () => void,
+} | {
+  pathname: string,
+  onClick?: () => void,
+})
 
 export type ButtonBarProps = {
   buttons: Array<ButtonEntry>,
@@ -28,13 +33,18 @@ export const ButtonBar = ({buttons, bottomMarginClass}: ButtonBarProps) => {
   return (
     <Row>
       <Col>
-        {buttons.map(({pathname, text, variant}, idx) => {
-          // Ensure pathname won't have language prepended
-          pathname = pathnameRemoveLang(pathname);
-          pathname = urlRemoveLang(pathname);
+        {buttons.map(({variant, text, pathname, onClick}, idx) => {
+          let href = undefined;
+          if (pathname) {
+            // Ensure pathname won't have language prepended
+            pathname = pathnameRemoveLang(pathname);
+            pathname = urlRemoveLang(pathname);
+
+            href = `/${lang}${pathname}`;
+          }
 
           return (
-            <Button variant={variant} className={buttonClassNames} href={`/${lang}${pathname}`} key={idx}>
+            <Button key={idx} variant={variant} className={buttonClassNames} href={href} onClick={onClick}>
               {text}
             </Button>
           );

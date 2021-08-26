@@ -13,10 +13,19 @@ export const injectMarkdownToText = (lang: SupportedLanguages, text: string, res
   // Affliction icons
   if (resources.afflictions?.length) {
     resources.afflictions.forEach((entry) => {
-      text = text.replace(
-        new RegExp(`(^|([^${iconSyntax.end}${IDENTIFIER_SEPARATOR} ]) ?)${entry.trans[lang]}`, 'gi'),
-        `$1${makeAfflictionIconMarkdown(entry)}${entry.trans[lang]}`,
-      );
+      if (lang === SupportedLanguages.EN) {
+        // EN cares about the spaces surrounding the affliction text
+        text = text.replace(
+          new RegExp(`(^|([^${iconSyntax.end}${IDENTIFIER_SEPARATOR} ]) )${entry.trans[lang]}`, 'gi'),
+          `$1${makeAfflictionIconMarkdown(entry)}${entry.trans[lang]}`,
+        );
+      } else {
+        // Other language disregards the spaces surrounding the affliction text
+        text = text.replace(
+          new RegExp(`(^|([^${iconSyntax.end}${IDENTIFIER_SEPARATOR} ]) ?)${entry.trans[lang]}`, 'gi'),
+          `$1${makeAfflictionIconMarkdown(entry)}${entry.trans[lang]}`,
+        );
+      }
     });
   }
 

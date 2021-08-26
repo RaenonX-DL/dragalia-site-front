@@ -187,7 +187,40 @@ describe('Unit tier note editing UI', () => {
   });
 
   it('sends correct payload after changing key points', async () => {
-    // Test add/delete/update
+    fnGetEditData.mockResolvedValueOnce({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: {
+        tier: {
+          conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
+        },
+        points: ['idA'],
+      },
+    });
+
+    renderReact(
+      () => <TierNoteEdit/>,
+      {hasSession: true, user: {isAdmin: true}, routerOptions: {query: {id: '10950101', lang: 'en'}}},
+    );
+
+    // Delete S1
+    const pointS1Remove = await screen.findByText('', {selector: 'i.bi-x-lg'});
+    userEvent.click(pointS1Remove);
+
+    // Add W1
+    const pointW1 = screen.getByText('W1');
+    userEvent.click(pointW1);
+
+    const updateButton = screen.getByText('Update');
+    userEvent.click(updateButton);
+
+    await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalledTimes(1));
+    expect(fnSubmitEdit.mock.calls[0][3]).toStrictEqual({
+      tier: {
+        conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
+      },
+      points: ['idB'],
+    });
   });
 
   it('blocks access from non-admin users', async () => {
@@ -207,5 +240,33 @@ describe('Unit tier note editing UI', () => {
 
     // Overview section loaded = page successfully loaded
     expect(await screen.findByText('Gala Leonidas')).toBeInTheDocument();
+  });
+
+  it('transforms note', async () => {
+    fnGetEditData.mockResolvedValueOnce({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: {
+        tier: {conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false}},
+        points: ['idA'],
+      },
+    });
+
+    const {rerender} = renderReact(
+      () => <TierNoteEdit/>,
+      {hasSession: true, user: {isAdmin: true}, routerOptions: {query: {id: '10950101', lang: 'en'}}},
+    );
+
+    const note = await screen.findByText('CoN AI');
+    typeInput(note, ' - :Summer Chelle:', {rerender});
+
+    const updateButton = screen.getByText('Update');
+    userEvent.click(updateButton);
+
+    await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalledTimes(1));
+    expect(fnSubmitEdit.mock.calls[0][3]).toStrictEqual({
+      tier: {conAi: {ranking: 'S', note: 'CoN AI - --10750404/Summer Chelle--', isCompDependent: false}},
+      points: ['idA'],
+    });
   });
 });

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {EnumEntry} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
@@ -18,23 +19,26 @@ import {UnitTypePicker} from './typePicker';
 import {UnitFilterInputData} from './types';
 
 
-type LookupInputProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry, V> = {
+export type UnitFilterProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry, V> = {
   onSearchRequested: (inputData: D) => (event: FormEvent<HTMLFormElement>) => void,
   sortOrderNames: { [sortBy in S]: GetTranslationFunction },
   generateInputData: () => D,
   getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D, V>,
+  disabled?: boolean,
 }
 
 export const UnitFilter = <S extends string,
   D extends UnitFilterInputData<S>,
   E extends CheckOption,
   E2 extends EnumEntry,
-  V>({
+  V
+>({
   onSearchRequested,
   sortOrderNames,
   generateInputData,
   getAdditionalInputs,
-}: LookupInputProps<S, D, E, E2, V>) => {
+  disabled,
+}: UnitFilterProps<S, D, E, E2, V>) => {
   const {t} = useI18n();
 
   const [inputData, setInputData] = React.useState<D>(generateInputData());
@@ -79,7 +83,7 @@ export const UnitFilter = <S extends string,
           onSearchRequested(inputData)(e);
         }}>
           <Form.Row>
-            <Col>
+            <Col xs={12} md className="mb-2 mb-md-0">
               <Form.Control
                 placeholder={t((t) => t.misc.searchKeyword)}
                 value={inputData.keyword}
@@ -89,7 +93,7 @@ export const UnitFilter = <S extends string,
                 })}
               />
             </Col>
-            <Col xs="auto">
+            <Col xs md="auto" className="text-right">
               <DropdownButton title={sortTitle} variant="outline-light">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
@@ -101,8 +105,8 @@ export const UnitFilter = <S extends string,
               </DropdownButton>
             </Col>
             <Col xs="auto" className="text-right">
-              <Button variant="outline-info" type="submit">
-                {t((t) => t.misc.search)}
+              <Button variant="outline-info" type="submit" disabled={disabled}>
+                {disabled ? <Spinner animation="grow"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
           </Form.Row>

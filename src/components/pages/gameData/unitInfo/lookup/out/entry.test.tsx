@@ -40,14 +40,7 @@ describe('Analysis lookup entry', () => {
   };
 
   it('renders analysis with correct info and link to click', async () => {
-    renderReact(() => (
-      <UnitInfoEntry
-        unitInfo={unitInfo}
-        analysisMeta={analysisMeta}
-        isFetchingMeta={false}
-        simplified={false}
-      />
-    ));
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={false} /> );
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -61,35 +54,11 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(/777/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
-    expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
-  });
-
-  it('shows that the analysis meta is fetching', async () => {
-    renderReact(() => (
-      <UnitInfoEntry
-        unitInfo={unitInfo}
-        isFetchingMeta
-        simplified={false}
-      />
-    ));
-
-    expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
-    expect(screen.queryByText(/777/)).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(translationEN.message.info.fetching)).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
 
   it('shows unavailable as expected', async () => {
-    renderReact(() => (
-      <UnitInfoEntry
-        unitInfo={unitInfo}
-        isFetchingMeta={false}
-        simplified={false}
-      />
-    ));
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified={false} /> );
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -100,20 +69,12 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     const unavailable = screen.getByText(translationEN.posts.analysis.error.unavailable);
     expect(unavailable).toHaveClass('text-danger');
   });
 
   it('shows available but simplified entry', async () => {
-    renderReact(() => (
-      <UnitInfoEntry
-        unitInfo={unitInfo}
-        analysisMeta={analysisMeta}
-        isFetchingMeta={false}
-        simplified
-      />
-    ));
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified />);
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -121,18 +82,11 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
 
   it('shows unavailable even if simplified', async () => {
-    renderReact(() => (
-      <UnitInfoEntry
-        unitInfo={unitInfo}
-        isFetchingMeta={false}
-        simplified
-      />
-    ));
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified /> );
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -143,7 +97,6 @@ describe('Analysis lookup entry', () => {
     expect(screen.queryByText(/777/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(translationEN.message.info.fetching)).not.toBeInTheDocument();
     const unavailable = screen.getByText(translationEN.posts.analysis.error.unavailable);
     expect(unavailable).toHaveClass('text-danger');
   });

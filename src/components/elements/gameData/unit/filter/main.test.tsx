@@ -139,7 +139,7 @@ describe('Unit filter input', () => {
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
-      {types: [UnitType.CHARACTER]},
+      {type: UnitType.CHARACTER},
     );
 
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
@@ -269,7 +269,7 @@ describe('Unit filter input', () => {
       generateFilterInput('unitId'),
       {
         keyword: 'test',
-        types: [UnitType.CHARACTER],
+        type: UnitType.CHARACTER,
         elements: [1],
         weaponTypes: [2],
       },
@@ -343,5 +343,22 @@ describe('Unit filter input', () => {
     );
 
     expect(screen.queryByText('ads-page-top')).not.toBeInTheDocument();
+  });
+
+  it('shows loading if disabled', async () => {
+    renderReact(
+      () => (
+        <UnitFilter
+          sortOrderNames={{unitId: () => 'Unit ID'}}
+          onSearchRequested={onSearchRequested}
+          generateInputData={() => generateFilterInput('unitId')}
+          disabled
+        />
+      ),
+      {hasSession: true, user: {adsFreeExpiry: new Date()}},
+    );
+
+    screen.debug();
+    expect(screen.queryByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
   });
 });

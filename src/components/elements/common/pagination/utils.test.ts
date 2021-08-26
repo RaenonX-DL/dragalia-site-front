@@ -1,5 +1,5 @@
 import {SpecialKey} from './types';
-import {getValidNewPage, pageToStartIdx, postCountToMaxPage, startIdxToPage} from './utils';
+import {getValidNewPage, pageToStartIdx, countToMaxPage, startIdxToPage} from './utils';
 
 describe('Pagination utils', () => {
   test('get valid of first at first', () => {
@@ -63,30 +63,30 @@ describe('Pagination utils', () => {
   });
 
   test('max page of 0 posts, limit 25', () => {
-    expect(postCountToMaxPage(0, 25)).toBe(0);
+    expect(countToMaxPage(0, 25)).toBe(0);
   });
 
   test('max page of 3 posts, limit 25', () => {
-    expect(postCountToMaxPage(3, 25)).toBe(1);
+    expect(countToMaxPage(3, 25)).toBe(1);
   });
 
   test('max page of 20 posts, limit 25', () => {
-    expect(postCountToMaxPage(20, 25)).toBe(1);
+    expect(countToMaxPage(20, 25)).toBe(1);
   });
 
   test('max page of 40 posts, limit 25', () => {
-    expect(postCountToMaxPage(40, 25)).toBe(2);
+    expect(countToMaxPage(40, 25)).toBe(2);
   });
 
   test('max page of 0 posts, limit 1', () => {
-    expect(postCountToMaxPage(0, 1)).toBe(0);
+    expect(countToMaxPage(0, 1)).toBe(0);
   });
 
   test('max page of 1 posts, limit 1', () => {
-    expect(postCountToMaxPage(1, 1)).toBe(1);
+    expect(countToMaxPage(1, 1)).toBe(1);
   });
 
   test('max page of 3 posts, limit 1', () => {
-    expect(postCountToMaxPage(3, 1)).toBe(3);
+    expect(countToMaxPage(3, 1)).toBe(3);
   });
 });

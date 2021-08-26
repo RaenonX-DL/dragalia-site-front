@@ -7,6 +7,7 @@ import {DataPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeDataUrl} from '../../../../../utils/path/make';
 import {AdsPageTop, AdsUnitKeyPointIndexEnd} from '../../../../elements/common/ads/main';
+import {InternalLink} from '../../../../elements/common/link/internal';
 import {Loading} from '../../../../elements/common/loading';
 import {Search} from '../../../../elements/input/search/main';
 import {useKeyPointData} from '../../hooks';
@@ -35,9 +36,12 @@ export const KeyPointIndexPage = () => {
               <small>{t((t) => t.game.unitTier.points.type[type])}</small>
             </Col>
             <Col>
-              <a href={makeDataUrl(DataPath.TIER_KEY_POINT, {id, lang})} target="_blank" rel="noreferrer">
-                {description}
-              </a>
+              <InternalLink
+                href={makeDataUrl(DataPath.TIER_KEY_POINT, {id, lang})}
+                locale={lang}
+                content={description}
+                newWindow
+              />
             </Col>
           </Row>
         )}

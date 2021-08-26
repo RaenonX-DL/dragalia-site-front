@@ -8,11 +8,9 @@ import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {EntryCommonProps} from './entry';
 
 
-type Props = EntryCommonProps & {
-  isFetchingMeta: boolean
-}
+type Props = EntryCommonProps
 
-export const EntryNoAnalysis = ({unitInfo, isFetchingMeta}: Props) => {
+export const EntryNoAnalysis = ({unitInfo}: Props) => {
   const {t, lang} = useI18n();
 
   return (
@@ -23,15 +21,9 @@ export const EntryNoAnalysis = ({unitInfo, isFetchingMeta}: Props) => {
         </Col>
       </Row>
       <Row noGutters className="align-items-center" style={{height: '1.5rem'}}>
-        {
-          isFetchingMeta ?
-            <Col className="text-muted text-center">
-              {t((t) => t.message.info.fetching)}
-            </Col> :
-            <Col className="text-danger text-center">
-              {t((t) => t.posts.analysis.error.unavailable)}
-            </Col>
-        }
+        <Col className="text-danger text-center">
+          {t((t) => t.posts.analysis.error.unavailable)}
+        </Col>
       </Row>
     </>
   );

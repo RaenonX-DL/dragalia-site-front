@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {SequencedPostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
+import {InternalLink} from '../../common/link/internal';
 
 
 export type LinkGenerator = (postId: number) => string;
@@ -28,7 +29,7 @@ export const PostEntry = <E extends SequencedPostInfo>({
   generateLink,
   renderPostBadges,
 }: PostEntryPropsInternal<E>) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   return (
     <div className="rounded bg-black-32 p-3">
@@ -43,7 +44,15 @@ export const PostEntry = <E extends SequencedPostInfo>({
         </Col>
       </Row>
       <Row>
-        <Col><h5><a href={generateLink(entry.seqId)}>{entry.title}</a></h5></Col>
+        <Col>
+          <h5>
+            <InternalLink
+              href={generateLink(entry.seqId)}
+              locale={lang}
+              content={entry.title}
+            />
+          </h5>
+        </Col>
       </Row>
       <Row>
         <Col lg={6} className="text-center">

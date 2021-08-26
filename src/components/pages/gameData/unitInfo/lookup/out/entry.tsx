@@ -16,10 +16,9 @@ export type EntryCommonProps = {
 
 type AnalysisEntryProps = EntryCommonProps & Omit<EntryWithAnalysisProps, 'analysisMeta'> & {
   analysisMeta?: UnitInfoLookupEntry,
-  isFetchingMeta: boolean,
 }
 
-export const UnitInfoEntry = ({unitInfo, analysisMeta, isFetchingMeta, simplified}: AnalysisEntryProps) => {
+export const UnitInfoEntry = ({unitInfo, analysisMeta, simplified}: AnalysisEntryProps) => {
   return (
     <Row noGutters className="rounded bg-black-32 p-2">
       <Col xs="auto" className="mr-2">
@@ -29,7 +28,7 @@ export const UnitInfoEntry = ({unitInfo, analysisMeta, isFetchingMeta, simplifie
         {
           analysisMeta ?
             <EntryWithAnalysis unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={simplified}/> :
-            <EntryNoAnalysis unitInfo={unitInfo} isFetchingMeta={isFetchingMeta}/>
+            <EntryNoAnalysis unitInfo={unitInfo}/>
         }
       </Col>
     </Row>

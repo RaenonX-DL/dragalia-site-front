@@ -2,7 +2,7 @@ import React from 'react';
 
 import {UnitType} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {CheckboxGroup} from '../../../common/check/group/checkbox';
+import {RadioGroup} from '../../../common/check/group/radio';
 import {CheckOption} from '../../../common/check/types';
 import {UnitFilterInputData} from './types';
 
@@ -30,13 +30,14 @@ export const UnitTypePicker = <S extends string, D extends UnitFilterInputData<S
   ];
 
   return (
-    <CheckboxGroup
+    <RadioGroup
       options={unitTypes}
       inputData={inputData}
       setInputData={setInputData}
-      getValue={(inputData) => inputData.types}
+      getValue={(inputData) => inputData.type}
       getValueOfOption={(option) => option.code}
-      getUpdatedInputData={(types) => ({...inputData, types})}
+      getUpdatedInputData={(type) => ({...inputData, type})}
+      groupName="unitType"
     />
   );
 };

@@ -15,8 +15,7 @@ enum GAEvent {
 }
 
 enum GAParameter {
-  UNIT_CHARA = 'unit_chara',
-  UNIT_DRAGON = 'unit_dragon',
+  UNIT_TYPE = 'unit_type',
   ELEM_FLAME = 'elem_flame',
   ELEM_WATER = 'elem_water',
   ELEM_WIND = 'elem_wind',
@@ -96,8 +95,7 @@ export class GoogleAnalytics {
       GAEvent.ANALYSIS_LOOKUP,
       {
         'keyword': inputData.keyword,
-        [GAParameter.UNIT_CHARA]: inputData.types.includes(UnitType.CHARACTER),
-        [GAParameter.UNIT_DRAGON]: inputData.types.includes(UnitType.DRAGON),
+        [GAParameter.UNIT_TYPE]: UnitType[inputData.type],
         [GAParameter.ELEM_FLAME]: inputData.elements.includes(Element.FLAME),
         [GAParameter.ELEM_WATER]: inputData.elements.includes(Element.WATER),
         [GAParameter.ELEM_WIND]: inputData.elements.includes(Element.WIND),

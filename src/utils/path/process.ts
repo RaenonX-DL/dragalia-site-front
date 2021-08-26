@@ -5,6 +5,8 @@ import {PATH_ROOT} from '../../const/path/definitions';
 import {DEFAULT_LANG} from '../../i18n/langCode';
 
 
+export const makeLangUrl = (url: string, lang: SupportedLanguages) => `/${lang}${urlRemoveLang(url)}`;
+
 export const urlRemoveLang = (url: string) => {
   for (const lang of Object.values(SupportedLanguages)) {
     const urlPrefix = `/${lang}`;

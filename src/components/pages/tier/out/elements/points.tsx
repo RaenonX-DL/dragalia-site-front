@@ -8,6 +8,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsUnitKeyPointTop} from '../../../../elements/common/ads/main';
 import {IconEdit} from '../../../../elements/common/icons';
+import {InternalLink} from '../../../../elements/common/link/internal';
 import {pointTypeWrapperClassName} from '../../const';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';
@@ -22,7 +23,7 @@ type Props = {
 }
 
 export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   const pointListItems: Array<CategorizedPointEntries> = categorizeKeyPoints(keyPointsData, keyPointsIds)
@@ -59,9 +60,12 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
         <>
           <hr className="my-2"/>
           <div className="text-right">
-            <a className={styles.editIcon} href={GeneralPath.TIER_POINTS_EDIT}>
-              <IconEdit/>
-            </a>
+            <InternalLink
+              className={styles.editIcon}
+              href={GeneralPath.TIER_POINTS_EDIT}
+              locale={lang}
+              content={<IconEdit/>}
+            />
           </div>
         </>
       }

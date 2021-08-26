@@ -19,7 +19,7 @@ describe('Post list entry', () => {
     modifiedEpoch: 1000000,
     publishedEpoch: 90000,
   };
-  const fakeLink = 'link';
+  const fakeLink = '/link';
 
   beforeEach(() => {
     generateLink = jest.fn().mockImplementation(() => fakeLink);
@@ -38,7 +38,7 @@ describe('Post list entry', () => {
     // Check title existence and clickable
     const linkElement = screen.getByText('title 7');
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement) .toHaveAttribute('href', fakeLink);
+    expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
     // Check view count existence
     expect(screen.queryByText('Viewed 777 times')).toBeInTheDocument();
     // Check meta existence

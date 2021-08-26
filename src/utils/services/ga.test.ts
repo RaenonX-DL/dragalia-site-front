@@ -10,17 +10,17 @@ describe('Google Analytics event sender', () => {
 
   it('sends analysis lookup event correctly', async () => {
     GoogleAnalytics.analysisLookup({
-      types: [UnitType.CHARACTER],
+      type: UnitType.CHARACTER,
       elements: [1, 2],
       weaponTypes: [4, 5],
       keyword: 'A',
+      sortBy: 'unitId',
     });
 
     expect(fnSendEvent).toHaveBeenCalledWith(
       'analysis_lookup',
       {
-        unit_chara: true,
-        unit_dragon: false,
+        unit_type: 'CHARACTER',
         elem_flame: true,
         elem_water: true,
         elem_wind: false,

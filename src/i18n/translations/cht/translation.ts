@@ -522,7 +522,6 @@ export const translation: TranslationStruct = {
         '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
         '### Email 通知系統完成後\n\n' +
         '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
-      fetching: '獲取資料中...',
       welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
@@ -539,6 +538,8 @@ export const translation: TranslationStruct = {
     openGif: '點擊以開啟 GIF 圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
+    showMore: '顯示更多',
+    showAll: '顯示全部',
     update: '更新',
     sortBy: '排序依據 {{order}}',
     timestamp: {

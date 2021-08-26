@@ -26,24 +26,12 @@ describe('Tier list page', () => {
       data: {
         10650503: {
           points: ['61174cef5dc5094fe82e9ee9'],
-          tier: {
-            conSolo: {
-              isCompDependent: false,
-              ranking: 'S',
-              note: 'Some note.',
-            },
-          },
+          tier: {conSolo: {isCompDependent: false, ranking: 'S', note: 'Some note.'}},
           lastUpdateEpoch: 1628734262003,
         },
         10950501: {
           points: [],
-          tier: {
-            conCoop: {
-              isCompDependent: false,
-              ranking: 'A',
-              note: 'Some note.',
-            },
-          },
+          tier: {conCoop: {isCompDependent: false, ranking: 'A', note: 'Some note.'}},
           lastUpdateEpoch: 1628534262003,
         },
       },
@@ -59,7 +47,7 @@ describe('Tier list page', () => {
   it('performs search and return results without error', async () => {
     renderReact(() => <TierList/>);
 
-    const searchButton = screen.getByText('Search');
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     // Partial text of the tier note tips
@@ -69,7 +57,7 @@ describe('Tier list page', () => {
   it('loads the tier notes correctly', async () => {
     renderReact(() => <TierList/>);
 
-    const searchButton = screen.getByText('Search');
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     // S tier of 10650503 CoN Solo
@@ -106,7 +94,7 @@ describe('Tier list page', () => {
     const ssOnlyButton = screen.getByText('SS');
     userEvent.click(ssOnlyButton);
 
-    const searchButton = screen.getByText('Search');
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
     // S / A / B / C should appear exactly once

@@ -8,6 +8,7 @@ import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {Image} from '../../common/image';
+import {InternalLink} from '../../common/link/internal';
 import {Loading} from '../../common/loading';
 import {ModalMappedContent} from '../../common/modal/mapped';
 import {ModalStateMapped} from '../../common/modal/types';
@@ -43,15 +44,21 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
       {
         hasAnalysis &&
         <Button variant="link">
-          <a href={makePostUrl(PostPath.ANALYSIS, {pid: unit.id, lang})} onClick={onLinkClicked}>
-            {t((t) => t.game.unitInfo.links.analysis)}
-          </a>
+          <InternalLink
+            href={makePostUrl(PostPath.ANALYSIS, {pid: unit.id, lang})}
+            locale={lang}
+            onClick={onLinkClicked}
+            content={t((t) => t.game.unitInfo.links.analysis)}
+          />
         </Button>
       }
       <Button variant="link">
-        <a href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})} onClick={onLinkClicked}>
-          {t((t) => t.game.unitInfo.links.info)}
-        </a>
+        <InternalLink
+          href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})}
+          locale={lang}
+          onClick={onLinkClicked}
+          content={t((t) => t.game.unitInfo.links.info)}
+        />
       </Button>
     </div>
   );
@@ -99,9 +106,12 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
           className="unitIcon"
         />
       }
-      <a className={className || ''} style={style} onClick={onLinkClicked}>
-        {unit.name}
-      </a>
+      <InternalLink
+        className={className || ''}
+        style={style}
+        onClick={onLinkClicked}
+        content={unit.name}
+      />
     </>
   );
 };
