@@ -344,4 +344,21 @@ describe('Unit filter input', () => {
 
     expect(screen.queryByText('ads-page-top')).not.toBeInTheDocument();
   });
+
+  it('shows loading if disabled', async () => {
+    renderReact(
+      () => (
+        <UnitFilter
+          sortOrderNames={{unitId: () => 'Unit ID'}}
+          onSearchRequested={onSearchRequested}
+          generateInputData={() => generateFilterInput('unitId')}
+          disabled
+        />
+      ),
+      {hasSession: true, user: {adsFreeExpiry: new Date()}},
+    );
+
+    screen.debug();
+    expect(screen.queryByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
+  });
 });

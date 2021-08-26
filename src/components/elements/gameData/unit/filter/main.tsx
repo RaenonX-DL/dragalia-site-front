@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {EnumEntry} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
@@ -105,7 +106,7 @@ export const UnitFilter = <S extends string,
             </Col>
             <Col xs="auto" className="text-right">
               <Button variant="outline-info" type="submit" disabled={disabled}>
-                {t((t) => t.misc.search)}
+                {disabled ? <Spinner animation="grow"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
           </Form.Row>
