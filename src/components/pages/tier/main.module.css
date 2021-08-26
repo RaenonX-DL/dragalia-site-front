@@ -69,6 +69,7 @@ a.unitPoint:hover {
 a.editIcon {
   border: 0;
   color: #bebebe;
+  margin-left: 0.5rem;
   font-size: 1rem;
 }
 a.editIcon:hover {

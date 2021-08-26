@@ -83,7 +83,7 @@ export const UnitFilter = <S extends string,
           onSearchRequested(inputData)(e);
         }}>
           <Form.Row>
-            <Col>
+            <Col xs={12} md className="mb-2 mb-md-0">
               <Form.Control
                 placeholder={t((t) => t.misc.searchKeyword)}
                 value={inputData.keyword}
@@ -93,7 +93,7 @@ export const UnitFilter = <S extends string,
                 })}
               />
             </Col>
-            <Col xs="auto">
+            <Col xs md="auto" className="text-right">
               <DropdownButton title={sortTitle} variant="outline-light">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
