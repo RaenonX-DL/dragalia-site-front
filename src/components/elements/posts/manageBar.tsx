@@ -4,7 +4,8 @@ import {useI18n} from '../../../i18n/hook';
 import {ButtonBar, ButtonBarProps, ButtonEntry} from '../common/buttonBar';
 
 
-type NewButtonEntry = Pick<ButtonEntry, 'pathname'> & {
+type NewButtonEntry = {
+  pathname: string,
   text?: string,
 }
 

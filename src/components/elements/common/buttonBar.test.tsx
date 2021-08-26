@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api';
@@ -31,5 +32,17 @@ describe('Button bar', () => {
     ]}/>);
 
     expect(screen.getByText('About')).toHaveAttribute('href', `/${SupportedLanguages.EN}${GeneralPath.ABOUT}`);
+  });
+
+  it('triggers `onClick`', async () => {
+    const onClick = jest.fn();
+    renderReact(() => <ButtonBar buttons={[
+      {text: 'About', variant: 'primary', onClick},
+    ]}/>);
+
+    const button = screen.getByText('About');
+    userEvent.click(button);
+
+    expect(onClick).toHaveBeenCalled();
   });
 });
