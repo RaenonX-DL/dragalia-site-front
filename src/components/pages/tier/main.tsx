@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {ApiResponseCode, Dimension, UnitTierNoteGetResponse} from '../../../api-def/api';
+import {Dimension, UnitTierData, UnitTierNoteGetResponse} from '../../../api-def/api';
 import {GeneralPath} from '../../../const/path/definitions';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {ButtonBar} from '../../elements/common/buttonBar';
-import {useFetchState} from '../../elements/common/fetch';
+import {useFetchStateProcessed} from '../../elements/common/fetch';
 import {UnitSearcher} from '../../elements/gameData/unit/searcher/main';
 import {MaxEntriesToDisplay, orderName} from './const';
 import {useKeyPointData} from './hooks';
@@ -25,14 +25,11 @@ export const TierList = () => {
   const {
     fetchStatus: tierData,
     fetchFunction: fetchTierNotes,
-  } = useFetchState<UnitTierNoteGetResponse>(
-    {
-      code: ApiResponseCode.NOT_EXECUTED,
-      success: false,
-      data: {},
-    },
+  } = useFetchStateProcessed<UnitTierData, UnitTierNoteGetResponse>(
+    {},
     () => ApiRequestSender.getUnitTierNote(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch tier note data.',
+    (response) => response.data,
   );
 
   const options: Array<DisplayOption> = (Object.keys(Dimension).concat('all') as Array<Display>).map((display) => {
@@ -67,12 +64,14 @@ export const TierList = () => {
       }
       renderOutput={(props) => (
         <TierListOutput
-          tierData={tierData}
+          tierData={tierData.data}
           keyPointsData={keyPointData}
           {...props}
         />
       )}
       renderCount={MaxEntriesToDisplay}
+      isUnitPrioritized={(info) => info.id in tierData.data}
+      isLoading={tierData.fetching}
     />
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UnitInfoLookupLandingResponse} from '../../../../../api-def/api';
+import {ApiResponseCode, UnitInfoLookupLandingResponse} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../const/path/definitions';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
@@ -28,8 +28,21 @@ export const UnitInfoLookup = () => {
     () => ApiRequestSender.unitInfoLookupLanding(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch the weapon type enums.',
   );
+  const {
+    fetchStatus: analysisMeta,
+    fetchFunction: fetchAnalysisMeta,
+  } = useFetchState(
+    {
+      code: ApiResponseCode.NOT_EXECUTED,
+      success: false,
+      analyses: [],
+    },
+    () => ApiRequestSender.analysisLookup(context?.session?.user.id.toString() || '', lang),
+    'Failed to fetch analysis meta.',
+  );
 
   fetchLookupLanding();
+  fetchAnalysisMeta();
 
   return (
     <>
@@ -58,9 +71,13 @@ export const UnitInfoLookup = () => {
             bottomMarginClass="mb-2"
           />
         }
-        renderOutput={(props) => <UnitInfoLookupOutput {...props}/>}
-        onSearchRequested={(inputData) => GoogleAnalytics.analysisLookup(inputData)}
+        renderOutput={(props) => (
+          <UnitInfoLookupOutput analyses={analysisMeta.data.analyses} {...props}/>
+        )}
         renderCount={MaxEntriesToDisplay}
+        onSearchRequested={(inputData) => GoogleAnalytics.analysisLookup(inputData)}
+        isUnitPrioritized={(info) => info.id in analysisMeta.data.analyses}
+        isLoading={analysisMeta.fetching}
       />
     </>
   );

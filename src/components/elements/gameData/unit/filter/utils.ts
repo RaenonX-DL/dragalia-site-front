@@ -52,13 +52,13 @@ export const getFilteredUnitInfo = <S extends string>(
         .filter((chara) => (
           isUnitElementMatch(chara) && isUnitWeaponMatch(chara) && isUnitNameMatch(chara)
         ))
-        .map((info) => ({...info, type: UnitType.CHARACTER, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.CHARACTER})),
     );
   } else if (inputData.type === UnitType.DRAGON) {
     ret.push(
       ...dragonInfo
         .filter((chara) => isUnitElementMatch(chara) && isUnitNameMatch(chara))
-        .map((info) => ({...info, type: UnitType.DRAGON, analysisMeta: null})),
+        .map((info) => ({...info, type: UnitType.DRAGON})),
     );
   }
 

@@ -19,15 +19,13 @@ type Props = PropsUseKeyPointData & UnitSearchOutputProps<SortOrder, InputData> 
   tierData: UnitTierData,
 }
 
-export const TierListOutput = ({inputData, tierData, processedUnitInfo, keyPointsData}: Props) => {
+export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherUnitInfo, keyPointsData}: Props) => {
   const {t} = useI18n();
 
-  const entryPackHasTierNote = processedUnitInfo
-    .filter((info) => info.id in tierData)
+  const entryPackHasTierNote = prioritizedUnitInfo
     .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}))
     .sort(sortFunc[inputData.sortBy]);
-  const entryPackNoTierNote = processedUnitInfo
-    .filter((info) => !(info.id in tierData))
+  const entryPackNoTierNote = otherUnitInfo
     .map((info) => ({unitInfo: info, tierNote: undefined}));
 
   return (
