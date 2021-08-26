@@ -1,5 +1,6 @@
 import {SpecialKey} from './types';
 
+
 export const getValidNewPage = (newPage: number, currentPage: number, maxPage: number) => {
   if (newPage === SpecialKey.FIRST) {
     return 1;
@@ -28,7 +29,7 @@ export const startIdxToPage = (startIdx: number, pageLimit: number) => {
   return Math.floor(startIdx / pageLimit) + 1;
 };
 
-export const postCountToMaxPage = (postCount: number, pageLimit: number) => {
+export const countToMaxPage = (postCount: number, pageLimit: number) => {
   if (postCount <= 0) {
     return 0;
   }

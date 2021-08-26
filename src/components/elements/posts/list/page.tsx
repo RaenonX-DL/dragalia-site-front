@@ -11,7 +11,7 @@ import {AdsPostList} from '../../common/ads/main';
 import {FetchStatusSimple, isNotFetched} from '../../common/fetch';
 import {Paginator} from '../../common/pagination/paginator';
 import {PaginationState} from '../../common/pagination/types';
-import {pageToStartIdx, postCountToMaxPage, startIdxToPage} from '../../common/pagination/utils';
+import {pageToStartIdx, countToMaxPage, startIdxToPage} from '../../common/pagination/utils';
 import {AlertFetchListFailed} from '../alert';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
 
@@ -77,7 +77,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
               ...status.paginationState,
               currentStart: data.startIdx,
               currentPage: startIdxToPage(data.startIdx, pageLimit),
-              maxPage: postCountToMaxPage(data.postCount, pageLimit),
+              maxPage: countToMaxPage(data.postCount, pageLimit),
             },
             fetched: true,
             fetching: false,
