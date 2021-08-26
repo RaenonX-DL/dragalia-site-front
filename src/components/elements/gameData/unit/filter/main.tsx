@@ -23,6 +23,7 @@ export type UnitFilterProps<S extends string, D extends UnitFilterInputData<S>, 
   sortOrderNames: { [sortBy in S]: GetTranslationFunction },
   generateInputData: () => D,
   getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D, V>,
+  disabled?: boolean,
 }
 
 export const UnitFilter = <S extends string,
@@ -35,6 +36,7 @@ export const UnitFilter = <S extends string,
   sortOrderNames,
   generateInputData,
   getAdditionalInputs,
+  disabled,
 }: UnitFilterProps<S, D, E, E2, V>) => {
   const {t} = useI18n();
 
@@ -102,7 +104,7 @@ export const UnitFilter = <S extends string,
               </DropdownButton>
             </Col>
             <Col xs="auto" className="text-right">
-              <Button variant="outline-info" type="submit">
+              <Button variant="outline-info" type="submit" disabled={disabled}>
                 {t((t) => t.misc.search)}
               </Button>
             </Col>

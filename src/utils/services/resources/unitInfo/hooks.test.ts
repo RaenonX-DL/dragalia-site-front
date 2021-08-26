@@ -33,4 +33,13 @@ describe('Unit info hook', () => {
 
     expect(result.current.getUnitName(1, SupportedLanguages.EN)).toBeUndefined();
   });
+
+  it('returns is fetched once all info are fetched', async () => {
+    const {result} = renderReactHook(() => useUnitInfo());
+
+    await waitFor(() => expect(result.current.isFetched).toBeTruthy());
+    expect(result.current.charaInfo.length).toBeGreaterThan(0);
+    expect(result.current.dragonInfo.length).toBeGreaterThan(0);
+    expect(result.current.unitInfoMap.size).toBeGreaterThan(0);
+  });
 });

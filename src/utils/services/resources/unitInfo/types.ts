@@ -7,6 +7,7 @@ export type UseUnitInfoReturn = {
   dragonInfo: DragonInfo,
   unitInfoMap: UnitInfoMap<number>,
   getUnitName: FuncGetUnitName,
+  isFetched: boolean,
 }
 
 export type UseUnitDataReturn = {
