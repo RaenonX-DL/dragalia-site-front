@@ -14,14 +14,14 @@ describe('Navigation bar', () => {
     renderReact(() => <Navigation/>);
 
     // One for navbar, another one for title bar
-    expect(screen.queryByText(translationEN.meta.inUse.site.title)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.meta.inUse.thanks.title)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.posts.quest.titleSelf)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.nav.unitInfo)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.posts.misc.titleSelf)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.game.data.titleSelf)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.game.tools.titleSelf)).toBeInTheDocument();
-    expect(screen.queryByText(translationEN.meta.inUse.about.title)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.meta.inUse.site.title)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.meta.inUse.thanks.title)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.posts.quest.titleSelf)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.nav.unitInfo)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.posts.misc.titleSelf)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.game.data.titleSelf)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.game.tools.titleSelf)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.meta.inUse.about.title)).toBeInTheDocument();
   });
 
   it('shows the clicked item as active', async () => {

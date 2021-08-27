@@ -51,9 +51,9 @@ describe('Analysis lookup entry', () => {
         'href',
         makePostUrl(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN}),
       );
-    expect(screen.queryByText(/777/)).toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
+    expect(screen.getByText(/777/)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
 

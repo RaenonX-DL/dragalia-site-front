@@ -43,7 +43,7 @@ describe('Quest page', () => {
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryByText(response.general)).toBeInTheDocument();
+    expect(screen.getByText(response.general)).toBeInTheDocument();
   });
 
   it('allows access for non-admin users', () => {
@@ -54,7 +54,7 @@ describe('Quest page', () => {
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryByText(response.general)).toBeInTheDocument();
+    expect(screen.getByText(response.general)).toBeInTheDocument();
   });
 
   it('allows access for admin users', () => {
@@ -65,14 +65,14 @@ describe('Quest page', () => {
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryByText(response.general)).toBeInTheDocument();
+    expect(screen.getByText(response.general)).toBeInTheDocument();
   });
 
   it('returns 404 if the post is not found', () => {
     renderReact(() => <QuestPage response={null}/>);
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
-    expect(screen.queryByText(description404)).toBeInTheDocument();
+    expect(screen.getByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(response.general)).not.toBeInTheDocument();
   });
 

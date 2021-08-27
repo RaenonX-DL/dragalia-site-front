@@ -34,7 +34,7 @@ describe('Nav dropdown', () => {
 
     const dummyLink = screen.getByText('dummy');
     expect(dummyLink).toHaveAttribute('href', GeneralPath.ABOUT);
-    expect(screen.queryByText('header')).toHaveAttribute('role', 'heading');
+    expect(screen.getByText('header')).toHaveAttribute('role', 'heading');
     expect(screen.getByTestId('divider')).toHaveAttribute('role', 'separator');
   });
 

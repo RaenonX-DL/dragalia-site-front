@@ -64,7 +64,7 @@ describe('Analysis page', () => {
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryByText(charaResponse.forceStrikes)).toBeInTheDocument();
+    expect(screen.getByText(charaResponse.forceStrikes)).toBeInTheDocument();
   });
 
   it('allows access for non-admin users (chara)', () => {

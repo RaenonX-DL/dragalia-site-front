@@ -98,7 +98,7 @@ describe('Tier list page', () => {
     userEvent.click(searchButton);
 
     // S / A / B / C should appear exactly once
-    expect(screen.queryByText('S')).toBeInTheDocument();
+    expect(screen.getByText('S')).toBeInTheDocument();
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
     expect(screen.getByText('C')).toBeInTheDocument();

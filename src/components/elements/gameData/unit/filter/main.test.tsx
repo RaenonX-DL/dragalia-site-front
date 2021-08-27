@@ -358,7 +358,6 @@ describe('Unit filter input', () => {
       {hasSession: true, user: {adsFreeExpiry: new Date()}},
     );
 
-    screen.debug();
-    expect(screen.queryByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
   });
 });

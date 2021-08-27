@@ -44,7 +44,7 @@ describe('Quest edit page', () => {
   it('blocks access for anonymous users', () => {
     renderReact(() => <QuestEdit response={questPost}/>);
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+    expect(screen.getByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(questPost.video)).not.toBeInTheDocument();
   });
@@ -55,7 +55,7 @@ describe('Quest edit page', () => {
       {hasSession: true},
     );
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+    expect(screen.getByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(questPost.video)).not.toBeInTheDocument();
   });

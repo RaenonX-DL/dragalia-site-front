@@ -40,7 +40,7 @@ describe('Post list entry', () => {
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
     // Check view count existence
-    expect(screen.queryByText('Viewed 777 times')).toBeInTheDocument();
+    expect(screen.getByText('Viewed 777 times')).toBeInTheDocument();
     // Check meta existence
     expect(screen.getByText(/Published/)).toBeInTheDocument();
     expect(screen.getByText(/Modified/)).toBeInTheDocument();
