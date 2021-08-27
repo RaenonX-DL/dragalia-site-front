@@ -1,10 +1,4 @@
-import React from 'react';
-
-import {Constructing} from '../../../src/components/pages/constructing';
+import {MiscPost} from '../../../src/components/pages/posts/misc/output/main';
 
 
-const MiscPostPage = () => {
-  return <Constructing/>;
-};
-
-export default MiscPostPage;
+export default MiscPost;

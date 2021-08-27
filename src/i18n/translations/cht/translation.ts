@@ -606,6 +606,24 @@ export const translation: TranslationStruct = {
             description: '詳情請進入頁面查看。',
           },
         },
+        misc: {
+          edit: {
+            title: '編輯貼文 - {{title}}',
+            description: '貼文: {{title}} 的編輯頁面。',
+          },
+          list: {
+            title: '其他貼文目錄',
+            description: '其他龍絆相關貼文的目錄。',
+          },
+          new: {
+            title: '新增其他文章',
+            description: '其他文章的新增頁面。',
+          },
+          post: {
+            title: '【其他】{{title}}',
+            description: '詳情請進入頁面查看。',
+          },
+        },
       },
       tier: {
         lookup: {

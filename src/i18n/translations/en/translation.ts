@@ -651,6 +651,24 @@ export const translation: TranslationStruct = {
             description: 'Visit for the details.',
           },
         },
+        misc: {
+          edit: {
+            title: 'Edit post - {{title}}',
+            description: 'Page to edit post: {{title}}.',
+          },
+          list: {
+            title: 'Index of miscellaneous posts',
+            description: 'Index page of the other miscellaneous posts.',
+          },
+          new: {
+            title: 'New misc. post',
+            description: 'Page to create a new miscellaneous post.',
+          },
+          post: {
+            title: '【Misc】{{title}}',
+            description: 'Visit for the details.',
+          },
+        },
       },
       tier: {
         lookup: {

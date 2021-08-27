@@ -511,6 +511,12 @@ export type TranslationStruct = {
           new: PageMetaTranslations,
           post: PageMetaTranslations,
         },
+        misc: {
+          edit: PageMetaTranslations,
+          list: PageMetaTranslations,
+          new: PageMetaTranslations,
+          post: PageMetaTranslations,
+        },
       },
       tier: {
         lookup: PageMetaTranslations,

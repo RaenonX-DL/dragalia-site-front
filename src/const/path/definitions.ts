@@ -18,6 +18,7 @@ export enum PostPath {
   ANALYSIS = '/analysis/[pid]',
   ANALYSIS_EDIT = '/analysis/[pid]/edit',
   MISC = '/misc/[pid]',
+  MISC_EDIT = '/misc/[pid]/edit',
 }
 
 export enum GeneralPath {
@@ -26,13 +27,14 @@ export enum GeneralPath {
   // Posts
   QUEST_LIST = '/quest',
   QUEST_NEW = '/quest/new',
+  MISC_LIST = '/misc',
+  MISC_NEW = '/misc/new',
   ANALYSIS_LIST = '/analysis',
   ANALYSIS_NEW_CHARA = '/analysis/new/chara',
   ANALYSIS_NEW_DRAGON = '/analysis/new/dragon',
   TIER_LOOKUP = '/tier',
   TIER_POINTS_INDEX = '/tier/points',
   TIER_POINTS_EDIT = '/tier/points/edit',
-  MISC_LIST = '/misc',
   // In-game data
   EX = '/ex',
   INFO_LOOKUP = '/info',
