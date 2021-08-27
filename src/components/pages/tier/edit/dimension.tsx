@@ -47,7 +47,7 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
 
   return (
     <Row noGutters className="bg-black-32 p-3 rounded mb-2">
-      <Col lg={4} className="pr-lg-3 mb-n3">
+      <Col lg={4} className="pr-lg-3 mb-lg-n3">
         {t((t) => t.game.unitTier.dimension[dimension].name)}
         <hr className="my-2"/>
         <InputPanel
