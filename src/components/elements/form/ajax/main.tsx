@@ -30,7 +30,7 @@ export const AjaxForm = <R extends BaseResponse>({
   submitAtTop = false,
   children,
 }: Props<R>) => {
-  const {clearUnload} = useOnBeforeUnload([unloadDependencies]);
+  const {clearUnload} = useOnBeforeUnload(unloadDependencies);
   const [modal, setModal] = React.useState<ModalStateFlex>({
     show: false,
     title: '',
