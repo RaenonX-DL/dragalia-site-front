@@ -749,7 +749,6 @@ export const translation: TranslationStruct = {
       postNotExists: '貼文不存在。',
       preview: '預覽',
       publish: '發布貼文',
-      publishFailed: '發布失敗',
     },
     message: {
       altLang: '本貼文沒有語言為 {{langUi}} 的版本。因此，以下顯示語言為 {{langPost}} 的版本替代。',

@@ -801,7 +801,6 @@ export const translation: TranslationStruct = {
       postNotExists: 'Post not exists.',
       preview: 'Preview',
       publish: 'Publish',
-      publishFailed: 'Failed to publish',
     },
     message: {
       altLang: 'This post does not have a version in {{langUi}}. Therefore, we\'re displaying it in {{langPost}}.',

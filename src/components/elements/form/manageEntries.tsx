@@ -1,14 +1,10 @@
-import React, {FormEvent} from 'react';
-
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import React from 'react';
 
 import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from '../../../api-def/api';
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
-import {useOnBeforeUnload} from '../../hooks/onBeforeUnload';
+import {AjaxForm} from './ajax/main';
 import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
 
@@ -52,8 +48,6 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
     isInit: true,
   });
 
-  const {clearUnload} = useOnBeforeUnload([state.data]);
-
   const elementCounter = getElementCounter(state.data.map((entry) => getElementUniqueIdentifier(entry)));
 
   const isValid = (
@@ -62,41 +56,28 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   );
   const isJustUpdated = !!state.updateStatus && ApiResponseCodeUtil.isSuccess(state.updateStatus);
 
-  const onSubmit = (e: FormEvent) => {
-    setState(overrideObject(state, {updating: true}));
-    e.preventDefault();
-
-    getSubmitPromise(state.data)
-      .then((response) => {
-        clearUnload();
-        setState(overrideObject(state, {updateStatus: response.code, updating: false}));
-      })
-      .catch((error) => {
-        setState(overrideObject(
-          state,
-          {
-            updateStatus: ApiResponseCode.FAILED_INTERNAL_ERROR,
-            updating: false,
-          },
-        ));
-        console.error(error);
-      });
+  const onUpdateCompleted = (responseCode: ApiResponseCode) => {
+    setState(overrideObject(state, {updateStatus: responseCode, updating: false}));
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Row className="text-right">
-        <Col>
-          <UpdateStatus status={state.updateStatus}/>
-          <Button
-            type="submit" variant="outline-light" className="ml-2"
-            disabled={!isValid || isJustUpdated || state.updating || state.isInit}
-          >
-            {t((t) => t.misc.update)}
-          </Button>
-        </Col>
-      </Row>
-      <hr/>
+    <AjaxForm
+      unloadDependencies={[state.data]}
+      submitPromise={() => getSubmitPromise(state.data)}
+      formControl={{
+        variant: 'outline-light',
+        loading: !isValid || isJustUpdated || state.updating || state.isInit,
+        submitText: t((t) => t.misc.update),
+        renderAtLeft: <UpdateStatus status={state.updateStatus}/>,
+      }}
+      onPreSubmit={async () => {
+        setState(overrideObject(state, {updating: true}));
+        return true;
+      }}
+      onSuccess={onUpdateCompleted}
+      onFailed={onUpdateCompleted}
+      submitAtTop
+    >
       <ArrayForm
         payload={state}
         minLength={0}
@@ -110,6 +91,6 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         renderEntries={(...props) => renderEntries(...props, elementCounter)}
         addToTop
       />
-    </form>
+    </AjaxForm>
   );
 };

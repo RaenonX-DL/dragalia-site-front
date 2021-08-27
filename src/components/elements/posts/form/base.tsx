@@ -2,16 +2,14 @@ import React from 'react';
 
 import {useDispatch} from 'react-redux';
 
-import {ApiResponseCode, PostEditResponse, PostMeta} from '../../../../api-def/api';
+import {PostEditResponse, PostMeta} from '../../../../api-def/api';
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
-import {useOnBeforeUnload} from '../../../hooks/onBeforeUnload';
 import {ProtectedLayout} from '../../../pages/layout/protected';
-import {ModalFlexContent} from '../../common/modal/flex';
 import {ModalStateFlex} from '../../common/modal/types';
-import {FormControl} from './control';
-import {PostFormBaseProps} from './types';
+import {AjaxForm} from '../../form/ajax/main';
+import {isFormStateValid, PostFormBaseProps} from './types';
 
 
 type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> = PostFormBaseProps<P, R> & {
@@ -35,14 +33,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   const dispatch = useDispatch();
   const context = React.useContext(AppReactContext);
 
-  const [modalState, setModalState] = React.useState<ModalStateFlex>({
-    show: false,
-    title: '',
-    message: '',
-  });
-
-  const {clearUnload} = useOnBeforeUnload([formState]);
-
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
     const payload: P = {...formState.payload, [key]: newValue};
     if (onUpdated) {
@@ -56,63 +46,57 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
     isIdAvailable: availability,
   });
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onPreSubmit = async (setModal: React.Dispatch<React.SetStateAction<ModalStateFlex>>) => {
     if (!context?.session) {
-      setModalState({
+      setModal({
         show: true,
         title: t((t) => t.userControl.noUid),
         message: t((t) => t.userControl.noUidDetails),
       });
-      return;
+      return false;
     }
 
     if (fnProcessPayload) {
       formState.payload = await fnProcessPayload(formState.payload);
     }
 
-    try {
-      const data = await fnSendRequest(formState.payload);
+    return true;
+  };
 
-      if (data.success) {
-        clearUnload();
-
-        if (onSubmitSuccess) {
-          onSubmitSuccess();
-        }
-
-        dispatch(alertDispatchers.showAlert({
-          message: t((t) => t.posts.message.published),
-          variant: 'success',
-        }));
-        window.location.assign(fnGetRedirectUrl(fnGetRedirectId(data)));
-      } else {
-        setModalState({
-          show: true,
-          title: t((t) => t.posts.manage.publishFailed),
-          message: `${data.code}: ${ApiResponseCode[data.code]}`,
-        });
-      }
-    } catch (error) {
-      setModalState({
-        show: true,
-        title: t((t) => t.posts.manage.publishFailed),
-        message: JSON.stringify(error),
-      });
+  const onSuccess = () => {
+    if (onSubmitSuccess) {
+      onSubmitSuccess();
     }
+
+    dispatch(alertDispatchers.showAlert({
+      message: t((t) => t.posts.message.published),
+      variant: 'success',
+    }));
   };
 
   return (
     <ProtectedLayout>
-      <ModalFlexContent state={modalState} setState={setModalState}/>
-      <form onSubmit={onSubmit}>
+      <AjaxForm
+        unloadDependencies={[formState]}
+        submitPromise={() => fnSendRequest(formState.payload)}
+        formControl={{
+          variant: 'outline-success',
+          loading: false,
+          disabled: !isFormStateValid(formState),
+          submitText: (
+            formState.isPreloaded ?
+              t((t) => t.posts.manage.edit) :
+              t((t) => t.posts.manage.publish)
+          ),
+        }}
+        onPreSubmit={onPreSubmit}
+        onSuccess={onSuccess}
+        getRedirectUrlOnSuccess={(response) => fnGetRedirectUrl(fnGetRedirectId(response))}
+      >
         {renderMain(setPayload, setAvailability)}
         <div className="mb-3"/>
         {renderOnPreloaded && renderOnPreloaded(setPayload)}
-        <hr/>
-        <FormControl formState={formState}/>
-      </form>
+      </AjaxForm>
     </ProtectedLayout>
   );
 };

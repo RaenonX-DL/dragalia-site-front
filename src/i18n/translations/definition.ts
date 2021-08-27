@@ -605,7 +605,6 @@ export type TranslationStruct = {
       postNotExists: string,
       preview: string,
       publish: string,
-      publishFailed: string,
     },
     message: {
       altLang: string,
