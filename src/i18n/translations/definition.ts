@@ -619,6 +619,10 @@ export type TranslationStruct = {
     },
     misc: {
       titleSelf: string,
+      section: {
+        title: string,
+        content: string,
+      },
     },
     quest: {
       titleSelf: string,

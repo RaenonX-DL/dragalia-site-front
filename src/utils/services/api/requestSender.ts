@@ -12,7 +12,10 @@ import {
   BaseResponse,
   CharaAnalysisEditPayload,
   CharaAnalysisGetResponse,
-  CharaAnalysisPublishPayload, DataPageMetaPayload, DataPageMetaResponse, DataType,
+  CharaAnalysisPublishPayload,
+  DataPageMetaPayload,
+  DataPageMetaResponse,
+  DataType,
   DragonAnalysisEditPayload,
   DragonAnalysisGetResponse,
   DragonAnalysisPublishPayload,
@@ -21,11 +24,18 @@ import {
   GetAtkSkillPresetResponse,
   KeyPointEntryUpdate,
   KeyPointGetPayload,
-  KeyPointGetResponse, KeyPointInfoPayload, KeyPointInfoResponse,
+  KeyPointGetResponse,
+  KeyPointInfoPayload,
+  KeyPointInfoResponse,
   KeyPointManagePayload,
   KeyPointManageResponse,
   KeyPointUpdatePayload,
   KeyPointUpdateResponse,
+  MiscPostEditPayload, MiscPostEditResponse,
+  MiscPostGetPayload,
+  MiscPostGetResponse, MiscPostIdCheckPayload, MiscPostIdCheckResponse,
+  MiscPostPublishPayload,
+  MiscPostPublishResponse,
   PageMetaPayload,
   PageMetaResponse,
   PostPageMetaPayload,
@@ -151,6 +161,70 @@ export class ApiRequestSender {
     return ApiRequestSender.sendRequest<QuestPostIdCheckResponse, QuestPostIdCheckPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_ID_CHECK,
+      {seqId: seqId || undefined, uid, lang},
+    );
+  }
+
+  // endregion
+
+  // region Misc posts
+
+  /**
+   * Get a misc post using its sequential ID.
+   *
+   * @param {FetchPostOptions} options options to get a misc post
+   * @return {Promise<QuestPostGetResponse>} promise returned from `fetch`
+   */
+  static miscGet({uid, postId, lang, incCount}: FetchPostOptions<number>): Promise<MiscPostGetResponse> {
+    return ApiRequestSender.sendRequest<MiscPostGetResponse, MiscPostGetPayload>(
+      'GET',
+      ApiEndPoints.POST_MISC_GET,
+      {uid, seqId: postId, lang, incCount},
+    );
+  }
+
+  /**
+   * Send a misc post publish request.
+   *
+   * @param {MiscPostPublishPayload} payload payload for publishing a post
+   * @return {Promise<MiscPostPublishResponse>} promise returned from `fetch`
+   */
+  static miscPublish(payload: MiscPostPublishPayload): Promise<MiscPostPublishResponse> {
+    return ApiRequestSender.sendRequest<MiscPostPublishResponse, MiscPostPublishPayload>(
+      'POST',
+      ApiEndPoints.POST_MISC_PUBLISH,
+      payload,
+    );
+  }
+
+  /**
+   * Send a misc post edit request.
+   *
+   * @param {MiscPostEditPayload} payload payload for editing a misc post
+   * @return {Promise<MiscPostEditResponse>} promise returned from `fetch`
+   */
+  static miscEdit(payload: MiscPostEditPayload): Promise<MiscPostEditResponse> {
+    return ApiRequestSender.sendRequest<MiscPostEditResponse, MiscPostEditPayload>(
+      'POST',
+      ApiEndPoints.POST_MISC_EDIT,
+      payload,
+    );
+  }
+
+  /**
+   * Send a request to check if the ID combination for the misc post is available.
+   *
+   * @param {string} uid current UID
+   * @param {number | null} seqId title of the post
+   * @param {SupportedLanguages} lang language code of the misc post
+   * @return {Promise<QuestPostIdCheckResponse>} promise returned from `fetch`
+   */
+  static miscIdCheck(
+    uid: string, seqId: number | null, lang: SupportedLanguages,
+  ): Promise<MiscPostIdCheckResponse> {
+    return ApiRequestSender.sendRequest<MiscPostIdCheckResponse, MiscPostIdCheckPayload>(
+      'GET',
+      ApiEndPoints.POST_MISC_ID_CHECK,
       {seqId: seqId || undefined, uid, lang},
     );
   }

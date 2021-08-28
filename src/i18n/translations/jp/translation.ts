@@ -613,20 +613,20 @@ export const translation: TranslationStruct = {
         },
         misc: {
           edit: {
-            title: '編輯貼文 - {{title}}',
-            description: '貼文: {{title}} 的編輯頁面。',
+            title: 'TBA',
+            description: 'TBA',
           },
           list: {
-            title: '其他貼文目錄',
-            description: '其他龍絆相關貼文的目錄。',
+            title: 'TBA',
+            description: 'TBA',
           },
           new: {
-            title: '新增其他文章',
-            description: '其他文章的新增頁面。',
+            title: 'TBA',
+            description: 'TBA',
           },
           post: {
-            title: '【其他】{{title}}',
-            description: '詳情請進入頁面查看。',
+            title: 'TBA',
+            description: 'TBA',
           },
         },
       },
@@ -783,6 +783,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: '他の文章',
+      section: {
+        title: 'TBA',
+        content: 'TBA',
+      },
     },
     quest: {
       titleSelf: 'クエスト攻略',

@@ -827,6 +827,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: 'Others',
+      section: {
+        title: 'Title',
+        content: 'Content',
+      },
     },
     quest: {
       titleSelf: 'Quest Guides',

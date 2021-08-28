@@ -9,18 +9,19 @@ import {ApiResponseCode, SupportedLanguages} from '../../../../../api-def/api';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {backupDispatchers} from '../../../../../state/backup/dispatchers';
 import {BackupDispatcherName} from '../../../../../state/backup/types';
+import {overrideObject} from '../../../../../utils/override';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
-import {QuestNewForm} from './new';
+import {MiscNew} from './new';
 import {generatePayload} from './utils';
 
 
-describe('New quest post form', () => {
+describe('New misc post form', () => {
   let fnIdCheck: jest.SpyInstance;
 
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.useFakeTimers();
-    fnIdCheck = jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+    fnIdCheck = jest.spyOn(ApiRequestSender, 'miscIdCheck').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: true,
@@ -33,7 +34,7 @@ describe('New quest post form', () => {
 
   it('performs ID check on load', async () => {
     renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {user: {isAdmin: true}},
     );
 
@@ -43,7 +44,7 @@ describe('New quest post form', () => {
 
   it('shows valid after typing in valid ID', async () => {
     const {rerender} = renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {user: {isAdmin: true}},
     );
 
@@ -55,14 +56,14 @@ describe('New quest post form', () => {
   });
 
   it('shows invalid after typing in invalid ID', async () => {
-    jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+    jest.spyOn(ApiRequestSender, 'miscIdCheck').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
       available: false,
     });
 
     const {rerender} = renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {user: {isAdmin: true}},
     );
 
@@ -75,123 +76,106 @@ describe('New quest post form', () => {
 
   it('loads backup data', async () => {
     renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
-            quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
-            misc: null,
+            quest: null,
+            misc: {...overrideObject(generatePayload(SupportedLanguages.EN), {title: 'Title'})},
           },
         },
       },
     );
 
-    expect(screen.getByText('add')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
   it('does not crash given unmatched backup data scheme', async () => {
     renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
-            quest: {
-              ...generatePayload(SupportedLanguages.EN, 'admin'),
-              // @ts-ignore
-              add: 'add2',
-              addendum: 'add',
-            },
+            quest: null,
+            // @ts-ignore
+            misc: {...overrideObject(generatePayload(SupportedLanguages.EN), {title: 'Title', c: 'A'})},
           },
         },
       },
     );
 
-    expect(screen.getByText('add')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
   it('does not crash given incomplete backup data', async () => {
-    const {addendum, positional, ...questBackup} = {
+    const {sections, ...miscBackup} = {
       ...generatePayload(SupportedLanguages.EN, 'admin'),
-      video: 'vid',
+      title: 'Title',
     };
 
     renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
+            quest: null,
             // @ts-ignore
-            quest: questBackup,
+            misc: miscBackup,
           },
         },
       },
     );
 
-    expect(screen.getByText('vid')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Title')).toBeInTheDocument();
   });
 
   it('saves new backup on change', async () => {
-    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_QUEST_GUIDE);
+    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_MISC_POST);
 
     const {rerender} = renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
-            quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
-            misc: null,
+            quest: null,
+            misc: {...generatePayload(SupportedLanguages.EN, 'admin'), title: 'Title'},
           },
         },
       },
     );
 
-    const addendum = screen.getByText('add');
-    typeInput(addendum, 'addendum', {rerender});
+    const title = screen.getByDisplayValue('Title');
+    typeInput(title, 'Title', {rerender});
 
     expect(fnBackup).toHaveBeenCalled();
   });
 
   it('clears the backup after publishing', async () => {
     jest.useRealTimers(); // Have to call this for dispatcher spy to work properly
-    const fnClear = jest.spyOn(backupDispatchers, BackupDispatcherName.CLEAR_QUEST_GUIDE);
-    jest.spyOn(ApiRequestSender, 'questPublish').mockResolvedValue({
+    const fnClear = jest.spyOn(backupDispatchers, BackupDispatcherName.CLEAR_MISC_POST);
+    jest.spyOn(ApiRequestSender, 'miscPublish').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
       seqId: 7,
     });
 
     renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
-            quest: {
-              seqId: 7,
-              lang: SupportedLanguages.CHT,
-              title: 'ttl',
-              general: 'gen',
-              video: 'vid',
-              positional: [
-                {
-                  position: 'pos',
-                  rotations: 'rot',
-                  builds: 'bld',
-                  tips: 'tps',
-                },
-              ],
-              addendum: 'adm',
-            },
-            misc: null,
+            quest: null,
+            misc: {...generatePayload(SupportedLanguages.EN, 'admin'), title: 'Title'},
           },
         },
       },
@@ -207,24 +191,24 @@ describe('New quest post form', () => {
   });
 
   it('should not backup UID', async () => {
-    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_QUEST_GUIDE);
+    const fnBackup = jest.spyOn(backupDispatchers, BackupDispatcherName.BACKUP_MISC_POST);
 
     const {rerender} = renderReact(
-      () => <QuestNewForm/>,
+      () => <MiscNew/>,
       {
         user: {isAdmin: true},
         preloadState: {
           backup: {
             analysis: {chara: null, dragon: null},
-            quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
-            misc: null,
+            quest: null,
+            misc: {...generatePayload(SupportedLanguages.EN, 'admin'), title: 'Title'},
           },
         },
       },
     );
 
-    const addendum = screen.getByText('add');
-    typeInput(addendum, 'addendum', {rerender});
+    const title = screen.getByDisplayValue('Title');
+    typeInput(title, 'Title', {rerender});
 
     // @ts-ignore
     const {uid} = fnBackup.mock.calls[0][0];

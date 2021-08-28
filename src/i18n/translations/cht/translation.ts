@@ -775,6 +775,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: '其他文章',
+      section: {
+        title: '標題',
+        content: '內容',
+      },
     },
     quest: {
       titleSelf: '高難攻略',
