@@ -38,9 +38,14 @@ export const AjaxForm = <R extends BaseResponse>({
   });
   const [submitTextKey, setSubmitTextKey] = React.useState<SubmitTextKey>('text');
 
+  const setToLoading = () => {
+    setSubmitTextKey('loading');
+    formControl.loading = true;
+  };
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitTextKey('loading');
+    setToLoading();
 
     if (onPreSubmit && !await onPreSubmit(setModal)) {
       setSubmitTextKey('text');
@@ -49,13 +54,13 @@ export const AjaxForm = <R extends BaseResponse>({
 
     submitPromise()
       .then((response) => {
-        setSubmitTextKey('text');
         if (!response.success) {
           if (onFailed) {
             onFailed(response.code);
           } else {
             setModal({...modal, show: true, message: ApiResponseCode[response.code]});
           }
+          setSubmitTextKey('text');
           return;
         }
 
