@@ -24,6 +24,22 @@ describe('Markdown (Image)', () => {
     expect(image).toHaveClass('unitIcon');
   });
 
+  it('allows injecting CSS class to image', async () => {
+    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg[w-100])'}</Markdown>);
+
+    const image = screen.getByAltText('Alt');
+    expect(image).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
+    expect(image).toHaveClass('w-100');
+  });
+
+  it('escapes sensitive characters', async () => {
+    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg["><script></script>])'}</Markdown>);
+
+    const image = screen.getByAltText('Alt');
+    expect(image).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
+    expect(image).not.toHaveAttribute('class');
+  });
+
   it('renders image link as <img>', async () => {
     renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.jpeg'}</Markdown>);
 
