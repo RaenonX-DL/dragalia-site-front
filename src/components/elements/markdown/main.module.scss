@@ -28,8 +28,7 @@ $table-border-color: #656565;
         text-align: right;
       }
 
-      td::before {
-        content: attr(data-label);
+      td > span.responsiveHeader {
         float: left;
       }
 
@@ -44,6 +43,12 @@ $table-border-color: #656565;
 
       tr:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: 992px) {
+      td > span.responsiveHeader {
+        display: none;
       }
     }
   }

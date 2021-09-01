@@ -42,8 +42,7 @@
     display: block;
     text-align: right;
   }
-  .mdBody table td::before {
-    content: attr(data-label);
+  .mdBody table td > span.responsiveHeader {
     float: left;
   }
   .mdBody table td:last-child {
@@ -55,6 +54,11 @@
   }
   .mdBody table tr:last-child {
     margin-bottom: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .mdBody table td > span.responsiveHeader {
+    display: none;
   }
 }
 .mdBody div.text {
