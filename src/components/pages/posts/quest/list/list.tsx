@@ -1,22 +1,35 @@
 import React from 'react';
 
-import {QuestPostListEntry} from '../../../../../api-def/api';
-import {LinkGenerator} from '../../../../elements/posts/list/entry';
+import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {useI18n} from '../../../../../i18n/hook';
+import {makePostUrl} from '../../../../../utils/path/make';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/list';
+import {PostListPage} from '../../../../elements/posts/list/page';
 import {QuestEntryBadges} from './listBadges';
 
 
-type Props = {
-  entries: Array<QuestPostListEntry>,
-  generateLink: LinkGenerator,
-};
+export const QuestPostList = () => {
+  const {t, lang} = useI18n();
 
-export const QuestPostList = ({entries, generateLink}: Props) => {
+  const title = t((t) => t.meta.inUse.post.quest.list.title);
+
   return (
-    <PostList
-      entries={entries}
-      generateLink={generateLink}
-      renderPostBadge={(props) => <QuestEntryBadges {...props}/>}
+    <PostListPage
+      title={title}
+      fnFetchList={ApiRequestSender.questList}
+      postManageBarProps={{
+        newButtons: [{pathname: GeneralPath.QUEST_NEW}],
+      }}
+      renderPostEntries={(response) => (
+        <PostList
+          entries={response.posts}
+          generateLink={(postId) => (
+            makePostUrl(PostPath.QUEST, {pid: postId, lang})
+          )}
+          renderPostBadge={(props) => <QuestEntryBadges {...props}/>}
+        />
+      )}
     />
   );
 };
