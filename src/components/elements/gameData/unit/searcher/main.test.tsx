@@ -181,8 +181,6 @@ describe('Unit searcher', () => {
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);
 
-    screen.debug(undefined, 90000);
-
     const prioritizedInfo = fnRenderOutput.mock.calls[0][0].prioritizedUnitInfo as Array<UnitInfoData>;
     expect(prioritizedInfo.map((info) => info.element === Element.SHADOW)).toBeTruthy();
   });

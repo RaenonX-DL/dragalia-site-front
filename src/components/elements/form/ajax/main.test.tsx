@@ -174,28 +174,6 @@ describe('Ajax Form', () => {
     expect(screen.getByText('Form')).toBeInTheDocument();
   });
 
-  it('shows loading upon submission', async () => {
-    renderReact(() => (
-      <AjaxForm
-        unloadDependencies={[]}
-        submitPromise={fnSubmitPromise}
-        formControl={{
-          variant: 'primary',
-          submitText: 'Submit',
-        }}
-        onSuccess={fnOnSubmitSuccess}
-      >
-        <></>
-      </AjaxForm>
-    ));
-
-    const submitButton = screen.getByText('Submit');
-    userEvent.click(submitButton);
-
-    expect(await screen.findByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
-    expect(submitButton).toBeDisabled();
-  });
-
   it('shows error message upon submission failed', async () => {
     fnSubmitPromise = jest.fn().mockResolvedValue({
       code: ApiResponseCode.FAILED_INTERNAL_ERROR,
@@ -307,9 +285,13 @@ describe('Ajax Form - Submit button interaction', () => {
 
   beforeEach(() => {
     jest.useFakeTimers();
-    fnSubmitPromise = jest.fn().mockResolvedValue({
-      code: ApiResponseCode.SUCCESS,
-      success: true,
+    fnSubmitPromise = jest.fn().mockImplementationOnce(async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+
+      return {
+        code: ApiResponseCode.SUCCESS,
+        success: true,
+      };
     });
     fnOnSubmitSuccess = jest.fn();
   });
@@ -318,9 +300,29 @@ describe('Ajax Form - Submit button interaction', () => {
     jest.useRealTimers();
   });
 
-  it('disables submit button when the promise is not finished', async () => {
-    fnSubmitPromise.mockResolvedValueOnce(new Promise((r) => setTimeout(r, 2000)));
+  it('shows loading upon submission', async () => {
+    renderReact(() => (
+      <AjaxForm
+        unloadDependencies={[]}
+        submitPromise={fnSubmitPromise}
+        formControl={{
+          variant: 'primary',
+          submitText: 'Submit',
+        }}
+        onSuccess={fnOnSubmitSuccess}
+      >
+        <></>
+      </AjaxForm>
+    ));
 
+    const submitButton = screen.getByText('Submit');
+    userEvent.click(submitButton);
+
+    expect(await screen.findByText('', {selector: 'div.spinner-grow'})).toBeInTheDocument();
+    expect(submitButton).toBeDisabled();
+  });
+
+  it('disables submit button when the promise is not finished', async () => {
     renderReact(() => (
       <AjaxForm
         unloadDependencies={[]}
@@ -344,15 +346,6 @@ describe('Ajax Form - Submit button interaction', () => {
   });
 
   it('enables submit button after the promise is finished', async () => {
-    fnSubmitPromise.mockImplementation(async () => {
-      await new Promise((r) => setTimeout(r, 2000));
-
-      return {
-        code: ApiResponseCode.SUCCESS,
-        success: true,
-      };
-    });
-
     renderReact(() => (
       <AjaxForm
         unloadDependencies={[]}
@@ -379,15 +372,6 @@ describe('Ajax Form - Submit button interaction', () => {
   });
 
   it('disables submit button after the promise is finished if redirect URL is provided', async () => {
-    fnSubmitPromise.mockImplementation(async () => {
-      await new Promise((r) => setTimeout(r, 2000));
-
-      return {
-        code: ApiResponseCode.SUCCESS,
-        success: true,
-      };
-    });
-
     renderReact(() => (
       <AjaxForm
         unloadDependencies={[]}

@@ -222,7 +222,7 @@ describe('ATK skill lookup', () => {
     await waitForEntryProcessed();
 
     expect(screen.getByText('Order: SP', {selector: 'button'})).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('re-search on order changed', async () => {
     renderReact(() => <AttackingSkillLookup/>);
