@@ -66,7 +66,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
       submitPromise={() => getSubmitPromise(state.data)}
       formControl={{
         variant: 'outline-light',
-        loading: !isValid || isJustUpdated || state.updating || state.isInit,
+        disabled: !isValid || isJustUpdated || state.updating || state.isInit,
         submitText: t((t) => t.misc.update),
         renderAtLeft: <UpdateStatus status={state.updateStatus}/>,
       }}

@@ -32,7 +32,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -60,7 +59,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -82,7 +80,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -105,7 +102,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -120,15 +116,15 @@ describe('Ajax Form', () => {
     await waitFor(() => expect(fnSubmitPromise).toHaveBeenCalled());
   });
 
-  it('styles submit button correctly', async () => {
+  it('styles submit button as disabled', async () => {
     renderReact(() => (
       <AjaxForm
         unloadDependencies={[]}
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: true,
           submitText: 'Submit',
+          disabled: true,
         }}
         onSuccess={fnOnSubmitSuccess}
       >
@@ -148,7 +144,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: true,
           submitText: 'Submit',
           renderAtLeft: <>Left</>,
         }}
@@ -168,7 +163,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: true,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -187,7 +181,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -214,7 +207,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -239,7 +231,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -264,7 +255,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -294,7 +284,6 @@ describe('Ajax Form', () => {
         submitPromise={fnSubmitPromise}
         formControl={{
           variant: 'primary',
-          loading: false,
           submitText: 'Submit',
         }}
         onSuccess={fnOnSubmitSuccess}
@@ -309,5 +298,117 @@ describe('Ajax Form', () => {
 
     await waitFor(() => expect(fnOnFailed).toHaveBeenCalledWith(ApiResponseCode.FAILED_DATA_NOT_EXISTS));
     expect(screen.queryByText('FAILED_INTERNAL_ERROR')).not.toBeInTheDocument();
+  });
+});
+
+describe('Ajax Form - Submit button interaction', () => {
+  let fnSubmitPromise: jest.Mock<Promise<BaseResponse>>;
+  let fnOnSubmitSuccess: jest.Mock;
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+    fnSubmitPromise = jest.fn().mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    });
+    fnOnSubmitSuccess = jest.fn();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('disables submit button when the promise is not finished', async () => {
+    fnSubmitPromise.mockResolvedValueOnce(new Promise((r) => setTimeout(r, 2000)));
+
+    renderReact(() => (
+      <AjaxForm
+        unloadDependencies={[]}
+        submitPromise={fnSubmitPromise}
+        formControl={{
+          variant: 'primary',
+          submitText: 'Submit',
+        }}
+        onSuccess={fnOnSubmitSuccess}
+      >
+        <></>
+      </AjaxForm>
+    ));
+
+    const submitButton = screen.getByText('Submit');
+
+    userEvent.click(submitButton);
+
+    expect(submitButton).toHaveClass('btn-primary');
+    expect(submitButton).toBeDisabled();
+  });
+
+  it('enables submit button after the promise is finished', async () => {
+    fnSubmitPromise.mockImplementation(async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+
+      return {
+        code: ApiResponseCode.SUCCESS,
+        success: true,
+      };
+    });
+
+    renderReact(() => (
+      <AjaxForm
+        unloadDependencies={[]}
+        submitPromise={fnSubmitPromise}
+        formControl={{
+          variant: 'primary',
+          submitText: 'Submit',
+        }}
+        onSuccess={fnOnSubmitSuccess}
+      >
+        <></>
+      </AjaxForm>
+    ));
+
+    let submitButton = screen.getByText('Submit');
+
+    userEvent.click(submitButton);
+    jest.advanceTimersByTime(2100);
+
+    submitButton = await screen.findByText('Submit');
+
+    expect(submitButton).toHaveClass('btn-primary');
+    expect(submitButton).toBeEnabled();
+  });
+
+  it('disables submit button after the promise is finished if redirect URL is provided', async () => {
+    fnSubmitPromise.mockImplementation(async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+
+      return {
+        code: ApiResponseCode.SUCCESS,
+        success: true,
+      };
+    });
+
+    renderReact(() => (
+      <AjaxForm
+        unloadDependencies={[]}
+        submitPromise={fnSubmitPromise}
+        formControl={{
+          variant: 'primary',
+          submitText: 'Submit',
+        }}
+        onSuccess={fnOnSubmitSuccess}
+        getRedirectUrlOnSuccess={() => 'redir'}
+      >
+        <></>
+      </AjaxForm>
+    ));
+
+    const submitButton = screen.getByText('Submit');
+
+    userEvent.click(submitButton);
+    jest.advanceTimersByTime(2100);
+
+    expect(submitButton).toHaveClass('btn-primary');
+    expect(submitButton).toBeDisabled();
   });
 });

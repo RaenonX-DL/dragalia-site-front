@@ -15,7 +15,6 @@ export type AjaxFormControlProps = {
   submitTextKey: SubmitTextKey,
   submitText: string,
   renderAtLeft?: React.ReactNode,
-  loading: boolean,
   variant: ButtonVariant,
   disabled?: boolean,
 }
@@ -24,7 +23,7 @@ export const AjaxFormControl = ({
   submitTextKey,
   submitText,
   renderAtLeft,
-  loading,
+  disabled,
   ...props
 }: AjaxFormControlProps) => {
   const submitTextLookup: SubmitTextLookup = {
@@ -36,7 +35,7 @@ export const AjaxFormControl = ({
     <Row noGutters className="text-right">
       <Col>
         {renderAtLeft}
-        <Button type="submit" className="ml-2" disabled={loading || submitTextKey === 'loading'} {...props}>
+        <Button type="submit" className="ml-2" disabled={submitTextKey === 'loading' || disabled} {...props}>
           {submitTextLookup[submitTextKey]}
         </Button>
       </Col>

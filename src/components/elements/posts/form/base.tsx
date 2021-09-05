@@ -81,7 +81,6 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
         submitPromise={() => fnSendRequest(formState.payload)}
         formControl={{
           variant: 'outline-success',
-          loading: false,
           disabled: !isFormStateValid(formState),
           submitText: (
             formState.isPreloaded ?

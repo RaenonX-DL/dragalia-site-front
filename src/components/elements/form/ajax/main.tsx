@@ -40,7 +40,6 @@ export const AjaxForm = <R extends BaseResponse>({
 
   const setToLoading = () => {
     setSubmitTextKey('loading');
-    formControl.loading = true;
   };
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -68,8 +67,11 @@ export const AjaxForm = <R extends BaseResponse>({
         if (onSuccess) {
           onSuccess(response.code);
         }
+        // If to be redirected, keep it render as "loading", otherwise render as "text"
         if (getRedirectUrlOnSuccess) {
           window.location.assign(getRedirectUrlOnSuccess(response));
+        } else {
+          setSubmitTextKey('text');
         }
       })
       .catch((e) => {
@@ -83,11 +85,6 @@ export const AjaxForm = <R extends BaseResponse>({
         }
       });
   };
-
-  // Change submit text key if the form is not loading but the key state is still loading
-  if (!formControl.loading && submitTextKey === 'loading') {
-    setSubmitTextKey('text');
-  }
 
   return (
     <>

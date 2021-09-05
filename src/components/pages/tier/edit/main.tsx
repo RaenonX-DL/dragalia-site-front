@@ -75,7 +75,6 @@ export const TierNoteEdit = () => {
         formControl={{
           variant: 'outline-light',
           submitText: t((t) => t.misc.update),
-          loading: false,
         }}
         getRedirectUrlOnSuccess={() => makeGeneralUrl(GeneralPath.TIER_LOOKUP, {lang})}
       >
