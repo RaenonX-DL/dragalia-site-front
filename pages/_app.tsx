@@ -3,6 +3,7 @@ import React from 'react';
 import {getSession} from 'next-auth/client';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import Container from 'react-bootstrap/Container';
 
 import '../public/bootstrap.css';
@@ -43,6 +44,24 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        {
+          isProduction() &&
+          !process.env.CI &&
+          <>
+            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              
+              function gtag(){dataLayer.push(arguments);}
+              
+              gtag('js', new Date());
+              gtag('config', 'G-796E69CFJG');
+              `,
+            }}/>
+          </>
+        }
         {/* Google AdSense */}
         {
           !pageProps.session?.user.adsFreeExpiry &&
