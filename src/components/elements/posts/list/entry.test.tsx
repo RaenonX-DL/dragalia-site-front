@@ -4,12 +4,12 @@ import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
-import {PostEntry, PostEntryBadgesProps} from './entry';
+import {PostEntry, PostEntryBadgeProps} from './entry';
 
 
 describe('Post list entry', () => {
   let generateLink: jest.Mock<string, [number]>;
-  let renderPostBadges: jest.Mock<React.ReactElement, [PostEntryBadgesProps<SequencedPostInfo>]>;
+  let renderPostBadges: jest.Mock<React.ReactElement, [PostEntryBadgeProps<SequencedPostInfo>]>;
 
   const entry: SequencedPostInfo = {
     seqId: 7,
@@ -30,7 +30,7 @@ describe('Post list entry', () => {
     renderReact(() => (
       <PostEntry
         generateLink={generateLink}
-        renderPostBadges={renderPostBadges}
+        renderPostBadge={renderPostBadges}
         entry={entry}
       />
     ));

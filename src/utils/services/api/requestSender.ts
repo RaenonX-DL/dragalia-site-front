@@ -33,7 +33,7 @@ import {
   KeyPointUpdateResponse,
   MiscPostEditPayload, MiscPostEditResponse,
   MiscPostGetPayload,
-  MiscPostGetResponse, MiscPostIdCheckPayload, MiscPostIdCheckResponse,
+  MiscPostGetResponse, MiscPostIdCheckPayload, MiscPostIdCheckResponse, MiscPostListPayload, MiscPostListResponse,
   MiscPostPublishPayload,
   MiscPostPublishResponse,
   PageMetaPayload,
@@ -180,6 +180,25 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.POST_MISC_GET,
       {uid, seqId: postId, lang, incCount},
+    );
+  }
+
+  /**
+   * Get a list of all misc posts.
+   *
+   * @param {string} uid UID of the logged in user
+   * @param {SupportedLanguages} lang language code of the posts
+   * @param {number} start starting index of the posts
+   * @param {number} limit maximum count of the data to be returned
+   * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
+   */
+  static miscList(
+    uid: string, lang: SupportedLanguages, start: number, limit: number,
+  ): Promise<MiscPostListResponse> {
+    return ApiRequestSender.sendRequest<MiscPostListResponse, MiscPostListPayload>(
+      'GET',
+      ApiEndPoints.POST_MISC_LIST,
+      {uid, lang, start, limit},
     );
   }
 

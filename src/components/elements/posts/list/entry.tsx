@@ -11,13 +11,13 @@ import {InternalLink} from '../../common/link/internal';
 
 export type LinkGenerator = (postId: number) => string;
 
-export type PostEntryBadgesProps<E extends SequencedPostInfo> = {
+export type PostEntryBadgeProps<E extends SequencedPostInfo> = {
   entry: E,
 }
 
 export type PostEntryProps<E extends SequencedPostInfo> = {
   generateLink: LinkGenerator,
-  renderPostBadges: (badgesProps: PostEntryBadgesProps<E>) => React.ReactElement,
+  renderPostBadge: (badgeProps: PostEntryBadgeProps<E>) => React.ReactElement,
 };
 
 type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
@@ -27,7 +27,7 @@ type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
 export const PostEntry = <E extends SequencedPostInfo>({
   entry,
   generateLink,
-  renderPostBadges,
+  renderPostBadge,
 }: PostEntryPropsInternal<E>) => {
   const {t, lang} = useI18n();
 
@@ -35,7 +35,7 @@ export const PostEntry = <E extends SequencedPostInfo>({
     <div className="rounded bg-black-32 p-3">
       <Row>
         <Col>
-          {renderPostBadges({entry})}
+          {renderPostBadge({entry})}
         </Col>
         <Col className="text-right">
           <span className="h6 text-muted">
