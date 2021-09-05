@@ -10,11 +10,11 @@ import {useI18n} from '../../../../../i18n/hook';
 import {Markdown} from '../../../../elements/markdown/main';
 
 
-type OutputProps = {
+type Props = {
   info: Array<PositionalInfo>
 }
 
-export const QuestPositionOutput = ({info}: OutputProps) => {
+export const QuestPositionOutput = ({info}: Props) => {
   const {t} = useI18n();
 
   return (
