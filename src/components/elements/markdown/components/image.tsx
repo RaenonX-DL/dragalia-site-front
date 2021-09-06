@@ -1,12 +1,11 @@
 import React from 'react';
 
-import {NormalComponents} from 'react-markdown/src/ast-to-react';
-
 import {ImageInHTML} from '../transformers/image/main';
 import {Text} from '../transformers/text/main';
+import {MarkdownComponentProps} from '../types';
 
 
-export const renderImage: NormalComponents['img'] = ({node}) => {
+export const renderImage = ({node}: MarkdownComponentProps) => {
   const imageSrc = node.properties?.src;
   const imageAlt = node.properties?.alt;
 
