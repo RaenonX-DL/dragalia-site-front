@@ -12,7 +12,7 @@
     "dev": "nodemon",
     "test": "jest --config jest.config.ts --maxWorkers=50% --colors",
     "test:cypress": "cypress run",
-    "test:ci-jest": "npm run test -- --ci --reporters=default --reporters=jest-junit --coverage",
+    "test:ci-jest": "node --max-old-space-size=8192 ./node_modules/.bin/jest --config jest.config.ts --maxWorkers=50% --colors --ci --reporters=default --reporters=jest-junit --coverage",
     "test:ci-e2e": "start-test 3000 test:cypress",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:css": "stylelint **/*.scss",
