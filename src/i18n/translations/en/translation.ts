@@ -506,7 +506,7 @@ export const translation: TranslationStruct = {
         conCoop: 'CoN (Co-op)',
         conAi: 'CoN (AI)',
         normalSolo: 'Normal (Solo)',
-        normalCoop: 'Normal (AI)',
+        normalCoop: 'Normal (Co-op)',
         normalAi: 'Normal (AI)',
         sharedSkill: 'SS',
         all: 'Show All',
