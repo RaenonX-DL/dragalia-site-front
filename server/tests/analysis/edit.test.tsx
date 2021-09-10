@@ -22,6 +22,8 @@ describe('Analysis edit page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 
+  let fnFetch: jest.SpyInstance;
+
   const response: AnalysisEditResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
@@ -62,102 +64,109 @@ describe('Analysis edit page', () => {
     notes: 'not',
   };
 
-  it('blocks access for anonymous users (chara)', () => {
-    renderReact(() => <AnalysisEdit response={charaResponse}/>);
+  beforeEach(() => {
+    fnFetch = jest.spyOn(ApiRequestSender, 'analysisGet');
+  });
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+  it('blocks access for anonymous users (chara)', async () => {
+    fnFetch.mockResolvedValue(charaResponse);
+
+    renderReact(() => <AnalysisEdit/>);
+
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(charaResponse.forceStrikes)).not.toBeInTheDocument();
   });
 
-  it('blocks access for non-admin users (chara)', () => {
-    renderReact(
-      () => <AnalysisEdit response={charaResponse}/>,
-      {hasSession: true},
-    );
+  it('blocks access for non-admin users (chara)', async () => {
+    fnFetch.mockResolvedValue(charaResponse);
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+    renderReact(() => <AnalysisEdit/>, {hasSession: true});
+
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(charaResponse.forceStrikes)).not.toBeInTheDocument();
   });
 
-  it('allows access for admin users (chara)', () => {
-    renderReact(
-      () => <AnalysisEdit response={charaResponse}/>,
-      {user: {isAdmin: true}},
-    );
+  it('allows access for admin users (chara)', async () => {
+    fnFetch.mockResolvedValue(charaResponse);
 
+    renderReact(() => <AnalysisEdit />, {user: {isAdmin: true}});
+
+    expect((await screen.findAllByText(charaResponse.forceStrikes)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryAllByText(charaResponse.forceStrikes).length).toBeGreaterThan(0);
   });
 
-  it('blocks access for anonymous users (dragon)', () => {
-    renderReact(() => <AnalysisEdit response={dragonResponse}/>);
+  it('blocks access for anonymous users (dragon)', async () => {
+    fnFetch.mockResolvedValue(dragonResponse);
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+    renderReact(() => <AnalysisEdit/>);
+
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(dragonResponse.suitableCharacters)).not.toBeInTheDocument();
   });
 
-  it('blocks access for non-admin users (dragon)', () => {
-    renderReact(
-      () => <AnalysisEdit response={dragonResponse}/>,
-      {hasSession: true},
-    );
+  it('blocks access for non-admin users (dragon)', async () => {
+    fnFetch.mockResolvedValue(dragonResponse);
 
-    expect(screen.queryByText(description401)).toBeInTheDocument();
+    renderReact(() => <AnalysisEdit/>, {hasSession: true});
+
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(dragonResponse.suitableCharacters)).not.toBeInTheDocument();
   });
 
-  it('allows access for admin users (dragon)', () => {
-    renderReact(
-      () => <AnalysisEdit response={dragonResponse}/>,
-      {user: {isAdmin: true}},
-    );
+  it('allows access for admin users (dragon)', async () => {
+    fnFetch.mockResolvedValue(dragonResponse);
 
+    renderReact(() => <AnalysisEdit/>, {user: {isAdmin: true}});
+
+    expect((await screen.findAllByText(dragonResponse.suitableCharacters)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryAllByText(dragonResponse.suitableCharacters).length).toBeGreaterThan(0);
   });
 
-  it('returns 404 if the post is not found', () => {
-    renderReact(
-      () => <AnalysisEdit response={null}/>,
-      {user: {isAdmin: true}},
-    );
+  it('returns 404 if the post is not found', async () => {
+    fnFetch.mockResolvedValue({
+      code: ApiResponseCode.FAILED_POST_NOT_EXISTS,
+      success: false,
+    });
 
+    renderReact(() => <AnalysisEdit/>, {user: {isAdmin: true}});
+
+    expect(await screen.findByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
-    expect(screen.queryByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(charaResponse.summary)).not.toBeInTheDocument();
   });
 
-  it('displays alert if the post unit type is unknown', () => {
-    renderReact(() => <AnalysisEdit response={{...charaResponse, type: 8888}}/>);
+  it('displays alert if the post unit type is unknown', async () => {
+    fnFetch.mockResolvedValue({...charaResponse, type: 8888});
+
+    renderReact(() => <AnalysisEdit/>);
 
     const alertText = getTFunction(translations[SupportedLanguages.EN])(
       (t) => t.posts.analysis.error.unknownType,
       {analysisType: '8888'},
     );
 
+    expect(await screen.findByText(alertText)).toBeInTheDocument();
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(charaResponse.summary)).not.toBeInTheDocument();
     expect(screen.queryByText(dragonResponse.summary)).not.toBeInTheDocument();
-    expect(screen.queryByText(alertText)).toBeInTheDocument();
   });
 
   it('does not send payload such as `viewCount` back (chara)', async () => {
+    fnFetch.mockResolvedValue(charaResponse);
+
     const apiRequest = jest.spyOn(ApiRequestSender, 'analysisEditChara')
       .mockImplementation(async () => response);
 
-    renderReact(
-      () => <AnalysisEdit response={charaResponse}/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <AnalysisEdit/>, {user: {isAdmin: true}});
 
-    const editButton = screen.getByText(translations[SupportedLanguages.EN].posts.manage.edit);
+    const editButton = await screen.findByText(translations[SupportedLanguages.EN].posts.manage.edit);
     userEvent.click(editButton);
 
     await waitFor(() => expect(apiRequest).toHaveBeenCalled(), {timeout: 1500});

@@ -16,7 +16,8 @@ export const AnalysisFormCharaEdit = ({analysis}: Props) => {
   const context = React.useContext(AppReactContext);
   const [formState, setFormState] = React.useState<PostFormState<CharaAnalysisEditPayload>>({
     payload: {
-      // Explicit to avoid unwanted properties
+      // Explicit assignments to ensure no other properties like `viewCount` from `response` is included.
+      // These properties from post get should **NOT** be included in the payload.
       uid: context?.session?.user.id.toString() || '',
       lang: analysis.lang,
       type: analysis.type,

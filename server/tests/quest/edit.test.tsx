@@ -3,13 +3,13 @@ import React from 'react';
 import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import QuestEdit from '../../../pages/[lang]/quest/[pid]/edit';
 import {
   ApiResponseCode,
   QuestPostEditResponse,
   QuestPostGetResponse,
   SupportedLanguages,
 } from '../../../src/api-def/api';
+import {QuestEdit} from '../../../src/components/pages/posts/quest/edit';
 import {translations} from '../../../src/i18n/translations/main';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {renderReact} from '../../../test/render/main';
@@ -18,6 +18,8 @@ import {renderReact} from '../../../test/render/main';
 describe('Quest edit page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
+
+  let fnFetch: jest.SpyInstance;
 
   const response: QuestPostEditResponse = {
     code: ApiResponseCode.SUCCESS,
@@ -41,44 +43,53 @@ describe('Quest edit page', () => {
     otherLangs: [],
   };
 
-  it('blocks access for anonymous users', () => {
-    renderReact(() => <QuestEdit response={questPost}/>);
+  beforeEach(() => {
+    fnFetch = jest.spyOn(ApiRequestSender, 'questGet').mockResolvedValue(questPost);
+  });
 
-    expect(screen.getByText(description401)).toBeInTheDocument();
+  it('blocks access for anonymous users', async () => {
+    renderReact(() => <QuestEdit/>);
+
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(questPost.video)).not.toBeInTheDocument();
   });
 
-  it('blocks access for non-admin users', () => {
+  it('blocks access for non-admin users', async () => {
     renderReact(
-      () => <QuestEdit response={questPost}/>,
+      () => <QuestEdit/>,
       {hasSession: true},
     );
 
-    expect(screen.getByText(description401)).toBeInTheDocument();
+    expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
     expect(screen.queryByText(questPost.video)).not.toBeInTheDocument();
   });
 
-  it('allows access for admin users', () => {
+  it('allows access for admin users', async () => {
     renderReact(
-      () => <QuestEdit response={questPost}/>,
+      () => <QuestEdit/>,
       {user: {isAdmin: true}},
     );
 
+    expect((await screen.findAllByText(questPost.video)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(screen.queryAllByText(questPost.video).length).toBeGreaterThan(0);
   });
 
-  it('returns 404 if the post is not found', () => {
+  it('returns 404 if the post is not found', async () => {
+    fnFetch.mockResolvedValueOnce({
+      code: ApiResponseCode.FAILED_POST_NOT_EXISTS,
+      success: false,
+    });
+
     renderReact(
-      () => <QuestEdit response={null}/>,
+      () => <QuestEdit/>,
       {user: {isAdmin: true}},
     );
 
+    expect(await screen.findByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
-    expect(screen.queryByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(questPost.video)).not.toBeInTheDocument();
   });
 
@@ -87,11 +98,11 @@ describe('Quest edit page', () => {
       .mockImplementation(async () => response);
 
     renderReact(
-      () => <QuestEdit response={questPost}/>,
+      () => <QuestEdit/>,
       {user: {isAdmin: true}},
     );
 
-    const editButton = screen.getByText(translations[SupportedLanguages.EN].posts.manage.edit);
+    const editButton = await screen.findByText(translations[SupportedLanguages.EN].posts.manage.edit);
     userEvent.click(editButton);
 
     await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
