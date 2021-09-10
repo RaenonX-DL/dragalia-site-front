@@ -31,7 +31,7 @@ type PostListPageProps<R extends SequencedPostListResponse> = {
   pageLimit?: number
 }
 
-export const PostListPage = <R extends SequencedPostListResponse>({
+export const PostLookupPage = <R extends SequencedPostListResponse>({
   title,
   postManageBarProps,
   fnFetchList,

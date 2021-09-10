@@ -5,7 +5,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/list';
-import {PostListPage} from '../../../../elements/posts/list/page';
+import {PostLookupPage} from '../../../../elements/posts/list/page';
 import {QuestEntryBadges} from './listBadges';
 
 
@@ -15,7 +15,7 @@ export const QuestPostList = () => {
   const title = t((t) => t.meta.inUse.post.quest.list.title);
 
   return (
-    <PostListPage
+    <PostLookupPage
       title={title}
       fnFetchList={ApiRequestSender.questList}
       postManageBarProps={{

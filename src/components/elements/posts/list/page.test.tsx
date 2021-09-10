@@ -5,7 +5,7 @@ import {screen, waitFor} from '@testing-library/react';
 import {renderReact} from '../../../../../test/render/main';
 import {ApiResponseCode} from '../../../../api-def/api';
 import {PostPath} from '../../../../const/path/definitions';
-import {PostListPage} from './page';
+import {PostLookupPage} from './page';
 
 
 describe('Post list page', () => {
@@ -18,7 +18,7 @@ describe('Post list page', () => {
 
   it('shows correct page title', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -31,7 +31,7 @@ describe('Post list page', () => {
 
   it('shows ads', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -47,7 +47,7 @@ describe('Post list page', () => {
 
     renderReact(
       () => (
-        <PostListPage
+        <PostLookupPage
           title={title}
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
@@ -69,7 +69,7 @@ describe('Post list page', () => {
 
     renderReact(
       () => (
-        <PostListPage
+        <PostLookupPage
           title={title}
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
@@ -88,7 +88,7 @@ describe('Post list page', () => {
 
   it('fetches post lists on load', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -110,7 +110,7 @@ describe('Post list page', () => {
     });
 
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -128,7 +128,7 @@ describe('Post list page', () => {
     });
 
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -150,7 +150,7 @@ describe('Post list page', () => {
     });
 
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
