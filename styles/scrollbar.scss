@@ -1,0 +1,25 @@
+@use "colors";
+
+$scroll-bar-core-color: lighten(colors.$color-body-bg, 30%);
+$scroll-bar-bg-color: lighten(colors.$color-body-bg, 10%);
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $scroll-bar-core-color $scroll-bar-bg-color;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $scroll-bar-bg-color;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $scroll-bar-core-color;
+  border-radius: 20px;
+  border: 3px solid $scroll-bar-bg-color;
+}
