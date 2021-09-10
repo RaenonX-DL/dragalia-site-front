@@ -56,10 +56,7 @@ describe('Quest edit page', () => {
   });
 
   it('blocks access for non-admin users', async () => {
-    renderReact(
-      () => <QuestEdit/>,
-      {hasSession: true},
-    );
+    renderReact(() => <QuestEdit/>, {hasSession: true});
 
     expect(await screen.findByText(description401)).toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
@@ -67,10 +64,7 @@ describe('Quest edit page', () => {
   });
 
   it('allows access for admin users', async () => {
-    renderReact(
-      () => <QuestEdit/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <QuestEdit/>, {user: {isAdmin: true}});
 
     expect((await screen.findAllByText(questPost.video)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
@@ -83,10 +77,7 @@ describe('Quest edit page', () => {
       success: false,
     });
 
-    renderReact(
-      () => <QuestEdit/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <QuestEdit/>, {user: {isAdmin: true}});
 
     expect(await screen.findByText(description404)).toBeInTheDocument();
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
@@ -97,10 +88,7 @@ describe('Quest edit page', () => {
     const apiRequest = jest.spyOn(ApiRequestSender, 'questEdit')
       .mockImplementation(async () => response);
 
-    renderReact(
-      () => <QuestEdit/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <QuestEdit/>, {user: {isAdmin: true}});
 
     const editButton = await screen.findByText(translations[SupportedLanguages.EN].posts.manage.edit);
     userEvent.click(editButton);

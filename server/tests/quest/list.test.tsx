@@ -2,12 +2,12 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import QuestList from '../../../pages/[lang]/quest';
 import {
   ApiResponseCode,
   QuestPostListResponse,
   SupportedLanguages,
 } from '../../../src/api-def/api';
+import {QuestPostList} from '../../../src/components/pages/posts/quest/list/list';
 import {translations} from '../../../src/i18n/translations/main';
 import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
 import {renderReact} from '../../../test/render/main';
@@ -17,7 +17,7 @@ describe('Quest listing page', () => {
   const description401 = translations[SupportedLanguages.EN].meta.error['401'].description;
   const description404 = translations[SupportedLanguages.EN].meta.error['404'].description;
 
-  let postListFunc: jest.SpyInstance;
+  let fnFetchPostList: jest.SpyInstance;
   const postListResponse: QuestPostListResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
@@ -27,60 +27,44 @@ describe('Quest listing page', () => {
   };
 
   beforeEach(() => {
-    postListFunc = jest.spyOn(ApiRequestSender, 'questList')
-      .mockImplementation(() => Promise.resolve(postListResponse));
+    fnFetchPostList = jest.spyOn(ApiRequestSender, 'questList').mockResolvedValue(postListResponse);
   });
 
   it('allows access for anonymous users', () => {
-    renderReact(
-      () => <QuestList/>,
-      {hasSession: false},
-    );
+    renderReact(() => <QuestPostList/>, {hasSession: false});
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(postListFunc).toHaveBeenCalledTimes(1);
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
   it('allows access for non-admin users', () => {
-    renderReact(
-      () => <QuestList/>,
-      {user: {isAdmin: false}},
-    );
+    renderReact(() => <QuestPostList/>, {user: {isAdmin: false}});
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(postListFunc).toHaveBeenCalledTimes(1);
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
   it('allows access for admin users', () => {
-    renderReact(
-      () => <QuestList/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <QuestPostList/>, {user: {isAdmin: true}});
 
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(postListFunc).toHaveBeenCalledTimes(1);
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
   it('shows at least 3 ads', () => {
-    renderReact(
-      () => <QuestList/>,
-      {user: {isAdmin: true}},
-    );
+    renderReact(() => <QuestPostList/>, {user: {isAdmin: true}});
 
     expect(screen.queryAllByTestId('ads-post-list').length).toBeGreaterThanOrEqual(1);
-    expect(postListFunc).toHaveBeenCalledTimes(1);
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
   it('does not show ads if should not show', () => {
-    renderReact(
-      () => <QuestList/>,
-      {user: {adsFreeExpiry: new Date()}},
-    );
+    renderReact(() => <QuestPostList/>, {user: {adsFreeExpiry: new Date()}});
 
     expect(screen.queryByTestId('ads-post-list')).not.toBeInTheDocument();
-    expect(postListFunc).toHaveBeenCalledTimes(1);
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 });
