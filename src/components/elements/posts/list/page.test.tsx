@@ -139,31 +139,4 @@ describe('Post list page', () => {
     const errorRegex = new RegExp(ApiResponseCode[ApiResponseCode.FAILED_INTERNAL_ERROR]);
     await waitFor(() => expect(screen.getByText(errorRegex)).toBeInTheDocument());
   });
-
-  it('disables paginator if no items to show', async () => {
-    fnFetchList.mockResolvedValue({
-      code: ApiResponseCode.SUCCESS,
-      success: true,
-      startIdx: 0,
-      postCount: 0,
-      posts: [],
-    });
-
-    renderReact(() => (
-      <PostLookupPage
-        title={title}
-        postManageBarProps={{newButtons: []}}
-        fnFetchList={fnFetchList}
-        renderPostEntries={() => <></>}
-      />
-    ));
-
-    await waitFor(() => expect(screen.getByText('First').parentElement).toHaveAttribute('disabled'));
-    expect(screen.getByText('Previous').parentElement).toHaveAttribute('disabled');
-    expect(screen.getByText('1')).toHaveAttribute('disabled');
-    expect(screen.getByText('2')).toHaveAttribute('disabled');
-    expect(screen.getByText('3')).toHaveAttribute('disabled');
-    expect(screen.getByText('Next').parentElement).toHaveAttribute('disabled');
-    expect(screen.getByText('Last').parentElement).toHaveAttribute('disabled');
-  });
 });

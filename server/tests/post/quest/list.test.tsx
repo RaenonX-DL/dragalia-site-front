@@ -17,50 +17,62 @@ describe('Quest listing page', () => {
   const postListResponse: QuestPostListResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
-    startIdx: 0,
-    postCount: 0,
-    posts: [],
+    posts: [
+      {
+        lang: SupportedLanguages.EN,
+        seqId: 1,
+        title: 'title',
+        viewCount: 7,
+        modifiedEpoch: 0,
+        publishedEpoch: 0,
+      },
+    ],
   };
 
   beforeEach(() => {
     fnFetchPostList = jest.spyOn(ApiRequestSender, 'questList').mockResolvedValue(postListResponse);
   });
 
-  it('allows access for anonymous users', () => {
+  it('allows access for anonymous users', async () => {
     renderReact(() => <QuestPostList/>, {hasSession: false});
 
+    expect(await screen.findByText('title')).toBeInTheDocument();
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
-  it('allows access for non-admin users', () => {
+  it('allows access for non-admin users', async () => {
     renderReact(() => <QuestPostList/>, {user: {isAdmin: false}});
 
+    expect(await screen.findByText('title')).toBeInTheDocument();
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
-  it('allows access for admin users', () => {
+  it('allows access for admin users', async () => {
     renderReact(() => <QuestPostList/>, {user: {isAdmin: true}});
 
+    expect(await screen.findByText('title')).toBeInTheDocument();
+    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
     expect(screen.queryByText(description404)).not.toBeInTheDocument();
-    expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
-  it('shows at least 3 ads', () => {
+  it('shows at least 3 ads', async () => {
     renderReact(() => <QuestPostList/>, {user: {isAdmin: true}});
 
-    expect(screen.queryAllByTestId('ads-post-list').length).toBeGreaterThanOrEqual(1);
+    expect(await screen.findByText('title')).toBeInTheDocument();
+    expect(screen.getAllByTestId('ads-post-list').length).toBeGreaterThanOrEqual(1);
     expect(fnFetchPostList).toHaveBeenCalledTimes(1);
   });
 
-  it('does not show ads if should not show', () => {
+  it('does not show ads if should not show', async () => {
     renderReact(() => <QuestPostList/>, {user: {adsFreeExpiry: new Date()}});
 
-    expect(screen.queryByTestId('ads-post-list')).not.toBeInTheDocument();
+    expect(await screen.findByText('title')).toBeInTheDocument();
     expect(fnFetchPostList).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('ads-post-list')).not.toBeInTheDocument();
   });
 });

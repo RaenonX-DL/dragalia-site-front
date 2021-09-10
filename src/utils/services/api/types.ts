@@ -4,8 +4,6 @@ import {SupportedLanguages, PostGetResponse, SequencedPostListResponse} from '..
 export type FunctionFetchPostList<R extends SequencedPostListResponse> = (
   uid: string,
   langCode: SupportedLanguages,
-  start: number,
-  limit: number,
 ) => Promise<R>
 
 export type FetchPostOptions<K extends string | number> = {

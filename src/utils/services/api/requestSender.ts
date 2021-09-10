@@ -105,17 +105,13 @@ export class ApiRequestSender {
    *
    * @param {string} uid UID of the logged in user
    * @param {SupportedLanguages} lang language code of the posts
-   * @param {number} start starting index of the posts
-   * @param {number} limit maximum count of the data to be returned
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
-  static questList(
-    uid: string, lang: SupportedLanguages, start: number, limit: number,
-  ): Promise<QuestPostListResponse> {
+  static questList(uid: string, lang: SupportedLanguages): Promise<QuestPostListResponse> {
     return ApiRequestSender.sendRequest<QuestPostListResponse, QuestPostListPayload>(
       'GET',
       ApiEndPoints.POST_QUEST_LIST,
-      {uid, lang, start, limit},
+      {uid, lang},
     );
   }
 
@@ -188,17 +184,13 @@ export class ApiRequestSender {
    *
    * @param {string} uid UID of the logged in user
    * @param {SupportedLanguages} lang language code of the posts
-   * @param {number} start starting index of the posts
-   * @param {number} limit maximum count of the data to be returned
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
-  static miscList(
-    uid: string, lang: SupportedLanguages, start: number, limit: number,
-  ): Promise<MiscPostListResponse> {
+  static miscList(uid: string, lang: SupportedLanguages): Promise<MiscPostListResponse> {
     return ApiRequestSender.sendRequest<MiscPostListResponse, MiscPostListPayload>(
       'GET',
       ApiEndPoints.POST_MISC_LIST,
-      {uid, lang, start, limit},
+      {uid, lang},
     );
   }
 
