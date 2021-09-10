@@ -1,29 +1,8 @@
 @charset "UTF-8";
-.bg-om-gradient {
-  background-image: linear-gradient(to right, #02152a, #2f4668);
-}
-
 div.btn-group-toggle > label.btn-outline-secondary:hover {
   background-color: #000;
 }
 
-.bg-anim-om {
-  background: linear-gradient(315deg, #02152a 20%, #2f4668 50%, #02152a 80%);
-  background-size: 500%;
-  animation-name: bg-transform;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-@keyframes bg-transform {
-  0% {
-    background-position: 0 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
 /* stylelint-disable no-invalid-position-at-import-rule */
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)

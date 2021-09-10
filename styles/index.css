@@ -33,4 +33,14 @@ div.bg-img-wrap {
   position: relative;
 }
 
+nav.nav-site {
+  background: #021122;
+}
+nav.nav-title {
+  background: rgba(24, 24, 24, 0.9);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(150deg, #9a36c9, #e9b816) 1;
+}
+
 /*# sourceMappingURL=index.css.map */

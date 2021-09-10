@@ -22,7 +22,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="xl" variant="dark" style={{zIndex: 1000}}>
+      <Navbar collapseOnSelect expand="xl" variant="dark" className="nav-site" style={{zIndex: 1000}}>
         <InternalLink href={GeneralPath.HOME} locale={lang} passHref>
           <Navbar.Brand>
             {t((t) => t.meta.inUse.site.title)}
@@ -63,10 +63,7 @@ export const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar
-        collapseOnSelect expand="lg" bg="anim-om" variant="dark"
-        sticky="top" style={{zIndex: 999}} id={TITLE_NAV_HTML_ID}
-      >
+      <Navbar variant="dark" sticky="top" style={{zIndex: 999}} id={TITLE_NAV_HTML_ID} className="nav-title">
         <h1 style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
           {context?.title}
         </h1>
