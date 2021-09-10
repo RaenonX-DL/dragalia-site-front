@@ -61,6 +61,7 @@ export const PostListPage = <R extends SequencedPostListResponse>({
     setStatus({
       ...status,
       fetching: true,
+      fetched: false,
     });
 
     fnFetchList(

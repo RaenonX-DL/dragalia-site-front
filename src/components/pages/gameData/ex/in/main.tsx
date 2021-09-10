@@ -56,6 +56,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
 
     setSelectionData({
       ...selectionData,
+      fetched: false,
       fetching: true,
     });
 
