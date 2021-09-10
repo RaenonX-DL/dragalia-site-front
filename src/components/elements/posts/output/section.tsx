@@ -23,7 +23,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
         const title = getTitle(section);
 
         return (
-          <div key={title} className="section mb-3">
+          <div key={title} className="mb-2">
             <Accordion>
               <Row className="align-items-center">
                 <Col>
@@ -35,7 +35,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
                   </Accordion.Toggle>
                 </Col>
               </Row>
-              <Accordion.Collapse eventKey={title} className="mt-3">
+              <Accordion.Collapse eventKey={title} className="mt-2">
                 {renderSection(section)}
               </Accordion.Collapse>
             </Accordion>
