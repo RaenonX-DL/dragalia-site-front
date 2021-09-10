@@ -6,7 +6,7 @@ import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/list';
 import {PostLookupPage} from '../../../../elements/posts/list/page';
-import {QuestEntryBadges} from './listBadges';
+import {QuestEntryBadge} from './listBadges';
 
 
 export const QuestPostList = () => {
@@ -27,7 +27,7 @@ export const QuestPostList = () => {
           generateLink={(postId) => (
             makePostUrl(PostPath.QUEST, {pid: postId, lang})
           )}
-          renderPostBadge={(props) => <QuestEntryBadges {...props}/>}
+          renderPostBadge={(props) => <QuestEntryBadge {...props}/>}
         />
       )}
     />

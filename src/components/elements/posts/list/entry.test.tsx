@@ -42,7 +42,7 @@ describe('Post list entry', () => {
     // Check view count existence
     expect(screen.getByText('Viewed 777 times')).toBeInTheDocument();
     // Check meta existence
-    expect(screen.getByText(/Published/)).toBeInTheDocument();
-    expect(screen.getByText(/Modified/)).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-cloud-arrow-up'})).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
   });
 });
