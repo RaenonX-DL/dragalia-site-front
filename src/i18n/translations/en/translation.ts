@@ -570,6 +570,8 @@ export const translation: TranslationStruct = {
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
+      videoTips: 'For the Chinese audience who can\'t see the videos, ' +
+        'please visit [my Bilibili](https://space.bilibili.com/1052053443).',
     },
     error: {
       auth: {

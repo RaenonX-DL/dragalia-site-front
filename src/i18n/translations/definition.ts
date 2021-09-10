@@ -469,6 +469,7 @@ export type TranslationStruct = {
     info: {
       constructing: string,
       welcome: string,
+      videoTips: string,
     },
     error: {
       auth: {

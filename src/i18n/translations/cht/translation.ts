@@ -525,6 +525,7 @@ export const translation: TranslationStruct = {
       welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
+      videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
       auth: {
