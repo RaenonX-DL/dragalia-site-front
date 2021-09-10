@@ -82,7 +82,7 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
               <Error404/> :
               <Container className="p-3">
                 <GlobalAlert/>
-                <Component {...pageProps} />
+                <Component {...pageProps}/>
               </Container>
           }
           <Footer/>

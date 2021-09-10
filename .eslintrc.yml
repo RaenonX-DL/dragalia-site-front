@@ -87,9 +87,13 @@ rules:
     - error
     - never
 
-  # Typescript itself will perform this check, no need for React to check it
+  # Typescript will perform this check, no need for React to check it
   react/prop-types:
     - off
+
+  react/jsx-tag-spacing:
+    - error
+    - beforeSelfClosing: never
 
   unused-imports/no-unused-imports:
     - error

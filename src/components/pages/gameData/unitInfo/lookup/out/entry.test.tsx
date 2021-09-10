@@ -40,7 +40,7 @@ describe('Analysis lookup entry', () => {
   };
 
   it('renders analysis with correct info and link to click', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={false} /> );
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={false}/>);
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -58,7 +58,7 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows unavailable as expected', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified={false} /> );
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified={false}/>);
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -74,7 +74,7 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows available but simplified entry', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified />);
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified/>);
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -86,7 +86,7 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows unavailable even if simplified', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified /> );
+    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified/>);
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
