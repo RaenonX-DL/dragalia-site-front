@@ -480,7 +480,7 @@ export type TranslationStruct = {
   misc: {
     omMember: string,
     omGroup: string,
-    openGif: string,
+    openImage: string,
     search: string,
     searchKeyword: string,
     showMore: string,

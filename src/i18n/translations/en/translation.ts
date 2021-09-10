@@ -582,7 +582,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
-    openGif: 'Click to open GIF',
+    openImage: 'Click to open the image',
     search: 'Search',
     searchKeyword: 'Keyword',
     showMore: 'Show More',

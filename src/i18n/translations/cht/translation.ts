@@ -536,7 +536,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
-    openGif: '點擊以開啟 GIF 圖片',
+    openImage: '點擊以開啟圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
     showMore: '顯示更多',

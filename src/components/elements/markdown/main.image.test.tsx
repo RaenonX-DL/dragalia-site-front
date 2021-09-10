@@ -7,6 +7,7 @@ import {renderReact} from '../../../../test/render/main';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {Markdown} from './main';
+import {KEYWORD_FOR_MODAL} from './transformers/image/const';
 
 
 describe('Markdown (Image)', () => {
@@ -50,18 +51,29 @@ describe('Markdown (Image)', () => {
   it('renders GIF as a clickable button', async () => {
     renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
 
-    const openButton = screen.getByText(translationEN.misc.openGif);
+    const openButton = screen.getByText(translationEN.misc.openImage);
     userEvent.click(openButton);
 
     expect(screen.getByAltText('image')).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.gif');
   });
 
   it('records a GIF has been opened', async () => {
-    const fnGAShowGif = jest.spyOn(GoogleAnalytics, 'showGif');
+    const fnGAShowGif = jest.spyOn(GoogleAnalytics, 'showImage');
     renderReact(() => <Markdown>{'https://i.imgur.com/mtxtE5j.gif'}</Markdown>);
 
-    const openButton = screen.getByText(translationEN.misc.openGif);
+    const openButton = screen.getByText(translationEN.misc.openImage);
     userEvent.click(openButton);
     expect(fnGAShowGif).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders image as a clickable button if specified', async () => {
+    renderReact(() => <Markdown>{`![Alt](https://i.imgur.com/mtxtE5j.jpeg[${KEYWORD_FOR_MODAL}])`}</Markdown>);
+
+    const openButton = screen.getByText(translationEN.misc.openImage);
+    userEvent.click(openButton);
+
+    const image = screen.getByAltText('Alt');
+    expect(image).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
+    expect(image).not.toHaveClass(KEYWORD_FOR_MODAL);
   });
 });

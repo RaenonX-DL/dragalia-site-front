@@ -8,7 +8,7 @@ import {IconImage} from '../../../common/icons';
 import {Image} from '../../../common/image';
 import {ModalFixedContent} from '../../../common/modal/fix';
 import {ModalStateFix} from '../../../common/modal/types';
-import {IMAGE_REGEX} from './const';
+import {IMAGE_REGEX, KEYWORD_FOR_MODAL} from './const';
 import {ImageProps} from './types';
 
 
@@ -19,20 +19,20 @@ export const ImageInHTML = ({src, alt}: ImageProps) => {
 
   const {src: actualSrc, className} = src.match(IMAGE_REGEX)?.groups || {};
 
-  const openGifModal = () => {
-    GoogleAnalytics.showGif(actualSrc);
+  const openImageModal = () => {
+    GoogleAnalytics.showImage(actualSrc);
     setModalState({...modalState, show: true});
   };
 
-  if (actualSrc.endsWith('.gif')) {
+  if (actualSrc.endsWith('.gif') || className === KEYWORD_FOR_MODAL) {
     return (
       <>
         <ModalFixedContent state={modalState} setState={setModalState}>
-          <Image src={actualSrc} text={alt} className={className}/>
+          <Image src={actualSrc} text={alt}/>
         </ModalFixedContent>
-        <Button className="p-0" variant="link" onClick={() => openGifModal()}>
+        <Button className="p-0" variant="link" onClick={() => openImageModal()}>
           <IconImage/>&nbsp;
-          {t((t) => t.misc.openGif)}
+          {t((t) => t.misc.openImage)}
         </Button>
       </>
     );

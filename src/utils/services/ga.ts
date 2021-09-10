@@ -115,11 +115,11 @@ export class GoogleAnalytics {
   }
 
   /**
-   * Record that a GIF has been shown.
+   * Record that an image has been click to show.
    *
-   * @param {string} imageUrl URL of the GIF
+   * @param {string} imageUrl URL of the image
    */
-  static showGif(imageUrl: string) {
+  static showImage(imageUrl: string) {
     GoogleAnalytics.sendEvent(
       GAEvent.OPEN_IMAGE,
       {
