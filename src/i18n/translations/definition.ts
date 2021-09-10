@@ -609,7 +609,6 @@ export type TranslationStruct = {
       fetchPostFailed: string,
       md: string,
       editNote: string,
-      modifyTime: string,
       postNotExists: string,
       preview: string,
       publish: string,

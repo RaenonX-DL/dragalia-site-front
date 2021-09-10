@@ -16,7 +16,7 @@ import {makePostUrl} from '../../../../../utils/path/make';
 import {AnalysisOutputDragon} from './dragon';
 
 
-describe('Analysis output (Character)', () => {
+describe('Analysis output (Dragon)', () => {
   const analysisResponse: DragonAnalysisGetResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
@@ -59,9 +59,7 @@ describe('Analysis output (Character)', () => {
   const chtName = SupportedLanguageNames[SupportedLanguages.CHT];
 
   it('renders correctly if no alt lang', async () => {
-    renderReact(() => (
-      <AnalysisOutputDragon analysis={analysisResponse}/>
-    ));
+    renderReact(() => <AnalysisOutputDragon analysis={analysisResponse}/>);
 
     expect(screen.getByText('sum')).toBeInTheDocument();
     expect(screen.getByText('res')).toBeInTheDocument();
@@ -74,7 +72,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });
@@ -99,7 +97,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).toBeInTheDocument();
     expect(screen.queryAllByText(new RegExp(`${chtName}`)).length).toBe(2);
@@ -140,22 +138,13 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.queryByText('edn')).not.toBeInTheDocument();
+    expect(screen.queryByText(/edn/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });
 
   it('renders correctly for admin', async () => {
-    renderReact(
-      () => (
-        <AnalysisOutputDragon analysis={analysisResponse}/>
-      ),
-      {
-        user: {
-          isAdmin: true,
-        },
-      },
-    );
+    renderReact(() => <AnalysisOutputDragon analysis={analysisResponse}/>, {user: {isAdmin: true}});
 
     expect(screen.getByText(translationEN.posts.manage.addChara)).toBeInTheDocument();
     expect(screen.getByText(translationEN.posts.manage.addDragon)).toBeInTheDocument();
@@ -171,7 +160,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });

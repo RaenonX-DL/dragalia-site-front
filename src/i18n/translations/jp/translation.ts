@@ -773,7 +773,6 @@ export const translation: TranslationStruct = {
       fetchPostFailed: '文の獲得失敗。({{error}})',
       md: 'Markdown',
       editNote: '記事を編集する',
-      modifyTime: '日期を編集する',
       postNotExists: '文がありません。',
       preview: 'プレビュー',
       publish: '文を発表する',
