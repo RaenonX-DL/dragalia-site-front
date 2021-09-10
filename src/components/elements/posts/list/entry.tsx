@@ -35,13 +35,13 @@ export const PostEntry = <E extends SequencedPostInfo>({
 
   return (
     <div className={styles.entry}>
-      <span className="h5">
+      <h5>
         <InternalLink
           href={generateLink(entry.seqId)}
           locale={lang}
           content={entry.title}
         />
-      </span>
+      </h5>
       <Row noGutters>
         <Col xs="auto">
           {renderPostBadge({entry})}&nbsp;
