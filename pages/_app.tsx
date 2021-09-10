@@ -11,6 +11,7 @@ import '../public/bs-icons.css';
 import '../public/index.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
+import {Error404} from '../src/components/error/404';
 import {Navigation} from '../src/components/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
@@ -20,7 +21,6 @@ import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
 import {ResourceLoader} from '../src/utils/services/resources/loader';
-import Error404 from './404';
 
 
 type PageProps = AppReactContextValue & {
