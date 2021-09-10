@@ -1,10 +1,22 @@
 import React, {Dispatch, SetStateAction} from 'react';
 
 
-export type FetchStatusSimple = {
-  fetched: boolean,
-  fetching: boolean,
+type FetchStatusNotFetched = {
+  fetched: false,
+  fetching: false,
 }
+
+type FetchStatusFetching = {
+  fetched: false,
+  fetching: true,
+}
+
+type FetchStatusFetched = {
+  fetched: true,
+  fetching: false,
+}
+
+export type FetchStatusSimple = FetchStatusNotFetched | FetchStatusFetching | FetchStatusFetched
 
 export type FetchStatus<D> = FetchStatusSimple & {
   data: D,
@@ -40,6 +52,7 @@ export const useFetchStateProcessed = <D, R>(
     setFetchStatus({
       ...fetchStatus,
       fetching: true,
+      fetched: false,
     });
 
     fnFetch()

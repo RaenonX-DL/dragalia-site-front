@@ -7,17 +7,18 @@ import {useI18n} from '../../../../../i18n/hook';
 import {makePostUrl} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../../elements/common/ads/main';
 import {Markdown} from '../../../../elements/markdown/main';
+import {AlertVideoTips} from '../../../../elements/posts/alert';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../../../elements/posts/output/alert';
 import {PostInfo} from '../../../../elements/posts/output/info';
 import {QuestPositionOutput} from './positional';
 
 
-type QuestPostOutputProps = {
+type Props = {
   post: QuestPostGetResponse,
 }
 
-export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
+export const QuestPostOutput = ({post}: Props) => {
   const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
@@ -46,6 +47,9 @@ export const QuestPostOutput = ({post}: QuestPostOutputProps) => {
         {t((t) => t.posts.quest.video)}
       </h3>
       <Markdown>{post.video || 'N/A'}</Markdown>
+      <div className="mt-2">
+        <AlertVideoTips/>
+      </div>
       <AdsInPost/>
       <hr/>
       <h3 className="mb-3">

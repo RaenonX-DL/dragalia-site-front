@@ -84,7 +84,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });
@@ -112,10 +112,10 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).toBeInTheDocument();
-    expect(screen.queryAllByText(new RegExp(`${chtName}`)).length).toBe(2);
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${otherLangTips}`, 'g'))).toBeInTheDocument();
+    expect(screen.getAllByText(new RegExp(`${chtName}`)).length).toBe(2);
   });
 
   it('gives correct link for alt lang redirection', async () => {
@@ -156,7 +156,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.queryByText('edn')).not.toBeInTheDocument();
+    expect(screen.queryByText(/edn/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });
@@ -190,7 +190,7 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('str')).toBeInTheDocument();
     expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText('edn')).toBeInTheDocument();
+    expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
   });

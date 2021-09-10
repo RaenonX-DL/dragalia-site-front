@@ -81,12 +81,12 @@ describe('Analysis lookup page', () => {
       analyses: [],
     });
     fnGetLookupLanding = jest.spyOn(ApiRequestSender, 'unitInfoLookupLanding')
-      .mockImplementation(async () => lookupLandingResponse);
+      .mockResolvedValue(lookupLandingResponse);
     fnGaAnalysisLookup = jest.spyOn(GoogleAnalytics, 'analysisLookup');
   });
 
   it('searches and scrolls if found', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseHasAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -99,7 +99,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('searches and scrolls even if not found', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -115,7 +115,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('scrolls on not found, also scrolls on found', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     const {rerender} = renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -129,7 +129,7 @@ describe('Analysis lookup page', () => {
     await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
 
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseHasAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseHasAnalyses);
     rerender();
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -142,7 +142,7 @@ describe('Analysis lookup page', () => {
   }, 15000); // Finding `Gala Leonidas` is time-consuming, causing false negative
 
   it('searches by element and type', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -159,7 +159,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('searches by weapon type', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -176,7 +176,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('searches by keyword', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     const {rerender} = renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -192,7 +192,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('searches by pressing `enter`', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -207,7 +207,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('sends GA event', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
@@ -240,7 +240,7 @@ describe('Analysis lookup page', () => {
   });
 
   it('shows error if no units matching the search criteria', async () => {
-    fnGetLookup.mockImplementationOnce(async () => lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);

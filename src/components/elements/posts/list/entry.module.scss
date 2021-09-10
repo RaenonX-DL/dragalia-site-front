@@ -1,0 +1,12 @@
+div {
+  &.entry {
+    padding: 0.5rem 0.8rem;
+    border-bottom: gray 1px solid;
+  }
+}
+
+small {
+  &.timestamp {
+    margin: 0 0.3rem;
+  }
+}

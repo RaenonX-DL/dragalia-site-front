@@ -22,7 +22,13 @@ describe('Unit info searching page', () => {
 
   beforeEach(() => {
     lookupLandingFunc = jest.spyOn(ApiRequestSender, 'unitInfoLookupLanding')
-      .mockImplementation(() => Promise.resolve(lookupLandingResponse));
+      .mockResolvedValue(lookupLandingResponse);
+    lookupLandingFunc = jest.spyOn(ApiRequestSender, 'analysisLookup')
+      .mockResolvedValue({
+        code: ApiResponseCode.SUCCESS,
+        success: true,
+        analyses: [],
+      });
   });
 
   it('allows access for anonymous users', () => {

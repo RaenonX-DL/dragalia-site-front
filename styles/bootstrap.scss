@@ -1,0 +1,154 @@
+// https://getbootstrap.com/docs/4.1/getting-started/theming/
+// https://react-bootstrap.github.io/getting-started/introduction/
+
+// region Custom Colors
+
+@use "colors";
+
+// endregion
+
+$yiq-contrasted-threshold: 140;
+
+// region Body
+
+$body-bg: colors.$color-body-bg;
+$body-color: colors.$color-white-pure;
+
+// endregion
+
+// region Links
+
+$link-color: #75a1ff !default;
+$link-decoration: none !default;
+$link-hover-color: lighten($link-color, 10%) !default;
+$link-hover-decoration: none !default;
+
+// endregion
+
+// region Border
+
+$border-color: colors.$color-light-gray !default;
+
+// endregion
+
+// region Thematic break (hr)
+
+$hr-border-color: colors.$hr-color;
+
+// endregion
+
+// region Jumbotrons
+
+$jumbotron-bg: colors.$color-black-32;
+
+// endregion
+
+// region Color themes
+
+$red: colors.$color-red;
+
+$theme-colors: (
+  "om-dark": colors.$color-om-dark,
+  "om-light": colors.$color-om-light,
+  "orange": colors.$color-orange,
+  "dark-red": colors.$color-dark-red,
+  "black-32": colors.$color-black-32,
+  "black-50": colors.$color-black-50,
+  "light-gray": colors.$color-light-gray,
+  // Override the "cyan" color and "info" variable in bootstrap definition
+  "info": lighten(#17a2b8, 7.5%),
+);
+
+$text-muted: #7f7f7f;
+
+// endregion
+
+// region Button
+
+div.btn-group-toggle > label.btn-outline-secondary:hover {
+  background-color: #000;
+}
+
+// endregion
+
+// region Tabs
+
+$nav-tabs-link-active-color: colors.$color-white-pure;
+
+// endregion
+
+// region Pagination
+
+$pagination-color: $link-color !default;
+$pagination-bg: colors.$color-black-32 !default;
+$pagination-border-color: colors.$color-black-32 !default;
+
+$pagination-hover-color: $link-hover-color !default;
+$pagination-hover-bg: colors.$color-black-80 !default;
+$pagination-hover-border-color: colors.$color-black-80 !default;
+
+$pagination-active-color: colors.$color-white-pure !default;
+$pagination-active-bg: colors.$color-om-light !default;
+$pagination-active-border-color: colors.$color-om-light !default;
+
+$pagination-disabled-color: colors.$color-light-gray !default;
+$pagination-disabled-bg: colors.$color-dark-red !default;
+$pagination-disabled-border-color: colors.$color-dark-red !default;
+
+// endregion
+
+// region Close
+
+$close-color: colors.$color-white-pure;
+$close-text-shadow: 0;
+
+// endregion
+
+// region Modal
+
+$modal-content-bg: colors.$color-black-07;
+
+// endregion
+
+// region Alert
+
+$alert-color-level: 0;
+$alert-bg-level: 9;
+$alert-border-level: 10;
+
+// endregion
+
+// region Popover
+
+$popover-header-color: colors.$color-black-07;
+$popover-body-color: colors.$color-black-07;
+
+// endregion
+
+// region Card
+
+$card-bg: colors.$color-black-32;
+
+// endregion
+
+// region Bootstrap & default variables
+
+// This must be placed after all variable overrides above
+/* stylelint-disable no-invalid-position-at-import-rule */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// endregion
+
+// region Link styling
+
+a {
+  border-bottom: 1px solid;
+}
+
+.nav-link {
+  @include media-breakpoint-down(lg) {
+    border-bottom: none;
+  }
+}
+
+// endregion

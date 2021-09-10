@@ -33,7 +33,7 @@ export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputRet
 
   if (isNotFetched(getPresetStatus)) {
     if (context?.session) {
-      setGetPresetStatus({...getPresetStatus, fetching: true});
+      setGetPresetStatus({...getPresetStatus, fetched: false, fetching: true});
       ApiRequestSender.getPresetAtkSkill(context.session.user.id.toString(), presetId as string)
         .then((response) => {
           setGetPresetStatus({

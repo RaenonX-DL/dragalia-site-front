@@ -8,4 +8,5 @@ export const pathPostType: {[path in PostPath]: PostType} = {
   [PostPath.ANALYSIS]: PostType.ANALYSIS,
   [PostPath.ANALYSIS_EDIT]: PostType.ANALYSIS,
   [PostPath.MISC]: PostType.MISC,
+  [PostPath.MISC_EDIT]: PostType.MISC,
 };

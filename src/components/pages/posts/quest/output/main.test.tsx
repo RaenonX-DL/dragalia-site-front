@@ -64,7 +64,7 @@ describe('Quest post output', () => {
     ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
-    expect(screen.getByText(/video/)).toBeInTheDocument();
+    expect(screen.getByText('video')).toBeInTheDocument();
     expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
@@ -85,7 +85,7 @@ describe('Quest post output', () => {
     ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
-    expect(screen.getByText(/video/)).toBeInTheDocument();
+    expect(screen.getByText('video')).toBeInTheDocument();
     expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
@@ -123,7 +123,7 @@ describe('Quest post output', () => {
     ));
 
     expect(screen.getByText(/general/)).toBeInTheDocument();
-    expect(screen.getByText(/video/)).toBeInTheDocument();
+    expect(screen.getByText('video')).toBeInTheDocument();
     expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();
@@ -143,7 +143,7 @@ describe('Quest post output', () => {
     expect(screen.getByText(translationEN.posts.manage.add)).toBeInTheDocument();
     expect(screen.getByText(translationEN.posts.manage.edit)).toBeInTheDocument();
     expect(screen.getByText(/general/)).toBeInTheDocument();
-    expect(screen.getByText(/video/)).toBeInTheDocument();
+    expect(screen.getByText('video')).toBeInTheDocument();
     expect(screen.getByText('pst')).toBeInTheDocument();
     expect(screen.getByText(/builds/)).toBeInTheDocument();
     expect(screen.getByText(/rotations/)).toBeInTheDocument();

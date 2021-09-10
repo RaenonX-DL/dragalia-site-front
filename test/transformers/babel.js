@@ -15,11 +15,7 @@ module.exports = babelJest.default.createTransformer({
   presets: [
     [
       require.resolve('babel-preset-react-app'),
-      {
-        runtime: hasJsxRuntime ? 'automatic' : 'classic',
-      },
+      {runtime: hasJsxRuntime ? 'automatic' : 'classic'},
     ],
   ],
-  babelrc: false,
-  configFile: false,
 });

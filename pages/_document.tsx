@@ -1,5 +1,7 @@
 import React from 'react';
 
+// FIXME: False-positive https://github.com/vercel/next.js/issues/28786
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 
 
@@ -19,7 +21,7 @@ class Document extends NextDocument<Props> {
         <Head>
           <meta charSet="utf-8"/>
 
-          <link href="/favicon.ico" rel="icon"/>
+          <link href="/logo192.png" rel="icon"/>
           <link href="/logo192.png" rel="shortcut icon" key="shortcutIcon"/>
           <link href="/logo512.png" rel="apple-touch-icon"/>
           <link href="/manifest.json" rel="manifest"/>
@@ -55,25 +57,6 @@ class Document extends NextDocument<Props> {
           <script>var Alert = ReactBootstrap.Alert;</script>
 
           {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
-
-          {/* Global site tag (gtag.js) - Google Analytics */}
-          {
-            process.env.NODE_ENV === 'production' &&
-            !process.env.CI &&
-            <>
-              <script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
-              <script dangerouslySetInnerHTML={{
-                __html: `
-              window.dataLayer = window.dataLayer || [];
-              
-              function gtag(){dataLayer.push(arguments);}
-              
-              gtag('js', new Date());
-              gtag('config', 'G-796E69CFJG');
-              `,
-              }}/>
-            </>
-          }
         </Head>
         <body>
           <Main/>

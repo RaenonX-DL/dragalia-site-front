@@ -21,7 +21,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
   const {t} = useI18n();
 
   return (
-    <div className="bg-black-32 rounded p-2">
+    <div className="section">
       <Form.Row>
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type.title)}</Form.Label>

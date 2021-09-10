@@ -56,6 +56,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
 
     setSelectionData({
       ...selectionData,
+      fetched: false,
       fetching: true,
     });
 
@@ -71,7 +72,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   }
 
   return (
-    <div className="rounded bg-black-32 p-3">
+    <div className="section">
       <Filter
         elementEnums={selectionData.elementEnums}
         exBuffParams={selectionData.exBuffParams}

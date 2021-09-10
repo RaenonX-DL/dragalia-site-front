@@ -10,8 +10,12 @@ export const FormNotes = () => {
   const {t} = useI18n();
 
   return (
-    <Row>
-      <Col className="m-3 p-3 rounded bg-black-32">{t((t) => t.posts.manage.addNote)}</Col>
+    <Row className="mb-2">
+      <Col>
+        <div className="section">
+          {t((t) => t.posts.manage.addNote)}
+        </div>
+      </Col>
     </Row>
   );
 };

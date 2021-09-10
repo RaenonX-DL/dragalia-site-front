@@ -27,7 +27,7 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData}: Props
             </Col>
           )) :
           <Col className="mb-2 text-danger">
-            <div className="bg-black-32 rounded p-2">
+            <div className="section">
               {t((t) => t.game.unitTier.alert.noUnitInRank)}
             </div>
           </Col>

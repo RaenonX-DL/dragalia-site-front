@@ -83,14 +83,22 @@ rules:
         order: asc
         caseInsensitive: true
 
-  # Typescript itself will perform this check, no need for React to check it
+  space-in-parens:
+    - error
+    - never
+
+  # Typescript will perform this check, no need for React to check it
   react/prop-types:
     - off
+
+  react/jsx-tag-spacing:
+    - error
+    - beforeSelfClosing: never
 
   unused-imports/no-unused-imports:
     - error
 
-  '@next/next/no-img-element':
+  "@next/next/no-img-element":
     - off
 
 settings:

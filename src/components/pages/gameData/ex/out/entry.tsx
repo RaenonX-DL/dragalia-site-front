@@ -19,7 +19,7 @@ export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbility
   const {t, lang} = useI18n();
 
   return (
-    <div className="rounded bg-black-32 p-2 mb-2">
+    <div className="section mb-2">
       {
         chara &&
         <>

@@ -1,0 +1,22 @@
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #656565 #323232;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #323232;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #656565;
+  border-radius: 20px;
+  border: 3px solid #323232;
+}
+
+/*# sourceMappingURL=scrollbar.css.map */

@@ -82,6 +82,7 @@ describe('New quest post form', () => {
           backup: {
             analysis: {chara: null, dragon: null},
             quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
+            misc: null,
           },
         },
       },
@@ -146,6 +147,7 @@ describe('New quest post form', () => {
           backup: {
             analysis: {chara: null, dragon: null},
             quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
+            misc: null,
           },
         },
       },
@@ -189,6 +191,7 @@ describe('New quest post form', () => {
               ],
               addendum: 'adm',
             },
+            misc: null,
           },
         },
       },
@@ -214,6 +217,7 @@ describe('New quest post form', () => {
           backup: {
             analysis: {chara: null, dragon: null},
             quest: {...generatePayload(SupportedLanguages.EN, 'admin'), addendum: 'add'},
+            misc: null,
           },
         },
       },

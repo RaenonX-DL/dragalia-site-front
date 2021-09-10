@@ -27,7 +27,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
   const isNameInputAllowed = !!unitInfo;
 
   return (
-    <div className="bg-black-32 rounded p-2">
+    <div className="section">
       <Form.Row>
         <Col lg={2}>
           <Form.Label>{t((t) => t.game.nameRef.unitId)}</Form.Label>

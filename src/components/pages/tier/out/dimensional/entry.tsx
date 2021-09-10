@@ -31,7 +31,7 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
 
   return (
     <>
-      <Row noGutters className="rounded bg-black-32 p-2 mb-2">
+      <Row noGutters className="section mb-2">
         <Col xs="auto" className="mr-2">
           <UnitIcon unitInfo={unitInfo} style={{height: '4rem'}}/>
         </Col>

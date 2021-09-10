@@ -1,0 +1,13 @@
+@use "colors";
+
+%section-preset {
+  border-radius: 0.25rem;
+  background-color: colors.$color-section;
+  border: 1px solid colors.$color-section-border;
+}
+
+.section {
+  @extend %section-preset;
+
+  padding: 0.5rem;
+}

@@ -15,7 +15,7 @@ export const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps)
   const {t} = useI18n();
 
   return (
-    <Alert variant="warning" className="rounded bg-black-32 p-2 mb-2">
+    <Alert variant="warning" className="section mb-2">
       {t(
         (t) => t.message.warning.truncated,
         {

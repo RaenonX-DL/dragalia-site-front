@@ -10,10 +10,14 @@ export const backupDispatchers = {
     createAction<BackupState['analysis']['dragon']>(BackupDispatcherName.BACKUP_DRAGON_ANALYSIS),
   [BackupDispatcherName.BACKUP_QUEST_GUIDE]:
     createAction<BackupState['quest']>(BackupDispatcherName.BACKUP_QUEST_GUIDE),
+  [BackupDispatcherName.BACKUP_MISC_POST]:
+    createAction<BackupState['misc']>(BackupDispatcherName.BACKUP_MISC_POST),
   [BackupDispatcherName.CLEAR_CHARA_ANALYSIS]:
     createAction(BackupDispatcherName.CLEAR_CHARA_ANALYSIS),
   [BackupDispatcherName.CLEAR_DRAGON_ANALYSIS]:
     createAction(BackupDispatcherName.CLEAR_DRAGON_ANALYSIS),
   [BackupDispatcherName.CLEAR_QUEST_GUIDE]:
     createAction(BackupDispatcherName.CLEAR_QUEST_GUIDE),
+  [BackupDispatcherName.CLEAR_MISC_POST]:
+    createAction(BackupDispatcherName.CLEAR_MISC_POST),
 };

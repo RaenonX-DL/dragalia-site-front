@@ -6,9 +6,9 @@ import {DetailedProps} from '../common/types';
 
 export const SectionTitle = ({title, description}: DetailedProps) => {
   return (
-    <h4>
+    <h5>
       {title}&nbsp;
       <InfoPopover title={title} description={description}/>
-    </h4>
+    </h5>
   );
 };

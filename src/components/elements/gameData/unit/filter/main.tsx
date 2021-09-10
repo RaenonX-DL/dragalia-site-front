@@ -54,7 +54,7 @@ export const UnitFilter = <S extends string,
   return (
     <>
       <AdsPageTop/>
-      <div className="rounded bg-black-32 p-3 mb-2">
+      <div className="section p-3 mb-2">
         <UnitTypePicker inputData={inputData} setInputData={setInputData}/>
         <InputPanel
           inputData={inputData}

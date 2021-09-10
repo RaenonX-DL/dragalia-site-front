@@ -1,10 +1,7 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-import {ApiResponseCode, Dimension, DimensionKey} from '../../../../api-def/api';
+import {Dimension, DimensionKey} from '../../../../api-def/api';
 import {GeneralPath} from '../../../../const/path/definitions';
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
@@ -14,11 +11,9 @@ import {processText} from '../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {Loading} from '../../../elements/common/loading';
-import {ModalFlexContent} from '../../../elements/common/modal/flex';
-import {ModalStateFlex} from '../../../elements/common/modal/types';
+import {AjaxForm} from '../../../elements/form/ajax/main';
 import {useUnitId} from '../../../elements/gameData/hook';
 import {AutoComplete} from '../../../elements/input/autoComplete/main';
-import {useOnBeforeUnload} from '../../../hooks/onBeforeUnload';
 import {ProtectedLayout} from '../../layout/protected';
 import styles from '../main.module.css';
 import {TierNoteDimensionEntry} from './dimension';
@@ -34,12 +29,6 @@ export const TierNoteEdit = () => {
   const unitId = useUnitId();
   const {unitInfoMap} = useUnitInfo();
 
-  const [modal, setModal] = React.useState<ModalStateFlex>({
-    show: false,
-    title: '',
-    message: '',
-  });
-
   if (!unitId) {
     return <></>;
   }
@@ -52,8 +41,6 @@ export const TierNoteEdit = () => {
     isFetchingResources,
   } = useTierNoteEditResources(unitId);
 
-  const {clearUnload} = useOnBeforeUnload([unitTierNote]);
-
   if (isFetchingResources) {
     return <Loading/>;
   }
@@ -63,45 +50,34 @@ export const TierNoteEdit = () => {
     return <></>;
   }
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Remove tier note marked to be deleted in payload before send
-    const tierNoteToSend = {
-      ...unitTierNote,
-      tier: Object.fromEntries(
-        await Promise.all(Object.entries(unitTierNote.tier)
-          .filter(([_, value]) => !value.toDelete)
-          .map(async ([key, value]) => {
-            const {toDelete, ...processed} = value;
-
-            processed.note = await processText({lang, text: processed.note});
-
-            return [key, processed];
-          })),
-      ),
-    };
-
-    ApiRequestSender.updateUnitTierNote(uid, lang, unitId, tierNoteToSend)
-      .then((response) => {
-        if (!response.success) {
-          setModal({...modal, message: ApiResponseCode[response.code]});
-          return;
-        }
-
-        clearUnload();
-        window.location.assign(makeGeneralUrl(GeneralPath.TIER_LOOKUP, {lang}));
-      })
-      .catch((e) => {
-        console.error(e);
-        setModal({...modal, message: e.message});
-      });
-  };
-
   return (
     <ProtectedLayout>
-      <ModalFlexContent state={modal} setState={setModal}/>
-      <form onSubmit={onSubmit}>
+      <AjaxForm
+        unloadDependencies={[unitTierNote]}
+        submitPromise={async () => {
+          const tierNoteToSend = {
+            ...unitTierNote,
+            tier: Object.fromEntries(
+              await Promise.all(Object.entries(unitTierNote.tier)
+                .filter(([_, value]) => !value.toDelete)
+                .map(async ([key, value]) => {
+                  const {toDelete, ...processed} = value;
+
+                  processed.note = await processText({lang, text: processed.note});
+
+                  return [key, processed];
+                })),
+            ),
+          };
+
+          return ApiRequestSender.updateUnitTierNote(uid, lang, unitId, tierNoteToSend);
+        }}
+        formControl={{
+          variant: 'outline-light',
+          submitText: t((t) => t.misc.update),
+        }}
+        getRedirectUrlOnSuccess={() => makeGeneralUrl(GeneralPath.TIER_LOOKUP, {lang})}
+      >
         <TierNoteUnitOverview unitInfo={unitInfo}/>
         <hr/>
         <h4>{t((t) => t.game.unitTier.tier.title)}</h4>
@@ -150,15 +126,7 @@ export const TierNoteEdit = () => {
             );
           }}
         />
-        <hr/>
-        <Row noGutters className="text-right">
-          <Col>
-            <Button type="submit" variant="outline-light" className="ml-2">
-              {t((t) => t.misc.update)}
-            </Button>
-          </Col>
-        </Row>
-      </form>
+      </AjaxForm>
     </ProtectedLayout>
   );
 };

@@ -530,6 +530,7 @@ export const translation: TranslationStruct = {
       welcome: '同盟「OM」製作のドラガリ攻略サイトへようこそ！工事中の機能やページも多いですが、どうぞよろしくお願いいたします。\n\n' +
         '現在 **高難易度クエスト攻略、キャラドラゴン評価** のページの一部は完成しています、ご覧ください。\n\n' +
         'ページを選択したら說明もついてます。',
+      videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
       auth: {
@@ -540,7 +541,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
-    openGif: 'クリックすると GIF が開きます',
+    openImage: 'クリックすると開きます',
     search: '検索',
     searchKeyword: 'キーワード',
     showMore: 'TBA',
@@ -555,6 +556,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
     },
+    collapse: 'ズームイン/アウト',
+    collapseAll: '全部ズームイン/アウト',
   },
   meta: {
     inUse: {
@@ -609,6 +612,24 @@ export const translation: TranslationStruct = {
           post: {
             title: '【攻略】{{title}}',
             description: '詳しい情報は下記のページをご覧ください。',
+          },
+        },
+        misc: {
+          edit: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          list: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          new: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          post: {
+            title: 'TBA',
+            description: 'TBA',
           },
         },
       },
@@ -747,17 +768,14 @@ export const translation: TranslationStruct = {
       addChara: '文を追加する (キャラ)',
       addDragon: '文を追加する(ドラゴン)',
       addNote: '指定 IDあれば、この文は多国言語版もあります。サイトはその ID と言語検査する。対応できない文のID は使えない。',
-      collapse: 'ズームイン/アウト',
       edit: '文を編集',
       fetchListFailed: '文のリスト獲得失敗。({{error}})',
       fetchPostFailed: '文の獲得失敗。({{error}})',
       md: 'Markdown',
       editNote: '記事を編集する',
-      modifyTime: '日期を編集する',
       postNotExists: '文がありません。',
       preview: 'プレビュー',
       publish: '文を発表する',
-      publishFailed: '発表失敗',
     },
     message: {
       altLang: '本ページは言語が {{langUi}} 版がないため、代わりに言語が {{langPost}} 版を表示しています。',
@@ -766,6 +784,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: '他の文章',
+      section: {
+        title: 'TBA',
+        content: 'TBA',
+      },
     },
     quest: {
       titleSelf: 'クエスト攻略',

@@ -6,18 +6,20 @@ import Row from 'react-bootstrap/Row';
 import {SequencedPostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
+import {IconEdit, IconPublish} from '../../common/icons';
 import {InternalLink} from '../../common/link/internal';
+import styles from './entry.module.css';
 
 
 export type LinkGenerator = (postId: number) => string;
 
-export type PostEntryBadgesProps<E extends SequencedPostInfo> = {
+export type PostEntryBadgeProps<E extends SequencedPostInfo> = {
   entry: E,
 }
 
 export type PostEntryProps<E extends SequencedPostInfo> = {
   generateLink: LinkGenerator,
-  renderPostBadges: (badgesProps: PostEntryBadgesProps<E>) => React.ReactElement,
+  renderPostBadge: (badgeProps: PostEntryBadgeProps<E>) => React.ReactElement,
 };
 
 type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
@@ -27,39 +29,35 @@ type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
 export const PostEntry = <E extends SequencedPostInfo>({
   entry,
   generateLink,
-  renderPostBadges,
+  renderPostBadge,
 }: PostEntryPropsInternal<E>) => {
   const {t, lang} = useI18n();
 
   return (
-    <div className="rounded bg-black-32 p-3">
-      <Row>
+    <div className={styles.entry}>
+      <h5>
+        <InternalLink
+          href={generateLink(entry.seqId)}
+          locale={lang}
+          content={entry.title}
+        />
+      </h5>
+      <Row noGutters>
+        <Col xs="auto">
+          {renderPostBadge({entry})}&nbsp;
+        </Col>
         <Col>
-          {renderPostBadges({entry})}
+          <small className={styles.timestamp}>
+            <IconEdit/>&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
+          </small>
+          <small className={styles.timestamp}>
+            <IconPublish/>&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
+          </small>
         </Col>
         <Col className="text-right">
-          <span className="h6 text-muted">
+          <small className="text-muted">
             {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
-          </span>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h5>
-            <InternalLink
-              href={generateLink(entry.seqId)}
-              locale={lang}
-              content={entry.title}
-            />
-          </h5>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={6} className="text-center">
-          {t((t) => t.misc.timestamp.lastModified)}:&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
-        </Col>
-        <Col lg={6} className="text-center">
-          {t((t) => t.posts.info.published)}:&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
+          </small>
         </Col>
       </Row>
     </div>

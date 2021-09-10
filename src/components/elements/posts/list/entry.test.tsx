@@ -4,12 +4,12 @@ import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
-import {PostEntry, PostEntryBadgesProps} from './entry';
+import {PostEntry, PostEntryBadgeProps} from './entry';
 
 
 describe('Post list entry', () => {
   let generateLink: jest.Mock<string, [number]>;
-  let renderPostBadges: jest.Mock<React.ReactElement, [PostEntryBadgesProps<SequencedPostInfo>]>;
+  let renderPostBadges: jest.Mock<React.ReactElement, [PostEntryBadgeProps<SequencedPostInfo>]>;
 
   const entry: SequencedPostInfo = {
     seqId: 7,
@@ -30,7 +30,7 @@ describe('Post list entry', () => {
     renderReact(() => (
       <PostEntry
         generateLink={generateLink}
-        renderPostBadges={renderPostBadges}
+        renderPostBadge={renderPostBadges}
         entry={entry}
       />
     ));
@@ -40,9 +40,9 @@ describe('Post list entry', () => {
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
     // Check view count existence
-    expect(screen.queryByText('Viewed 777 times')).toBeInTheDocument();
+    expect(screen.getByText('Viewed 777 times')).toBeInTheDocument();
     // Check meta existence
-    expect(screen.getByText(/Published/)).toBeInTheDocument();
-    expect(screen.getByText(/Modified/)).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-cloud-arrow-up'})).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
   });
 });

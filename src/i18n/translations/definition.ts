@@ -469,6 +469,7 @@ export type TranslationStruct = {
     info: {
       constructing: string,
       welcome: string,
+      videoTips: string,
     },
     error: {
       auth: {
@@ -479,7 +480,7 @@ export type TranslationStruct = {
   misc: {
     omMember: string,
     omGroup: string,
-    openGif: string,
+    openImage: string,
     search: string,
     searchKeyword: string,
     showMore: string,
@@ -491,6 +492,8 @@ export type TranslationStruct = {
       lastUpdated: string,
     },
     unitType: { [type in UnitType]: string },
+    collapse: string,
+    collapseAll: string,
   },
   meta: {
     inUse: {
@@ -506,6 +509,12 @@ export type TranslationStruct = {
           post: PageMetaTranslations
         },
         quest: {
+          edit: PageMetaTranslations,
+          list: PageMetaTranslations,
+          new: PageMetaTranslations,
+          post: PageMetaTranslations,
+        },
+        misc: {
           edit: PageMetaTranslations,
           list: PageMetaTranslations,
           new: PageMetaTranslations,
@@ -595,17 +604,14 @@ export type TranslationStruct = {
       addChara: string,
       addDragon: string,
       addNote: string,
-      collapse: string,
       edit: string,
       fetchListFailed: string,
       fetchPostFailed: string,
       md: string,
       editNote: string,
-      modifyTime: string,
       postNotExists: string,
       preview: string,
       publish: string,
-      publishFailed: string,
     },
     message: {
       altLang: string,
@@ -614,6 +620,10 @@ export type TranslationStruct = {
     },
     misc: {
       titleSelf: string,
+      section: {
+        title: string,
+        content: string,
+      },
     },
     quest: {
       titleSelf: string,

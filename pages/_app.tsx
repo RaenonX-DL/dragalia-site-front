@@ -3,13 +3,17 @@ import React from 'react';
 import {getSession} from 'next-auth/client';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import Container from 'react-bootstrap/Container';
 
-import '../public/bootstrap.css';
-import '../public/bs-icons.css';
-import '../public/index.css';
+import '../styles/bootstrap.css';
+import '../styles/bsIcons.css';
+import '../styles/index.css';
+import '../styles/scrollbar.scss';
+import '../styles/section.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
+import {Error404} from '../src/components/error/404';
 import {Navigation} from '../src/components/nav/main';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
@@ -19,7 +23,6 @@ import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
 import {ResourceLoader} from '../src/utils/services/resources/loader';
-import Error404 from './404';
 
 
 type PageProps = AppReactContextValue & {
@@ -43,6 +46,24 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        {
+          isProduction() &&
+          !process.env.CI &&
+          <>
+            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              
+              function gtag(){dataLayer.push(arguments);}
+              
+              gtag('js', new Date());
+              gtag('config', 'G-796E69CFJG');
+              `,
+            }}/>
+          </>
+        }
         {/* Google AdSense */}
         {
           !pageProps.session?.user.adsFreeExpiry &&
@@ -63,7 +84,7 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
               <Error404/> :
               <Container className="p-3">
                 <GlobalAlert/>
-                <Component {...pageProps} />
+                <Component {...pageProps}/>
               </Container>
           }
           <Footer/>

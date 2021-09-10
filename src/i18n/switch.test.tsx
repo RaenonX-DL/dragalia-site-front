@@ -9,7 +9,6 @@ import {GeneralPath, PostPath} from '../const/path/definitions';
 import {CookiesKeys} from '../utils/cookies/keys';
 import * as cookiesUtils from '../utils/cookies/utils';
 import {makePostUrl} from '../utils/path/make';
-import {mergePlaceholders} from '../utils/path/process';
 import {GoogleAnalytics} from '../utils/services/ga';
 import * as i18nHook from './hook';
 import {LanguageSwitch} from './switch';
@@ -85,7 +84,6 @@ describe('Language Switch', () => {
     fireEvent.click(chtLink);
     expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
     expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
-    expect(window.location.assign).toHaveBeenCalledWith(GeneralPath.ABOUT);
   });
 
   it('redirects to correct post page', async () => {
@@ -109,6 +107,5 @@ describe('Language Switch', () => {
     fireEvent.click(chtLink);
     expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
     expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
-    expect(window.location.assign).toHaveBeenCalledWith(mergePlaceholders(PostPath.ANALYSIS, {pid: '7'}));
   });
 });

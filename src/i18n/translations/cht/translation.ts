@@ -525,6 +525,7 @@ export const translation: TranslationStruct = {
       welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
         '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
         '點選建置中的頁面可以查看相關說明。',
+      videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
       auth: {
@@ -535,7 +536,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
-    openGif: '點擊以開啟 GIF 圖片',
+    openImage: '點擊以開啟圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
     showMore: '顯示更多',
@@ -550,6 +551,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: '角色',
       [UnitType.DRAGON]: '龍族',
     },
+    collapse: '收摺/展開',
+    collapseAll: '全部收摺/展開',
   },
   meta: {
     inUse: {
@@ -603,6 +606,24 @@ export const translation: TranslationStruct = {
           },
           post: {
             title: '【攻略】{{title}}',
+            description: '詳情請進入頁面查看。',
+          },
+        },
+        misc: {
+          edit: {
+            title: '編輯貼文 - {{title}}',
+            description: '貼文: {{title}} 的編輯頁面。',
+          },
+          list: {
+            title: '其他貼文目錄',
+            description: '其他龍絆相關貼文的目錄。',
+          },
+          new: {
+            title: '新增其他文章',
+            description: '其他文章的新增頁面。',
+          },
+          post: {
+            title: '【其他】{{title}}',
             description: '詳情請進入頁面查看。',
           },
         },
@@ -739,17 +760,14 @@ export const translation: TranslationStruct = {
       addChara: '新增貼文 (角色)',
       addDragon: '新增貼文 (龍族)',
       addNote: '若有指定 ID，則代表欲新增貼文為多國語言版本。網頁將會檢查該 ID 和語言是否可用。還沒有對應貼文的 ID 無法使用。',
-      collapse: '收摺/展開',
       edit: '編輯貼文',
       fetchListFailed: '貼文清單獲取失敗。({{error}})',
       fetchPostFailed: '貼文獲取失敗。({{error}})',
       md: 'Markdown',
       editNote: '編輯註記',
-      modifyTime: '編輯時間',
       postNotExists: '貼文不存在。',
       preview: '預覽',
       publish: '發布貼文',
-      publishFailed: '發布失敗',
     },
     message: {
       altLang: '本貼文沒有語言為 {{langUi}} 的版本。因此，以下顯示語言為 {{langPost}} 的版本替代。',
@@ -758,6 +776,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: '其他文章',
+      section: {
+        title: '標題',
+        content: '內容',
+      },
     },
     quest: {
       titleSelf: '高難攻略',

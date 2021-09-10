@@ -158,7 +158,8 @@ describe('Markdown', () => {
 
       renderReact(() => <Markdown>{markdown}</Markdown>);
 
-      const headCell = screen.getByText('col 2', {selector: 'span'});
+      // 1 for normal; 1 for responsive header
+      const headCell = screen.getAllByText('col 2', {selector: 'span'})[0];
       expect(headCell).toHaveStyle({color: 'red'});
       expect(headCell.parentElement?.tagName).toBe('TH');
     });

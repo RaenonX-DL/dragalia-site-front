@@ -1,15 +1,16 @@
 import React from 'react';
 
-import {TableCellComponent, TableRowComponent} from 'react-markdown/src/ast-to-react';
+import {TableCellComponent, TableRowComponent, Element, Text as AstText} from 'react-markdown/src/ast-to-react';
 
-import {TextChildren} from '../transformers/text/main';
+import styles from '../main.module.css';
+import {Text, TextChildren} from '../transformers/text/main';
 import {MarkdownComponentProps} from '../types';
 
 
 let headers: Array<string>;
 let idxCounter = 0;
 
-const checkInTableHeaders = (node: MarkdownComponentProps['node']) => {
+const checkInTableHeaders = (node: Element) => {
   const tableHead = node.children
     .find((child) => child.type === 'element' && child.tagName === 'thead');
   if (!tableHead || tableHead.type !== 'element') {
@@ -24,7 +25,7 @@ const checkInTableHeaders = (node: MarkdownComponentProps['node']) => {
 
   headers = tableHeaderRow.children
     .filter((child) => child.type === 'element' && child.tagName === 'th')
-    .map((cell) => (cell as MarkdownComponentProps['node']).children[0].value as string);
+    .map((cell) => ((cell as Element).children[0] as AstText).value as string);
 };
 
 export const renderTable = ({children, node}: MarkdownComponentProps) => {
@@ -49,7 +50,12 @@ export const renderTableRow: TableRowComponent = ({children}) => {
 
 export const renderTableCell: TableCellComponent = ({children}) => {
   return (
-    <td data-label={headers[idxCounter++]}>
+    <td>
+      <span className={styles.responsiveHeader}>
+        <Text>
+          {headers[idxCounter++]}
+        </Text>
+      </span>
       <TextChildren>
         {children}
       </TextChildren>

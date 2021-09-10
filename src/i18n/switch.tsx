@@ -22,7 +22,6 @@ export const LanguageSwitch = () => {
   const onLangChanged = (newLang: SupportedLanguages) => () => {
     GoogleAnalytics.languageChange(lang, newLang);
     setCookies(CookiesKeys.LANG, newLang);
-    window.location.assign(neutralUrl); // Force refresh to load all changes
   };
 
   return (

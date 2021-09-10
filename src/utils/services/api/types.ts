@@ -4,15 +4,15 @@ import {SupportedLanguages, PostGetResponse, SequencedPostListResponse} from '..
 export type FunctionFetchPostList<R extends SequencedPostListResponse> = (
   uid: string,
   langCode: SupportedLanguages,
-  start: number,
-  limit: number,
 ) => Promise<R>
 
-export type FetchPostOptions<K> = {
+export type FetchPostOptions<K extends string | number> = {
   uid: string,
   postId: K,
   lang: SupportedLanguages,
   incCount?: boolean,
 }
 
-export type FunctionFetchPost<K, R extends PostGetResponse> = (options: FetchPostOptions<K>) => Promise<R>
+export type FunctionFetchPost<K extends string | number, R extends PostGetResponse> = (
+  options: FetchPostOptions<K>
+) => Promise<R>

@@ -5,7 +5,7 @@ import {screen, waitFor} from '@testing-library/react';
 import {renderReact} from '../../../../../test/render/main';
 import {ApiResponseCode} from '../../../../api-def/api';
 import {PostPath} from '../../../../const/path/definitions';
-import {PostListPage} from './page';
+import {PostLookupPage} from './page';
 
 
 describe('Post list page', () => {
@@ -18,7 +18,7 @@ describe('Post list page', () => {
 
   it('shows correct page title', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -31,7 +31,7 @@ describe('Post list page', () => {
 
   it('shows ads', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -47,7 +47,7 @@ describe('Post list page', () => {
 
     renderReact(
       () => (
-        <PostListPage
+        <PostLookupPage
           title={title}
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
@@ -69,7 +69,7 @@ describe('Post list page', () => {
 
     renderReact(
       () => (
-        <PostListPage
+        <PostLookupPage
           title={title}
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
@@ -88,7 +88,7 @@ describe('Post list page', () => {
 
   it('fetches post lists on load', async () => {
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -110,7 +110,7 @@ describe('Post list page', () => {
     });
 
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -128,7 +128,7 @@ describe('Post list page', () => {
     });
 
     renderReact(() => (
-      <PostListPage
+      <PostLookupPage
         title={title}
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
@@ -138,32 +138,5 @@ describe('Post list page', () => {
 
     const errorRegex = new RegExp(ApiResponseCode[ApiResponseCode.FAILED_INTERNAL_ERROR]);
     await waitFor(() => expect(screen.getByText(errorRegex)).toBeInTheDocument());
-  });
-
-  it('disables paginator if no items to show', async () => {
-    fnFetchList.mockResolvedValue({
-      code: ApiResponseCode.SUCCESS,
-      success: true,
-      startIdx: 0,
-      postCount: 0,
-      posts: [],
-    });
-
-    renderReact(() => (
-      <PostListPage
-        title={title}
-        postManageBarProps={{newButtons: []}}
-        fnFetchList={fnFetchList}
-        renderPostEntries={() => <></>}
-      />
-    ));
-
-    await waitFor(() => expect(screen.getByText('First').parentElement).toHaveAttribute('disabled'));
-    expect(screen.getByText('Previous').parentElement).toHaveAttribute('disabled');
-    expect(screen.getByText('1')).toHaveAttribute('disabled');
-    expect(screen.getByText('2')).toHaveAttribute('disabled');
-    expect(screen.getByText('3')).toHaveAttribute('disabled');
-    expect(screen.getByText('Next').parentElement).toHaveAttribute('disabled');
-    expect(screen.getByText('Last').parentElement).toHaveAttribute('disabled');
   });
 });

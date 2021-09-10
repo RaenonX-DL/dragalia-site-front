@@ -17,21 +17,19 @@ type Props<E> = {
 export const SearchResults = <E, >({results, renderEntry, height}: Props<E>) => {
   const {t} = useI18n();
 
-  if (!results.length) {
-    return (
-      <Row noGutters className="mt-2 text-center text-danger">
-        <Col>
-          {t((t) => t.autoComplete.noMatchingOptions)}
-        </Col>
-      </Row>
-    );
-  }
-
   return (
     <div className={styles.searchResult} style={{height}}>
-      {results.map((entry, idx) => (
-        <React.Fragment key={idx}>{renderEntry(entry)}</React.Fragment>
-      ))}
+      {
+        results.length > 0 ?
+          results.map((entry, idx) => (
+            <React.Fragment key={idx}>{renderEntry(entry)}</React.Fragment>
+          )) :
+          <Row noGutters className="mt-2 text-center text-danger">
+            <Col>
+              {t((t) => t.autoComplete.noMatchingOptions)}
+            </Col>
+          </Row>
+      }
     </div>
   );
 };

@@ -506,7 +506,7 @@ export const translation: TranslationStruct = {
         conCoop: 'CoN (Co-op)',
         conAi: 'CoN (AI)',
         normalSolo: 'Normal (Solo)',
-        normalCoop: 'Normal (AI)',
+        normalCoop: 'Normal (Co-op)',
         normalAi: 'Normal (AI)',
         sharedSkill: 'SS',
         all: 'Show All',
@@ -570,6 +570,8 @@ export const translation: TranslationStruct = {
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
         'Head to the pages/functions which are still under construction to get more details.',
+      videoTips: 'For the Chinese audience who can\'t see the videos, ' +
+        'please visit [my Bilibili](https://space.bilibili.com/1052053443).',
     },
     error: {
       auth: {
@@ -580,7 +582,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
-    openGif: 'Click to open GIF',
+    openImage: 'Click to open the image',
     search: 'Search',
     searchKeyword: 'Keyword',
     showMore: 'Show More',
@@ -595,6 +597,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'Character',
       [UnitType.DRAGON]: 'Dragon',
     },
+    collapse: 'Collapse/Expand',
+    collapseAll: 'Collapse/Expand All',
   },
   meta: {
     inUse: {
@@ -648,6 +652,24 @@ export const translation: TranslationStruct = {
           },
           post: {
             title: '【Quest Guide】{{title}}',
+            description: 'Visit for the details.',
+          },
+        },
+        misc: {
+          edit: {
+            title: 'Edit post - {{title}}',
+            description: 'Page to edit post: {{title}}.',
+          },
+          list: {
+            title: 'Index of miscellaneous posts',
+            description: 'Index page of the other miscellaneous posts.',
+          },
+          new: {
+            title: 'New misc. post',
+            description: 'Page to create a new miscellaneous post.',
+          },
+          post: {
+            title: '【Misc】{{title}}',
             description: 'Visit for the details.',
           },
         },
@@ -791,17 +813,14 @@ export const translation: TranslationStruct = {
       addNote: 'Specify ID to post multi-language version of a post. ' +
         'The web app will check if the combination of the post ID and the language code is available. ' +
         'ID without any related posts is unavailable.',
-      collapse: 'Collapse/Expand',
       edit: 'Edit Post',
       fetchListFailed: 'Failed to fetch the post list. ({{error}})',
       fetchPostFailed: 'Failed to fetch the post. ({{error}})',
       md: 'Markdown',
       editNote: 'Modification Note',
-      modifyTime: 'Modified at',
       postNotExists: 'Post not exists.',
       preview: 'Preview',
       publish: 'Publish',
-      publishFailed: 'Failed to publish',
     },
     message: {
       altLang: 'This post does not have a version in {{langUi}}. Therefore, we\'re displaying it in {{langPost}}.',
@@ -810,6 +829,10 @@ export const translation: TranslationStruct = {
     },
     misc: {
       titleSelf: 'Others',
+      section: {
+        title: 'Title',
+        content: 'Content',
+      },
     },
     quest: {
       titleSelf: 'Quest Guides',

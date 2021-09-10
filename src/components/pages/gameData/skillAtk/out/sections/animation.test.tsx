@@ -147,7 +147,7 @@ describe('ATK skill entry - Animation info section', () => {
       />
     ));
 
-    expect(screen.queryByText(translationEN.game.skillAtk.animation.cancelHeader.preConditions))
+    expect(screen.getByText(translationEN.game.skillAtk.animation.cancelHeader.preConditions))
       .toBeInTheDocument();
     expect(screen.getByText('Target State: OD')).toBeInTheDocument();
   });
@@ -206,7 +206,7 @@ describe('ATK skill entry - Animation info section', () => {
       />
     ));
 
-    expect(screen.queryByText(new RegExp(translationEN.game.skillAtk.animation.cancelInfo)))
+    expect(screen.getByText(new RegExp(translationEN.game.skillAtk.animation.cancelInfo)))
       .toHaveAttribute('disabled');
   });
 
