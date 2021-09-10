@@ -379,7 +379,7 @@ describe('Input panel', () => {
       />
     ));
 
-    expect(screen.getByText('title', {selector: 'h4'})).toBeInTheDocument();
+    expect(screen.getByText('title', {selector: 'h5'})).toBeInTheDocument();
     expect(screen.getByText('', {selector: 'hr'})).toBeInTheDocument();
     expect(screen.getByText('check 1')).toBeInTheDocument();
     expect(screen.getByText('check 2')).toBeInTheDocument();
