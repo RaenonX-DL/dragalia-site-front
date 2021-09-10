@@ -2,14 +2,11 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {
-  ApiResponseCode, MiscPostListResponse,
-  SupportedLanguages,
-} from '../../../src/api-def/api';
-import {MiscPostList} from '../../../src/components/pages/posts/misc/list/list';
-import {translations} from '../../../src/i18n/translations/main';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {renderReact} from '../../../test/render/main';
+import {ApiResponseCode, MiscPostListResponse, SupportedLanguages} from '../../../../src/api-def/api';
+import {MiscPostList} from '../../../../src/components/pages/posts/misc/list/list';
+import {translations} from '../../../../src/i18n/translations/main';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {renderReact} from '../../../../test/render/main';
 
 
 describe('Misc listing page', () => {

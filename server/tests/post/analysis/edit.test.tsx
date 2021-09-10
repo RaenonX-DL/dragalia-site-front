@@ -3,7 +3,6 @@ import React from 'react';
 import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import AnalysisEdit from '../../../pages/[lang]/analysis/[pid]/edit';
 import {
   AnalysisEditResponse,
   ApiResponseCode,
@@ -11,11 +10,12 @@ import {
   DragonAnalysisGetResponse,
   SupportedLanguages,
   UnitType,
-} from '../../../src/api-def/api';
-import {translations} from '../../../src/i18n/translations/main';
-import {getTFunction} from '../../../src/i18n/utils';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {renderReact} from '../../../test/render/main';
+} from '../../../../src/api-def/api';
+import {AnalysisEdit} from '../../../../src/components/pages/posts/analysis/edit';
+import {translations} from '../../../../src/i18n/translations/main';
+import {getTFunction} from '../../../../src/i18n/utils';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {renderReact} from '../../../../test/render/main';
 
 
 describe('Analysis edit page', () => {

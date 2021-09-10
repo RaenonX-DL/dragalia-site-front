@@ -8,13 +8,13 @@ import {
   DragonAnalysisGetResponse,
   SupportedLanguages,
   UnitType,
-} from '../../../src/api-def/api';
-import {AnalysisPage} from '../../../src/components/pages/posts/analysis/output';
-import {DEFAULT_LANG} from '../../../src/i18n/langCode';
-import {translations} from '../../../src/i18n/translations/main';
-import {getTFunction} from '../../../src/i18n/utils';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {renderReact} from '../../../test/render/main';
+} from '../../../../src/api-def/api';
+import {AnalysisPage} from '../../../../src/components/pages/posts/analysis/output';
+import {DEFAULT_LANG} from '../../../../src/i18n/langCode';
+import {translations} from '../../../../src/i18n/translations/main';
+import {getTFunction} from '../../../../src/i18n/utils';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {renderReact} from '../../../../test/render/main';
 
 
 describe('Analysis page', () => {

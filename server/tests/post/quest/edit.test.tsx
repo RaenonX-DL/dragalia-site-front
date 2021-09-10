@@ -8,11 +8,11 @@ import {
   QuestPostEditResponse,
   QuestPostGetResponse,
   SupportedLanguages,
-} from '../../../src/api-def/api';
-import {QuestEdit} from '../../../src/components/pages/posts/quest/edit';
-import {translations} from '../../../src/i18n/translations/main';
-import {ApiRequestSender} from '../../../src/utils/services/api/requestSender';
-import {renderReact} from '../../../test/render/main';
+} from '../../../../src/api-def/api';
+import {QuestEdit} from '../../../../src/components/pages/posts/quest/edit';
+import {translations} from '../../../../src/i18n/translations/main';
+import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
+import {renderReact} from '../../../../test/render/main';
 
 
 describe('Quest edit page', () => {
