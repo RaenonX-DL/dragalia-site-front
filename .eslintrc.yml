@@ -83,6 +83,10 @@ rules:
         order: asc
         caseInsensitive: true
 
+  space-in-parens:
+    - error
+    - never
+
   # Typescript itself will perform this check, no need for React to check it
   react/prop-types:
     - off
@@ -90,7 +94,7 @@ rules:
   unused-imports/no-unused-imports:
     - error
 
-  '@next/next/no-img-element':
+  "@next/next/no-img-element":
     - off
 
 settings:
