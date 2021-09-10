@@ -12,7 +12,7 @@ type InfoCardProps = {
 
 export const InfoCard = ({title, content, useCode = true}: InfoCardProps) => {
   return (
-    <div className="p-2 rounded bg-black-32">
+    <div className="section">
       <Row>
         <Col>
           <h6>{title}</h6>

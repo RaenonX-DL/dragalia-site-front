@@ -10,4 +10,11 @@ $color-light-gray: #aaa;
 $color-white-pure: #fff;
 $color-red: #ff4457;
 
+$color-body-bg: #181818;
+$color-section: lighten($color-body-bg, 3%);
+$color-section-border: lighten($color-body-bg, 15%);
+
+$color-theme-dark: #8930b3;
+$color-theme-light: #f3d87e;
+
 $hr-color: rgba($color-light-gray, 0.5);

@@ -33,7 +33,7 @@ export const AttackingSkillEntry = ({
   const atkSkillEntry = calculatedData.skillEntry;
 
   return (
-    <div className="rounded bg-black-32 p-2 mb-2">
+    <div className="section mb-2">
       <Row noGutters>
         <Col xs="auto" sm="auto" className="mr-2">
           <SectionImageIcon atkSkillEntry={atkSkillEntry}/>

@@ -1,10 +1,11 @@
 @use '../../../../../styles/colors';
+@use '../../../../../styles/section';
 
 div {
   &.searchResult {
+    @extend %section-preset;
+
     overflow-y: auto;
-    border-radius: 5px;
-    box-shadow: inset 0 0 0.6rem #939393;
     height: 15rem;
   }
 }

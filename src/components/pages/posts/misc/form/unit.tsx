@@ -19,7 +19,7 @@ export const MiscSectionUnit = ({section, onContentChanged}: Props) => {
   const {t} = useI18n();
 
   return (
-    <div className="rounded bg-black-32 p-3">
+    <div className="section p-3">
       <Row>
         <Col>
           <Form.Control

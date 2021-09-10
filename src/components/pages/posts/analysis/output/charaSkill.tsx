@@ -20,7 +20,7 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
   const hasAdditionalInfo = rotations || tips;
 
   return (
-    <div className="rounded bg-black-32 p-3">
+    <div className="section p-3">
       <Row>
         <Col>
           <h3>{name}</h3>

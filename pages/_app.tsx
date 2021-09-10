@@ -9,6 +9,8 @@ import Container from 'react-bootstrap/Container';
 import '../styles/bootstrap.css';
 import '../styles/bsIcons.css';
 import '../styles/index.css';
+import '../styles/scrollbar.scss';
+import '../styles/section.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Error404} from '../src/components/error/404';

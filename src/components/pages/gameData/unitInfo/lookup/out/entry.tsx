@@ -20,7 +20,7 @@ type AnalysisEntryProps = EntryCommonProps & Omit<EntryWithAnalysisProps, 'analy
 
 export const UnitInfoEntry = ({unitInfo, analysisMeta, simplified}: AnalysisEntryProps) => {
   return (
-    <Row noGutters className="rounded bg-black-32 p-2">
+    <Row noGutters className="section">
       <Col xs="auto" className="mr-2">
         <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
       </Col>

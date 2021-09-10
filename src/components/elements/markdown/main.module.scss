@@ -1,17 +1,18 @@
 @use "../../../../styles/colors";
+@use "../../../../styles/section";
 @use "../../../../styles/table";
 
 $strong-color: #80b2ff;
-$markdown-bg-color: colors.$color-black-32;
+$markdown-bg-color: colors.$color-section;
 $item-margin: 0.75rem;
 $table-border-color: #656565;
 
 .mdBody {
+  @extend %section-preset;
+
   overflow: auto;
-  background-color: $markdown-bg-color;
-  border: transparent solid $item-margin;
-  border-bottom: 0;
-  border-radius: 0.25rem;
+  // Bottom padding is determined by the elements
+  padding: $item-margin $item-margin 0 $item-margin;
 
   table {
     @extend %standard-table;

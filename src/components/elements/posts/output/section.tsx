@@ -23,13 +23,13 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
         const title = getTitle(section);
 
         return (
-          <div key={title} className="p-3 bg-black-32 rounded mb-3">
+          <div key={title} className="section mb-3">
             <Accordion>
               <Row className="align-items-center">
                 <Col>
-                  <h4 className="mb-0">{title}</h4>
+                  <h5 className="mb-0">{title}</h5>
                 </Col>
-                <Col className="d-flex flex-row-reverse">
+                <Col xs="auto" className="d-flex flex-row-reverse">
                   <Accordion.Toggle as={Button} variant="outline-success" eventKey={title}>
                     {t((t) => t.posts.manage.collapse)}
                   </Accordion.Toggle>

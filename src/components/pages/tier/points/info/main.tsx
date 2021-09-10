@@ -68,7 +68,7 @@ export const KeyPointInfoPage = () => {
                 </Col>
               );
             }) :
-            <Col className="bg-black-32 rounded p-2 text-danger">
+            <Col className="section text-danger">
               {t((t) => t.game.unitTier.points.info.error.noLinkedUnits)}
             </Col>
         }

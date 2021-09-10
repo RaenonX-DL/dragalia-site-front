@@ -9,7 +9,7 @@ export const NoResultWarning = () => {
   const {t} = useI18n();
 
   return (
-    <Alert variant="danger" className="rounded bg-black-32 p-2 mb-2">
+    <Alert variant="danger" className="section mb-2">
       {t((t) => t.game.skillAtk.error.noResult)}
     </Alert>
   );
