@@ -4,7 +4,7 @@ import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
-import {PostList} from '../../../../elements/posts/list/list';
+import {PostList} from '../../../../elements/posts/list/main';
 import {PostLookupPage} from '../../../../elements/posts/list/page';
 import {MiscEntryBadge} from './listBadges';
 

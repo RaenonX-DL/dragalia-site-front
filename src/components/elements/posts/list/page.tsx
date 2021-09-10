@@ -71,7 +71,6 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
         context?.session?.user.isAdmin &&
         <PostManageBar {...postManageBarProps}/>
       }
-      {fetchStatus.fetching && <Loading/>}
       <ListContent/>
     </>
   );
