@@ -59,6 +59,8 @@ $theme-colors: (
   "info": lighten(#17a2b8, 7.5%),
 );
 
+$text-muted: #7f7f7f;
+
 .bg-om-gradient {
   background-image: linear-gradient(to right, colors.$color-om-dark, colors.$color-om-light);
 }
