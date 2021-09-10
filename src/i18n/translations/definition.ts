@@ -492,6 +492,8 @@ export type TranslationStruct = {
       lastUpdated: string,
     },
     unitType: { [type in UnitType]: string },
+    collapse: string,
+    collapseAll: string,
   },
   meta: {
     inUse: {
@@ -602,7 +604,6 @@ export type TranslationStruct = {
       addChara: string,
       addDragon: string,
       addNote: string,
-      collapse: string,
       edit: string,
       fetchListFailed: string,
       fetchPostFailed: string,

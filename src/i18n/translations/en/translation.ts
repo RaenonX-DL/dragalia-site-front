@@ -597,6 +597,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'Character',
       [UnitType.DRAGON]: 'Dragon',
     },
+    collapse: 'Collapse/Expand',
+    collapseAll: 'Collapse/Expand All',
   },
   meta: {
     inUse: {
@@ -811,7 +813,6 @@ export const translation: TranslationStruct = {
       addNote: 'Specify ID to post multi-language version of a post. ' +
         'The web app will check if the combination of the post ID and the language code is available. ' +
         'ID without any related posts is unavailable.',
-      collapse: 'Collapse/Expand',
       edit: 'Edit Post',
       fetchListFailed: 'Failed to fetch the post list. ({{error}})',
       fetchPostFailed: 'Failed to fetch the post. ({{error}})',

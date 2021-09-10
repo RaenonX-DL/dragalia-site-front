@@ -551,6 +551,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: '角色',
       [UnitType.DRAGON]: '龍族',
     },
+    collapse: '收摺/展開',
+    collapseAll: '全部收摺/展開',
   },
   meta: {
     inUse: {
@@ -758,7 +760,6 @@ export const translation: TranslationStruct = {
       addChara: '新增貼文 (角色)',
       addDragon: '新增貼文 (龍族)',
       addNote: '若有指定 ID，則代表欲新增貼文為多國語言版本。網頁將會檢查該 ID 和語言是否可用。還沒有對應貼文的 ID 無法使用。',
-      collapse: '收摺/展開',
       edit: '編輯貼文',
       fetchListFailed: '貼文清單獲取失敗。({{error}})',
       fetchPostFailed: '貼文獲取失敗。({{error}})',

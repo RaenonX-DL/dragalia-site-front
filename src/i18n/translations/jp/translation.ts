@@ -556,6 +556,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
     },
+    collapse: 'ズームイン/アウト',
+    collapseAll: '全部ズームイン/アウト',
   },
   meta: {
     inUse: {
@@ -766,7 +768,6 @@ export const translation: TranslationStruct = {
       addChara: '文を追加する (キャラ)',
       addDragon: '文を追加する(ドラゴン)',
       addNote: '指定 IDあれば、この文は多国言語版もあります。サイトはその ID と言語検査する。対応できない文のID は使えない。',
-      collapse: 'ズームイン/アウト',
       edit: '文を編集',
       fetchListFailed: '文のリスト獲得失敗。({{error}})',
       fetchPostFailed: '文の獲得失敗。({{error}})',
