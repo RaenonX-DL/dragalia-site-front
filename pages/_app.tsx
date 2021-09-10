@@ -6,9 +6,9 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Container from 'react-bootstrap/Container';
 
-import '../public/bootstrap.css';
-import '../public/bs-icons.css';
-import '../public/index.css';
+import '../styles/bootstrap.css';
+import '../styles/bsIcons.css';
+import '../styles/index.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Error404} from '../src/components/error/404';
