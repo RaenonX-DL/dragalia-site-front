@@ -20,11 +20,7 @@ export const createApp = async (): Promise<CreateAppReturn> => {
   const fastifyApp = fastify({
     logger: isProduction() ?
       true :
-      {
-        prettyPrint: {
-          translateTime: true,
-        },
-      },
+      {prettyPrint: {translateTime: true}},
     ignoreTrailingSlash: true,
     connectionTimeout: 20000, // 20 seconds
     trustProxy: true,
