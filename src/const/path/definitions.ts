@@ -1,6 +1,6 @@
 export const PATH_ROOT = '/[lang]';
 
-// Must and only have `id` as te key for data ID
+// Must and only have `id` as the key for data ID
 export enum DataPath {
   TIER_KEY_POINT = '/tier/points/[id]',
 }
