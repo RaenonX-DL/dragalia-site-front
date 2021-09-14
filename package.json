@@ -1,8 +1,8 @@
 {
   "name": "dragalia-site-front",
-  "description": "Frontend of DL info website by OM.",
+  "description": "Frontend of Dragalia Lost info website by OM.",
   "repository": "https://github.com/RaenonX-DL/dragalia-site-front",
-  "version": "2.14.0",
+  "version": "2.14.1",
   "engines": {
     "node": "14.x",
     "npm": "^7.12.0"
@@ -44,8 +44,7 @@
     "react-timeago": "^6.2.1",
     "redux-persist": "^6.0.0",
     "remark-gfm": "^1.0.0",
-    "universal-cookie": "^4.0.4",
-    "uuid": "^8.3.2"
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",

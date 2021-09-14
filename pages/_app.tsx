@@ -45,36 +45,35 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         <meta content={pageProps.description} name="description"/>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
-        {/* Global site tag (gtag.js) - Google Analytics */}
-        {
-          isProduction() &&
-          !process.env.CI &&
-          <>
-            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-796E69CFJG"/>
-            <script dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              
-              function gtag(){dataLayer.push(arguments);}
-              
-              gtag('js', new Date());
-              gtag('config', 'G-796E69CFJG');
-              `,
-            }}/>
-          </>
-        }
-        {/* Google AdSense */}
-        {
-          !pageProps.session?.user.adsFreeExpiry &&
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
-        }
-        {/* New Relic EUM header */}
-        {
-          isProduction() &&
-          <script async type="text/javascript" src="/js/newRelicEum.js"/>
-        }
       </Head>
+      {/* Global site tag (gtag.js) - Google Analytics */}
+      {
+        isProduction() && !process.env.CI &&
+        <>
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          />
+          <Script strategy="lazyOnload" id="gtag">
+            {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+          </Script>
+        </>
+      }
+      {/* Google AdSense */}
+      {
+        !pageProps.session?.user.adsFreeExpiry &&
+        <Script strategy="lazyOnload" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
+      }
+      {/* New Relic EUM header */}
+      {
+        isProduction() &&
+        <Script strategy="lazyOnload" type="text/javascript" src="/js/newRelicEum.js"/>
+      }
       <AppReactContext.Provider value={{...pageProps}}>
         <ReduxProvider>
           <Navigation/>

@@ -565,7 +565,7 @@ export const translation: TranslationStruct = {
         'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
-      welcome: 'Welcome to the DL info website constructed and maintained ' +
+      welcome: 'Welcome to the Dragalia Lost info website constructed and maintained ' +
         'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
         'Most of the pages and the features are still under construction.\n\n' +
         '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
@@ -608,10 +608,10 @@ export const translation: TranslationStruct = {
       },
       home: {
         title: 'Homepage',
-        description: 'Homepage of DL info website by OM.',
+        description: 'Homepage of Dragalia Lost info website by OM.',
       },
       site: {
-        title: 'DL Info by OM',
+        title: 'Dragalia Lost info site by OM',
         description: 'Dragalia Lost info website by Oasis of the Maniacs.',
       },
       thanks: {
@@ -746,7 +746,7 @@ export const translation: TranslationStruct = {
         description: 'The page is currently under construction.',
       },
     },
-    suffix: ' | DL Info by OM',
+    suffix: ' | Dragalia Lost Info by OM',
   },
   nav: {
     unitInfo: 'Chara/Dragon Info',
