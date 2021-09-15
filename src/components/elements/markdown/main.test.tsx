@@ -20,6 +20,19 @@ describe('Markdown', () => {
       expect(linkElement).toHaveAttribute('href', '/link');
       expect(linkElement).toHaveAttribute('target', '_blank');
     });
+
+    it('renders referenced link in responsive table header', async () => {
+      const text = `[RefLink]: https://dl.raenonx.cc/analysis/48\n[RefLink] | Header\n:---: | :---:\nData 1 | Data 2`;
+
+      renderReact(() => <Markdown>{text}</Markdown>);
+
+      const linkElement = screen.getAllByText('RefLink')[0];
+      expect(linkElement).toHaveAttribute('href', 'https://dl.raenonx.cc/analysis/48');
+      expect(linkElement).toHaveAttribute('target', '_blank');
+      expect(screen.getByText('Data 1')).toBeInTheDocument();
+      expect(screen.getByText('Data 2')).toBeInTheDocument();
+      expect(screen.getAllByText('Header')).toHaveLength(2);
+    });
   });
 
   describe('Markdown - Syntax Nesting', () => {

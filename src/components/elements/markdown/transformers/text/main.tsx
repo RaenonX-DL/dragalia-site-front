@@ -56,22 +56,20 @@ export const TextChildren = ({children}: TextChildrenProps) => {
 
   return (
     <>
-      {
-        children.map((child, idx) => {
-          if (typeof child === 'string') {
-            const injected = injectMarkdownToText(
-              lang, child,
-              {
-                afflictions: context?.resources.afflictions.status || [],
-              },
-            );
+      {children.map((child, idx) => {
+        if (typeof child === 'string') {
+          const injected = injectMarkdownToText(
+            lang, child,
+            {
+              afflictions: context?.resources.afflictions.status || [],
+            },
+          );
 
-            return <Text key={idx}>{injected}</Text>;
-          }
+          return <Text key={idx}>{injected}</Text>;
+        }
 
-          return <React.Fragment key={idx}>{child}</React.Fragment>;
-        })
-      }
+        return <React.Fragment key={idx}>{child}</React.Fragment>;
+      })}
     </>
   );
 };
