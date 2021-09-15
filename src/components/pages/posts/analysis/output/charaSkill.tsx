@@ -35,7 +35,7 @@ export const AnalysisSkillOutput = ({name, info, rotations, tips}: AnalysisSkill
         </Col>
         {
           hasAdditionalInfo &&
-          <Col lg={6}>
+          <Col lg={6} className="mt-2 mt-lg-0">
             {
               rotations &&
               <>

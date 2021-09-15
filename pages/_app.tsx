@@ -72,7 +72,7 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       {/* New Relic EUM header */}
       {
         isProduction() &&
-        <Script strategy="lazyOnload" type="text/javascript" src="/js/newRelicEum.js"/>
+        <Script strategy="beforeInteractive" type="text/javascript" src="/js/newRelicEum.js"/>
       }
       <AppReactContext.Provider value={{...pageProps}}>
         <ReduxProvider>
