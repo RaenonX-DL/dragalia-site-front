@@ -10,7 +10,7 @@ import {useFetchState} from '../../../../elements/common/fetch';
 import {UnitSearcher} from '../../../../elements/gameData/unit/searcher/main';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {UnitInfoLookupLanding} from './in/landing';
-import {orderName} from './in/sort/lookup';
+import {orderName, sortFunc} from './in/sort/lookup';
 import {generateInputData} from './in/utils';
 import {MaxEntriesToDisplay} from './out/const';
 import {UnitInfoLookupOutput} from './out/main';
@@ -77,6 +77,12 @@ export const UnitInfoLookup = () => {
         renderCount={MaxEntriesToDisplay}
         onSearchRequested={(inputData) => GoogleAnalytics.analysisLookup(inputData)}
         isUnitPrioritized={(info) => info.id in analysisMeta.data.analyses}
+        getSortedUnitInfo={(unitInfo, inputData) => (
+          unitInfo
+            .map((info) => ({unitInfo: info, lookupInfo: analysisMeta.data.analyses[info.id]}))
+            .sort(sortFunc[inputData.sortBy])
+            .map((item) => item.unitInfo)
+        )}
         isLoading={analysisMeta.fetching}
       />
     </>

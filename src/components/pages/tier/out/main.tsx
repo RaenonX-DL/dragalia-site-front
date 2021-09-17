@@ -8,7 +8,6 @@ import {UnitTierData} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {AdsTierResultsEnd} from '../../../elements/common/ads/main';
 import {UnitSearchOutputProps} from '../../../elements/gameData/unit/searcher/types';
-import {sortFunc} from '../const';
 import {IconCompDependent} from '../icons';
 import {InputData, PropsUseKeyPointData, SortOrder} from '../types';
 import {TierListOutputShowAll} from './all/main';
@@ -23,8 +22,7 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
   const {t} = useI18n();
 
   const entryPackHasTierNote = prioritizedUnitInfo
-    .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}))
-    .sort(sortFunc[inputData.sortBy]);
+    .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}));
   const entryPackNoTierNote = otherUnitInfo
     .map((info) => ({unitInfo: info, tierNote: undefined}));
 

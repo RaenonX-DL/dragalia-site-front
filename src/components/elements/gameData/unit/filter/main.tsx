@@ -106,7 +106,7 @@ export const UnitFilter = <S extends string,
             </Col>
             <Col xs="auto" className="text-right">
               <Button variant="outline-info" type="submit" disabled={disabled}>
-                {disabled ? <Spinner animation="grow"/> : t((t) => t.misc.search)}
+                {disabled ? <Spinner animation="grow" size="sm"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
           </Form.Row>
