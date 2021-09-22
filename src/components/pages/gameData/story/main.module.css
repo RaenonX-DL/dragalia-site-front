@@ -3,6 +3,7 @@ div.sysMessage {
   border-radius: 0.25rem;
   text-align: center;
   padding: 0.5rem;
+  margin: 0.5rem 0;
 }
 div.speakerIcon {
   height: 3rem;
@@ -15,12 +16,47 @@ div.mainImage {
 div.relatedLinks {
   text-align: center;
 }
+div.audioControl {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+@keyframes conversationBackground {
+  0% {
+    background-color: #312901;
+  }
+  50% {
+    background-color: #473a06;
+  }
+  100% {
+    background-color: #312901;
+  }
+}
+div.conversation, div.conversationActive {
+  margin: 0.3rem 0;
+}
+div.conversationActive {
+  animation: conversationBackground 3s linear infinite;
+  border: #806805 solid 3px;
+  border-radius: 0.5rem;
+  padding: 0 0.3rem 0.3rem;
+}
 
 img.speakerIcon {
   border-radius: 0.25rem;
 }
 img.mainImage {
   max-height: 60vh;
+}
+
+button.audioControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=main.module.css.map */

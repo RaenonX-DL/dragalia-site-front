@@ -28,3 +28,9 @@ export const IconClipboard = () => <i className="bi bi-clipboard"/>;
 export const IconRadar = () => <i className="bi bi-bullseye"/>;
 
 export const IconNotes = () => <i className="bi bi-card-text"/>;
+
+export const IconPlay = () => <i className="bi bi-play-fill"/>;
+
+export const IconPause = () => <i className="bi bi-pause-fill"/>;
+
+export const IconStop = () => <i className="bi bi-stop-fill"/>;
