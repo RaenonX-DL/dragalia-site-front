@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import {StoryBook} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {ResourceLoader} from '../../../../utils/services/resources/loader';
+import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {sortAscending} from '../../../../utils/sort';
 import {AdsStory} from '../../../elements/common/ads/main';
 import {isNotFetched, useFetchState} from '../../../elements/common/fetch';
@@ -10,6 +14,7 @@ import {Loading} from '../../../elements/common/loading';
 import {useUnitId} from '../../../elements/gameData/hook';
 import {CollapsibleSectionedContent} from '../../../elements/posts/output/section';
 import {StoryChapter} from './chapter';
+import {StoryOtherInfo} from './other';
 
 
 export const UnitStory = () => {
@@ -28,6 +33,8 @@ export const UnitStory = () => {
     () => ResourceLoader.getStoryBook(lang, unitId),
     `Failed to fetch the unit story of ${unitId}`,
   );
+  const {unitInfoMap} = useUnitInfo();
+  const unitInfo = unitInfoMap.get(unitId);
 
   fetchStoryBook();
 
@@ -36,15 +43,22 @@ export const UnitStory = () => {
   }
 
   return (
-    <CollapsibleSectionedContent
-      sections={storyBook.data.sort(sortAscending({getComparer: (chapter) => chapter.id}))}
-      getTitle={(chapter) => chapter.title}
-      renderSection={(chapter) => (
-        <>
-          <AdsStory/>
-          <StoryChapter chapter={chapter}/>
-        </>
-      )}
-    />
+    <>
+      {unitInfo && <StoryOtherInfo unitInfo={unitInfo}/>}
+      <Row>
+        <Col>
+          <CollapsibleSectionedContent
+            sections={storyBook.data.sort(sortAscending({getComparer: (chapter) => chapter.id}))}
+            getTitle={(chapter) => chapter.title}
+            renderSection={(chapter) => (
+              <>
+                <AdsStory/>
+                <StoryChapter chapter={chapter}/>
+              </>
+            )}
+          />
+        </Col>
+      </Row>
+    </>
   );
 };

@@ -9,9 +9,18 @@ div.speakerIcon {
   width: 3rem;
   margin-right: 0.5rem;
 }
+div.mainImage {
+  text-align: center;
+}
+div.relatedLinks {
+  text-align: center;
+}
 
 img.speakerIcon {
   border-radius: 0.25rem;
+}
+img.mainImage {
+  max-height: 60vh;
 }
 
 /*# sourceMappingURL=main.module.css.map */

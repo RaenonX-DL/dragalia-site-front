@@ -13,10 +13,22 @@ div {
     width: 3rem;
     margin-right: 0.5rem;
   }
+
+  &.mainImage {
+    text-align: center;
+  }
+
+  &.relatedLinks {
+    text-align: center;
+  }
 }
 
 img {
   &.speakerIcon {
     border-radius: 0.25rem;
+  }
+
+  &.mainImage {
+    max-height: 60vh;
   }
 }

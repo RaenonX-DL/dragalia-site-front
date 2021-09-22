@@ -154,4 +154,79 @@ describe('Unit story page', () => {
     expect(await screen.findByText('content')).toBeInTheDocument();
     expect(screen.queryByText('SYS')).not.toBeInTheDocument();
   });
+
+  it('shows ads for normal users', async () => {
+    fnGetStoryBook.mockResolvedValueOnce([
+      {
+        id: 1,
+        title: 'story',
+        conversations: [{
+          type: 'conversation',
+          speakerName: 'SYS',
+          speakerIcon: null,
+          content: 'content',
+          isSys: true,
+          audioPaths: [],
+        }],
+      },
+    ]);
+
+    renderReact(
+      () => <UnitStory/>,
+      {contextParams: {unitId: 10650503}},
+    );
+
+    expect(await screen.findByText('content')).toBeInTheDocument();
+    expect(screen.getByTestId('ads-story')).toBeInTheDocument();
+  });
+
+  it('hides ads for ads-free users', async () => {
+    fnGetStoryBook.mockResolvedValueOnce([
+      {
+        id: 1,
+        title: 'story',
+        conversations: [{
+          type: 'conversation',
+          speakerName: 'SYS',
+          speakerIcon: null,
+          content: 'content',
+          isSys: true,
+          audioPaths: [],
+        }],
+      },
+    ]);
+
+    renderReact(
+      () => <UnitStory/>,
+      {contextParams: {unitId: 10650503}, user: {adsFreeExpiry: new Date()}},
+    );
+
+    expect(await screen.findByText('content')).toBeInTheDocument();
+    expect(screen.queryByTestId('ads-story')).not.toBeInTheDocument();
+  });
+
+  it('shows related links', async () => {
+    fnGetStoryBook.mockResolvedValueOnce([
+      {
+        id: 107504041,
+        title: 'story',
+        conversations: [{
+          type: 'conversation',
+          speakerName: 'SYS',
+          speakerIcon: null,
+          content: 'content',
+          isSys: true,
+          audioPaths: [],
+        }],
+      },
+    ]);
+
+    renderReact(
+      () => <UnitStory/>,
+      {contextParams: {unitId: 10750404}},
+    );
+
+    expect(await screen.findByText('Analysis')).toBeInTheDocument();
+    expect(screen.getByText('Info')).toBeInTheDocument();
+  });
 });
