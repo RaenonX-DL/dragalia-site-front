@@ -4,6 +4,7 @@ import {StoryBook} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {ResourceLoader} from '../../../../utils/services/resources/loader';
 import {sortAscending} from '../../../../utils/sort';
+import {AdsStory} from '../../../elements/common/ads/main';
 import {isNotFetched, useFetchState} from '../../../elements/common/fetch';
 import {Loading} from '../../../elements/common/loading';
 import {useUnitId} from '../../../elements/gameData/hook';
@@ -38,7 +39,12 @@ export const UnitStory = () => {
     <CollapsibleSectionedContent
       sections={storyBook.data.sort(sortAscending({getComparer: (chapter) => chapter.id}))}
       getTitle={(chapter) => chapter.title}
-      renderSection={(chapter) => <StoryChapter chapter={chapter}/>}
+      renderSection={(chapter) => (
+        <>
+          <AdsStory/>
+          <StoryChapter chapter={chapter}/>
+        </>
+      )}
     />
   );
 };

@@ -62,3 +62,10 @@ export const AdsUnitKeyPointInfo = () => (
     testId="ads-unit-key-point-info"
   />
 );
+
+export const AdsStory = () => (
+  <AdsUnitDisplay
+    slot="2966927859"
+    testId="ads-story"
+  />
+);
