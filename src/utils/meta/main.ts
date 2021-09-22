@@ -21,8 +21,6 @@ export const getPageMeta = async (context: AppContext): Promise<PageMeta> => {
   const metaTFunc = getMetaTFunction(translations[lang]);
   const metaTFuncOnNotFound: GetTranslationFunction<PageMetaTranslations> = (t) => t.meta.error['404'];
 
-  console.log('PATHNAMENOLANG', pathnameNoLang);
-
   // Early return if `pathname` is not a valid page path - consider as 404
   if (!isPagePath(pathnameNoLang)) {
     return {
