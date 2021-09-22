@@ -655,7 +655,7 @@ export const translation: TranslationStruct = {
       },
       gameData: {
         info: {
-          title: '角色/龍族資訊目錄',
+          title: '角色/龍族索引',
           description: '各角色、龍族的評測、資訊的索引頁面。',
         },
         ex: {
@@ -709,7 +709,7 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
-    unitInfo: '角色/龍族資訊',
+    unitInfo: '角色/龍族索引',
     unitTier: '評級',
   },
   posts: {
