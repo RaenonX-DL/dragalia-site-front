@@ -1,0 +1,17 @@
+div.sysMessage {
+  border: #505050 1px solid;
+  border-radius: 0.25rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+div.speakerIcon {
+  height: 3rem;
+  width: 3rem;
+  margin-right: 0.5rem;
+}
+
+img.speakerIcon {
+  border-radius: 0.25rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

@@ -1,3 +1,4 @@
+import {SupportedLanguages} from '../../../api-def/api/other/lang';
 import {
   AttackingSkillData,
   BuffParamEnums,
@@ -11,10 +12,12 @@ import {
   ExBuffParams,
   InfoDataAdvanced,
   NormalAttackChain,
-  ResourcePaths, SimpleUnitInfo,
+  ResourcePaths,
+  SimpleUnitInfo,
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
+  StoryBook,
   WeaponTypeEnums,
 } from '../../../api-def/resources';
 
@@ -227,6 +230,23 @@ export class ResourceLoader {
     return ResourceLoader.fetchResources<InfoDataAdvanced>(ResourcePaths.getAdvancedInfoURL(unitId), callback);
   }
 
+  // endregion
+
+  // region Story
+  /**
+   * Get the story book of a unit.
+   *
+   * @function
+   * @param {SupportedLanguages} lang language of the stories
+   * @param {number} unitId unit ID to get the stories
+   * @param {function?} callback function to be called after fetching the resource
+   * @return {Promise<NormalAttackChain>} promise after the callback
+   */
+  static getStoryBook(
+    lang: SupportedLanguages, unitId: number, callback?: (advancedInfo: StoryBook) => void,
+  ): Promise<StoryBook> {
+    return ResourceLoader.fetchResources<StoryBook>(ResourcePaths.getStoryDataURL(lang, unitId), callback);
+  }
   // endregion
 
   // region Misc

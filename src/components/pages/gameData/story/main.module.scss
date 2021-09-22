@@ -1,0 +1,22 @@
+@use "../../../../../styles/colors";
+
+div {
+  &.sysMessage {
+    border: colors.$color-black-80 1px solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  &.speakerIcon {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.5rem;
+  }
+}
+
+img {
+  &.speakerIcon {
+    border-radius: 0.25rem;
+  }
+}
