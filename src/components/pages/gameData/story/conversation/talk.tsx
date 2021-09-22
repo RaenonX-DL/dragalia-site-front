@@ -19,6 +19,8 @@ type Props = {
 }
 
 export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudioIdx, onAllAudioPlayed}: Props) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
   if (conversation.isSys) {
     return (
       <Row noGutters className={`mb-2 ${styles.sysMessage}`}>
@@ -29,8 +31,12 @@ export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudio
     );
   }
 
+  if (playAudio) {
+    ref.current?.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+  }
+
   return (
-    <div className={isActive ? styles.conversationActive : styles.conversation}>
+    <div className={isActive ? styles.conversationActive : styles.conversation} ref={ref}>
       {
         playAudio && conversation.audioPaths.length > 0 && audioIdx < conversation.audioPaths.length &&
         <ReactAudioPlayer
