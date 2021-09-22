@@ -403,6 +403,7 @@ export const translation: TranslationStruct = {
       links: {
         analysis: '評価',
         info: 'キャラ情報',
+        story: 'ストーリー',
       },
       text: {
         total: '(総計)',

@@ -396,6 +396,7 @@ export const translation: TranslationStruct = {
       links: {
         analysis: '評測',
         info: '資訊',
+        story: '故事',
       },
       text: {
         total: '(總計)',

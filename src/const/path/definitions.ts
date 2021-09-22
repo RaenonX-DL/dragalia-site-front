@@ -7,9 +7,9 @@ export enum DataPath {
 
 // Must and only have `id` as the key for story ID
 export enum StoryPath {
-  STORY_UNIT = '/story/unit/[id]',
-  STORY_MAIN = '/story/main/[id]',
-  STORY_EVENT = '/story/event/[id]',
+  UNIT = '/story/unit/[id]',
+  MAIN = '/story/main/[id]',
+  EVENT = '/story/event/[id]',
 }
 
 // Must and only have `id` as the key for unit ID

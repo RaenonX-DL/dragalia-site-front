@@ -37,7 +37,7 @@ export const getPageMetaPromise = async ({
     );
   }
 
-  if (isUnitPath(pathnameNoLang) || pathnameNoLang === StoryPath.STORY_UNIT) {
+  if (isUnitPath(pathnameNoLang) || pathnameNoLang === StoryPath.UNIT) {
     return ApiRequestSender.getUnitMeta(
       uid,
       lang,

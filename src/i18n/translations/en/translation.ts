@@ -428,6 +428,7 @@ export const translation: TranslationStruct = {
       links: {
         analysis: 'Analysis',
         info: 'Info',
+        story: 'Story',
       },
       text: {
         total: '(Total)',

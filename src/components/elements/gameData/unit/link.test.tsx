@@ -6,8 +6,8 @@ import userEvent from '@testing-library/user-event';
 import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources';
-import {PostPath, UnitPath} from '../../../../const/path/definitions';
-import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
+import {PostPath, StoryPath, UnitPath} from '../../../../const/path/definitions';
+import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {UnitLink} from './link';
 
 
@@ -20,7 +20,7 @@ describe('Unit link', () => {
     expect(screen.queryByText('Info')).not.toBeInTheDocument();
   });
 
-  it('shows modal with the links to the analysis and the unit info page', async () => {
+  it('shows modal with correct related links', async () => {
     renderReact(() => <UnitLink unit={{id: 10950101, name: 'Gala Leonidas'}}/>);
 
     const linkElement = await screen.findByText('Gala Leonidas', {selector: 'a'});
@@ -33,6 +33,10 @@ describe('Unit link', () => {
     const infoLink = screen.getByText('Info');
     const expectedInfoLink = makeUnitUrl(UnitPath.UNIT_INFO, {id: 10950101, lang: SupportedLanguages.EN});
     expect(infoLink).toHaveAttribute('href', expectedInfoLink);
+
+    const storyLink = screen.getByText('Story');
+    const expectedStoryLink = makeStoryUrl(StoryPath.UNIT, {id: 10950101, lang: SupportedLanguages.EN});
+    expect(storyLink).toHaveAttribute('href', expectedStoryLink);
   });
 
   it('shows modal without analysis if not exists', async () => {

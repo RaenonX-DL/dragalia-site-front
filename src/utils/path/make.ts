@@ -1,5 +1,5 @@
 import {SupportedLanguages} from '../../api-def/api';
-import {DataPath, GeneralPath, PostPath, UnitPath} from '../../const/path/definitions';
+import {DataPath, GeneralPath, PostPath, StoryPath, UnitPath} from '../../const/path/definitions';
 
 
 const generateUrl = (path: string, args: { [key in string]: string | number }) => {
@@ -44,5 +44,14 @@ type UnitPathArgs = PathArgs & {
 }
 
 export const makeUnitUrl = (path: UnitPath, args: UnitPathArgs) => {
+  return generateUrl(`/${args.lang}${path}`, args);
+};
+
+// Needs to match the key names used in `StoryPath`
+type StoryPathArgs = PathArgs & {
+  id: number,
+}
+
+export const makeStoryUrl = (path: StoryPath, args: StoryPathArgs) => {
   return generateUrl(`/${args.lang}${path}`, args);
 };

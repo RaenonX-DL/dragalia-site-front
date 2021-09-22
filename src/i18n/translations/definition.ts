@@ -391,6 +391,7 @@ export type TranslationStruct = {
       links: {
         analysis: string,
         info: string,
+        story: string,
       },
       text: {
         total: string,
