@@ -6,6 +6,8 @@ import Collapse from 'react-bootstrap/Collapse';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../i18n/hook';
+import {IconCollapse} from '../../common/icons';
+import styles from './section.module.css';
 
 
 type Props<E> = {
@@ -41,14 +43,9 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
 
         return (
           <React.Fragment key={title}>
-            <Row className="align-items-center mb-2">
-              <Col>
-                <h5 className="mb-0">{title}</h5>
-              </Col>
-              <Col xs="auto" className="d-flex flex-row-reverse">
-                <Button variant="outline-success" onClick={() => setOpen({...open, [title]: !open[title]})}>
-                  {t((t) => t.misc.collapse)}
-                </Button>
+            <Row className={styles.sectionTitle}>
+              <Col onClick={() => setOpen({...open, [title]: !open[title]})}>
+                <h5 className="mb-0"><IconCollapse/>&nbsp;{title}</h5>
               </Col>
             </Row>
             <Collapse in={open[title]} className="mb-2">

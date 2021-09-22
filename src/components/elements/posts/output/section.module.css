@@ -1,0 +1,13 @@
+div.sectionTitle {
+  background-color: #323232;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+}
+div.sectionTitle:hover {
+  background-color: #505050;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=section.module.css.map */
