@@ -542,6 +542,9 @@ export type TranslationStruct = {
         info: PageMetaTranslations,
         name: PageMetaTranslations,
       },
+      story: {
+        unit: PageMetaTranslations,
+      }
     },
     error: {
       401: PageMetaTranslations,

@@ -2,6 +2,7 @@ import {getSession} from 'next-auth/client';
 import {AppContext} from 'next/app';
 
 import {FailedResponse, PageMetaResponse, SupportedLanguages} from '../../api-def/api';
+import {StoryPath} from '../../const/path/definitions';
 import {isDataPath, isPostPath, isUnitPath} from '../../const/path/utils';
 import {ApiRequestSender} from '../services/api/requestSender';
 import {pathPostType} from './lookup';
@@ -18,10 +19,8 @@ export const getPageMetaPromise = async ({
 }: PageMetaPromiseArgs): Promise<PageMetaResponse | FailedResponse> => {
   const uid = (await getSession(context.ctx))?.user?.id.toString() || '';
 
-  let responsePromise = ApiRequestSender.getPageMeta(uid, lang);
-
   if (isDataPath(pathnameNoLang)) {
-    responsePromise = ApiRequestSender.getDataMeta(
+    return ApiRequestSender.getDataMeta(
       uid,
       lang,
       'tierKeyPoint',
@@ -30,7 +29,7 @@ export const getPageMetaPromise = async ({
   }
 
   if (isPostPath(pathnameNoLang)) {
-    responsePromise = ApiRequestSender.getPostMeta(
+    return ApiRequestSender.getPostMeta(
       uid,
       lang,
       pathPostType[pathnameNoLang],
@@ -38,13 +37,13 @@ export const getPageMetaPromise = async ({
     );
   }
 
-  if (isUnitPath(pathnameNoLang)) {
-    responsePromise = ApiRequestSender.getUnitMeta(
+  if (isUnitPath(pathnameNoLang) || pathnameNoLang === StoryPath.STORY_UNIT) {
+    return ApiRequestSender.getUnitMeta(
       uid,
       lang,
       context.router.query.id as string,
     );
   }
 
-  return responsePromise;
+  return ApiRequestSender.getPageMeta(uid, lang);
 };

@@ -729,6 +729,12 @@ export const translation: TranslationStruct = {
           description: 'Page to configure the custom unit names.',
         },
       },
+      story: {
+        unit: {
+          title: '【Unit Story】{{unitName}}',
+          description: 'All unit stories of {{unitName}}.',
+        },
+      },
     },
     error: {
       401: {

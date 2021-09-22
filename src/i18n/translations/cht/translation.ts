@@ -682,6 +682,12 @@ export const translation: TranslationStruct = {
           description: '設定物件名稱的頁面。',
         },
       },
+      story: {
+        unit: {
+          title: '【角色故事】{{unitName}}',
+          description: '{{unitName}} 的角色故事全集。',
+        },
+      },
     },
     error: {
       401: {

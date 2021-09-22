@@ -1,4 +1,4 @@
-import {AuthPath, DataPath, GeneralPath, PagePath, PostPath, UnitPath} from '../../const/path/definitions';
+import {AuthPath, DataPath, GeneralPath, PagePath, PostPath, StoryPath, UnitPath} from '../../const/path/definitions';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../i18n/types';
 
@@ -14,6 +14,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [PostPath.ANALYSIS_EDIT]: (t) => t.meta.inUse.post.analysis.edit,
   [PostPath.MISC]: (t) => t.meta.inUse.post.misc.post,
   [PostPath.MISC_EDIT]: (t) => t.meta.inUse.post.misc.edit,
+  [StoryPath.STORY_UNIT]: (t) => t.meta.inUse.story.unit,
   [GeneralPath.HOME]: (t) => t.meta.inUse.home,
   [GeneralPath.QUEST_LIST]: (t) => t.meta.inUse.post.quest.list,
   [GeneralPath.QUEST_NEW]: (t) => t.meta.inUse.post.quest.new,
@@ -35,6 +36,8 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.SKILL_SUP]: (t) => t.meta.temp.constructing,
   [GeneralPath.STORY]: (t) => t.meta.temp.constructing,
   [GeneralPath.ROTATION_CALC]: (t) => t.meta.temp.constructing,
+  [StoryPath.STORY_MAIN]: (t) => t.meta.inUse.post.misc.edit,
+  [StoryPath.STORY_EVENT]: (t) => t.meta.inUse.post.misc.edit,
   // Legacy
   [GeneralPath.ANALYSIS_LIST]: (t) => t.meta.inUse.gameData.info,
 };

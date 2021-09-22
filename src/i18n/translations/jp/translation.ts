@@ -680,11 +680,17 @@ export const translation: TranslationStruct = {
       unit: {
         info: {
           title: '{{unitName}}',
-          description: ' {{unitName}}に関する情報',
+          description: ' {{unitName}}に関する情報。',
         },
         name: {
           title: 'ユニット名前設定ページ',
           description: 'ユニット名前を設定する。',
+        },
+      },
+      story: {
+        unit: {
+          title: '【ユニットストーリー】{{unitName}}',
+          description: '全部の{{unitName}}のストーリー。',
         },
       },
     },
