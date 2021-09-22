@@ -28,7 +28,23 @@ export const useAudioControl = ({
 
   const isPlayingForIdx = (idx: number) => state.mainIdx === idx;
 
-  const startAudio = () => setState({mainIdx: 0, subIdx: 0, isPlaying: true});
+  const advanceToNextAudio = (currentAudioIdx: number) => () => {
+    let newAudioIdx = currentAudioIdx + 1;
+
+    while (!hasAudioToPlay(newAudioIdx)) {
+      newAudioIdx++;
+
+      if (newAudioIdx >= conversationCount) {
+        // Audio loop complete, set back to non-playing index
+        stopAudio();
+        return;
+      }
+    }
+
+    setState({mainIdx: newAudioIdx, subIdx: 0, isPlaying: true});
+  };
+
+  const startAudio = advanceToNextAudio(-1);
 
   const stopAudio = () => setState({mainIdx: -1, subIdx: -1, isPlaying: false});
 
@@ -44,22 +60,6 @@ export const useAudioControl = ({
     }
 
     return conversation.audioPaths.length > 0;
-  };
-
-  const advanceToNextAudio = (currentAudioIdx: number) => () => {
-    let newAudioIdx = currentAudioIdx + 1;
-
-    while (!hasAudioToPlay(newAudioIdx)) {
-      newAudioIdx++;
-
-      if (newAudioIdx >= conversationCount) {
-        // Audio loop complete, set back to non-playing index
-        stopAudio();
-        return;
-      }
-    }
-
-    setState({mainIdx: newAudioIdx, subIdx: 0, isPlaying: true});
   };
 
   const advanceToNextSub = (subIdx: number) => setState({...state, subIdx});

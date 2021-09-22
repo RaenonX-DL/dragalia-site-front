@@ -159,4 +159,45 @@ describe('Audio control hook', () => {
     expect(result.current.currentState.isPlaying).toBeTruthy();
     expect(result.current.playingState).toBe('playing');
   });
+
+  it('starts from the 1st audible audio label', async () => {
+    const conversationsOverride: Array<StoryConversation> = [
+      {
+        type: 'conversation',
+        speakerName: 'speaker',
+        speakerIcon: null,
+        content: 'content',
+        isSys: false,
+        audioPaths: [],
+      },
+      {
+        type: 'conversation',
+        speakerName: 'speaker',
+        speakerIcon: null,
+        content: 'content',
+        isSys: false,
+        audioPaths: [],
+      },
+      {
+        type: 'conversation',
+        speakerName: 'speaker',
+        speakerIcon: null,
+        content: 'content',
+        isSys: false,
+        audioPaths: ['A'],
+      },
+    ];
+
+    const {result} = renderReactHook(() => useAudioControl({
+      getConversationOfIndex: (idx) => conversationsOverride[idx],
+      conversationCount: conversationsOverride.length,
+    }));
+
+    result.current.startAudio();
+
+    expect(result.current.currentState.mainIdx).toBe(2);
+    expect(result.current.currentState.subIdx).toBe(0);
+    expect(result.current.currentState.isPlaying).toBeTruthy();
+    expect(result.current.playingState).toBe('playing');
+  });
 });
