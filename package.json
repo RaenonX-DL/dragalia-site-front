@@ -2,7 +2,7 @@
   "name": "dragalia-site-front",
   "description": "Frontend of Dragalia Lost info website by OM.",
   "repository": "https://github.com/RaenonX-DL/dragalia-site-front",
-  "version": "2.15.0",
+  "version": "2.15.0-beta.1",
   "engines": {
     "node": "14.x",
     "npm": "^7.12.0"
@@ -29,7 +29,7 @@
     "bootstrap": "^4.6.0",
     "color": "^4.0.1",
     "decimal.js": "^10.3.1",
-    "fastify": "^3.21.0",
+    "fastify": "^3.21.5",
     "mathjs": "^9.4.4",
     "mongodb": "^3.7.0",
     "newrelic": "^8.3.0",
