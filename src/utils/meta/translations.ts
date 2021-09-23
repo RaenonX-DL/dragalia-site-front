@@ -7,6 +7,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   // In-production paths
   [DataPath.TIER_KEY_POINT]: (t) => t.meta.inUse.tier.points.usage,
   [UnitPath.UNIT_INFO]: (t) => t.meta.inUse.unit.info,
+  [UnitPath.UNIT_TIER]: (t) => t.meta.inUse.tier.unit,
   [UnitPath.UNIT_TIER_EDIT]: (t) => t.meta.inUse.tier.edit,
   [PostPath.QUEST]: (t) => t.meta.inUse.post.quest.post,
   [PostPath.QUEST_EDIT]: (t) => t.meta.inUse.post.quest.edit,

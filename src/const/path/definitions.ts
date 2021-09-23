@@ -15,6 +15,7 @@ export enum StoryPath {
 // Must and only have `id` as the key for unit ID
 export enum UnitPath {
   UNIT_INFO = '/info/[id]',
+  UNIT_TIER = '/tier/[id]',
   UNIT_TIER_EDIT = '/tier/edit/[id]'
 }
 

@@ -699,6 +699,10 @@ export const translation: TranslationStruct = {
             description: 'Page to edit the content of the key points.',
           },
         },
+        unit: {
+          title: '【Ranking / Key Point】{{unitName}}',
+          description: 'Ranking and the key points of {{unitName}} .',
+        },
       },
       gameData: {
         info: {

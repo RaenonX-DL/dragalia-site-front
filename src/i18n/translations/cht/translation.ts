@@ -652,6 +652,10 @@ export const translation: TranslationStruct = {
             description: '編輯要點內容的頁面。',
           },
         },
+        unit: {
+          title: '【評級 / 要點】{{unitName}}',
+          description: '{{unitName}} 的評級和要點頁面。',
+        },
       },
       gameData: {
         info: {

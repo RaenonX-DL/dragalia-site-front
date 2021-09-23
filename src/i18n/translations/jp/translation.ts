@@ -657,6 +657,10 @@ export const translation: TranslationStruct = {
             description: 'ポイントの編集ページ。',
           },
         },
+        unit: {
+          title: 'TBA',
+          description: 'TBA',
+        },
       },
       gameData: {
         info: {

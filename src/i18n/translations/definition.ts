@@ -530,6 +530,7 @@ export type TranslationStruct = {
           usage: PageMetaTranslations,
           edit: PageMetaTranslations,
         },
+        unit: PageMetaTranslations,
       },
       gameData: {
         info: PageMetaTranslations,
