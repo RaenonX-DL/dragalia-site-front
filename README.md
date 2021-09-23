@@ -43,6 +43,7 @@ Name | Required/Optional | Description
 `NEXT_PUBLIC_API_ROOT` | Required | Root URL of the backend. This should **not** end with a slash (`/`).
 `NEXT_PUBLIC_RESOURCE_ROOT` | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
 `NEXT_PUBLIC_DEPOT_ROOT` | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
+`NEXT_PUBLIC_AUDIO_ROOT` | Required | Root URL of the audio depot. This should **not** end with a slash (`/`).
 
 For the [current deployed website][front-site], `NEXT_PUBLIC_API_ROOT` is `https://dl-back.raenonx.cc`.
 
@@ -53,12 +54,17 @@ In general,
 `NEXT_PUBLIC_RESOURCE_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-site-resources/main`,
 where stores the parsed data.
 
--   Check https://github.com/RaenonX-DL/dragalia-site-resources for all available resources.
+> Check https://github.com/RaenonX-DL/dragalia-site-resources for all available resources.
 
 `NEXT_PUBLIC_DEPOT_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-depot/main`,
 where stores the dumped game assets.
 
--   Check https://github.com/RaenonX-DL/dragalia-data-depot for all available resources.
+> Check https://github.com/RaenonX-DL/dragalia-data-depot for all available resources.
+
+`NEXT_PUBLIC_AUDIO_ROOT` is `https://raw.githubusercontent.com/RaenonX-DL/dragalia-data-audio/main`,
+where stores the dumped audio files.
+
+> Check https://github.com/RaenonX-DL/dragalia-data-audio for all available resources.
 
 [front-repo]: https://github.com/RaenonX-DL/dragalia-site-front
 [front-site]: https://dl.raenonx.cc

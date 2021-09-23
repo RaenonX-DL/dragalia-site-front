@@ -395,7 +395,9 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: '評測',
+        tier: '評級',
         info: '資訊',
+        story: '故事',
       },
       text: {
         total: '(總計)',
@@ -651,10 +653,14 @@ export const translation: TranslationStruct = {
             description: '編輯要點內容的頁面。',
           },
         },
+        unit: {
+          title: '【評級 / 要點】{{unitName}}',
+          description: '{{unitName}} 的評級和要點頁面。',
+        },
       },
       gameData: {
         info: {
-          title: '角色/龍族資訊目錄',
+          title: '角色/龍族索引',
           description: '各角色、龍族的評測、資訊的索引頁面。',
         },
         ex: {
@@ -682,6 +688,12 @@ export const translation: TranslationStruct = {
           description: '設定物件名稱的頁面。',
         },
       },
+      story: {
+        unit: {
+          title: '【角色故事】{{unitName}}',
+          description: '{{unitName}} 的角色故事全集。',
+        },
+      },
     },
     error: {
       401: {
@@ -702,7 +714,7 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
-    unitInfo: '角色/龍族資訊',
+    unitInfo: '角色/龍族索引',
     unitTier: '評級',
   },
   posts: {

@@ -115,31 +115,26 @@ describe('Analysis lookup page', () => {
   });
 
   it('scrolls on not found, also scrolls on found', async () => {
-    fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
+    fnGetLookup.mockResolvedValue(lookupResponseHasAnalyses);
     const {rerender} = renderReact(() => <UnitInfoLookup/>);
-
-    expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
     const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.type(keywordInput, 'AAA');
     userEvent.click(searchButton);
 
-    expect(fnGetLookup).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
     expect(screen.queryByText('Gala Leonidas')).not.toBeInTheDocument();
 
-    fnGetLookup.mockResolvedValue(lookupResponseHasAnalyses);
     rerender();
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
     userEvent.clear(keywordInput);
     userEvent.click(searchButton);
 
-    expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
-    expect(fnScroll).toHaveBeenCalledTimes(3);
-  }, 15000); // Finding `Gala Leonidas` is time-consuming, causing false negative
+    await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(3));
+    expect(await screen.findByAltText('Gala Leonidas')).toBeInTheDocument();
+  });
 
   it('searches by element and type', async () => {
     fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
@@ -154,7 +149,7 @@ describe('Analysis lookup page', () => {
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByAltText('Panther')).toBeInTheDocument());
     expect(screen.queryByAltText('Karina')).not.toBeInTheDocument();
   });
 

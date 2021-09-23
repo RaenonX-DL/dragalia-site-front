@@ -34,7 +34,7 @@ describe('Collapsible sections', () => {
       />
     ));
 
-    const buttonOpenA = screen.getAllByText(translationEN.misc.collapse)[0];
+    const buttonOpenA = screen.getByText('a');
     userEvent.click(buttonOpenA);
 
     expect(screen.getByText('a')).toBeInTheDocument();

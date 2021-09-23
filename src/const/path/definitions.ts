@@ -5,9 +5,17 @@ export enum DataPath {
   TIER_KEY_POINT = '/tier/points/[id]',
 }
 
+// Must and only have `id` as the key for story ID
+export enum StoryPath {
+  UNIT = '/story/unit/[id]',
+  MAIN = '/story/main/[id]',
+  EVENT = '/story/event/[id]',
+}
+
 // Must and only have `id` as the key for unit ID
 export enum UnitPath {
   UNIT_INFO = '/info/[id]',
+  UNIT_TIER = '/tier/[id]',
   UNIT_TIER_EDIT = '/tier/edit/[id]'
 }
 
@@ -55,9 +63,9 @@ export enum AuthPath {
 }
 
 export const allPaths = ([] as Array<PagePath>).concat(
-  ...[DataPath, UnitPath, PostPath, GeneralPath, AuthPath].map(
+  ...[DataPath, UnitPath, PostPath, StoryPath, GeneralPath, AuthPath].map(
     (paths) => Object.values(paths),
   ),
 );
 
-export type PagePath = DataPath | UnitPath | PostPath | GeneralPath | AuthPath;
+export type PagePath = DataPath | UnitPath | PostPath | StoryPath | GeneralPath | AuthPath;

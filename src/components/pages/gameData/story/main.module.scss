@@ -1,0 +1,83 @@
+@use "../../../../../styles/colors";
+
+div {
+  &.sysMessage {
+    border: colors.$color-black-80 1px solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  &.speakerIcon {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.5rem;
+  }
+
+  &.mainImage {
+    text-align: center;
+  }
+
+  &.relatedLinks {
+    text-align: center;
+  }
+
+  &.audioControl {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  @keyframes conversationBackground {
+    0% {
+      background-color: #312901;
+    }
+
+    50% {
+      background-color: #473a06;
+    }
+
+    100% {
+      background-color: #312901;
+    }
+  }
+
+  &.conversation {
+    margin: 0.3rem 0;
+  }
+
+  &.conversationActive {
+    @extend .conversation;
+
+    animation: conversationBackground 3s linear infinite;
+    border: #806805 solid 3px;
+    border-radius: 0.5rem;
+    padding: 0 0.3rem 0.3rem;
+  }
+}
+
+img {
+  &.speakerIcon {
+    border-radius: 0.25rem;
+  }
+
+  &.mainImage {
+    max-height: 60vh;
+  }
+}
+
+button {
+  &.audioControl {
+    // For centering icon
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Sizing
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    // Styling
+    border: 0;
+    margin: 0 auto;
+  }
+}

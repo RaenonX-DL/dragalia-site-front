@@ -427,7 +427,9 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: 'Analysis',
+        tier: 'Ranking / Tier',
         info: 'Info',
+        story: 'Story',
       },
       text: {
         total: '(Total)',
@@ -698,6 +700,10 @@ export const translation: TranslationStruct = {
             description: 'Page to edit the content of the key points.',
           },
         },
+        unit: {
+          title: '【Ranking / Key Point】{{unitName}}',
+          description: 'Ranking and the key points of {{unitName}} .',
+        },
       },
       gameData: {
         info: {
@@ -727,6 +733,12 @@ export const translation: TranslationStruct = {
         name: {
           title: 'Unit Name Config',
           description: 'Page to configure the custom unit names.',
+        },
+      },
+      story: {
+        unit: {
+          title: '【Unit Story】{{unitName}}',
+          description: 'All unit stories of {{unitName}}.',
         },
       },
     },

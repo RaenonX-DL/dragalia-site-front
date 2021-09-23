@@ -21,6 +21,7 @@ type Props<
   E2 extends EnumEntry,
   V
 > = Pick<UnitFilterProps<S, D, E, E2, V>, 'sortOrderNames' | 'generateInputData' | 'getAdditionalInputs'> & {
+  getSortedUnitInfo: (unitInfo: Array<UnitInfoData>, inputData: D) => Array<UnitInfoData>,
   renderIfAdmin?: React.ReactNode,
   renderOutput: (props: UnitSearchOutputProps<S, D>) => React.ReactNode,
   renderCount: number,
@@ -39,6 +40,7 @@ export const UnitSearcher = <
   sortOrderNames,
   generateInputData,
   getAdditionalInputs,
+  getSortedUnitInfo,
   renderIfAdmin,
   renderOutput,
   renderCount,
@@ -55,18 +57,20 @@ export const UnitSearcher = <
   const [inputData, setInputData] = React.useState<D>();
   const [resultCount, setResultCount] = React.useState(renderCount); // < 0 = don't limit
 
-  // Get the filtered unit info and see if it needs to be sliced
-  let filteredUnitInfo = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, nameRef)
-    .sort((unitInfo) => isUnitPrioritized(unitInfo) ? -1 : 1);
+  let unitInfoProcessed = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, nameRef);
 
-  const isSliced = resultCount > 0 && filteredUnitInfo.length > resultCount;
-  if (isSliced) {
-    filteredUnitInfo = filteredUnitInfo.slice(0, resultCount);
+  let prioritizedUnitInfo = unitInfoProcessed.filter((info) => isUnitPrioritized(info));
+  const otherUnitInfo = unitInfoProcessed.filter((info) => !isUnitPrioritized(info));
+  if (inputData) {
+    prioritizedUnitInfo = getSortedUnitInfo(prioritizedUnitInfo, inputData);
   }
 
-  // Separate to prioritized and others
-  const prioritizedUnitInfo = filteredUnitInfo.filter((info) => isUnitPrioritized(info));
-  const otherUnitInfo = filteredUnitInfo.filter((info) => !isUnitPrioritized(info));
+  unitInfoProcessed = [...prioritizedUnitInfo, ...otherUnitInfo];
+
+  const isSliced = resultCount > 0 && unitInfoProcessed.length > resultCount;
+  if (isSliced) {
+    unitInfoProcessed = unitInfoProcessed.slice(0, resultCount);
+  }
 
   // Scroll after input data has changed
   React.useEffect(() => {
@@ -92,7 +96,11 @@ export const UnitSearcher = <
       {context?.session?.user.isAdmin && renderIfAdmin}
       <hr/>
       <div ref={elemRef}>
-        {inputData && renderOutput({inputData, prioritizedUnitInfo, otherUnitInfo})}
+        {inputData && renderOutput({
+          inputData,
+          prioritizedUnitInfo: unitInfoProcessed.filter((info) => isUnitPrioritized(info)),
+          otherUnitInfo: unitInfoProcessed.filter((info) => !isUnitPrioritized(info)),
+        })}
       </div>
       {
         isSliced &&

@@ -3,7 +3,7 @@ import React from 'react';
 import {NormalAttackBranchedChain} from '../../../../../../../api-def/resources';
 import {ConditionCodes} from '../../../../../../../const/gameData';
 import {useI18n} from '../../../../../../../i18n/hook';
-import {sum} from '../../../../../../../utils/calc';
+import {roundArray, sum} from '../../../../../../../utils/calc';
 import {ConditionBadges} from '../../../../../../elements/gameData/badges/conditions';
 import {Markdown} from '../../../../../../elements/markdown/main';
 import styles from '../main.module.css';
@@ -46,7 +46,7 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
                   <td>{idx + 1}</td>
                   <td>
                     <Markdown overrideStyle={false}>
-                      {`==(${combo.mods.join(' + ')}) x 100%[2f]==`}
+                      {`==(${roundArray(combo.mods, 3).join(' + ')}) x 100%[2f]==`}
                     </Markdown>
                   </td>
                   <td>{combo.mods.length}</td>
@@ -54,14 +54,14 @@ export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
                   {branchedChain.hasUtp && <td>{combo.utp}</td>}
                   <td>
                     <Markdown overrideStyle={false}>
-                      {`==(${combo.odRate.join(' + ')}) / ${combo.odRate.length}[2f]==`}
+                      {`==(${roundArray(combo.odRate, 3).join(' + ')}) / ${combo.odRate.length}[2f]==`}
                     </Markdown>
                   </td>
                   {
                     branchedChain.hasCrisis &&
                     <td>
                       <Markdown overrideStyle={false}>
-                        {`==(${combo.crisisMod.join(' + ')}) / ${combo.crisisMod.length}[2f]==`}
+                        {`==(${roundArray(combo.crisisMod, 3).join(' + ')}) / ${combo.crisisMod.length}[2f]==`}
                       </Markdown>
                     </td>
                   }

@@ -32,6 +32,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -50,6 +51,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={-1}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -70,6 +72,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -92,6 +95,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -114,6 +118,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -136,6 +141,7 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
         isUnitPrioritized={() => true}
         isLoading={false}
       />
@@ -173,7 +179,8 @@ describe('Unit searcher', () => {
         generateInputData={fnGenerateInputData}
         renderOutput={fnRenderOutput}
         renderCount={3}
-        isUnitPrioritized={(unitInfo) => unitInfo.element === Element.SHADOW}
+        getSortedUnitInfo={(unitInfo) => unitInfo.sort((info) => info.id ? -1 : 1)}
+        isUnitPrioritized={(info) => info.element === Element.SHADOW}
         isLoading={false}
       />
     ));
@@ -183,5 +190,45 @@ describe('Unit searcher', () => {
 
     const prioritizedInfo = fnRenderOutput.mock.calls[0][0].prioritizedUnitInfo as Array<UnitInfoData>;
     expect(prioritizedInfo.map((info) => info.element === Element.SHADOW)).toBeTruthy();
+  });
+
+  it('prioritizes unit info according to its desired order', async () => {
+    renderReact(() => (
+      <UnitSearcher
+        sortOrderNames={{unitId: () => 'Unit ID'}}
+        generateInputData={fnGenerateInputData}
+        renderOutput={fnRenderOutput}
+        renderCount={3}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
+        isUnitPrioritized={(info) => [10150106, 10150304, 10150305, 10150404].includes(info.id)}
+        isLoading={false}
+      />
+    ));
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+
+    const prioritizedUnitInfo = fnRenderOutput.mock.calls[0][0].prioritizedUnitInfo as Array<UnitInfoData>;
+    expect(prioritizedUnitInfo.every((info) => [10150106, 10150304, 10150305].includes(info.id))).toBeTruthy();
+  });
+
+  it('renders prioritized unit info first', async () => {
+    renderReact(() => (
+      <UnitSearcher
+        sortOrderNames={{unitId: () => 'Unit ID'}}
+        generateInputData={fnGenerateInputData}
+        renderOutput={fnRenderOutput}
+        renderCount={5}
+        getSortedUnitInfo={(unitInfo) => unitInfo}
+        isUnitPrioritized={(info) => [10150106, 10350103, 10350405, 10950101].includes(info.id)}
+        isLoading={false}
+      />
+    ));
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+
+    const prioritizedUnitInfo = fnRenderOutput.mock.calls[0][0].prioritizedUnitInfo as Array<UnitInfoData>;
+    expect(prioritizedUnitInfo.map((info) => info.id)).toHaveLength(4);
   });
 });

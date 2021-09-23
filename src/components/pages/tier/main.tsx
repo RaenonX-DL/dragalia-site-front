@@ -9,7 +9,7 @@ import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {ButtonBar} from '../../elements/common/buttonBar';
 import {useFetchStateProcessed} from '../../elements/common/fetch';
 import {UnitSearcher} from '../../elements/gameData/unit/searcher/main';
-import {MaxEntriesToDisplay, orderName} from './const';
+import {MaxEntriesToDisplay, orderName, sortFunc} from './const';
 import {useKeyPointData} from './hooks';
 import {TierListOutput} from './out/main';
 import {Display, DisplayOption, InputData} from './types';
@@ -71,6 +71,12 @@ export const TierList = () => {
       )}
       renderCount={MaxEntriesToDisplay}
       isUnitPrioritized={(info) => info.id in tierData.data}
+      getSortedUnitInfo={(unitInfo, inputData) => (
+        unitInfo
+          .map((info) => ({unitInfo: info, tierNote: tierData.data[info.id]}))
+          .sort(sortFunc[inputData.sortBy])
+          .map((obj) => obj.unitInfo)
+      )}
       isLoading={tierData.fetching}
     />
   );

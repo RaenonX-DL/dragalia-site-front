@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
-import {sortFunc} from '../in/sort/lookup';
 import {InputData, SortOrder} from '../in/types';
 import {UnitInfoEntry} from './entry';
 
@@ -16,7 +15,6 @@ type AnalysisLookupOutputProps = UnitSearchOutputProps<SortOrder, InputData> & {
 }
 
 export const UnitInfoLookupOutput = ({
-  inputData,
   prioritizedUnitInfo,
   otherUnitInfo,
   analyses,
@@ -25,13 +23,12 @@ export const UnitInfoLookupOutput = ({
 
   // Split to prioritize the units that have analysis
   const unitInfoHasAnalysis = prioritizedUnitInfo
-    .map((info) => ({unitInfo: info, lookupInfo: analyses[info.id]}))
-    .sort(sortFunc[inputData.sortBy]);
+    .map((info) => ({unitInfo: info, lookupInfo: analyses[info.id]}));
   const unitInfoNoAnalysis = otherUnitInfo
     .map((info) => ({unitInfo: info, lookupInfo: undefined}));
   const unitInfoSorted = [...unitInfoHasAnalysis, ...unitInfoNoAnalysis];
 
-  if (!prioritizedUnitInfo.length && !otherUnitInfo.length) {
+  if (!unitInfoSorted.length) {
     return (
       <h5 className="text-danger text-center">
         {t((t) => t.posts.analysis.error.noResult)}

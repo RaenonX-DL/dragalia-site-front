@@ -390,7 +390,9 @@ export type TranslationStruct = {
       },
       links: {
         analysis: string,
+        tier: string,
         info: string,
+        story: string,
       },
       text: {
         total: string,
@@ -529,6 +531,7 @@ export type TranslationStruct = {
           usage: PageMetaTranslations,
           edit: PageMetaTranslations,
         },
+        unit: PageMetaTranslations,
       },
       gameData: {
         info: PageMetaTranslations,
@@ -542,6 +545,9 @@ export type TranslationStruct = {
         info: PageMetaTranslations,
         name: PageMetaTranslations,
       },
+      story: {
+        unit: PageMetaTranslations,
+      }
     },
     error: {
       401: PageMetaTranslations,

@@ -1,3 +1,5 @@
+import Decimal from 'decimal.js';
+
 export const normalize = (numbers: Array<number>, padding: number = 0) => {
   const max = Math.max(...numbers);
 
@@ -21,4 +23,8 @@ export const varTally = <T>(arr: Array<T>) => {
   });
 
   return tally;
+};
+
+export const roundArray = (nums: Array<number>, places: number): Array<Decimal> => {
+  return nums.map((mod) => new Decimal(mod).toDecimalPlaces(places, Decimal.ROUND_HALF_CEIL));
 };
