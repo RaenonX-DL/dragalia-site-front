@@ -390,6 +390,7 @@ export type TranslationStruct = {
       },
       links: {
         analysis: string,
+        tier: string,
         info: string,
         story: string,
       },

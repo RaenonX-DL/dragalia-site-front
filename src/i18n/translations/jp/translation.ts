@@ -402,6 +402,7 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: '評価',
+        tier: 'TBA',
         info: 'キャラ情報',
         story: 'ストーリー',
       },

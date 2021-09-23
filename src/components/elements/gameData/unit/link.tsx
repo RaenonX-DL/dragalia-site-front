@@ -54,6 +54,14 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
       }
       <Button variant="link">
         <InternalLink
+          href={makeUnitUrl(UnitPath.UNIT_TIER, {id: unit.id, lang})}
+          locale={lang}
+          onClick={onLinkClicked}
+          content={t((t) => t.game.unitInfo.links.tier)}
+        />
+      </Button>
+      <Button variant="link">
+        <InternalLink
           href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})}
           locale={lang}
           onClick={onLinkClicked}

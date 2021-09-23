@@ -395,6 +395,7 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: '評測',
+        tier: '評級',
         info: '資訊',
         story: '故事',
       },

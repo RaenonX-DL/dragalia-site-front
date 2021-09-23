@@ -30,6 +30,10 @@ describe('Unit link', () => {
     const expectedAnalysisLink = makePostUrl(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN});
     expect(analysisLink).toHaveAttribute('href', expectedAnalysisLink);
 
+    const tierLink = screen.getByText('Ranking / Tier');
+    const expectedTierLink = makeUnitUrl(UnitPath.UNIT_TIER, {id: 10950101, lang: SupportedLanguages.EN});
+    expect(tierLink).toHaveAttribute('href', expectedTierLink);
+
     const infoLink = screen.getByText('Info');
     const expectedInfoLink = makeUnitUrl(UnitPath.UNIT_INFO, {id: 10950101, lang: SupportedLanguages.EN});
     expect(infoLink).toHaveAttribute('href', expectedInfoLink);

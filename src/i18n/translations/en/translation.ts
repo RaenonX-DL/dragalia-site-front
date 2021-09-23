@@ -427,6 +427,7 @@ export const translation: TranslationStruct = {
       },
       links: {
         analysis: 'Analysis',
+        tier: 'Ranking / Tier',
         info: 'Info',
         story: 'Story',
       },
