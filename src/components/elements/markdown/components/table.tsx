@@ -10,9 +10,13 @@ import {MarkdownComponentProps} from '../types';
 const headers: Array<Array<React.ReactNode>> = [] as Array<Array<React.ReactNode>>;
 let idxCounter = 0;
 
-export const renderTable = ({children}: MarkdownComponentProps) => (
-  <table>{children}</table>
-);
+export const renderTable = ({children}: MarkdownComponentProps) => {
+  // Empty `headers` because a new table is to be rendered
+  // https://stackoverflow.com/q/1232040
+  headers.length = 0;
+
+  return <table>{children}</table>;
+};
 
 export const renderTableHeader = ({children}: MarkdownComponentProps) => {
   headers.push(children);

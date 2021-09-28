@@ -33,6 +33,18 @@ describe('Markdown', () => {
       expect(screen.getByText('Data 2')).toBeInTheDocument();
       expect(screen.getAllByText('Header')).toHaveLength(2);
     });
+
+    it('renders multiple responsive tables correctly', async () => {
+      const text = `A | B\n:---: | :---:\nA1 | B1\n\nC | D\n:---: | :---:\nC1 | D1`;
+
+      renderReact(() => <Markdown>{text}</Markdown>);
+
+      // Should only have 2 elements available for each header: 1 for desktop, 1 for mobile (responsive header)
+      expect(screen.getAllByText('A')).toHaveLength(2);
+      expect(screen.getAllByText('B')).toHaveLength(2);
+      expect(screen.getAllByText('C')).toHaveLength(2);
+      expect(screen.getAllByText('D')).toHaveLength(2);
+    });
   });
 
   describe('Markdown - Syntax Nesting', () => {
