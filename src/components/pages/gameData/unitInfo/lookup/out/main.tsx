@@ -31,7 +31,7 @@ export const UnitInfoLookupOutput = ({
   if (!unitInfoSorted.length) {
     return (
       <h5 className="text-danger text-center">
-        {t((t) => t.posts.analysis.error.noResult)}
+        {t((t) => t.misc.noResult)}
       </h5>
     );
   }

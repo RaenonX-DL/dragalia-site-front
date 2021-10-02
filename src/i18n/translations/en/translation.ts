@@ -587,6 +587,7 @@ export const translation: TranslationStruct = {
     openImage: 'Click to open the image',
     search: 'Search',
     searchKeyword: 'Keyword',
+    noResult: 'No matching results. Please verify your searching condition.',
     showMore: 'Show More',
     showAll: 'Show All',
     update: 'Update',
@@ -767,14 +768,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: 'Force Strike Module',
-      keywords: 'Keywords',
       normalAttack: 'Normal Attack Module',
       notesDragon: 'Notes',
       unitName: 'Unit Name',
       unitType: 'Unit Type',
       passive: 'Passive',
       skills: 'Skill',
-      story: 'Story',
       suitable: 'Suitable Characters',
       summary: 'Summary',
       summonResult: 'My Summoning Result',
@@ -793,7 +792,6 @@ export const translation: TranslationStruct = {
       videos: 'Related Videos',
       error: {
         noPostId: 'Analysis ID is not specified.',
-        noResult: 'No matching results. Please verify your searching condition.',
         unknownType: 'Unknown post type - {{analysisType}}.',
         unavailable: 'Analysis Unavailable',
       },

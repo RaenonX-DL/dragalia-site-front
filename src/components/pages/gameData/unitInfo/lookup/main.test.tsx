@@ -244,9 +244,9 @@ describe('Analysis lookup page', () => {
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(screen.getByText(translationEN.posts.analysis.error.noResult)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(translationEN.misc.noResult)).toBeInTheDocument());
     expect(fnScroll).toHaveBeenCalledTimes(2);
-    const errorText = screen.getByText(translationEN.posts.analysis.error.noResult);
+    const errorText = screen.getByText(translationEN.misc.noResult);
     expect(errorText).toHaveClass('text-danger');
     expect(errorText).toHaveClass('text-center');
   });

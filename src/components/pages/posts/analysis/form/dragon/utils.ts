@@ -15,7 +15,5 @@ export const generatePayload = (lang: SupportedLanguages, uid?: string): DragonA
     notes: '',
     suitableCharacters: '',
     videos: '',
-    story: '',
-    keywords: '',
   };
 };

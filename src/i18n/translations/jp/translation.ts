@@ -546,6 +546,7 @@ export const translation: TranslationStruct = {
     openImage: 'クリックすると開きます',
     search: '検索',
     searchKeyword: 'キーワード',
+    noResult: '検索結果はありませんでした。条件を変更して再度検索してください。',
     showMore: 'TBA',
     showAll: 'TBA',
     update: '更新',
@@ -725,14 +726,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: 'バーストアタック',
-      keywords: 'キーワード',
       normalAttack: '通常攻撃',
       notesDragon: '記事',
       unitName: '評価の名前',
       unitType: '評価の対象',
       passive: 'アビリティ',
       skills: 'スキル情報',
-      story: 'ストーリー',
       suitable: '相性良いキャラ',
       summary: '結論',
       summonResult: '個人のガチャ結果',
@@ -750,7 +749,6 @@ export const translation: TranslationStruct = {
       videos: '関する動画',
       error: {
         noPostId: '文章 ID 未指定。',
-        noResult: '検索結果あありませんでした。条件を変更して再度検索してください。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
         unavailable: '無効のページ',
       },

@@ -485,6 +485,7 @@ export type TranslationStruct = {
     openImage: string,
     search: string,
     searchKeyword: string,
+    noResult: string,
     showMore: string,
     showAll: string,
     update: string,
@@ -565,14 +566,12 @@ export type TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: string,
-      keywords: string,
       normalAttack: string,
       notesDragon: string,
       unitName: string,
       unitType: string,
       passive: string,
       skills: string,
-      story: string,
       suitable: string,
       summary: string,
       summonResult: string,
@@ -585,7 +584,6 @@ export type TranslationStruct = {
       videos: string,
       error: {
         noPostId: string,
-        noResult: string,
         unknownType: string,
         unavailable: string,
       },

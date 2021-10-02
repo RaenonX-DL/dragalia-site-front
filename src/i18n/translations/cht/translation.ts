@@ -541,6 +541,7 @@ export const translation: TranslationStruct = {
     openImage: '點擊以開啟圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
+    noResult: '查無結果。請修改條件後重新搜尋。',
     showMore: '顯示更多',
     showAll: '顯示全部',
     update: '更新',
@@ -720,14 +721,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: '特殊蓄力',
-      keywords: '關鍵字',
       normalAttack: '普攻模組',
       notesDragon: '註記',
       unitName: '物件名稱',
       unitType: '物件種類',
       passive: '被動技能',
       skills: '技能資訊',
-      story: '故事',
       suitable: '適配角色',
       summary: '懶人包',
       summonResult: '個人抽抽結果',
@@ -742,7 +741,6 @@ export const translation: TranslationStruct = {
       videos: '相關影片',
       error: {
         noPostId: '文章 ID 未指定。',
-        noResult: '查無結果。請修改條件後重新搜尋。',
         unknownType: '無法解析貼文種類 - {{analysisType}}。',
         unavailable: '無相關評測',
       },

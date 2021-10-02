@@ -23,7 +23,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
           return unitInfo ? [{entry, unitInfo}] : [];
         })
         .map(({entry, unitInfo}) => (
-          <Col lg className="mt-2 mt-lg-0" key={unitInfo.id}>
+          <Col lg={4} className="mt-2 mt-lg-0 mb-0 mb-lg-2" key={unitInfo.id}>
             <UnitInfoEntry unitInfo={unitInfo} analysisMeta={entry} simplified/>
           </Col>
         ))}

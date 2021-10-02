@@ -46,8 +46,6 @@ export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditR
         passives: await processText({text: payload.passives, lang}),
         normalAttacks: await processText({text: payload.normalAttacks, lang}),
         videos: await processText({text: payload.videos, lang}),
-        story: await processText({text: payload.story, lang}),
-        keywords: await processText({text: payload.keywords, lang}),
       })}
       {...props}
     />

@@ -19,7 +19,5 @@ export const generatePayload = (lang: SupportedLanguages, uid?: string): CharaAn
     ],
     tipsBuilds: '',
     videos: '',
-    story: '',
-    keywords: '',
   };
 };
