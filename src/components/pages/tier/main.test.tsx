@@ -103,4 +103,17 @@ describe('Tier list page', () => {
     expect(screen.getByText('B')).toBeInTheDocument();
     expect(screen.getByText('C')).toBeInTheDocument();
   });
+
+  it('shows no result on not found', async () => {
+    renderReact(() => <TierList/>);
+
+    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
+    userEvent.type(searchInput, 'test');
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+
+    // Partial text of the tier note tips
+    expect(await screen.findByText(translationEN.misc.noResult)).toBeInTheDocument();
+  });
 });

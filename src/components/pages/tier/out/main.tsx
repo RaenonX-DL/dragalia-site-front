@@ -48,7 +48,11 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
             keyPointsData={keyPointsData}
           />
       }
-      {(entryPackHasTierNote.length || entryPackNoTierNote.length) && <AdsTierResultsEnd/>}
+      {
+        (entryPackHasTierNote.length > 0 || entryPackNoTierNote.length > 0) ?
+          <AdsTierResultsEnd/> :
+          <>{t((t) => t.misc.noResult)}</>
+      }
     </>
   );
 };

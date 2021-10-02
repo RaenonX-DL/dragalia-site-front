@@ -485,6 +485,7 @@ export type TranslationStruct = {
     openImage: string,
     search: string,
     searchKeyword: string,
+    noResult: string,
     showMore: string,
     showAll: string,
     update: string,
@@ -585,7 +586,6 @@ export type TranslationStruct = {
       videos: string,
       error: {
         noPostId: string,
-        noResult: string,
         unknownType: string,
         unavailable: string,
       },

@@ -541,6 +541,7 @@ export const translation: TranslationStruct = {
     openImage: '點擊以開啟圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
+    noResult: '查無結果。請修改條件後重新搜尋。',
     showMore: '顯示更多',
     showAll: '顯示全部',
     update: '更新',
@@ -742,7 +743,6 @@ export const translation: TranslationStruct = {
       videos: '相關影片',
       error: {
         noPostId: '文章 ID 未指定。',
-        noResult: '查無結果。請修改條件後重新搜尋。',
         unknownType: '無法解析貼文種類 - {{analysisType}}。',
         unavailable: '無相關評測',
       },

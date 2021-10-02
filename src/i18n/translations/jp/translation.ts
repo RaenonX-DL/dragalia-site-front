@@ -546,6 +546,7 @@ export const translation: TranslationStruct = {
     openImage: 'クリックすると開きます',
     search: '検索',
     searchKeyword: 'キーワード',
+    noResult: '検索結果はありませんでした。条件を変更して再度検索してください。',
     showMore: 'TBA',
     showAll: 'TBA',
     update: '更新',
@@ -750,7 +751,6 @@ export const translation: TranslationStruct = {
       videos: '関する動画',
       error: {
         noPostId: '文章 ID 未指定。',
-        noResult: '検索結果あありませんでした。条件を変更して再度検索してください。',
         unknownType: '文の種類が分別できない - {{analysisType}}。',
         unavailable: '無効のページ',
       },
