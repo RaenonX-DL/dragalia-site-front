@@ -7,7 +7,7 @@ import {TextChildren} from '../transformers/text/main';
 import {MarkdownComponentProps} from '../types';
 
 
-const headers: Array<Array<React.ReactNode>> = [] as Array<Array<React.ReactNode>>;
+const headers: Array<React.ReactNode> = [] as Array<React.ReactNode>;
 let idxCounter = 0;
 
 export const renderTable = ({children}: MarkdownComponentProps) => {
@@ -19,7 +19,11 @@ export const renderTable = ({children}: MarkdownComponentProps) => {
 };
 
 export const renderTableHeader = ({children}: MarkdownComponentProps) => {
-  headers.push(children);
+  headers.push(
+    <TextChildren>
+      {children}
+    </TextChildren>,
+  );
 
   return (
     <th>

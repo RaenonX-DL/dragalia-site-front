@@ -45,6 +45,15 @@ describe('Markdown', () => {
       expect(screen.getAllByText('C')).toHaveLength(2);
       expect(screen.getAllByText('D')).toHaveLength(2);
     });
+
+    it('renders unit icon correctly in responsive header', async () => {
+      const text = `--10750105/Y!Cleo-- | B\n:---: | :---:\nA1 | B1`;
+
+      renderReact(() => <Markdown>{text}</Markdown>);
+
+      // Should only have 2 elements available for each header: 1 for desktop, 1 for mobile (responsive header)
+      expect(screen.getAllByText('Y!Cleo')).toHaveLength(2);
+    });
   });
 
   describe('Markdown - Syntax Nesting', () => {
