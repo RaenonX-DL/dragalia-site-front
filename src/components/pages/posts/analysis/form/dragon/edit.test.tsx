@@ -42,8 +42,6 @@ describe('Dragon analysis edit form', () => {
             suitableCharacters: 'sut',
             notes: 'not',
             videos: 'vid',
-            story: 'str',
-            keywords: 'kw',
           }}
         />
       ),

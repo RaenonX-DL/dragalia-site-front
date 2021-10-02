@@ -32,34 +32,6 @@ export const SectionBottom = <R extends AnalysisGetResponse>({analysis}: Section
           </div>
         </>
       }
-      {
-        analysis.story &&
-        <>
-          <hr/>
-          <Row>
-            <Col>
-              <h4 className="mb-3">
-                {t((t) => t.posts.analysis.story)}
-              </h4>
-              <Markdown>{analysis.story}</Markdown>
-            </Col>
-          </Row>
-        </>
-      }
-      {
-        analysis.keywords &&
-        <>
-          <hr/>
-          <Row>
-            <Col>
-              <h4 className="mb-3">
-                {t((t) => t.posts.analysis.keywords)}
-              </h4>
-              <Markdown>{analysis.keywords}</Markdown>
-            </Col>
-          </Row>
-        </>
-      }
     </>
   );
 };

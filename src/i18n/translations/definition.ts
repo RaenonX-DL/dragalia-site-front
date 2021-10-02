@@ -566,14 +566,12 @@ export type TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: string,
-      keywords: string,
       normalAttack: string,
       notesDragon: string,
       unitName: string,
       unitType: string,
       passive: string,
       skills: string,
-      story: string,
       suitable: string,
       summary: string,
       summonResult: string,

@@ -721,14 +721,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: '特殊蓄力',
-      keywords: '關鍵字',
       normalAttack: '普攻模組',
       notesDragon: '註記',
       unitName: '物件名稱',
       unitType: '物件種類',
       passive: '被動技能',
       skills: '技能資訊',
-      story: '故事',
       suitable: '適配角色',
       summary: '懶人包',
       summonResult: '個人抽抽結果',

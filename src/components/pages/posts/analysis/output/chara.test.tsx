@@ -38,8 +38,6 @@ describe('Analysis output (Character)', () => {
     ],
     tipsBuilds: 'bld',
     videos: 'vid',
-    story: 'str',
-    keywords: 'kw',
     viewCount: 777,
     editNotes: [
       {
@@ -81,8 +79,6 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('tip')).toBeInTheDocument();
     expect(screen.getByText('bld')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
-    expect(screen.getByText('str')).toBeInTheDocument();
-    expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
     expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
@@ -109,8 +105,6 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('tip')).toBeInTheDocument();
     expect(screen.getByText('bld')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
-    expect(screen.getByText('str')).toBeInTheDocument();
-    expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
     expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${altLangTips}`, 'g'))).toBeInTheDocument();
@@ -153,8 +147,6 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('tip')).toBeInTheDocument();
     expect(screen.getByText('bld')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
-    expect(screen.getByText('str')).toBeInTheDocument();
-    expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
     expect(screen.queryByText(/edn/)).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
@@ -187,8 +179,6 @@ describe('Analysis output (Character)', () => {
     expect(screen.getByText('tip')).toBeInTheDocument();
     expect(screen.getByText('bld')).toBeInTheDocument();
     expect(screen.getByText('vid')).toBeInTheDocument();
-    expect(screen.getByText('str')).toBeInTheDocument();
-    expect(screen.getByText('kw')).toBeInTheDocument();
     expect(screen.getByText(/777/)).toBeInTheDocument();
     expect(screen.getByText(/edn/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();

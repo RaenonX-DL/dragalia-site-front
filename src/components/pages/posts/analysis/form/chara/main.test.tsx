@@ -60,8 +60,6 @@ describe('Character analysis form', () => {
         ],
         tipsBuilds: 'tb',
         videos: 'vid',
-        keywords: 'kw',
-        story: 'str',
         editNote: '',
       },
     };
@@ -102,10 +100,6 @@ describe('Character analysis form', () => {
     typeInput(tipsBuilds, 'tipsBuilds', {clear: true, rerender});
     const videos = screen.getByText(formState.payload.videos, {selector: 'textarea'});
     typeInput(videos, 'videos', {clear: true, rerender});
-    const keywords = screen.getByText(formState.payload.keywords, {selector: 'textarea'});
-    typeInput(keywords, 'keywords', {clear: true, rerender});
-    const story = screen.getByText(formState.payload.story, {selector: 'textarea'});
-    typeInput(story, 'story', {clear: true, rerender});
     // endregion
 
     const editButton = screen.getByText(translationEN.posts.manage.edit);
@@ -125,8 +119,6 @@ describe('Character analysis form', () => {
       skills: formState.payload.skills,
       tipsBuilds: 'tipsBuilds',
       videos: 'videos',
-      keywords: 'keywords',
-      story: 'story',
       editNote: '',
     });
   });
@@ -214,8 +206,6 @@ describe('Character analysis form', () => {
       }],
       tipsBuilds: originalText,
       videos: originalText,
-      keywords: originalText,
-      story: originalText,
       editNote: originalText,
     };
 
@@ -252,8 +242,6 @@ describe('Character analysis form', () => {
       }],
       tipsBuilds: transformedText,
       videos: transformedText,
-      keywords: transformedText,
-      story: transformedText,
       editNote: originalText,
     });
   });

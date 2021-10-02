@@ -726,14 +726,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: 'バーストアタック',
-      keywords: 'キーワード',
       normalAttack: '通常攻撃',
       notesDragon: '記事',
       unitName: '評価の名前',
       unitType: '評価の対象',
       passive: 'アビリティ',
       skills: 'スキル情報',
-      story: 'ストーリー',
       suitable: '相性良いキャラ',
       summary: '結論',
       summonResult: '個人のガチャ結果',

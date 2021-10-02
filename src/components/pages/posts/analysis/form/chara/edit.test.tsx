@@ -46,8 +46,6 @@ describe('Character analysis edit form', () => {
             ],
             tipsBuilds: 'tb',
             videos: 'vid',
-            story: 'str',
-            keywords: 'kw',
           }}
         />
       ),

@@ -768,14 +768,12 @@ export const translation: TranslationStruct = {
   posts: {
     analysis: {
       forceStrike: 'Force Strike Module',
-      keywords: 'Keywords',
       normalAttack: 'Normal Attack Module',
       notesDragon: 'Notes',
       unitName: 'Unit Name',
       unitType: 'Unit Type',
       passive: 'Passive',
       skills: 'Skill',
-      story: 'Story',
       suitable: 'Suitable Characters',
       summary: 'Summary',
       summonResult: 'My Summoning Result',
