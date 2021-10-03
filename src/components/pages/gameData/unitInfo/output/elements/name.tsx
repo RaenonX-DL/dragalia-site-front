@@ -7,6 +7,7 @@ import {CharaInfoData, UnitInfoDataBase} from '../../../../../../api-def/resourc
 import {useI18n} from '../../../../../../i18n/hook';
 import {reverseEnumLookup} from '../../../../../../utils/services/resources/utils';
 import {EnumEntryImageIcon} from '../../../../../elements/gameData/enumIcon';
+import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {useUnitProps} from '../../../../../hooks/unitProps';
 
 
@@ -30,20 +31,27 @@ export type UnitNameBlockProps = {
 }
 
 export const UnitNameBlock = ({info}: UnitNameBlockProps) => {
-  const {lang} = useI18n();
+  const {t, lang} = useI18n();
   const {elemEnums} = useUnitProps();
 
   const elemEnum = reverseEnumLookup(elemEnums.elemental, info.element);
 
   return (
-    <Row>
-      <Col className="d-flex align-items-center justify-content-center">
-        <EnumEntryImageIcon height="2rem" entry={elemEnum}/>&nbsp;
-        {isCharaInfo(info) && <><CharaImageExtension info={info}/>&nbsp;</>}
-        <h4 className="d-inline mb-0">
-          {info.name[lang]}
-        </h4>
-      </Col>
-    </Row>
+    <>
+      <Row className="mb-2">
+        <Col className="d-flex align-items-center justify-content-center">
+          <EnumEntryImageIcon height="2rem" entry={elemEnum}/>&nbsp;
+          {isCharaInfo(info) && <><CharaImageExtension info={info}/>&nbsp;</>}
+          <h4 className="d-inline mb-0">
+            <UnitLink unit={{id: info.id, name: info.name[lang]}}/>
+          </h4>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="text-center">
+          {t((t) => t.game.unitInfo.tips.clickNameForLinks)}
+        </Col>
+      </Row>
+    </>
   );
 };

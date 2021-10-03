@@ -11,7 +11,6 @@ import {Image} from '../../../../elements/common/image';
 import {Loading} from '../../../../elements/common/loading';
 import {useUnitId} from '../../../../elements/gameData/hook';
 import {AbilityBlock} from './elements/ability/main';
-import {RelatedLinks} from './elements/links';
 import {UnitNameBlock} from './elements/name';
 import {NormalAttackSection} from './elements/normalAttack/section';
 import {SkillSection} from './elements/skill/section';
@@ -43,8 +42,6 @@ export const UnitInfo = () => {
   return (
     <>
       <UnitNameBlock info={info.data.basic}/>
-      <div className="my-2"/>
-      <RelatedLinks unitId={info.data.basic.id}/>
       <hr className="my-3"/>
       <Row className="mb-3">
         <Col lg={6}>

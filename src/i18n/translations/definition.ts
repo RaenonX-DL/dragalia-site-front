@@ -398,6 +398,9 @@ export type TranslationStruct = {
         total: string,
         relatedLinks: string,
       },
+      tips: {
+        clickNameForLinks: string,
+      },
     },
     unitTier: {
       tier: {

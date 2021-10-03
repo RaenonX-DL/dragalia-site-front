@@ -410,6 +410,9 @@ export const translation: TranslationStruct = {
         total: '(総計)',
         relatedLinks: 'に関するリンク',
       },
+      tips: {
+        clickNameForLinks: 'TBA',
+      },
     },
     unitTier: {
       tier: {

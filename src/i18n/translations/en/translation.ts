@@ -435,6 +435,9 @@ export const translation: TranslationStruct = {
         total: '(Total)',
         relatedLinks: 'Related Links',
       },
+      tips: {
+        clickNameForLinks: 'Click the unit name above for related links.',
+      },
     },
     unitTier: {
       tier: {

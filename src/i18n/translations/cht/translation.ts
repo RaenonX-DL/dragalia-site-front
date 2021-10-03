@@ -403,6 +403,9 @@ export const translation: TranslationStruct = {
         total: '(總計)',
         relatedLinks: '相關連結',
       },
+      tips: {
+        clickNameForLinks: '點擊上方角色名稱以查看相關連結。',
+      },
     },
     unitTier: {
       tier: {
