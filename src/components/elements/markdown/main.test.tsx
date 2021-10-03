@@ -335,7 +335,7 @@ describe('Markdown', () => {
     });
 
     it('transforms to unit link in a sentence', async () => {
-      const markdown = 'Some text --10950101-- about an unit.';
+      const markdown = 'Some text --10950101-- about a unit.';
 
       renderReact(
         () => <Markdown>{markdown}</Markdown>,

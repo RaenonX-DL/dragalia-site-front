@@ -445,6 +445,7 @@ export const translation: TranslationStruct = {
         ranking: 'Ranking',
         isCompDependent: 'Comp-dependent',
         notRanked: 'Not Ranked',
+        edit: 'Edit Ranking',
       },
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +

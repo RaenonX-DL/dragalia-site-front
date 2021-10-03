@@ -408,6 +408,7 @@ export type TranslationStruct = {
         ranking: string,
         isCompDependent: string,
         notRanked: string,
+        edit: string,
       },
       tips: {
         main: string,

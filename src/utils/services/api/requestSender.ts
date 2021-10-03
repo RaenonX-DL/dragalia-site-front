@@ -70,7 +70,7 @@ import {
   UnitTierNoteEditPayload,
   UnitTierNoteEditResponse,
   UnitTierNoteGetPayload,
-  UnitTierNoteGetResponse,
+  UnitTierNoteGetResponse, UnitTierNoteSinglePayload, UnitTierNoteSingleResponse,
   UnitTierNoteUpdatePayload,
   UnitTierNoteUpdateResponse,
   UnitType,
@@ -292,7 +292,7 @@ export class ApiRequestSender {
   }
 
   /**
-   * Send an unit info lookup info request on landing.
+   * Send a unit info lookup info request on landing.
    *
    * @param {string} uid user ID to get the unit info lookup
    * @param {SupportedLanguages} lang language to use for getting the unit info lookup
@@ -597,7 +597,7 @@ export class ApiRequestSender {
   }
 
   /**
-   * Get tier note of an unit.
+   * Get the tier notes of all units.
    *
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language of the tier note
@@ -612,7 +612,23 @@ export class ApiRequestSender {
   }
 
   /**
-   * Get tier note of an unit for editing.
+   * Get the tier note of a unit.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang language of the tier note
+   * @param {number} unitId unit ID of the tier note
+   * @return {Promise<UnitTierNoteGetResponse>} promise returned from `fetch`
+   */
+  static getUnitTierNoteSingle(uid: string, lang: SupportedLanguages, unitId: number) {
+    return ApiRequestSender.sendRequest<UnitTierNoteSingleResponse, UnitTierNoteSinglePayload>(
+      'GET',
+      ApiEndPoints.TIER_UNIT,
+      {uid, lang, unitId},
+    );
+  }
+
+  /**
+   * Get tier note of a unit for editing.
    *
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language of the tier note
@@ -628,7 +644,7 @@ export class ApiRequestSender {
   }
 
   /**
-   * Get tier note of an unit for editing.
+   * Get tier note of a unit for editing.
    *
    * @param {string} uid user ID
    * @param {SupportedLanguages} lang language of the tier note

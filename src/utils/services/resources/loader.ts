@@ -192,7 +192,7 @@ export class ResourceLoader {
   }
 
   /**
-   * Get all normal attack chain data of an unit.
+   * Get all normal attack chain data of a unit.
    *
    * @function
    * @param {number} unitId unit ID of the combo chain

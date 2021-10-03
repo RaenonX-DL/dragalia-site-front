@@ -413,6 +413,7 @@ export const translation: TranslationStruct = {
         ranking: '評級',
         isCompDependent: '依賴組合',
         notRanked: '未評級',
+        edit: '編輯評級',
       },
       tips: {
         main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
