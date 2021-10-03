@@ -15,8 +15,10 @@ describe('Single unit tier note', () => {
 
   const tierNote = generateUnitTierNote();
 
+  let fnGetTierNote: jest.SpyInstance;
+
   beforeEach(() => {
-    jest.spyOn(ApiRequestSender, 'getUnitTierNoteSingle').mockResolvedValue({
+    fnGetTierNote = jest.spyOn(ApiRequestSender, 'getUnitTierNoteSingle').mockResolvedValue({
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: tierNote,
@@ -41,6 +43,21 @@ describe('Single unit tier note', () => {
     expect(screen.getByText('B')).toBeInTheDocument();
     // Key point description
     expect(screen.getByText('point')).toBeInTheDocument();
+  });
+
+  it('shows unranked tips', async () => {
+    fnGetTierNote.mockResolvedValueOnce({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: null,
+    });
+
+    renderReact(
+      () => <TierNoteUnit/>,
+      {user: {isAdmin: true}, contextParams: {unitId: 10750101}},
+    );
+
+    expect(await screen.findByText(translationEN.game.unitTier.tips.notRanked)).toBeInTheDocument();
   });
 
   it('shows buttons for editing if the user is an admin', async () => {
