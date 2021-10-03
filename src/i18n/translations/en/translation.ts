@@ -450,6 +450,7 @@ export const translation: TranslationStruct = {
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +
           'the actual strength, how-to-use, and the other details!',
+        notRanked: 'This unit is not yet ranked.',
         compIcon: 'Needs specific companion for the corresponding tier',
       },
       points: {

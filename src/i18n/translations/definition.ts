@@ -412,6 +412,7 @@ export type TranslationStruct = {
       },
       tips: {
         main: string,
+        notRanked: string,
         compIcon: string,
       },
       points: {

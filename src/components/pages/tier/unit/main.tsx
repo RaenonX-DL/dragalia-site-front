@@ -19,8 +19,21 @@ export const TierNoteUnit = () => {
 
   if (fetchStatus === 'fetching') {
     return <Loading/>;
-  } else if (!unitId) {
+  }
+
+  if (!unitId) {
     return <>No Unit ID</>;
+  }
+
+  if (!data) {
+    return (
+      <>
+        <AdsPageTop/>
+        <Alert variant="danger" className="mb-2">
+          {t((t) => t.game.unitTier.tips.notRanked)}
+        </Alert>
+      </>
+    );
   }
 
   return (
@@ -37,17 +50,12 @@ export const TierNoteUnit = () => {
         />
       ))}
       <h4>{t((t) => t.game.unitTier.points.title)}</h4>
-      {
-        data &&
-        <>
-          <UnitTierNoteKeyPoints keyPointsIds={data.points}/>
-          <hr/>
-          <div className="section mb-3 text-right">
-            {t((t) => t.misc.timestamp.lastUpdated)}
-            &nbsp;<TimeAgo epoch={data.lastUpdateEpoch}/>
-          </div>
-        </>
-      }
+      <UnitTierNoteKeyPoints keyPointsIds={data.points}/>
+      <hr/>
+      <div className="section mb-3 text-right">
+        {t((t) => t.misc.timestamp.lastUpdated)}
+        &nbsp;<TimeAgo epoch={data.lastUpdateEpoch}/>
+      </div>
       <AdsTierResultsEnd/>
     </>
   );

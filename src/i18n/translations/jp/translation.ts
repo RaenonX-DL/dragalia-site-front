@@ -424,6 +424,7 @@ export const translation: TranslationStruct = {
       },
       tips: {
         main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
+        notRanked: 'TBA',
         compIcon: '固定のサポートキャラが必要。',
       },
       points: {
