@@ -3,12 +3,11 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import {generateKeyPointData, generateUnitTierNote} from '../../../../../../test/data/mock/tierNote';
 import {renderReact} from '../../../../../../test/render/main';
 import {
-  KeyPointData,
   PartiallySupportedLanguages,
   SupportedLanguages,
-  UnitTierNote,
   UnitType,
 } from '../../../../../api-def/api';
 import {Element, UnitInfoData} from '../../../../../api-def/resources';
@@ -42,24 +41,9 @@ describe('Tier list entry', () => {
     releaseEpoch: 1,
   };
 
-  const keyPointsData: KeyPointData = {
-    id1: {
-      type: 'strength',
-      description: 'point',
-    },
-  };
+  const keyPointsData = generateKeyPointData();
 
-  const tierNote: UnitTierNote = {
-    points: ['id1'],
-    tier: {
-      conCoop: {
-        isCompDependent: true,
-        ranking: 'B',
-        note: 'Some note.',
-      },
-    },
-    lastUpdateEpoch: 1618734262003,
-  };
+  const tierNote = generateUnitTierNote();
 
   it('renders tier note on clicking note icon', async () => {
     renderReact(
