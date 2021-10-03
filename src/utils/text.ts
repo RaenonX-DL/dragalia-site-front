@@ -1,18 +1,18 @@
-import {OpenCC} from 'opencc';
+import {Converter} from 'opencc-js';
 
 import {overrideObject} from './override';
 import {DeepPartial} from './types';
 
 
-// Config name doc: https://github.com/BYVoid/OpenCC#configurations-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
-const openCC: OpenCC = new OpenCC('s2t.json');
+// eslint-disable-next-line new-cap
+const converter = Converter({from: 'cn', to: 't'});
 
 type TransformOptions = {
   caseInsensitive: boolean,
   variantInsensitive: boolean,
 }
 
-export const transformForSearch = (text: string, options?: DeepPartial<TransformOptions>): string => {
+export const transformForSearch =(text: string, options?: DeepPartial<TransformOptions>): string => {
   const transformOptions: TransformOptions = overrideObject(
     {
       caseInsensitive: true,
@@ -23,11 +23,12 @@ export const transformForSearch = (text: string, options?: DeepPartial<Transform
   );
 
   if (transformOptions.caseInsensitive) {
+    // `toLowerCase()` is faster than `match()`
     text = text.toLowerCase();
   }
 
   if (transformOptions.variantInsensitive) {
-    text = openCC.convertSync(text);
+    text = converter(text);
   }
 
   return text;

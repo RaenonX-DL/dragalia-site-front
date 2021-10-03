@@ -37,7 +37,7 @@ export const getFilteredUnitInfo = <S extends string>(
       return true;
     }
 
-    const keywordProcessed = transformForSearch(inputData.keyword.toLowerCase());
+    const keywordProcessed = transformForSearch(inputData.keyword);
 
     const isKeywordPartialUnitName = Object
       .values(unit.name)
