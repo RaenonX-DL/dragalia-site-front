@@ -1,3 +1,5 @@
+import {OpenCC} from 'opencc';
+
 import {UnitNameRefData, UnitType} from '../../../../../api-def/api';
 import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} from '../../../../../api-def/resources';
 import {UnitFilterInputData} from './types';
@@ -21,29 +23,37 @@ export const getFilteredUnitInfo = <S extends string>(
     return [];
   }
 
+  // Config name doc: https://github.com/BYVoid/OpenCC#configurations-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
+  const openCC: OpenCC = new OpenCC('s2t.json');
   const ret: Array<UnitInfoData> = [];
 
   const isUnitElementMatch = (unit: UnitInfoDataBase) => (
     !inputData.elements.length || inputData.elements.includes(unit.element)
   );
+
   const isUnitWeaponMatch = (unit: CharaInfoData) => (
     !inputData.weaponTypes.length || inputData.weaponTypes.includes(unit.weapon)
   );
+
   const isUnitNameMatch = (unit: UnitInfoDataBase) => {
     if (!inputData.keyword) {
       return true;
     }
 
-    const keywordLower = inputData.keyword.toLowerCase();
+    const keywordProcessed = openCC.convertSync(inputData.keyword.toLowerCase());
 
     const isKeywordPartialUnitName = Object
       .values(unit.name)
-      .some((name) => name.toLowerCase().indexOf(keywordLower) >= 0);
+      .some((name) => name.toLowerCase().indexOf(keywordProcessed) >= 0);
     const isKeywordPartialCustomName = Object.entries(unitNameRef)
       .filter(([_, referencedUnitId]) => unit.id === referencedUnitId)
-      .some(([name, _]) => name.toLowerCase().indexOf(keywordLower) >= 0);
+      .some(([name, _]) => name.toLowerCase().indexOf(keywordProcessed) >= 0);
 
     return isKeywordPartialUnitName || isKeywordPartialCustomName;
+  };
+
+  const isInfoChara = (info: any): info is CharaInfoData => {
+    return info.type === UnitType.CHARACTER;
   };
 
   if (inputData.type === UnitType.CHARACTER) {
@@ -61,10 +71,6 @@ export const getFilteredUnitInfo = <S extends string>(
         .map((info) => ({...info, type: UnitType.DRAGON})),
     );
   }
-
-  const isInfoChara = (info: any): info is CharaInfoData => {
-    return info.type === UnitType.CHARACTER;
-  };
 
   return ret.sort((a, b) => (
     a.type - b.type || // Type ASC (CHARA -> DRAGON)
