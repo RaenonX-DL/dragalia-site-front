@@ -1,4 +1,4 @@
-import {SupportedLanguages, UnitTierNote, UnitType} from '../../../api-def/api';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitTierNote, UnitType} from '../../../api-def/api';
 import {Element, UnitInfoData} from '../../../api-def/resources';
 import {categorizeEntryPack} from './utils';
 
@@ -14,6 +14,7 @@ describe('Categorize entry pack', () => {
       [SupportedLanguages.CHT]: 'CHT name',
       [SupportedLanguages.EN]: 'EN name',
       [SupportedLanguages.JP]: 'JP name',
+      [PartiallySupportedLanguages.CHS]: 'CHS name',
     },
     cvEn: {
       [SupportedLanguages.CHT]: 'CHT EN CV name',

@@ -1,4 +1,4 @@
-import {SupportedLanguages, UnitType} from '../../../src/api-def/api';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../../src/api-def/api';
 import {AttackingSkillData, Element} from '../../../src/api-def/resources';
 import {CalculatedSkillEntry} from '../../../src/components/pages/gameData/skillAtk/out/types';
 
@@ -14,6 +14,7 @@ export const generateAttackingSkillEntry = (): AttackingSkillData => ({
       [SupportedLanguages.CHT]: 'CHT name',
       [SupportedLanguages.EN]: 'EN name',
       [SupportedLanguages.JP]: 'JP name',
+      [PartiallySupportedLanguages.CHS]: 'CHS name',
     },
     cvEn: {
       [SupportedLanguages.CHT]: 'CHT EN CV name',

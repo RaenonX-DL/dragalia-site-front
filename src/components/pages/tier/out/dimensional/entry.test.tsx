@@ -4,7 +4,13 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {KeyPointData, SupportedLanguages, UnitTierNote, UnitType} from '../../../../../api-def/api';
+import {
+  KeyPointData,
+  PartiallySupportedLanguages,
+  SupportedLanguages,
+  UnitTierNote,
+  UnitType,
+} from '../../../../../api-def/api';
 import {Element, UnitInfoData} from '../../../../../api-def/resources';
 import {overrideObject} from '../../../../../utils/override';
 import {TierListEntry} from './entry';
@@ -21,6 +27,7 @@ describe('Tier list entry', () => {
       [SupportedLanguages.CHT]: 'CHT name',
       [SupportedLanguages.EN]: 'EN name',
       [SupportedLanguages.JP]: 'JP name',
+      [PartiallySupportedLanguages.CHS]: 'CHS name',
     },
     cvEn: {
       [SupportedLanguages.CHT]: 'CHT EN CV name',
