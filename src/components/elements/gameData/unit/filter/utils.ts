@@ -1,7 +1,6 @@
-import {OpenCC} from 'opencc';
-
 import {UnitNameRefData, UnitType} from '../../../../../api-def/api';
 import {CharaInfo, CharaInfoData, DragonInfo, UnitInfoData, UnitInfoDataBase} from '../../../../../api-def/resources';
+import {transformForSearch} from '../../../../../utils/text';
 import {UnitFilterInputData} from './types';
 
 
@@ -23,8 +22,6 @@ export const getFilteredUnitInfo = <S extends string>(
     return [];
   }
 
-  // Config name doc: https://github.com/BYVoid/OpenCC#configurations-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
-  const openCC: OpenCC = new OpenCC('s2t.json');
   const ret: Array<UnitInfoData> = [];
 
   const isUnitElementMatch = (unit: UnitInfoDataBase) => (
@@ -40,14 +37,18 @@ export const getFilteredUnitInfo = <S extends string>(
       return true;
     }
 
-    const keywordProcessed = openCC.convertSync(inputData.keyword.toLowerCase());
+    const keywordProcessed = transformForSearch(inputData.keyword.toLowerCase());
 
     const isKeywordPartialUnitName = Object
       .values(unit.name)
-      .some((name) => name.toLowerCase().indexOf(keywordProcessed) >= 0);
+      .some((name) => (
+        transformForSearch(name, {variantInsensitive: false}).indexOf(keywordProcessed) >= 0
+      ));
     const isKeywordPartialCustomName = Object.entries(unitNameRef)
       .filter(([_, referencedUnitId]) => unit.id === referencedUnitId)
-      .some(([name, _]) => name.toLowerCase().indexOf(keywordProcessed) >= 0);
+      .some(([name, _]) => (
+        transformForSearch(name, {variantInsensitive: false}).indexOf(keywordProcessed) >= 0
+      ));
 
     return isKeywordPartialUnitName || isKeywordPartialCustomName;
   };
