@@ -2,7 +2,7 @@
   "name": "dragalia-site-front",
   "description": "Frontend of Dragalia Lost info website by OM.",
   "repository": "https://github.com/RaenonX-DL/dragalia-site-front",
-  "version": "2.15.0-beta.4",
+  "version": "2.15.0",
   "engines": {
     "node": "14.x",
     "npm": "^7.12.0"
