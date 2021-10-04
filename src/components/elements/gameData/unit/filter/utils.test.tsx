@@ -257,4 +257,29 @@ describe('Get filtered unit info', () => {
 
     expect(unitIds).toStrictEqual([10750404]);
   });
+
+  it('filters using CHS name', async () => {
+    const inputData: UnitFilterInputData<'unitId'> = overrideObject(
+      generateFilterInput('unitId'),
+      {keyword: '谢斯'},
+    );
+
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {})
+      .map((unit) => unit.id);
+
+    expect(unitIds).toStrictEqual([10750404, 10650503, 10950501]);
+  });
+
+  it('filters using CHS alias', async () => {
+    const inputData: UnitFilterInputData<'unitId'> = overrideObject(
+      generateFilterInput('unitId'),
+      {keyword: '龙爸'},
+    );
+
+    // noinspection NonAsciiCharacters
+    const unitIds = getFilteredUnitInfo(inputData, charaInfo, dragonInfo, {'龍爸': 10750404})
+      .map((unit) => unit.id);
+
+    expect(unitIds).toStrictEqual([10750404]);
+  });
 });

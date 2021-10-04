@@ -410,6 +410,9 @@ export const translation: TranslationStruct = {
         total: '(総計)',
         relatedLinks: 'に関するリンク',
       },
+      tips: {
+        clickNameForLinks: 'TBA',
+      },
     },
     unitTier: {
       tier: {
@@ -417,9 +420,11 @@ export const translation: TranslationStruct = {
         ranking: 'ランキング',
         isCompDependent: 'チームのサポートが必要。',
         notRanked: '未評価',
+        edit: 'TBA',
       },
       tips: {
         main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
+        notRanked: 'TBA',
         compIcon: '固定のサポートキャラが必要。',
       },
       points: {

@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {DataPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeDataUrl} from '../../../../../utils/path/make';
+import {transformForSearch} from '../../../../../utils/text';
 import {AdsPageTop, AdsUnitKeyPointIndexEnd} from '../../../../elements/common/ads/main';
 import {InternalLink} from '../../../../elements/common/link/internal';
 import {Loading} from '../../../../elements/common/loading';
@@ -28,7 +29,9 @@ export const KeyPointIndexPage = () => {
       <AdsPageTop/>
       <Search
         options={Object.entries(keyPointData).map(([id, entry]) => ({id, ...entry}))}
-        isOptionMatchSearch={(option, textLowered) => option.description.toLowerCase().includes(textLowered)}
+        isOptionMatchSearch={(option, searchText) => (
+          transformForSearch(option.description, {variantInsensitive: false}).includes(searchText)
+        )}
         renderMatchedSelection={({id, type, description}) => (
           <Row noGutters key={description} className={styles.entry}>
             <Col xs="auto" className={styles.typeEntry}>

@@ -13,7 +13,7 @@ describe('Search input', () => {
   const SearchWrapper = () => (
     <Search
       options={['option 1', 'option 2']}
-      isOptionMatchSearch={(option, searchTextLowered) => option === searchTextLowered}
+      isOptionMatchSearch={(option, searchText) => option === searchText}
       renderMatchedSelection={(option) => <span>{option}</span>}
     />
   );
@@ -44,5 +44,22 @@ describe('Search input', () => {
 
     expect(screen.getByText('option 1')).toBeInTheDocument();
     expect(screen.getByText('option 2')).toBeInTheDocument();
+  });
+
+  it('searches in CHS', async () => {
+    const {rerender} = renderReact(() => (
+      <Search
+        options={['漢字']}
+        isOptionMatchSearch={(option, searchText) => option === searchText}
+        renderMatchedSelection={(option) => <span>{option}</span>}
+      />
+    ));
+
+    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
+    typeInput(keywordInput, '汉字', {rerender});
+    userEvent.clear(keywordInput);
+    rerender();
+
+    expect(screen.getByText('漢字')).toBeInTheDocument();
   });
 });

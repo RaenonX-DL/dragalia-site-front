@@ -1,35 +1,14 @@
-import {UnitTierNote, UnitType} from '../../../api-def/api';
-import {UnitInfoData} from '../../../api-def/resources';
+import {generateUnitTierNote} from '../../../../test/data/mock/tierNote';
+import {generateGalaMymInfo} from '../../../../test/data/mock/unitInfo';
+import {overrideObject} from '../../../utils/override';
 import {sortFunc} from './const';
 import {EntryPack} from './types';
 
 
 describe('Sorting function', () => {
-  const unitInfo: UnitInfoData = {
-    type: UnitType.CHARACTER,
-    cvEn: {
-      cht: 'Kelly Marie',
-      en: 'Kelly Marie',
-      jp: 'Kelly Marie',
-    },
-    cvJp: {
-      cht: '遠藤綾',
-      en: 'Aya Endo',
-      jp: '遠藤綾',
-    },
-    element: 1,
-    iconName: '100010_04_r05',
-    id: 10550101,
-    name: {
-      cht: '慕慕（龍絆日Ver.）',
-      en: 'Gala Mym',
-      jp: 'ムム（ドラフェスVer.）',
-    },
-    rarity: 5,
-    releaseEpoch: 1609480800.0,
-  };
+  const unitInfo = generateGalaMymInfo();
 
-  const tierNote1: UnitTierNote = {
+  const tierNote1 = overrideObject(generateUnitTierNote(), {
     tier: {
       conCoop: {
         isCompDependent: false,
@@ -37,11 +16,9 @@ describe('Sorting function', () => {
         note: 'Some note.',
       },
     },
-    lastUpdateEpoch: 1618734262003,
-  };
+  });
 
-  const tierNote2: UnitTierNote = {
-    points: ['61174cef5dc5094fe82e9eea'],
+  const tierNote2 = overrideObject(generateUnitTierNote(), {
     tier: {
       conAi: {
         isCompDependent: false,
@@ -55,7 +32,7 @@ describe('Sorting function', () => {
       },
     },
     lastUpdateEpoch: 1578734262003,
-  };
+  });
 
   it('ignores N/A ranking when sorting in average ranking', async () => {
     const entries: Array<EntryPack> = [

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {typeInput} from '../../../../../test/utils/event';
-import {ApiResponseCode, SupportedLanguages, UnitType} from '../../../../api-def/api';
+import {ApiResponseCode, PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {Element, Weapon} from '../../../../api-def/resources';
 import {translation as translationEN} from '../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
@@ -58,6 +58,7 @@ describe('Name reference management', () => {
           [SupportedLanguages.CHT]: 'CHARA CHT 1',
           [SupportedLanguages.EN]: 'CHARA EN 1',
           [SupportedLanguages.JP]: 'CHARA JP 1',
+          [PartiallySupportedLanguages.CHS]: 'CHARA CHS 1',
         },
         rarity: 5,
         releaseEpoch: 0,
@@ -83,6 +84,7 @@ describe('Name reference management', () => {
           [SupportedLanguages.CHT]: 'CHARA CHT 2',
           [SupportedLanguages.EN]: 'CHARA EN 2',
           [SupportedLanguages.JP]: 'CHARA JP 2',
+          [PartiallySupportedLanguages.CHS]: 'CHARA CHS 1',
         },
         rarity: 5,
         releaseEpoch: 0,
@@ -108,6 +110,7 @@ describe('Name reference management', () => {
           [SupportedLanguages.CHT]: 'CHARA CHT 3',
           [SupportedLanguages.EN]: 'CHARA EN 3',
           [SupportedLanguages.JP]: 'CHARA JP 3',
+          [PartiallySupportedLanguages.CHS]: 'CHARA CHS 1',
         },
         rarity: 5,
         releaseEpoch: 0,

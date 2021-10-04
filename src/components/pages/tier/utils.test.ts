@@ -1,5 +1,7 @@
-import {SupportedLanguages, UnitTierNote, UnitType} from '../../../api-def/api';
+import {generateUnitTierNote} from '../../../../test/data/mock/tierNote';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../../api-def/api';
 import {Element, UnitInfoData} from '../../../api-def/resources';
+import {overrideObject} from '../../../utils/override';
 import {categorizeEntryPack} from './utils';
 
 
@@ -14,6 +16,7 @@ describe('Categorize entry pack', () => {
       [SupportedLanguages.CHT]: 'CHT name',
       [SupportedLanguages.EN]: 'EN name',
       [SupportedLanguages.JP]: 'JP name',
+      [PartiallySupportedLanguages.CHS]: 'CHS name',
     },
     cvEn: {
       [SupportedLanguages.CHT]: 'CHT EN CV name',
@@ -28,7 +31,7 @@ describe('Categorize entry pack', () => {
     releaseEpoch: 1,
   };
 
-  const tierNote: UnitTierNote = {
+  const tierNote = overrideObject(generateUnitTierNote(), {
     points: [],
     tier: {
       conAi: {
@@ -37,8 +40,7 @@ describe('Categorize entry pack', () => {
         isCompDependent: false,
       },
     },
-    lastUpdateEpoch: 0,
-  };
+  });
 
   it('returns entries in certain dimension', async () => {
     const categorized = categorizeEntryPack('conAi', [{unitInfo, tierNote}]);

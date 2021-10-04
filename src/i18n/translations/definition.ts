@@ -398,6 +398,9 @@ export type TranslationStruct = {
         total: string,
         relatedLinks: string,
       },
+      tips: {
+        clickNameForLinks: string,
+      },
     },
     unitTier: {
       tier: {
@@ -405,9 +408,11 @@ export type TranslationStruct = {
         ranking: string,
         isCompDependent: string,
         notRanked: string,
+        edit: string,
       },
       tips: {
         main: string,
+        notRanked: string,
         compIcon: string,
       },
       points: {

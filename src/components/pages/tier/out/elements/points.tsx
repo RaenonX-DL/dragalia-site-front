@@ -17,12 +17,12 @@ import {CategorizedPointEntries} from '../types';
 import {KeyPointListItem} from './pointItem';
 
 
-type Props = {
+export type TierKeyPointsProps = {
   keyPointsIds: Array<string>,
   keyPointsData: KeyPointData,
 }
 
-export const TierKeyPoints = ({keyPointsIds, keyPointsData}: Props) => {
+export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps) => {
   const {t, lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
