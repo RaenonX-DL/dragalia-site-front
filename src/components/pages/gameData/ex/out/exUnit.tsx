@@ -14,7 +14,7 @@ type ExAbilityProps = {
   description: string,
   conditionEnums: ConditionEnumMap,
   isEx?: boolean,
-}
+};
 
 export const ExAbility = ({effectUnits, name, description, ...props}: ExAbilityProps) => {
   return (

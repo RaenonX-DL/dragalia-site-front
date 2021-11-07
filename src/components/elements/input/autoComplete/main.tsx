@@ -17,7 +17,7 @@ type Props<P, E, O> = Omit<ArrayFormProps<P, E>, 'counterState'> & {
   isOptionSelected: (option: O) => boolean,
   isOptionMatchSearch?: (option: O, searchText: string) => boolean,
   renderOption?: (option: O) => React.ReactNode,
-}
+};
 
 export const AutoComplete = <P, E, O>({
   options,

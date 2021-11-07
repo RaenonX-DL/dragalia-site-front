@@ -11,7 +11,7 @@ export const extractVideoId = (videoUrl: string): string | null => {
 
 type Props = {
   videoId: string
-}
+};
 
 export const EmbeddedYoutubeVideo = ({videoId}: Props) => {
   const videoUrl = `//www.youtube.com/embed/${videoId}`;

@@ -44,7 +44,7 @@ export const Text = ({children}: TextComponentProps) => {
 
 type TextChildrenProps = {
   children: Array<React.ReactNode>,
-}
+};
 
 export const TextChildren = ({children}: TextChildrenProps) => {
   const {lang} = useI18n();

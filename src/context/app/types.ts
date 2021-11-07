@@ -10,4 +10,4 @@ export type AppReactContextValue = PageMeta & {
     afflictions: StatusEnums,
     simpleUnitInfo: SimpleUnitInfo,
   },
-}
+};

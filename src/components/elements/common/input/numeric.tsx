@@ -12,7 +12,7 @@ export type NumericInputProps<T> = DetailedProps & InputPropsExtended<T, number>
   required?: boolean,
   minValue?: number,
   maxValue?: number
-}
+};
 
 export const NumericInput = <T, >({
   title,

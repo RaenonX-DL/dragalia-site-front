@@ -4,4 +4,4 @@ export type InputData = {
     exBuffParams: Array<number>,
     cexBuffParams: Array<number>,
   }
-}
+};

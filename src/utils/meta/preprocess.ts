@@ -12,7 +12,7 @@ type PageMetaPromiseArgs = {
   lang: SupportedLanguages,
   pathnameNoLang: string,
   context: AppContext,
-}
+};
 
 export const getPageMetaPromise = async ({
   lang, pathnameNoLang, context,

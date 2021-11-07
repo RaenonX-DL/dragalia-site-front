@@ -4,6 +4,7 @@ import * as CSS from 'csstype';
 
 import {normalize, varTally} from '../../../utils/calc';
 
+
 type PointBarProps = {
   dataPoints: Array<number>,
   height?: number,
@@ -12,7 +13,7 @@ type PointBarProps = {
   padding?: number,
   displayText?: boolean,
   fixPoints?: number,
-}
+};
 
 export const PointBar = ({
   dataPoints,

@@ -9,12 +9,12 @@ export type OverlayCommonProps = {
   // Doc: https://react-bootstrap.github.io/components/overlays/#overlay-trigger
   children: React.ReactElement,
   placement?: Placement,
-}
+};
 
 type Props = OverlayCommonProps & {
   overlay: OverlayChildren,
   trigger?: OverlayTriggerType | Array<OverlayTriggerType>,
-}
+};
 
 export const OverlayBase = ({placement, trigger, overlay, children}: Props) => {
   return (

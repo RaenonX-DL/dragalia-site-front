@@ -11,7 +11,7 @@ import {UnitLink} from '../../../../elements/gameData/unit/link';
 
 type Props = {
   unitInfo: UnitInfoData,
-}
+};
 
 export const UnitEntry = ({unitInfo}: Props) => {
   const {lang} = useI18n();

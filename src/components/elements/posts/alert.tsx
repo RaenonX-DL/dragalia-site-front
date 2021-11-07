@@ -8,7 +8,7 @@ import {Markdown} from '../markdown/main';
 
 type FetchFailedProps = {
   failureMessage: string,
-}
+};
 
 export const AlertFetchListFailed = ({failureMessage}: FetchFailedProps) => {
   const {t} = useI18n();

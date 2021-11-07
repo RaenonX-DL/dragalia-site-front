@@ -8,7 +8,7 @@ import {useI18n} from '../../../../i18n/hook';
 import {PostFormDataProps} from './types';
 
 
-type FormEditNoteProps<P extends PostEditPayload> = PostFormDataProps<P>
+type FormEditNoteProps<P extends PostEditPayload> = PostFormDataProps<P>;
 
 export const FormEditNote = <P extends PostEditPayload>({setPayload}: FormEditNoteProps<P>) => {
   const {t} = useI18n();

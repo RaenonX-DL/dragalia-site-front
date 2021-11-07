@@ -21,7 +21,7 @@ import {FormAnalysisMeta} from './meta';
 
 
 describe('Analysis form meta input', () => {
-  type SetPayloadFuncArgs<K extends keyof AnalysisMeta> = [K, AnalysisMeta[K]]
+  type SetPayloadFuncArgs<K extends keyof AnalysisMeta> = [K, AnalysisMeta[K]];
 
   let state: PostFormState<AnalysisMeta>;
   let setPayload: jest.Mock<void, SetPayloadFuncArgs<keyof AnalysisMeta>>;

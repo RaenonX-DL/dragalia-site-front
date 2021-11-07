@@ -148,7 +148,7 @@ export class GoogleAnalytics {
    * @param {string} eventName name of the event
    * @param {Object} parameters parameters of the event
    */
-  private static sendEvent(eventName: string, parameters: { [key in string]: any }) {
+  private static sendEvent(eventName: string, parameters: {[key in string]: any}) {
     // Log GA event instead of sending it if under development
     if (process.env.NODE_ENV !== 'production') {
       if (!process.env.CI) {

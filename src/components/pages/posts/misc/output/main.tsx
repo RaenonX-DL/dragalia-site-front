@@ -14,7 +14,7 @@ import {MiscSectionOutput} from './section';
 
 type Props = {
   post: MiscPostGetResponse,
-}
+};
 
 export const MiscPostOutput = ({post}: Props) => {
   const {lang} = useI18n();

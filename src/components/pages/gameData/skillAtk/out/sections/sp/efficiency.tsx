@@ -12,8 +12,8 @@ import {SectionSpInfoProps} from './main';
 
 
 type CellProps = Pick<EnumDataPack, 'statusEnums'> & {
-  data: { [StatusCode in number]: number }
-}
+  data: {[StatusCode in number]: number}
+};
 
 export const AfflictionDataCell = ({data, statusEnums}: CellProps) => {
   const {lang} = useI18n();

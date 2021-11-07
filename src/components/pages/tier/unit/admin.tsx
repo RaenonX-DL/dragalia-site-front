@@ -8,7 +8,7 @@ import {ButtonBar} from '../../../elements/common/buttonBar';
 
 type Props = {
   unitId: number
-}
+};
 
 export const TierNoteUnitAdmin = ({unitId}: Props) => {
   const {t, lang} = useI18n();

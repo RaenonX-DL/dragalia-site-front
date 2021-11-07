@@ -19,7 +19,7 @@ type Props = {
   tierNote: UnitTierNote | undefined,
   keyPointsData: KeyPointData,
   unitInfo: UnitInfoData,
-}
+};
 
 export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();

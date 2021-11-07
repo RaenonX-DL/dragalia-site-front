@@ -10,7 +10,7 @@ import styles from './main.module.css';
 
 export type SignInPageProps = {
   providers: UnwrapPromise<ReturnType<typeof getProviders>>,
-}
+};
 
 export const SignInPage = ({providers}: SignInPageProps) => {
   const {t} = useI18n();

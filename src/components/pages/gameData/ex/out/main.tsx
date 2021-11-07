@@ -14,7 +14,7 @@ export type OutputProps = {
   exAbilityData: Array<CharaExAbilityDataEntry>,
   conditionEnums: ConditionEnumMap,
   inputData?: InputData,
-}
+};
 
 
 export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: OutputProps) => {

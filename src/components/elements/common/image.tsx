@@ -8,7 +8,7 @@ type ImageIconProps = {
   src: string,
   text: string,
   style?: React.CSSProperties,
-}
+};
 
 // `...props` is required for triggering the overlay
 export const Image = ({text, src, className, style, ...props}: ImageIconProps) => (

@@ -13,7 +13,7 @@ import {AnalysisFormDragon} from './main';
 
 type Props = {
   analysis: DragonAnalysisBody,
-}
+};
 
 export const AnalysisFormDragonEdit = ({analysis}: Props) => {
   const context = React.useContext(AppReactContext);

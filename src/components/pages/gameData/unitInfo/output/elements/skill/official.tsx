@@ -9,7 +9,7 @@ import {SectionSubTitle} from '../title';
 
 type SkillOfficialInfoProps = {
   info: OfficialSkillInfo,
-}
+};
 
 export const SkillOfficialInfo = ({info}: SkillOfficialInfoProps) => {
   const {lang} = useI18n();

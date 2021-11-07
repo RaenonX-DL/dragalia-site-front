@@ -19,7 +19,7 @@ import {TierNotePointIcon} from '../elements/pointIcon';
 type Props = PropsUseKeyPointData & {
   dimension: DimensionKey,
   entryPack: EntryPackOutput,
-}
+};
 
 export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
   const {lang} = useI18n();

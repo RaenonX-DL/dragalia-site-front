@@ -28,7 +28,7 @@ type Props<
   onSearchRequested?: (inputData: D) => void,
   isUnitPrioritized: (unitInfo: UnitInfoData) => boolean,
   isLoading: boolean,
-}
+};
 
 export const UnitSearcher = <
   S extends string,

@@ -6,7 +6,7 @@ import {CalculatedSkillEntry} from '../types';
 
 type SectionSkillInfoProps = SectionProps & {
   calculatedData: CalculatedSkillEntry,
-}
+};
 
 export const SectionSkillInfo = ({atkSkillEntry, calculatedData}: SectionSkillInfoProps) => (
   <>

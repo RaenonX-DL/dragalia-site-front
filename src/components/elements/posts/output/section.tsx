@@ -14,7 +14,7 @@ type Props<E> = {
   sections: Array<E>,
   getTitle: (section: E) => string,
   renderSection: (section: E) => React.ReactElement,
-}
+};
 
 export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSection}: Props<E>) => {
   const {t} = useI18n();

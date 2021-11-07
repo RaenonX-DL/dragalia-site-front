@@ -21,11 +21,11 @@ import {UnitFilterInputData} from './types';
 
 export type UnitFilterProps<S extends string, D extends UnitFilterInputData<S>, E, E2 extends EnumEntry, V> = {
   onSearchRequested: (inputData: D) => (event: FormEvent<HTMLFormElement>) => void,
-  sortOrderNames: { [sortBy in S]: GetTranslationFunction },
+  sortOrderNames: {[sortBy in S]: GetTranslationFunction},
   generateInputData: () => D,
   getAdditionalInputs?: (inputData: D) => InputEntries<E, E2, D, V>,
   disabled?: boolean,
-}
+};
 
 export const UnitFilter = <S extends string,
   D extends UnitFilterInputData<S>,

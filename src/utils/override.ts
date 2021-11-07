@@ -3,7 +3,7 @@ import {DeepPartial} from './types';
 
 type OverrideOptions = {
   originalOnly?: boolean,
-}
+};
 
 export const overrideObject = <T, >(
   original: T,

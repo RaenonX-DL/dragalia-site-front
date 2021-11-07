@@ -3,7 +3,7 @@ import React from 'react';
 
 type UseOnBeforeUnloadReturn = {
   clearUnload: () => void,
-}
+};
 
 export const useOnBeforeUnload = (dependencies: React.DependencyList): UseOnBeforeUnloadReturn => {
   const clearUnload = () => {

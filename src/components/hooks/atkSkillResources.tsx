@@ -13,17 +13,17 @@ import {useFetchState, useFetchStateProcessed} from '../elements/common/fetch';
 import {EnumDataPack} from '../pages/gameData/skillAtk/out/props';
 
 
-type AtkSkillResourceToFetch = 'all' | 'conditionEnumsOnly'
+type AtkSkillResourceToFetch = 'all' | 'conditionEnumsOnly';
 
 type UseAtkSkillResourceOptions = {
   toFetch: AtkSkillResourceToFetch,
-}
+};
 
 export type UseAtkSkillResourcesReturn = EnumDataPack & {
   attackingSkillEntries: Array<AttackingSkillData>,
   elementBonuses: ElementBonusData,
   isAllFetched: boolean,
-}
+};
 
 const generateOptions = (overwrite?: DeepPartial<UseAtkSkillResourceOptions>): UseAtkSkillResourceOptions => ({
   toFetch: overwrite?.toFetch || 'all',
@@ -90,7 +90,7 @@ export const useAtkSkillResources = (
   }
   fetchConditionEnums();
 
-  const allFetchedFlags: { [K in AtkSkillResourceToFetch]: Array<boolean> } = {
+  const allFetchedFlags: {[K in AtkSkillResourceToFetch]: Array<boolean>} = {
     all: [
       elementBonuses.fetched,
       conditionEnums.fetched,

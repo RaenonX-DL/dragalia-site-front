@@ -11,4 +11,4 @@ export type PresetState = {
   status: PresetStatus,
   link: string,
   modal: ModalStateFlex,
-}
+};

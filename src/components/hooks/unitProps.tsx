@@ -6,7 +6,7 @@ import {useFetchState} from '../elements/common/fetch';
 type UseUnitPropsReturn = {
   weaponEnums: WeaponTypeEnums,
   elemEnums: ElementEnums,
-}
+};
 
 export const useUnitProps = (): UseUnitPropsReturn => {
   const {

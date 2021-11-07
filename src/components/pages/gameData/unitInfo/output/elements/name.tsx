@@ -17,7 +17,7 @@ const isCharaInfo = (info: any): info is CharaInfoData => {
 
 type CharaImageExtensionProps = {
   info: CharaInfoData,
-}
+};
 
 const CharaImageExtension = ({info}: CharaImageExtensionProps) => {
   const {weaponEnums} = useUnitProps();
@@ -28,7 +28,7 @@ const CharaImageExtension = ({info}: CharaImageExtensionProps) => {
 
 export type UnitNameBlockProps = {
   info: UnitInfoDataBase,
-}
+};
 
 export const UnitNameBlock = ({info}: UnitNameBlockProps) => {
   const {t, lang} = useI18n();

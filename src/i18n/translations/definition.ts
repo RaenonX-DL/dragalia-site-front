@@ -7,7 +7,7 @@ import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/t
 export type PageMetaTranslations = {
   title: string,
   description: string,
-}
+};
 
 export type TranslationStruct = {
   autoComplete: {
@@ -331,7 +331,7 @@ export type TranslationStruct = {
       },
       spInfo: {
         efficiencyIndexes: string,
-        efficiency: { [index in keyof Omit<Efficiency, 'spFullFillSec'>]: string },
+        efficiency: {[index in keyof Omit<Efficiency, 'spFullFillSec'>]: string},
         sp: string,
         spGradualFill: string,
         spPctPerSec: string,
@@ -432,9 +432,9 @@ export type TranslationStruct = {
           },
         },
       },
-      dimension: { [dim in DimensionKey]: {name: string, description: string} },
-      display: { [display in Display]: string },
-      sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
+      dimension: {[dim in DimensionKey]: {name: string, description: string}},
+      display: {[display in Display]: string},
+      sort: {[sortBy in Exclude<TierSortOrder, DimensionKey>]: string},
       alert: {
         refRemoval: string,
         noUnitInRank: string,
@@ -499,7 +499,7 @@ export type TranslationStruct = {
       lastModified: string,
       lastUpdated: string,
     },
-    unitType: { [type in UnitType]: string },
+    unitType: {[type in UnitType]: string},
     collapse: string,
     collapseAll: string,
   },
@@ -601,7 +601,7 @@ export type TranslationStruct = {
         rotations: string,
         tips: string,
       },
-      sort: { [order in LookupSortOrder]: string },
+      sort: {[order in LookupSortOrder]: string},
     },
     info: {
       titleSelf: string,
@@ -651,6 +651,6 @@ export type TranslationStruct = {
     },
   },
   enum: {
-    unitType: { [U in UnitType]: string },
+    unitType: {[U in UnitType]: string},
   },
-}
+};

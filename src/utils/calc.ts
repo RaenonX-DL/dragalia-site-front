@@ -1,5 +1,6 @@
 import Decimal from 'decimal.js';
 
+
 export const normalize = (numbers: Array<number>, padding: number = 0) => {
   const max = Math.max(...numbers);
 

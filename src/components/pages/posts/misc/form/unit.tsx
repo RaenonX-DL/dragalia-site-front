@@ -13,7 +13,7 @@ import {MarkdownInput} from '../../../../elements/markdown/input';
 type Props = {
   section: MiscPostSection,
   onContentChanged: ArrayFormOnChangeHandler<MiscPostSection>,
-}
+};
 
 export const MiscSectionUnit = ({section, onContentChanged}: Props) => {
   const {t} = useI18n();

@@ -12,11 +12,11 @@ import {EntryNoAnalysis} from './entryNoAnalysis';
 
 export type EntryCommonProps = {
   unitInfo: UnitInfoData,
-}
+};
 
 type AnalysisEntryProps = EntryCommonProps & Omit<EntryWithAnalysisProps, 'analysisMeta'> & {
   analysisMeta?: UnitInfoLookupEntry,
-}
+};
 
 export const UnitInfoEntry = ({unitInfo, analysisMeta, simplified}: AnalysisEntryProps) => {
   return (

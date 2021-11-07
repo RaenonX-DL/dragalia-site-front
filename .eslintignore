@@ -1,0 +1,12 @@
+# Dependencies
+
+node_modules/**
+src/api-def/**
+
+# Build artifacts
+
+dist/**
+
+# Type definitions
+
+**/*.d.ts

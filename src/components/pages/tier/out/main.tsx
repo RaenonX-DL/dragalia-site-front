@@ -16,7 +16,7 @@ import {TierListOutputDimensional} from './dimensional/main';
 
 type Props = PropsUseKeyPointData & UnitSearchOutputProps<SortOrder, InputData> & {
   tierData: UnitTierData,
-}
+};
 
 export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherUnitInfo, keyPointsData}: Props) => {
   const {t} = useI18n();

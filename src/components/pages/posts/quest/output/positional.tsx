@@ -11,7 +11,7 @@ import {CollapsibleSectionedContent} from '../../../../elements/posts/output/sec
 
 type Props = {
   info: Array<PositionalInfo>
-}
+};
 
 export const QuestPositionOutput = ({info}: Props) => {
   const {t} = useI18n();

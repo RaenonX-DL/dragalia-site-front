@@ -11,7 +11,7 @@ import {overrideInputData} from './utils';
 type SectionProps = InputPanelCommonProps<InputData> & {
   elementEnums: ElementEnums,
   exBuffParams: ExBuffParams
-}
+};
 
 export const Filter = ({
   inputData,

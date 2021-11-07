@@ -18,12 +18,12 @@ export type ButtonEntry = {
 } | {
   pathname: string,
   onClick?: () => void,
-})
+});
 
 export type ButtonBarProps = {
   buttons: Array<ButtonEntry>,
   bottomMarginClass?: string
-}
+};
 
 export const ButtonBar = ({buttons, bottomMarginClass}: ButtonBarProps) => {
   const {lang} = useI18n();

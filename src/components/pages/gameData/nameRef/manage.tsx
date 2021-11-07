@@ -13,12 +13,12 @@ export type RefsState = {
   updateStatus: null | ApiResponseCode,
   updating: boolean,
   isInit: boolean,
-}
+};
 
 export type RefsManagementProps = {
   refs: UnitNameRefManageResponse['refs'],
   uid: string
-}
+};
 
 export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
   const {lang} = useI18n();

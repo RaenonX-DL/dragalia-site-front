@@ -1,6 +1,7 @@
 import {UnitType} from '../../api-def/api/other/unit';
 import {GoogleAnalytics} from './ga';
 
+
 describe('Google Analytics event sender', () => {
   let fnSendEvent: jest.SpyInstance;
 

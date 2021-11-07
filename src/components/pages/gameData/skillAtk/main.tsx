@@ -20,7 +20,7 @@ import {AttackingSkillSorter} from './sorter/main';
 type State = {
   inputData: InputData,
   calculatedEntries?: Array<CalculatedSkillEntry>,
-}
+};
 
 export const AttackingSkillLookup = () => {
   // Having this reduces state updates when changing input.

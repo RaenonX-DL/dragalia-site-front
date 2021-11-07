@@ -7,7 +7,7 @@ import {TimeAgo} from '../../../../utils/timeago';
 
 type PostEditNotesProps = {
   editNotes: Array<PostEditNote>
-}
+};
 
 export const PostEditNotes = ({editNotes}: PostEditNotesProps) => {
   const {t} = useI18n();

@@ -10,7 +10,7 @@ type UnitIconProps = {
   unitInfo: UnitInfoData
   className?: string,
   style?: React.CSSProperties,
-}
+};
 
 export const UnitIcon = ({unitInfo, className, style}: UnitIconProps) => {
   const {lang} = useI18n();

@@ -7,8 +7,8 @@ import {ModalStateMapped} from './types';
 type Props<K extends string> = {
   state: ModalStateMapped<K>,
   setState: (state: ModalStateMapped<K>) => void,
-  lookup: { [key in K]: React.ReactNode },
-}
+  lookup: {[key in K]: React.ReactNode},
+};
 
 export const ModalMappedContent = <K extends string>({state, setState, lookup}: Props<K>) => {
   const onHide = () => {

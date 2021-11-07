@@ -1,6 +1,7 @@
 import {UnitType} from '../../../api-def/api/other/unit';
 import {TranslationStruct} from '../definition';
 
+
 export const translation: TranslationStruct = {
   autoComplete: {
     selected: '選択済み',

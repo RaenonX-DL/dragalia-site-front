@@ -12,7 +12,7 @@ type Props<E> = {
   results: Array<E>,
   renderEntry: (entry: E) => React.ReactNode,
   height?: Property.Height,
-}
+};
 
 export const SearchResults = <E, >({results, renderEntry, height}: Props<E>) => {
   const {t} = useI18n();

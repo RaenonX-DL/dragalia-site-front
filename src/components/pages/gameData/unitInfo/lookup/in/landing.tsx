@@ -10,7 +10,7 @@ import {UnitInfoEntry} from '../out/entry';
 
 type Props = {
   analyses: Array<UnitInfoLookupEntry>,
-}
+};
 
 export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();

@@ -10,7 +10,7 @@ import {UnitFilterInputData} from './types';
 type TypePickerProps<S extends string, D extends UnitFilterInputData<S>> = {
   inputData: D,
   setInputData: React.Dispatch<React.SetStateAction<D>>,
-}
+};
 
 export const UnitTypePicker = <S extends string, D extends UnitFilterInputData<S>>({
   inputData,

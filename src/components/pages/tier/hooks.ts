@@ -10,7 +10,7 @@ import {useFetchStateProcessed} from '../../elements/common/fetch';
 type UseKeyPointDataReturn = {
   keyPointData: KeyPointData,
   isFetched: boolean,
-}
+};
 
 export const useKeyPointData = (): UseKeyPointDataReturn => {
   const {lang} = useI18n();

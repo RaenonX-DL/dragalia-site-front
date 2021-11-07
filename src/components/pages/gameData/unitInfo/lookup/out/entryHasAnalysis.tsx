@@ -13,7 +13,7 @@ import {EntryCommonProps} from './entry';
 export type EntryWithAnalysisProps = EntryCommonProps & {
   analysisMeta: UnitInfoLookupEntry,
   simplified?: boolean,
-}
+};
 
 export const EntryWithAnalysis = ({
   unitInfo,

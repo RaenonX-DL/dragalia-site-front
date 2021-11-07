@@ -13,7 +13,7 @@ type Props<E> = {
   isOptionMatchSearch: (option: E, searchTextTransformed: string) => boolean,
   renderMatchedSelection: (option: E) => React.ReactNode,
   height?: Property.Height,
-}
+};
 
 export const Search = <E, >({
   options,

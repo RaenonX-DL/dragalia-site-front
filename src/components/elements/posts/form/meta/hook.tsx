@@ -12,12 +12,12 @@ type FormMetaHookProps<P extends PostMeta, R extends PostIdCheckResponse> = Omit
 > & {
   fnIdCheck: (payload: P) => Promise<R>,
   getEffectDependency: (payload: P) => React.DependencyList,
-}
+};
 
 type FormMetaHookReturns = {
   isValid: boolean,
   isChecking: boolean,
-}
+};
 
 export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   formState,

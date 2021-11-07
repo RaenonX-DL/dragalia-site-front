@@ -3,7 +3,7 @@ import {sortAscending, sortDescending} from '../../../../../../../utils/sort';
 import {SortOrder, UnitInfoPack} from '../types';
 
 
-type SortFuncLookup = { [sortBy in SortOrder]: (entryA: UnitInfoPack, entryB: UnitInfoPack) => number }
+type SortFuncLookup = {[sortBy in SortOrder]: (entryA: UnitInfoPack, entryB: UnitInfoPack) => number};
 
 export const sortFunc: SortFuncLookup = {
   unitId: sortAscending({getComparer: (element) => element.unitInfo.id}),
@@ -12,7 +12,7 @@ export const sortFunc: SortFuncLookup = {
   viewCount: sortDescending({getComparer: (element) => element.lookupInfo.viewCount}),
 };
 
-export const orderName: { [sortBy in SortOrder]: GetTranslationFunction } = {
+export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
   unitId: (t) => t.posts.analysis.sort.unitId,
   published: (t) => t.posts.analysis.sort.published,
   lastModified: (t) => t.posts.analysis.sort.lastModified,

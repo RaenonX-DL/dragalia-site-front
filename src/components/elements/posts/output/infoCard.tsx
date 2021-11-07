@@ -8,7 +8,7 @@ type InfoCardProps = {
   title: string,
   content: string | number | React.ReactElement,
   useCode?: boolean
-}
+};
 
 export const InfoCard = ({title, content, useCode = true}: InfoCardProps) => {
   return (

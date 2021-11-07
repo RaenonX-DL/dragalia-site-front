@@ -12,7 +12,7 @@ import {TierListEntry} from './entry';
 type Props = PropsUseKeyPointData & {
   dimension: DimensionKey,
   entryPacks: Array<EntryPackOutput>,
-}
+};
 
 export const TierListOutputRank = ({dimension, entryPacks, keyPointsData}: Props) => {
   const {t} = useI18n();

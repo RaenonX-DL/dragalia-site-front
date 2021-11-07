@@ -7,7 +7,7 @@ import {BadgeEntry} from './types';
 
 type Props = {
   entry: BadgeEntry,
-}
+};
 
 export const BsBadge = ({entry}: Props) => {
   return (

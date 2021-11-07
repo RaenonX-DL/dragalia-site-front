@@ -9,7 +9,7 @@ import {MarkdownComponentProps} from '../types';
 
 type LinkComponentProps = MarkdownComponentProps & {
   href: string
-}
+};
 
 export const renderLink = ({children, href}: LinkComponentProps) => {
   const videoId = extractVideoId(href);

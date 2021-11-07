@@ -9,7 +9,7 @@ import {AdsUnitProps} from './types';
 
 type Props = AdsUnitProps & {
   layoutKey: string,
-}
+};
 
 export const AdsUnitInFeed = ({slot, layoutKey, testId}: Props) => (
   <AdsWrapper>

@@ -10,4 +10,4 @@ export type PaginationState = {
   currentStart: number,
   maxPage: number,
   pageLimit: number,
-}
+};

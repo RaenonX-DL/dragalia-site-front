@@ -15,7 +15,7 @@ export type ArrayFormProps<P, E> = {
   renderEntries: (element: E, idx: number) => React.ReactElement,
   counterState: [Array<number>, Dispatch<SetStateAction<Array<number>>>],
   reversed?: boolean,
-}
+};
 
 export const ArrayFormBase = <P, E>({
   payload,

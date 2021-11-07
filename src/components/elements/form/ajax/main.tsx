@@ -17,7 +17,7 @@ type Props<R extends BaseResponse> = {
   getRedirectUrlOnSuccess?: (response: R) => string,
   submitAtTop?: boolean,
   children: React.ReactNode,
-}
+};
 
 export const AjaxForm = <R extends BaseResponse>({
   unloadDependencies,

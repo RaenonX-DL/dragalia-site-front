@@ -21,7 +21,7 @@ import {SkillOfficialInfo} from './official';
 type Props = {
   info: SkillInfo,
   unitId: number,
-}
+};
 
 export const SkillSection = ({info, unitId}: Props) => {
   const {t, lang} = useI18n();

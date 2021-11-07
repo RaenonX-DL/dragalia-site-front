@@ -9,7 +9,7 @@ import {useI18n} from '../../../../i18n/hook';
 type OverLengthWarningProps = {
   displayed: number,
   returned: number,
-}
+};
 
 export const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps) => {
   const {t} = useI18n();

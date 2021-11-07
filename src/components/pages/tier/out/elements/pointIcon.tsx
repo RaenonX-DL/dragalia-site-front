@@ -12,7 +12,7 @@ import {TierKeyPoints} from './points';
 
 type Props = PropsUseKeyPointData & {
   pointIds: Array<string>,
-}
+};
 
 export const TierNotePointIcon = ({pointIds, keyPointsData}: Props) => {
   const {t} = useI18n();

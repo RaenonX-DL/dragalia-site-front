@@ -13,7 +13,7 @@ import {CalculatedSkillEntry} from './types';
 type OutputProps = EnumDataPack & {
   displayConfig: InputData['display'],
   calculatedEntries: Array<CalculatedSkillEntry>,
-}
+};
 
 export const AttackingSkillOutput = ({displayConfig, calculatedEntries, ...enums}: OutputProps) => {
   if (!calculatedEntries.length) {

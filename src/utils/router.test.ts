@@ -1,6 +1,7 @@
 import {renderReactHook} from '../../test/render/main';
 import {useNextRouter} from './router';
 
+
 describe('Next.js router wrapper', () => {
   it('removes `lang` from pathname', async () => {
     const {result} = renderReactHook(

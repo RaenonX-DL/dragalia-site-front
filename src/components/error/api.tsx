@@ -8,7 +8,7 @@ import {ApiResponseCode} from '../../api-def/api';
 
 type Props = {
   responseCode: ApiResponseCode
-}
+};
 
 export const ApiError = ({responseCode}: Props) => {
   return (

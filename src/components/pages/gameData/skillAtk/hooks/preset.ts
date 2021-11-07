@@ -14,7 +14,7 @@ export const PRESET_QUERY_NAME = 'preset';
 
 type UseAtkSkillInputReturn = InputPanelCommonProps<InputData> & {
   getPresetStatus: FetchStatusSimple,
-}
+};
 
 // This input data is expect to change frequently.
 // Therefore, it should not be used in expensive component, such as ATK skill output,

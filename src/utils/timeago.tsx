@@ -12,6 +12,7 @@ import jpStrings from 'react-timeago/lib/language-strings/ja';
 import {SupportedLanguages} from '../api-def/api';
 import {useI18n} from '../i18n/hook';
 
+
 const chtStrings = {
   prefixAgo: null,
   prefixFromNow: null,
@@ -31,7 +32,7 @@ const chtStrings = {
   wordSeparator: '',
 };
 
-const formatters: { [lang in SupportedLanguages]: Formatter } = {
+const formatters: {[lang in SupportedLanguages]: Formatter} = {
   [SupportedLanguages.EN]: buildFormatter(enStrings),
   [SupportedLanguages.CHT]: buildFormatter(chtStrings),
   [SupportedLanguages.JP]: buildFormatter(jpStrings),
@@ -39,7 +40,7 @@ const formatters: { [lang in SupportedLanguages]: Formatter } = {
 
 type TimeAgoProps = {
   epoch: number,
-}
+};
 
 export const TimeAgo = ({epoch}: TimeAgoProps) => {
   const {lang} = useI18n();

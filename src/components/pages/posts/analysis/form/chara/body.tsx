@@ -14,7 +14,7 @@ import {AnalysisSkillInput} from './skill';
 
 type CharaAnalysisFormProps<P extends CharaAnalysisPayload> = PostFormDataProps<P> & {
   setState: (newState: PostFormState<P>) => void,
-}
+};
 
 export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
   formState,

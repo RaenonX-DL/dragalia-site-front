@@ -7,7 +7,7 @@ import {iconSyntax} from './syntax';
 
 type Resources = {
   afflictions?: StatusEnums['status'],
-}
+};
 
 export const injectMarkdownToText = (lang: SupportedLanguages, text: string, resources: Resources): string => {
   // Affliction icons

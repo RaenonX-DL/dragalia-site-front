@@ -12,7 +12,7 @@ import {UnitInfoEntry} from './entry';
 
 type AnalysisLookupOutputProps = UnitSearchOutputProps<SortOrder, InputData> & {
   analyses: UnitInfoLookupAnalyses,
-}
+};
 
 export const UnitInfoLookupOutput = ({
   prioritizedUnitInfo,

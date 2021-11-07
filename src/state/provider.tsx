@@ -11,7 +11,7 @@ import {ReduxStore} from './types';
 export type ReduxProviderProps = {
   reduxStore?: ReduxStore,
   persist?: boolean,
-}
+};
 
 export const ReduxProvider = ({
   children, reduxStore, persist = true,

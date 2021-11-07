@@ -5,6 +5,7 @@ import Color from 'color';
 import {accumulate, normalize} from '../../../utils/calc';
 import {OverlayTooltip} from '../common/overlay/tooltip';
 
+
 type DistributionProps = {
   data: Array<number>,
   bgColors?: Array<string>,
@@ -12,7 +13,7 @@ type DistributionProps = {
   padding?: number,
   displayText?: boolean,
   displayAsPct?: boolean,
-}
+};
 
 export const DistributionBar = ({
   data,

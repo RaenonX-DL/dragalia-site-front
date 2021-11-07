@@ -7,7 +7,7 @@ type UseNextRouterReturn = NextRouter & {
   pathnameNoLang: string,
   lang: string,
   push: NextRouter['push'],
-}
+};
 
 export const useNextRouter = (): UseNextRouterReturn => {
   const router = useRouter();

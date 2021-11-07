@@ -23,7 +23,7 @@ type PostListPageProps<R extends SequencedPostListResponse> = {
   postManageBarProps: PostManageBarProps,
   fnFetchList: FunctionFetchPostList<R>,
   renderPostEntries: (response: R) => React.ReactElement,
-}
+};
 
 export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedPostListResponse<E>>({
   title,

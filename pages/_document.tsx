@@ -5,7 +5,7 @@ import React from 'react';
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 
 
-type Props = {}
+type Props = {};
 
 /**
  * Base react app document component.

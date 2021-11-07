@@ -6,7 +6,7 @@ import {MiscPostListEntry} from '../../../../../api-def/api';
 import {PostEntryBadgeProps} from '../../../../elements/posts/list/entry';
 
 
-type Props<E extends MiscPostListEntry> = PostEntryBadgeProps<E>
+type Props<E extends MiscPostListEntry> = PostEntryBadgeProps<E>;
 
 export const MiscEntryBadge = <E extends MiscPostListEntry>({entry}: Props<E>) => {
   return <Badge variant="info">#{entry.seqId}</Badge>;

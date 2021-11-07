@@ -6,10 +6,11 @@ import {ApiRequestSender} from '../../../../../utils/services/api/requestSender'
 import {EntryManagement} from '../../../../elements/form/manageEntries';
 import {KeyPointEntry} from './entry';
 
+
 type Props = {
   points: Array<KeyPointEntryUpdate>,
   uid: string,
-}
+};
 
 export const KeyPointsManagement = ({points, uid}: Props) => {
   const {lang} = useI18n();

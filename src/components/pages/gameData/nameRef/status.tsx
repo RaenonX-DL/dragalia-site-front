@@ -7,7 +7,7 @@ import {IconUpdated, IconUpdateFailed} from '../../../elements/common/icons';
 
 type Props = {
   status: ApiResponseCode | null,
-}
+};
 
 export const NameRefUpdateStatus = ({status}: Props) => {
   const {t} = useI18n();

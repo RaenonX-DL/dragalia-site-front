@@ -5,7 +5,7 @@ import {CheckItem} from '../base/item';
 import {CheckItemProps} from '../types';
 
 
-export type CheckboxInputProps<T> = InputPropsExtended<T, boolean> & Pick<CheckItemProps, 'text' | 'disabled'>
+export type CheckboxInputProps<T> = InputPropsExtended<T, boolean> & Pick<CheckItemProps, 'text' | 'disabled'>;
 
 export const CheckboxInput = <T, >({
   inputData,

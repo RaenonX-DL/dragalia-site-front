@@ -11,7 +11,7 @@ const IconPointsWeakness = () => <i className="bi bi-dash-circle text-danger"/>;
 
 const IconPointsTrait = () => <i className="bi bi-slash-circle text-secondary"/>;
 
-export const PointTypeIcon: { [type in KeyPointType]: React.ReactNode } = {
+export const PointTypeIcon: {[type in KeyPointType]: React.ReactNode} = {
   strength: <IconPointsStrength/>,
   weakness: <IconPointsWeakness/>,
   trait: <IconPointsTrait/>,

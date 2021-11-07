@@ -27,7 +27,7 @@ import {ResourceLoader} from '../src/utils/services/resources/loader';
 
 type PageProps = AppReactContextValue & {
   isNotFound: boolean,
-}
+};
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {

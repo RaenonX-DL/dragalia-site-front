@@ -8,7 +8,7 @@ import {UnitLink} from '../../../../../elements/gameData/unit/link';
 import {EntryCommonProps} from './entry';
 
 
-type Props = EntryCommonProps
+type Props = EntryCommonProps;
 
 export const EntryNoAnalysis = ({unitInfo}: Props) => {
   const {t, lang} = useI18n();

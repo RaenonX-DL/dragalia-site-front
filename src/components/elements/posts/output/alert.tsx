@@ -11,7 +11,7 @@ import {InternalLink} from '../../common/link/internal';
 
 type AlertProps<R extends PostGetResponse> = {
   response: R,
-}
+};
 
 export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}: AlertProps<R>) => {
   const {t, lang} = useI18n();
@@ -32,7 +32,7 @@ export const AlertIsAlternativeLanguage = <R extends PostGetResponse>({response}
 type AlertOtherLangProps<R extends PostGetResponse> = AlertProps<R> & {
   pid: number,
   targetPath: PostPath,
-}
+};
 
 export const AlertOtherLanguageAvailable = <R extends PostGetResponse>({
   response,

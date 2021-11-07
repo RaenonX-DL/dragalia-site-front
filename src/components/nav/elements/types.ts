@@ -4,7 +4,7 @@ import {GeneralPath} from '../../../const/path/definitions';
 export type NavProps = {
   path: GeneralPath,
   text: string,
-}
+};
 
 export type NavDropdownEntry = {
   type: 'header',
@@ -15,4 +15,4 @@ export type NavDropdownEntry = {
   text: string,
 } | {
   type: 'divider',
-}
+};

@@ -13,10 +13,10 @@ export enum AlertDispatcherName {
 export type AlertData = {
   message: string,
   variant: Variant,
-}
+};
 
 export type AlertState = StateBase & AlertData;
 
 export type AlertSelectorReturn = AlertData & {
   show: boolean,
-}
+};

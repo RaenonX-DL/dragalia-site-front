@@ -20,7 +20,7 @@ import {InputData} from './types';
 type InputParametersProps = InputPanelCommonProps<InputData> & {
   collapsed: boolean,
   conditionEnums: CategorizedConditionEnums,
-}
+};
 
 export const InputParameters = ({collapsed, inputData, setInputData, conditionEnums}: InputParametersProps) => {
   // <div> is required for collapse to work

@@ -10,7 +10,7 @@ import {MiscPostForm} from './main';
 
 type Props<R extends MiscPostGetResponse> = {
   post: R,
-}
+};
 
 export const MiscEditForm = <R extends MiscPostGetResponse>({post}: Props<R>) => {
   const context = React.useContext(AppReactContext);

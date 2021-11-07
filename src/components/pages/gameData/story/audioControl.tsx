@@ -12,7 +12,7 @@ import {UseAudioControlReturn} from './types';
 
 type Props = {
   hookReturn: UseAudioControlReturn,
-}
+};
 
 export const AudioControl = ({hookReturn}: Props) => {
   const {playingState, startAudio, resumeAudio, pauseAudio, stopAudio} = hookReturn;

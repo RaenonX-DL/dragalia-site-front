@@ -11,7 +11,7 @@ import styles from '../../main.module.css';
 
 type Props = {
   unitId: number,
-}
+};
 
 export const TierNoteEditIcon = ({unitId}: Props) => {
   const context = React.useContext(AppReactContext);

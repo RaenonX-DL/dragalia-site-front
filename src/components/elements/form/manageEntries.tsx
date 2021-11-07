@@ -14,7 +14,7 @@ type State<E> = {
   updateStatus: null | ApiResponseCode,
   updating: boolean,
   isInit: boolean,
-}
+};
 
 type Props<E, I, R extends BaseResponse> = {
   data: Array<E>,
@@ -29,7 +29,7 @@ type Props<E, I, R extends BaseResponse> = {
     idx: number,
     counter: Map<I, number>,
   ) => React.ReactElement,
-}
+};
 
 export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   data,

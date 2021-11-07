@@ -15,7 +15,7 @@ describe('Checkboxes', () => {
     {text: 'check 3', code: 3},
   ];
 
-  type Input = {selected: Array<number>}
+  type Input = {selected: Array<number>};
   let inputData: Input;
 
   let setInputDataFunc: jest.Mock;

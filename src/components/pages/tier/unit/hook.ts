@@ -21,7 +21,7 @@ type UseSingleUnitTierNoteResourcesReturn = {
 } | {
   fetchStatus: 'completed',
   data: UnitTierNote | null,
-})
+});
 
 export const useSingleUnitTierNoteResources = (): UseSingleUnitTierNoteResourcesReturn => {
   const {lang} = useI18n();

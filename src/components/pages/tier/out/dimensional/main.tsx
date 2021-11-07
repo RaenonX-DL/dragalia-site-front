@@ -11,7 +11,7 @@ import {TierListOutputRank} from './rank';
 
 type Props = PropsUseKeyPointData & PropsUseEntryPack & {
   dimension: DimensionKey,
-}
+};
 
 export const TierListOutputDimensional = ({
   dimension,

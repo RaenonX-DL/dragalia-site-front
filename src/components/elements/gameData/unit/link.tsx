@@ -14,7 +14,7 @@ import {ModalMappedContent} from '../../common/modal/mapped';
 import {ModalStateMapped} from '../../common/modal/types';
 
 
-type ModalState = ModalStateMapped<'content' | 'loading'>
+type ModalState = ModalStateMapped<'content' | 'loading'>;
 
 type UnitInfo = {
   id: number,
@@ -23,14 +23,14 @@ type UnitInfo = {
     type: UnitType,
     name: string,
   },
-}
+};
 
 type ModalContentProps = {
   unit: UnitInfo,
   hasAnalysis?: boolean,
   modalState: ModalState,
   setModalState: (newState: ModalState) => void,
-}
+};
 
 const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalContentProps) => {
   const {t, lang} = useI18n();
@@ -83,7 +83,7 @@ const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalConte
 type UnitLinkProps = Pick<ModalContentProps, 'unit' | 'hasAnalysis'> & {
   className?: string,
   style?: CSSProperties,
-}
+};
 
 export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkProps) => {
   // DON'T use `useUnitInfo` hook because it will fetch many times upon initial load,

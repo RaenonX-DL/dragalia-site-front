@@ -7,7 +7,7 @@ import {CalculatedSkillEntry} from '../out/types';
 // Unique dragon skills = 30 SP, Tobias S2 = 1 SP
 const isSkillNotCommonSp = (entry: CalculatedSkillEntry) => entry.skillEntry.skill.spMax < 100;
 
-type SortFuncLookup = { [sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number }
+type SortFuncLookup = {[sortBy in SortBy]: (entryA: CalculatedSkillEntry, entryB: CalculatedSkillEntry) => number};
 
 export const sortFunc: SortFuncLookup = {
   mods: sortDescending({getComparer: (element) => element.skillDamage.totalMods}),
@@ -38,7 +38,7 @@ export const sortFunc: SortFuncLookup = {
   }),
 };
 
-export const orderName: { [sortBy in SortBy]: GetTranslationFunction } = {
+export const orderName: {[sortBy in SortBy]: GetTranslationFunction} = {
   mods: (t) => t.game.skillAtk.sort.mods,
   damage: (t) => t.game.skillAtk.sort.damage,
   sp: (t) => t.game.skillAtk.sort.sp,

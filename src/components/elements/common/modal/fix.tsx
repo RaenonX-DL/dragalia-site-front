@@ -8,7 +8,7 @@ type Props = {
   state: ModalStateFix,
   setState: (state: ModalStateFix) => void,
   children: React.ReactNode,
-}
+};
 
 export const ModalFixedContent = ({state, setState, children}: Props) => {
   const onHide = () => {

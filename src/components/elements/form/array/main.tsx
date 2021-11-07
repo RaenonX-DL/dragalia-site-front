@@ -19,7 +19,7 @@ type Props<P, E> = {
     idx: number,
   ) => React.ReactElement,
   addToTop?: boolean,
-}
+};
 
 export const ArrayForm = <P, E extends object>({
   payload,

@@ -7,7 +7,7 @@ import {AudioPlayingState, AudioState, UseAudioControlReturn} from './types';
 type UseAudioControlOptions = {
   getConversationOfIndex: (index: number) => StoryConversation,
   conversationCount: number
-}
+};
 
 export const useAudioControl = ({
   getConversationOfIndex,

@@ -10,7 +10,7 @@ import {AnalysisFormChara} from './main';
 
 type Props = {
   analysis: CharaAnalysisBody,
-}
+};
 
 export const AnalysisFormCharaEdit = ({analysis}: Props) => {
   const context = React.useContext(AppReactContext);
