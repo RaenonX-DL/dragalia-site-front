@@ -551,6 +551,9 @@ export type TranslationStruct = {
         info: PageMetaTranslations,
         name: PageMetaTranslations,
       },
+      calc: {
+        enmity: PageMetaTranslations,
+      },
       story: {
         unit: PageMetaTranslations,
       }

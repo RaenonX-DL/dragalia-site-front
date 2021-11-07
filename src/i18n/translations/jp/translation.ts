@@ -699,6 +699,12 @@ export const translation: TranslationStruct = {
           description: 'ユニット名前を設定する。',
         },
       },
+      calc: {
+        enmity: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+      },
       story: {
         unit: {
           title: '【ユニットストーリー】{{unitName}}',

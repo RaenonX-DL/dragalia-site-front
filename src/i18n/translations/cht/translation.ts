@@ -694,6 +694,12 @@ export const translation: TranslationStruct = {
           description: '設定物件名稱的頁面。',
         },
       },
+      calc: {
+        enmity: {
+          title: '背水倍率計算機',
+          description: '計算背水倍率在特定 HP，或是要達到特定背水倍率所需要的 HP 的工具。',
+        },
+      },
       story: {
         unit: {
           title: '【角色故事】{{unitName}}',

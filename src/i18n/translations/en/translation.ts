@@ -741,6 +741,13 @@ export const translation: TranslationStruct = {
           description: 'Page to configure the custom unit names.',
         },
       },
+      calc: {
+        enmity: {
+          title: 'Enmity Mod Calculator',
+          description: 'Tool to calculate the enmity mod at a certain HP level, ' +
+            'or the HP level required for a certain enmity mod.',
+        },
+      },
       story: {
         unit: {
           title: '【Unit Story】{{unitName}}',

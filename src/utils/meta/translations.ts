@@ -32,6 +32,7 @@ export const metaTransFunctions: { [path in PagePath]: GetTranslationFunction<Pa
   [GeneralPath.ABOUT]: (t) => t.meta.inUse.about,
   [GeneralPath.SPECIAL_THANKS]: (t) => t.meta.inUse.thanks,
   [GeneralPath.UPDATE_UNIT_NAME_REF]: (t) => t.meta.inUse.unit.name,
+  [GeneralPath.ENMITY_CALC]: (t) => t.meta.inUse.calc.enmity,
   [AuthPath.SIGN_IN]: (t) => t.meta.inUse.auth.signIn,
   // Constructing paths
   [GeneralPath.SKILL_SUP]: (t) => t.meta.temp.constructing,

@@ -50,7 +50,8 @@ export enum GeneralPath {
   SKILL_SUP = '/skill/sup',
   STORY = '/story',
   // Tools
-  ROTATION_CALC = '/rotations',
+  ROTATION_CALC = '/tools/rotation',
+  ENMITY_CALC = '/tools/enmity',
   // Others
   UPDATE_UNIT_NAME_REF = '/name',
   // Not game related
