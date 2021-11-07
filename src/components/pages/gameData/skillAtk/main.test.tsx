@@ -320,7 +320,7 @@ describe('ATK skill lookup', () => {
 
     await waitForEntryProcessed();
     // Actual damage from Wedding Aoi
-    expect(await screen.findByText('417,497')).toBeInTheDocument();
+    expect(await screen.findByText('418,094')).toBeInTheDocument();
   });
 
   it('makes correct input preset', async () => {

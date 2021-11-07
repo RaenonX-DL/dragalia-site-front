@@ -30,7 +30,6 @@ plugins:
   - react
   - react-hooks
   - testing-library
-  - unused-imports
 
 ignorePatterns:
   - '*.d.ts'
@@ -50,7 +49,7 @@ rules:
     - error
     - 2
     - ignoredNodes:
-      - TSTypeParameterInstantiation
+        - TSTypeParameterInstantiation
       MemberExpression: 1
 
   # Needs to disable local indent for this rule to work properly
@@ -86,6 +85,11 @@ rules:
     - error
     - count: 2
 
+  import/no-unresolved:
+    - error
+    - ignore:
+        - csstype
+
   object-curly-spacing: off
 
   "@typescript-eslint/object-curly-spacing":
@@ -109,9 +113,6 @@ rules:
   react/jsx-tag-spacing:
     - error
     - beforeSelfClosing: never
-
-  unused-imports/no-unused-imports:
-    - error
 
   "@next/next/no-img-element":
     - off
