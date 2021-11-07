@@ -564,8 +564,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
     },
-    collapse: 'ズームイン/アウト',
-    collapseAll: '全部ズームイン/アウト',
+    collapse: '展開 / 折り畳み',
+    collapseAll: '全部展開 / 折り畳み',
   },
   meta: {
     inUse: {
