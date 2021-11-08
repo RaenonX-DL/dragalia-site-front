@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {ProgressBar} from 'react-bootstrap';
+
 import {useI18n} from '../../../../i18n/hook';
 import {calcEnmityMod} from '../../../../utils/game/enmity';
 import {overrideObject} from '../../../../utils/override';
@@ -41,6 +43,7 @@ export const EnmityHPFields = ({...commonInputProps}: Props) => {
         }}
         minValue={0}
       />
+      <ProgressBar now={input.hp.currentPct} variant="danger" className="mb-3"/>
       <NumericInput
         {...commonInputProps}
         title={t((t) => t.game.calc.enmity.hp.val.current.title)}

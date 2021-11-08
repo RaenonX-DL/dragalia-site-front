@@ -1,5 +1,9 @@
+export const calcEnmityEffectiveness = (currentHpPct: number): number => {
+  return (1 - currentHpPct / 100) ** 2;
+};
+
 export const calcEnmityMod = (currentHpPct: number, enmityMod: number): number => {
-  return (1 - currentHpPct / 100) ** 2 * (enmityMod - 1) + 1;
+  return calcEnmityEffectiveness(currentHpPct) * (enmityMod - 1) + 1;
 };
 
 export const calcEnmityHpPct = (currentEnmity: number, enmityMod: number): number => {
