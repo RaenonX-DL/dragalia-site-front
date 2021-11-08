@@ -500,6 +500,52 @@ export const translation: TranslationStruct = {
         error: '更新失敗: {{error}}',
       },
     },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: '背水倍率',
+              description: '所有裝備加總起來的背水倍率。',
+            },
+            effective: {
+              title: '有效背水倍率',
+              description: '根據當前 HP %，實際有效的背水倍率。',
+            },
+          },
+          skill: {
+            original: {
+              title: '技能倍率',
+              description: '原始技能倍率。',
+            },
+            effective: {
+              title: '有效技能倍率',
+              description: '套用有效背水倍率後，實際的技能倍率。',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'HP %',
+            description: '目前的 HP %。',
+          },
+          val: {
+            current: {
+              title: '當前 HP',
+              description: '目前的實數 HP。',
+            },
+            max: {
+              title: '最大 HP',
+              description: 'HP 上限值。',
+            },
+          },
+        },
+        title: {
+          mod: '倍率',
+          hp: 'HP',
+        },
+      },
+    },
   },
   userControl: {
     noUid: '無使用者 ID',

@@ -453,6 +453,52 @@ export type TranslationStruct = {
         error: string,
       },
     },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: string,
+              description: string,
+            },
+            effective: {
+              title: string,
+              description: string,
+            },
+          },
+          skill: {
+            original: {
+              title: string,
+              description: string,
+            },
+            effective: {
+              title: string,
+              description: string,
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: string,
+            description: string,
+          },
+          val: {
+            current: {
+              title: string,
+              description: string,
+            },
+            max: {
+              title: string,
+              description: string,
+            },
+          },
+        },
+        title: {
+          mod: string,
+          hp: string,
+        },
+      },
+    },
   },
   userControl: {
     noUid: string,

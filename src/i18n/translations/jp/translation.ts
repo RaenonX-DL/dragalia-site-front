@@ -508,6 +508,52 @@ export const translation: TranslationStruct = {
         error: '更新失敗: {{error}}',
       },
     },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            effective: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+          skill: {
+            original: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            effective: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          val: {
+            current: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            max: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+        },
+        title: {
+          mod: 'TBA',
+          hp: 'TBA',
+        },
+      },
+    },
   },
   userControl: {
     noUid: '該当するアカウントが見当たりません。',

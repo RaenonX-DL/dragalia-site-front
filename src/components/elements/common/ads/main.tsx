@@ -69,3 +69,17 @@ export const AdsStory = () => (
     testId="ads-story"
   />
 );
+
+export const AdsToolTop = () => (
+  <AdsUnitMatchedContent
+    slot="5473656757"
+    testId="ads-tool-top"
+  />
+);
+
+export const AdsToolBottom = () => (
+  <AdsUnitDisplay
+    slot="2641810984"
+    testId="ads-tool-bottom"
+  />
+);

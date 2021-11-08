@@ -293,9 +293,9 @@ export const translation: TranslationStruct = {
         buffZone: 'Buff Zone',
         dispel: 'Dispel',
         dispelDesc: 'At {{dispelTiming}} sec',
-        crisisUp: 'Crisis Scaling',
+        crisisUp: 'Enmity',
         crisisUpDesc: 'Max {{maxRate}}x',
-        crisisDown: 'Stamina Scaling',
+        crisisDown: 'HP Scaling',
         crisisDownDesc: '{{maxRate}}x at the lowest HP',
       },
       summary: {
@@ -539,6 +539,52 @@ export const translation: TranslationStruct = {
       status: {
         updated: 'Updated!',
         error: 'Failed to update: {{error}}',
+      },
+    },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: 'Enmity Mod',
+              description: 'Enmity mod from all types of the equipment.',
+            },
+            effective: {
+              title: 'Effective Enmity Mod',
+              description: 'Effective enmity mod according to the current HP %.根據當前 HP ，實際有效的背水倍率。',
+            },
+          },
+          skill: {
+            original: {
+              title: 'Skill Mod',
+              description: 'Original skill mod.',
+            },
+            effective: {
+              title: 'Effective Skill Mod',
+              description: 'Actual skill mod after applying the effective enmity mod.',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'HP %',
+            description: 'Current HP in %.',
+          },
+          val: {
+            current: {
+              title: 'Current HP',
+              description: 'Current HP in number.',
+            },
+            max: {
+              title: 'Max HP',
+              description: 'Max HP in number.',
+            },
+          },
+        },
+        title: {
+          mod: 'Mods',
+          hp: 'HP',
+        },
       },
     },
   },
