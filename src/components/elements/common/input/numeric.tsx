@@ -37,7 +37,7 @@ export const NumericInput = <T, >({
       <Col>
         <Form.Control
           type="number"
-          value={getValue(inputData)}
+          value={Number(getValue(inputData)).toString()}
           min={minValue}
           max={maxValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
