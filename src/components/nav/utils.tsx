@@ -17,6 +17,11 @@ export const NavDropdownUtils = () => {
           path: GeneralPath.ROTATION_CALC,
           text: t((t) => t.game.tools.rotation),
         },
+        {
+          type: 'item',
+          path: GeneralPath.ENMITY_CALC,
+          text: t((t) => t.game.tools.enmity),
+        },
       ]}
     />
   );

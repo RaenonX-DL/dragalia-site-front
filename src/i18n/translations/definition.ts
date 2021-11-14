@@ -348,6 +348,7 @@ export type TranslationStruct = {
     tools: {
       titleSelf: string,
       rotation: string,
+      enmity: string,
     },
     unitInfo: {
       header: {

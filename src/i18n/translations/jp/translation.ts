@@ -356,6 +356,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: '他のツール',
       rotation: 'ルーティン計算',
+      enmity: 'TBA',
     },
     unitInfo: {
       header: {

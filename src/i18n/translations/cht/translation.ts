@@ -351,6 +351,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: '遊戲工具',
       rotation: '輪轉計算',
+      enmity: '背水倍率',
     },
     unitInfo: {
       header: {

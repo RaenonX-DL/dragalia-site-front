@@ -379,6 +379,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: 'Game Tools',
       rotation: 'Rotations Calculator',
+      enmity: 'Enmity Mods',
     },
     unitInfo: {
       header: {
