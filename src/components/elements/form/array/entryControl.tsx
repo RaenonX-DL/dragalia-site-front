@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
+import {swapItem} from '../../../../utils/array';
 import {IconDelete, IconMoveDown, IconMoveUp} from '../../common/icons';
 import {ArrayFormProps} from './base';
 
@@ -21,21 +22,19 @@ export const ArrayFormEntryControl = <P, E>({
 }: Props<P, E>) => {
   const [counter, setCounter] = counterState;
 
-  const onRemoved = (counterToRemove: number) => () => {
-    const idxToRemove = counter.indexOf(counterToRemove);
-
-    setArray(array.filter(
-      (element, elemIdx) => elemIdx !== idxToRemove,
-    ));
-    setCounter(counter.filter((count) => count !== counterToRemove));
+  const onRemoved = (elemIdx: number) => () => {
+    setArray(array.filter((element, idx) => idx !== elemIdx));
+    setCounter(counter.filter((count) => count !== counter[elemIdx]));
   };
 
-  const onMoveUp = () => {
-    console.log('move up');
+  const onMoveUp = (elemIdx: number) => () => {
+    setArray(swapItem(array, elemIdx - 1, elemIdx));
+    setCounter(swapItem(counter, elemIdx - 1, elemIdx));
   };
 
-  const onMoveDown = () => {
-    console.log('move down');
+  const onMoveDown = (elemIdx: number) => () => {
+    setArray(swapItem(array, elemIdx, elemIdx + 1));
+    setCounter(swapItem(counter, elemIdx, elemIdx + 1));
   };
 
   return (
@@ -43,7 +42,7 @@ export const ArrayFormEntryControl = <P, E>({
       <Button
         className="float-right ml-2"
         variant="outline-danger"
-        onClick={onRemoved(counter[elemIdx])}
+        onClick={onRemoved(elemIdx)}
         disabled={array.length <= minLength}
       >
         <IconDelete/>
@@ -51,7 +50,7 @@ export const ArrayFormEntryControl = <P, E>({
       <Button
         className="float-right ml-2"
         variant="outline-warning"
-        onClick={onMoveUp}
+        onClick={onMoveUp(elemIdx)}
         disabled={elemIdx === 0}
       >
         <IconMoveUp/>
@@ -59,7 +58,7 @@ export const ArrayFormEntryControl = <P, E>({
       <Button
         className="float-right ml-2"
         variant="outline-warning"
-        onClick={onMoveDown}
+        onClick={onMoveDown(elemIdx)}
         disabled={array.length - 1 === elemIdx}
       >
         <IconMoveDown/>
