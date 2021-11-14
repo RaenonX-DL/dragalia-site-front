@@ -33,3 +33,7 @@ export const transformForSearch =(text: string, options?: DeepPartial<TransformO
 
   return text;
 };
+
+export const regexEscape = (s: string): string => {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
