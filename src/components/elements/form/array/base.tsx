@@ -1,10 +1,9 @@
 import React, {Dispatch, SetStateAction} from 'react';
 
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {IconDelete} from '../../common/icons';
+import {ArrayFormEntryControl} from './entryControl';
 
 
 export type ArrayFormProps<P, E> = {
@@ -17,22 +16,24 @@ export type ArrayFormProps<P, E> = {
   reversed?: boolean,
 };
 
-export const ArrayFormBase = <P, E>({
-  payload,
-  minLength,
-  getArray,
-  setArray,
-  renderEntries,
-  counterState,
-  reversed = false,
-}: ArrayFormProps<P, E>) => {
+export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
+  let {
+    payload,
+    getArray,
+    renderEntries,
+    counterState,
+    reversed = false,
+  } = props;
+
+  const array = getArray(payload);
+
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
   //   removing the first entry only removes the underlying 1st data.
   //   The original text for the 1st data is still rendered.
   // No related tests implemented because the caching behavior doesn't seem existed in JSDOM
   if (!counterState) {
-    const initialCounter = [...Array(getArray(payload).length).keys()];
+    const initialCounter = [...Array(array.length).keys()];
     if (reversed) {
       initialCounter.reverse();
     }
@@ -40,18 +41,7 @@ export const ArrayFormBase = <P, E>({
     counterState = React.useState(initialCounter);
   }
 
-  const [counter, setCounter] = counterState;
-
-  const onRemoved = (counterToRemove: number) => () => {
-    const idxToRemove = counter.indexOf(counterToRemove);
-
-    setArray(getArray(payload).filter(
-      (element, elemIdx) => elemIdx !== idxToRemove,
-    ));
-    setCounter(counter.filter((count) => count !== counterToRemove));
-  };
-
-  const array = getArray(payload);
+  const [counter] = counterState;
 
   return (
     <>
@@ -62,14 +52,7 @@ export const ArrayFormBase = <P, E>({
               {renderEntries(elem, elemIdx)}
             </Col>
             <Col xs="auto">
-              <Button
-                className="d-inline float-right ml-2"
-                variant="outline-danger"
-                onClick={onRemoved(counter[elemIdx])}
-                disabled={array.length <= minLength}
-              >
-                <IconDelete/>
-              </Button>
+              <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
             </Col>
           </Row>
         </React.Fragment>

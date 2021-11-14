@@ -290,4 +290,76 @@ describe('Array form', () => {
 
     expect(payload.enums.map((entry) => entry.code)).toStrictEqual([7, 'a']);
   });
+
+  it('blocks move-up button of the top entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [
+        {
+          code: 'enum 1',
+        },
+        {
+          code: 'enum 2',
+        },
+      ],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveUpButtons = screen.getAllByText('', {selector: 'i.bi-caret-up-fill'});
+
+    const moveUpButton1 = moveUpButtons[0].parentElement;
+    const moveUpButton2 = moveUpButtons[1].parentElement;
+
+    expect(moveUpButton1).toBeDisabled();
+    expect(moveUpButton2).not.toBeDisabled();
+    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
+  });
+
+  it('blocks move-down button of the bottom entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [
+        {
+          code: 'enum 1',
+        },
+        {
+          code: 'enum 2',
+        },
+      ],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveDownButtons = screen.getAllByText('', {selector: 'i.bi-caret-down-fill'});
+
+    const moveDownButton1 = moveDownButtons[0].parentElement;
+    const moveDownButton2 = moveDownButtons[1].parentElement;
+
+    expect(moveDownButton1).not.toBeDisabled();
+    expect(moveDownButton2).toBeDisabled();
+    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
+  });
 });
