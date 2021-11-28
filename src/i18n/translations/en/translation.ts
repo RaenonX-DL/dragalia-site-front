@@ -435,6 +435,7 @@ export const translation: TranslationStruct = {
       text: {
         total: '(Total)',
         relatedLinks: 'Related Links',
+        iconOnly: 'Icon Only',
       },
       tips: {
         clickNameForLinks: 'Click the unit name above for related links.',
