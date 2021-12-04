@@ -3,14 +3,14 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {useI18n} from '../../../../../../i18n/hook';
-import {UnitLink} from '../../../../../elements/gameData/unit/link';
-import {EntryCommonProps} from './entry';
+import {useI18n} from '../../../../../../../../i18n/hook';
+import {UnitLink} from '../../../../../../../elements/gameData/unit/link';
+import {EntryCommonProps} from '../types';
 
 
 type Props = EntryCommonProps;
 
-export const EntryNoAnalysis = ({unitInfo}: Props) => {
+export const CompleteEntryNoAnalysis = ({unitInfo}: Props) => {
   const {t, lang} = useI18n();
 
   return (

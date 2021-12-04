@@ -7,7 +7,7 @@ import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
 import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
 import {InputData, SortOrder} from '../in/types';
-import {UnitInfoEntry} from './entry';
+import {UnitInfoEntry} from './entry/main';
 
 
 type AnalysisLookupOutputProps = UnitSearchOutputProps<SortOrder, InputData> & {
@@ -18,6 +18,7 @@ export const UnitInfoLookupOutput = ({
   prioritizedUnitInfo,
   otherUnitInfo,
   analyses,
+  inputData,
 }: AnalysisLookupOutputProps) => {
   const {t} = useI18n();
 
@@ -39,8 +40,12 @@ export const UnitInfoLookupOutput = ({
   return (
     <Form.Row>
       {unitInfoSorted.map((info) => (
-        <Col key={info.unitInfo.id} md={6} className="mb-2">
-          <UnitInfoEntry unitInfo={info.unitInfo} analysisMeta={info.lookupInfo}/>
+        <Col key={info.unitInfo.id} md={inputData.iconOnly ? 2 : 6} className="mb-2">
+          <UnitInfoEntry
+            unitInfo={info.unitInfo}
+            analysisMeta={info.lookupInfo}
+            iconOnly={inputData.iconOnly}
+          />
         </Col>
       ))}
     </Form.Row>

@@ -3,13 +3,15 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../../../../../../test/render/main';
-import {UnitInfoLookupEntry, SupportedLanguages, UnitType} from '../../../../../../api-def/api';
-import {UnitInfoData} from '../../../../../../api-def/resources';
-import {PostPath} from '../../../../../../const/path/definitions';
-import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
-import {makePostUrl} from '../../../../../../utils/path/make';
-import {UnitInfoEntry} from './entry';
+import {renderReact} from '../../../../../../../../test/render/main';
+import {UnitInfoLookupEntry} from '../../../../../../../api-def/api/info/lookup/response';
+import {PartiallySupportedLanguages, SupportedLanguages} from '../../../../../../../api-def/api/other/lang';
+import {UnitType} from '../../../../../../../api-def/api/other/unit';
+import {UnitInfoData} from '../../../../../../../api-def/resources/types/unitInfo';
+import {PostPath} from '../../../../../../../const/path/definitions';
+import {translation as translationEN} from '../../../../../../../i18n/translations/en/translation';
+import {makePostUrl} from '../../../../../../../utils/path/make';
+import {UnitInfoEntry} from './main';
 
 
 describe('Analysis lookup entry', () => {
@@ -17,6 +19,7 @@ describe('Analysis lookup entry', () => {
     [SupportedLanguages.CHT]: 'name CHT',
     [SupportedLanguages.EN]: 'Gala Leonidas',
     [SupportedLanguages.JP]: 'name JP',
+    [PartiallySupportedLanguages.CHS]: 'name CHS',
   };
 
   const unitInfo: UnitInfoData = {

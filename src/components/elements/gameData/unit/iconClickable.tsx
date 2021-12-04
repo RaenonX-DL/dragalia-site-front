@@ -3,19 +3,19 @@ import React, {CSSProperties} from 'react';
 import {DepotPaths} from '../../../../api-def/resources';
 import {useI18n} from '../../../../i18n/hook';
 import {Image} from '../../common/image';
-import {InternalLink} from '../../common/link/internal';
 import {Loading} from '../../common/loading';
 import {ModalMappedContent} from '../../common/modal/mapped';
 import {UnitLinkModal, UnitLinkModalProps} from './modal/main';
-import {UnitLinkModalState} from './modal/types';
+import {UnitInfoRequireIcon, UnitLinkModalState} from './modal/types';
 
 
-type UnitLinkProps = Pick<UnitLinkModalProps, 'unit' | 'hasAnalysis'> & {
+type UnitLinkProps = Pick<UnitLinkModalProps, 'hasAnalysis'> & {
   className?: string,
   style?: CSSProperties,
+  unit: UnitInfoRequireIcon,
 };
 
-export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkProps) => {
+export const UnitIconClickable = ({unit, className, style, hasAnalysis = true}: UnitLinkProps) => {
   // DON'T use `useUnitInfo` hook here because it will fetch many times upon initial load,
   // which severely impacts performance.
   const {t} = useI18n();
@@ -26,7 +26,7 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
     key: 'content',
   });
 
-  const onLinkClicked = () => setModalState({...modalState, show: true});
+  const onIconClicked = () => setModalState({...modalState, show: true});
 
   // Empty string as the class name to ensure the link is rendered using its default style
   // Reboot CSS disables link styling if the <a> tag has no `href` and no `class`
@@ -45,19 +45,12 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
           loading: <Loading/>,
         }}
       />
-      {
-        unit.icon &&
+      <div className={className || ''} style={style} onClick={onIconClicked}>
         <Image
           text="" src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
           className="unitIcon"
         />
-      }
-      <InternalLink
-        className={className || ''}
-        style={style}
-        onClick={onLinkClicked}
-        content={unit.name}
-      />
+      </div>
     </>
   );
 };
