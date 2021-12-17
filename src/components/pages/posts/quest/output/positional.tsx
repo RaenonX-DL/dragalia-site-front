@@ -25,11 +25,12 @@ export const QuestPositionOutput = ({info}: Props) => {
           <Col lg={6}>
             <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.builds)}</h5>
             <Markdown>{info.builds}</Markdown>
+            <div className="mb-2 mb-lg-0"/>
           </Col>
           <Col lg={6}>
             <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.rotations)}</h5>
             <Markdown>{info.rotations}</Markdown>
-
+            <div className="mb-2"/>
             <h5 className="text-center pb-2 border-bottom">{t((t) => t.posts.quest.tips)}</h5>
             <Markdown>{info.tips}</Markdown>
           </Col>
