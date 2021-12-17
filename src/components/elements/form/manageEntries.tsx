@@ -18,7 +18,6 @@ type State<E> = {
 
 type Props<E, I, R extends BaseResponse> = {
   data: Array<E>,
-  uid: string,
   getElementUniqueIdentifier: (element: E) => I,
   getSubmitPromise: (updatedArray: Array<E>) => Promise<R | FailedResponse>,
   isEntryValid: (element: E) => boolean,

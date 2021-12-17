@@ -28,7 +28,6 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
   return (
     <EntryManagement
       data={refs}
-      uid={uid}
       getElementUniqueIdentifier={(entry) => entry.name}
       getSubmitPromise={(updatedRefs) => ApiRequestSender.updateUnitNameRefs(uid, lang, updatedRefs)}
       isEntryValid={(entry) => !!unitInfoMap.get(entry.unitId) && !!entry.name}

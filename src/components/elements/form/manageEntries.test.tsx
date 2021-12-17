@@ -21,7 +21,7 @@ describe('Entries management', () => {
     const {rerender} = renderReact(
       () => (
         <EntryManagement
-          data={[{a: 7}]} uid={''}
+          data={[{a: 7}]}
           getElementUniqueIdentifier={() => 'i'}
           getSubmitPromise={fnSubmitPromise}
           isEntryValid={() => false}
@@ -45,7 +45,7 @@ describe('Entries management', () => {
     const {rerender} = renderReact(
       () => (
         <EntryManagement
-          data={[{a: 7}]} uid={''}
+          data={[{a: 7}]}
           getElementUniqueIdentifier={() => 'i'}
           getSubmitPromise={fnSubmitPromise}
           isEntryValid={() => true}
@@ -71,7 +71,7 @@ describe('Entries management', () => {
     const {rerender} = renderReact(
       () => (
         <EntryManagement
-          data={[{a: 7}]} uid={''}
+          data={[{a: 7}]}
           getElementUniqueIdentifier={(element) => element.a}
           getSubmitPromise={fnSubmitPromise}
           isEntryValid={() => true}
@@ -105,7 +105,7 @@ describe('Entries management', () => {
     const {rerender} = renderReact(
       () => (
         <EntryManagement
-          data={[{a: 7}]} uid={''}
+          data={[{a: 7}]}
           getElementUniqueIdentifier={() => 'i'}
           getSubmitPromise={fnSubmitPromise}
           isEntryValid={() => true}
@@ -133,7 +133,7 @@ describe('Entries management', () => {
     renderReact(
       () => (
         <EntryManagement
-          data={[{a: 7}]} uid={''}
+          data={[{a: 7}]}
           getElementUniqueIdentifier={() => 'i'}
           getSubmitPromise={fnSubmitPromise}
           isEntryValid={() => true}

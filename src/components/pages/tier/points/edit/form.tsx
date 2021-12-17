@@ -18,7 +18,6 @@ export const KeyPointsManagement = ({points, uid}: Props) => {
   return (
     <EntryManagement
       data={points}
-      uid={uid}
       getElementUniqueIdentifier={(point) => point.description}
       getSubmitPromise={(updatedPoints) => ApiRequestSender.updateKeyPointContent(uid, lang, updatedPoints)}
       isEntryValid={(entry) => !!entry.description}
