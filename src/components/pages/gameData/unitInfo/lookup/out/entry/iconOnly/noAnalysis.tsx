@@ -15,7 +15,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
 
   return (
     <>
-      <Row noGutters className="pt-1">
+      <Row noGutters className="pt-1 text-center">
         <Col>
           <UnitIconClickable
             unit={{
@@ -27,7 +27,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
               },
             }}
             hasAnalysis={false}
-            style={{width: '100%'}}
+            style={{height: '4.5rem'}}
           />
         </Col>
       </Row>
