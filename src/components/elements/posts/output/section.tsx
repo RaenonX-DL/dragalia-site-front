@@ -43,9 +43,15 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
 
         return (
           <React.Fragment key={title}>
-            <Row className={styles.sectionTitle}>
-              <Col onClick={() => setOpen({...open, [title]: !open[title]})}>
-                <h5 className="mb-0"><IconCollapse/>&nbsp;{title}</h5>
+            <Row>
+              <Col className="mb-2">
+                <Button
+                  className={styles.sectionTitleButton}
+                  onClick={() => setOpen({...open, [title]: !open[title]})}
+                  variant="outline-light"
+                >
+                  <h5 className="mb-0"><IconCollapse/>&nbsp;{title}</h5>
+                </Button>
               </Col>
             </Row>
             <Collapse in={open[title]} className="mb-2">
