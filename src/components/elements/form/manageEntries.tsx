@@ -4,6 +4,7 @@ import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
+import {ButtonBar} from '../common/buttonBar';
 import {AjaxForm} from './ajax/main';
 import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
@@ -28,6 +29,7 @@ type Props<E, I, R extends BaseResponse> = {
     idx: number,
     counter: Map<I, number>,
   ) => React.ReactElement,
+  elemRenderCount?: number,
 };
 
 export const EntryManagement = <E extends object, I, R extends BaseResponse>({
@@ -37,6 +39,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   isEntryValid,
   generateNewElement,
   renderEntries,
+  elemRenderCount,
 }: Props<E, I, R>) => {
   const {t} = useI18n();
 
@@ -46,6 +49,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
     updating: false,
     isInit: true,
   });
+  const [elemCount, setElemCount] = React.useState(elemRenderCount || -1); // -1 for unlimited
 
   const elementCounter = getElementCounter(state.data.map((entry) => getElementUniqueIdentifier(entry)));
 
@@ -88,8 +92,27 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         })}
         generateNewElement={generateNewElement}
         renderEntries={(...props) => renderEntries(...props, elementCounter)}
+        elemCount={elemCount}
         addToTop
       />
+      <div className="mb-2"/>
+      {
+        elemRenderCount && elemCount > 0 && elemCount < state.data.length &&
+        <ButtonBar
+          buttons={[
+            {
+              text: t((t) => t.misc.showMore),
+              variant: 'outline-success',
+              onClick: () => setElemCount(elemCount + elemRenderCount),
+            },
+            {
+              text: t((t) => t.misc.showAll),
+              variant: 'outline-warning',
+              onClick: () => setElemCount(-1),
+            },
+          ]}
+        />
+      }
     </AjaxForm>
   );
 };

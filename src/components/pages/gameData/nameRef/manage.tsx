@@ -38,6 +38,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
           isNameInvalid={(counter.get(element.name) || 0) > 1}
         />
       )}
+      elemRenderCount={30}
     />
   );
 };

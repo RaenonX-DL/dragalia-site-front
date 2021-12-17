@@ -149,4 +149,155 @@ describe('Entries management', () => {
     const updateButton = await screen.findByText(translationEN.misc.update);
     expect(updateButton).toBeDisabled();
   });
+
+  it('show limited entries only', async () => {
+    renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+          elemRenderCount={5}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    const elem5 = await screen.findByDisplayValue(4);
+    expect(elem5).toBeInTheDocument();
+
+    expect(screen.queryByDisplayValue(5)).not.toBeInTheDocument();
+  });
+
+  it('shows more entries after expansion', async () => {
+    renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+          elemRenderCount={5}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    const btnShowMore = await screen.findByText(translationEN.misc.showMore);
+    userEvent.click(btnShowMore);
+
+    expect(screen.queryByDisplayValue(5)).toBeInTheDocument();
+  });
+
+  it('shows all entries after expansion', async () => {
+    renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+          elemRenderCount={5}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    const btnShowAll = await screen.findByText(translationEN.misc.showAll);
+    userEvent.click(btnShowAll);
+
+    expect(await screen.findByDisplayValue(49)).toBeInTheDocument();
+  });
+
+  it('submits correct data after modification without expansion', async () => {
+    const {rerender} = renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+          elemRenderCount={5}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    const elem5 = await screen.findByDisplayValue(4);
+    typeInput(elem5, '469', {rerender});
+
+    const updateButton = screen.getByText(translationEN.misc.update);
+    userEvent.click(updateButton);
+
+    // Correct data sent?
+    await waitFor(() => expect(fnSubmitPromise).toHaveBeenCalled());
+    const expectedData = [...Array(50).keys()].map((num) => ({num}));
+    expectedData[4].num = 4469;
+    expect(fnSubmitPromise.mock.calls[0][0]).toStrictEqual(expectedData);
+  });
+
+  it('hides button bar if `elemRenderCount` not given', async () => {
+    renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    expect(await screen.findByDisplayValue(0)).toBeInTheDocument();
+
+    expect(screen.queryByText(translationEN.misc.showAll)).not.toBeInTheDocument();
+    expect(screen.queryByText(translationEN.misc.showMore)).not.toBeInTheDocument();
+  });
+
+  it('hides button after showing all', async () => {
+    renderReact(
+      () => (
+        <EntryManagement
+          data={[...Array(50).keys()].map((num) => ({num}))}
+          getElementUniqueIdentifier={(elem) => elem.num}
+          getSubmitPromise={fnSubmitPromise}
+          isEntryValid={() => true}
+          generateNewElement={() => ({num: 100})}
+          renderEntries={(element, onChanged) => (
+            <input type="number" value={element.num} onChange={(e) => onChanged('num')(+e.target.value)}/>
+          )}
+          elemRenderCount={5}
+        />
+      ),
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    const btnShowAll = await screen.findByText(translationEN.misc.showAll);
+    userEvent.click(btnShowAll);
+
+    expect(screen.queryByText(translationEN.misc.showAll)).not.toBeInTheDocument();
+    expect(screen.queryByText(translationEN.misc.showMore)).not.toBeInTheDocument();
+  });
 });

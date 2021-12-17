@@ -14,6 +14,7 @@ export type ArrayFormProps<P, E> = {
   renderEntries: (element: E, idx: number) => React.ReactElement,
   counterState: [Array<number>, Dispatch<SetStateAction<Array<number>>>],
   reversed?: boolean,
+  elemCount?: number,
 };
 
 export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
@@ -23,6 +24,7 @@ export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
     renderEntries,
     counterState,
     reversed = false,
+    elemCount,
   } = props;
 
   const array = getArray(payload);
@@ -45,7 +47,7 @@ export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
 
   return (
     <>
-      {array.map((elem, elemIdx) => (
+      {array.slice(0, (elemCount && elemCount > 0) ? elemCount : array.length).map((elem, elemIdx) => (
         <React.Fragment key={counter[elemIdx]}>
           <Row noGutters className={elemIdx === 0 ? '' : 'mt-2'}>
             <Col>
