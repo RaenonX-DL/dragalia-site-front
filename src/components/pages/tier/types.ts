@@ -58,3 +58,8 @@ export type PropsUseEntryPack = {
   entryPackHasTierNote: Array<EntryPack>,
   entryPackNoTierNote: Array<EntryPackNoTierNote>,
 };
+
+export type PropsDimensionalCommon = {
+  dimension: DimensionKey,
+  iconOnly: boolean,
+};

@@ -46,6 +46,7 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
             entryPackHasTierNote={entryPackHasTierNote}
             entryPackNoTierNote={entryPackNoTierNote}
             keyPointsData={keyPointsData}
+            iconOnly={inputData.iconOnly}
           />
       }
       {

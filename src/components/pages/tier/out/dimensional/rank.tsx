@@ -3,18 +3,17 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-import {DimensionKey} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {EntryPackOutput, PropsUseKeyPointData} from '../../types';
+import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
+import {TierListEntryIconOnly} from './entryIconOnly';
 
 
-type Props = PropsUseKeyPointData & {
-  dimension: DimensionKey,
+type Props = PropsUseKeyPointData & PropsDimensionalCommon & {
   entryPacks: Array<EntryPackOutput>,
 };
 
-export const TierListOutputRank = ({dimension, entryPacks, keyPointsData}: Props) => {
+export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOnly}: Props) => {
   const {t} = useI18n();
 
   return (
@@ -22,8 +21,25 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData}: Props
       {
         entryPacks.length > 0 ?
           entryPacks.map((entryPack) => (
-            <Col md={6} lg={4} key={entryPack.unitInfo.id}>
-              <TierListEntry dimension={dimension} entryPack={entryPack} keyPointsData={keyPointsData}/>
+            <Col
+              key={entryPack.unitInfo.id}
+              xs={iconOnly ? 4 : undefined}
+              md={iconOnly ? undefined : 6}
+              lg={iconOnly ? 2 : 4}
+            >
+              {
+                iconOnly ?
+                  <TierListEntryIconOnly
+                    dimension={dimension}
+                    entryPack={entryPack}
+                    keyPointsData={keyPointsData}
+                  /> :
+                  <TierListEntry
+                    dimension={dimension}
+                    entryPack={entryPack}
+                    keyPointsData={keyPointsData}
+                  />
+              }
             </Col>
           )) :
           <Col className="mb-2 text-danger">

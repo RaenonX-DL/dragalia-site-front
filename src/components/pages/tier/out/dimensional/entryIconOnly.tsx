@@ -4,9 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {AppReactContext} from '../../../../../context/app/main';
-import {useI18n} from '../../../../../i18n/hook';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
-import {UnitLink} from '../../../../elements/gameData/unit/link';
 import {IconCompDependent} from '../../icons';
 import styles from '../../main.module.css';
 import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
@@ -19,8 +17,7 @@ type Props = PropsUseKeyPointData & Pick<PropsDimensionalCommon, 'dimension'> & 
   entryPack: EntryPackOutput,
 };
 
-export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
-  const {lang} = useI18n();
+export const TierListEntryIconOnly = ({entryPack, dimension, keyPointsData}: Props) => {
   const context = React.useContext(AppReactContext);
 
   const {unitInfo, tierNote} = entryPack;
@@ -28,19 +25,17 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
   const pointIds = tierNote?.points || [];
 
   return (
-    <>
-      <Row noGutters className="section mb-2">
-        <Col xs="auto" className="mr-2">
-          <UnitIcon unitInfo={unitInfo} style={{height: '4rem'}}/>
-        </Col>
+    <div className="section mb-2">
+      <Row className="text-center">
         <Col>
-          <div className="text-right">
-            <span className="float-left"><UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/></span>
-            {context?.session?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
-          </div>
+          <UnitIcon unitInfo={unitInfo} style={{width: '5rem'}}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           {
             noteOfDimension &&
-            <div className={styles.dimensionEntryBar}>
+            <div>
               <TierNoteIcon tierNote={noteOfDimension} iconClassName={styles.tierNoteDimension}/>
               {
                 pointIds.length > 0 &&
@@ -52,7 +47,10 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
             </div>
           }
         </Col>
+        <Col xs="auto">
+          {context?.session?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
+        </Col>
       </Row>
-    </>
+    </div>
   );
 };
