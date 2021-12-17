@@ -14,9 +14,12 @@ export const UnitInfoEntry = (props: EntryProps) => {
 
   return (
     <Row noGutters className="section">
-      <Col xs="auto" className="mr-2">
-        <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
-      </Col>
+      {
+        !props.iconOnly &&
+        <Col xs="auto" className="mr-2">
+          <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
+        </Col>
+      }
       <Col>
         {
           analysisMeta ?

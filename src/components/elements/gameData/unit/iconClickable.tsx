@@ -5,6 +5,7 @@ import {useI18n} from '../../../../i18n/hook';
 import {Image} from '../../common/image';
 import {Loading} from '../../common/loading';
 import {ModalMappedContent} from '../../common/modal/mapped';
+import styles from './iconClickable.module.css';
 import {UnitLinkModal, UnitLinkModalProps} from './modal/main';
 import {UnitInfoRequireIcon, UnitLinkModalState} from './modal/types';
 
@@ -47,8 +48,8 @@ export const UnitIconClickable = ({unit, className, style, hasAnalysis = true}: 
       />
       <div className={className || ''} style={style} onClick={onIconClicked}>
         <Image
-          text="" src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
-          className="unitIcon"
+          text={unit.name} src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
+          className={styles.clickableUnitIcon}
         />
       </div>
     </>
