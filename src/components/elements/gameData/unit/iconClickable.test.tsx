@@ -4,8 +4,7 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
-import {SupportedLanguages} from '../../../../api-def/api/other/lang';
-import {UnitType} from '../../../../api-def/api/other/unit';
+import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {PostPath, StoryPath, UnitPath} from '../../../../const/path/definitions';
 import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {UnitIconClickable} from './iconClickable';

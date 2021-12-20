@@ -4,7 +4,7 @@ import {screen} from '@testing-library/react';
 
 import {generateKeyPointData, generateUnitTierNote} from '../../../../../test/data/mock/tierNote';
 import {renderReact} from '../../../../../test/render/main';
-import {ApiResponseCode} from '../../../../api-def/api/responseCode';
+import {ApiResponseCode} from '../../../../api-def/api';
 import {translation as translationEN} from '../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {TierNoteUnit} from './main';

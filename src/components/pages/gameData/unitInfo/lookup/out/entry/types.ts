@@ -1,5 +1,5 @@
-import {UnitInfoLookupEntry} from '../../../../../../../api-def/api/info/lookup/response';
-import {UnitInfoData} from '../../../../../../../api-def/resources/types/unitInfo';
+import {UnitInfoLookupEntry} from '../../../../../../../api-def/api';
+import {UnitInfoData} from '../../../../../../../api-def/resources';
 
 
 export type EntryCommonProps = {

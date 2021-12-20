@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api/other/unit';
+import {UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 

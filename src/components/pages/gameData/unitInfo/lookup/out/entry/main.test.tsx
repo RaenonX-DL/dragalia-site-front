@@ -4,10 +4,13 @@ import {screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../../test/render/main';
-import {UnitInfoLookupEntry} from '../../../../../../../api-def/api/info/lookup/response';
-import {PartiallySupportedLanguages, SupportedLanguages} from '../../../../../../../api-def/api/other/lang';
-import {UnitType} from '../../../../../../../api-def/api/other/unit';
-import {UnitInfoData} from '../../../../../../../api-def/resources/types/unitInfo';
+import {
+  PartiallySupportedLanguages,
+  SupportedLanguages,
+  UnitInfoLookupEntry,
+  UnitType,
+} from '../../../../../../../api-def/api';
+import {UnitInfoData} from '../../../../../../../api-def/resources';
 import {PostPath} from '../../../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../../../i18n/translations/en/translation';
 import {makePostUrl} from '../../../../../../../utils/path/make';

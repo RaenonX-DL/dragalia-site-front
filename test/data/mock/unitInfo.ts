@@ -1,4 +1,4 @@
-import {UnitType} from '../../../src/api-def/api/other/unit';
+import {UnitType} from '../../../src/api-def/api';
 import {UnitInfoData} from '../../../src/api-def/resources';
 
 

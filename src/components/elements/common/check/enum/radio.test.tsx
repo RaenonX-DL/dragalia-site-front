@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../api-def/api';
-import {EnumEntry} from '../../../../../api-def/resources/types';
+import {EnumEntry} from '../../../../../api-def/resources';
 import {EnumRadioGroup} from './radio';
 
 
