@@ -19,7 +19,7 @@ describe('Navigation bar', () => {
     expect(screen.getByText(translationEN.posts.quest.titleSelf)).toBeInTheDocument();
     expect(screen.getByText(translationEN.nav.unitInfo)).toBeInTheDocument();
     expect(screen.getByText(translationEN.posts.misc.titleSelf)).toBeInTheDocument();
-    expect(screen.getByText(translationEN.game.data.titleSelf)).toBeInTheDocument();
+    expect(screen.getByText(translationEN.nav.gameData.self)).toBeInTheDocument();
     expect(screen.getByText(translationEN.game.tools.titleSelf)).toBeInTheDocument();
     expect(screen.getByText(translationEN.meta.inUse.about.title)).toBeInTheDocument();
   });
