@@ -7,7 +7,7 @@ import {typeInput} from '../../../../../../test/utils/event';
 import {
   AnalysisMeta,
   ApiResponseCode,
-  OptionalSequencedPostMeta,
+  OptionalSequencedPostMeta, PartiallySupportedLanguages,
   PostIdCheckResponse,
   SupportedLanguages,
   UnitType,
@@ -33,6 +33,7 @@ describe('Analysis form meta input', () => {
     [SupportedLanguages.CHT]: 'cht',
     [SupportedLanguages.EN]: 'en',
     [SupportedLanguages.JP]: 'jp',
+    [PartiallySupportedLanguages.CHS]: 'chs',
   };
   const unitInfoMap: UnitInfoMap<number> = new Map([
     [

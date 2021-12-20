@@ -7,13 +7,12 @@ import Row from 'react-bootstrap/Row';
 import {DataPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeDataUrl} from '../../../../../utils/path/make';
-import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {sortDescending} from '../../../../../utils/sort';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {AdsPageTop, AdsToolBottom} from '../../../../elements/common/ads/main';
 import {SlicedEntryBar} from '../../../../elements/common/entryBar';
-import {useFetchState} from '../../../../elements/common/fetch';
 import {InternalLink} from '../../../../elements/common/link/internal';
+import {useDatamineCatalog} from '../fetch/catalog';
 
 
 const renderCount = 20;
@@ -23,18 +22,9 @@ export const DatamineCatalog = () => {
 
   const [resultCount, setResultCount] = React.useState(20);
 
-  const {
-    fetchStatus: catalog,
-    fetchFunction: fetchCatalog,
-  } = useFetchState(
-    [],
-    () => ResourceLoader.getDatamineIndexCatalog(),
-    'Failed to fetch datamine index catalog.',
-  );
+  const {catalog} = useDatamineCatalog();
 
-  fetchCatalog();
-
-  const catalogEntries = catalog.data
+  const catalogEntries = catalog
     .map((entry) => ({timestampEpoch: new Date(entry.timestampIso).getTime(), ...entry}))
     .sort(sortDescending({getComparer: (element) => new Date(element.timestampEpoch).getTime()}));
 

@@ -18,7 +18,7 @@ import {
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
-  StoryBook, UpdatedIndexCatalog,
+  StoryBook, UpdatedIndex, UpdatedIndexCatalog,
   WeaponTypeEnums,
 } from '../../../api-def/resources';
 
@@ -269,6 +269,16 @@ export class ResourceLoader {
    */
   static getDatamineIndexCatalog(): Promise<UpdatedIndexCatalog> {
     return ResourceLoader.fetchResources<UpdatedIndexCatalog>(DepotPaths.getUpdatedFileIndexCatalogURL());
+  }
+
+  /**
+   * Get the datamine index detail.
+   *
+   * @param {string} fileName datamine index file name
+   * @return {Promise<ElementBonus>} promise after the callback
+   */
+  static getDatamineIndexDetail(fileName: string): Promise<UpdatedIndex> {
+    return ResourceLoader.fetchResources<UpdatedIndex>(DepotPaths.getUpdatedFileIndexURL(fileName));
   }
 
   // endregion

@@ -30,4 +30,23 @@ describe('Datamine listing index', () => {
 
     expect(await screen.findByText('ABC')).toBeInTheDocument();
   });
+
+  it('shows ads', async () => {
+    renderReact(() => <DatamineCatalog/>);
+
+    expect(await screen.findByTestId('ads-page-top')).toBeInTheDocument();
+    expect(screen.getByTestId('ads-tool-bottom')).toBeInTheDocument();
+  });
+
+  it('hides ads', async () => {
+    renderReact(
+      () => <DatamineCatalog/>,
+      {hasSession: true, user: {adsFreeExpiry: new Date()}},
+    );
+
+    expect(fnGetDatamineCatalog).toHaveBeenCalled();
+
+    expect(screen.queryByText('ads-page-top')).not.toBeInTheDocument();
+    expect(screen.queryByText('ads-tool-bottom')).not.toBeInTheDocument();
+  });
 });
