@@ -579,6 +579,13 @@ export const translation: TranslationStruct = {
         },
       },
     },
+    datamine: {
+      catalog: {
+        timestamp: 'Timestamp',
+        version: 'Version Code',
+        action: 'Action',
+      },
+    },
   },
   userControl: {
     noUid: 'No user ID',

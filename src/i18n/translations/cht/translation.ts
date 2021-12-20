@@ -538,6 +538,13 @@ export const translation: TranslationStruct = {
         },
       },
     },
+    datamine: {
+      catalog: {
+        timestamp: '時間',
+        version: '版本號',
+        action: '動作',
+      },
+    },
   },
   userControl: {
     noUid: '無使用者 ID',

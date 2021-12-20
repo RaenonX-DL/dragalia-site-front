@@ -546,6 +546,13 @@ export const translation: TranslationStruct = {
         },
       },
     },
+    datamine: {
+      catalog: {
+        timestamp: 'TBA',
+        version: 'TBA',
+        action: 'TBA',
+      },
+    },
   },
   userControl: {
     noUid: '該当するアカウントが見当たりません。',

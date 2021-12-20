@@ -491,6 +491,13 @@ export type TranslationStruct = {
         },
       },
     },
+    datamine: {
+      catalog: {
+        timestamp: string,
+        version: string,
+        action: string,
+      },
+    },
   },
   userControl: {
     noUid: string,

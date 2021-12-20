@@ -1,4 +1,4 @@
-import {DatamineIndex} from '../../../src/components/pages/gameData/datamine/index/main';
+import {DatamineCatalog} from '../../../src/components/pages/gameData/datamine/index/main';
 
 
-export default DatamineIndex;
+export default DatamineCatalog;
