@@ -10,7 +10,7 @@ import {UnitIcon} from '../../../elements/gameData/unit/icon';
 
 type Props = {
   unitInfo: UnitInfoData
-}
+};
 
 export const TierNoteUnitOverview = ({unitInfo}: Props) => {
   const {lang} = useI18n();

@@ -1,9 +1,18 @@
+import {DataType} from '../../api-def/api';
+
+
 export const PATH_ROOT = '/[lang]';
 
 // Must and only have `id` as the key for data ID
 export enum DataPath {
   TIER_KEY_POINT = '/tier/points/[id]',
+  GAME_DATAMINE_DETAIL = '/datamine/[id]',
 }
+
+export const dataType: {[path in DataPath]: DataType} = {
+  [DataPath.TIER_KEY_POINT]: 'tierKeyPoint',
+  [DataPath.GAME_DATAMINE_DETAIL]: 'datamine',
+};
 
 // Must and only have `id` as the key for story ID
 export enum StoryPath {
@@ -50,9 +59,11 @@ export enum GeneralPath {
   SKILL_SUP = '/skill/sup',
   STORY = '/story',
   // Tools
-  ROTATION_CALC = '/rotations',
+  ROTATION_CALC = '/tools/rotation',
+  ENMITY_CALC = '/tools/enmity',
   // Others
   UPDATE_UNIT_NAME_REF = '/name',
+  GAME_DATAMINE_INDEX = '/datamine',
   // Not game related
   ABOUT = '/about',
   SPECIAL_THANKS = '/thanks',

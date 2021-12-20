@@ -1,96 +1,26 @@
 import React, {CSSProperties} from 'react';
 
-import Button from 'react-bootstrap/Button';
-
-import {UnitType} from '../../../../api-def/api';
 import {DepotPaths} from '../../../../api-def/resources';
-import {PostPath, StoryPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
-import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {Image} from '../../common/image';
 import {InternalLink} from '../../common/link/internal';
 import {Loading} from '../../common/loading';
 import {ModalMappedContent} from '../../common/modal/mapped';
-import {ModalStateMapped} from '../../common/modal/types';
+import {UnitLinkModal, UnitLinkModalProps} from './modal/main';
+import {UnitLinkModalState} from './modal/types';
 
 
-type ModalState = ModalStateMapped<'content' | 'loading'>
-
-type UnitInfo = {
-  id: number,
-  name: string,
-  icon?: {
-    type: UnitType,
-    name: string,
-  },
-}
-
-type ModalContentProps = {
-  unit: UnitInfo,
-  hasAnalysis?: boolean,
-  modalState: ModalState,
-  setModalState: (newState: ModalState) => void,
-}
-
-const ModalContent = ({unit, hasAnalysis, modalState, setModalState}: ModalContentProps) => {
-  const {t, lang} = useI18n();
-
-  const onLinkClicked = () => {
-    setModalState({...modalState, show: true, key: 'loading'});
-  };
-
-  return (
-    <div className="text-center">
-      {
-        hasAnalysis &&
-        <Button variant="link">
-          <InternalLink
-            href={makePostUrl(PostPath.ANALYSIS, {pid: unit.id, lang})}
-            locale={lang}
-            onClick={onLinkClicked}
-            content={t((t) => t.game.unitInfo.links.analysis)}
-          />
-        </Button>
-      }
-      <Button variant="link">
-        <InternalLink
-          href={makeUnitUrl(UnitPath.UNIT_TIER, {id: unit.id, lang})}
-          locale={lang}
-          onClick={onLinkClicked}
-          content={t((t) => t.game.unitInfo.links.tier)}
-        />
-      </Button>
-      <Button variant="link">
-        <InternalLink
-          href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})}
-          locale={lang}
-          onClick={onLinkClicked}
-          content={t((t) => t.game.unitInfo.links.info)}
-        />
-      </Button>
-      <Button variant="link">
-        <InternalLink
-          href={makeStoryUrl(StoryPath.UNIT, {id: unit.id, lang})}
-          locale={lang}
-          onClick={onLinkClicked}
-          content={t((t) => t.game.unitInfo.links.story)}
-        />
-      </Button>
-    </div>
-  );
-};
-
-type UnitLinkProps = Pick<ModalContentProps, 'unit' | 'hasAnalysis'> & {
+type UnitLinkProps = Pick<UnitLinkModalProps, 'unit' | 'hasAnalysis'> & {
   className?: string,
   style?: CSSProperties,
-}
+};
 
 export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkProps) => {
-  // DON'T use `useUnitInfo` hook because it will fetch many times upon initial load,
+  // DON'T use `useUnitInfo` hook here because it will fetch many times upon initial load,
   // which severely impacts performance.
   const {t} = useI18n();
 
-  const [modalState, setModalState] = React.useState<ModalState>({
+  const [modalState, setModalState] = React.useState<UnitLinkModalState>({
     show: false,
     title: t((t) => t.game.unitInfo.text.relatedLinks),
     key: 'content',
@@ -107,7 +37,7 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
         setState={setModalState}
         lookup={{
           content: (
-            <ModalContent
+            <UnitLinkModal
               unit={unit} hasAnalysis={hasAnalysis}
               modalState={modalState} setModalState={setModalState}
             />

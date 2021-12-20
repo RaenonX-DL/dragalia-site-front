@@ -6,10 +6,11 @@ import {ApiRequestSender} from '../../../../../utils/services/api/requestSender'
 import {EntryManagement} from '../../../../elements/form/manageEntries';
 import {KeyPointEntry} from './entry';
 
+
 type Props = {
   points: Array<KeyPointEntryUpdate>,
   uid: string,
-}
+};
 
 export const KeyPointsManagement = ({points, uid}: Props) => {
   const {lang} = useI18n();
@@ -17,7 +18,6 @@ export const KeyPointsManagement = ({points, uid}: Props) => {
   return (
     <EntryManagement
       data={points}
-      uid={uid}
       getElementUniqueIdentifier={(point) => point.description}
       getSubmitPromise={(updatedPoints) => ApiRequestSender.updateKeyPointContent(uid, lang, updatedPoints)}
       isEntryValid={(entry) => !!entry.description}

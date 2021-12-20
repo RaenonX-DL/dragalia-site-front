@@ -93,6 +93,8 @@ describe('Quick reference transformer (Analysis)', () => {
       ['Brunhilda', generateBrunhildaInfo()],
       ['BrunhildaExtended', generateHighBrunhildaInfo()],
       ['Gala Mym', generateGalaMymInfo()],
+      ['+66', generateGalaMymInfo()],
+      ['+77', generateGalaMymInfo()],
     ]));
   });
 
@@ -126,6 +128,17 @@ describe('Quick reference transformer (Analysis)', () => {
     const result = await transformQuickReference({text, lang});
 
     const expectedText = `Check ${galaMymMdTransformed} Analysis`;
+    expect(result).toBe(expectedText);
+  });
+
+  it('transforms analysis link (special character)', async () => {
+    const specialCharTransformed = galaMymMdTransformed.replace('Gala Mym', '+66');
+
+    const text = 'Check :+66: Analysis & :+66:';
+
+    const result = await transformQuickReference({text, lang});
+
+    const expectedText = `Check ${specialCharTransformed} Analysis & ${specialCharTransformed}`;
     expect(result).toBe(expectedText);
   });
 

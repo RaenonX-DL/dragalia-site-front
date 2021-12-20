@@ -4,7 +4,7 @@ import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
 
 
-const cache: { [lang in SupportedLanguages]?: UnitInfoMap<string> } = {};
+const cache: {[lang in SupportedLanguages]?: UnitInfoMap<string>} = {};
 
 export const getUnitNameInfoMap = async (lang: SupportedLanguages): Promise<UnitInfoMap<string>> => {
   if (typeof window === 'undefined') {
@@ -31,7 +31,7 @@ export const getUnitNameInfoMap = async (lang: SupportedLanguages): Promise<Unit
   return nameInfoMap;
 };
 
-const fnGetImageURL: { [unitType in UnitType]: (iconName: string) => string } = {
+const fnGetImageURL: {[unitType in UnitType]: (iconName: string) => string} = {
   [UnitType.CHARACTER]: DepotPaths.getCharaIconURL,
   [UnitType.DRAGON]: DepotPaths.getDragonIconURL,
 };

@@ -1,5 +1,6 @@
 import {ExpressionReplacements} from './types';
 
+
 export const expressionPlaceholder = '[fx]';
 
 export const decimalRegex = /\[(\d+)f]$/;

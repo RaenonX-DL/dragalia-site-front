@@ -5,6 +5,7 @@ import {translations} from '../../../i18n/translations/main';
 import {makePostUrl} from '../../path/make';
 import {getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
 import {sortDescending} from '../../sort';
+import {regexEscape} from '../../text';
 import {TextTransformer} from '../type';
 
 
@@ -29,7 +30,10 @@ const transformAnalysis: TextTransformer = async ({text, lang}) => {
   // Sort the keys by its length descending for greedy match
   const nameRegex = [...unitNameIdMap.keys()]
     .sort(sortDescending({getComparer: (element) => element.length}))
+    // Escape special character in unit name
+    .map(regexEscape)
     .join('|');
+
   // Source: https://stackoverflow.com/a/15604206/11571888
   const regex = new RegExp(`(:|^)(${nameRegex})(:|$)`, 'g');
   text = text.replace(

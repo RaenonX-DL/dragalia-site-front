@@ -19,7 +19,8 @@ type Props<P, E> = {
     idx: number,
   ) => React.ReactElement,
   addToTop?: boolean,
-}
+  elemCount?: number,
+};
 
 export const ArrayForm = <P, E extends object>({
   payload,
@@ -30,6 +31,7 @@ export const ArrayForm = <P, E extends object>({
   generateNewElement,
   renderEntries,
   addToTop = false,
+  elemCount,
 }: Props<P, E>) => {
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
@@ -81,6 +83,7 @@ export const ArrayForm = <P, E extends object>({
         renderEntries={(elem, elemIdx) => renderEntries(elem, onChangeHandler(elemIdx), elemIdx)}
         reversed={addToTop}
         counterState={counterState}
+        elemCount={elemCount}
       />
       {!addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
     </>

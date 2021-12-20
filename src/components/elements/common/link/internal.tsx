@@ -33,7 +33,7 @@ type Props<T, A extends HTMLAnchorElement> = {
   anchorProps?: React.AnchorHTMLAttributes<A>,
   style?: React.CSSProperties,
   newWindow?: boolean,
-})
+});
 
 export const InternalLink = <T, A extends HTMLAnchorElement>({
   className, style, locale, href, onClick, passHref, children, content, anchorProps, newWindow,

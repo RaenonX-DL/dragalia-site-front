@@ -6,7 +6,7 @@ import {NormalAttackBranchedTab} from './branchedTab';
 
 export type ChainTabProps = {
   chain: NormalAttackChain,
-}
+};
 
 export const NormalAttackChainTab = ({chain}: ChainTabProps) => {
   return (

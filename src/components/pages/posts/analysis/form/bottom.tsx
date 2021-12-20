@@ -9,7 +9,7 @@ import {MarkdownInput} from '../../../../elements/markdown/input';
 import {PostFormDataProps} from '../../../../elements/posts/form/types';
 
 
-export type FormBottomProps<P extends AnalysisBody> = PostFormDataProps<P>
+export type FormBottomProps<P extends AnalysisBody> = PostFormDataProps<P>;
 
 export const FormBottom = <P extends AnalysisBody>({formState, setPayload}: FormBottomProps<P>) => {
   const {t} = useI18n();

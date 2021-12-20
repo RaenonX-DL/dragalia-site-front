@@ -1,5 +1,6 @@
-import {UnitType} from '../../../api-def/api/other/unit';
+import {UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
+
 
 export const translation: TranslationStruct = {
   autoComplete: {
@@ -14,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: 'ゲーム情報',
-      titleActive: 'スキル',
-      titleEx: 'EXアビ / リンクEXアビ',
-      titleOthers: '他の情報',
-      titlePassive: 'アビリティ',
-      titleSkillAtk: '攻擊スキル',
-      titleSkillSup: 'サポートスキル',
-      titleStory: 'ストーリー',
-    },
     ex: {
       name: {
         filterElement: '属性',
@@ -355,6 +346,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: '他のツール',
       rotation: 'ルーティン計算',
+      enmity: 'TBA',
     },
     unitInfo: {
       header: {
@@ -409,6 +401,7 @@ export const translation: TranslationStruct = {
       text: {
         total: '(総計)',
         relatedLinks: 'に関するリンク',
+        iconOnly: 'TBA',
       },
       tips: {
         clickNameForLinks: 'TBA',
@@ -507,6 +500,59 @@ export const translation: TranslationStruct = {
         error: '更新失敗: {{error}}',
       },
     },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            effective: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+          skill: {
+            original: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            effective: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          val: {
+            current: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+            max: {
+              title: 'TBA',
+              description: 'TBA',
+            },
+          },
+        },
+        title: {
+          mod: 'TBA',
+          hp: 'TBA',
+        },
+      },
+    },
+    datamine: {
+      catalog: {
+        timestamp: 'TBA',
+        version: 'TBA',
+        action: 'TBA',
+      },
+    },
   },
   userControl: {
     noUid: '該当するアカウントが見当たりません。',
@@ -564,8 +610,8 @@ export const translation: TranslationStruct = {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
     },
-    collapse: 'ズームイン/アウト',
-    collapseAll: '全部ズームイン/アウト',
+    collapse: '展開 / 折り畳み',
+    collapseAll: '全部展開 / 折り畳み',
   },
   meta: {
     inUse: {
@@ -682,6 +728,16 @@ export const translation: TranslationStruct = {
           title: '攻撃スキル',
           description: '攻撃スキルの検索',
         },
+        datamine: {
+          index: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          detail: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -697,6 +753,12 @@ export const translation: TranslationStruct = {
         name: {
           title: 'ユニット名前設定ページ',
           description: 'ユニット名前を設定する。',
+        },
+      },
+      calc: {
+        enmity: {
+          title: 'TBA',
+          description: 'TBA',
         },
       },
       story: {
@@ -725,6 +787,17 @@ export const translation: TranslationStruct = {
     suffix: ' | ドラガリ攻略 by OM',
   },
   nav: {
+    gameData: {
+      self: 'ゲーム情報',
+      passive: 'アビリティ',
+      ex: 'EXアビ / リンクEXアビ',
+      active: 'スキル',
+      skillAtk: '攻擊スキル',
+      skillSup: 'サポートスキル',
+      others: '他の情報',
+      story: 'ストーリー',
+      datamine: 'TBA',
+    },
     unitInfo: 'キャラ/ドラゴン情報',
     unitTier: 'ランキング',
   },

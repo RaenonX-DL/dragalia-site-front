@@ -8,7 +8,7 @@ import {RankingProps, TierRanking} from './ranking';
 
 type ItemProps = RankingProps & {
   dimension: DimensionKey,
-}
+};
 
 export const TierNote = ({dimension, tierNote}: ItemProps) => {
   const {t} = useI18n();

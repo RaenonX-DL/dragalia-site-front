@@ -1,6 +1,7 @@
 import {SpecialKey} from './types';
 import {getValidNewPage, pageToStartIdx, countToMaxPage, startIdxToPage} from './utils';
 
+
 describe('Pagination utils', () => {
   test('get valid of first at first', () => {
     expect(getValidNewPage(SpecialKey.FIRST, 1, 10)).toBe(1);

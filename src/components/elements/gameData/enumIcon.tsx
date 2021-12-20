@@ -8,7 +8,7 @@ import {Image} from '../common/image';
 
 type Props = Pick<CheckItemImageOptions, 'height'> & {
   entry: EnumEntry | undefined,
-}
+};
 
 export const EnumEntryImageIcon = ({entry, height}: Props) => {
   const {lang} = useI18n();

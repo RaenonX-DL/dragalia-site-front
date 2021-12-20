@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {UnitTierNote} from '../../../../api-def/api/tier/notes/elements';
-import {isFailedResponse} from '../../../../api-def/api/utils';
+import {UnitTierNote, isFailedResponse} from '../../../../api-def/api';
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
@@ -21,7 +20,7 @@ type UseSingleUnitTierNoteResourcesReturn = {
 } | {
   fetchStatus: 'completed',
   data: UnitTierNote | null,
-})
+});
 
 export const useSingleUnitTierNoteResources = (): UseSingleUnitTierNoteResourcesReturn => {
   const {lang} = useI18n();

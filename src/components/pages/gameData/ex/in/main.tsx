@@ -15,7 +15,7 @@ import {generateInputData} from './utils';
 
 type InputProps = {
   onSearchRequested: (inputData: InputData) => (event: MouseEvent<HTMLButtonElement>) => void,
-}
+};
 
 
 export const ExAbilityInput = ({onSearchRequested}: InputProps) => {

@@ -9,7 +9,7 @@ import {CheckItem} from './item';
 type Props<E> = {
   options: Array<E>,
   optionToProps: (entry: E) => CheckItemProps,
-}
+};
 
 export const CheckGroup = <E, >({
   options,

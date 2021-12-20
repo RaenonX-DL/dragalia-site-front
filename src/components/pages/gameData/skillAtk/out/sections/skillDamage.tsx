@@ -8,7 +8,7 @@ import {CalculatedSkillEntry} from '../types';
 
 type SectionSkillDamageProps = {
   calculatedData: CalculatedSkillEntry,
-}
+};
 
 export const SectionSkillDamage = ({calculatedData}: SectionSkillDamageProps) => {
   const removeDigit = (num: number) => num.toLocaleString(undefined, {maximumFractionDigits: 0});

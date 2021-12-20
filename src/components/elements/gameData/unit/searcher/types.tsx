@@ -6,4 +6,4 @@ export type UnitSearchOutputProps<S extends string, D extends UnitFilterInputDat
   inputData: D,
   prioritizedUnitInfo: Array<UnitInfoData>,
   otherUnitInfo: Array<UnitInfoData>,
-}
+};

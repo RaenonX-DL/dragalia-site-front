@@ -6,7 +6,7 @@ import {QuestPostListEntry} from '../../../../../api-def/api';
 import {PostEntryBadgeProps} from '../../../../elements/posts/list/entry';
 
 
-type Props<E extends QuestPostListEntry> = PostEntryBadgeProps<E>
+type Props<E extends QuestPostListEntry> = PostEntryBadgeProps<E>;
 
 export const QuestEntryBadge = <E extends QuestPostListEntry>({entry}: Props<E>) => {
   return <Badge variant="primary">#{entry.seqId}</Badge>;

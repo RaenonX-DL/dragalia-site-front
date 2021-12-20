@@ -3,7 +3,7 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
-import {UnitType, SupportedLanguages} from '../../../../api-def/api';
+import {UnitType, SupportedLanguages, PartiallySupportedLanguages} from '../../../../api-def/api';
 import {UnitInfoData} from '../../../../api-def/resources';
 import * as utils from '../../../../utils/services/resources/unitInfo/utils';
 import {UnitIcon} from './icon';
@@ -19,6 +19,7 @@ describe('Unit icon', () => {
   it('gets unit image URL', async () => {
     const name = {
       [SupportedLanguages.CHT]: 'name CHT',
+      [PartiallySupportedLanguages.CHS]: 'name CHS',
       [SupportedLanguages.EN]: 'name EN',
       [SupportedLanguages.JP]: 'name JP',
     };

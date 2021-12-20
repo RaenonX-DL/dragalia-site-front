@@ -3,23 +3,17 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
-import {useI18n} from '../../../../../../i18n/hook';
-import {TimeAgo} from '../../../../../../utils/timeago';
-import {UnitLink} from '../../../../../elements/gameData/unit/link';
-import {EntryCommonProps} from './entry';
+import {useI18n} from '../../../../../../../../i18n/hook';
+import {TimeAgo} from '../../../../../../../../utils/timeago';
+import {UnitLink} from '../../../../../../../elements/gameData/unit/link';
+import {EntryPropsHasAnalysis} from '../types';
 
 
-export type EntryWithAnalysisProps = EntryCommonProps & {
-  analysisMeta: UnitInfoLookupEntry,
-  simplified?: boolean,
-}
-
-export const EntryWithAnalysis = ({
+export const CompleteEntryWithAnalysis = ({
   unitInfo,
   analysisMeta,
   simplified = false,
-}: EntryWithAnalysisProps) => {
+}: EntryPropsHasAnalysis) => {
   const {t, lang} = useI18n();
 
   return (

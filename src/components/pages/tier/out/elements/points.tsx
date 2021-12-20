@@ -20,7 +20,7 @@ import {KeyPointListItem} from './pointItem';
 export type TierKeyPointsProps = {
   keyPointsIds: Array<string>,
   keyPointsData: KeyPointData,
-}
+};
 
 export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps) => {
   const {t, lang} = useI18n();

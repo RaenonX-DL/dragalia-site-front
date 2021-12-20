@@ -12,7 +12,7 @@ export type SortBy =
   'modPer1KSp' |
   'modPer1KSsp' |
   'afflictionLengthPer1KSp' |
-  'afflictionLengthPer1KSsp'
+  'afflictionLengthPer1KSsp';
 
 export type InputData = {
   params: {
@@ -85,14 +85,14 @@ export type InputData = {
     animationInfo: boolean,
   },
   sortBy: SortBy,
-}
+};
 
-export type SectionProps = InputPanelCommonProps<InputData>
+export type SectionProps = InputPanelCommonProps<InputData>;
 
 export type SectionPropsCondEnums = SectionProps & {
   conditionEnums: CategorizedConditionEnums
-}
+};
 
 export type SectionPropsElemEnums = SectionProps & {
   elementEnums: ElementEnums
-}
+};

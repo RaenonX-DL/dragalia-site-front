@@ -2,8 +2,7 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
-import {UnitType} from '../../../../api-def/api/other/unit';
-import {CharaAnalysisGetResponse, DragonAnalysisGetResponse} from '../../../../api-def/api/post/analysis/response';
+import {UnitType, CharaAnalysisGetResponse, DragonAnalysisGetResponse} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {PrefetchedForm} from '../../../elements/form/prefetched/main';

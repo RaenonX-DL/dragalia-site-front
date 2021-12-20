@@ -10,7 +10,7 @@ import {StoryTalk} from './conversation/talk';
 
 type Props = {
   chapter: Story,
-}
+};
 
 export const StoryChapter = ({chapter}: Props) => {
   const hookReturn = useAudioControl({

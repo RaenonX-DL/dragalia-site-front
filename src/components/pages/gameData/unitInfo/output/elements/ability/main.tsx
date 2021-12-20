@@ -19,7 +19,7 @@ import {OfficialAbilityEntry} from './entry';
 type AbilityBlockProps = {
   unitId: number,
   info: AbilityInfo,
-}
+};
 
 export const AbilityBlock = ({unitId, info}: AbilityBlockProps) => {
   const {t, lang} = useI18n();

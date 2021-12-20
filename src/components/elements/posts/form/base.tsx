@@ -15,7 +15,7 @@ import {isFormStateValid, PostFormBaseProps} from './types';
 type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> = PostFormBaseProps<P, R> & {
   fnGetRedirectUrl: (redirectId: number) => string,
   fnGetRedirectId: (response: R) => number,
-}
+};
 
 export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   formState,

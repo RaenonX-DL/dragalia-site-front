@@ -20,7 +20,7 @@ import {validateInputData} from './utils/inputData';
 type InputProps = {
   onSearchRequested: (inputData: InputData) => void,
   isAllFetched: boolean,
-}
+};
 
 export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProps) => {
   const {t, lang} = useI18n();

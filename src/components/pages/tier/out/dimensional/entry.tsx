@@ -3,23 +3,21 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {DimensionKey} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
 import {IconCompDependent} from '../../icons';
 import styles from '../../main.module.css';
-import {EntryPackOutput, PropsUseKeyPointData} from '../../types';
+import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
 import {TierNoteEditIcon} from '../elements/editIcon';
 import {TierNoteIcon} from '../elements/noteIcon';
 import {TierNotePointIcon} from '../elements/pointIcon';
 
 
-type Props = PropsUseKeyPointData & {
-  dimension: DimensionKey,
+type Props = PropsUseKeyPointData & Pick<PropsDimensionalCommon, 'dimension'> & {
   entryPack: EntryPackOutput,
-}
+};
 
 export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
   const {lang} = useI18n();

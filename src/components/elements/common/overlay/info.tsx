@@ -8,7 +8,7 @@ import {OverlayPopover} from './popover';
 
 type InfoPopoverProps = TitledProps & {
   description: string | React.ReactElement,
-}
+};
 
 export const InfoPopover = ({title, description}: InfoPopoverProps) => {
   return (
@@ -23,7 +23,7 @@ export const InfoPopover = ({title, description}: InfoPopoverProps) => {
 
 type InfoPopoverMarkdownProps = Omit<InfoPopoverProps, 'description'> & {
   description: string,
-}
+};
 
 export const InfoPopoverMarkdown = ({title, description}: InfoPopoverMarkdownProps) => {
   return <InfoPopover title={title} description={<Markdown overrideStyle={false}>{description}</Markdown>}/>;

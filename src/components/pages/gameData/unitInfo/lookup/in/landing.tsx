@@ -5,12 +5,12 @@ import Form from 'react-bootstrap/Form';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
-import {UnitInfoEntry} from '../out/entry';
+import {UnitInfoEntry} from '../out/entry/main';
 
 
 type Props = {
   analyses: Array<UnitInfoLookupEntry>,
-}
+};
 
 export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();

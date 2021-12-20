@@ -8,10 +8,10 @@ export type Efficiency = {
   secPer1KSp: {[StatusCode in number]: number},
   secPer1KSsp: {[StatusCode in number]: number},
   spFullFillSec: number,
-}
+};
 
 export type CalculatedSkillEntry = {
   skillDamage: CalculateDamageReturn,
   skillEntry: AttackingSkillData,
   efficiency: Efficiency,
-}
+};

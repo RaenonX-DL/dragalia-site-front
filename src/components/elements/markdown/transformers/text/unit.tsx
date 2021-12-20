@@ -10,7 +10,7 @@ export const UNIT_NAME_SEPARATOR = '/';
 
 type Props = {
   children: string,
-}
+};
 
 export const MarkdownUnitName = ({children}: Props) => {
   const context = React.useContext(AppReactContext);

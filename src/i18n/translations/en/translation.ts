@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api/other/unit';
+import {UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -15,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: 'Game Data',
-      titleActive: 'Active',
-      titleEx: 'Co-ability / CCA',
-      titleOthers: 'Others',
-      titlePassive: 'Passive',
-      titleSkillAtk: 'Skill (Attack)',
-      titleSkillSup: 'Skill (Support)',
-      titleStory: 'Story',
-    },
     ex: {
       name: {
         filterElement: 'Element',
@@ -293,9 +283,9 @@ export const translation: TranslationStruct = {
         buffZone: 'Buff Zone',
         dispel: 'Dispel',
         dispelDesc: 'At {{dispelTiming}} sec',
-        crisisUp: 'Crisis Scaling',
+        crisisUp: 'Enmity',
         crisisUpDesc: 'Max {{maxRate}}x',
-        crisisDown: 'Stamina Scaling',
+        crisisDown: 'HP Scaling',
         crisisDownDesc: '{{maxRate}}x at the lowest HP',
       },
       summary: {
@@ -379,6 +369,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: 'Game Tools',
       rotation: 'Rotations Calculator',
+      enmity: 'Enmity Mods',
     },
     unitInfo: {
       header: {
@@ -434,6 +425,7 @@ export const translation: TranslationStruct = {
       text: {
         total: '(Total)',
         relatedLinks: 'Related Links',
+        iconOnly: 'Icon Only',
       },
       tips: {
         clickNameForLinks: 'Click the unit name above for related links.',
@@ -539,6 +531,59 @@ export const translation: TranslationStruct = {
       status: {
         updated: 'Updated!',
         error: 'Failed to update: {{error}}',
+      },
+    },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: 'Enmity Mod',
+              description: 'Enmity mod from all types of the equipment.',
+            },
+            effective: {
+              title: 'Effective Enmity Mod',
+              description: 'Effective enmity mod according to the current HP %.根據當前 HP ，實際有效的背水倍率。',
+            },
+          },
+          skill: {
+            original: {
+              title: 'Skill Mod',
+              description: 'Original skill mod.',
+            },
+            effective: {
+              title: 'Effective Skill Mod',
+              description: 'Actual skill mod after applying the effective enmity mod.',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'HP %',
+            description: 'Current HP in %.',
+          },
+          val: {
+            current: {
+              title: 'Current HP',
+              description: 'Current HP in number.',
+            },
+            max: {
+              title: 'Max HP',
+              description: 'Max HP in number.',
+            },
+          },
+        },
+        title: {
+          mod: 'Mods',
+          hp: 'HP',
+        },
+      },
+    },
+    datamine: {
+      catalog: {
+        timestamp: 'Timestamp',
+        version: 'Version Code',
+        action: 'Action',
       },
     },
   },
@@ -724,6 +769,16 @@ export const translation: TranslationStruct = {
           title: 'Attacking skill lookup',
           description: 'Page to search for all attacking skills in the game.',
         },
+        datamine: {
+          index: {
+            title: 'Datamine info index',
+            description: 'Datamine info index page.',
+          },
+          detail: {
+            title: 'Datamine - {{versionCode}}',
+            description: 'Datamine info of version code {{versionCode}}.',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -739,6 +794,13 @@ export const translation: TranslationStruct = {
         name: {
           title: 'Unit Name Config',
           description: 'Page to configure the custom unit names.',
+        },
+      },
+      calc: {
+        enmity: {
+          title: 'Enmity Mod Calculator',
+          description: 'Tool to calculate the enmity mod at a certain HP level, ' +
+            'or the HP level required for a certain enmity mod.',
         },
       },
       story: {
@@ -767,6 +829,17 @@ export const translation: TranslationStruct = {
     suffix: ' | Dragalia Lost Info by OM',
   },
   nav: {
+    gameData: {
+      self: 'Game Data',
+      passive: 'Passive',
+      ex: 'Co-ability / CCA',
+      active: 'Active',
+      skillAtk: 'Skill (Attack)',
+      skillSup: 'Skill (Support)',
+      others: 'Others',
+      story: 'Story',
+      datamine: 'Datamine',
+    },
     unitInfo: 'Chara/Dragon Info',
     unitTier: 'Tier List',
   },

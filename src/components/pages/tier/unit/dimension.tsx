@@ -14,7 +14,7 @@ import styles from './main.module.css';
 type Props = {
   dimension: DimensionKey,
   note: TierNote | undefined,
-}
+};
 
 export const UnitTierNoteDimension = ({dimension, note}: Props) => {
   const {t} = useI18n();

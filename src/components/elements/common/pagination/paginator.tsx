@@ -15,7 +15,7 @@ type PaginatorProps = {
   // `page` is 1-index. This should exclude `?` in the URL.
   getNewQueryParam: (page: number) => string,
   disable?: boolean
-}
+};
 
 export const Paginator = ({
   state,

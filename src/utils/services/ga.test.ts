@@ -1,5 +1,6 @@
-import {UnitType} from '../../api-def/api/other/unit';
+import {UnitType} from '../../api-def/api';
 import {GoogleAnalytics} from './ga';
+
 
 describe('Google Analytics event sender', () => {
   let fnSendEvent: jest.SpyInstance;
@@ -15,6 +16,7 @@ describe('Google Analytics event sender', () => {
       weaponTypes: [4, 5],
       keyword: 'A',
       sortBy: 'unitId',
+      iconOnly: true,
     });
 
     expect(fnSendEvent).toHaveBeenCalledWith(

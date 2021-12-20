@@ -15,7 +15,7 @@ type ExEffectUnitProps = {
   effectUnit: AbilityVariantEffectUnitData,
   conditionEnums: ConditionEnumMap,
   isEx?: boolean,
-}
+};
 
 export const ExEffectUnit = ({effectUnit, conditionEnums, isEx}: ExEffectUnitProps) => {
   const {lang} = useI18n();

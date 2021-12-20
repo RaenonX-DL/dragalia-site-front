@@ -7,7 +7,7 @@ import {AdsWrapper} from '../wrapper';
 import {AdsUnitProps} from './types';
 
 
-type Props = AdsUnitProps
+type Props = AdsUnitProps;
 
 export const AdsUnitMatchedContent = ({slot, testId}: Props) => (
   // About customization: https://support.google.com/adsense/answer/7533385?hl=en&ref_topic=9183242

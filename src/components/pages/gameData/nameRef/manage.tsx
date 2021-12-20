@@ -13,12 +13,12 @@ export type RefsState = {
   updateStatus: null | ApiResponseCode,
   updating: boolean,
   isInit: boolean,
-}
+};
 
 export type RefsManagementProps = {
   refs: UnitNameRefManageResponse['refs'],
   uid: string
-}
+};
 
 export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
   const {lang} = useI18n();
@@ -28,7 +28,6 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
   return (
     <EntryManagement
       data={refs}
-      uid={uid}
       getElementUniqueIdentifier={(entry) => entry.name}
       getSubmitPromise={(updatedRefs) => ApiRequestSender.updateUnitNameRefs(uid, lang, updatedRefs)}
       isEntryValid={(entry) => !!unitInfoMap.get(entry.unitId) && !!entry.name}
@@ -39,6 +38,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
           isNameInvalid={(counter.get(element.name) || 0) > 1}
         />
       )}
+      elemRenderCount={30}
     />
   );
 };

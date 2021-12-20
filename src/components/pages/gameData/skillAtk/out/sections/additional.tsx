@@ -12,7 +12,7 @@ import {EnumDataPack, SectionProps} from '../props';
 import {SectionAffliction} from './affliction';
 
 
-type Props = SectionProps & Pick<EnumDataPack, 'statusEnums'> & Pick<SkillEntryProps, 'displayConfig'>
+type Props = SectionProps & Pick<EnumDataPack, 'statusEnums'> & Pick<SkillEntryProps, 'displayConfig'>;
 
 export const SectionAdditional = ({atkSkillEntry, displayConfig, statusEnums}: Props) => {
   let badges: Array<React.ReactElement> = [];

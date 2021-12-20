@@ -7,7 +7,7 @@ import {ModalStateFlex} from './types';
 type Props = {
   state: ModalStateFlex,
   setState: (state: ModalStateFlex) => void,
-}
+};
 
 export const ModalFlexContent = ({state, setState}: Props) => {
   const onHide = () => {

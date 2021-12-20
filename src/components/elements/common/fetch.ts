@@ -4,23 +4,23 @@ import React, {Dispatch, SetStateAction} from 'react';
 type FetchStatusNotFetched = {
   fetched: false,
   fetching: false,
-}
+};
 
 type FetchStatusFetching = {
   fetched: false,
   fetching: true,
-}
+};
 
 type FetchStatusFetched = {
   fetched: true,
   fetching: false,
-}
+};
 
-export type FetchStatusSimple = FetchStatusNotFetched | FetchStatusFetching | FetchStatusFetched
+export type FetchStatusSimple = FetchStatusNotFetched | FetchStatusFetching | FetchStatusFetched;
 
 export type FetchStatus<D> = FetchStatusSimple & {
   data: D,
-}
+};
 
 export const isNotFetched = <T extends FetchStatusSimple>(fetchStatus: T) => {
   return !fetchStatus.fetched && !fetchStatus.fetching;
@@ -30,7 +30,7 @@ type FetchStateReturns<D> = {
   fetchStatus: FetchStatus<D>,
   fetchFunction: () => void,
   setFetchStatus: Dispatch<SetStateAction<FetchStatus<D>>>,
-}
+};
 
 export const useFetchStateProcessed = <D, R>(
   initialData: D,

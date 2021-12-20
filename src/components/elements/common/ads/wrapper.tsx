@@ -7,7 +7,7 @@ import styles from './main.module.css';
 
 type Props = React.PropsWithChildren<{
   className?: string,
-}>
+}>;
 
 export const AdsWrapper = ({children, className}: Props) => {
   const context = React.useContext(AppReactContext);

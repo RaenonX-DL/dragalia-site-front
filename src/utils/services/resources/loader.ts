@@ -1,4 +1,4 @@
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
+import {SupportedLanguages} from '../../../api-def/api';
 import {
   AttackingSkillData,
   BuffParamEnums,
@@ -6,6 +6,7 @@ import {
   CharaExAbilityDataEntry,
   CharaInfo,
   ConditionEnumMap,
+  DepotPaths,
   DragonInfo,
   ElementBonus,
   ElementEnums,
@@ -17,7 +18,7 @@ import {
   SkillEnums,
   SkillIdentifierInfo,
   StatusEnums,
-  StoryBook,
+  StoryBook, UpdatedIndex, UpdatedIndexCatalog,
   WeaponTypeEnums,
 } from '../../../api-def/resources';
 
@@ -259,6 +260,25 @@ export class ResourceLoader {
    */
   static getElementBonusData(callback?: (elementBonusData: ElementBonus) => void): Promise<ElementBonus> {
     return ResourceLoader.fetchResources<ElementBonus>(ResourcePaths.MISC_ELEM_BONUS, callback);
+  }
+
+  /**
+   * Get the datamine index catalog.
+   *
+   * @return {Promise<ElementBonus>} promise after the callback
+   */
+  static getDatamineIndexCatalog(): Promise<UpdatedIndexCatalog> {
+    return ResourceLoader.fetchResources<UpdatedIndexCatalog>(DepotPaths.getUpdatedFileIndexCatalogURL());
+  }
+
+  /**
+   * Get the datamine index detail.
+   *
+   * @param {string} fileName datamine index file name
+   * @return {Promise<ElementBonus>} promise after the callback
+   */
+  static getDatamineIndexDetail(fileName: string): Promise<UpdatedIndex> {
+    return ResourceLoader.fetchResources<UpdatedIndex>(DepotPaths.getUpdatedFileIndexURL(fileName));
   }
 
   // endregion

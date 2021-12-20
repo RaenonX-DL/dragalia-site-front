@@ -7,9 +7,9 @@ import Spinner from 'react-bootstrap/Spinner';
 import {ButtonVariant} from 'react-bootstrap/types';
 
 
-export type SubmitTextKey = 'text' | 'loading'
+export type SubmitTextKey = 'text' | 'loading';
 
-type SubmitTextLookup = {[K in SubmitTextKey]: React.ReactNode}
+type SubmitTextLookup = {[K in SubmitTextKey]: React.ReactNode};
 
 export type AjaxFormControlProps = {
   submitTextKey: SubmitTextKey,
@@ -17,7 +17,7 @@ export type AjaxFormControlProps = {
   renderAtLeft?: React.ReactNode,
   variant: ButtonVariant,
   disabled?: boolean,
-}
+};
 
 export const AjaxFormControl = ({
   submitTextKey,

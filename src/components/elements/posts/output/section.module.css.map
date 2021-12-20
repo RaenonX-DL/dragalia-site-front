@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["section.module.scss","../../../../../styles/colors.scss"],"names":[],"mappings":"AAGE;EACE,kBCEa;EDDb;EACA;EACA;EACA;;AAGF;EACE,kBCLa;EDMb","file":"section.module.css"}
+{"version":3,"sourceRoot":"","sources":["section.module.scss"],"names":[],"mappings":"AAGE;EACE;EACA","file":"section.module.css"}

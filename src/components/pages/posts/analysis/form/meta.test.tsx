@@ -7,7 +7,7 @@ import {typeInput} from '../../../../../../test/utils/event';
 import {
   AnalysisMeta,
   ApiResponseCode,
-  OptionalSequencedPostMeta,
+  OptionalSequencedPostMeta, PartiallySupportedLanguages,
   PostIdCheckResponse,
   SupportedLanguages,
   UnitType,
@@ -21,7 +21,7 @@ import {FormAnalysisMeta} from './meta';
 
 
 describe('Analysis form meta input', () => {
-  type SetPayloadFuncArgs<K extends keyof AnalysisMeta> = [K, AnalysisMeta[K]]
+  type SetPayloadFuncArgs<K extends keyof AnalysisMeta> = [K, AnalysisMeta[K]];
 
   let state: PostFormState<AnalysisMeta>;
   let setPayload: jest.Mock<void, SetPayloadFuncArgs<keyof AnalysisMeta>>;
@@ -33,6 +33,7 @@ describe('Analysis form meta input', () => {
     [SupportedLanguages.CHT]: 'cht',
     [SupportedLanguages.EN]: 'en',
     [SupportedLanguages.JP]: 'jp',
+    [PartiallySupportedLanguages.CHS]: 'chs',
   };
   const unitInfoMap: UnitInfoMap<number> = new Map([
     [

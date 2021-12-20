@@ -2,6 +2,7 @@ import {UnitType} from '../../api-def/api';
 import {AttackingSkillData} from '../../api-def/resources';
 import {InputData} from '../../components/pages/gameData/skillAtk/in/types';
 import {ConditionCodes} from '../../const/gameData';
+import {calcEnmityMod} from './enmity';
 
 
 export type CalculateDamageReturn = {
@@ -11,21 +12,17 @@ export type CalculateDamageReturn = {
   totalMods: number,
 };
 
-const calculateModOnCrisis = (originalMod: number, crisisMod: number, currentHpRate: number): number => {
-  return originalMod * ((1 - currentHpRate) ** 2 * (crisisMod - 1) + 1);
-};
-
 export const calculateDamage = (
   inputData: InputData, attackingSkillData: AttackingSkillData, charaElementRate: number,
 ): CalculateDamageReturn => {
   const totalMods = attackingSkillData.skill.modsMax
     .map((mod, idx) => {
-      const crisisMod = attackingSkillData.skill.crisisMax[idx];
+      const enmityMod = attackingSkillData.skill.crisisMax[idx];
       const buffCountBoost = attackingSkillData.skill.buffCountBoost[idx];
 
-      // Crisis mod
-      if (crisisMod !== 0) {
-        mod = calculateModOnCrisis(mod, crisisMod, inputData.params.others.currentHpPct / 100);
+      // Enmity mod
+      if (enmityMod !== 0) {
+        mod *= calcEnmityMod(inputData.params.others.currentHpPct, enmityMod);
       }
 
       // Buff count boost

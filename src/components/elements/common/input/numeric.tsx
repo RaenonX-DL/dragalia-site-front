@@ -12,7 +12,7 @@ export type NumericInputProps<T> = DetailedProps & InputPropsExtended<T, number>
   required?: boolean,
   minValue?: number,
   maxValue?: number
-}
+};
 
 export const NumericInput = <T, >({
   title,
@@ -37,7 +37,7 @@ export const NumericInput = <T, >({
       <Col>
         <Form.Control
           type="number"
-          value={getValue(inputData)}
+          value={Number(getValue(inputData)).toString()}
           min={minValue}
           max={maxValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

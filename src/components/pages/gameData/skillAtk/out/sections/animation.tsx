@@ -52,7 +52,7 @@ const HitTiming = ({atkSkillEntry}: SectionProps) => {
   );
 };
 
-export type SectionAnimationProps = SectionProps & Pick<EnumDataPack, 'skillEnums' | 'conditionEnumMap'>
+export type SectionAnimationProps = SectionProps & Pick<EnumDataPack, 'skillEnums' | 'conditionEnumMap'>;
 
 export const SectionAnimation = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnimationProps) => {
   return (

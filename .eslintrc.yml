@@ -1,4 +1,3 @@
----
 env:
   browser: true
   es6: true
@@ -13,17 +12,6 @@ extends:
   - plugin:eslint-plugin-import/typescript
   - plugin:@next/next/recommended
 
-plugins:
-  - "@typescript-eslint"
-  - jest-dom
-  - react
-  - react-hooks
-  - testing-library
-  - unused-imports
-
-ignorePatterns:
-  - '*.d.ts'
-
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -35,6 +23,16 @@ parserOptions:
     jsx: true
   ecmaVersion: 2021
   sourceType: module
+
+plugins:
+  - "@typescript-eslint"
+  - jest-dom
+  - react
+  - react-hooks
+  - testing-library
+
+ignorePatterns:
+  - '*.d.ts'
 
 rules:
   "@typescript-eslint/no-unused-vars":
@@ -51,7 +49,7 @@ rules:
     - error
     - 2
     - ignoredNodes:
-      - TSTypeParameterInstantiation
+        - TSTypeParameterInstantiation
       MemberExpression: 1
 
   # Needs to disable local indent for this rule to work properly
@@ -83,6 +81,27 @@ rules:
         order: asc
         caseInsensitive: true
 
+  import/newline-after-import:
+    - error
+    - count: 2
+
+  import/no-unresolved:
+    - error
+    - ignore:
+        - csstype
+
+  object-curly-spacing: off
+
+  "@typescript-eslint/object-curly-spacing":
+    - error
+    - never
+
+  semi:
+    - off
+
+  "@typescript-eslint/semi":
+    - error
+
   space-in-parens:
     - error
     - never
@@ -94,9 +113,6 @@ rules:
   react/jsx-tag-spacing:
     - error
     - beforeSelfClosing: never
-
-  unused-imports/no-unused-imports:
-    - error
 
   "@next/next/no-img-element":
     - off

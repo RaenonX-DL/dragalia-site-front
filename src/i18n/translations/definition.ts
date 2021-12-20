@@ -7,7 +7,7 @@ import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/t
 export type PageMetaTranslations = {
   title: string,
   description: string,
-}
+};
 
 export type TranslationStruct = {
   autoComplete: {
@@ -22,16 +22,6 @@ export type TranslationStruct = {
     tierSSS: string,
   },
   game: {
-    data: {
-      titleSelf: string,
-      titleActive: string,
-      titleEx: string,
-      titleOthers: string,
-      titlePassive: string,
-      titleSkillAtk: string,
-      titleSkillSup: string,
-      titleStory: string,
-    },
     ex: {
       name: {
         filterElement: string,
@@ -331,7 +321,7 @@ export type TranslationStruct = {
       },
       spInfo: {
         efficiencyIndexes: string,
-        efficiency: { [index in keyof Omit<Efficiency, 'spFullFillSec'>]: string },
+        efficiency: {[index in keyof Omit<Efficiency, 'spFullFillSec'>]: string},
         sp: string,
         spGradualFill: string,
         spPctPerSec: string,
@@ -348,6 +338,7 @@ export type TranslationStruct = {
     tools: {
       titleSelf: string,
       rotation: string,
+      enmity: string,
     },
     unitInfo: {
       header: {
@@ -397,6 +388,7 @@ export type TranslationStruct = {
       text: {
         total: string,
         relatedLinks: string,
+        iconOnly: string,
       },
       tips: {
         clickNameForLinks: string,
@@ -432,9 +424,9 @@ export type TranslationStruct = {
           },
         },
       },
-      dimension: { [dim in DimensionKey]: {name: string, description: string} },
-      display: { [display in Display]: string },
-      sort: { [sortBy in Exclude<TierSortOrder, DimensionKey>]: string },
+      dimension: {[dim in DimensionKey]: {name: string, description: string}},
+      display: {[display in Display]: string},
+      sort: {[sortBy in Exclude<TierSortOrder, DimensionKey>]: string},
       alert: {
         refRemoval: string,
         noUnitInRank: string,
@@ -451,6 +443,59 @@ export type TranslationStruct = {
       status: {
         updated: string,
         error: string,
+      },
+    },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: string,
+              description: string,
+            },
+            effective: {
+              title: string,
+              description: string,
+            },
+          },
+          skill: {
+            original: {
+              title: string,
+              description: string,
+            },
+            effective: {
+              title: string,
+              description: string,
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: string,
+            description: string,
+          },
+          val: {
+            current: {
+              title: string,
+              description: string,
+            },
+            max: {
+              title: string,
+              description: string,
+            },
+          },
+        },
+        title: {
+          mod: string,
+          hp: string,
+        },
+      },
+    },
+    datamine: {
+      catalog: {
+        timestamp: string,
+        version: string,
+        action: string,
       },
     },
   },
@@ -499,7 +544,7 @@ export type TranslationStruct = {
       lastModified: string,
       lastUpdated: string,
     },
-    unitType: { [type in UnitType]: string },
+    unitType: {[type in UnitType]: string},
     collapse: string,
     collapseAll: string,
   },
@@ -543,6 +588,10 @@ export type TranslationStruct = {
         info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
+        datamine: {
+          index: PageMetaTranslations,
+          detail: PageMetaTranslations,
+        },
       },
       auth: {
         signIn: PageMetaTranslations,
@@ -550,6 +599,9 @@ export type TranslationStruct = {
       unit: {
         info: PageMetaTranslations,
         name: PageMetaTranslations,
+      },
+      calc: {
+        enmity: PageMetaTranslations,
       },
       story: {
         unit: PageMetaTranslations,
@@ -567,6 +619,17 @@ export type TranslationStruct = {
   nav: {
     unitInfo: string,
     unitTier: string,
+    gameData: {
+      self: string,
+      passive: string,
+      ex: string,
+      active: string,
+      skillAtk: string,
+      skillSup: string,
+      others: string,
+      story: string,
+      datamine: string,
+    },
   },
   posts: {
     analysis: {
@@ -598,7 +661,7 @@ export type TranslationStruct = {
         rotations: string,
         tips: string,
       },
-      sort: { [order in LookupSortOrder]: string },
+      sort: {[order in LookupSortOrder]: string},
     },
     info: {
       titleSelf: string,
@@ -648,6 +711,6 @@ export type TranslationStruct = {
     },
   },
   enum: {
-    unitType: { [U in UnitType]: string },
+    unitType: {[U in UnitType]: string},
   },
-}
+};

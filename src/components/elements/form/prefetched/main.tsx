@@ -14,7 +14,7 @@ import {Loading} from '../../common/loading';
 type Props<K extends string | number, R extends PostGetResponse> = {
   fnFetch: FunctionFetchPost<K, R>,
   renderOnSuccess: (response: R) => React.ReactNode,
-}
+};
 
 
 export const PrefetchedForm = <K extends string | number, R extends PostGetResponse>({

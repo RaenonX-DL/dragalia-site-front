@@ -15,7 +15,7 @@ import {FormMetaLangPicker} from '../../../../elements/posts/form/meta/lang';
 import {PostFormControlProps} from '../../../../elements/posts/form/types';
 
 
-export type FormAnalysisMetaProps<P extends PostMeta> = PostFormControlProps<P>
+export type FormAnalysisMetaProps<P extends PostMeta> = PostFormControlProps<P>;
 
 export const FormAnalysisMeta = <P extends AnalysisMeta>({
   formState,

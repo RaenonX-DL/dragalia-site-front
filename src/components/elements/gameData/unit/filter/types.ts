@@ -7,4 +7,5 @@ export type UnitFilterInputData<S extends string> = {
   elements: Array<number>,
   weaponTypes: Array<number>,
   sortBy: S,
-}
+  iconOnly: boolean,
+};

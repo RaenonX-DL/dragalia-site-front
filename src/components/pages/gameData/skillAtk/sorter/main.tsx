@@ -12,7 +12,7 @@ import {orderName} from './lookup';
 type Props = {
   inputData: InputData,
   onOrderPicked: (newInputData: InputData) => void,
-}
+};
 
 export const AttackingSkillSorter = ({inputData, onOrderPicked}: Props) => {
   const {t} = useI18n();

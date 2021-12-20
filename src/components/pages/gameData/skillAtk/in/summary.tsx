@@ -12,7 +12,7 @@ import {InputData} from './types';
 type InputSummaryProps = {
   inputData: InputData,
   conditionEnums: CategorizedConditionEnums,
-}
+};
 
 export const InputSummary = ({inputData, conditionEnums}: InputSummaryProps) => {
   const {t} = useI18n();

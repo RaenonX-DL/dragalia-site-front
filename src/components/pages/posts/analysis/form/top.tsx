@@ -9,7 +9,7 @@ import {MarkdownInput} from '../../../../elements/markdown/input';
 import {PostFormDataProps} from '../../../../elements/posts/form/types';
 
 
-export type FormTopProps<P extends AnalysisBody> = PostFormDataProps<P>
+export type FormTopProps<P extends AnalysisBody> = PostFormDataProps<P>;
 
 export const FormTop = <P extends AnalysisBody>({
   formState, setPayload,

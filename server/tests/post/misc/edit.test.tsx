@@ -3,8 +3,12 @@ import React from 'react';
 import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {MiscPostEditResponse, MiscPostGetResponse, SupportedLanguages} from '../../../../src/api-def/api';
-import {ApiResponseCode} from '../../../../src/api-def/api/responseCode';
+import {
+  ApiResponseCode,
+  MiscPostEditResponse,
+  MiscPostGetResponse,
+  SupportedLanguages,
+} from '../../../../src/api-def/api';
 import {MiscEdit} from '../../../../src/components/pages/posts/misc/edit';
 import {translations} from '../../../../src/i18n/translations/main';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';

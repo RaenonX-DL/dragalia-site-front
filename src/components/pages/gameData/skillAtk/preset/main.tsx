@@ -15,7 +15,7 @@ import {InputData} from '../in/types';
 import {PresetState, PresetStatus} from './types';
 
 
-const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
+const statusButtonIcon: {[status in PresetStatus]: React.ReactElement} = {
   notCreated: <IconShare/>,
   creating: <Spinner animation="grow" size="sm"/>,
   copied: <IconOk/>,
@@ -25,7 +25,7 @@ const statusButtonIcon: { [status in PresetStatus]: React.ReactElement } = {
 type Props = {
   inputData: InputData,
   isEnabled: boolean,
-}
+};
 
 export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
   const {t} = useI18n();

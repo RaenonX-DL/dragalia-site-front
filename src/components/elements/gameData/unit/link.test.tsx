@@ -12,7 +12,7 @@ import {UnitLink} from './link';
 
 
 describe('Unit link', () => {
-  it('renders an <a> tag only on load', async () => {
+  it('renders an <a> tag only on loaded', async () => {
     renderReact(() => <UnitLink unit={{id: 10950101, name: 'Gala Leonidas'}}/>);
 
     expect(await screen.findByText('Gala Leonidas', {selector: 'a'})).toBeInTheDocument();

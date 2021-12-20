@@ -8,7 +8,7 @@ import {ModalStateBase} from './types';
 type Props = {
   state: ModalStateBase,
   onHide: () => void,
-}
+};
 
 export const BaseModal = ({state, onHide, children}: React.PropsWithChildren<Props>) => {
   return (

@@ -16,7 +16,7 @@ type Props = {
   isActive: boolean,
   setAudioIdx: (newAudioIdx: number) => void,
   onAllAudioPlayed: () => void,
-}
+};
 
 export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudioIdx, onAllAudioPlayed}: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);

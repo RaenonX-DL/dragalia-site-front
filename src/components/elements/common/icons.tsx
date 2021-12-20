@@ -13,6 +13,10 @@ export const IconAdd = () => <i className="bi bi-plus-lg"/>;
 
 export const IconDelete = () => <i className="bi bi-x-lg"/>;
 
+export const IconMoveUp = () => <i className="bi bi-caret-up-fill"/>;
+
+export const IconMoveDown = () => <i className="bi bi-caret-down-fill"/>;
+
 export const IconUpdated = () => <i className="bi bi-cloud-check"/>;
 
 export const IconUpdateFailed = () => <i className="bi bi-exclamation-circle"/>;

@@ -12,7 +12,7 @@ import {SpInfoTable} from './info';
 
 export type SectionSpInfoProps = Pick<EnumDataPack, 'statusEnums'> & {
   calculatedData: CalculatedSkillEntry,
-}
+};
 
 export const SectionSpInfo = ({calculatedData, statusEnums}: SectionSpInfoProps) => {
   return (

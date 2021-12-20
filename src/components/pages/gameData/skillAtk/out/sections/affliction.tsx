@@ -13,7 +13,7 @@ import {EnumDataPack, SectionProps} from '../props';
 type AfflictionEntryProps = {
   affliction: AfflictionUnit,
   statusEnums: StatusEnums,
-}
+};
 
 const AfflictionEntry = ({affliction, statusEnums}: AfflictionEntryProps) => {
   const {t, lang} = useI18n();
@@ -51,7 +51,7 @@ const AfflictionEntry = ({affliction, statusEnums}: AfflictionEntryProps) => {
   );
 };
 
-type SectionAfflictionProps = SectionProps & Pick<EnumDataPack, 'statusEnums'>
+type SectionAfflictionProps = SectionProps & Pick<EnumDataPack, 'statusEnums'>;
 
 export const SectionAffliction = ({atkSkillEntry, statusEnums}: SectionAfflictionProps) => {
   if (!atkSkillEntry.skill.afflictions.length) {

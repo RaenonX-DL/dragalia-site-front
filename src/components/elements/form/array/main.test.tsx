@@ -11,11 +11,11 @@ import {ArrayForm} from './main';
 describe('Array form', () => {
   type Enum = {
     code: string,
-  }
+  };
 
   type Payload = PostMeta & {
     enums: Array<Enum>,
-  }
+  };
 
   let payload: Payload;
   let getArrayFunc: jest.Mock<Array<Enum>, [Payload]>;
@@ -35,14 +35,7 @@ describe('Array form', () => {
   it('blocks removal if element # < min length', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}],
     };
 
     renderReact(() => (
@@ -66,17 +59,7 @@ describe('Array form', () => {
   it('allows removal if element # > min length', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-        {
-          code: 'enum 3',
-        },
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
     };
 
     renderReact(() => (
@@ -100,14 +83,7 @@ describe('Array form', () => {
   it('adds data after clicking add', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}],
     };
 
     renderReact(() => (
@@ -133,17 +109,7 @@ describe('Array form', () => {
   it('removes data at a specific index', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-        {
-          code: 'enum 3',
-        },
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
     };
 
     renderReact(() => (
@@ -170,11 +136,7 @@ describe('Array form', () => {
   it('removes the first data', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {code: 'enum 1'},
-        {code: 'enum 2'},
-        {code: 'enum 3'},
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
     };
 
     renderReact(() => (
@@ -201,14 +163,7 @@ describe('Array form', () => {
   it('adds new data to the top if specified', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {
-          code: 'enum 1',
-        },
-        {
-          code: 'enum 2',
-        },
-      ],
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}],
     };
 
     renderReact(() => (
@@ -263,9 +218,7 @@ describe('Array form', () => {
   it('removes added entry starting from 1-element array in `addToTop`', async () => {
     payload = {
       lang: SupportedLanguages.CHT,
-      enums: [
-        {code: 'a'},
-      ],
+      enums: [{code: 'a'}],
     };
 
     renderReact(() => (
@@ -289,5 +242,111 @@ describe('Array form', () => {
     userEvent.click(removeButton);
 
     expect(payload.enums.map((entry) => entry.code)).toStrictEqual([7, 'a']);
+  });
+
+  it('blocks move-up button of the top entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveUpButtons = screen.getAllByText('', {selector: 'i.bi-caret-up-fill'});
+
+    const moveUpButton1 = moveUpButtons[0].parentElement;
+    const moveUpButton2 = moveUpButtons[1].parentElement;
+
+    expect(moveUpButton1).toBeDisabled();
+    expect(moveUpButton2).not.toBeDisabled();
+    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
+  });
+
+  it('blocks move-down button of the bottom entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveDownButtons = screen.getAllByText('', {selector: 'i.bi-caret-down-fill'});
+
+    const moveDownButton1 = moveDownButtons[0].parentElement;
+    const moveDownButton2 = moveDownButtons[1].parentElement;
+
+    expect(moveDownButton1).not.toBeDisabled();
+    expect(moveDownButton2).toBeDisabled();
+    expect(getArrayFunc).toHaveBeenCalledTimes(2);
+    expect(renderEntriesFunc).toHaveBeenCalledTimes(2);
+  });
+
+  it('moves up an entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveUpButton = screen.getAllByText('', {selector: 'i.bi-caret-up-fill'})[1];
+    userEvent.click(moveUpButton);
+
+    expect(payload.enums.map((entry) => entry.code)).toStrictEqual(['enum 2', 'enum 1', 'enum 3']);
+  });
+
+  it('moves down an entry', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+      />
+    ));
+
+    const moveUpButton = screen.getAllByText('', {selector: 'i.bi-caret-down-fill'})[1];
+    userEvent.click(moveUpButton);
+
+    expect(payload.enums.map((entry) => entry.code)).toStrictEqual(['enum 1', 'enum 3', 'enum 2']);
   });
 });

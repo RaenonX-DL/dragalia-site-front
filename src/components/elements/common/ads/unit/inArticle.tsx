@@ -7,7 +7,7 @@ import {AdsWrapper} from '../wrapper';
 import {AdsUnitProps} from './types';
 
 
-type Props = AdsUnitProps
+type Props = AdsUnitProps;
 
 export const AdsUnitInArticle = ({slot, testId}: Props) => (
   <AdsWrapper>

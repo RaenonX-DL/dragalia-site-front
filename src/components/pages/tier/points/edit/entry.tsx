@@ -15,7 +15,7 @@ type Props = {
   entry: KeyPointEntryUpdate,
   onChanged: ArrayFormOnChangeHandler<KeyPointEntryUpdate>,
   isDescriptionInvalid: boolean,
-}
+};
 
 export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) => {
   const {t} = useI18n();

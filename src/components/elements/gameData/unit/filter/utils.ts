@@ -10,6 +10,7 @@ export const generateFilterInput = <S extends string>(sortBy: S): UnitFilterInpu
   elements: [],
   weaponTypes: [],
   sortBy,
+  iconOnly: true,
 });
 
 export const getFilteredUnitInfo = <S extends string>(

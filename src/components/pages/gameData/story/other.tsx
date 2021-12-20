@@ -14,7 +14,7 @@ import styles from './main.module.css';
 
 type Props = {
   unitInfo: UnitInfoData,
-}
+};
 
 export const StoryOtherInfo = ({unitInfo}: Props) => {
   const {t, lang} = useI18n();

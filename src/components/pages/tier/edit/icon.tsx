@@ -7,6 +7,6 @@ import styles from '../main.module.css';
 
 type Props = {
   type: KeyPointType,
-}
+};
 
 export const PointTypeIcon = ({type}: Props) => <span className={styles.pointIcon}>{PointTypeIconLookup[type]}</span>;

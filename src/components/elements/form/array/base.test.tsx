@@ -11,11 +11,11 @@ import {ArrayFormBase} from './base';
 describe('Array form (base)', () => {
   type Enum = {
     code: string,
-  }
+  };
 
   type Payload = PostMeta & {
     enums: Array<Enum>,
-  }
+  };
 
   let payload: Payload;
   let getArrayFunc: jest.Mock<Array<Enum>, [Payload]>;

@@ -20,7 +20,7 @@ import {CalculatedSkillEntry} from './types';
 export type SkillEntryProps = EnumDataPack & {
   displayConfig: InputData['display'],
   calculatedData: CalculatedSkillEntry,
-}
+};
 
 export const AttackingSkillEntry = ({
   displayConfig,

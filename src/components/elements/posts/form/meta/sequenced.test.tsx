@@ -17,7 +17,7 @@ import {FormSequencedMeta} from './sequenced';
 
 
 describe('Sequenced form meta input', () => {
-  type SetPayloadFuncArgs<K extends keyof OptionalSequencedPostMeta> = [K, OptionalSequencedPostMeta[K]]
+  type SetPayloadFuncArgs<K extends keyof OptionalSequencedPostMeta> = [K, OptionalSequencedPostMeta[K]];
 
   let state: PostFormState<OptionalSequencedPostMeta>;
   let setPayload: jest.Mock<void, SetPayloadFuncArgs<keyof OptionalSequencedPostMeta>>;

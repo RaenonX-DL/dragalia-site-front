@@ -12,7 +12,7 @@ import {SectionAnimationProps} from '../animation';
 
 type Props = Pick<SectionAnimationProps, 'skillEnums' | 'conditionEnumMap'> & {
   cancelUnits: Array<CancelUnit>,
-}
+};
 
 export const CancelAction = ({cancelUnits, skillEnums, conditionEnumMap}: Props) => {
   const {t, lang} = useI18n();

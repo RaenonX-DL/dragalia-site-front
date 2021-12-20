@@ -17,7 +17,7 @@ const rankingNA = '-';
 
 type Props = InputPanelCommonProps<TierNoteEdit | undefined> & {
   dimension: DimensionKey,
-}
+};
 
 export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Props) => {
   const {t} = useI18n();

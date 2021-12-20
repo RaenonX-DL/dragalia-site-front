@@ -9,7 +9,7 @@ import {IconAdd} from '../../common/icons';
 
 type Props = {
   onAdded: MouseEventHandler,
-}
+};
 
 export const ArrayAddButtonRow = ({onAdded}: Props) => (
   <Row className="mb-2">
@@ -18,6 +18,7 @@ export const ArrayAddButtonRow = ({onAdded}: Props) => (
         className="d-inline float-right"
         variant="outline-success"
         onClick={onAdded}
+        size="sm"
       >
         <IconAdd/>
       </Button>

@@ -20,7 +20,7 @@ type TierNoteEditResourceReturn = {
   keyPointLookup: KeyPointData,
   setUnitTierNote: (newNote: UnitTierNoteEdit) => void,
   isFetchingResources: boolean,
-}
+};
 
 export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceReturn => {
   const {lang} = useI18n();

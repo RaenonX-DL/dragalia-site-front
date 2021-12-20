@@ -6,7 +6,7 @@ type Props<A extends HTMLAnchorElement> = React.AnchorHTMLAttributes<A> & {
   href: string,
   newWindow?: boolean,
   children: React.ReactNode,
-}
+};
 
 export const ExternalLink = <A extends HTMLAnchorElement>({newWindow, children, ...props}: Props<A>) => {
   if (newWindow) {

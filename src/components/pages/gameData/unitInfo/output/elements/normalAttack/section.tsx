@@ -14,7 +14,7 @@ import {NormalAttackChainTab} from './chainTab';
 
 type Props = {
   unitId: number,
-}
+};
 
 export const NormalAttackSection = ({unitId}: Props) => {
   const {t, lang} = useI18n();

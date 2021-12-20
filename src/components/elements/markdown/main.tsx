@@ -10,7 +10,7 @@ import styles from './main.module.css';
 type Props = {
   children: string,
   overrideStyle?: boolean,
-}
+};
 
 export const Markdown = ({children, overrideStyle = true}: Props) => {
   return (

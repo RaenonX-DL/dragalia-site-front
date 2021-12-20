@@ -8,7 +8,7 @@ import styles from '../../main.module.css';
 import {PointListItemEntry} from '../types';
 
 
-type Props = PointListItemEntry
+type Props = PointListItemEntry;
 
 export const KeyPointListItem = ({content, id}: Props) => {
   const {lang} = useI18n();

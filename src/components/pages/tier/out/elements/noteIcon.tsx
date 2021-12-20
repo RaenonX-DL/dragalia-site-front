@@ -11,7 +11,7 @@ import {Markdown} from '../../../../elements/markdown/main';
 type Props = {
   tierNote: TierNote,
   iconClassName: string,
-}
+};
 
 export const TierNoteIcon = ({iconClassName, tierNote}: Props) => {
   const [modalState, setModalState] = React.useState<ModalStateFix>({

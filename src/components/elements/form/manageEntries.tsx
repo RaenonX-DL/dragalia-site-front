@@ -4,6 +4,7 @@ import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
+import {SlicedEntryBar} from '../common/entryBar';
 import {AjaxForm} from './ajax/main';
 import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
@@ -14,11 +15,10 @@ type State<E> = {
   updateStatus: null | ApiResponseCode,
   updating: boolean,
   isInit: boolean,
-}
+};
 
 type Props<E, I, R extends BaseResponse> = {
   data: Array<E>,
-  uid: string,
   getElementUniqueIdentifier: (element: E) => I,
   getSubmitPromise: (updatedArray: Array<E>) => Promise<R | FailedResponse>,
   isEntryValid: (element: E) => boolean,
@@ -29,7 +29,8 @@ type Props<E, I, R extends BaseResponse> = {
     idx: number,
     counter: Map<I, number>,
   ) => React.ReactElement,
-}
+  elemRenderCount?: number,
+};
 
 export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   data,
@@ -38,6 +39,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   isEntryValid,
   generateNewElement,
   renderEntries,
+  elemRenderCount,
 }: Props<E, I, R>) => {
   const {t} = useI18n();
 
@@ -47,6 +49,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
     updating: false,
     isInit: true,
   });
+  const [elemCount, setElemCount] = React.useState(elemRenderCount || -1); // -1 for unlimited
 
   const elementCounter = getElementCounter(state.data.map((entry) => getElementUniqueIdentifier(entry)));
 
@@ -89,8 +92,19 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         })}
         generateNewElement={generateNewElement}
         renderEntries={(...props) => renderEntries(...props, elementCounter)}
+        elemCount={elemCount}
         addToTop
       />
+      <div className="mb-2"/>
+      {
+        elemRenderCount &&
+        <SlicedEntryBar
+          resultCount={elemCount}
+          setResultCount={setElemCount}
+          renderCount={elemRenderCount}
+          maxCount={state.data.length}
+        />
+      }
     </AjaxForm>
   );
 };

@@ -9,7 +9,7 @@ import {TierNoteIcon} from './noteIcon';
 
 export type RankingProps = {
   tierNote?: TierNote,
-}
+};
 
 export const TierRanking = ({tierNote}: RankingProps) => {
   if (!tierNote) {

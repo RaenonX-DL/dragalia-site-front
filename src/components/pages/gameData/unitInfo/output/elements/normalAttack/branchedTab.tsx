@@ -12,7 +12,7 @@ import {SectionSubTitle} from '../title';
 
 type Props = {
   branchedChain: NormalAttackBranchedChain,
-}
+};
 
 export const NormalAttackBranchedTab = ({branchedChain}: Props) => {
   const {t} = useI18n();

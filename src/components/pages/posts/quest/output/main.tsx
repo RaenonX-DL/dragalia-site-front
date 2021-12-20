@@ -16,7 +16,7 @@ import {QuestPositionOutput} from './positional';
 
 type Props = {
   post: QuestPostGetResponse,
-}
+};
 
 export const QuestPostOutput = ({post}: Props) => {
   const {t, lang} = useI18n();

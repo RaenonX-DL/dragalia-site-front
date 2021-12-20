@@ -11,7 +11,7 @@ import {InfoBlock} from '../info';
 
 type EntryProps = {
   info: OfficialAbilityInfo,
-}
+};
 
 export const OfficialAbilityEntry = ({info}: EntryProps) => {
   const {lang} = useI18n();

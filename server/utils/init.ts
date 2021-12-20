@@ -9,7 +9,7 @@ import {isProduction} from './misc';
 type CreateAppReturn = {
   fastifyApp: FastifyInstance,
   nextApp: NextServer,
-}
+};
 
 export const createApp = async (): Promise<CreateAppReturn> => {
   const nextApp = next({

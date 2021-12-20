@@ -10,7 +10,7 @@ import {NavDropdownEntry} from './types';
 type Props = {
   title: string,
   items: Array<NavDropdownEntry>,
-}
+};
 
 export const NavDropdownMenu = ({title, items}: Props) => {
   const {pathnameNoLang} = useNextRouter();

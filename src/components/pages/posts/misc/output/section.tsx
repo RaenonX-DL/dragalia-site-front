@@ -8,7 +8,7 @@ import {CollapsibleSectionedContent} from '../../../../elements/posts/output/sec
 
 type Props = {
   sections: Array<MiscPostSection>
-}
+};
 
 export const MiscSectionOutput = ({sections}: Props) => {
   return (

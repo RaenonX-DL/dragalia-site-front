@@ -4,13 +4,10 @@ import {getSession} from 'next-auth/client';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
-import '../styles/bootstrap.css';
-import '../styles/bsIcons.css';
-import '../styles/index.css';
-import '../styles/scrollbar.scss';
-import '../styles/section.css';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Error404} from '../src/components/error/404';
@@ -24,10 +21,16 @@ import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
 import {ResourceLoader} from '../src/utils/services/resources/loader';
 
+import '../styles/bootstrap.css';
+import '../styles/bsIcons.css';
+import '../styles/index.css';
+import '../styles/scrollbar.scss';
+import '../styles/section.css';
+
 
 type PageProps = AppReactContextValue & {
   isNotFound: boolean,
-}
+};
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {
@@ -83,7 +86,13 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
               <Error404/> :
               <Container className="p-3">
                 <GlobalAlert/>
-                <Component {...pageProps}/>
+                <Row>
+                  <Col md={1}/>
+                  <Col>
+                    <Component {...pageProps}/>
+                  </Col>
+                  <Col md={1}/>
+                </Row>
               </Container>
           }
           <Footer/>
@@ -98,7 +107,7 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   const appProps = await App.getInitialProps(appContext) as AppInitialProps;
   const session = await getSession(appContext.ctx);
 
-  // Taking this variable out to force type checking on `pageProps`
+  // Taking `pageProps` out to force type checking
   // noinspection UnnecessaryLocalVariableJS
   const pageProps: PageProps = {
     ...await getPageMeta(appContext),

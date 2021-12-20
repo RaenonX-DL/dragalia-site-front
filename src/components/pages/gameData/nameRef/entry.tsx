@@ -17,7 +17,7 @@ type UnitNameRefEntryProps = {
   onChanged: ArrayFormOnChangeHandler<UnitNameRefEntryApi>,
   isNameInvalid: boolean,
   unitInfoMap: UnitInfoMap<number>,
-}
+};
 
 export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}: UnitNameRefEntryProps) => {
   const {t, lang} = useI18n();

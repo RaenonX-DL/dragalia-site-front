@@ -6,7 +6,7 @@ import {ExpressionReplaceDirection, ExpressionReplaceReturn} from './types';
 type ReplaceResult = {
   isChanged: boolean,
   replacedExpression: string,
-}
+};
 
 const replace = (expression: string, src: RegExp, dst: string): ReplaceResult => {
   const replacedExpression = expression.replace(src, dst);

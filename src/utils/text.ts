@@ -10,7 +10,7 @@ const converter = Converter({from: 'cn', to: 't'});
 type TransformOptions = {
   caseInsensitive: boolean,
   variantInsensitive: boolean,
-}
+};
 
 export const transformForSearch =(text: string, options?: DeepPartial<TransformOptions>): string => {
   const transformOptions: TransformOptions = overrideObject(
@@ -32,4 +32,8 @@ export const transformForSearch =(text: string, options?: DeepPartial<TransformO
   }
 
   return text;
+};
+
+export const regexEscape = (s: string): string => {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };

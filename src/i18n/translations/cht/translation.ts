@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api/other/unit';
+import {UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -15,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: '遊戲資訊',
-      titleActive: '主動技能',
-      titleEx: 'EX / CEX',
-      titleOthers: '其他',
-      titlePassive: '被動技能',
-      titleSkillAtk: '攻擊技能',
-      titleSkillSup: '支援技能',
-      titleStory: '故事',
-    },
     ex: {
       name: {
         filterElement: '角色屬性',
@@ -351,6 +341,7 @@ export const translation: TranslationStruct = {
     tools: {
       titleSelf: '遊戲工具',
       rotation: '輪轉計算',
+      enmity: '背水倍率',
     },
     unitInfo: {
       header: {
@@ -402,6 +393,7 @@ export const translation: TranslationStruct = {
       text: {
         total: '(總計)',
         relatedLinks: '相關連結',
+        iconOnly: '只顯示圖片',
       },
       tips: {
         clickNameForLinks: '點擊上方角色名稱以查看相關連結。',
@@ -498,6 +490,59 @@ export const translation: TranslationStruct = {
       status: {
         updated: '更新成功！',
         error: '更新失敗: {{error}}',
+      },
+    },
+    calc: {
+      enmity: {
+        mod: {
+          enmity: {
+            original: {
+              title: '背水倍率',
+              description: '所有裝備加總起來的背水倍率。',
+            },
+            effective: {
+              title: '有效背水倍率',
+              description: '根據當前 HP %，實際有效的背水倍率。',
+            },
+          },
+          skill: {
+            original: {
+              title: '技能倍率',
+              description: '原始技能倍率。',
+            },
+            effective: {
+              title: '有效技能倍率',
+              description: '套用有效背水倍率後，實際的技能倍率。',
+            },
+          },
+        },
+        hp: {
+          currentPct: {
+            title: 'HP %',
+            description: '目前的 HP %。',
+          },
+          val: {
+            current: {
+              title: '當前 HP',
+              description: '目前的實數 HP。',
+            },
+            max: {
+              title: '最大 HP',
+              description: 'HP 上限值。',
+            },
+          },
+        },
+        title: {
+          mod: '倍率',
+          hp: 'HP',
+        },
+      },
+    },
+    datamine: {
+      catalog: {
+        timestamp: '時間',
+        version: '版本號',
+        action: '動作',
       },
     },
   },
@@ -677,6 +722,16 @@ export const translation: TranslationStruct = {
           title: '攻擊技能搜尋',
           description: '各攻擊技能資訊搜尋頁面。',
         },
+        datamine: {
+          index: {
+            title: '解包資訊一覽',
+            description: '遊戲資料解包資訊一覽頁面。',
+          },
+          detail: {
+            title: '解包資訊 - {{versionCode}}',
+            description: '遊戲資料版本號 {{versionCode}} 的解包資訊頁面。',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -692,6 +747,12 @@ export const translation: TranslationStruct = {
         name: {
           title: '物件名稱設定',
           description: '設定物件名稱的頁面。',
+        },
+      },
+      calc: {
+        enmity: {
+          title: '背水倍率計算機',
+          description: '計算背水倍率在特定 HP，或是要達到特定背水倍率所需要的 HP 的工具。',
         },
       },
       story: {
@@ -720,6 +781,17 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
+    gameData: {
+      self: '遊戲資訊',
+      passive: '被動技能',
+      ex: 'EX / CEX',
+      active: '主動技能',
+      skillAtk: '攻擊技能',
+      skillSup: '支援技能',
+      others: '其他',
+      story: '故事',
+      datamine: '解包',
+    },
     unitInfo: '角色/龍族索引',
     unitTier: '評級',
   },

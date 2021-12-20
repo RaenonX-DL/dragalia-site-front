@@ -27,6 +27,6 @@ export type BackupData = {
   },
   quest: Omit<QuestPostPublishPayload, 'uid'> | null,
   misc: Omit<MiscPostPublishPayload, 'uid'> | null,
-}
+};
 
 export type BackupState = StateBase & BackupData;

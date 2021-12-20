@@ -21,7 +21,7 @@ export type FormMetaProps<P extends PostMeta, R extends PostIdCheckResponse> = P
   fnIdCheck: (
     uid: string, seqId: number | null, langCode: SupportedLanguages,
   ) => Promise<R>,
-}
+};
 
 export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends PostIdCheckResponse>({
   formState,

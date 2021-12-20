@@ -15,7 +15,7 @@ export type LinkGenerator = (postId: number) => string;
 
 export type PostEntryBadgeProps<E extends SequencedPostInfo> = {
   entry: E,
-}
+};
 
 export type PostEntryProps<E extends SequencedPostInfo> = {
   generateLink: LinkGenerator,

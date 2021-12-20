@@ -8,8 +8,8 @@ export type UseUnitInfoReturn = {
   unitInfoMap: UnitInfoMap<number>,
   getUnitName: FuncGetUnitName,
   isFetched: boolean,
-}
+};
 
 export type UseUnitDataReturn = {
   nameRef: UnitNameRefData,
-}
+};

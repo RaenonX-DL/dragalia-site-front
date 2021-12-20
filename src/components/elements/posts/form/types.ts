@@ -10,9 +10,9 @@ export type PostFormState<P extends PostMeta> = {
   payload: P,
   isIdAvailable: boolean,
   isPreloaded: boolean,
-}
+};
 
-export type PostFormSetPayloadFunc<P> = <K extends keyof P>(key: K, newValue: P[K]) => void
+export type PostFormSetPayloadFunc<P> = <K extends keyof P>(key: K, newValue: P[K]) => void;
 
 /**
  * Props of a post form section that only contains payload data.
@@ -20,14 +20,14 @@ export type PostFormSetPayloadFunc<P> = <K extends keyof P>(key: K, newValue: P[
 export type PostFormDataProps<P extends PostMeta> = {
   formState: PostFormState<P>,
   setPayload: PostFormSetPayloadFunc<P>,
-}
+};
 
 /**
  * Props of a post form section that controls the form.
  */
 export type PostFormControlProps<P extends PostMeta> = PostFormDataProps<P> & {
   setAvailability: (availability: boolean) => void,
-}
+};
 
 /**
  * Props for the form that fetches some data.
@@ -35,7 +35,7 @@ export type PostFormControlProps<P extends PostMeta> = PostFormDataProps<P> & {
 export type PostFormFetchProps<P extends PostMeta, R extends PostEditResponse> = {
   fnSendRequest: (payload: P) => Promise<R>,
   fnProcessPayload?: (payload: P) => PromiseLike<P>,
-}
+};
 
 /**
  * Props of the base post form.
@@ -52,7 +52,7 @@ export type PostFormBaseProps<P extends PostMeta, R extends PostEditResponse> = 
   ) => React.ReactElement,
   onSubmitSuccess?: () => void,
   onUpdated?: (payload: P) => void,
-}
+};
 
 /**
  * Props of the main post form.

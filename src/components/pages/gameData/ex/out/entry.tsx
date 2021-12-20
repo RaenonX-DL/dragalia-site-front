@@ -13,7 +13,7 @@ import {ExAbility} from './exUnit';
 
 type ExAbilityEntryProps = Optional<CharaExAbilityDataEntry, 'chara'> & {
   conditionEnums: ConditionEnumMap,
-}
+};
 
 export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbilityEntryProps) => {
   const {t, lang} = useI18n();

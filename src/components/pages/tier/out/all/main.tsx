@@ -7,7 +7,7 @@ import {PropsUseEntryPack, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
 
 
-type Props = PropsUseKeyPointData & PropsUseEntryPack
+type Props = PropsUseKeyPointData & PropsUseEntryPack;
 
 export const TierListOutputShowAll = ({entryPackHasTierNote, entryPackNoTierNote, keyPointsData}: Props) => {
   const entryPackMerged = [...entryPackHasTierNote, ...entryPackNoTierNote];

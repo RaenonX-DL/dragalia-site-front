@@ -3,9 +3,8 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages} from '../../../api-def/api/other/lang';
-import {DepotPaths} from '../../../api-def/resources/paths';
-import {EnumEntry} from '../../../api-def/resources/types/enum';
+import {SupportedLanguages} from '../../../api-def/api';
+import {DepotPaths, EnumEntry} from '../../../api-def/resources';
 import {EnumEntryImageIcon} from './enumIcon';
 
 

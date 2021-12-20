@@ -10,7 +10,7 @@ import {QuestPostForm} from './main';
 
 type Props<R extends QuestPostGetResponse> = {
   post: R,
-}
+};
 
 export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) => {
   const context = React.useContext(AppReactContext);
