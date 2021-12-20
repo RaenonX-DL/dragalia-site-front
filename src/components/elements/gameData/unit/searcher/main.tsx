@@ -3,11 +3,10 @@ import React from 'react';
 
 import {EnumEntry, UnitInfoData} from '../../../../../api-def/resources';
 import {AppReactContext} from '../../../../../context/app/main';
-import {useI18n} from '../../../../../i18n/hook';
 import {scrollRefToTop} from '../../../../../utils/scroll';
 import {useUnitData, useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
-import {ButtonBar} from '../../../common/buttonBar';
 import {CheckOption} from '../../../common/check/types';
+import {SlicedEntryBar} from '../../../common/entryBar';
 import {UnitFilter, UnitFilterProps} from '../filter/main';
 import {UnitFilterInputData} from '../filter/types';
 import {getFilteredUnitInfo} from '../filter/utils';
@@ -48,7 +47,6 @@ export const UnitSearcher = <
   isUnitPrioritized,
   isLoading,
 }: Props<S, D, E, E2, V>) => {
-  const {t} = useI18n();
   const {charaInfo, dragonInfo, isFetched} = useUnitInfo();
   const {nameRef} = useUnitData();
 
@@ -104,19 +102,11 @@ export const UnitSearcher = <
       </div>
       {
         isSliced &&
-        <ButtonBar
-          buttons={[
-            {
-              text: t((t) => t.misc.showMore),
-              variant: 'outline-success',
-              onClick: () => setResultCount(resultCount + renderCount),
-            },
-            {
-              text: t((t) => t.misc.showAll),
-              variant: 'outline-warning',
-              onClick: () => setResultCount(-1),
-            },
-          ]}
+        <SlicedEntryBar
+          resultCount={resultCount}
+          setResultCount={setResultCount}
+          renderCount={renderCount}
+          maxCount={prioritizedUnitInfo.length + otherUnitInfo.length}
         />
       }
     </>

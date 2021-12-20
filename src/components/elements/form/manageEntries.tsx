@@ -4,7 +4,7 @@ import {ApiResponseCode, ApiResponseCodeUtil, BaseResponse, FailedResponse} from
 import {useI18n} from '../../../i18n/hook';
 import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
-import {ButtonBar} from '../common/buttonBar';
+import {SlicedEntryBar} from '../common/entryBar';
 import {AjaxForm} from './ajax/main';
 import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
 import {UpdateStatus} from './updateStatus';
@@ -97,20 +97,12 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
       />
       <div className="mb-2"/>
       {
-        elemRenderCount && elemCount > 0 && elemCount < state.data.length &&
-        <ButtonBar
-          buttons={[
-            {
-              text: t((t) => t.misc.showMore),
-              variant: 'outline-success',
-              onClick: () => setElemCount(elemCount + elemRenderCount),
-            },
-            {
-              text: t((t) => t.misc.showAll),
-              variant: 'outline-warning',
-              onClick: () => setElemCount(-1),
-            },
-          ]}
+        elemRenderCount &&
+        <SlicedEntryBar
+          resultCount={elemCount}
+          setResultCount={setElemCount}
+          renderCount={elemRenderCount}
+          maxCount={state.data.length}
         />
       }
     </AjaxForm>
