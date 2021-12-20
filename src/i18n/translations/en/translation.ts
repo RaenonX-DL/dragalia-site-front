@@ -15,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: 'Game Data',
-      titleActive: 'Active',
-      titleEx: 'Co-ability / CCA',
-      titleOthers: 'Others',
-      titlePassive: 'Passive',
-      titleSkillAtk: 'Skill (Attack)',
-      titleSkillSup: 'Skill (Support)',
-      titleStory: 'Story',
-    },
     ex: {
       name: {
         filterElement: 'Element',
@@ -772,6 +762,16 @@ export const translation: TranslationStruct = {
           title: 'Attacking skill lookup',
           description: 'Page to search for all attacking skills in the game.',
         },
+        datamine: {
+          index: {
+            title: 'Datamine info index',
+            description: 'Datamine info index page.',
+          },
+          detail: {
+            title: 'Datamine - {{versionCode}}',
+            description: 'Datamine info of version code {{versionCode}}.',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -822,6 +822,17 @@ export const translation: TranslationStruct = {
     suffix: ' | Dragalia Lost Info by OM',
   },
   nav: {
+    gameData: {
+      self: 'Game Data',
+      passive: 'Passive',
+      ex: 'Co-ability / CCA',
+      active: 'Active',
+      skillAtk: 'Skill (Attack)',
+      skillSup: 'Skill (Support)',
+      others: 'Others',
+      story: 'Story',
+      datamine: 'Datamine',
+    },
     unitInfo: 'Chara/Dragon Info',
     unitTier: 'Tier List',
   },

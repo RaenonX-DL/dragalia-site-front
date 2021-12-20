@@ -22,16 +22,6 @@ export type TranslationStruct = {
     tierSSS: string,
   },
   game: {
-    data: {
-      titleSelf: string,
-      titleActive: string,
-      titleEx: string,
-      titleOthers: string,
-      titlePassive: string,
-      titleSkillAtk: string,
-      titleSkillSup: string,
-      titleStory: string,
-    },
     ex: {
       name: {
         filterElement: string,
@@ -591,6 +581,10 @@ export type TranslationStruct = {
         info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
+        datamine: {
+          index: PageMetaTranslations,
+          detail: PageMetaTranslations,
+        },
       },
       auth: {
         signIn: PageMetaTranslations,
@@ -618,6 +612,17 @@ export type TranslationStruct = {
   nav: {
     unitInfo: string,
     unitTier: string,
+    gameData: {
+      self: string,
+      passive: string,
+      ex: string,
+      active: string,
+      skillAtk: string,
+      skillSup: string,
+      others: string,
+      story: string,
+      datamine: string,
+    },
   },
   posts: {
     analysis: {

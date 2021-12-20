@@ -10,45 +10,50 @@ export const NavDropdownGameData = () => {
 
   return (
     <NavDropdownMenu
-      title={t((t) => t.game.data.titleSelf)}
+      title={t((t) => t.nav.gameData.self)}
       items={[
         {
           type: 'header',
-          text: t((t) => t.game.data.titlePassive),
+          text: t((t) => t.nav.gameData.passive),
         },
         {
           type: 'item',
           path: GeneralPath.EX,
-          text: t((t) => t.game.data.titleEx),
+          text: t((t) => t.nav.gameData.ex),
         },
         {
           type: 'divider',
         },
         {
           type: 'header',
-          text: t((t) => t.game.data.titleActive),
+          text: t((t) => t.nav.gameData.active),
         },
         {
           type: 'item',
           path: GeneralPath.SKILL_ATK,
-          text: t((t) => t.game.data.titleSkillAtk),
+          text: t((t) => t.nav.gameData.skillAtk),
         },
         {
           type: 'item',
           path: GeneralPath.SKILL_SUP,
-          text: t((t) => t.game.data.titleSkillSup),
+          text: t((t) => t.nav.gameData.skillSup),
         },
         {
           type: 'divider',
         },
         {
           type: 'header',
-          text: t((t) => t.game.data.titleOthers),
+          text: t((t) => t.nav.gameData.others),
         },
         {
           type: 'item',
           path: GeneralPath.STORY,
-          text: t((t) => t.game.data.titleStory),
+          text: t((t) => t.nav.gameData.story),
+        },
+        {
+          type: 'item',
+          path: GeneralPath.GAME_DATAMINE_INDEX,
+          text: t((t) => t.nav.gameData.datamine),
         },
       ]}
     />

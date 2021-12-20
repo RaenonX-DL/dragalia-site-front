@@ -107,7 +107,7 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   const appProps = await App.getInitialProps(appContext) as AppInitialProps;
   const session = await getSession(appContext.ctx);
 
-  // Taking this variable out to force type checking on `pageProps`
+  // Taking `pageProps` out to force type checking
   // noinspection UnnecessaryLocalVariableJS
   const pageProps: PageProps = {
     ...await getPageMeta(appContext),

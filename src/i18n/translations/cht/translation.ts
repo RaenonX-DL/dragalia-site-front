@@ -15,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: '遊戲資訊',
-      titleActive: '主動技能',
-      titleEx: 'EX / CEX',
-      titleOthers: '其他',
-      titlePassive: '被動技能',
-      titleSkillAtk: '攻擊技能',
-      titleSkillSup: '支援技能',
-      titleStory: '故事',
-    },
     ex: {
       name: {
         filterElement: '角色屬性',
@@ -725,6 +715,16 @@ export const translation: TranslationStruct = {
           title: '攻擊技能搜尋',
           description: '各攻擊技能資訊搜尋頁面。',
         },
+        datamine: {
+          index: {
+            title: '解包資訊一覽',
+            description: '遊戲資料解包資訊一覽頁面。',
+          },
+          detail: {
+            title: '解包資訊 - {{versionCode}}',
+            description: '遊戲資料版本號 {{versionCode}} 的解包資訊頁面。',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -774,6 +774,17 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
+    gameData: {
+      self: '遊戲資訊',
+      passive: '被動技能',
+      ex: 'EX / CEX',
+      active: '主動技能',
+      skillAtk: '攻擊技能',
+      skillSup: '支援技能',
+      others: '其他',
+      story: '故事',
+      datamine: '解包',
+    },
     unitInfo: '角色/龍族索引',
     unitTier: '評級',
   },

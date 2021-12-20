@@ -15,16 +15,6 @@ export const translation: TranslationStruct = {
     tierSSS: 'Tier SSS',
   },
   game: {
-    data: {
-      titleSelf: 'ゲーム情報',
-      titleActive: 'スキル',
-      titleEx: 'EXアビ / リンクEXアビ',
-      titleOthers: '他の情報',
-      titlePassive: 'アビリティ',
-      titleSkillAtk: '攻擊スキル',
-      titleSkillSup: 'サポートスキル',
-      titleStory: 'ストーリー',
-    },
     ex: {
       name: {
         filterElement: '属性',
@@ -731,6 +721,16 @@ export const translation: TranslationStruct = {
           title: '攻撃スキル',
           description: '攻撃スキルの検索',
         },
+        datamine: {
+          index: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          detail: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+        },
       },
       auth: {
         signIn: {
@@ -780,6 +780,17 @@ export const translation: TranslationStruct = {
     suffix: ' | ドラガリ攻略 by OM',
   },
   nav: {
+    gameData: {
+      self: 'ゲーム情報',
+      passive: 'アビリティ',
+      ex: 'EXアビ / リンクEXアビ',
+      active: 'スキル',
+      skillAtk: '攻擊スキル',
+      skillSup: 'サポートスキル',
+      others: '他の情報',
+      story: 'ストーリー',
+      datamine: 'TBA',
+    },
     unitInfo: 'キャラ/ドラゴン情報',
     unitTier: 'ランキング',
   },
