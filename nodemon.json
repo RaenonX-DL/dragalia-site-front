@@ -8,6 +8,6 @@
     "src/**",
     "server/**"
   ],
-  "exec": "ts-node ./server/main.ts",
+  "exec": "ts-node --transpile-only ./server/main.ts",
   "ext": "ts,json"
 }
