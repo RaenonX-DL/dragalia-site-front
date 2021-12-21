@@ -23,7 +23,7 @@ export const UnitTierNoteDimension = ({dimension, note}: Props) => {
     <div className="section mb-2">
       <Row>
         <Col>
-          <h6>{t((t) => t.game.unitTier.dimension[dimension].name)}</h6>
+          <h6>{t((t) => t.game.unitTier.dimension[dimension])}</h6>
         </Col>
       </Row>
       <Row noGutters>

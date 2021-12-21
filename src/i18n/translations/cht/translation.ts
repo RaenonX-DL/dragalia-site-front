@@ -431,34 +431,13 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: '虛無 (單人)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以單人模式遊玩時的評級。',
-        },
-        conCoop: {
-          name: '虛無 (共鬥)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以共鬥模式遊玩時的評級。',
-        },
-        conAi: {
-          name: '虛無 (AI)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，作為 AI 時的評級。',
-        },
-        normalSolo: {
-          name: '一般 (單人)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以單人模式遊玩的評級。',
-        },
-        normalCoop: {
-          name: '一般 (共鬥)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以共鬥模式遊玩的評級。',
-        },
-        normalAi: {
-          name: '一般 (AI)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
-        },
-        sharedSkill: {
-          name: '共享技能',
-          description: '共享技能評級。只限角色。',
-        },
+        conSolo: '虛無 (單人)',
+        conCoop: '虛無 (共鬥)',
+        conAi: '虛無 (AI)',
+        normalSolo: '一般 (單人)',
+        normalCoop: '一般 (共鬥)',
+        normalAi: '一般 (AI)',
+        sharedSkill: '共享技能',
       },
       display: {
         conSolo: '虛無 (單人)',
@@ -473,6 +452,7 @@ export const translation: TranslationStruct = {
       sort: {
         unitId: '物件 ID',
         avgRanking: '平均評級',
+        lastUpdated: '最後更新時間',
       },
       alert: {
         refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',

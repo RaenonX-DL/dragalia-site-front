@@ -424,7 +424,7 @@ export type TranslationStruct = {
           },
         },
       },
-      dimension: {[dim in DimensionKey]: {name: string, description: string}},
+      dimension: {[dim in DimensionKey]: string},
       display: {[display in Display]: string},
       sort: {[sortBy in Exclude<TierSortOrder, DimensionKey>]: string},
       alert: {

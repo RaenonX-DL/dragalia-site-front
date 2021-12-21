@@ -31,18 +31,20 @@ export const sortFunc: SortFuncLookup = {
       return total / count;
     },
   }),
+  lastUpdated: sortDescending({getComparer: (element) => element.tierNote.lastUpdateEpoch}),
 };
 
 export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
   unitId: (t) => t.game.unitTier.sort.unitId,
   avgRanking: (t) => t.game.unitTier.sort.avgRanking,
-  conSolo: (t) => t.game.unitTier.dimension.conSolo.name,
-  conAi: (t) => t.game.unitTier.dimension.conAi.name,
-  conCoop: (t) => t.game.unitTier.dimension.conCoop.name,
-  normalSolo: (t) => t.game.unitTier.dimension.normalSolo.name,
-  normalAi: (t) => t.game.unitTier.dimension.normalAi.name,
-  normalCoop: (t) => t.game.unitTier.dimension.normalCoop.name,
-  sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill.name,
+  lastUpdated: (t) => t.game.unitTier.sort.lastUpdated,
+  conSolo: (t) => t.game.unitTier.dimension.conSolo,
+  conAi: (t) => t.game.unitTier.dimension.conAi,
+  conCoop: (t) => t.game.unitTier.dimension.conCoop,
+  normalSolo: (t) => t.game.unitTier.dimension.normalSolo,
+  normalAi: (t) => t.game.unitTier.dimension.normalAi,
+  normalCoop: (t) => t.game.unitTier.dimension.normalCoop,
+  sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill,
 };
 
 export const rankingColor: {[ranking in Ranking]: Property.Color} = {

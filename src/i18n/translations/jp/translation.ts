@@ -439,34 +439,13 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: '虚無 (ソロ)',
-          description: '虚無有効のクエスト中(ソロ)、キャラの評価 (例: ディアボロス)。',
-        },
-        conCoop: {
-          name: '虚無 (マルチ)',
-          description: '虚無有効のクエスト中(マルチ)、キャラの評価 (例: ディアボロス)。',
-        },
-        conAi: {
-          name: '虚無 (AI)',
-          description: '虚無有効のクエスト中(例: ディアボロス)、AIにとしての評価。',
-        },
-        normalSolo: {
-          name: '通常 (ソロ)',
-          description: '通常クエスト中(ソロ)、キャラの評価 (例: 真竜、絶級アギト)。',
-        },
-        normalCoop: {
-          name: '通常 (マルチ)',
-          description: '通常クエスト中(マルチ)、キャラの評価 (例: 真竜、絶級アギト)。',
-        },
-        normalAi: {
-          name: '通常 (AI)',
-          description: '通常クエスト中(例: 真竜、絶級アギト)、AIにとしての評価。',
-        },
-        sharedSkill: {
-          name: 'シェアスキル',
-          description: 'シェアスキルの評価。(キャラ限定)',
-        },
+        conSolo: '虚無 (ソロ)',
+        conCoop: '虚無 (マルチ)',
+        conAi: '虚無 (AI)',
+        normalSolo: '通常 (ソロ)',
+        normalCoop: '通常 (マルチ)',
+        normalAi: '通常 (AI)',
+        sharedSkill: 'シェアスキル',
       },
       display: {
         conSolo: '虚無 (ソロ)',
@@ -481,6 +460,7 @@ export const translation: TranslationStruct = {
       sort: {
         unitId: 'ユニット ID',
         avgRanking: '平均ランキング',
+        lastUpdated: 'TBA',
       },
       alert: {
         refRemoval: '特性タグが削除された場合、該当するキャラリストは閲覧不可になります。',

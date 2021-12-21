@@ -465,40 +465,13 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: 'CoN (Solo)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) in solo mode.',
-        },
-        conCoop: {
-          name: 'CoN (Co-op)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) in co-op mode.',
-        },
-        conAi: {
-          name: 'CoN (AI)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) as AI.',
-        },
-        normalSolo: {
-          name: 'Normal (Solo)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) in solo mode.',
-        },
-        normalCoop: {
-          name: 'Normal (Co-op)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) in co-op mode.',
-        },
-        normalAi: {
-          name: 'Normal (AI)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) as AI.',
-        },
-        sharedSkill: {
-          name: 'Shared Skill',
-          description: 'Shared skill ranking. Adventurer only.',
-        },
+        conSolo: 'CoN (Solo)',
+        conCoop: 'CoN (Co-op)',
+        conAi: 'CoN (AI)',
+        normalSolo: 'Normal (Solo)',
+        normalCoop: 'Normal (Co-op)',
+        normalAi: 'Normal (AI)',
+        sharedSkill: 'Shared Skill',
       },
       display: {
         conSolo: 'CoN (Solo)',
@@ -513,6 +486,7 @@ export const translation: TranslationStruct = {
       sort: {
         unitId: 'Unit ID',
         avgRanking: 'Average Ranking',
+        lastUpdated: 'Last Updated',
       },
       alert: {
         refRemoval: 'If the removed key point entry is used by any unit, ' +
