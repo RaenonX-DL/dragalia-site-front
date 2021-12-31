@@ -28,7 +28,7 @@ describe('Sequenced post list entry', () => {
   it('renders correctly', async () => {
     renderReact(() => (
       <SequencedPostEntry
-        getLink={() => fakeLink}
+        link={fakeLink}
         renderPostBadge={renderPostBadges}
         entry={entry}
       />

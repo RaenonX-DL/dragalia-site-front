@@ -25,8 +25,8 @@ describe('Post list entry', () => {
   it('renders correctly', async () => {
     renderReact(() => (
       <PostEntry
-        getLink={() => fakeLink}
-        getTitle={() => 'F7'}
+        link={fakeLink}
+        title="F7"
         renderPostBadge={renderPostBadges}
         entry={entry}
       />

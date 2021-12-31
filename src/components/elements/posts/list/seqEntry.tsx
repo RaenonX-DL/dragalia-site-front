@@ -11,14 +11,14 @@ type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
 
 export const SequencedPostEntry = <E extends SequencedPostInfo>({
   entry,
-  getLink,
+  link,
   renderPostBadge,
 }: PostEntryPropsInternal<E>) => {
   return (
     <PostEntry
       entry={entry}
-      getLink={() => getLink(entry)}
-      getTitle={() => entry.title}
+      link={link}
+      title={entry.title}
       renderPostBadge={renderPostBadge}
     />
   );

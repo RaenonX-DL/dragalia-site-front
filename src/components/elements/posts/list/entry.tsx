@@ -14,15 +14,15 @@ import {FunctionRenderPostBadge} from './types';
 
 type Props<E extends PostInfo> = {
   entry: E,
-  getLink: (entry: E) => string,
-  getTitle: (entry: E) => string,
+  link: string,
+  title: string,
   renderPostBadge: FunctionRenderPostBadge<E>,
 };
 
 export const PostEntry = <E extends PostInfo>({
   entry,
-  getLink,
-  getTitle,
+  link,
+  title,
   renderPostBadge,
 }: Props<E>) => {
   const {t, lang} = useI18n();
@@ -31,9 +31,9 @@ export const PostEntry = <E extends PostInfo>({
     <div className={styles.entry}>
       <h5>
         <InternalLink
-          href={getLink(entry)}
+          href={link}
           locale={lang}
-          content={getTitle(entry)}
+          content={title}
         />
       </h5>
       <Row noGutters>
