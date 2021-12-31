@@ -3,43 +3,37 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {SequencedPostInfo} from '../../../../api-def/api';
+import {PostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
 import {IconEdit, IconPublish} from '../../common/icons';
 import {InternalLink} from '../../common/link/internal';
 import styles from './entry.module.css';
+import {FunctionRenderPostBadge} from './types';
 
 
-export type LinkGenerator = (postId: number) => string;
-
-export type PostEntryBadgeProps<E extends SequencedPostInfo> = {
+type Props<E extends PostInfo> = {
   entry: E,
+  getLink: (entry: E) => string,
+  getTitle: (entry: E) => string,
+  renderPostBadge: FunctionRenderPostBadge<E>,
 };
 
-export type PostEntryProps<E extends SequencedPostInfo> = {
-  generateLink: LinkGenerator,
-  renderPostBadge: (badgeProps: PostEntryBadgeProps<E>) => React.ReactElement,
-};
-
-type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
-  entry: E,
-};
-
-export const PostEntry = <E extends SequencedPostInfo>({
+export const PostEntry = <E extends PostInfo>({
   entry,
-  generateLink,
+  getLink,
+  getTitle,
   renderPostBadge,
-}: PostEntryPropsInternal<E>) => {
+}: Props<E>) => {
   const {t, lang} = useI18n();
 
   return (
     <div className={styles.entry}>
       <h5>
         <InternalLink
-          href={generateLink(entry.seqId)}
+          href={getLink(entry)}
           locale={lang}
-          content={entry.title}
+          content={getTitle(entry)}
         />
       </h5>
       <Row noGutters>

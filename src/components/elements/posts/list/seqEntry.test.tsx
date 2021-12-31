@@ -3,14 +3,17 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
-import {PostInfo, SupportedLanguages} from '../../../../api-def/api';
-import {PostEntry} from './entry';
+import {SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
+import {SequencedPostEntry} from './seqEntry';
+import {PostEntryBadgeProps} from './types';
 
 
-describe('Post list entry', () => {
-  let renderPostBadges: jest.Mock;
+describe('Sequenced post list entry', () => {
+  let renderPostBadges: jest.Mock<React.ReactElement, [PostEntryBadgeProps<SequencedPostInfo>]>;
 
-  const entry: PostInfo = {
+  const entry: SequencedPostInfo = {
+    seqId: 7,
+    title: 'title 7',
     lang: SupportedLanguages.EN,
     viewCount: 777,
     modifiedEpoch: 1000000,
@@ -24,16 +27,15 @@ describe('Post list entry', () => {
 
   it('renders correctly', async () => {
     renderReact(() => (
-      <PostEntry
+      <SequencedPostEntry
         getLink={() => fakeLink}
-        getTitle={() => 'F7'}
         renderPostBadge={renderPostBadges}
         entry={entry}
       />
     ));
 
     // Check title existence and clickable
-    const linkElement = screen.getByText('F7');
+    const linkElement = screen.getByText('title 7');
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
     // Check view count existence
@@ -41,7 +43,5 @@ describe('Post list entry', () => {
     // Check meta existence
     expect(screen.getByText('', {selector: 'i.bi-cloud-arrow-up'})).toBeInTheDocument();
     expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
-    // Check badge render
-    expect(renderPostBadges).toHaveBeenCalled();
   });
 });

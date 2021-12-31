@@ -24,8 +24,8 @@ export const QuestPostList = () => {
       renderPostEntries={(response) => (
         <PostList
           entries={response.posts}
-          generateLink={(postId) => (
-            makePostUrl(PostPath.QUEST, {pid: postId, lang})
+          getLink={({seqId}) => (
+            makePostUrl(PostPath.QUEST, {pid: seqId, lang})
           )}
           renderPostBadge={(props) => <QuestEntryBadge {...props}/>}
         />

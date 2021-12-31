@@ -24,8 +24,8 @@ export const MiscPostList = () => {
       renderPostEntries={(response) => (
         <PostList
           entries={response.posts}
-          generateLink={(postId) => (
-            makePostUrl(PostPath.MISC, {pid: postId, lang})
+          getLink={({seqId}) => (
+            makePostUrl(PostPath.MISC, {pid: seqId, lang})
           )}
           renderPostBadge={(props) => <MiscEntryBadge {...props}/>}
         />

@@ -3,7 +3,8 @@ import React from 'react';
 import {SequencedPostInfo} from '../../../../api-def/api';
 import {transformForSearch} from '../../../../utils/text';
 import {Search} from '../../input/search/main';
-import {PostEntry, PostEntryProps} from './entry';
+import {SequencedPostEntry} from './seqEntry';
+import {PostEntryProps} from './types';
 
 
 type PostListProps<E extends SequencedPostInfo> = PostEntryProps<E> & {
@@ -17,7 +18,7 @@ export const PostList = <E extends SequencedPostInfo>({entries, ...props}: PostL
       isOptionMatchSearch={(option, searchText) => (
         transformForSearch(option.title, {variantInsensitive: false}).includes(searchText)
       )}
-      renderMatchedSelection={(entry) => <PostEntry entry={entry} {...props}/>}
+      renderMatchedSelection={(entry) => <SequencedPostEntry entry={entry} {...props}/>}
       height="70vh"
     />
   );
