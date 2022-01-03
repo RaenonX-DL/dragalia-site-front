@@ -62,7 +62,7 @@ const SpecialThanks = () => {
         <ul>
           <li><ExternalLink href="https://patreon.com/RaenonX" newWindow>Patreon</ExternalLink></li>
           <li><ExternalLink href="https://ko-fi.com/RaenonX" newWindow>Ko-Fi</ExternalLink></li>
-          <li><ExternalLink href="https://rnnx.cc/Paypal" newWindow>Paypal</ExternalLink></li>
+          <li><ExternalLink href="http://rnnx.cc/Paypal" newWindow>Paypal</ExternalLink></li>
         </ul>
       </div>
     </>
