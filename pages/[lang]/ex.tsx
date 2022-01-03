@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../src/api-def/resources';
+import {AdsToolBottom, AdsToolTop} from '../../src/components/elements/common/ads/main';
 import {useFetchState} from '../../src/components/elements/common/fetch';
 import {ExAbilityInput} from '../../src/components/pages/gameData/ex/in/main';
 import {InputData} from '../../src/components/pages/gameData/ex/in/types';
@@ -39,27 +40,31 @@ const ExAbilityPage = () => {
   fetchConditionEnums();
 
   return (
-    <Row>
-      <Col lg={4} className="mb-3">
-        <ExAbilityInput
-          onSearchRequested={(inputData: InputData) => () => {
-            GoogleAnalytics.abilitySearch('EX', inputData);
+    <>
+      <AdsToolTop/>
+      <Row>
+        <Col lg={4} className="mb-3">
+          <ExAbilityInput
+            onSearchRequested={(inputData: InputData) => () => {
+              GoogleAnalytics.abilitySearch('EX', inputData);
 
-            scrollRefToTop(entryCol);
+              scrollRefToTop(entryCol);
 
-            // This function is expensive, scroll first
-            setInputDataForward(inputData);
-          }}
-        />
-      </Col>
-      <Col ref={entryCol} lg={8}>
-        <ExAbilityOutput
-          inputData={inputDataForward}
-          exAbilityData={exAbility.data}
-          conditionEnums={conditionEnums.data}
-        />
-      </Col>
-    </Row>
+              // This function is expensive, scroll first
+              setInputDataForward(inputData);
+            }}
+          />
+        </Col>
+        <Col ref={entryCol} lg={8}>
+          <ExAbilityOutput
+            inputData={inputDataForward}
+            exAbilityData={exAbility.data}
+            conditionEnums={conditionEnums.data}
+          />
+        </Col>
+      </Row>
+      <AdsToolBottom/>
+    </>
   );
 };
 
