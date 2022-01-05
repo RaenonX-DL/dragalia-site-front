@@ -47,7 +47,8 @@ const SpecialThanks = () => {
         </li>
         <li>
           Ting Chen&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>
+          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
+          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
           陳泓維&nbsp;
