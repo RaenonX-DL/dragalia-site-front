@@ -544,7 +544,6 @@ export type TranslationStruct = {
       lastModified: string,
       lastUpdated: string,
     },
-    unitType: {[type in UnitType]: string},
     collapse: string,
     collapseAll: string,
   },

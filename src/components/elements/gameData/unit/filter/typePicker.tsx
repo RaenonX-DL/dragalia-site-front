@@ -20,11 +20,11 @@ export const UnitTypePicker = <S extends string, D extends UnitFilterInputData<S
 
   const unitTypes: Array<CheckOption & {code: UnitType}> = [
     {
-      text: t((t) => t.misc.unitType[UnitType.CHARACTER]),
+      text: t((t) => t.enum.unitType[UnitType.CHARACTER]),
       code: UnitType.CHARACTER,
     },
     {
-      text: t((t) => t.misc.unitType[UnitType.DRAGON]),
+      text: t((t) => t.enum.unitType[UnitType.DRAGON]),
       code: UnitType.DRAGON,
     },
   ];
