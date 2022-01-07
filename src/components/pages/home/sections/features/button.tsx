@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import {ButtonVariant} from 'react-bootstrap/types';
 
 import {GeneralPath} from '../../../../../const/path/definitions';
+import {useI18n} from '../../../../../i18n/hook';
+import {makeGeneralUrl} from '../../../../../utils/path/make';
 import styles from './main.module.css';
 
 
@@ -15,9 +17,11 @@ type Props = {
 };
 
 export const FeatureButton = ({path, title, variant}: Props) => {
+  const {lang} = useI18n();
+
   return (
     <Col lg={6} className={styles.featureOuter}>
-      <Button className={styles.feature} href={path} variant={variant} size="lg" block>
+      <Button className={styles.feature} href={makeGeneralUrl(path, {lang})} variant={variant} size="lg" block>
         {title}
       </Button>
     </Col>
