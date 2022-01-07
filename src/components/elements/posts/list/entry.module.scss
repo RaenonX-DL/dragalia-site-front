@@ -3,6 +3,10 @@ div {
     padding: 0.5rem 0.8rem;
     border-bottom: gray 1px solid;
   }
+
+  &.entry:last-child {
+    border-bottom: none;
+  }
 }
 
 small {

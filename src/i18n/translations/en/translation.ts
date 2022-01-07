@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -591,11 +591,6 @@ export const translation: TranslationStruct = {
         'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
-      welcome: 'Welcome to the Dragalia Lost info website constructed and maintained ' +
-        'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
-        'Most of the pages and the features are still under construction.\n\n' +
-        '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
-        'Head to the pages/functions which are still under construction to get more details.',
       videoTips: 'For the Chinese audience who can\'t see the videos, ' +
         'please visit [my Bilibili](https://space.bilibili.com/1052053443).',
     },
@@ -619,10 +614,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: 'Last Modified',
       lastUpdated: 'Last Updated',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: 'Character',
-      [UnitType.DRAGON]: 'Dragon',
     },
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
@@ -909,10 +900,41 @@ export const translation: TranslationStruct = {
       video: 'Video',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: 'Stats',
+        header: {
+          perCountry: 'Active Users by Country',
+          perLang: 'Active Users by Language',
+        },
+        content: {
+          totalLangUser: 'Total: {{total}}',
+        },
+        ui: {
+          stacked: 'Switch to Stacked',
+          separated: 'Switch to Separated',
+          country: 'Country',
+          user: 'User',
+          periodUnitDay: 'Days',
+        },
+      },
+      features: 'Site Features',
+      recentlyUpdated: 'Recently Updated Posts',
+    },
+    message: {
+      features: 'Check the navigation bar for more features.',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: 'Character',
       [UnitType.DRAGON]: 'Dragon',
+    },
+    postType: {
+      [PostType.ANALYSIS]: 'Analysis',
+      [PostType.QUEST]: 'Quest Guides',
+      [PostType.MISC]: 'Misc Posts',
     },
   },
 };

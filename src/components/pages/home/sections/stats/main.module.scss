@@ -1,0 +1,22 @@
+@use "../../../../../../styles/colors";
+
+div {
+  &.statsSection {
+    height: 23rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &.statsSectionOuter {
+    display: flex;
+    flex-direction: column;
+
+    background-color: colors.$color-black-07;
+    border-radius: 0.5rem;
+  }
+
+  &.statsSectionOuter &.statsSectionFiller {
+    flex-grow: 1;
+
+    padding: 0.5rem;
+  }
+}

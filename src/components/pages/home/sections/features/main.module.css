@@ -1,0 +1,11 @@
+a.feature {
+  line-height: 5rem;
+}
+
+@media (max-width: 992px) {
+  div.featureOuter {
+    margin-bottom: 1rem;
+  }
+}
+
+/*# sourceMappingURL=main.module.css.map */

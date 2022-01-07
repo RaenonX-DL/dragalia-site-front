@@ -1,0 +1,13 @@
+a {
+  &.feature {
+    height: 5rem;
+  }
+}
+
+div {
+  &.featureOuter {
+    @media (max-width: 992px) {
+      margin-bottom: 1rem;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -554,9 +554,6 @@ export const translation: TranslationStruct = {
         '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
         '### Email 通知系統完成後\n\n' +
         '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
-      welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
-        '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
-        '點選建置中的頁面可以查看相關說明。',
       videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
@@ -579,10 +576,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: '最後修改於',
       lastUpdated: '最後更新於',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: '角色',
-      [UnitType.DRAGON]: '龍族',
     },
     collapse: '收摺/展開',
     collapseAll: '全部收摺/展開',
@@ -861,10 +854,41 @@ export const translation: TranslationStruct = {
       video: '影片',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: '統計資料',
+        header: {
+          perCountry: '各國週期內使用者',
+          perLang: '各語系使用者',
+        },
+        content: {
+          totalLangUser: '總計: {{total}}',
+        },
+        ui: {
+          stacked: '切換為 堆疊',
+          separated: '切換為 單獨',
+          country: '國別',
+          user: '使用者',
+          periodUnitDay: '日',
+        },
+      },
+      features: '網站功能',
+      recentlyUpdated: '文章更新',
+    },
+    message: {
+      features: '歡迎瀏覽導引列以了解更多網站功能。',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: '角色',
       [UnitType.DRAGON]: '龍族',
+    },
+    postType: {
+      [PostType.ANALYSIS]: '角色/龍族評測',
+      [PostType.QUEST]: '高難攻略',
+      [PostType.MISC]: '其他文章',
     },
   },
 };

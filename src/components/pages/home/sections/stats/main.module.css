@@ -1,0 +1,16 @@
+div.statsSection {
+  height: 23rem;
+  margin-bottom: 0.75rem;
+}
+div.statsSectionOuter {
+  display: flex;
+  flex-direction: column;
+  background-color: #070707;
+  border-radius: 0.5rem;
+}
+div.statsSectionOuter div.statsSectionFiller {
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

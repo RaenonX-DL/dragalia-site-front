@@ -21,7 +21,7 @@ import {
   DragonAnalysisPublishPayload,
   FailedResponse,
   GetAtkSkillPresetPayload,
-  GetAtkSkillPresetResponse,
+  GetAtkSkillPresetResponse, HomepageLandingPayload, HomepageLandingResponse,
   KeyPointEntryUpdate,
   KeyPointGetPayload,
   KeyPointGetResponse,
@@ -506,6 +506,21 @@ export class ApiRequestSender {
       'GET',
       ApiEndPoints.DATA_KEY_POINT,
       {uid, lang, id},
+    );
+  }
+
+  /**
+   * Get the data necessary for rendering the homepage.
+   *
+   * @param {string} uid user ID
+   * @param {SupportedLanguages} lang current in-use language
+   * @return {Promise<KeyPointInfoResponse | FailedResponse>} promise returned from `fetch`
+   */
+  static getHomepageLanding(uid: string, lang: SupportedLanguages) {
+    return ApiRequestSender.sendRequest<HomepageLandingResponse | FailedResponse, HomepageLandingPayload>(
+      'GET',
+      ApiEndPoints.HOME,
+      {uid, lang},
     );
   }
 

@@ -6,7 +6,7 @@ import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/main';
 import {PostLookupPage} from '../../../../elements/posts/list/page';
-import {MiscEntryBadge} from './listBadges';
+import {MiscEntryBadge} from './badge';
 
 
 export const MiscPostList = () => {

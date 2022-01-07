@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -560,9 +560,6 @@ export const translation: TranslationStruct = {
       constructing: '工事中です。\n\n' +
         '### 完成したら各SNSの上でお知らせします。(例: 掲示板、Facebook 、LINE…など) ' +
         '\n\n### メール通知機能も作成中ですのでお待ちください。',
-      welcome: '同盟「OM」製作のドラガリ攻略サイトへようこそ！工事中の機能やページも多いですが、どうぞよろしくお願いいたします。\n\n' +
-        '現在 **高難易度クエスト攻略、キャラドラゴン評価** のページの一部は完成しています、ご覧ください。\n\n' +
-        'ページを選択したら說明もついてます。',
       videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
@@ -585,10 +582,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: '最後編集は',
       lastUpdated: '最後更新は',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: 'キャラ',
-      [UnitType.DRAGON]: 'ドラゴン',
     },
     collapse: '展開 / 折り畳み',
     collapseAll: '全部展開 / 折り畳み',
@@ -870,10 +863,41 @@ export const translation: TranslationStruct = {
       video: '関する動画',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: 'TBA',
+        header: {
+          perCountry: 'TBA',
+          perLang: 'TBA',
+        },
+        content: {
+          totalLangUser: 'TBA',
+        },
+        ui: {
+          stacked: 'TBA',
+          separated: 'TBA',
+          country: 'TBA',
+          user: 'TBA',
+          periodUnitDay: 'TBA',
+        },
+      },
+      features: 'TBA',
+      recentlyUpdated: 'TBA',
+    },
+    message: {
+      features: 'TBA',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
+    },
+    postType: {
+      [PostType.ANALYSIS]: 'TBA',
+      [PostType.QUEST]: 'TBA',
+      [PostType.MISC]: 'TBA',
     },
   },
 };

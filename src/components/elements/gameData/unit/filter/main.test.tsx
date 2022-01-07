@@ -132,7 +132,7 @@ describe('Unit filter input', () => {
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
 
-    const characterButton = await screen.findByText(translationEN.misc.unitType[UnitType.CHARACTER]);
+    const characterButton = await screen.findByText(translationEN.enum.unitType[UnitType.CHARACTER]);
     userEvent.click(characterButton);
 
     clickSearchButton();
@@ -254,7 +254,7 @@ describe('Unit filter input', () => {
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
 
-    const characterButton = await screen.findByText(translationEN.misc.unitType[UnitType.CHARACTER]);
+    const characterButton = await screen.findByText(translationEN.enum.unitType[UnitType.CHARACTER]);
     userEvent.click(characterButton);
     const elemButton = await screen.findByText('elem A EN');
     userEvent.click(elemButton);

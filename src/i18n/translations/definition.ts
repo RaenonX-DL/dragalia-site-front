@@ -1,4 +1,4 @@
-import {DimensionKey, KeyPointType, UnitType} from '../../api-def/api';
+import {DimensionKey, KeyPointType, PostType, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
 import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/types';
@@ -520,7 +520,6 @@ export type TranslationStruct = {
     },
     info: {
       constructing: string,
-      welcome: string,
       videoTips: string,
     },
     error: {
@@ -709,7 +708,34 @@ export type TranslationStruct = {
       video: string,
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: string,
+        header: {
+          perCountry: string,
+          perLang: string,
+        },
+        content: {
+          totalLangUser: string,
+        },
+        ui: {
+          stacked: string,
+          separated: string,
+          country: string,
+          user: string,
+          periodUnitDay: string,
+        },
+      },
+      features: string,
+      recentlyUpdated: string,
+    },
+    message: {
+      features: string,
+    },
+  },
   enum: {
-    unitType: {[U in UnitType]: string},
+    unitType: {[type in UnitType]: string},
+    postType: {[type in PostType]: string},
   },
 };
