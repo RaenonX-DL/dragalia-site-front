@@ -5,10 +5,9 @@ import Row from 'react-bootstrap/Row';
 
 import {PostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
-import {TimeAgo} from '../../../../utils/timeago';
-import {IconEdit, IconPublish} from '../../common/icons';
 import {InternalLink} from '../../common/link/internal';
 import styles from './entry.module.css';
+import {PostEntryInfoBar} from './postInfo';
 import {FunctionRenderPostBadge} from './types';
 
 
@@ -27,7 +26,7 @@ export const PostEntry = <E extends PostInfo>({
   renderPostBadge,
   icon,
 }: Props<E>) => {
-  const {t, lang} = useI18n();
+  const {lang} = useI18n();
 
   return (
     <div className={styles.entry}>
@@ -42,25 +41,16 @@ export const PostEntry = <E extends PostInfo>({
             />
           </h5>
           <Row noGutters>
-            <Col xs="auto">
+            <Col md="auto">
               {renderPostBadge({entry})}&nbsp;
             </Col>
             <Col>
-              <small className={styles.timestamp}>
-                <IconEdit/>&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
-              </small>
-              <small className={styles.timestamp}>
-                <IconPublish/>&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
-              </small>
-            </Col>
-            <Col className="text-right">
-              <small className="text-muted">
-                {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
-              </small>
+              <PostEntryInfoBar entry={entry} className="d-none d-md-flex"/>
             </Col>
           </Row>
         </Col>
       </Row>
+      <PostEntryInfoBar entry={entry} className="d-flex d-md-none"/>
     </div>
   );
 };
