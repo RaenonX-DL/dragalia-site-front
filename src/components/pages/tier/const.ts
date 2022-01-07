@@ -21,6 +21,7 @@ export const sortFunc: SortFuncLookup = {
   normalAi: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'normalAi')}),
   normalCoop: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'normalCoop')}),
   sharedSkill: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'sharedSkill')}),
+  kaleidoscape: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'kaleidoscape')}),
   avgRanking: sortDescending({
     getComparer: (element) => {
       const dimensionKeys = Object.keys(Dimension);
@@ -45,6 +46,7 @@ export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
   normalAi: (t) => t.game.unitTier.dimension.normalAi,
   normalCoop: (t) => t.game.unitTier.dimension.normalCoop,
   sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill,
+  kaleidoscape: (t) => t.game.unitTier.dimension.kaleidoscape,
 };
 
 export const rankingColor: {[ranking in Ranking]: Property.Color} = {

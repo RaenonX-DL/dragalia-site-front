@@ -446,6 +446,7 @@ export const translation: TranslationStruct = {
         normalCoop: '通常 (マルチ)',
         normalAi: '通常 (AI)',
         sharedSkill: 'シェアスキル',
+        kaleidoscape: 'カレイドラビリンス',
       },
       display: {
         conSolo: '虚無 (ソロ)',
@@ -455,6 +456,7 @@ export const translation: TranslationStruct = {
         normalCoop: '通常 (マルチ)',
         normalAi: '通常 (AI)',
         sharedSkill: 'シェア',
+        kaleidoscape: 'カレイドラビリンス',
         all: '全部',
       },
       sort: {

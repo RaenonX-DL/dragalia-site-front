@@ -438,6 +438,7 @@ export const translation: TranslationStruct = {
         normalCoop: '一般 (共鬥)',
         normalAi: '一般 (AI)',
         sharedSkill: '共享技能',
+        kaleidoscape: '萬花筒',
       },
       display: {
         conSolo: '虛無 (單人)',
@@ -447,6 +448,7 @@ export const translation: TranslationStruct = {
         normalCoop: '一般 (共鬥)',
         normalAi: '一般 (AI)',
         sharedSkill: '共享',
+        kaleidoscape: '萬花筒',
         all: '全部',
       },
       sort: {

@@ -472,6 +472,7 @@ export const translation: TranslationStruct = {
         normalCoop: 'Normal (Co-op)',
         normalAi: 'Normal (AI)',
         sharedSkill: 'Shared Skill',
+        kaleidoscape: 'Kaleidoscape',
       },
       display: {
         conSolo: 'CoN (Solo)',
@@ -481,6 +482,7 @@ export const translation: TranslationStruct = {
         normalCoop: 'Normal (Co-op)',
         normalAi: 'Normal (AI)',
         sharedSkill: 'SS',
+        kaleidoscape: 'Kaleidoscape',
         all: 'Show All',
       },
       sort: {
