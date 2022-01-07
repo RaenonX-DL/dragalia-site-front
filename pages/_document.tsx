@@ -1,7 +1,5 @@
 import React from 'react';
 
-// FIXME: False-positive https://github.com/vercel/next.js/issues/28786
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 
 
