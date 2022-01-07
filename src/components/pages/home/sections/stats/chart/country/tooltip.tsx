@@ -20,7 +20,7 @@ export const UserStatsOfCountryTooltip = ({payload, totalCount}: Props) => {
 
   return (
     <div className={styles.tooltip}>
-      {(data.user / totalCount * 100).toFixed(2)}%
+      {data.user}&nbsp;({(data.user / totalCount * 100).toFixed(2)}%)
     </div>
   );
 };

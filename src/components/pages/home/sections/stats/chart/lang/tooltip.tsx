@@ -52,9 +52,15 @@ export const UserStatsOfLangTooltip = ({
         {t((t) => t.home.section.stats.content.totalLangUser, {total})}
       </p>
       <hr className="my-2"/>
-      {langCountInfo.map(({lang, user, color}, idx) => (
-        <p className="mb-0" key={idx} style={{color}}>{lang}: {user}</p>
-      ))}
+      {langCountInfo.map(({lang, user, color}, idx) => {
+        const percentage = (user / total * 100).toFixed(2);
+
+        return (
+          <p className="mb-0" key={idx} style={{color}}>
+            {lang}:&nbsp;{user}&nbsp;({percentage}%)
+          </p>
+        );
+      })}
     </div>
   );
 };
