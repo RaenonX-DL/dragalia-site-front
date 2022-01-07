@@ -919,11 +919,12 @@ export const translation: TranslationStruct = {
           periodUnitDay: 'Days',
         },
       },
-      features: 'Site Features',
-      recentlyUpdated: 'Recently Updated Posts',
+      features: 'Features',
+      recentlyUpdated: 'Posts',
     },
     message: {
       features: 'Check the navigation bar for more features.',
+      noPost: 'No available posts.',
     },
   },
   enum: {

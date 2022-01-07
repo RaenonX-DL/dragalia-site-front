@@ -19,27 +19,33 @@ type Props = {
 };
 
 export const PostList = ({title, titlePath, entries, getIcon}: Props) => {
-  const {lang} = useI18n();
+  const {t, lang} = useI18n();
 
   return (
     <div className="section">
       <h5 className="text-center mt-2">
         <InternalLink locale={lang} href={titlePath} content={title}/>
       </h5>
-      {entries.map((entry, idx) => {
-        const {pid, info} = entry;
+      {
+        entries.length ?
+          entries.map((entry, idx) => {
+            const {pid, info} = entry;
 
-        return (
-          <PostEntry
-            key={idx}
-            entry={info}
-            link={makePostUrl(toPostPath[entry.type], {pid, lang: info.lang})}
-            title={entry.title}
-            renderPostBadge={() => <Badge variant="secondary">#{entry.pid}</Badge>}
-            icon={getIcon ? getIcon(entry) : undefined}
-          />
-        );
-      })}
+            return (
+              <PostEntry
+                key={idx}
+                entry={info}
+                link={makePostUrl(toPostPath[entry.type], {pid, lang: info.lang})}
+                title={entry.title}
+                renderPostBadge={() => <Badge variant="secondary">#{entry.pid}</Badge>}
+                icon={getIcon ? getIcon(entry) : undefined}
+              />
+            );
+          }) :
+          <p className="mb-0 text-center text-danger">
+            {t((t) => t.home.message.noPost)}
+          </p>
+      }
     </div>
   );
 };

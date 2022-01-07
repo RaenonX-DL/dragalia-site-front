@@ -19,20 +19,26 @@ export const SiteFeatures = () => {
       </h1>
       <Row className="mb-0 mb-lg-3">
         <FeatureButton
+          path={GeneralPath.INFO_LOOKUP}
+          title={t((t) => t.meta.inUse.gameData.info.title)}
+          variant="outline-light"
+        />
+        <FeatureButton
           path={GeneralPath.TIER_LOOKUP}
           title={t((t) => t.meta.inUse.tier.lookup.title)}
+          variant="outline-primary"
         />
+      </Row>
+      <Row className="mb-0 mb-lg-3">
         <FeatureButton
           path={GeneralPath.EX}
           title={t((t) => t.meta.inUse.gameData.ex.title)}
-        />
-        <FeatureButton
-          path={GeneralPath.SKILL_ATK}
-          title={t((t) => t.meta.inUse.gameData.skillAtk.title)}
+          variant="outline-success"
         />
         <FeatureButton
           path={GeneralPath.SPECIAL_THANKS}
           title={t((t) => t.meta.inUse.thanks.title)}
+          variant="outline-orange"
         />
       </Row>
       <Row className="text-center mb-3">

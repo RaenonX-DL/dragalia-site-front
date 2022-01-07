@@ -887,6 +887,7 @@ export const translation: TranslationStruct = {
     },
     message: {
       features: 'TBA',
+      noPost: 'TBA',
     },
   },
   enum: {

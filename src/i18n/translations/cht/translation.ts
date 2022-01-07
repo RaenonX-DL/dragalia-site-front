@@ -878,6 +878,7 @@ export const translation: TranslationStruct = {
     },
     message: {
       features: '歡迎瀏覽導引列以了解更多網站功能。',
+      noPost: '無可用文章更新資訊。',
     },
   },
   enum: {

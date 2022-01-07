@@ -732,6 +732,7 @@ export type TranslationStruct = {
     },
     message: {
       features: string,
+      noPost: string,
     },
   },
   enum: {
