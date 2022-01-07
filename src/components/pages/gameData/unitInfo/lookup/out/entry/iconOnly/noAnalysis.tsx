@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
+import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
 import {EntryCommonProps} from '../types';
 
@@ -18,14 +19,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
       <Row noGutters className="pt-1 text-center">
         <Col>
           <UnitIconClickable
-            unit={{
-              id: unitInfo.id,
-              name: unitInfo.name[lang],
-              icon: {
-                type: unitInfo.type,
-                name: unitInfo.iconName,
-              },
-            }}
+            unit={unitInfoToClickableProps(unitInfo, lang)}
             hasAnalysis={false}
             style={{height: '4.5rem'}}
           />

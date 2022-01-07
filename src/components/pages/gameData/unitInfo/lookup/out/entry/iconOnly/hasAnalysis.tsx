@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
+import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
 import {IconEdit, IconPublish} from '../../../../../../../elements/common/icons';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
@@ -21,14 +22,7 @@ export const IconOnlyEntryWithAnalysis = ({
       <Row noGutters className="pt-1 text-center">
         <Col>
           <UnitIconClickable
-            unit={{
-              id: unitInfo.id,
-              name: unitInfo.name[lang],
-              icon: {
-                type: unitInfo.type,
-                name: unitInfo.iconName,
-              },
-            }}
+            unit={unitInfoToClickableProps(unitInfo, lang)}
             hasAnalysis
             style={{height: '4.5rem'}}
           />
