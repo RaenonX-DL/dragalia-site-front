@@ -39,9 +39,10 @@ describe('Sequenced post list entry', () => {
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
     // Check view count existence
-    expect(screen.getByText('Viewed 777 times')).toBeInTheDocument();
+    // 2 because different elements are rendered under different breakpoint
+    expect(screen.getAllByText('Viewed 777 times').length).toBeGreaterThan(0);
     // Check meta existence
-    expect(screen.getByText('', {selector: 'i.bi-cloud-arrow-up'})).toBeInTheDocument();
-    expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
+    expect(screen.getAllByText('', {selector: 'i.bi-cloud-arrow-up'}).length).toBeGreaterThan(0);
+    expect(screen.getAllByText('', {selector: 'i.bi-pencil-fill'}).length).toBeGreaterThan(0);
   });
 });
