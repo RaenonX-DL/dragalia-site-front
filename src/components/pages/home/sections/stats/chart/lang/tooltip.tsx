@@ -6,7 +6,7 @@ import {ValueType, NameType} from 'recharts/src/component/DefaultTooltipContent'
 import {GALangUserOfDate} from '../../../../../../../api-def/api';
 import {useI18n} from '../../../../../../../i18n/hook';
 import {sum} from '../../../../../../../utils/calc';
-import styles from './main.module.css';
+import styles from '../../main.module.css';
 
 
 type LegendInfo = {

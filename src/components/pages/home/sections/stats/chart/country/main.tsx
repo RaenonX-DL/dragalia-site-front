@@ -4,21 +4,21 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import {Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, XAxis, YAxis} from 'recharts';
 
-import {GACountryUserEntry, GAPeriodicCountryUserData} from '../../../../../../../api-def/api';
+import {GAPeriodicCountryUserData} from '../../../../../../../api-def/api';
 import {useI18n} from '../../../../../../../i18n/hook';
 import styles from '../../main.module.css';
-import {buttonStyle, colors, stroke} from '../const';
+import {buttonStyle} from '../const';
+import {UserStatsOfCountryChart} from './chart';
 import {periodOptions} from './const';
 import {PeriodOption} from './type';
 
 
-type Props = {
+export type UserStatsOfCountryProps = {
   stats: GAPeriodicCountryUserData
 };
 
-export const UserStatsOfCountry = ({stats}: Props) => {
+export const UserStatsOfCountry = ({stats}: UserStatsOfCountryProps) => {
   const {t} = useI18n();
 
   const [currentOption, setCurrentOption] = React.useState<PeriodOption>({
@@ -28,26 +28,20 @@ export const UserStatsOfCountry = ({stats}: Props) => {
 
   const data = stats[currentOption.dataKey];
 
-  const countries = Object.fromEntries(Object.values(stats)
-    .flatMap((entries) => (
-      entries.countries.map((entry) => entry.country)
-    ))
-    .map((country, idx) => [country, colors[idx % colors.length]]));
-
   return (
     <>
       <Row className="p-2">
-        <Col className="d-flex justify-content-center align-items-center">
+        <Col xs className="d-flex justify-content-center align-items-center mb-3 mb-lg-0">
           <h5 className="mb-0">
             {t((t) => t.home.section.stats.header.perCountry)}
           </h5>
         </Col>
-        <Col lg={1} className="d-flex justify-content-center align-items-center">
+        <Col xs="auto" lg={1} className="d-flex justify-content-center align-items-center mb-3 mb-lg-0">
           <span className="h5 mb-0" style={{fontFamily: 'monospace', color: 'yellow'}}>
             {data.total}
           </span>
         </Col>
-        <Col lg="auto">
+        <Col lg="auto" className="text-right text-lg-center">
           <ButtonGroup size="sm">
             {periodOptions.map((option) => (
               <Button
@@ -65,29 +59,7 @@ export const UserStatsOfCountry = ({stats}: Props) => {
       </Row>
       <Row className={styles.statsSectionFiller}>
         <Col>
-          <ResponsiveContainer>
-            <BarChart data={data.countries} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis
-                stroke={stroke}
-                tickLine={false}
-                fontSize="0.8rem"
-                type="number"
-              />
-              <YAxis
-                stroke={stroke}
-                tickLine={false}
-                fontSize="0.8rem"
-                type="category"
-                dataKey={(data: GACountryUserEntry) => data.country}
-              />
-              <Bar dataKey={(data: GACountryUserEntry) => data.user}>
-                {data.countries.map((entry, idx) => (
-                  <Cell key={idx} fill={countries[entry.country]}/>
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <UserStatsOfCountryChart stats={stats} dataKey={currentOption.dataKey}/>
         </Col>
       </Row>
     </>

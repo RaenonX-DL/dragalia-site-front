@@ -19,4 +19,10 @@ div {
 
     padding: 0.5rem;
   }
+
+  &.tooltip {
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: rgba(colors.$color-black-50, 0.77);
+  }
 }
