@@ -1,5 +1,9 @@
 @use "../../../../../styles/colors";
 
+@mixin conversation() {
+  margin: 0.3rem 0;
+}
+
 div {
   &.sys-message {
     border: colors.$color-black-80 1px solid;
@@ -42,16 +46,12 @@ div {
     }
   }
 
-  %conversation {
-    margin: 0.3rem 0;
-  }
-
   &.conversation {
-    @extend %conversation;
+    @include conversation;
   }
 
   &.conversation-active {
-    @extend %conversation;
+    @include conversation;
 
     animation: conversation-background 3s linear infinite;
     border: #806805 solid 3px;

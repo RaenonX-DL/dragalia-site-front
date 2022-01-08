@@ -33,7 +33,7 @@ div.dimension-entry-bar {
   margin-bottom: -0.3rem;
 }
 
-a a.tier-note-dimension, a a.tier-note {
+a.tier-note {
   border: 0;
   color: #bebebe;
   font-size: 1.1rem;
@@ -45,6 +45,10 @@ a.tier-note:hover {
   color: white;
 }
 a.tier-note-dimension {
+  border: 0;
+  color: #bebebe;
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
   margin-left: 0;
   margin-right: 0.5rem;
   float: left;

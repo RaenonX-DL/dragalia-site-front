@@ -31,10 +31,11 @@ div.audio-control {
     background-color: #312901;
   }
 }
-div div.conversation-active, div div.conversation {
+div.conversation {
   margin: 0.3rem 0;
 }
 div.conversation-active {
+  margin: 0.3rem 0;
   animation: conversation-background 3s linear infinite;
   border: #806805 solid 3px;
   border-radius: 0.5rem;

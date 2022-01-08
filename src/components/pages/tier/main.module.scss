@@ -9,6 +9,13 @@
   color: white;
 }
 
+@mixin tier-note() {
+  @include clickable-icon;
+
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+}
+
 span {
   &.title {
     font-size: 0.9rem;
@@ -54,15 +61,8 @@ div {
 }
 
 a {
-  %tier-note {
-    @include clickable-icon;
-
-    font-size: 1.1rem;
-    margin-left: 0.7rem;
-  }
-
   &.tier-note {
-    @extend %tier-note;
+    @include tier-note;
   }
 
   &.tier-note:hover {
@@ -70,7 +70,7 @@ a {
   }
 
   &.tier-note-dimension {
-    @extend %tier-note;
+    @include tier-note;
 
     margin-left: 0;
     margin-right: 0.5rem;
