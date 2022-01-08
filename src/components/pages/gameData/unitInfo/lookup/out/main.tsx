@@ -43,9 +43,7 @@ export const UnitInfoLookupOutput = ({
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}
-          xs={inputData.iconOnly ? 4 : undefined}
-          lg={inputData.iconOnly ? 2 : 6}
-          className={`mb-2 ${inputData.iconOnly ? styles['icon-only-entry'] : ''}`}
+          className={`mb-2 ${inputData.iconOnly ? styles['icon-only-entry'] : styles['complete-entry']}`}
         >
           <UnitInfoEntry
             unitInfo={info.unitInfo}

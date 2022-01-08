@@ -25,7 +25,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
           />
         </Col>
       </Row>
-      <Row noGutters className="align-items-center" style={{height: '1.5rem'}}>
+      <Row noGutters className="align-items-center">
         <Col className="text-danger text-center">
           {t((t) => t.posts.analysis.error.unavailable)}
         </Col>
