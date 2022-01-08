@@ -12,8 +12,8 @@ export type FeatureKey =
 export const featureBtnColors: Record<FeatureKey, ButtonVariant> = {
   analysis: 'outline-light',
   tier: 'outline-primary',
-  info: 'outline-warning',
-  story: 'outline-info',
+  info: 'outline-info',
+  story: 'outline-warning',
   ex: 'outline-success',
   thanks: 'outline-orange',
 };

@@ -35,10 +35,9 @@ $hr-color: colors.$hr-color;
 
 // region Color themes
 
-$primary: colors.$color-blue;
-$success: colors.$color-green;
-$danger: colors.$color-red;
-$info: colors.$color-info;
+$primary: colors.$color-primary;
+$success: colors.$color-success;
+$danger: colors.$color-danger;
 $custom-theme-colors: (
   // Newly added
   "om-dark": colors.$color-om-dark,
