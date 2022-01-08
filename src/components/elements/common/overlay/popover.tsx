@@ -17,8 +17,8 @@ export const OverlayPopover = ({title, placement, content, children}: PopoverPro
     placement={placement}
     overlay={(
       <Popover id={v4()}>
-        <Popover.Title as="h3">{title}</Popover.Title>
-        <Popover.Content>{content}</Popover.Content>
+        <Popover.Header as="h3">{title}</Popover.Header>
+        <Popover.Body>{content}</Popover.Body>
       </Popover>
     )}
   >
