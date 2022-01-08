@@ -76,27 +76,29 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         isProduction() &&
         <Script strategy="beforeInteractive" type="text/javascript" src="/js/newRelicEum.js"/>
       }
-      <AppReactContext.Provider value={{...pageProps}}>
-        <ReduxProvider>
-          <Navigation/>
-          <SiteAlert/>
-          {
-            pageProps.isNotFound ?
-              <Error404/> :
-              <Container className="p-3">
-                <Row>
-                  <Col md={1}/>
-                  <Col>
-                    <GlobalAlert/>
-                    <Component {...pageProps}/>
-                  </Col>
-                  <Col md={1}/>
-                </Row>
-              </Container>
-          }
-          <Footer/>
-        </ReduxProvider>
-      </AppReactContext.Provider>
+      <React.StrictMode>
+        <AppReactContext.Provider value={{...pageProps}}>
+          <ReduxProvider>
+            <Navigation/>
+            <SiteAlert/>
+            {
+              pageProps.isNotFound ?
+                <Error404/> :
+                <Container className="p-3">
+                  <Row>
+                    <Col md={1}/>
+                    <Col>
+                      <GlobalAlert/>
+                      <Component {...pageProps}/>
+                    </Col>
+                    <Col md={1}/>
+                  </Row>
+                </Container>
+            }
+            <Footer/>
+          </ReduxProvider>
+        </AppReactContext.Provider>
+      </React.StrictMode>
     </>
   );
 };
