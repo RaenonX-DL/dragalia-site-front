@@ -84,10 +84,10 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
             pageProps.isNotFound ?
               <Error404/> :
               <Container className="p-3">
-                <GlobalAlert/>
                 <Row>
                   <Col md={1}/>
                   <Col>
+                    <GlobalAlert/>
                     <Component {...pageProps}/>
                   </Col>
                   <Col md={1}/>

@@ -52,9 +52,7 @@ class Document extends NextDocument<Props> {
             src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
           />
 
-          <script>var Alert = ReactBootstrap.Alert;</script>
-
-          {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
+          {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` on `_app.tsx` */}
         </Head>
         <body>
           <Main/>
