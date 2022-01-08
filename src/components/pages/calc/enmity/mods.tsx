@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ProgressBar} from 'react-bootstrap';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import {useI18n} from '../../../../i18n/hook';
 import {calcEnmityEffectiveness, calcEnmityHpPct, calcEnmityMod} from '../../../../utils/game/enmity';
