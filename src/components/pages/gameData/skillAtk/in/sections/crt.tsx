@@ -40,7 +40,7 @@ export const SectionCrt = ({inputData, setInputData}: SectionProps) => {
           maxValue: 400,
         },
         {
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: t((t) => t.game.skillAtk.input.crt.inspired),

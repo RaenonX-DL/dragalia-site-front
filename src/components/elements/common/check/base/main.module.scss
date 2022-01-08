@@ -1,0 +1,13 @@
+div {
+  &.input-group {
+    text-align: center;
+
+    & > label {
+      margin: 0 0.25rem 0.5rem;
+    }
+
+    & > label:hover {
+      background-color: #000;
+    }
+  }
+}

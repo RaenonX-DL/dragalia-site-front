@@ -1,10 +1,9 @@
 import {EnumEntry} from '../../../../api-def/resources';
 import {EnumChecksBoxProps} from '../../common/check/enum/checkbox';
 import {EnumRadioGroupProps} from '../../common/check/enum/radio';
-import {CheckboxInputProps} from '../../common/check/item/checkbox';
 import {CheckboxGroupProps, RadioGroupProps} from '../../common/check/types';
 import {NumericInputProps} from '../../common/input/numeric';
-import {DetailedProps} from '../../common/types';
+import {DetailedProps, InputPropsExtended} from '../../common/types';
 
 
 export type InputEntryTitle = DetailedProps & {
@@ -26,16 +25,11 @@ export type InputEntryNumber<T> = DetailedProps & Omit<
   type: 'inputNumber'
 };
 
-export type InputEntryCheckboxGroup<T> = {
-  type: 'inputCheckGroup',
-  checkboxes: Array<Omit<CheckboxInputProps<T>, keyof InputPanelCommonProps<T>>>,
-};
-
-export type InputEntryArrayCheckboxGroup<E, T, V> = Omit<
+export type InputEntryCheckGroup<E, T, V> = Omit<
   CheckboxGroupProps<E, T, V>,
   keyof InputPanelCommonProps<T>
 > & {
-  type: 'arrayCheckGroup',
+  type: 'inputCheckGroup',
 };
 
 export type InputEntryRadioGroup<E, T, V> = Omit<
@@ -43,6 +37,19 @@ export type InputEntryRadioGroup<E, T, V> = Omit<
   keyof InputPanelCommonProps<T>
 > & {
   type: 'inputRadioGroup'
+};
+
+export type InputEntryIndividualCheckOption<T> = Omit<
+  InputPropsExtended<T, boolean>,
+  keyof InputPanelCommonProps<T>
+> & {
+  text: string,
+  disabled?: boolean,
+};
+
+export type InputEntryIndividualCheckGroup<T> = {
+  type: 'individualCheckGroup',
+  checkboxes: InputEntryIndividualCheckOption<T>[],
 };
 
 export type InputEntryEnumRadioGroup<E2 extends EnumEntry, T> = Omit<
@@ -74,8 +81,8 @@ export type InputEntry<E, E2 extends EnumEntry, T, V> =
   InputEntrySubTitle |
   InputEntrySeparator |
   InputEntryNumber<T> |
-  InputEntryCheckboxGroup<T> |
-  InputEntryArrayCheckboxGroup<E, T, V> |
+  InputEntryIndividualCheckGroup<T> |
+  InputEntryCheckGroup<E, T, V> |
   InputEntryRadioGroup<E, T, V> |
   InputEntryEnumRadioGroup<E2, T> |
   InputEntryEnumCheckGroup<E2, T> |

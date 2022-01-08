@@ -61,14 +61,6 @@ $theme-colors: map.merge($theme-colors, $custom-theme-colors);
 
 // endregion
 
-// region Button
-
-div.btn-group-toggle > label.btn-outline-secondary:hover {
-  background-color: #000;
-}
-
-// endregion
-
 // region Tabs
 
 $nav-tabs-link-active-color: colors.$color-white-pure;

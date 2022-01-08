@@ -1,0 +1,11 @@
+div.input-group {
+  text-align: center;
+}
+div.input-group > label {
+  margin: 0 0.25rem 0.5rem;
+}
+div.input-group > label:hover {
+  background-color: #000;
+}
+
+/*# sourceMappingURL=main.module.css.map */

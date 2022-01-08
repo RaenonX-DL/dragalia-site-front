@@ -115,7 +115,7 @@ describe('Input panel', () => {
       <InputPanel
         inputEntries={[
           {
-            type: 'inputCheckGroup',
+            type: 'individualCheckGroup',
             checkboxes: [
               {
                 text: 'check 1',
@@ -319,7 +319,7 @@ describe('Input panel', () => {
     renderReact(() => (
       <InputPanel
         inputEntries={[{
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: 'check 1',
@@ -359,7 +359,7 @@ describe('Input panel', () => {
             type: 'separator',
           },
           {
-            type: 'inputCheckGroup',
+            type: 'individualCheckGroup',
             checkboxes: [
               {
                 text: 'check 1',

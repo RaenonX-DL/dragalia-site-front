@@ -69,7 +69,7 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
               getValue: (ranking) => ranking.text,
             },
             {
-              type: 'inputCheckGroup',
+              type: 'individualCheckGroup',
               checkboxes: [{
                 text: t((t) => t.game.unitTier.tier.isCompDependent),
                 getValue: (data) => data?.isCompDependent || false,

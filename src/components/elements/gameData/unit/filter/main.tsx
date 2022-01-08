@@ -74,7 +74,7 @@ export const UnitFilter = <S extends string,
               getUpdatedInputData: (weaponTypes) => ({...inputData, weaponTypes}),
             },
             {
-              type: 'inputCheckGroup',
+              type: 'individualCheckGroup',
               checkboxes: [{
                 getValue: (data) => data.iconOnly,
                 getUpdatedInputData: (iconOnly) => ({...inputData, iconOnly}),

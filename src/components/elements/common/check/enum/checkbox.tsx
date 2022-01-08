@@ -2,7 +2,7 @@ import React from 'react';
 
 import {DepotPaths, EnumEntry} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
-import {CheckboxGroup} from '../group/checkbox';
+import {CheckGroup} from '../group/check';
 import {CheckboxGroupProps} from '../types';
 
 
@@ -19,7 +19,7 @@ export const EnumCheckboxGroup = <E extends EnumEntry, T>({
   const {lang} = useI18n();
 
   return (
-    <CheckboxGroup
+    <CheckGroup
       options={options.map((option) => ({...option, text: option.trans[lang]}))}
       inputData={inputData}
       setInputData={setInputData}

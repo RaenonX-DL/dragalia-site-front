@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {CheckGroup} from '../base/group';
+import {CheckItemGroup} from '../base/group';
 import {CheckboxGroupProps, CheckOption} from '../types';
 
 
-export const CheckboxGroup = <E extends CheckOption, T, V>({
+export const CheckGroup = <E extends CheckOption, T, V>({
   options,
   inputData,
   setInputData,
@@ -15,7 +15,7 @@ export const CheckboxGroup = <E extends CheckOption, T, V>({
   imageHeight,
 }: CheckboxGroupProps<E, T, V>) => {
   return (
-    <CheckGroup
+    <CheckItemGroup
       options={options}
       optionToProps={(option) => ({
         type: 'checkbox',

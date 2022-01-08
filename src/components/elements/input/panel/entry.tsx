@@ -7,9 +7,9 @@ import Row from 'react-bootstrap/Row';
 import {EnumEntry} from '../../../../api-def/resources';
 import {EnumCheckboxGroup} from '../../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../../common/check/enum/radio';
-import {CheckboxGroup} from '../../common/check/group/checkbox';
+import {CheckGroup} from '../../common/check/group/check';
+import {IndividualCheckGroup} from '../../common/check/group/checkIndividual';
 import {RadioGroup} from '../../common/check/group/radio';
-import {CheckboxInput} from '../../common/check/item/checkbox';
 import {CheckOption} from '../../common/check/types';
 import {NumericInput} from '../../common/input/numeric';
 import {SectionSubTitle} from '../../gameData/subTitle';
@@ -43,30 +43,19 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T, 
     );
   }
   if (inputEntry.type === 'inputCheckGroup') {
-    return (
-      <div className="mb-2 text-center">
-        {inputEntry.checkboxes.map((checkboxProps, index) => (
-          <CheckboxInput
-            key={index}
-            {...checkboxProps}
-            inputData={inputData}
-            setInputData={setInputData}
-          />
-        ))}
-      </div>
-    );
+    return <CheckGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'inputRadioGroup') {
     return <RadioGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
+  }
+  if (inputEntry.type === 'individualCheckGroup') {
+    return <IndividualCheckGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'enumCheckGroup') {
     return <EnumCheckboxGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'enumRadioGroup') {
     return <EnumRadioGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
-  }
-  if (inputEntry.type === 'arrayCheckGroup') {
-    return <CheckboxGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'select') {
     const {defaultEntry, title, getValue, getText, getUpdatedInputData} = inputEntry;

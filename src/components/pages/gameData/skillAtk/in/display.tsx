@@ -21,7 +21,7 @@ export const DisplayItemPicker = ({inputData, setInputData}: InputPanelCommonPro
           description: t((t) => t.game.skillAtk.display.desc),
         },
         {
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: t((t) => t.game.skillAtk.display.options.damageInfo),

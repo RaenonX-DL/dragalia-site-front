@@ -20,7 +20,7 @@ export const SectionEx = ({inputData, setInputData}: SectionProps) => {
           description: t((t) => t.game.skillAtk.input.ex.description),
         },
         {
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: t((t) => t.game.skillAtk.input.ex.blade),

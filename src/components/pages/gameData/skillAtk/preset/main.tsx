@@ -110,15 +110,13 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
               state.link
           }
         />
-        <InputGroup.Append>
-          <Button
-            className="d-flex align-items-center"
-            variant="outline-light" onClick={onClickShareButton}
-            disabled={!isEnabled || state.status === 'creating' || state.status === 'copied'}
-          >
-            {statusButtonIcon[state.status]}
-          </Button>
-        </InputGroup.Append>
+        <Button
+          className="d-flex align-items-center"
+          variant="outline-light" onClick={onClickShareButton}
+          disabled={!isEnabled || state.status === 'creating' || state.status === 'copied'}
+        >
+          {statusButtonIcon[state.status]}
+        </Button>
       </InputGroup>
     </>
   );

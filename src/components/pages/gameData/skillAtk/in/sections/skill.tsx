@@ -30,7 +30,7 @@ export const SectionSkill = ({inputData, setInputData}: SectionProps) => {
           maxValue: 200,
         },
         {
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: t((t) => t.game.skillAtk.input.skill.energized),
