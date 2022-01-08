@@ -1,13 +1,12 @@
 import React from 'react';
 
 import {TooltipProps} from 'recharts';
-import {ValueType, NameType} from 'recharts/src/component/DefaultTooltipContent';
 
 import {GACountryUserEntry} from '../../../../../../../api-def/api';
 import styles from '../../main.module.css';
 
 
-type Props = TooltipProps<ValueType, NameType> & {
+type Props = TooltipProps<number, string> & {
   totalCount: number,
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {TooltipProps} from 'recharts';
-import {ValueType, NameType} from 'recharts/src/component/DefaultTooltipContent';
 
 import {GALangUserOfDate} from '../../../../../../../api-def/api';
 import {useI18n} from '../../../../../../../i18n/hook';
@@ -19,7 +18,7 @@ export const UserStatsOfLangTooltip = ({
   active,
   payload: payloads,
   label: date,
-}: TooltipProps<ValueType, NameType>) => {
+}: TooltipProps<number, string>) => {
   const {t} = useI18n();
 
   if (!active || !payloads || !payloads.length) {
