@@ -6,7 +6,8 @@ import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
 import {SlicedEntryBar} from '../common/entryBar';
 import {AjaxForm} from './ajax/main';
-import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
+import {ArrayForm} from './array/main';
+import {ArrayFormOnChangeHandler} from './array/type';
 import {UpdateStatus} from './updateStatus';
 
 

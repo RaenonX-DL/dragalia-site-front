@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/main';
+import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';
 

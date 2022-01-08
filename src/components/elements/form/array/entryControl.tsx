@@ -5,10 +5,10 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import {swapItem} from '../../../../utils/array';
 import {IconDelete, IconMoveDown, IconMoveUp} from '../../common/icons';
-import {ArrayFormProps} from './base';
+import {ArrayFormBaseProps} from './base';
 
 
-type Props<P, E> = ArrayFormProps<P, E> & {
+type Props<P, E> = ArrayFormBaseProps<P, E> & {
   elemIdx: number,
   array: Array<E>,
 };
@@ -19,6 +19,7 @@ export const ArrayFormEntryControl = <P, E>({
   counterState,
   elemIdx,
   array,
+  showMoveButton = true,
 }: Props<P, E>) => {
   const [counter, setCounter] = counterState;
 
@@ -47,22 +48,27 @@ export const ArrayFormEntryControl = <P, E>({
       >
         <IconDelete/>
       </Button>
-      <Button
-        className="float-right ml-2 w-auto"
-        variant="outline-warning"
-        onClick={onMoveUp(elemIdx)}
-        disabled={elemIdx === 0}
-      >
-        <IconMoveUp/>
-      </Button>
-      <Button
-        className="float-right ml-2 w-auto"
-        variant="outline-warning"
-        onClick={onMoveDown(elemIdx)}
-        disabled={array.length - 1 === elemIdx}
-      >
-        <IconMoveDown/>
-      </Button>
+      {
+        showMoveButton &&
+        <>
+          <Button
+            className="float-right ml-2 w-auto"
+            variant="outline-warning"
+            onClick={onMoveUp(elemIdx)}
+            disabled={elemIdx === 0}
+          >
+            <IconMoveUp/>
+          </Button>
+          <Button
+            className="float-right ml-2 w-auto"
+            variant="outline-warning"
+            onClick={onMoveDown(elemIdx)}
+            disabled={array.length - 1 === elemIdx}
+          >
+            <IconMoveDown/>
+          </Button>
+        </>
+      }
     </ButtonGroup>
   );
 };

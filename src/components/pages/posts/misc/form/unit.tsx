@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import {MiscPostSection} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/main';
+import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
 import {MarkdownInput} from '../../../../elements/markdown/input';
 
 

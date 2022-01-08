@@ -4,20 +4,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {ArrayFormEntryControl} from './entryControl';
+import {ArrayFormCommonProps} from './type';
 
 
-export type ArrayFormProps<P, E> = {
-  payload: P,
-  minLength: number,
-  getArray: (payload: P) => Array<E>,
-  setArray: (newArray: Array<E>) => void,
+export type ArrayFormBaseProps<P, E> = ArrayFormCommonProps<P, E> & {
   renderEntries: (element: E, idx: number) => React.ReactElement,
   counterState: [Array<number>, Dispatch<SetStateAction<Array<number>>>],
   reversed?: boolean,
-  elemCount?: number,
 };
 
-export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
+export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
   let {
     payload,
     getArray,

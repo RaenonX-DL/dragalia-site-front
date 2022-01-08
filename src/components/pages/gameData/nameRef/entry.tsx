@@ -8,7 +8,7 @@ import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
 import {formControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
-import {ArrayFormOnChangeHandler} from '../../../elements/form/array/main';
+import {ArrayFormOnChangeHandler} from '../../../elements/form/array/type';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 
 

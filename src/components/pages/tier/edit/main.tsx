@@ -125,6 +125,7 @@ export const TierNoteEdit = () => {
               </div>
             );
           }}
+          showMoveButton={false}
         />
       </AjaxForm>
     </ProtectedLayout>

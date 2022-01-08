@@ -349,4 +349,26 @@ describe('Array form', () => {
 
     expect(payload.enums.map((entry) => entry.code)).toStrictEqual(['enum 1', 'enum 3', 'enum 2']);
   });
+
+  it('disallows entry moving if specified', async () => {
+    payload = {
+      lang: SupportedLanguages.CHT,
+      enums: [{code: 'enum 1'}, {code: 'enum 2'}, {code: 'enum 3'}],
+    };
+
+    renderReact(() => (
+      <ArrayForm
+        payload={payload}
+        minLength={2}
+        getArray={getArrayFunc}
+        setArray={setArrayFunc}
+        getUpdatedElement={getUpdatedElemFunc}
+        generateNewElement={generateNewElemFunc}
+        renderEntries={renderEntriesFunc}
+        showMoveButton={false}
+      />
+    ));
+
+    expect(screen.queryByText('', {selector: 'i.bi-caret-down-fill'})).not.toBeInTheDocument();
+  });
 });

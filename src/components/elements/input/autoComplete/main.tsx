@@ -4,13 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../i18n/hook';
-import {ArrayFormBase, ArrayFormProps} from '../../form/array/base';
+import {ArrayFormBase, ArrayFormBaseProps} from '../../form/array/base';
 import {Search} from '../search/main';
 import {IconSelectable, IconSelected} from './icons';
 import styles from './main.module.css';
 
 
-type Props<P, E, O> = Omit<ArrayFormProps<P, E>, 'counterState'> & {
+type Props<P, E, O> = Omit<ArrayFormBaseProps<P, E>, 'counterState'> & {
   options: Array<O>,
   getText: (option: O) => string,
   getValue: (option: O) => E,
@@ -19,19 +19,19 @@ type Props<P, E, O> = Omit<ArrayFormProps<P, E>, 'counterState'> & {
   renderOption?: (option: O) => React.ReactNode,
 };
 
-export const AutoComplete = <P, E, O>({
-  options,
-  getText,
-  getValue,
-  isOptionSelected,
-  isOptionMatchSearch,
-  renderOption,
-  payload,
-  minLength,
-  getArray,
-  setArray,
-  renderEntries,
-}: Props<P, E, O>) => {
+export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
+  const {
+    options,
+    getText,
+    getValue,
+    isOptionSelected,
+    isOptionMatchSearch,
+    renderOption,
+    payload,
+    getArray,
+    setArray,
+  } = props;
+
   const {t} = useI18n();
 
   const counterState = React.useState([...Array(getArray(payload).length).keys()]);
@@ -80,11 +80,10 @@ export const AutoComplete = <P, E, O>({
         {
           getArray(payload).length ?
             <ArrayFormBase
+              {...props}
               payload={payload}
-              minLength={minLength}
               getArray={getArray}
               setArray={setArray}
-              renderEntries={renderEntries}
               counterState={counterState}
             /> :
             <div className="text-center text-danger">
