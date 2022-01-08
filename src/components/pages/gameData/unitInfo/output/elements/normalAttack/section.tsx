@@ -27,7 +27,7 @@ export const NormalAttackSection = ({unitId}: Props) => {
   fetchChain();
 
   return (
-    <div className={styles.normalAttack}>
+    <div className={styles['normal-attack']}>
       <SectionTitle>{t((t) => t.game.unitInfo.title.normalAttack)}</SectionTitle>
       {
         !chain.data.length ?

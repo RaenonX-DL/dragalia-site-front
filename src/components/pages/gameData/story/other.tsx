@@ -21,16 +21,16 @@ export const StoryOtherInfo = ({unitInfo}: Props) => {
 
   return (
     <>
-      <Row className={styles.mainImage}>
+      <Row className={styles['main-image']}>
         <Col>
           <Image
             src={DepotPaths.getUnitImageURL(unitInfo.type, unitInfo.iconName)}
             text={unitInfo.name[lang]}
-            className={styles.mainImage}
+            className={styles['main-image']}
           />
         </Col>
       </Row>
-      <Row className={styles.relatedLinks}>
+      <Row className={styles['related-links']}>
         <Col>
           <InternalLink
             href={makePostUrl(PostPath.ANALYSIS, {pid: unitInfo.id, lang})}

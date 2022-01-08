@@ -50,7 +50,8 @@ Larger (2rem):
 
 #### Available class names
 
-- `unitIcon` is for either character or dragon icon. This will be displayed inline.
+- `unit-icon` is for either character or dragon icon. This will be displayed inline.
+- `modal` renders the image as a link. The viewer will need to click on it to see the image.
 
 ### In-text calculation
 

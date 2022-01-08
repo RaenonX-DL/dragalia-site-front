@@ -53,7 +53,7 @@ export const AutoComplete = <P, E, O>({
           return (
             <Row
               noGutters key={optionText}
-              className={isSelected ? styles.optionSelected : styles.optionSelectable}
+              className={isSelected ? styles['option-selected'] : styles['option-selectable']}
               onClick={() => {
                 if (isSelected) {
                   return;
@@ -66,7 +66,7 @@ export const AutoComplete = <P, E, O>({
               <Col>
                 {renderOption ? renderOption(option) : optionText}
               </Col>
-              <Col xs="auto" className={styles.optionIcon}>
+              <Col xs="auto" className={styles['option-icon']}>
                 {isSelected ? <IconSelected/> : <IconSelectable/>}
               </Col>
             </Row>

@@ -18,7 +18,7 @@ export const SearchResults = <E, >({results, renderEntry, height}: Props<E>) => 
   const {t} = useI18n();
 
   return (
-    <div className={styles.searchResult} style={{height}}>
+    <div className={styles['search-result']} style={{height}}>
       {
         results.length > 0 ?
           results.map((entry, idx) => (

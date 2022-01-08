@@ -1,4 +1,4 @@
-div.searchResult, .section {
+div.search-result, .section {
   border-radius: 0.25rem;
   background-color: #202020;
   border: 1px solid #3e3e3e;
@@ -8,7 +8,7 @@ div.searchResult, .section {
   padding: 0.5rem;
 }
 
-div.searchResult {
+div.search-result {
   overflow-y: auto;
   height: 15rem;
 }

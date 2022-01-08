@@ -1,9 +1,9 @@
 a.feature {
-  line-height: 5rem;
+  height: 5rem;
 }
 
-@media (max-width: 992px) {
-  div.featureOuter {
+@media (max-width: 1199.98px) {
+  div.feature-outer {
     margin-bottom: 1rem;
   }
 }

@@ -9,15 +9,20 @@ $height: 4.125rem;
 .text {
   animation: marquee 4s linear infinite;
   height: $height;
+
   // Override border radius for alert in bootstrap
   border-radius: 0 !important;
+
   // Align element vertically at the middle
   display: table-cell;
   vertical-align: middle;
+
   // Overwritten if `display` is not `table-cell`
   margin: 0;
+
   // `display: table-cell` causes the element NOT to stretch
   width: 100vw;
+
   // Align with navbar and override bootstrap alert padding
   padding: 0.5rem 1rem !important;
 }

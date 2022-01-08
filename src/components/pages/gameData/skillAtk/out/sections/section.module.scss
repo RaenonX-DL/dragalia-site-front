@@ -1,7 +1,6 @@
 @use "../../../../../../../styles/colors";
 
 $item-margin: 0.75rem;
-
 $table-border-color: #656565;
 $table-border: 1px solid $table-border-color;
 
@@ -34,28 +33,28 @@ $table-border: 1px solid $table-border-color;
         width: 40%;
       }
 
-      &.ssCost {
+      &.ss-cost {
         width: 20%;
       }
 
       &.sp,
       &.ssp,
-      &.ssCost {
+      &.ss-cost {
         border: $table-border;
       }
     }
 
     tbody {
       tr:nth-of-type(odd) {
-        background-color: rgb(20, 20, 20);
+        background-color: rgb(20 20 20);
       }
 
       tr:nth-of-type(even) {
-        background-color: rgb(32, 32, 32);
+        background-color: rgb(32 32 32);
       }
 
       tr:hover {
-        background-color: rgb(4, 42, 59);
+        background-color: rgb(4 42 59);
       }
     }
   }

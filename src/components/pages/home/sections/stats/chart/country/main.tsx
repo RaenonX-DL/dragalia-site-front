@@ -57,7 +57,7 @@ export const UserStatsOfCountry = ({stats}: UserStatsOfCountryProps) => {
           </ButtonGroup>
         </Col>
       </Row>
-      <Row className={styles.statsSectionFiller}>
+      <Row className={styles['stats-section-filler']}>
         <Col>
           <UserStatsOfCountryChart stats={stats} dataKey={currentOption.dataKey}/>
         </Col>

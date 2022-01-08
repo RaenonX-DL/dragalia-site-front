@@ -34,8 +34,8 @@ export const KeyPointIndexPage = () => {
         )}
         renderMatchedSelection={({id, type, description}) => (
           <Row noGutters key={description} className={styles.entry}>
-            <Col xs="auto" className={styles.typeEntry}>
-              <span className={styles.typeIcon}>{PointTypeIcon[type]}</span>&nbsp;
+            <Col xs="auto" className={styles['type-entry']}>
+              <span className={styles['type-icon']}>{PointTypeIcon[type]}</span>&nbsp;
               <small>{t((t) => t.game.unitTier.points.type[type])}</small>
             </Col>
             <Col>

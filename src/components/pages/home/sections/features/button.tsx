@@ -20,7 +20,7 @@ export const FeatureButton = ({path, title, variant}: Props) => {
   const {lang} = useI18n();
 
   return (
-    <Col lg={6} className={styles.featureOuter}>
+    <Col lg={6} className={styles['feature-outer']}>
       <Button className={styles.feature} href={makeGeneralUrl(path, {lang})} variant={variant} size="lg" block>
         {title}
       </Button>

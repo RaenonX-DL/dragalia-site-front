@@ -36,7 +36,7 @@ export const UserStatsOfLang = ({stats}: UserStatsOfLangProps) => {
           </Button>
         </Col>
       </Row>
-      <Row className={styles.statsSectionFiller}>
+      <Row className={styles['stats-section-filler']}>
         <Col>
           <UserStatsOfLangChart stats={stats} stacked={stacked}/>
         </Col>

@@ -22,7 +22,7 @@ export const TierRanking = ({tierNote}: RankingProps) => {
         <span className={styles.ranking} style={{color: rankingColor[tierNote.ranking]}}>{tierNote.ranking}</span>
         {tierNote.isCompDependent && <>&nbsp;<IconCompDependent/></>}
       </div>
-      <TierNoteIcon tierNote={tierNote} iconClassName={styles.tierNote}/>
+      <TierNoteIcon tierNote={tierNote} iconClassName={styles['tier-note']}/>
     </>
   );
 };

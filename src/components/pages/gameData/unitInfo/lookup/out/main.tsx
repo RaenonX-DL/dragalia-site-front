@@ -45,7 +45,7 @@ export const UnitInfoLookupOutput = ({
           key={info.unitInfo.id}
           xs={inputData.iconOnly ? 4 : undefined}
           lg={inputData.iconOnly ? 2 : 6}
-          className={`mb-2 ${inputData.iconOnly ? styles.iconOnlyEntry : ''}`}
+          className={`mb-2 ${inputData.iconOnly ? styles['icon-only-entry'] : ''}`}
         >
           <UnitInfoEntry
             unitInfo={info.unitInfo}

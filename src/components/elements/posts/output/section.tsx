@@ -46,7 +46,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
             <Row>
               <Col className="mb-2">
                 <Button
-                  className={styles.sectionTitleButton}
+                  className={styles['section-title-button']}
                   onClick={() => setOpen({...open, [title]: !open[title]})}
                   variant="outline-light"
                 >

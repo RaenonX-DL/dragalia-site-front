@@ -36,10 +36,10 @@ export const TierListEntryIconOnly = ({entryPack, dimension, keyPointsData}: Pro
           {
             noteOfDimension &&
             <div>
-              <TierNoteIcon tierNote={noteOfDimension} iconClassName={styles.tierNoteDimension}/>
+              <TierNoteIcon tierNote={noteOfDimension} iconClassName={styles['tier-note-dimension']}/>
               {
                 pointIds.length > 0 &&
-                <span className={styles.dimensionPointIcon}>
+                <span className={styles['dimension-point-icon']}>
                   <TierNotePointIcon pointIds={pointIds} keyPointsData={keyPointsData}/>
                 </span>
               }

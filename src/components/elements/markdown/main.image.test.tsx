@@ -18,11 +18,11 @@ describe('Markdown (Image)', () => {
   });
 
   it('shows unit image as icon', async () => {
-    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg[unitIcon])'}</Markdown>);
+    renderReact(() => <Markdown>{'![Alt](https://i.imgur.com/mtxtE5j.jpeg[unit-icon])'}</Markdown>);
 
     const image = screen.getByAltText('Alt');
     expect(image).toHaveAttribute('src', 'https://i.imgur.com/mtxtE5j.jpeg');
-    expect(image).toHaveClass('unitIcon');
+    expect(image).toHaveClass('unit-icon');
   });
 
   it('allows injecting CSS class to image', async () => {

@@ -61,7 +61,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps)
           <hr className="my-2"/>
           <div className="text-right">
             <InternalLink
-              className={styles.editIcon}
+              className={styles['edit-icon']}
               href={GeneralPath.TIER_POINTS_EDIT}
               locale={lang}
               content={<IconEdit/>}

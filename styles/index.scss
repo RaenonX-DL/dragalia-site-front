@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "colors";
 
 body {
@@ -5,14 +6,14 @@ body {
   font-family:
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,7 +29,7 @@ code {
     Menlo,
     Monaco,
     Consolas,
-    'Courier New',
+    "Courier New",
     monospace;
 }
 
@@ -36,6 +37,13 @@ img {
   max-width: 100%;
   max-height: 100%;
 
+  &.unit-icon {
+    margin: 0 0.2rem;
+    height: 1.6rem;
+  }
+
+  // Class kept for legacy usage
+  // stylelint-disable-next-line selector-class-pattern
   &.unitIcon {
     margin: 0 0.2rem;
     height: 1.6rem;
@@ -59,18 +67,18 @@ div {
 
 nav {
   &.nav-site {
-    background: change-color(colors.$color-om-dark, $lightness: 7%);
+    background: color.change(colors.$color-om-dark, $lightness: 7%);
   }
 
   &.nav-title {
-    background: rgba(colors.$color-body-bg, 0.9);
+    background: color.change(colors.$color-body-bg, $alpha: 0.9);
     border-width: 1px;
     border-style: solid;
     border-image:
       linear-gradient(
         150deg,
-        change-color(colors.$color-theme-dark, $lightness: 50%),
-        change-color(colors.$color-theme-light, $lightness: 50%),
+        color.change(colors.$color-theme-dark, $lightness: 50%),
+        color.change(colors.$color-theme-light, $lightness: 50%),
       ) 1;
   }
 }

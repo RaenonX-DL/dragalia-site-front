@@ -43,7 +43,7 @@ export const renderTableRow: TableRowComponent = ({children}) => {
 export const renderTableCell: TableCellComponent = ({children}) => {
   return (
     <td>
-      <span className={styles.responsiveHeader}>
+      <span className={styles['responsive-header']}>
         {headers[idxCounter++]}
       </span>
       <TextChildren>

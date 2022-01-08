@@ -3,6 +3,7 @@
 
 // region Custom Colors
 
+@use "sass:color";
 @use "colors";
 
 // endregion
@@ -20,7 +21,7 @@ $body-color: colors.$color-white-pure;
 
 $link-color: #75a1ff !default;
 $link-decoration: none !default;
-$link-hover-color: lighten($link-color, 10%) !default;
+$link-hover-color: color.adjust($link-color, $lightness: 10%) !default;
 $link-hover-decoration: none !default;
 
 // endregion
@@ -46,7 +47,6 @@ $jumbotron-bg: colors.$color-black-32;
 // region Color themes
 
 $red: colors.$color-red;
-
 $theme-colors: (
   "om-dark": colors.$color-om-dark,
   "om-light": colors.$color-om-light,
@@ -56,9 +56,8 @@ $theme-colors: (
   "black-50": colors.$color-black-50,
   "light-gray": colors.$color-light-gray,
   // Override the "cyan" color and "info" variable in bootstrap definition
-  "info": lighten(#17a2b8, 7.5%),
+  "info": color.adjust(#17a2b8, $lightness: 7.5%),
 );
-
 $text-muted: #7f7f7f;
 
 // endregion
@@ -82,15 +81,12 @@ $nav-tabs-link-active-color: colors.$color-white-pure;
 $pagination-color: $link-color !default;
 $pagination-bg: colors.$color-black-32 !default;
 $pagination-border-color: colors.$color-black-32 !default;
-
 $pagination-hover-color: $link-hover-color !default;
 $pagination-hover-bg: colors.$color-black-80 !default;
 $pagination-hover-border-color: colors.$color-black-80 !default;
-
 $pagination-active-color: colors.$color-white-pure !default;
 $pagination-active-bg: colors.$color-om-light !default;
 $pagination-active-border-color: colors.$color-om-light !default;
-
 $pagination-disabled-color: colors.$color-light-gray !default;
 $pagination-disabled-bg: colors.$color-dark-red !default;
 $pagination-disabled-border-color: colors.$color-dark-red !default;

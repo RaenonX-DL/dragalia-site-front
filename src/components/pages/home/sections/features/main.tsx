@@ -14,7 +14,7 @@ export const SiteFeatures = () => {
 
   return (
     <>
-      <h1 className={mainStyles.sectionTitle}>
+      <h1 className={mainStyles['section-title']}>
         {t((t) => t.home.section.features)}
       </h1>
       <Row className="mb-0 mb-lg-3">

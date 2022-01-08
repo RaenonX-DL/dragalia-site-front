@@ -106,7 +106,7 @@ export const TierNoteEdit = () => {
           getArray={(payload) => payload.points}
           setArray={(points: Array<string>) => setUnitTierNote(overrideObject(unitTierNote, {points}))}
           renderOption={(option) => (
-            <div className={styles.pointEntry}>
+            <div className={styles['point-entry']}>
               <PointTypeIcon type={option.type}/>
               {option.description}
             </div>
@@ -119,7 +119,7 @@ export const TierNoteEdit = () => {
             }
 
             return (
-              <div className={styles.pointEntry}>
+              <div className={styles['point-entry']}>
                 <PointTypeIcon type={entry.type}/>
                 <span>{keyPointLookup[pointId].description}</span>
               </div>

@@ -19,9 +19,9 @@ export const EmbeddedYoutubeVideo = ({videoId}: Props) => {
   const allowedFeatures = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
 
   return (
-    <div className={`${styles.youtubeEmbed} mb-2`}>
+    <div className={`${styles['youtube-embed']} mb-2`}>
       <iframe
-        className={`${styles.youtubeEmbed} border-0`}
+        className={`${styles['youtube-embed']} border-0`}
         title={`Youtube video: ${videoUrl}`}
         src={videoUrl}
         allow={allowedFeatures}

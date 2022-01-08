@@ -49,7 +49,7 @@ export const UnitIconClickable = ({unit, className, style, hasAnalysis = true}: 
       <div className={className || ''} style={style} onClick={onIconClicked}>
         <Image
           text={unit.name} src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
-          className={styles.clickableUnitIcon}
+          className={styles['clickable-unit-icon']}
         />
       </div>
     </>

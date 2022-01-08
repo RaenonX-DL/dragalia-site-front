@@ -1,7 +1,8 @@
+@use "sass:color";
 @use "colors";
 
-$scroll-bar-core-color: lighten(colors.$color-body-bg, 30%);
-$scroll-bar-bg-color: lighten(colors.$color-body-bg, 10%);
+$scroll-bar-core-color: color.adjust(colors.$color-body-bg, $lightness: 30%);
+$scroll-bar-bg-color: color.adjust(colors.$color-body-bg, $lightness: 10%);
 
 /* Works on Firefox */
 * {

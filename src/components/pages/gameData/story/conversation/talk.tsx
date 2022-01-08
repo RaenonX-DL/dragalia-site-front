@@ -23,7 +23,7 @@ export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudio
 
   if (conversation.isSys) {
     return (
-      <Row noGutters className={`mb-2 ${styles.sysMessage}`}>
+      <Row noGutters className={`mb-2 ${styles['sys-message']}`}>
         <Col>
           {conversation.content}
         </Col>
@@ -36,7 +36,7 @@ export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudio
   }
 
   return (
-    <div className={isActive ? styles.conversationActive : styles.conversation} ref={ref}>
+    <div className={isActive ? styles['conversation-active'] : styles.conversation} ref={ref}>
       {
         playAudio && conversation.audioPaths.length > 0 && audioIdx < conversation.audioPaths.length &&
         <ReactAudioPlayer
@@ -60,13 +60,13 @@ export const StoryTalk = ({conversation, playAudio, isActive, audioIdx, setAudio
         </Col>
       </Row>
       <Row noGutters>
-        <Col xs="auto" className={styles.speakerIcon}>
+        <Col xs="auto" className={styles['speaker-icon']}>
           {
             conversation.speakerIcon ?
               <Image
                 src={DepotPaths.getStorySpeakerIconURL(conversation.speakerIcon)}
                 text=""
-                className={styles.speakerIcon}
+                className={styles['speaker-icon']}
               /> :
               <></>
           }

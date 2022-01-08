@@ -26,7 +26,7 @@ export const RecentUpdatedPosts = ({data}: Props) => {
 
   return (
     <>
-      <h1 className={mainStyles.sectionTitle}>
+      <h1 className={mainStyles['section-title']}>
         {t((t) => t.home.section.recentlyUpdated)}
       </h1>
       <Row className="mb-0 mb-lg-3">
@@ -43,7 +43,7 @@ export const RecentUpdatedPosts = ({data}: Props) => {
               }
 
               return (
-                <UnitIconClickable unit={unitInfoToClickableProps(unitInfo, lang)} className={styles.unitIcon}/>
+                <UnitIconClickable unit={unitInfoToClickableProps(unitInfo, lang)} className={styles['unit-icon']}/>
               );
             }}
           />

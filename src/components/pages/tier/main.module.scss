@@ -1,10 +1,10 @@
-@mixin clickableIcon() {
+@mixin clickable-icon() {
   border: 0; // Disables underline for <a>
   color: #bebebe;
 }
 
-@mixin clickableIconHover() {
-  @include clickableIcon;
+@mixin clickable-icon-hover() {
+  @include clickable-icon;
 
   color: white;
 }
@@ -18,12 +18,12 @@ span {
     font-size: 1.5rem;
   }
 
-  &.pointIcon {
+  &.point-icon {
     font-size: 1.3em;
     margin-right: 0.25rem;
   }
 
-  &.dimensionPointIcon {
+  &.dimension-point-icon {
     font-size: 1.1rem;
     float: left;
     margin-right: 0.5rem;
@@ -31,20 +31,20 @@ span {
 }
 
 div {
-  &.pointIcon {
+  &.point-icon {
     font-size: 1.5em;
     width: 1.5em;
     margin-right: 0.5rem;
     text-align: center;
   }
 
-  &.pointEntry {
+  &.point-entry {
     display: flex;
     align-items: center;
     height: 100%;
   }
 
-  &.dimensionEntryBar {
+  &.dimension-entry-bar {
     position: absolute;
     bottom: 0;
     text-align: right;
@@ -54,66 +54,69 @@ div {
 }
 
 a {
-  &.tierNote {
-    @include clickableIcon;
+  %tier-note {
+    @include clickable-icon;
 
     font-size: 1.1rem;
     margin-left: 0.7rem;
   }
 
-  &.tierNote:hover {
-    @include clickableIconHover;
+  &.tier-note {
+    @extend %tier-note;
   }
 
-  &.tierNoteDimension {
-    @extend .tierNote;
+  &.tier-note:hover {
+    @include clickable-icon-hover;
+  }
 
-    font-size: 1.1rem;
+  &.tier-note-dimension {
+    @extend %tier-note;
+
     margin-left: 0;
     margin-right: 0.5rem;
     float: left;
   }
 
-  &.tierNoteDimension:hover {
-    @include clickableIconHover;
+  &.tier-note-dimension:hover {
+    @include clickable-icon-hover;
   }
 
-  @mixin unitPointBase {
+  @mixin unit-point-base {
     height: 80%; // Size of <small>
   }
 
-  &.unitPoint {
-    @include clickableIcon;
-    @include unitPointBase;
+  &.unit-point {
+    @include clickable-icon;
+    @include unit-point-base;
   }
 
-  &.unitPoint:hover {
-    @include clickableIconHover;
-    @include unitPointBase;
+  &.unit-point:hover {
+    @include clickable-icon-hover;
+    @include unit-point-base;
   }
 
-  &.editIcon {
-    @include clickableIcon;
+  &.edit-icon {
+    @include clickable-icon;
 
     margin-left: 0.5rem;
     font-size: 1rem;
   }
 
-  &.editIcon:hover {
-    @include clickableIconHover;
+  &.edit-icon:hover {
+    @include clickable-icon-hover;
   }
 
-  &.pointInfo {
-    @include clickableIcon;
+  &.point-info {
+    @include clickable-icon;
   }
 
-  &.pointInfo:hover {
-    @include clickableIconHover;
+  &.point-info:hover {
+    @include clickable-icon-hover;
   }
 }
 
 img {
-  &.unitIcon {
+  &.unit-icon {
     opacity: 0.2;
     right: 0;
     bottom: 0;

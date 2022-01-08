@@ -1,6 +1,10 @@
-@media (min-width: 1200px) {
+@import "../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
+@include media-breakpoint-up(xl) {
   div {
-    .iconOnlyEntry {
+    .icon-only-entry {
       flex: 0 0 12.5%;
       max-width: 12.5%;
     }

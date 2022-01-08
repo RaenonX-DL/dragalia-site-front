@@ -9,4 +9,8 @@ type Props = {
   type: KeyPointType,
 };
 
-export const PointTypeIcon = ({type}: Props) => <span className={styles.pointIcon}>{PointTypeIconLookup[type]}</span>;
+export const PointTypeIcon = ({type}: Props) => (
+  <span className={styles['point-icon']}>
+    {PointTypeIconLookup[type]}
+  </span>
+);

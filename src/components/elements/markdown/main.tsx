@@ -14,7 +14,7 @@ type Props = {
 
 export const Markdown = ({children, overrideStyle = true}: Props) => {
   return (
-    <div className={overrideStyle ? styles.mdBody : ''}>
+    <div className={overrideStyle ? styles['md-body'] : ''}>
       <ReactMarkdown plugins={[remarkGfm]} components={components}>
         {children}
       </ReactMarkdown>

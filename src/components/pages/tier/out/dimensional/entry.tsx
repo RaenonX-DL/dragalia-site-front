@@ -40,11 +40,11 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
           </div>
           {
             noteOfDimension &&
-            <div className={styles.dimensionEntryBar}>
-              <TierNoteIcon tierNote={noteOfDimension} iconClassName={styles.tierNoteDimension}/>
+            <div className={styles['dimension-entry-bar']}>
+              <TierNoteIcon tierNote={noteOfDimension} iconClassName={styles['tier-note-dimension']}/>
               {
                 pointIds.length > 0 &&
-                <span className={styles.dimensionPointIcon}>
+                <span className={styles['dimension-point-icon']}>
                   <TierNotePointIcon pointIds={pointIds} keyPointsData={keyPointsData}/>
                 </span>
               }

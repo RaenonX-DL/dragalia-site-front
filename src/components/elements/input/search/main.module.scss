@@ -1,8 +1,8 @@
-@use '../../../../../styles/colors';
-@use '../../../../../styles/section';
+@use "../../../../../styles/colors";
+@use "../../../../../styles/section";
 
 div {
-  &.searchResult {
+  &.search-result {
     @extend %section-preset;
 
     overflow-y: auto;

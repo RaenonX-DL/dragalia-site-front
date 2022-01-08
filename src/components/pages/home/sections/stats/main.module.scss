@@ -1,28 +1,27 @@
+@use "sass:color";
 @use "../../../../../../styles/colors";
 
 div {
-  &.statsSection {
+  &.stats-section {
     height: 23rem;
     margin-bottom: 0.75rem;
   }
 
-  &.statsSectionOuter {
+  &.stats-section-outer {
     display: flex;
     flex-direction: column;
-
     background-color: colors.$color-black-07;
     border-radius: 0.5rem;
   }
 
-  &.statsSectionOuter &.statsSectionFiller {
+  &.stats-section-filler {
     flex-grow: 1;
-
     padding: 0.5rem;
   }
 
   &.tooltip {
     border-radius: 5px;
     padding: 0.5rem;
-    background-color: rgba(colors.$color-black-50, 0.77);
+    background-color: color.change(colors.$color-black-50, $alpha: 0.77);
   }
 }

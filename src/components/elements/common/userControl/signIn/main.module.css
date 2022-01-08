@@ -1,11 +1,11 @@
-.providerFrame {
+div.provider-frame {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 30vh;
 }
 
-.providerButton {
+button.provider-button {
   border: 0;
   background-color: #252525;
   font-size: 2rem;

@@ -1,4 +1,4 @@
-@use '../../../../../styles/colors';
+@use "../../../../../styles/colors";
 
 div {
   &.selected {
@@ -9,7 +9,7 @@ div {
     padding: 0.5rem;
   }
 
-  @mixin searchOptions {
+  @mixin search-options {
     &:hover {
       cursor: pointer;
       background-color: colors.$color-black-32;
@@ -28,17 +28,17 @@ div {
     padding: 0.5rem 0.8rem;
   }
 
-  &.optionSelected {
-    @include searchOptions;
+  &.option-selected {
+    @include search-options;
 
     color: #60fa5a;
   }
 
-  &.optionSelectable {
-    @include searchOptions;
+  &.option-selectable {
+    @include search-options;
   }
 
-  &.optionIcon {
+  &.option-icon {
     font-size: 1.3rem;
     text-align: right;
   }

@@ -1,64 +1,60 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
-.normalAttack table {
+div.normal-attack table {
   width: 100%;
   padding-right: 30px;
   margin-bottom: 0.75rem;
 }
-.normalAttack table tr {
+div.normal-attack table tr {
   background-color: #0e0e0e;
   border: 1px solid #656565;
 }
-.normalAttack table tr:last-child {
+div.normal-attack table tr:last-child {
   margin-bottom: 0;
 }
-.normalAttack table th,
-.normalAttack table td {
+div.normal-attack table th,
+div.normal-attack table td {
   padding: 0.65rem 1.5rem;
   text-align: center;
   white-space: nowrap;
 }
-.normalAttack table tbody tr:nth-of-type(odd) {
+div.normal-attack table tbody tr:nth-of-type(odd) {
   background-color: #141414;
 }
-.normalAttack table tbody tr:nth-of-type(even) {
+div.normal-attack table tbody tr:nth-of-type(even) {
   background-color: #202020;
 }
-.normalAttack table tbody tr:hover {
+div.normal-attack table tbody tr:hover {
   background-color: #042a3b;
 }
 
-.text {
+div.text {
   background-color: #202020;
   border: transparent solid 0.75rem;
   border-radius: 0.25rem;
   margin-bottom: 0.75rem;
   white-space: pre-line;
 }
-
+div.normal-attack table {
+  margin-bottom: 0;
+}
+div.normal-attack table th,
+div.normal-attack table td {
+  padding: 0.3rem 1.5rem;
+}
 @media (min-width: 992px) {
-  .ability .container {
+  div.ability .container {
     position: relative;
     padding-top: 100%;
     overflow: auto;
   }
-  .ability .content {
+  div.ability .content {
     position: absolute;
     inset: 0;
   }
 }
-
-.skill .entries {
+div.skill .entries {
   max-height: 70vh;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-.normalAttack table {
-  margin-bottom: 0;
-}
-.normalAttack table th,
-.normalAttack table td {
-  padding: 0.3rem 1.5rem;
 }
 
 /*# sourceMappingURL=main.module.css.map */

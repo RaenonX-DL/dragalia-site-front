@@ -1,3 +1,7 @@
+@import "../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
 a {
   &.feature {
     height: 5rem;
@@ -5,8 +9,8 @@ a {
 }
 
 div {
-  &.featureOuter {
-    @media (max-width: 992px) {
+  &.feature-outer {
+    @include media-breakpoint-down(lg) {
       margin-bottom: 1rem;
     }
   }

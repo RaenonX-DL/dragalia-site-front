@@ -18,26 +18,26 @@ export const AudioControl = ({hookReturn}: Props) => {
   const {playingState, startAudio, resumeAudio, pauseAudio, stopAudio} = hookReturn;
 
   const PlayButton = ({isStart = false}) => (
-    <Button className={styles.audioControl} variant="outline-success" onClick={isStart ? startAudio : resumeAudio}>
+    <Button className={styles['audio-control']} variant="outline-success" onClick={isStart ? startAudio : resumeAudio}>
       <IconPlay/>
     </Button>
   );
 
   const PauseButton = () => (
-    <Button className={styles.audioControl} variant="outline-warning" onClick={pauseAudio}>
+    <Button className={styles['audio-control']} variant="outline-warning" onClick={pauseAudio}>
       <IconPause/>
     </Button>
   );
 
   const StopButton = () => (
-    <Button className={styles.audioControl} variant="outline-danger" onClick={stopAudio}>
+    <Button className={styles['audio-control']} variant="outline-danger" onClick={stopAudio}>
       <IconStop/>
     </Button>
   );
 
   if (playingState !== 'stopping') {
     return (
-      <Row className={styles.audioControl}>
+      <Row className={styles['audio-control']}>
         <Col>
           <ButtonGroup>
             {playingState === 'playing' ? <PauseButton/> : <PlayButton/>}
@@ -49,7 +49,7 @@ export const AudioControl = ({hookReturn}: Props) => {
   }
 
   return (
-    <Row className={styles.audioControl}>
+    <Row className={styles['audio-control']}>
       <Col>
         <PlayButton isStart/>
       </Col>

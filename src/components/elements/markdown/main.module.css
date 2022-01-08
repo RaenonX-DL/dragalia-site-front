@@ -1,4 +1,4 @@
-.mdBody, .section {
+.md-body, .section {
   border-radius: 0.25rem;
   background-color: #202020;
   border: 1px solid #3e3e3e;
@@ -8,81 +8,81 @@
   padding: 0.5rem;
 }
 
-.mdBody table {
+.md-body table {
   width: 100%;
   padding-right: 30px;
   margin-bottom: 0.75rem;
 }
-.mdBody table tr {
+.md-body table tr {
   background-color: #0e0e0e;
   border: 1px solid #656565;
 }
-.mdBody table tr:last-child {
+.md-body table tr:last-child {
   margin-bottom: 0;
 }
-.mdBody table th,
-.mdBody table td {
+.md-body table th,
+.md-body table td {
   padding: 0.65rem 1.5rem;
   text-align: center;
   white-space: nowrap;
 }
-.mdBody table tbody tr:nth-of-type(odd) {
+.md-body table tbody tr:nth-of-type(odd) {
   background-color: #141414;
 }
-.mdBody table tbody tr:nth-of-type(even) {
+.md-body table tbody tr:nth-of-type(even) {
   background-color: #202020;
 }
-.mdBody table tbody tr:hover {
+.md-body table tbody tr:hover {
   background-color: #042a3b;
 }
 
-.mdBody {
+.md-body {
   overflow: auto;
   padding: 0.75rem 0.75rem 0 0.75rem;
 }
-@media screen and (max-width: 992px) {
-  .mdBody table thead {
+@media (max-width: 1199.98px) {
+  .md-body table thead {
     display: none;
   }
-  .mdBody table td {
+  .md-body table td {
     border-bottom: 1px solid #656565;
     display: block;
     text-align: right;
   }
-  .mdBody table td > span.responsiveHeader {
+  .md-body table td > span.responsive-header {
     float: left;
   }
-  .mdBody table td:last-child {
+  .md-body table td:last-child {
     border-bottom: 0;
   }
-  .mdBody table tr {
+  .md-body table tr {
     display: block;
     margin-bottom: 0.75rem;
   }
-  .mdBody table tr:last-child {
+  .md-body table tr:last-child {
     margin-bottom: 0;
   }
 }
-@media screen and (min-width: 992px) {
-  .mdBody table td > span.responsiveHeader {
+@media (min-width: 992px) {
+  .md-body table td > span.responsive-header {
     display: none;
   }
 }
-.mdBody div.text {
+.md-body div.text {
   margin-bottom: 0.75rem;
 }
-.mdBody div.youtubeEmbed {
+.md-body div.youtube-embed {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
 }
-.mdBody span.calc {
+.md-body span.calc {
   background-color: #060606;
   color: #ff0;
   border-radius: 0.25rem;
   padding: 0.1rem 0.2rem;
 }
-.mdBody iframe.youtubeEmbed {
+.md-body iframe.youtube-embed {
   position: absolute;
   top: 0;
   left: 0;
@@ -90,41 +90,41 @@
   height: 100%;
   border: 0;
 }
-.mdBody pre {
+.md-body pre {
   background-color: #151515;
   color: #0f0;
   padding: 10px;
   border-radius: 0.25rem;
 }
-.mdBody blockquote {
+.md-body blockquote {
   border-left: 0.35rem solid #80b2ff;
   padding-left: 0.5rem;
   color: #aaa;
   margin: 0;
 }
-.mdBody strong {
+.md-body strong {
   color: #80b2ff;
 }
-.mdBody ol,
-.mdBody ul,
-.mdBody dl {
+.md-body ol,
+.md-body ul,
+.md-body dl {
   padding-inline-start: 25px;
 }
-.mdBody > ol, .mdBody > ul, .mdBody > dl {
+.md-body > ol, .md-body > ul, .md-body > dl {
   margin-bottom: 0.75rem;
 }
-.mdBody h1,
-.mdBody h2,
-.mdBody h3 {
+.md-body h1,
+.md-body h2,
+.md-body h3 {
   padding-bottom: 0.4rem;
   border-bottom: 1px solid rgba(170, 170, 170, 0.5);
 }
-.mdBody h1,
-.mdBody h2,
-.mdBody h3,
-.mdBody h4,
-.mdBody h5,
-.mdBody h6 {
+.md-body h1,
+.md-body h2,
+.md-body h3,
+.md-body h4,
+.md-body h5,
+.md-body h6 {
   color: skyblue;
   margin-bottom: 0.75rem;
   font-weight: 600;
