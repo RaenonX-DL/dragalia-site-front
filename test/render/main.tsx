@@ -20,7 +20,7 @@ import {RenderOptions, RenderAppReturns} from './types';
 type WrapperProps = {
   store: ReduxStore,
   options?: RenderOptions,
-}
+};
 
 const RenderWrapper = ({store, options, children}: React.PropsWithChildren<WrapperProps>) => {
   const session: Session = {

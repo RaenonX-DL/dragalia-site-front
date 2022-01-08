@@ -2,6 +2,7 @@
 
 const babelJest = require('babel-jest');
 
+
 const hasJsxRuntime = (() => {
   try {
     require.resolve('react/jsx-runtime');

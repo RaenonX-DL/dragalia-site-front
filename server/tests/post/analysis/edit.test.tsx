@@ -91,7 +91,7 @@ describe('Analysis edit page', () => {
   it('allows access for admin users (chara)', async () => {
     fnFetch.mockResolvedValue(charaResponse);
 
-    renderReact(() => <AnalysisEdit />, {user: {isAdmin: true}});
+    renderReact(() => <AnalysisEdit/>, {user: {isAdmin: true}});
 
     expect((await screen.findAllByText(charaResponse.forceStrikes)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();
