@@ -13,7 +13,7 @@ type Props = {
 export const BaseModal = ({state, onHide, children}: React.PropsWithChildren<Props>) => {
   return (
     <Modal show={state.show} onHide={onHide} centered>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton closeVariant="white">
         <Modal.Title>{state.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
