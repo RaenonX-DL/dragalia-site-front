@@ -40,7 +40,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   const unitInfo = unitInfoMap.get(payload.unitId);
 
   return (
-    <Form.Row>
+    <Row>
       <Col lg={3}>
         <Form.Control
           className="mb-3"
@@ -75,6 +75,6 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
           setAvailability={setAvailability}
         />
       </Col>
-    </Form.Row>
+    </Row>
   );
 };

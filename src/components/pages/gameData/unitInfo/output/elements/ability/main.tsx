@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {AbilityInfo, ConditionEnumMap} from '../../../../../../../api-def/resources';
 import {GeneralPath, PostPath} from '../../../../../../../const/path/definitions';
@@ -70,11 +70,11 @@ export const AbilityBlock = ({unitId, info}: AbilityBlockProps) => {
               <SectionSubTitle>{t((t) => t.game.unitInfo.title.coAbility.chained)}</SectionSubTitle>
               <OfficialAbilityEntry info={info.coAbility.chained}/>
               <SectionTitle>{t((t) => t.game.unitInfo.title.coAbility.parsed)}</SectionTitle>
-              <Form.Row className="mx-1">
+              <Row className="mx-1">
                 <Col>
                   <ExAbilityEntry {...info.coAbility.parsed} conditionEnums={conditionEnums.data}/>
                 </Col>
-              </Form.Row>
+              </Row>
             </>
           }
         </div>

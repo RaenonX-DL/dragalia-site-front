@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../i18n/hook';
 import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
@@ -17,7 +17,7 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
   const {t} = useI18n();
 
   return (
-    <Form.Row>
+    <Row>
       {
         entryPacks.length > 0 ?
           entryPacks.map((entryPack) => (
@@ -48,6 +48,6 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
             </div>
           </Col>
       }
-    </Form.Row>
+    </Row>
   );
 };

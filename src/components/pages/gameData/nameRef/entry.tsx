@@ -28,7 +28,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
 
   return (
     <div className="section">
-      <Form.Row>
+      <Row>
         <Col lg={2}>
           <Form.Label>{t((t) => t.game.nameRef.unitId)}</Form.Label>
           <Form.Control
@@ -74,7 +74,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
             value={entry.name}
           />
         </Col>
-      </Form.Row>
+      </Row>
     </div>
   );
 };

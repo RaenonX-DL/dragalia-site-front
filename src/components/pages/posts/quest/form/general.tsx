@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {QuestPostPublishPayload} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
@@ -15,7 +15,7 @@ export const FormGeneralInfo = <P extends QuestPostPublishPayload>({formState, s
   const {payload} = formState;
 
   return (
-    <Form.Row>
+    <Row>
       <Col className="mb-3 mb-lg-0" lg={6}>
         <h5>{t((t) => t.posts.quest.general)}</h5>
         <MarkdownInput
@@ -31,6 +31,6 @@ export const FormGeneralInfo = <P extends QuestPostPublishPayload>({formState, s
           rows={5} value={payload.video}
         />
       </Col>
-    </Form.Row>
+    </Row>
   );
 };

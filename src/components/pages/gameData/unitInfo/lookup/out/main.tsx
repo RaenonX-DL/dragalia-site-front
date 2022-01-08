@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
@@ -39,7 +39,7 @@ export const UnitInfoLookupOutput = ({
   }
 
   return (
-    <Form.Row>
+    <Row>
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}
@@ -52,6 +52,6 @@ export const UnitInfoLookupOutput = ({
           />
         </Col>
       ))}
-    </Form.Row>
+    </Row>
   );
 };

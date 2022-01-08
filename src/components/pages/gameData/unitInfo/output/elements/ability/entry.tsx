@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {DepotPaths, OfficialAbilityInfo} from '../../../../../../../api-def/resources';
 import {useI18n} from '../../../../../../../i18n/hook';
@@ -17,7 +17,7 @@ export const OfficialAbilityEntry = ({info}: EntryProps) => {
   const {lang} = useI18n();
 
   return (
-    <Form.Row className="mx-1">
+    <Row className="mx-1">
       <Col xs="auto">
         <Image
           src={DepotPaths.getAbilityIconURL(info.iconPath)}
@@ -28,6 +28,6 @@ export const OfficialAbilityEntry = ({info}: EntryProps) => {
       <Col>
         <InfoBlock>{info.description[lang]}</InfoBlock>
       </Col>
-    </Form.Row>
+    </Row>
   );
 };

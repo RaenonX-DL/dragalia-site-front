@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 
 import {EnumEntry} from '../../../../../api-def/resources';
@@ -90,7 +91,7 @@ export const UnitFilter = <S extends string,
           e.preventDefault();
           onSearchRequested(inputData)(e);
         }}>
-          <Form.Row>
+          <Row>
             <Col xs={12} md className="mb-2 mb-md-0">
               <Form.Control
                 placeholder={t((t) => t.misc.searchKeyword)}
@@ -117,7 +118,7 @@ export const UnitFilter = <S extends string,
                 {disabled ? <Spinner animation="grow" size="sm"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
-          </Form.Row>
+          </Row>
         </Form>
       </div>
       <AdsUnitSearchBottom/>

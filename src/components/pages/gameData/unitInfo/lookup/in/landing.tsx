@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
@@ -16,7 +16,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();
 
   return (
-    <Form.Row className="mb-2">
+    <Row className="mb-2">
       {analyses
         .flatMap((entry) => {
           const unitInfo = unitInfoMap.get(entry.unitId);
@@ -27,6 +27,6 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
             <UnitInfoEntry unitInfo={unitInfo} analysisMeta={entry} simplified/>
           </Col>
         ))}
-    </Form.Row>
+    </Row>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {FailedResponse, isFailedResponse, KeyPointInfo, KeyPointInfoResponse} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
@@ -52,7 +52,7 @@ export const KeyPointInfoPage = () => {
       <hr/>
       <AdsUnitKeyPointInfo/>
       <h5>{t((t) => t.game.unitTier.points.info.linkedUnits)}</h5>
-      <Form.Row>
+      <Row>
         {
           linkedUnits.length > 0 ?
             linkedUnits.sort().map((unitId) => {
@@ -72,7 +72,7 @@ export const KeyPointInfoPage = () => {
               {t((t) => t.game.unitTier.points.info.error.noLinkedUnits)}
             </Col>
         }
-      </Form.Row>
+      </Row>
       <AdsUnitKeyPointInfo/>
     </>
   );

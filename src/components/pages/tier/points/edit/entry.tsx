@@ -22,7 +22,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
 
   return (
     <div className="section">
-      <Form.Row>
+      <Row>
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type.title)}</Form.Label>
           <Row noGutters>
@@ -51,7 +51,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
             onChange={(e) => onChanged('description')(e.target.value)}
           />
         </Col>
-      </Form.Row>
+      </Row>
     </div>
   );
 };

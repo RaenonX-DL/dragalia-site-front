@@ -2,6 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {
   OptionalSequencedPostMeta,
@@ -45,7 +46,7 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   const {payload, isPreloaded} = formState;
 
   return (
-    <Form.Row>
+    <Row>
       <Col lg={2}>
         <Form.Control
           className="mb-2" type="number" placeholder={t((t) => t.posts.info.id)}
@@ -68,6 +69,6 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
           setAvailability={setAvailability}
         />
       </Col>
-    </Form.Row>
+    </Row>
   );
 };

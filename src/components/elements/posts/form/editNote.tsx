@@ -2,6 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {PostEditPayload} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
@@ -16,14 +17,14 @@ export const FormEditNote = <P extends PostEditPayload>({setPayload}: FormEditNo
   return (
     <>
       <h5>{t((t) => t.posts.manage.editNote)}</h5>
-      <Form.Row>
+      <Row>
         <Col>
           <Form.Control
             className="mb-2" placeholder={t((t) => t.posts.manage.editNote)}
             onChange={(e) => setPayload('editNote', e.target.value)}
           />
         </Col>
-      </Form.Row>
+      </Row>
     </>
   );
 };

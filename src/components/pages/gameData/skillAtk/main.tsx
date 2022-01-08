@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {scrollRefToTop} from '../../../../utils/scroll';
@@ -65,7 +64,7 @@ export const AttackingSkillLookup = () => {
           />
         </Col>
         <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
-          <Form.Row className="text-right mb-1">
+          <Row className="text-right mb-1">
             <Col>
               <AttackingSkillPreset
                 inputData={inputDataForward.inputData}
@@ -83,7 +82,7 @@ export const AttackingSkillLookup = () => {
                 }}
               />
             </Col>
-          </Form.Row>
+          </Row>
           <AttackingSkillOutput
             displayConfig={inputDataForward.inputData.display}
             calculatedEntries={inputDataForward.calculatedEntries || []}
