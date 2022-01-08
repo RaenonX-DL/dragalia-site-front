@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {DataPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeDataUrl} from '../../../../../utils/path/make';
 import {transformForSearch} from '../../../../../utils/text';
 import {AdsPageTop, AdsUnitKeyPointIndexEnd} from '../../../../elements/common/ads/main';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {InternalLink} from '../../../../elements/common/link/internal';
 import {Loading} from '../../../../elements/common/loading';
 import {Search} from '../../../../elements/input/search/main';
@@ -33,7 +33,7 @@ export const KeyPointIndexPage = () => {
           transformForSearch(option.description, {variantInsensitive: false}).includes(searchText)
         )}
         renderMatchedSelection={({id, type, description}) => (
-          <Row noGutters key={description} className={styles.entry}>
+          <RowNoGutter key={description} className={styles.entry}>
             <Col xs="auto" className={styles['type-entry']}>
               <span className={styles['type-icon']}>{PointTypeIcon[type]}</span>&nbsp;
               <small>{t((t) => t.game.unitTier.points.type[type])}</small>
@@ -46,7 +46,7 @@ export const KeyPointIndexPage = () => {
                 newWindow
               />
             </Col>
-          </Row>
+          </RowNoGutter>
         )}
         height="70vh"
       />

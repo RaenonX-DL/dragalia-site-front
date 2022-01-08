@@ -8,6 +8,7 @@ import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
 import {formControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
+import {RowNoGutter} from '../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../elements/form/array/type';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 
@@ -43,7 +44,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
         </Col>
         <Col lg={5}>
           <Form.Label>{t((t) => t.game.nameRef.actualName)}</Form.Label>
-          <Row noGutters>
+          <RowNoGutter>
             {
               unitInfo ?
                 <>
@@ -63,7 +64,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
                   </span>
                 </Col>
             }
-          </Row>
+          </RowNoGutter>
         </Col>
         <Col lg={5}>
           <Form.Label>{t((t) => t.game.nameRef.desiredName)}</Form.Label>

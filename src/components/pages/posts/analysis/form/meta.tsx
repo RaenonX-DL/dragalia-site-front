@@ -9,6 +9,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {useFormMeta} from '../../../../elements/posts/form/meta/hook';
 import {FormMetaLangPicker} from '../../../../elements/posts/form/meta/lang';
@@ -56,7 +57,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
         />
       </Col>
       <Col lg={6} className={unitInfo ? 'pr-0' : ''}>
-        <Row noGutters>
+        <RowNoGutter>
           <Col>
             <Form.Control className="mb-3" type="text" value={unitInfo?.name[lang] || ''} disabled/>
           </Col>
@@ -66,7 +67,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
               <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '2.5rem'}}/>
             </Col>
           }
-        </Row>
+        </RowNoGutter>
       </Col>
       <Col lg={3}>
         <FormMetaLangPicker

@@ -24,11 +24,11 @@ div {
     }
 
     @include media-breakpoint-up(lg) {
-      @include analysis-entry(5);
+      @include analysis-entry(4);
     }
 
     @include media-breakpoint-up(xl) {
-      @include analysis-entry(6);
+      @include analysis-entry(5);
     }
   }
 

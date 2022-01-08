@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../i18n/hook';
+import {RowNoGutter} from '../../common/grid/row';
 import {ArrayFormBase, ArrayFormBaseProps} from '../../form/array/base';
 import {Search} from '../search/main';
 import {IconSelectable, IconSelected} from './icons';
@@ -51,8 +51,8 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
           const isSelected = isOptionSelected(option);
 
           return (
-            <Row
-              noGutters key={optionText}
+            <RowNoGutter
+              key={optionText}
               className={isSelected ? styles['option-selected'] : styles['option-selectable']}
               onClick={() => {
                 if (isSelected) {
@@ -69,7 +69,7 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
               <Col xs="auto" className={styles['option-icon']}>
                 {isSelected ? <IconSelected/> : <IconSelectable/>}
               </Col>
-            </Row>
+            </RowNoGutter>
           );
         }}
       />

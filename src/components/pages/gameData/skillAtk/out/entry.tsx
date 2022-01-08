@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {DistributionBar} from '../../../../elements/charts/distBar';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {ConditionBadges} from '../../../../elements/gameData/badges/conditions';
 import {InputData} from '../in/types';
 import {EnumDataPack} from './props';
@@ -34,7 +35,7 @@ export const AttackingSkillEntry = ({
 
   return (
     <div className="section mb-2">
-      <Row noGutters>
+      <RowNoGutter>
         <Col xs="auto" sm="auto" className="mr-2">
           <SectionImageIcon atkSkillEntry={atkSkillEntry}/>
         </Col>
@@ -58,7 +59,7 @@ export const AttackingSkillEntry = ({
             <ConditionBadges conditionCodes={calculatedData.skillEntry.condition}/>
           </Col>
         }
-      </Row>
+      </RowNoGutter>
       {
         displayConfig.damageDist &&
         <Row className="text-center">

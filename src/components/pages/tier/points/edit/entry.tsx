@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';
@@ -25,7 +26,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
       <Row>
         <Col lg={3}>
           <Form.Label>{t((t) => t.game.unitTier.points.type.title)}</Form.Label>
-          <Row noGutters>
+          <RowNoGutter>
             <Col xs="auto" className={styles['point-icon']}>
               {PointTypeIcon[entry.type]}
             </Col>
@@ -41,7 +42,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
                 ))}
               </Form.Control>
             </Col>
-          </Row>
+          </RowNoGutter>
         </Col>
         <Col lg={9}>
           <Form.Label>{t((t) => t.game.unitTier.points.description)}</Form.Label>

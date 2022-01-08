@@ -2,9 +2,9 @@ import React from 'react';
 
 import {Property} from 'csstype';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../i18n/hook';
+import {RowNoGutter} from '../../common/grid/row';
 import styles from './main.module.css';
 
 
@@ -24,11 +24,11 @@ export const SearchResults = <E, >({results, renderEntry, height}: Props<E>) => 
           results.map((entry, idx) => (
             <React.Fragment key={idx}>{renderEntry(entry)}</React.Fragment>
           )) :
-          <Row noGutters className="mt-2 text-center text-danger">
+          <RowNoGutter className="mt-2 text-center text-danger">
             <Col>
               {t((t) => t.autoComplete.noMatchingOptions)}
             </Col>
-          </Row>
+          </RowNoGutter>
       }
     </div>
   );

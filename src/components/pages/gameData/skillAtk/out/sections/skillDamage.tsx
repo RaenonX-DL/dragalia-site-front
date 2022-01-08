@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
+import {RowNoGutter} from '../../../../../elements/common/grid/row';
 import {CalculatedSkillEntry} from '../types';
 
 
@@ -14,7 +14,7 @@ export const SectionSkillDamage = ({calculatedData}: SectionSkillDamageProps) =>
   const removeDigit = (num: number) => num.toLocaleString(undefined, {maximumFractionDigits: 0});
 
   return (
-    <Row noGutters className="text-center">
+    <RowNoGutter className="text-center">
       <Col className="my-auto">
         <small>{removeDigit(calculatedData.skillDamage.lowest)}</small>
       </Col>
@@ -24,6 +24,6 @@ export const SectionSkillDamage = ({calculatedData}: SectionSkillDamageProps) =>
       <Col className="my-auto">
         <small>{removeDigit(calculatedData.skillDamage.highest)}</small>
       </Col>
-    </Row>
+    </RowNoGutter>
   );
 };

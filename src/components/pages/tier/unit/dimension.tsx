@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import {DimensionKey, TierNote} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
+import {RowNoGutter} from '../../../elements/common/grid/row';
 import {Markdown} from '../../../elements/markdown/main';
 import {rankingColor} from '../const';
 import {IconCompDependent} from '../icons';
@@ -26,7 +27,7 @@ export const UnitTierNoteDimension = ({dimension, note}: Props) => {
           <h6>{t((t) => t.game.unitTier.dimension[dimension])}</h6>
         </Col>
       </Row>
-      <Row noGutters>
+      <RowNoGutter>
         {
           note ?
             <>
@@ -42,7 +43,7 @@ export const UnitTierNoteDimension = ({dimension, note}: Props) => {
               -
             </Col>
         }
-      </Row>
+      </RowNoGutter>
     </div>
   );
 };

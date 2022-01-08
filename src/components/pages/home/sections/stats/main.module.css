@@ -1,6 +1,8 @@
 div.stats-section {
   height: 23rem;
   margin-bottom: 0.75rem;
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
 }
 div.stats-section-outer {
   display: flex;

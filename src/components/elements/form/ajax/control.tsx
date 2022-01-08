@@ -32,7 +32,7 @@ export const AjaxFormControl = ({
   };
 
   return (
-    <Row noGutters className="text-right">
+    <Row className="text-right g-0">
       <Col>
         {renderAtLeft}
         <Button type="submit" className="ml-2" disabled={submitTextKey === 'loading' || disabled} {...props}>

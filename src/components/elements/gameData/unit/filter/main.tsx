@@ -91,8 +91,8 @@ export const UnitFilter = <S extends string,
           e.preventDefault();
           onSearchRequested(inputData)(e);
         }}>
-          <Row>
-            <Col xs={12} md className="mb-2 mb-md-0">
+          <Row className="g-2">
+            <Col xs={12} md>
               <Form.Control
                 placeholder={t((t) => t.misc.searchKeyword)}
                 value={inputData.keyword}
@@ -102,7 +102,7 @@ export const UnitFilter = <S extends string,
                 })}
               />
             </Col>
-            <Col xs md="auto" className="text-right">
+            <Col xs md="auto" className="text-end">
               <DropdownButton title={sortTitle} variant="outline-light">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
@@ -113,7 +113,7 @@ export const UnitFilter = <S extends string,
                 ))}
               </DropdownButton>
             </Col>
-            <Col xs="auto" className="text-right">
+            <Col xs="auto" className="text-end">
               <Button variant="outline-info" type="submit" disabled={disabled}>
                 {disabled ? <Spinner animation="grow" size="sm"/> : t((t) => t.misc.search)}
               </Button>

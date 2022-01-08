@@ -24,12 +24,12 @@ export const SiteStats = ({data}: Props) => {
       <h1 className={mainStyles['section-title']}>
         {t((t) => t.home.section.stats.title)}
       </h1>
-      <Row noGutters className={styles['stats-section']}>
+      <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
           <UserStatsOfCountry stats={data.stats.user.perCountry}/>
         </Col>
       </Row>
-      <Row noGutters className={styles['stats-section']}>
+      <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
           <UserStatsOfLang stats={data.stats.user.perLang}/>
         </Col>

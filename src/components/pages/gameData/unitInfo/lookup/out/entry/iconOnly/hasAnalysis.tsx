@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {useI18n} from '../../../../../../../../i18n/hook';
 import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
+import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {IconEdit, IconPublish} from '../../../../../../../elements/common/icons';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
 import {EntryPropsHasAnalysis} from '../types';
@@ -19,7 +20,7 @@ export const IconOnlyEntryWithAnalysis = ({
 
   return (
     <>
-      <Row noGutters className="pt-1 text-center">
+      <RowNoGutter className="pt-1 text-center">
         <Col>
           <UnitIconClickable
             unit={unitInfoToClickableProps(unitInfo, lang)}
@@ -27,7 +28,7 @@ export const IconOnlyEntryWithAnalysis = ({
             style={{height: '4.5rem'}}
           />
         </Col>
-      </Row>
+      </RowNoGutter>
       <Row className="small">
         <Col className="text-right text-muted">
           {t(

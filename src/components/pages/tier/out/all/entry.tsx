@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
 import styles from '../../main.module.css';
@@ -26,10 +26,10 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
 
   return (
     <div className="section mb-2">
-      <Row noGutters className="text-center align-items-center bg-img-wrap">
+      <RowNoGutter className="text-center align-items-center bg-img-wrap">
         <UnitIcon unitInfo={unitInfo} className={`bg-img ${styles['unit-icon']}`}/>
         <Col>
-          <Row noGutters className="bg-img-wrap">
+          <RowNoGutter className="bg-img-wrap">
             <Col md={6} className="text-left">
               {
                 tierNote && tierNote.points.length > 0 &&
@@ -50,9 +50,9 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
               </small>
               <TierNoteEditIcon unitId={unitInfo.id}/>
             </Col>
-          </Row>
+          </RowNoGutter>
           <hr className="my-2"/>
-          <Row noGutters className="text-center">
+          <RowNoGutter className="text-center">
             {Object.keys(Dimension).map((item) => {
               const dimension = item as DimensionKey;
 
@@ -65,9 +65,9 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
                 </Col>
               );
             })}
-          </Row>
+          </RowNoGutter>
         </Col>
-      </Row>
+      </RowNoGutter>
     </div>
   );
 };

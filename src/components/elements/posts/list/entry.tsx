@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {PostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
+import {RowNoGutter} from '../../common/grid/row';
 import {InternalLink} from '../../common/link/internal';
 import styles from './entry.module.css';
 import {PostEntryInfoBar} from './postInfo';
@@ -30,7 +30,7 @@ export const PostEntry = <E extends PostInfo>({
 
   return (
     <div className={styles.entry}>
-      <Row noGutters>
+      <RowNoGutter>
         {icon ? <Col xs="auto">{icon}</Col> : <></>}
         <Col>
           <h5>
@@ -40,16 +40,16 @@ export const PostEntry = <E extends PostInfo>({
               content={title}
             />
           </h5>
-          <Row noGutters>
+          <RowNoGutter>
             <Col md="auto">
               {renderPostBadge({entry})}&nbsp;
             </Col>
             <Col>
               <PostEntryInfoBar entry={entry} className="d-none d-md-flex"/>
             </Col>
-          </Row>
+          </RowNoGutter>
         </Col>
-      </Row>
+      </RowNoGutter>
       <PostEntryInfoBar entry={entry} className="d-flex d-md-none"/>
     </div>
   );

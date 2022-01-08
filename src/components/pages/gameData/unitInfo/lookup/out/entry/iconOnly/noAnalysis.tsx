@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
 import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
+import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
 import {EntryCommonProps} from '../types';
 
@@ -16,7 +16,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
 
   return (
     <>
-      <Row noGutters className="pt-1 text-center">
+      <RowNoGutter className="pt-1 text-center">
         <Col>
           <UnitIconClickable
             unit={unitInfoToClickableProps(unitInfo, lang)}
@@ -24,12 +24,12 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
             style={{height: '4.5rem'}}
           />
         </Col>
-      </Row>
-      <Row noGutters className="align-items-center">
+      </RowNoGutter>
+      <RowNoGutter className="align-items-center">
         <Col className="text-danger text-center">
           {t((t) => t.posts.analysis.error.unavailable)}
         </Col>
-      </Row>
+      </RowNoGutter>
     </>
   );
 };

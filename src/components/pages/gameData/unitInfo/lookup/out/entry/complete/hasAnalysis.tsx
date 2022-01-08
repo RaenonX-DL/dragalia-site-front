@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
+import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {UnitLink} from '../../../../../../../elements/gameData/unit/link';
 import {EntryPropsHasAnalysis} from '../types';
 
@@ -18,7 +18,7 @@ export const CompleteEntryWithAnalysis = ({
 
   return (
     <>
-      <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
+      <RowNoGutter className="pt-1" style={{height: '2.5rem'}}>
         <Col className="mr-2">
           <UnitLink className="h6" unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis/>
         </Col>
@@ -33,8 +33,8 @@ export const CompleteEntryWithAnalysis = ({
             </small>
           </Col>
         }
-      </Row>
-      <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
+      </RowNoGutter>
+      <RowNoGutter className="small align-items-center" style={{height: '1.5rem'}}>
         <Col className="text-center">
           {t((t) => t.misc.timestamp.lastModified)}&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
@@ -46,7 +46,7 @@ export const CompleteEntryWithAnalysis = ({
             <TimeAgo epoch={analysisMeta.publishedEpoch}/>
           </Col>
         }
-      </Row>
+      </RowNoGutter>
     </>
   );
 };

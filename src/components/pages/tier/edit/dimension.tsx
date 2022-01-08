@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {DimensionKey, Ranking, RankingScore} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {DeepPartial} from '../../../../utils/types';
+import {RowNoGutter} from '../../../elements/common/grid/row';
 import {InputPanel} from '../../../elements/input/panel/main';
 import {InputPanelCommonProps} from '../../../elements/input/panel/types';
 import {MarkdownInput} from '../../../elements/markdown/input';
@@ -46,7 +46,7 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
   };
 
   return (
-    <Row noGutters className="section p-3 mb-2">
+    <RowNoGutter className="section p-3 mb-2">
       <Col lg={4} className="pr-lg-3 mb-lg-n3">
         {t((t) => t.game.unitTier.dimension[dimension])}
         <hr className="my-2"/>
@@ -88,6 +88,6 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
           disabled={disabled} required={!disabled}
         />
       </Col>
-    </Row>
+    </RowNoGutter>
   );
 };
