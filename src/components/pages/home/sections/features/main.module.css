@@ -1,8 +1,19 @@
 a.feature {
   height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 1199.98px) {
+div.feature-row {
+  margin-bottom: 1rem;
+}
+@media (max-width: 991.98px) {
+  div.feature-row {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 991.98px) {
   div.feature-outer {
     margin-bottom: 1rem;
   }

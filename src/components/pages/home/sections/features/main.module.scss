@@ -5,12 +5,23 @@
 a {
   &.feature {
     height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 div {
+  &.feature-row {
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 0;
+    }
+  }
+
   &.feature-outer {
-    @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
       margin-bottom: 1rem;
     }
   }

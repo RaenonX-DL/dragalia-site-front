@@ -7,6 +7,7 @@ import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import mainStyles from '../../main.module.css';
 import {FeatureButton} from './button';
+import styles from './main.module.css';
 
 
 export const SiteFeatures = () => {
@@ -17,7 +18,7 @@ export const SiteFeatures = () => {
       <h1 className={mainStyles['section-title']}>
         {t((t) => t.home.section.features)}
       </h1>
-      <Row className="mb-0 mb-lg-3">
+      <Row className={styles['feature-row']}>
         <FeatureButton
           path={GeneralPath.INFO_LOOKUP}
           title={t((t) => t.meta.inUse.gameData.info.title)}
@@ -29,7 +30,7 @@ export const SiteFeatures = () => {
           variant="outline-primary"
         />
       </Row>
-      <Row className="mb-0 mb-lg-3">
+      <Row className={styles['feature-row']}>
         <FeatureButton
           path={GeneralPath.EX}
           title={t((t) => t.meta.inUse.gameData.ex.title)}
