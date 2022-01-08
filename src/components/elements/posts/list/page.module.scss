@@ -1,0 +1,13 @@
+@use "../../../../../styles/colors";
+
+div {
+  &.title {
+    padding: 1.5rem;
+    background-color: colors.$color-black-50;
+    border-radius: 0.5rem;
+
+    & > * {
+      margin-bottom: 0;
+    }
+  }
+}
