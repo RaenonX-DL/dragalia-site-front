@@ -2,12 +2,13 @@
 // https://react-bootstrap.github.io/getting-started/introduction/
 
 @use "sass:color";
+@use "sass:map";
 @use "colors";
 
 // region Body
 
 $body-bg: colors.$color-body-bg;
-$body-color: colors.$color-white-pure;
+$body-color: colors.$body-color;
 
 // endregion
 
@@ -34,8 +35,12 @@ $hr-color: colors.$hr-color;
 
 // region Color themes
 
-$red: colors.$color-red;
-$theme-colors: (
+$primary: colors.$color-blue;
+$success: colors.$color-green;
+$danger: colors.$color-red;
+$info: colors.$color-info;
+$custom-theme-colors: (
+  // Newly added
   "om-dark": colors.$color-om-dark,
   "om-light": colors.$color-om-light,
   "orange": colors.$color-orange,
@@ -43,10 +48,17 @@ $theme-colors: (
   "black-32": colors.$color-black-32,
   "black-50": colors.$color-black-50,
   "light-gray": colors.$color-light-gray,
-  // Override the "cyan" color and "info" variable in bootstrap definition
-  "info": color.adjust(#17a2b8, $lightness: 7.5%),
 );
 $text-muted: #7f7f7f;
+
+// These imports are needed in order to make the `map-merge` below to work
+// stylelint-disable no-invalid-position-at-import-rule
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+// stylelint-enable no-invalid-position-at-import-rule
+// BS v5 way to create theme colors
+$theme-colors: map.merge($theme-colors, $custom-theme-colors);
 
 // endregion
 
@@ -110,8 +122,10 @@ $card-bg: colors.$color-black-32;
 
 // region Bootstrap & default variables
 
+$min-contrast-ratio: 5;
+
 // This must be placed after all variable overrides above
-/* stylelint-disable no-invalid-position-at-import-rule */
+// stylelint-disable-next-line no-invalid-position-at-import-rule
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // endregion

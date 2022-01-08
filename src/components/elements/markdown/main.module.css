@@ -40,7 +40,7 @@
   overflow: auto;
   padding: 0.75rem 0.75rem 0 0.75rem;
 }
-@media (max-width: 1199.98px) {
+@media (max-width: 991.98px) {
   .md-body table thead {
     display: none;
   }

@@ -1,10 +1,10 @@
 @use "sass:color";
 
-// region Theme color
+// region New theme color
 
 $color-om-dark: #02152a;
 $color-om-light: #2f4668;
-$color-orange: #ff5000;
+$color-orange: #ff6a1e;
 $color-dark-red: #600000;
 $color-black-07: #070707;
 $color-black-32: #202020;
@@ -12,9 +12,17 @@ $color-black-50: #323232;
 $color-black-80: #505050;
 $color-light-gray: #aaa;
 $color-white-pure: #fff;
-$color-red: #ff4457;
 $color-theme-dark: #8930b3;
 $color-theme-light: #f3d87e;
+
+// endregion
+
+// region Overridden theme color
+
+$color-blue: #35c0ff;
+$color-green: #1dc577;
+$color-red: #ff4457;
+$color-info: #9457ff;
 
 // endregion
 
@@ -23,7 +31,7 @@ $color-theme-light: #f3d87e;
 $color-body-bg: #181818;
 $color-section: color.adjust($color-body-bg, $lightness: 3%);
 $color-section-border: color.adjust($color-body-bg, $lightness: 15%);
+$hr-color: color.change($color-light-gray, $alpha: 0.5);
+$body-color: $color-white-pure;
 
 // endregion
-
-$hr-color: color.change($color-light-gray, $alpha: 0.5);

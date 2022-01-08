@@ -21,7 +21,7 @@ export const FeatureButton = ({path, title, variant}: Props) => {
 
   return (
     <Col lg={6} className={styles['feature-outer']}>
-      <Button className={styles.feature} href={makeGeneralUrl(path, {lang})} variant={variant} size="lg" block>
+      <Button className={styles.feature} href={makeGeneralUrl(path, {lang})} variant={variant} size="lg">
         {title}
       </Button>
     </Col>

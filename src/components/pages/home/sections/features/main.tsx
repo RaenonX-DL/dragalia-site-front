@@ -3,6 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {featureBtnColors} from '../../../../../const/colors';
 import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import mainStyles from '../../main.module.css';
@@ -22,24 +23,24 @@ export const SiteFeatures = () => {
         <FeatureButton
           path={GeneralPath.INFO_LOOKUP}
           title={t((t) => t.meta.inUse.gameData.info.title)}
-          variant="outline-light"
+          variant={featureBtnColors.analysis}
         />
         <FeatureButton
           path={GeneralPath.TIER_LOOKUP}
           title={t((t) => t.meta.inUse.tier.lookup.title)}
-          variant="outline-primary"
+          variant={featureBtnColors.tier}
         />
       </Row>
       <Row className={styles['feature-row']}>
         <FeatureButton
           path={GeneralPath.EX}
           title={t((t) => t.meta.inUse.gameData.ex.title)}
-          variant="outline-success"
+          variant={featureBtnColors.ex}
         />
         <FeatureButton
           path={GeneralPath.SPECIAL_THANKS}
           title={t((t) => t.meta.inUse.thanks.title)}
-          variant="outline-orange"
+          variant={featureBtnColors.thanks}
         />
       </Row>
       <Row className="text-center mb-3">
