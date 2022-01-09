@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
 import {floatingControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
+import {RowRegular} from '../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../elements/form/array/type';
 import {FloatingInput} from '../../../elements/form/control/floating/input';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
@@ -28,7 +28,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
 
   return (
     <div className="section">
-      <Row className="p-2 g-3">
+      <RowRegular className="p-2">
         <Col lg={2}>
           <FloatingInput
             label={t((t) => t.game.nameRef.unitId)}
@@ -43,7 +43,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
           />
         </Col>
         <Col lg={5}>
-          <Row className="g-3">
+          <RowRegular>
             <Col>
               <FloatingInput
                 label={t((t) => t.game.nameRef.actualName)}
@@ -58,7 +58,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
                 <UnitIcon unitInfo={unitInfo} style={{height: floatingControlHeight}}/>
               </Col>
             }
-          </Row>
+          </RowRegular>
         </Col>
         <Col lg={5}>
           <FloatingInput
@@ -69,7 +69,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
             value={entry.name}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

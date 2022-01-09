@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 
 import {EnumEntry} from '../../../../../api-def/resources';
@@ -14,6 +13,7 @@ import {GetTranslationFunction} from '../../../../../i18n/types';
 import {useUnitProps} from '../../../../hooks/unitProps';
 import {AdsPageTop, AdsUnitSearchBottom} from '../../../common/ads/main';
 import {CheckOption} from '../../../common/check/types';
+import {RowTight} from '../../../common/grid/row';
 import {FloatingInput} from '../../../form/control/floating/input';
 import {InputPanel} from '../../../input/panel/main';
 import {InputEntries} from '../../../input/panel/types';
@@ -93,7 +93,7 @@ export const UnitFilter = <S extends string,
           e.preventDefault();
           onSearchRequested(inputData)(e);
         }}>
-          <Row className="g-2">
+          <RowTight>
             <Col xs={12} md>
               <FloatingInput
                 value={inputData.keyword}
@@ -119,7 +119,7 @@ export const UnitFilter = <S extends string,
                 {disabled ? <Spinner animation="grow" size="sm"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
-          </Row>
+          </RowTight>
         </Form>
       </div>
       <AdsUnitSearchBottom/>

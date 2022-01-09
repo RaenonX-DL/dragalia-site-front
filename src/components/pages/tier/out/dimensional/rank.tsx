@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../i18n/hook';
+import {RowTight} from '../../../../elements/common/grid/row';
 import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
 import styles from './main.module.css';
@@ -17,7 +17,7 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
   const {t} = useI18n();
 
   return (
-    <Row className="g-2">
+    <RowTight>
       {
         entryPacks.length > 0 ?
           entryPacks.map((entryPack) => (
@@ -36,6 +36,6 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
             </div>
           </Col>
       }
-    </Row>
+    </RowTight>
   );
 };

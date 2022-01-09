@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../i18n/hook';
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {MarkdownInput} from '../../../../elements/markdown/input';
 
@@ -45,7 +46,7 @@ export const QuestPositionUnit = ({
           />
         </Col>
       </Row>
-      <Row className="g-3">
+      <RowRegular>
         <Col lg={4}>
           <MarkdownInput
             label={t((t) => t.posts.quest.builds)}
@@ -73,7 +74,7 @@ export const QuestPositionUnit = ({
             required
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

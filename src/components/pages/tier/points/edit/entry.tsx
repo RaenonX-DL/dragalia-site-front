@@ -1,11 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
-import {RowNoGutter} from '../../../../elements/common/grid/row';
+import {RowNoGutter, RowRegular} from '../../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
 import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {FloatingSelect} from '../../../../elements/form/control/floating/select';
@@ -24,7 +23,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
 
   return (
     <div className="section">
-      <Row className="p-2 g-3">
+      <RowRegular className="p-2">
         <Col lg={3}>
           <RowNoGutter>
             <Col xs="auto" className={styles['point-icon']}>
@@ -53,7 +52,7 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
             onChange={(e) => onChanged('description')(e.target.value)}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

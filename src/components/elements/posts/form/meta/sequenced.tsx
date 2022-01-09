@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {
   OptionalSequencedPostMeta,
@@ -11,6 +10,7 @@ import {
 } from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
+import {RowRegular} from '../../../common/grid/row';
 import {FloatingInput} from '../../../form/control/floating/input';
 import {PostFormControlProps} from '../types';
 import {useFormMeta} from './hook';
@@ -46,7 +46,7 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   const {payload, isPreloaded} = formState;
 
   return (
-    <Row className="g-3">
+    <RowRegular>
       <Col lg={2}>
         <FloatingInput
           type="number"
@@ -71,6 +71,6 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
           setAvailability={setAvailability}
         />
       </Col>
-    </Row>
+    </RowRegular>
   );
 };

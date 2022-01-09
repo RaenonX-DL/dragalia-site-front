@@ -2,7 +2,7 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
-import {PAGE_ATK_SKILL_MAX_ENTRIES} from '../../../../const/config';
+import {PAGE_MAX_ENTRIES} from '../../../../const/config';
 import {useI18n} from '../../../../i18n/hook';
 
 
@@ -15,7 +15,7 @@ export const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps)
   const {t} = useI18n();
 
   return (
-    <Alert variant="warning" className="section mb-2">
+    <Alert variant="warning" className="section mb-0">
       {t(
         (t) => t.message.warning.truncated,
         {
@@ -28,10 +28,10 @@ export const OverLengthWarning = ({displayed, returned}: OverLengthWarningProps)
 };
 
 export const overLengthWarningCheck = (entries: Array<any>) => {
-  if (entries.length > PAGE_ATK_SKILL_MAX_ENTRIES) {
+  if (entries.length > PAGE_MAX_ENTRIES) {
     const actualLength = entries.length;
-    entries.splice(PAGE_ATK_SKILL_MAX_ENTRIES);
-    return <OverLengthWarning displayed={PAGE_ATK_SKILL_MAX_ENTRIES} returned={actualLength} key="overLength"/>;
+    entries.splice(PAGE_MAX_ENTRIES);
+    return <OverLengthWarning displayed={PAGE_MAX_ENTRIES} returned={actualLength} key="overLength"/>;
   }
 
   return null;

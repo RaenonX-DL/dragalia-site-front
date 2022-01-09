@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {PostGetResponse} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
+import {RowRegular} from '../../common/grid/row';
 import {PostEditNotes} from './editNotes';
 import {InfoCard} from './infoCard';
 
@@ -20,7 +21,7 @@ export const PostInfo = ({post}: PostInfoProps) => {
   return (
     <>
       <h3>{t((t) => t.posts.info.titleSelf)}</h3>
-      <Row className="g-3 mb-2">
+      <RowRegular className="mb-3">
         <Col lg={4}>
           <InfoCard
             title={t((t) => t.misc.timestamp.lastModified)}
@@ -39,7 +40,7 @@ export const PostInfo = ({post}: PostInfoProps) => {
             content={post.viewCount}
           />
         </Col>
-      </Row>
+      </RowRegular>
       {
         post.editNotes.length > 0 &&
         <Row>

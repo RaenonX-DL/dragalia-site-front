@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {floatingControlHeight} from '../../../../../const/style';
@@ -9,6 +8,7 @@ import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {useFormMeta} from '../../../../elements/posts/form/meta/hook';
@@ -41,7 +41,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   const unitInfo = unitInfoMap.get(payload.unitId);
 
   return (
-    <Row className="g-3">
+    <RowRegular>
       <Col lg={3}>
         <FloatingInput
           label={t((t) => t.posts.info.id)}
@@ -56,7 +56,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
         />
       </Col>
       <Col lg={6}>
-        <Row className="g-3">
+        <RowRegular>
           <Col>
             <FloatingInput
               label={t((t) => t.game.unitInfo.text.unitName)}
@@ -71,7 +71,7 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
               <UnitIcon unitInfo={unitInfo} style={{height: floatingControlHeight}}/>
             </Col>
           }
-        </Row>
+        </RowRegular>
       </Col>
       <Col lg={3}>
         <FormMetaLangPicker
@@ -80,6 +80,6 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
           setAvailability={setAvailability}
         />
       </Col>
-    </Row>
+    </RowRegular>
   );
 };

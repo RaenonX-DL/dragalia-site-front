@@ -1,1 +1,1 @@
-export const PAGE_ATK_SKILL_MAX_ENTRIES = 50;
+export const PAGE_MAX_ENTRIES = 50;

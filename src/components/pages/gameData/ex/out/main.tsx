@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
+import {RowTight} from '../../../../elements/common/grid/row';
 import {overLengthWarningCheck} from '../../../../elements/gameData/warnings/overLength';
 import {InputData} from '../in/types';
 import {ExAbilityEntry} from './entry';
@@ -47,5 +47,5 @@ export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: Outp
         )),
     );
 
-  return <Row>{entries}</Row>;
+  return <RowTight>{entries}</RowTight>;
 };

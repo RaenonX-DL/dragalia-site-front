@@ -2,15 +2,15 @@ import React from 'react';
 
 import Badge from 'react-bootstrap/Badge';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-import {FullSizeButton} from '../../src/components/elements/common/button/fullSize';
-import {ExternalLink} from '../../src/components/elements/common/link/external';
-import {Markdown} from '../../src/components/elements/markdown/main';
-import {useI18n} from '../../src/i18n/hook';
+import {useI18n} from '../../../i18n/hook';
+import {FullSizeButton} from '../../elements/common/button/fullSize';
+import {RowRegular} from '../../elements/common/grid/row';
+import {ExternalLink} from '../../elements/common/link/external';
+import {Markdown} from '../../elements/markdown/main';
 
 
-const SpecialThanks = () => {
+export const SpecialThanks = () => {
   const {t} = useI18n();
 
   return (
@@ -60,7 +60,7 @@ const SpecialThanks = () => {
         <h4>{t((t) => t.message.donation.url)}</h4>
         <Markdown>{t((t) => t.message.donation.info)}</Markdown>
         <div className="mb-3"/>
-        <Row className="g-3">
+        <RowRegular>
           <Col>
             <FullSizeButton href="https://patreon.com/RaenonX" variant="outline-light">
               Patreon
@@ -76,10 +76,8 @@ const SpecialThanks = () => {
               Paypal
             </FullSizeButton>
           </Col>
-        </Row>
+        </RowRegular>
       </div>
     </>
   );
 };
-
-export default SpecialThanks;

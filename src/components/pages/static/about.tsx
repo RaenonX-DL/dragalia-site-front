@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {ExternalLink} from '../../src/components/elements/common/link/external';
+import {ExternalLink} from '../../elements/common/link/external';
 
 
-const About = () => {
+export const About = () => {
   return (
     <>
       <h3>Source Code</h3>
@@ -32,5 +32,3 @@ const About = () => {
     </>
   );
 };
-
-export default About;

@@ -1,20 +1,21 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../src/api-def/resources';
-import {AdsToolBottom, AdsToolTop} from '../../src/components/elements/common/ads/main';
-import {useFetchState} from '../../src/components/elements/common/fetch';
-import {ExAbilityInput} from '../../src/components/pages/gameData/ex/in/main';
-import {InputData} from '../../src/components/pages/gameData/ex/in/types';
-import {ExAbilityOutput} from '../../src/components/pages/gameData/ex/out/main';
-import {scrollRefToTop} from '../../src/utils/scroll';
-import {GoogleAnalytics} from '../../src/utils/services/ga';
-import {ResourceLoader} from '../../src/utils/services/resources/loader';
+import {CharaExAbilityDataEntry} from '../../../../api-def/resources/types/ex';
+import {ConditionEnumMap} from '../../../../api-def/resources/types/export/enums';
+import {scrollRefToTop} from '../../../../utils/scroll';
+import {GoogleAnalytics} from '../../../../utils/services/ga';
+import {ResourceLoader} from '../../../../utils/services/resources/loader';
+import {AdsToolBottom, AdsToolTop} from '../../../elements/common/ads/main';
+import {useFetchState} from '../../../elements/common/fetch';
+import {RowTight} from '../../../elements/common/grid/row';
+import {ExAbilityInput} from './in/main';
+import {InputData} from './in/types';
+import {ExAbilityOutput} from './out/main';
 
 
-const ExAbilityPage = () => {
+export const ExAbilityPage = () => {
   const [inputDataForward, setInputDataForward] = React.useState<InputData>();
   const entryCol = React.useRef<HTMLDivElement>(null);
 
@@ -42,8 +43,8 @@ const ExAbilityPage = () => {
   return (
     <>
       <AdsToolTop/>
-      <Row>
-        <Col lg={4} className="mb-3">
+      <RowTight>
+        <Col lg={4} className="mb-2">
           <ExAbilityInput
             onSearchRequested={(inputData: InputData) => () => {
               GoogleAnalytics.abilitySearch('EX', inputData);
@@ -62,10 +63,8 @@ const ExAbilityPage = () => {
             conditionEnums={conditionEnums.data}
           />
         </Col>
-      </Row>
+      </RowTight>
       <AdsToolBottom/>
     </>
   );
 };
-
-export default ExAbilityPage;

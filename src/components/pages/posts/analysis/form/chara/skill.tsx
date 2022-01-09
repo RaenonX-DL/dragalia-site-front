@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../i18n/hook';
+import {RowRegular} from '../../../../../elements/common/grid/row';
 import {FloatingInput} from '../../../../../elements/form/control/floating/input';
 import {MarkdownInput} from '../../../../../elements/markdown/input';
 
@@ -49,7 +50,7 @@ export const AnalysisSkillInput = ({
           />
         </Col>
       </Row>
-      <Row className="g-3">
+      <RowRegular>
         <Col lg>
           <MarkdownInput
             label={t((t) => t.posts.analysis.skill.info)}
@@ -77,7 +78,7 @@ export const AnalysisSkillInput = ({
             required={required.some((val) => val === 'tips')}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

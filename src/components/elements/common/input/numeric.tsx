@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {FloatingInput} from '../../form/control/floating/input';
+import {RowTight} from '../grid/row';
 import {InfoPopover} from '../overlay/info';
 import {DetailedProps, InputPropsExtended} from '../types';
 
@@ -32,7 +32,7 @@ export const NumericInput = <T, >({
   }
 
   return (
-    <Row className="mb-3 g-2">
+    <RowTight className="mb-3">
       <Col>
         <FloatingInput
           type="number"
@@ -55,6 +55,6 @@ export const NumericInput = <T, >({
       <Col xs="auto" className="d-flex align-self-end">
         <InfoPopover title={title} description={description}/>
       </Col>
-    </Row>
+    </RowTight>
   );
 };

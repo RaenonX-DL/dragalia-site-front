@@ -10,3 +10,19 @@ export const RowNoGutter = ({children, className, ...props}: React.PropsWithChil
     </Row>
   );
 };
+
+export const RowTight = ({children, className, ...props}: React.PropsWithChildren<RowProps>) => {
+  return (
+    <Row className={`g-2 ${className}`} {...props}>
+      {children}
+    </Row>
+  );
+};
+
+export const RowRegular = ({children, className, ...props}: React.PropsWithChildren<RowProps>) => {
+  return (
+    <Row className={`g-3 ${className}`} {...props}>
+      {children}
+    </Row>
+  );
+};

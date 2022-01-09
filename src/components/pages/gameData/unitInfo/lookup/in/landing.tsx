@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
+import {RowTight} from '../../../../../elements/common/grid/row';
 import {UnitInfoEntry} from '../out/entry/main';
 
 
@@ -16,7 +16,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();
 
   return (
-    <Row className="g-2">
+    <RowTight>
       {analyses
         .flatMap((entry) => {
           const unitInfo = unitInfoMap.get(entry.unitId);
@@ -27,6 +27,6 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
             <UnitInfoEntry unitInfo={unitInfo} analysisMeta={entry} simplified/>
           </Col>
         ))}
-    </Row>
+    </RowTight>
   );
 };

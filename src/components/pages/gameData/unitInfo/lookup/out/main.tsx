@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
+import {RowTight} from '../../../../../elements/common/grid/row';
 import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
 import {InputData, SortOrder} from '../in/types';
 import styles from '../main.module.css';
@@ -39,7 +39,7 @@ export const UnitInfoLookupOutput = ({
   }
 
   return (
-    <Row className="g-2">
+    <RowTight>
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}
@@ -52,6 +52,6 @@ export const UnitInfoLookupOutput = ({
           />
         </Col>
       ))}
-    </Row>
+    </RowTight>
   );
 };

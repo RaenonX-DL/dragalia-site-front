@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {PostPath, StoryPath, UnitPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../../utils/path/make';
+import {RowTight} from '../../../common/grid/row';
 import {UnitLinkButton} from './button';
 import {UnitInfo} from './types';
 
@@ -20,7 +20,7 @@ export const UnitLinkModal = ({unit, hasAnalysis}: UnitLinkModalProps) => {
 
   return (
     <div className="text-center">
-      <Row className="mb-3">
+      <RowTight className="mb-3">
         {
           hasAnalysis &&
           <Col>
@@ -38,8 +38,8 @@ export const UnitLinkModal = ({unit, hasAnalysis}: UnitLinkModalProps) => {
             featureKey="tier"
           />
         </Col>
-      </Row>
-      <Row>
+      </RowTight>
+      <RowTight>
         <Col>
           <UnitLinkButton
             link={makeUnitUrl(UnitPath.UNIT_INFO, {id: unit.id, lang})}
@@ -54,7 +54,7 @@ export const UnitLinkModal = ({unit, hasAnalysis}: UnitLinkModalProps) => {
             featureKey="story"
           />
         </Col>
-      </Row>
+      </RowTight>
     </div>
   );
 };
