@@ -12,6 +12,7 @@ import {UserControlButton} from '../elements/common/userControl/button/main';
 import {TITLE_NAV_HTML_ID} from './const';
 import {NavItem} from './elements/item';
 import {NavDropdownGameData} from './gameData';
+import styles from './main.module.css';
 import {NavDropdownTierNote} from './tier';
 import {NavDropdownUtils} from './utils';
 
@@ -22,7 +23,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="xl" variant="dark" className="nav-site" style={{zIndex: 1000}}>
+      <Navbar collapseOnSelect expand="xl" variant="dark" className={styles['nav-site']} style={{zIndex: 1000}}>
         <InternalLink href={GeneralPath.HOME} locale={lang} passHref>
           <Navbar.Brand>
             {t((t) => t.meta.inUse.site.title)}
@@ -31,7 +32,7 @@ export const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* Left part of the navbar */}
-          <Nav className="mr-auto">
+          <Nav className="me-auto">
             <NavItem
               path={GeneralPath.SPECIAL_THANKS}
               text={t((t) => t.meta.inUse.thanks.title)}
@@ -63,7 +64,7 @@ export const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar variant="dark" sticky="top" style={{zIndex: 999}} id={TITLE_NAV_HTML_ID} className="nav-title">
+      <Navbar variant="dark" sticky="top" style={{zIndex: 999}} id={TITLE_NAV_HTML_ID} className={styles['nav-title']}>
         <h1 style={{fontSize: '1rem', margin: 0, lineHeight: 1.5}}>
           {context?.title}
         </h1>

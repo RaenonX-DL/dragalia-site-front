@@ -39,10 +39,10 @@ $color-danger: #ff4457;
 
 // region App color
 
+$color-body: $color-bw-255;
 $color-body-bg: #181818;
+$color-hr: color.change($color-bw-170, $alpha: 0.5);
 $color-section: color.adjust($color-body-bg, $lightness: 3%);
 $color-section-border: color.adjust($color-body-bg, $lightness: 15%);
-$hr-color: color.change($color-bw-170, $alpha: 0.5);
-$body-color: $color-bw-255;
 
 // endregion

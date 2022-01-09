@@ -1,0 +1,11 @@
+nav.nav-site {
+  background-color: #021122;
+}
+nav.nav-title {
+  background-color: rgba(24, 24, 24, 0.9);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(150deg, #9a36c9, #e9b816) 1;
+}
+
+/*# sourceMappingURL=main.module.css.map */

@@ -64,21 +64,3 @@ div {
     position: relative;
   }
 }
-
-nav {
-  &.nav-site {
-    background: color.change(colors.$color-om-dark, $lightness: 7%);
-  }
-
-  &.nav-title {
-    background: color.change(colors.$color-body-bg, $alpha: 0.9);
-    border-width: 1px;
-    border-style: solid;
-    border-image:
-      linear-gradient(
-        150deg,
-        color.change(colors.$color-theme-dark, $lightness: 50%),
-        color.change(colors.$color-theme-light, $lightness: 50%),
-      ) 1;
-  }
-}
