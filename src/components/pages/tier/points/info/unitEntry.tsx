@@ -18,7 +18,7 @@ export const UnitEntry = ({unitInfo}: Props) => {
 
   return (
     <RowNoGutter className="section mb-2">
-      <Col xs="auto" className="mr-2">
+      <Col xs="auto">
         <UnitIcon unitInfo={unitInfo} style={{height: '4rem'}}/>
       </Col>
       <Col className="align-self-center text-center">

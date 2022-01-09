@@ -18,8 +18,8 @@ export const Image = ({text, src, className, style, ...props}: ImageIconProps) =
 export const ImageWithOverlay = ({text, src, className, style}: ImageIconProps) => (
   <OverlayTooltip text={text} key={text}>
     {/* A native HTML DOM is needed for `OverlayTooltip` to inject `ref` on it */}
-    <div>
+    <span>
       <Image src={src} text={text} style={style} className={className}/>
-    </div>
+    </span>
   </OverlayTooltip>
 );

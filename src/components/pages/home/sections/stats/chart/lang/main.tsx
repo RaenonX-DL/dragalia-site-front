@@ -28,7 +28,7 @@ export const UserStatsOfLang = ({stats}: UserStatsOfLangProps) => {
             {t((t) => t.home.section.stats.header.perLang)}
           </h5>
         </Col>
-        <Col lg="auto" className="text-right text-lg-center">
+        <Col lg="auto" className="text-end text-lg-center">
           <Button variant={buttonStyle} onClick={() => setStacked(!stacked)}>
             {t((t) => (
               stacked ? t.home.section.stats.ui.separated : t.home.section.stats.ui.stacked

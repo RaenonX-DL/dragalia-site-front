@@ -25,12 +25,12 @@ export const IconOnlyEntryWithAnalysis = ({
           <UnitIconClickable
             unit={unitInfoToClickableProps(unitInfo, lang)}
             hasAnalysis
-            style={{height: '4.5rem'}}
+            style={{height: '6rem'}}
           />
         </Col>
       </RowNoGutter>
       <Row className="small">
-        <Col className="text-right text-muted">
+        <Col className="text-end text-muted">
           {t(
             (t) => t.posts.info.viewCountComplete,
             {count: analysisMeta.viewCount.toString()},

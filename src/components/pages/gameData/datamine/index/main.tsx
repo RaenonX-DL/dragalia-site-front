@@ -43,7 +43,7 @@ export const DatamineCatalog = () => {
                     href={makeDataUrl(DataPath.GAME_DATAMINE_DETAIL, {id: versionCode, lang})}
                   />
                 </Card.Title>
-                <Card.Text className="float-right">
+                <Card.Text className="float-end">
                   <TimeAgo epoch={timestampEpoch}/>
                 </Card.Text>
               </Card.Body>

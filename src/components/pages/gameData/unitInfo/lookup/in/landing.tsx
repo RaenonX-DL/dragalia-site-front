@@ -16,14 +16,14 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();
 
   return (
-    <Row className="mb-2">
+    <Row className="g-2">
       {analyses
         .flatMap((entry) => {
           const unitInfo = unitInfoMap.get(entry.unitId);
           return unitInfo ? [{entry, unitInfo}] : [];
         })
         .map(({entry, unitInfo}) => (
-          <Col lg={6} xl={4} className="mt-2 mt-lg-0 mb-0 mb-lg-2" key={unitInfo.id}>
+          <Col lg={6} xl={4} key={unitInfo.id}>
             <UnitInfoEntry unitInfo={unitInfo} analysisMeta={entry} simplified/>
           </Col>
         ))}

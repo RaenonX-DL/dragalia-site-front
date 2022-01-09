@@ -39,11 +39,11 @@ export const UnitInfoLookupOutput = ({
   }
 
   return (
-    <Row>
+    <Row className="g-2">
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}
-          className={`mb-2 ${inputData.iconOnly ? styles['icon-only-entry'] : styles['complete-entry']}`}
+          className={inputData.iconOnly ? styles['icon-only-entry'] : styles['complete-entry']}
         >
           <UnitInfoEntry
             unitInfo={info.unitInfo}

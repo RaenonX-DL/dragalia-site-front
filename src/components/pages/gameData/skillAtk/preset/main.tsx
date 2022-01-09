@@ -101,7 +101,7 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
         state={state.modal}
         setState={(modalState) => setState({...state, modal: modalState})}
       />
-      <InputGroup className="mb-2 mr-sm-2">
+      <InputGroup>
         <FormControl
           className={`bg-black-32 ${state.status === 'copied' ? 'text-info' : 'text-light'}`} disabled
           value={

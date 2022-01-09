@@ -11879,10 +11879,5 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-@media (max-width: 991.98px) {
-  .nav-link {
-    border-bottom: none;
-  }
-}
 
 /*# sourceMappingURL=bootstrap.css.map */

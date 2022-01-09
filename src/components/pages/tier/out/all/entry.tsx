@@ -30,14 +30,14 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
         <UnitIcon unitInfo={unitInfo} className={`bg-img ${styles['unit-icon']}`}/>
         <Col>
           <RowNoGutter className="bg-img-wrap">
-            <Col md={6} className="text-left">
+            <Col md={6} className="text-start">
               {
                 tierNote && tierNote.points.length > 0 &&
                 <><TierNotePointIcon pointIds={tierNote.points} keyPointsData={keyPointsData}/>&nbsp;</>
               }
               <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
             </Col>
-            <Col md={6} className="text-right">
+            <Col md={6} className="text-end">
               <small>
                 {
                   tierNote ?

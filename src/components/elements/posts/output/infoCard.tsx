@@ -22,8 +22,8 @@ export const InfoCard = ({title, content, useCode = true}: InfoCardProps) => {
         <Col>
           {
             useCode ?
-              <code className="float-right h5 mb-0">{content}</code> :
-              <span className="float-right h5 mb-0">{content}</span>
+              <code className="float-end h5 mb-0">{content}</code> :
+              <span className="float-end h5 mb-0">{content}</span>
           }
         </Col>
       </Row>

@@ -34,7 +34,7 @@ export const SiteStats = ({data}: Props) => {
           <UserStatsOfLang stats={data.stats.user.perLang}/>
         </Col>
       </Row>
-      <Row className="text-right mb-2">
+      <Row className="text-end mb-2">
         <Col>
           {t((t) => t.misc.timestamp.lastUpdated)}:&nbsp;
           <TimeAgo epoch={data.stats.lastFetchedEpoch}/>

@@ -28,7 +28,7 @@ export const PostEntryInfoBar = <E extends PostInfo>({entry, className}: Props<E
           <IconPublish/>&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
         </small>
       </Col>
-      <Col xs="auto" className="text-right">
+      <Col xs="auto">
         <small className="text-muted">
           {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
         </small>

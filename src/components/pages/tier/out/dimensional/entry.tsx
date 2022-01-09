@@ -30,12 +30,12 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData}: Props) => {
   return (
     <>
       <RowNoGutter className="section mb-2">
-        <Col xs="auto" className="mr-2">
+        <Col xs="auto" className="me-2">
           <UnitIcon unitInfo={unitInfo} style={{height: '4rem'}}/>
         </Col>
         <Col>
-          <div className="text-right">
-            <span className="float-left"><UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/></span>
+          <div className="text-end">
+            <span className="float-start"><UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/></span>
             {context?.session?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
           </div>
           {

@@ -45,7 +45,6 @@ export const ArrayFormEntryControl = <P, E>({
         showMoveButton &&
         <>
           <Button
-            className="float-right ml-2 w-auto"
             variant="outline-warning"
             onClick={onMoveUp(elemIdx)}
             disabled={elemIdx === 0}
@@ -53,7 +52,6 @@ export const ArrayFormEntryControl = <P, E>({
             <IconMoveUp/>
           </Button>
           <Button
-            className="float-right ml-2 w-auto"
             variant="outline-warning"
             onClick={onMoveDown(elemIdx)}
             disabled={array.length - 1 === elemIdx}
@@ -63,7 +61,6 @@ export const ArrayFormEntryControl = <P, E>({
         </>
       }
       <Button
-        className="float-right ml-2 w-auto"
         variant="outline-danger"
         onClick={onRemoved(elemIdx)}
         disabled={array.length <= minLength}

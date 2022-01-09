@@ -41,7 +41,7 @@ export const UserStatsOfCountry = ({stats}: UserStatsOfCountryProps) => {
             {data.total}
           </span>
         </Col>
-        <Col lg="auto" className="text-right text-lg-center">
+        <Col lg="auto" className="text-end text-lg-center">
           <ButtonGroup size="sm">
             {periodOptions.map((option) => (
               <Button

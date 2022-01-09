@@ -19,12 +19,12 @@ export const CompleteEntryWithAnalysis = ({
   return (
     <>
       <RowNoGutter className="pt-1" style={{height: '2.5rem'}}>
-        <Col className="mr-2">
+        <Col>
           <UnitLink className="h6" unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis/>
         </Col>
         {
           !simplified &&
-          <Col xs="auto" className="text-right text-muted">
+          <Col xs="auto" className="text-muted">
             <small>
               {t(
                 (t) => t.posts.info.viewCountComplete,

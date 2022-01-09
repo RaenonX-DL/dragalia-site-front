@@ -36,7 +36,7 @@ export const AttackingSkillEntry = ({
   return (
     <div className="section mb-2">
       <RowNoGutter>
-        <Col xs="auto" sm="auto" className="mr-2">
+        <Col xs="auto" className="me-2">
           <SectionImageIcon atkSkillEntry={atkSkillEntry}/>
         </Col>
         <Col className="my-auto">
@@ -44,7 +44,7 @@ export const AttackingSkillEntry = ({
         </Col>
         {
           displayConfig.damageInfo &&
-          <Col xs="auto" sm="auto" className="text-right my-auto">
+          <Col xs="auto" className="my-auto">
             <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
             {
               !displayConfig.actualDamage &&

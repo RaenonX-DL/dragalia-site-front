@@ -55,7 +55,7 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
             {
               unitInfo &&
               <Col xs="auto">
-                <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: floatingControlHeight}}/>
+                <UnitIcon unitInfo={unitInfo} style={{height: floatingControlHeight}}/>
               </Col>
             }
           </Row>

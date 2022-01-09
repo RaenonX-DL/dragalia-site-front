@@ -16,7 +16,7 @@ export const CompleteEntryNoAnalysis = ({unitInfo}: Props) => {
   return (
     <>
       <RowNoGutter className="pt-1" style={{height: '2.5rem'}}>
-        <Col className="mr-2">
+        <Col>
           <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis={false}/>
         </Col>
       </RowNoGutter>

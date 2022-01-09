@@ -49,7 +49,7 @@ export const AttackingSkillLookup = () => {
 
   return (
     <>
-      <Row>
+      <Row className="g-3">
         <Col lg={4} className="section p-3 mb-3">
           <AttackingSkillInput
             isAllFetched={isAllFetched}
@@ -63,8 +63,8 @@ export const AttackingSkillLookup = () => {
             }}
           />
         </Col>
-        <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
-          <Row className="text-right mb-1">
+        <Col ref={entryCol} lg={8}>
+          <Row className="mb-2 g-2">
             <Col>
               <AttackingSkillPreset
                 inputData={inputDataForward.inputData}

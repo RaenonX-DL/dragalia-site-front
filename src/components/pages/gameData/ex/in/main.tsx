@@ -80,7 +80,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
         setInputData={setInputData}
       />
       <hr/>
-      <div className="text-right">
+      <div className="text-end">
         <Button
           variant="outline-info"
           onClick={onSearchRequested(inputData)}

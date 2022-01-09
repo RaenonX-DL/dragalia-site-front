@@ -16,8 +16,8 @@ export const UnitInfoEntry = (props: EntryProps) => {
     <RowNoGutter className="section">
       {
         !props.iconOnly &&
-        <Col xs="auto" className="mr-2">
-          <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
+        <Col xs="auto" className="me-2">
+          <UnitIcon unitInfo={unitInfo} className="ms-1" style={{height: '4rem'}}/>
         </Col>
       }
       <Col>

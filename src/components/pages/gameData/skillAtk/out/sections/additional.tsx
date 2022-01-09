@@ -35,7 +35,7 @@ export const SectionAdditional = ({atkSkillEntry, displayConfig, statusEnums}: P
         }
         {
           !!badges.length &&
-          <Col lg className="text-left text-lg-right my-auto">
+          <Col lg className="text-end my-auto">
             {badges.map((badge: React.ReactElement, index: number) => (
               <React.Fragment key={index}>
                 {index > 0 && ' '}

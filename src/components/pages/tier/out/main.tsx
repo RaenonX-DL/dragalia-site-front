@@ -29,7 +29,7 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
   return (
     <>
       <Alert variant="info" className="mb-2">{t((t) => t.game.unitTier.tips.main)}</Alert>
-      <Row className="text-right mb-2">
+      <Row className="text-end mb-2">
         <Col>
           <IconCompDependent/>&nbsp;=&nbsp;{t((t) => t.game.unitTier.tips.compIcon)}
         </Col>

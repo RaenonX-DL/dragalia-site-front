@@ -59,7 +59,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps)
         context?.session?.user.isAdmin &&
         <>
           <hr className="my-2"/>
-          <div className="text-right">
+          <div className="text-end">
             <InternalLink
               className={styles['edit-icon']}
               href={GeneralPath.TIER_POINTS_EDIT}
