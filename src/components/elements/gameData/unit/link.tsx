@@ -36,12 +36,7 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
         state={modalState}
         setState={setModalState}
         lookup={{
-          content: (
-            <UnitLinkModal
-              unit={unit} hasAnalysis={hasAnalysis}
-              modalState={modalState} setModalState={setModalState}
-            />
-          ),
+          content: <UnitLinkModal unit={unit} hasAnalysis={hasAnalysis}/>,
           loading: <Loading/>,
         }}
       />

@@ -10,7 +10,7 @@ type Props = {
   link: string,
   text: string,
   featureKey: FeatureKey,
-  onLinkClicked: () => void,
+  onLinkClicked?: () => void,
 };
 
 export const UnitLinkButton = ({link, text, featureKey, onLinkClicked}: Props) => {
