@@ -37,7 +37,7 @@ export const PostList = ({title, titlePath, entries, getIcon}: Props) => {
                 entry={info}
                 link={makePostUrl(toPostPath[entry.type], {pid, lang: info.lang})}
                 title={entry.title}
-                renderPostBadge={() => <Badge variant="secondary">#{entry.pid}</Badge>}
+                renderPostBadge={() => <Badge bg="secondary">#{entry.pid}</Badge>}
                 icon={getIcon ? getIcon(entry) : undefined}
               />
             );
