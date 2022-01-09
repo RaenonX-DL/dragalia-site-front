@@ -45,6 +45,7 @@ export type InputEntryIndividualCheckOption<T> = Omit<
 > & {
   text: string,
   disabled?: boolean,
+  block?: boolean,
 };
 
 export type InputEntryIndividualCheckGroup<T> = {

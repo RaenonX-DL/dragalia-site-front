@@ -12,12 +12,12 @@ div {
   @mixin search-options {
     &:hover {
       cursor: pointer;
-      background-color: colors.$color-black-32;
+      background-color: colors.$color-bw-32;
       transition: background-color 100ms linear;
     }
 
     &:active {
-      background-color: colors.$color-black-80;
+      background-color: colors.$color-bw-80;
     }
 
     &:not(:last-child) {

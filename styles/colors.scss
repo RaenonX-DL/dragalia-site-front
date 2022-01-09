@@ -7,14 +7,16 @@ $color-om-light: #2f4668;
 $color-dark-cyan: #042a3b;
 $color-orange: #ff6a1e;
 $color-dark-red: #600000;
-$color-black-07: #070707;
-$color-black-20: #141414;
-$color-black-32: #202020;
-$color-black-50: #323232;
-$color-black-80: #505050;
-$color-black-101: #656565;
-$color-light-gray: #aaa;
-$color-white-pure: #fff;
+$color-bw-7: #070707;
+$color-bw-20: #141414;
+$color-bw-32: #202020;
+$color-bw-50: #323232;
+$color-bw-80: #505050;
+$color-bw-101: #656565;
+$color-bw-140: #8c8c8c;
+$color-bw-170: #aaa;
+$color-bw-215: #d7d7d7;
+$color-bw-255: #fff;
 $color-theme-dark: #8930b3;
 $color-theme-light: #f3d87e;
 
@@ -33,7 +35,7 @@ $color-danger: #ff4457;
 $color-body-bg: #181818;
 $color-section: color.adjust($color-body-bg, $lightness: 3%);
 $color-section-border: color.adjust($color-body-bg, $lightness: 15%);
-$hr-color: color.change($color-light-gray, $alpha: 0.5);
-$body-color: $color-white-pure;
+$hr-color: color.change($color-bw-170, $alpha: 0.5);
+$body-color: $color-bw-255;
 
 // endregion

@@ -1,7 +1,7 @@
 @use "../../../../../../../styles/colors";
 
 $item-margin: 0.75rem;
-$table-border: 1px solid colors.$color-black-101;
+$table-border: 1px solid colors.$color-bw-101;
 
 .section {
   p {
@@ -13,7 +13,7 @@ $table-border: 1px solid colors.$color-black-101;
     padding-right: 30px;
 
     tr {
-      background-color: colors.$color-black-07;
+      background-color: colors.$color-bw-7;
       border: $table-border;
     }
 
@@ -26,6 +26,7 @@ $table-border: 1px solid colors.$color-black-101;
       padding: 0.2rem 1rem;
       text-align: center;
       white-space: nowrap;
+      font-size: 0.8rem;
 
       &.sp,
       &.ssp {
@@ -45,11 +46,11 @@ $table-border: 1px solid colors.$color-black-101;
 
     tbody {
       tr:nth-of-type(odd) {
-        background-color: colors.$color-black-20;
+        background-color: colors.$color-bw-20;
       }
 
       tr:nth-of-type(even) {
-        background-color: colors.$color-black-32;
+        background-color: colors.$color-bw-32;
       }
 
       tr:hover {

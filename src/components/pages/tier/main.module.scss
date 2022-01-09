@@ -1,3 +1,5 @@
+@use "../../../../styles/utils";
+
 @mixin clickable-icon() {
   border: 0; // Disables underline for <a>
   color: #bebebe;
@@ -39,6 +41,8 @@ span {
 
 div {
   &.point-icon {
+    @extend %flex-center;
+
     font-size: 1.5em;
     width: 1.5em;
     margin-right: 0.5rem;

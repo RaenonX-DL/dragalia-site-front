@@ -13,7 +13,7 @@ div {
   &.stats-section-outer {
     display: flex;
     flex-direction: column;
-    background-color: colors.$color-black-07;
+    background-color: colors.$color-bw-7;
     border-radius: 0.5rem;
   }
 
@@ -25,6 +25,6 @@ div {
   &.tooltip {
     border-radius: 5px;
     padding: 0.5rem;
-    background-color: color.change(colors.$color-black-50, $alpha: 0.77);
+    background-color: color.change(colors.$color-bw-50, $alpha: 0.77);
   }
 }

@@ -2,7 +2,7 @@
 @use "../../../../../../styles/colors";
 @use "../../../../../../styles/utils";
 
-$button-bg-color: color.adjust(colors.$color-black-50, $lightness: -5%);
+$button-bg-color: color.adjust(colors.$color-bw-50, $lightness: -5%);
 $button-distance: 0.85vw;
 
 div {

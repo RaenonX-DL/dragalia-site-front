@@ -394,6 +394,7 @@ export const translation: TranslationStruct = {
         total: '(總計)',
         relatedLinks: '相關連結',
         iconOnly: '只顯示圖片',
+        unitName: '角色/龍族名稱',
       },
       tips: {
         clickNameForLinks: '點擊上方角色名稱以查看相關連結。',

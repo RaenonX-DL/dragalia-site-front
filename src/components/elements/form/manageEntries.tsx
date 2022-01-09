@@ -31,6 +31,7 @@ type Props<E, I, R extends BaseResponse> = {
     counter: Map<I, number>,
   ) => React.ReactElement,
   elemRenderCount?: number,
+  vertical?: boolean,
 };
 
 export const EntryManagement = <E extends object, I, R extends BaseResponse>({
@@ -41,6 +42,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   generateNewElement,
   renderEntries,
   elemRenderCount,
+  vertical = false,
 }: Props<E, I, R>) => {
   const {t} = useI18n();
 
@@ -95,6 +97,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         renderEntries={(...props) => renderEntries(...props, elementCounter)}
         elemCount={elemCount}
         addToTop
+        vertical={vertical}
       />
       <div className="mb-2"/>
       {

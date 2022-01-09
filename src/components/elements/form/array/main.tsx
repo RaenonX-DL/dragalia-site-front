@@ -68,7 +68,7 @@ export const ArrayForm = <P, E extends object>(props: Props<P, E>) => {
 
   return (
     <>
-      {addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
+      {addToTop && <ArrayAddButtonRow onAdded={onAdded} onTop/>}
       <ArrayFormBase
         {...props}
         payload={payload}
@@ -78,7 +78,7 @@ export const ArrayForm = <P, E extends object>(props: Props<P, E>) => {
         reversed={addToTop}
         counterState={counterState}
       />
-      {!addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
+      {!addToTop && <ArrayAddButtonRow onAdded={onAdded} onTop={false}/>}
     </>
   );
 };

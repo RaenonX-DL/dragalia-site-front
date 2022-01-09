@@ -28,7 +28,7 @@ export type ButtonBarProps = {
 export const ButtonBar = ({buttons, bottomMarginClass}: ButtonBarProps) => {
   const {lang} = useI18n();
 
-  const buttonClassNames = `float-right ml-2 ${bottomMarginClass ?? 'mb-3'}`;
+  const buttonClassNames = `float-end ms-2 ${bottomMarginClass ?? 'mb-3'}`;
 
   return (
     <Row>

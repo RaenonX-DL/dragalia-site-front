@@ -9,13 +9,13 @@ import {IconAdd} from '../../common/icons';
 
 type Props = {
   onAdded: MouseEventHandler,
+  onTop: boolean,
 };
 
-export const ArrayAddButtonRow = ({onAdded}: Props) => (
-  <Row className="mb-2">
-    <Col>
+export const ArrayAddButtonRow = ({onAdded, onTop}: Props) => (
+  <Row className={onTop ? 'mb-2' : 'mt-2'}>
+    <Col className="text-end">
       <Button
-        className="d-inline float-right"
         variant="outline-success"
         onClick={onAdded}
         size="sm"

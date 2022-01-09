@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {MiscPostSection} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
+import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {MarkdownInput} from '../../../../elements/markdown/input';
 
 
@@ -22,20 +22,22 @@ export const MiscSectionUnit = ({section, onContentChanged}: Props) => {
     <div className="section p-3">
       <Row>
         <Col>
-          <Form.Control
-            className="mb-2"
-            type="text" value={section.title}
-            placeholder={t((t) => t.posts.misc.section.title)}
+          <FloatingInput
+            label={t((t) => t.posts.misc.section.title)}
+            className="mb-3"
+            type="text"
+            value={section.title}
             onChange={(e) => onContentChanged('title')(e.target.value)}
             required
           />
         </Col>
       </Row>
       <Row>
-        <Col className="pr-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.misc.section.content)}</Form.Label>
+        <Col>
           <MarkdownInput
-            rows={7} value={section.content}
+            label={t((t) => t.posts.misc.section.content)}
+            rows={7}
+            value={section.content}
             onChanged={(e) => onContentChanged('content')(e.target.value)}
             required
           />

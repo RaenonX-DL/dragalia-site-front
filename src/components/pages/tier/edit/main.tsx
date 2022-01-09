@@ -82,19 +82,21 @@ export const TierNoteEdit = () => {
         <hr/>
         <h4>{t((t) => t.game.unitTier.tier.title)}</h4>
         {Object.keys(Dimension).map((dimension) => (
-          <TierNoteDimensionEntry
-            key={dimension}
-            dimension={dimension as DimensionKey}
-            inputData={unitTierNote.tier[dimension as DimensionKey]}
-            setInputData={(updatedNote) => {
-              setUnitTierNote(overrideObject(
-                unitTierNote,
-                {tier: {[dimension]: updatedNote}},
-              ));
-            }}
-          />
+          <>
+            <TierNoteDimensionEntry
+              key={dimension}
+              dimension={dimension as DimensionKey}
+              inputData={unitTierNote.tier[dimension as DimensionKey]}
+              setInputData={(updatedNote) => {
+                setUnitTierNote(overrideObject(
+                  unitTierNote,
+                  {tier: {[dimension]: updatedNote}},
+                ));
+              }}
+            />
+            <hr/>
+          </>
         ))}
-        <hr/>
         <h4>{t((t) => t.game.unitTier.points.title)}</h4>
         <AutoComplete
           options={keyPointEntries}

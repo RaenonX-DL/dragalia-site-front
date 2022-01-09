@@ -402,6 +402,7 @@ export const translation: TranslationStruct = {
         total: '(総計)',
         relatedLinks: 'に関するリンク',
         iconOnly: 'TBA',
+        unitName: 'TBA',
       },
       tips: {
         clickNameForLinks: 'TBA',

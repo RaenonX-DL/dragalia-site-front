@@ -1,0 +1,39 @@
+@use "../../../../../../styles/colors";
+
+$label-transition-time: 0.1s;
+
+div {
+  // Floating label overlapping with text, awaiting fix
+  // https://stackoverflow.com/a/67334114/11571888
+  &.label-overlap-fix[class*="form-floating"] {
+    $cover-height: 2rem;
+
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: colors.$color-body-bg;
+      opacity: 0.95;
+
+      // Border config default by BS
+      top: 1px;
+      left: 1px;
+      border-radius: 4px;
+
+      // Offset for scrollbar
+      width: calc(100% - 14px);
+      height: $cover-height;
+    }
+
+    & > [class*="form-control"] {
+      padding-top: $cover-height; /* height of pseudo element */
+    }
+  }
+
+  &.label-overlap-fix-disabled[class*="form-floating"] {
+    &::before {
+      background-color: colors.$color-bw-50;
+    }
+  }
+}

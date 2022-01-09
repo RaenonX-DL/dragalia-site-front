@@ -1,0 +1,11 @@
+@use "../../../../../../styles/utils";
+
+div {
+  &.button {
+    @extend %flex-grow-fill;
+
+    & button {
+      height: 100%;
+    }
+  }
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {KeyPointEntryUpdate, KeyPointType, KeyPointTypeEnum} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../../elements/form/array/type';
+import {FloatingInput} from '../../../../elements/form/control/floating/input';
+import {FloatingSelect} from '../../../../elements/form/control/floating/select';
 import {PointTypeIcon} from '../../icons';
 import styles from '../../main.module.css';
 
@@ -23,16 +24,16 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
 
   return (
     <div className="section">
-      <Row>
+      <Row className="p-2 g-3">
         <Col lg={3}>
-          <Form.Label>{t((t) => t.game.unitTier.points.type.title)}</Form.Label>
           <RowNoGutter>
             <Col xs="auto" className={styles['point-icon']}>
               {PointTypeIcon[entry.type]}
             </Col>
             <Col>
-              <Form.Control
-                as="select" defaultValue={entry.type}
+              <FloatingSelect
+                label={t((t) => t.game.unitTier.points.type.title)}
+                defaultValue={entry.type}
                 onChange={(e) => onChanged('type')(e.target.value as KeyPointType)}
               >
                 {Object.keys(KeyPointTypeEnum).map((type) => (
@@ -40,13 +41,13 @@ export const KeyPointEntry = ({entry, onChanged, isDescriptionInvalid}: Props) =
                     {t((t) => t.game.unitTier.points.type[type as KeyPointType])}
                   </option>
                 ))}
-              </Form.Control>
+              </FloatingSelect>
             </Col>
           </RowNoGutter>
         </Col>
         <Col lg={9}>
-          <Form.Label>{t((t) => t.game.unitTier.points.description)}</Form.Label>
-          <Form.Control
+          <FloatingInput
+            label={t((t) => t.game.unitTier.points.description)}
             value={entry.description}
             isInvalid={isDescriptionInvalid || !entry.description}
             onChange={(e) => onChanged('description')(e.target.value)}

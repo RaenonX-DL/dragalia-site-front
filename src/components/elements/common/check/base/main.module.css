@@ -2,10 +2,11 @@ div.input-group {
   text-align: center;
 }
 div.input-group > label {
-  margin: 0 0.25rem 0.5rem;
+  margin-bottom: 0.7rem;
 }
-div.input-group > label:hover {
-  background-color: #000;
+div.input-group > label:not(:only-of-type) {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 /*# sourceMappingURL=main.module.css.map */

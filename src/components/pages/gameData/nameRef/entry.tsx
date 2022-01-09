@@ -1,15 +1,14 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {UnitNameRefEntry as UnitNameRefEntryApi} from '../../../../api-def/api';
 import {UnitInfoMap} from '../../../../api-def/resources';
-import {formControlHeight} from '../../../../const/style';
+import {floatingControlHeight} from '../../../../const/style';
 import {useI18n} from '../../../../i18n/hook';
-import {RowNoGutter} from '../../../elements/common/grid/row';
 import {ArrayFormOnChangeHandler} from '../../../elements/form/array/type';
+import {FloatingInput} from '../../../elements/form/control/floating/input';
 import {UnitIcon} from '../../../elements/gameData/unit/icon';
 
 
@@ -29,11 +28,12 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
 
   return (
     <div className="section">
-      <Row>
+      <Row className="p-2 g-3">
         <Col lg={2}>
-          <Form.Label>{t((t) => t.game.nameRef.unitId)}</Form.Label>
-          <Form.Control
-            isValid={isNameInputAllowed} isInvalid={!isNameInputAllowed}
+          <FloatingInput
+            label={t((t) => t.game.nameRef.unitId)}
+            isValid={isNameInputAllowed}
+            isInvalid={!isNameInputAllowed}
             onChange={(e) => {
               if (Number(e.target.value) || !e.target.value) {
                 onChanged('unitId')(+e.target.value);
@@ -43,32 +43,26 @@ export const UnitNameRefEntry = ({entry, onChanged, isNameInvalid, unitInfoMap}:
           />
         </Col>
         <Col lg={5}>
-          <Form.Label>{t((t) => t.game.nameRef.actualName)}</Form.Label>
-          <RowNoGutter>
+          <Row className="g-3">
+            <Col>
+              <FloatingInput
+                label={t((t) => t.game.nameRef.actualName)}
+                type="text"
+                value={unitInfo?.name[lang] || ''}
+                disabled
+              />
+            </Col>
             {
-              unitInfo ?
-                <>
-                  <Col xs="auto">
-                    <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: formControlHeight}}/>
-                  </Col>
-                  <Col className="d-flex align-items-center justify-content-center">
-                    <span className="h5 mb-0">{unitInfo.name[lang]}</span>
-                  </Col>
-                </> :
-                <Col
-                  className="d-flex align-items-center justify-content-center text-danger"
-                  style={{height: formControlHeight}}
-                >
-                  <span className="h5 mb-0">
-                    {t((t) => t.game.nameRef.error.invalidUnitId)}
-                  </span>
-                </Col>
+              unitInfo &&
+              <Col xs="auto">
+                <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: floatingControlHeight}}/>
+              </Col>
             }
-          </RowNoGutter>
+          </Row>
         </Col>
         <Col lg={5}>
-          <Form.Label>{t((t) => t.game.nameRef.desiredName)}</Form.Label>
-          <Form.Control
+          <FloatingInput
+            label={t((t) => t.game.nameRef.desiredName)}
             onChange={(e) => onChanged('name')(e.target.value)}
             isInvalid={!entry.name || isNameInvalid}
             disabled={!isNameInputAllowed}

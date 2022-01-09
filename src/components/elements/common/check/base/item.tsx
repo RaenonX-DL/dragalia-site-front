@@ -13,6 +13,7 @@ export const CheckItem = (props: CheckItemProps) => {
     onChange,
     image,
     groupName,
+    block = false,
     ...rest
   } = props;
   const [elemId] = React.useState(`${Date.now().toString()}${text}`);
@@ -32,6 +33,7 @@ export const CheckItem = (props: CheckItemProps) => {
       onChange={(e) => onChange(e.target.checked)}
       id={elemId}
       value={text}
+      style={{width: block ? '100%' : undefined}}
     >
       {label}
     </ToggleButton>

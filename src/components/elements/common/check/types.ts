@@ -20,6 +20,7 @@ export type CheckItemProps = {
   variant?: ButtonVariant,
   image?: CheckItemImageOptions,
   disabled?: boolean,
+  block?: boolean,
 } & ({
   type: 'radio',
   groupName: string,

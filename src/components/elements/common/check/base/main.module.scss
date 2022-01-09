@@ -3,11 +3,12 @@ div {
     text-align: center;
 
     & > label {
-      margin: 0 0.25rem 0.5rem;
+      margin-bottom: 0.7rem;
     }
 
-    & > label:hover {
-      background-color: #000;
+    & > label:not(:only-of-type) {
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
     }
   }
 }

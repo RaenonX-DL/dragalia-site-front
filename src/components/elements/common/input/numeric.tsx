@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
+import {FloatingInput} from '../../form/control/floating/input';
 import {InfoPopover} from '../overlay/info';
 import {DetailedProps, InputPropsExtended} from '../types';
 
@@ -30,17 +30,14 @@ export const NumericInput = <T, >({
   }
 
   return (
-    <Row className="mb-3">
-      <Form.Label column className="text-center">
-        {title}&nbsp;<InfoPopover title={title} description={description}/>
-      </Form.Label>
+    <Row className="mb-3 g-2">
       <Col>
-        <Form.Control
+        <FloatingInput
           type="number"
           value={Number(getValue(inputData)).toString()}
           min={minValue}
           max={maxValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e) => {
             const val = parseFloat(e.target.value);
 
             let newValue = Math.min(e.target.max ? parseFloat(e.target.max) : Infinity, val);
@@ -48,8 +45,12 @@ export const NumericInput = <T, >({
 
             setInputData(getUpdatedInputData(newValue));
           }}
+          label={title}
           required={required}
         />
+      </Col>
+      <Col xs="auto" className="d-flex align-self-end">
+        <InfoPopover title={title} description={description}/>
       </Col>
     </Row>
   );

@@ -5,6 +5,7 @@ export type ArrayFormCommonProps<P, E> = {
   setArray: (newArray: Array<E>) => void,
   elemCount?: number,
   showMoveButton?: boolean,
+  vertical?: boolean,
 };
 
 export type ArrayFormOnChangeHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;

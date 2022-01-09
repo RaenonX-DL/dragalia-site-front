@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-
 import {EnumEntry} from '../../../../api-def/resources';
 import {EnumCheckboxGroup} from '../../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../../common/check/enum/radio';
@@ -14,6 +10,7 @@ import {CheckOption} from '../../common/check/types';
 import {NumericInput} from '../../common/input/numeric';
 import {SectionSubTitle} from '../../gameData/subTitle';
 import {SectionTitle} from '../../gameData/title';
+import {InputSelectEntry} from '../element/select';
 import {InputEntryProps} from './types';
 
 
@@ -58,31 +55,7 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T, 
     return <EnumRadioGroup {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
   if (inputEntry.type === 'select') {
-    const {defaultEntry, title, getValue, getText, getUpdatedInputData} = inputEntry;
-
-    return (
-      <Row className="mb-2">
-        <Form.Label column className="text-center">
-          {title}
-        </Form.Label>
-        <Col>
-          <Form.Control
-            as="select" defaultValue={getValue(defaultEntry)}
-            onChange={(e) => setInputData(getUpdatedInputData(e.target.value))}
-          >
-            {inputEntry.values.map((entry, idx) => {
-              const value = getValue(entry);
-
-              return (
-                <option key={idx} value={value}>
-                  {getText ? getText(entry) : value}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </Col>
-      </Row>
-    );
+    return <InputSelectEntry {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
   }
 
   throw new Error(`Unhandled input entry: ${inputEntry}`);

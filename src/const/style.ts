@@ -1,4 +1,4 @@
 /**
- * Height of the CSS class `form-control` from bootstrap.
+ * Height of the `<input>` with floating label from bootstrap.
  */
-export const formControlHeight = 'calc(1.5em + 0.75rem + 2px)';
+export const floatingControlHeight = 'calc(3.5rem + 2px)';

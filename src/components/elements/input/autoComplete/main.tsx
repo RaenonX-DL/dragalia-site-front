@@ -85,6 +85,7 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
               getArray={getArray}
               setArray={setArray}
               counterState={counterState}
+              vertical
             /> :
             <div className="text-center text-danger">
               {t((t) => t.autoComplete.noneSelected)}

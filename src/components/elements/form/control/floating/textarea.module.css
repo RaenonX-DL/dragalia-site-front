@@ -1,0 +1,23 @@
+div.label-overlap-fix[class*=form-floating] {
+  position: relative;
+}
+div.label-overlap-fix[class*=form-floating]::before {
+  content: "";
+  position: absolute;
+  background-color: #181818;
+  opacity: 0.95;
+  top: 1px;
+  left: 1px;
+  border-radius: 4px;
+  width: calc(100% - 14px);
+  height: 2rem;
+}
+div.label-overlap-fix[class*=form-floating] > [class*=form-control] {
+  padding-top: 2rem;
+  /* height of pseudo element */
+}
+div.label-overlap-fix-disabled[class*=form-floating]::before {
+  background-color: #323232;
+}
+
+/*# sourceMappingURL=textarea.module.css.map */

@@ -39,10 +39,11 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
     <>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.forceStrike)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.forceStrike)}
             onChanged={(e) => setPayload('forceStrikes', e.target.value)}
-            rows={5} value={payload.forceStrikes}
+            rows={5}
+            value={payload.forceStrikes}
           />
         </Col>
       </Row>
@@ -71,10 +72,12 @@ export const CharaAnalysisForm = <P extends CharaAnalysisPayload>({
       <hr/>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.tipsBuilds)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.tipsBuilds)}
             onChanged={(e) => setPayload('tipsBuilds', e.target.value)}
-            rows={10} value={payload.tipsBuilds} required
+            rows={10}
+            value={payload.tipsBuilds}
+            required
           />
         </Col>
       </Row>

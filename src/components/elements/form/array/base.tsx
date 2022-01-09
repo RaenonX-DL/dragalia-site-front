@@ -21,6 +21,7 @@ export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
     counterState,
     reversed = false,
     elemCount,
+    vertical = false,
   } = props;
 
   const array = getArray(payload);
@@ -44,18 +45,33 @@ export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
   return (
     <>
       {array.slice(0, (elemCount && elemCount > 0) ? elemCount : array.length).map((elem, elemIdx) => (
-        <React.Fragment key={counter[elemIdx]}>
-          <RowNoGutter className={`${elemIdx === 0 ? '' : 'mt-2'} text-end`}>
-            <Col>
-              <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
-            </Col>
-          </RowNoGutter>
-          <RowNoGutter className="mt-2">
-            <Col>
-              {renderEntries(elem, elemIdx)}
-            </Col>
-          </RowNoGutter>
-        </React.Fragment>
+        vertical ?
+          (
+            <React.Fragment key={counter[elemIdx]}>
+              <RowNoGutter className={elemIdx === 0 ? '' : 'mt-2'}>
+                <Col>
+                  {renderEntries(elem, elemIdx)}
+                </Col>
+                <Col xs="auto" className="ps-2">
+                  <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
+                </Col>
+              </RowNoGutter>
+            </React.Fragment>
+          ) :
+          (
+            <React.Fragment key={counter[elemIdx]}>
+              <RowNoGutter className={`${elemIdx === 0 ? '' : 'mt-2'} text-end`}>
+                <Col>
+                  <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
+                </Col>
+              </RowNoGutter>
+              <RowNoGutter className={elemIdx === 0 ? '' : 'mt-2'}>
+                <Col>
+                  {renderEntries(elem, elemIdx)}
+                </Col>
+              </RowNoGutter>
+            </React.Fragment>
+          )
       ))}
     </>
   );

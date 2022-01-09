@@ -28,7 +28,7 @@ a {
 
 // region Border
 
-$border-color: colors.$color-light-gray !default;
+$border-color: colors.$color-bw-170 !default;
 
 // endregion
 
@@ -49,9 +49,9 @@ $custom-theme-colors: (
   "om-light": colors.$color-om-light,
   "orange": colors.$color-orange,
   "dark-red": colors.$color-dark-red,
-  "black-32": colors.$color-black-32,
-  "black-50": colors.$color-black-50,
-  "light-gray": colors.$color-light-gray,
+  "black-32": colors.$color-bw-32,
+  "black-50": colors.$color-bw-50,
+  "light-gray": colors.$color-bw-170,
 );
 $text-muted: #7f7f7f;
 
@@ -68,22 +68,22 @@ $theme-colors: map.merge($theme-colors, $custom-theme-colors);
 
 // region Tabs
 
-$nav-tabs-link-active-color: colors.$color-white-pure;
+$nav-tabs-link-active-color: colors.$color-bw-255;
 
 // endregion
 
 // region Pagination
 
 $pagination-color: $link-color !default;
-$pagination-bg: colors.$color-black-32 !default;
-$pagination-border-color: colors.$color-black-32 !default;
+$pagination-bg: colors.$color-bw-32 !default;
+$pagination-border-color: colors.$color-bw-32 !default;
 $pagination-hover-color: $link-hover-color !default;
-$pagination-hover-bg: colors.$color-black-80 !default;
-$pagination-hover-border-color: colors.$color-black-80 !default;
-$pagination-active-color: colors.$color-white-pure !default;
+$pagination-hover-bg: colors.$color-bw-80 !default;
+$pagination-hover-border-color: colors.$color-bw-80 !default;
+$pagination-active-color: colors.$color-bw-255 !default;
 $pagination-active-bg: colors.$color-om-light !default;
 $pagination-active-border-color: colors.$color-om-light !default;
-$pagination-disabled-color: colors.$color-light-gray !default;
+$pagination-disabled-color: colors.$color-bw-170 !default;
 $pagination-disabled-bg: colors.$color-dark-red !default;
 $pagination-disabled-border-color: colors.$color-dark-red !default;
 
@@ -91,7 +91,7 @@ $pagination-disabled-border-color: colors.$color-dark-red !default;
 
 // region Modal
 
-$modal-content-bg: colors.$color-black-07;
+$modal-content-bg: colors.$color-bw-7;
 
 // endregion
 
@@ -105,23 +105,23 @@ $alert-border-scale: 15%;
 
 // region Popover
 
-$popover-header-color: colors.$color-black-07;
-$popover-body-color: colors.$color-black-07;
+$popover-header-color: colors.$color-bw-7;
+$popover-body-color: colors.$color-bw-7;
 
 // endregion
 
 // region Card
 
-$card-bg: colors.$color-black-32;
+$card-bg: colors.$color-bw-32;
 
 // endregion
 
 // region Table
 
-$table-border-color: colors.$color-black-101;
+$table-border-color: colors.$color-bw-101;
 $table-cell-padding-x: 1rem;
-$table-bg: colors.$color-black-20;
-$table-striped-bg: colors.$color-black-32;
+$table-bg: colors.$color-bw-20;
+$table-striped-bg: colors.$color-bw-32;
 $table-hover-bg: colors.$color-dark-cyan;
 
 div {
@@ -155,6 +155,18 @@ $gradient: linear-gradient(
 // endregion
 
 // region Badges
+
+// endregion
+
+// region Input
+
+$form-floating-line-height: 1.45;
+$input-disabled-bg: colors.$color-bw-50;
+$input-disabled-border-color: colors.$color-bw-80;
+$form-select-disabled-color: colors.$color-bw-140;
+$form-select-disabled-bg: colors.$color-bw-50;
+$form-select-indicator-color: colors.$color-bw-215;
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
 
 // endregion
 

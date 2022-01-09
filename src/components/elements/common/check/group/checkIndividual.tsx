@@ -11,11 +11,13 @@ export const IndividualCheckGroup = <T, >({checkboxes, inputData, setInputData}:
   return (
     <CheckItemGroup
       options={checkboxes}
-      optionToProps={({getUpdatedInputData, getValue, text}) => ({
+      optionToProps={({getUpdatedInputData, getValue, text, disabled, block}) => ({
         type: 'checkbox',
         onChange: (checked) => setInputData(getUpdatedInputData(checked)),
         checked: getValue(inputData),
         text,
+        disabled,
+        block,
       })}
     />
   );

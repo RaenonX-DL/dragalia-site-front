@@ -389,6 +389,7 @@ export type TranslationStruct = {
         total: string,
         relatedLinks: string,
         iconOnly: string,
+        unitName: string,
       },
       tips: {
         clickNameForLinks: string,

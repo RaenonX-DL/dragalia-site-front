@@ -3,3 +3,13 @@
   justify-content: center;
   align-items: center;
 }
+
+%flex-grow-fill {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+
+  & > div {
+    flex-grow: 1;
+  }
+}

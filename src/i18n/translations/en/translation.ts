@@ -426,6 +426,7 @@ export const translation: TranslationStruct = {
         total: '(Total)',
         relatedLinks: 'Related Links',
         iconOnly: 'Icon Only',
+        unitName: 'Adventurer/Dragon Name',
       },
       tips: {
         clickNameForLinks: 'Click the unit name above for related links.',

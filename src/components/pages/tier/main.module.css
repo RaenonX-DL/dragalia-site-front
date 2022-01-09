@@ -1,3 +1,9 @@
+div.point-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 span.title {
   font-size: 0.9rem;
 }

@@ -20,6 +20,7 @@ export const ArrayFormEntryControl = <P, E>({
   elemIdx,
   array,
   showMoveButton = true,
+  vertical = false,
 }: Props<P, E>) => {
   const [counter, setCounter] = counterState;
 
@@ -39,7 +40,7 @@ export const ArrayFormEntryControl = <P, E>({
   };
 
   return (
-    <ButtonGroup size="sm">
+    <ButtonGroup size="sm" vertical={vertical}>
       {
         showMoveButton &&
         <>
