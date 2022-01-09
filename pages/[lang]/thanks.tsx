@@ -1,7 +1,10 @@
 import React from 'react';
 
 import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
+import {FullSizeButton} from '../../src/components/elements/common/button/fullSize';
 import {ExternalLink} from '../../src/components/elements/common/link/external';
 import {Markdown} from '../../src/components/elements/markdown/main';
 import {useI18n} from '../../src/i18n/hook';
@@ -17,54 +20,63 @@ const SpecialThanks = () => {
       </h3>
       <ul>
         <li>
-          桜井みゆき&nbsp;
-          <Badge variant="primary">{t((t) => t.donation.tierSSS)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omGroup)}</Badge>
+          <Badge bg="dark-primary">{t((t) => t.donation.tierSSS)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          桜井みゆき
         </li>
         <li>
-          Andy&nbsp;
-          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+          <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          Andy
         </li>
         <li>
-          Ellie&nbsp;
-          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+          <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          Ellie
         </li>
         <li>
-          Kevin&nbsp;
-          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+          <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          Kevin
         </li>
         <li>
-          N.O.-09&nbsp;
-          <Badge variant="secondary">{t((t) => t.donation.tierS2)}</Badge>
-        </li>
-        <li>
+          <Badge bg="dark-info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
           Piglet&nbsp;/&nbsp;ピグレット
-          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
         </li>
         <li>
-          Ting Chen&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+          <Badge bg="dark-info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          Ting Chen
         </li>
         <li>
-          陳泓維&nbsp;
-          <Badge variant="info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
-          <Badge variant="orange">{t((t) => t.misc.omMember)}</Badge>
+          <Badge bg="dark-info">{t((t) => t.donation.tierS1)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          陳泓維
         </li>
       </ul>
       <hr/>
       <div>
         <h4>{t((t) => t.message.donation.url)}</h4>
         <Markdown>{t((t) => t.message.donation.info)}</Markdown>
-        <ul>
-          <li><ExternalLink href="https://patreon.com/RaenonX" newWindow>Patreon</ExternalLink></li>
-          <li><ExternalLink href="https://ko-fi.com/RaenonX" newWindow>Ko-Fi</ExternalLink></li>
-          <li><ExternalLink href="http://rnnx.cc/Paypal" newWindow>Paypal</ExternalLink></li>
-        </ul>
+        <div className="mb-3"/>
+        <Row className="g-3">
+          <Col>
+            <FullSizeButton href="https://patreon.com/RaenonX" variant="outline-light">
+              Patreon
+            </FullSizeButton>
+          </Col>
+          <Col>
+            <FullSizeButton href="https://ko-fi.com/RaenonX" variant="outline-light">
+              Ko-Fi
+            </FullSizeButton>
+          </Col>
+          <Col>
+            <FullSizeButton href="http://rnnx.cc/Paypal" variant="outline-light">
+              Paypal
+            </FullSizeButton>
+          </Col>
+        </Row>
       </div>
     </>
   );

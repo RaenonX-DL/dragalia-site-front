@@ -21,7 +21,9 @@ export const getBadgesDispel = (atkSkillEntry: AttackingSkillData) => {
 
   return [
     <OverlayTooltip key="dispel" text={tooltipText}>
-      <Badge key="dispel" variant="orange">{t((t) => t.game.skillAtk.entry.dispel)}</Badge>
+      <Badge bg="dark-orange">
+        {t((t) => t.game.skillAtk.entry.dispel)}
+      </Badge>
     </OverlayTooltip>,
   ];
 };

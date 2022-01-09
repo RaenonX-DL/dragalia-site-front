@@ -273,7 +273,7 @@ export const translation: TranslationStruct = {
         crt: '爆擊 - {{crtVal}}',
         crtInspired: '超靈感',
         crtRate: '爆擊率 {{crtRate}} %',
-        crtDamage: '爆擊傷害 +{{crtDamage}} %',
+        crtDamage: '爆擊傷害 +{{crtDamage}}%',
         skill: '技能 - {{skillVal}}',
         skillPassive: '被動 +{{skillPassivePct}}%',
         skillBuff: 'Buff +{{skillBuffPct}}%',

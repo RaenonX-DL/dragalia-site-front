@@ -278,7 +278,7 @@ export const translation: TranslationStruct = {
         crt: 'クリティカル - {{crtVal}}',
         crtInspired: '超ヒラメキ',
         crtRate: 'クリティカル率 {{crtRate}} %',
-        crtDamage: 'クリティカルダメ +{{crtDamage}} %',
+        crtDamage: 'クリティカルダメ +{{crtDamage}}%',
         skill: 'スキル - {{skillVal}}',
         skillPassive: 'パッシブ +{{skillPassivePct}}%',
         skillBuff: 'バフ +{{skillBuffPct}}%',

@@ -11,7 +11,8 @@ import {DetailedProps, InputPropsExtended} from '../types';
 export type NumericInputProps<T> = DetailedProps & InputPropsExtended<T, number> & {
   required?: boolean,
   minValue?: number,
-  maxValue?: number
+  maxValue?: number,
+  step?: number,
 };
 
 export const NumericInput = <T, >({
@@ -24,6 +25,7 @@ export const NumericInput = <T, >({
   minValue,
   maxValue,
   required = true,
+  step,
 }: NumericInputProps<T>) => {
   if (minValue && maxValue && minValue > maxValue) {
     console.warn(`Min value ${minValue} should not be greater than max value (${maxValue}).`);
@@ -47,6 +49,7 @@ export const NumericInput = <T, >({
           }}
           label={title}
           required={required}
+          step={step}
         />
       </Col>
       <Col xs="auto" className="d-flex align-self-end">

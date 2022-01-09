@@ -77,6 +77,7 @@ export const SectionTarget = ({inputData, setInputData, conditionEnums}: Section
           getUpdatedInputData: (downPct) => overrideInputData(inputData, {target: {def: {downPct}}}),
           minValue: 0,
           maxValue: 50,
+          step: 5,
         },
         {
           type: 'inputNumber',
@@ -84,7 +85,7 @@ export const SectionTarget = ({inputData, setInputData, conditionEnums}: Section
           description: t((t) => t.game.skillAtk.input.target.def.base.desc),
           getValue: (inputData) => inputData.target.def.base,
           getUpdatedInputData: (base) => overrideInputData(inputData, {target: {def: {base}}}),
-          minValue: 0.0001,
+          minValue: 1,
         },
         {
           type: 'inputNumber',
@@ -92,7 +93,8 @@ export const SectionTarget = ({inputData, setInputData, conditionEnums}: Section
           description: t((t) => t.game.skillAtk.input.target.def.bk.desc),
           getValue: (inputData) => inputData.target.def.bkRate,
           getUpdatedInputData: (bkRate) => overrideInputData(inputData, {target: {def: {bkRate}}}),
-          minValue: 0.0001,
+          minValue: 0.1,
+          step: 0.1,
         },
       ]}
     />

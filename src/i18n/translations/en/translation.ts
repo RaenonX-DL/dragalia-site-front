@@ -300,7 +300,7 @@ export const translation: TranslationStruct = {
         crt: 'CRT - {{crtVal}}',
         crtInspired: 'Inspired',
         crtRate: 'CRT {{crtRate}} %',
-        crtDamage: 'CDMG +{{crtDamage}} %',
+        crtDamage: 'CDMG +{{crtDamage}}%',
         skill: 'SD - {{skillVal}}',
         skillPassive: 'Passive +{{skillPassivePct}}%',
         skillBuff: 'Buff +{{skillBuffPct}}%',

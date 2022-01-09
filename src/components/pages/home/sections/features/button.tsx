@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import {ButtonVariant} from 'react-bootstrap/types';
 
 import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {makeGeneralUrl} from '../../../../../utils/path/make';
+import {FullSizeButton} from '../../../../elements/common/button/fullSize';
 import styles from './main.module.css';
 
 
@@ -21,9 +21,9 @@ export const FeatureButton = ({path, title, variant}: Props) => {
 
   return (
     <Col lg={6} className={styles['feature-outer']}>
-      <Button className={styles.feature} href={makeGeneralUrl(path, {lang})} variant={variant} size="lg">
+      <FullSizeButton href={makeGeneralUrl(path, {lang})} variant={variant}>
         {title}
-      </Button>
+      </FullSizeButton>
     </Col>
   );
 };

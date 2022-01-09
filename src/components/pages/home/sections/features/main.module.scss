@@ -3,14 +3,6 @@
 @import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
 @import "../../../../../../styles/utils";
 
-a {
-  &.feature {
-    @extend %flex-center;
-
-    height: 5rem;
-  }
-}
-
 div {
   &.feature-row {
     margin-bottom: 1rem;
@@ -21,6 +13,10 @@ div {
   }
 
   &.feature-outer {
+    & > a {
+      height: 5rem;
+    }
+
     @include media-breakpoint-down(md) {
       margin-bottom: 1rem;
     }

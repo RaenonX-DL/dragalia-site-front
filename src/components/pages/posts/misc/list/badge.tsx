@@ -9,5 +9,5 @@ import {PostEntryBadgeProps} from '../../../../elements/posts/list/types';
 type Props<E extends MiscPostListEntry> = PostEntryBadgeProps<E>;
 
 export const MiscEntryBadge = <E extends MiscPostListEntry>({entry}: Props<E>) => {
-  return <Badge variant="info">#{entry.seqId}</Badge>;
+  return <Badge bg="dark-info">#{entry.seqId}</Badge>;
 };

@@ -60,9 +60,30 @@ $text-muted: #7f7f7f;
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
 // stylelint-enable no-invalid-position-at-import-rule
 // BS v5 way to create theme colors
 $theme-colors: map.merge($theme-colors, $custom-theme-colors);
+$utilities: map.merge(
+  $utilities,
+  (
+    "background-color": (
+      property: background-color,
+      class: bg,
+      values: map.merge(
+        $theme-colors,
+        (
+          "dark-primary": colors.$color-dark-primary,
+          "dark-info": colors.$color-dark-info,
+          "dark-success": colors.$color-dark-success,
+          "dark-warning": colors.$color-dark-warning,
+          "dark-orange": colors.$color-dark-orange,
+          "dark-danger": colors.$color-dark-danger,
+        )
+      )
+    ),
+  )
+);
 
 // endregion
 

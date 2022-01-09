@@ -31,7 +31,7 @@ export const getBadgesBuffCount = (atkSkillEntry: AttackingSkillData) => {
 
   return [
     <OverlayTooltip key="buffCount" text={tooltipText}>
-      <Badge key="buffCount" variant="primary">{t((t) => t.game.skillAtk.entry.buffCount)}</Badge>
+      <Badge bg="dark-primary">{t((t) => t.game.skillAtk.entry.buffCount)}</Badge>
     </OverlayTooltip>,
   ];
 };
