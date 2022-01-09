@@ -25,7 +25,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   const {t, lang} = useI18n();
 
   return (
-    <div className="section mb-2">
+    <div className="section">
       <RowNoGutter className="text-center align-items-center bg-img-wrap">
         <UnitIcon unitInfo={unitInfo} className={`bg-img ${styles['unit-icon']}`}/>
         <Col>

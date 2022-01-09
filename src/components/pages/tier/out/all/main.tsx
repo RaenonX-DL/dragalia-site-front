@@ -13,7 +13,7 @@ export const TierListOutputShowAll = ({entryPackHasTierNote, entryPackNoTierNote
   const entryPackMerged = [...entryPackHasTierNote, ...entryPackNoTierNote];
 
   return (
-    <Row>
+    <Row className="g-3">
       {entryPackMerged.map(({unitInfo, tierNote}) => (
         <Col xl={6} key={unitInfo.id}>
           <TierListEntry tierNote={tierNote} unitInfo={unitInfo} keyPointsData={keyPointsData}/>

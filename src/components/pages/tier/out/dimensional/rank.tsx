@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import {useI18n} from '../../../../../i18n/hook';
 import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
-import {TierListEntryIconOnly} from './entryIconOnly';
+import styles from './main.module.css';
 
 
 type Props = PropsUseKeyPointData & PropsDimensionalCommon & {
@@ -17,29 +17,17 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
   const {t} = useI18n();
 
   return (
-    <Row>
+    <Row className="g-2">
       {
         entryPacks.length > 0 ?
           entryPacks.map((entryPack) => (
-            <Col
-              key={entryPack.unitInfo.id}
-              xs={iconOnly ? 4 : undefined}
-              md={iconOnly ? undefined : 6}
-              lg={iconOnly ? 2 : 4}
-            >
-              {
-                iconOnly ?
-                  <TierListEntryIconOnly
-                    dimension={dimension}
-                    entryPack={entryPack}
-                    keyPointsData={keyPointsData}
-                  /> :
-                  <TierListEntry
-                    dimension={dimension}
-                    entryPack={entryPack}
-                    keyPointsData={keyPointsData}
-                  />
-              }
+            <Col key={entryPack.unitInfo.id} className={styles.entry} >
+              <TierListEntry
+                dimension={dimension}
+                entryPack={entryPack}
+                keyPointsData={keyPointsData}
+                iconOnly={iconOnly}
+              />
             </Col>
           )) :
           <Col className="mb-2 text-danger">

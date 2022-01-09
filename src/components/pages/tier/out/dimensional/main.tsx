@@ -26,7 +26,7 @@ export const TierListOutputDimensional = ({
   return (
     <>
       {categorized.map(({ranking, entries}) => (
-        <React.Fragment key={ranking}>
+        <div key={ranking} className="mb-2">
           <h4 style={{color: rankingColor[ranking]}}>{ranking}</h4>
           <TierListOutputRank
             dimension={dimension}
@@ -34,7 +34,7 @@ export const TierListOutputDimensional = ({
             keyPointsData={keyPointsData}
             iconOnly={iconOnly}
           />
-        </React.Fragment>
+        </div>
       ))}
       {
         entryPackNoTierNote.length > 0 &&

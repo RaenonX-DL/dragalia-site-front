@@ -18,8 +18,8 @@
 }
 @media (min-width: 1200px) {
   div .icon-only-entry {
-    flex: 0 0 calc(1 / 5 * 100%);
-    max-width: calc(1 / 5 * 100%);
+    flex: 0 0 calc(1 / 6 * 100%);
+    max-width: calc(1 / 6 * 100%);
   }
 }
 @media (max-width: 991.98px) {
