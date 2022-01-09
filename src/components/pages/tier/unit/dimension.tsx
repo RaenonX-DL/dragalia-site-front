@@ -21,7 +21,7 @@ export const UnitTierNoteDimension = ({dimension, note}: Props) => {
   const {t} = useI18n();
 
   return (
-    <div className="section mb-2">
+    <div className="section p-3 mb-3">
       <Row>
         <Col>
           <h6>{t((t) => t.game.unitTier.dimension[dimension])}</h6>
