@@ -1,0 +1,14 @@
+div.table-responsive:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+table.table {
+  margin-bottom: 0;
+}
+
+th,
+td {
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=table.css.map */

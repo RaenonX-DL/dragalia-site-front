@@ -1,0 +1,9 @@
+@use "../colors";
+
+$form-floating-line-height: 1.45;
+$input-disabled-bg: colors.$color-bw-50;
+$input-disabled-border-color: colors.$color-bw-80;
+$form-select-disabled-color: colors.$color-bw-140;
+$form-select-disabled-bg: colors.$color-bw-50;
+$form-select-indicator-color: colors.$color-bw-215;
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");

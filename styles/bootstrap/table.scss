@@ -1,0 +1,24 @@
+@use "../colors";
+
+$table-border-color: colors.$color-bw-101;
+$table-cell-padding-x: 1rem;
+$table-bg: colors.$color-bw-20;
+$table-striped-bg: colors.$color-bw-32;
+$table-hover-bg: colors.$color-dark-cyan;
+
+div {
+  &.table-responsive:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+table {
+  &.table {
+    margin-bottom: 0;
+  }
+}
+
+th,
+td {
+  white-space: nowrap;
+}
