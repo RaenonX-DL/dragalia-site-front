@@ -1,3 +1,9 @@
+button.audio-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 div.sys-message {
   border: #505050 1px solid;
   border-radius: 0.25rem;
@@ -50,9 +56,6 @@ img.main-image {
 }
 
 button.audio-control {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 2rem;
   width: 3rem;
   height: 3rem;

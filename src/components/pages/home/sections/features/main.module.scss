@@ -1,13 +1,13 @@
 @import "../../../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../../../node_modules/bootstrap/scss/variables";
 @import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../../../../styles/utils";
 
 a {
   &.feature {
+    @extend %flex-center;
+
     height: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 

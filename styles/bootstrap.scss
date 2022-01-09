@@ -19,6 +19,11 @@ $link-decoration: none !default;
 $link-hover-color: color.adjust($link-color, $lightness: 10%) !default;
 $link-hover-decoration: none !default;
 
+// For some reason default bootstrap link underlining is not showing
+a {
+  border-bottom: 1px solid;
+}
+
 // endregion
 
 // region Border
@@ -111,6 +116,33 @@ $card-bg: colors.$color-black-32;
 
 // endregion
 
+// region Table
+
+$table-border-color: colors.$color-black-101;
+$table-cell-padding-x: 1rem;
+$table-bg: colors.$color-black-20;
+$table-striped-bg: colors.$color-black-32;
+$table-hover-bg: colors.$color-dark-cyan;
+
+div {
+  &.table-responsive:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+table {
+  &.table {
+    margin-bottom: 0;
+  }
+}
+
+th,
+td {
+  white-space: nowrap;
+}
+
+// endregion
+
 // region Bootstrap & default variables
 
 $min-contrast-ratio: 5;
@@ -121,16 +153,8 @@ $min-contrast-ratio: 5;
 
 // endregion
 
-// region Link styling
-
-a {
-  border-bottom: 1px solid;
-}
-
 .nav-link {
   @include media-breakpoint-down(lg) {
     border-bottom: none;
   }
 }
-
-// endregion

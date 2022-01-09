@@ -1,44 +1,9 @@
-div.normal-attack table {
-  width: 100%;
-  padding-right: 30px;
-  margin-bottom: 0.75rem;
-}
-div.normal-attack table tr {
-  background-color: #0e0e0e;
-  border: 1px solid #656565;
-}
-div.normal-attack table tr:last-child {
-  margin-bottom: 0;
-}
-div.normal-attack table th,
-div.normal-attack table td {
-  padding: 0.65rem 1.5rem;
-  text-align: center;
-  white-space: nowrap;
-}
-div.normal-attack table tbody tr:nth-of-type(odd) {
-  background-color: #141414;
-}
-div.normal-attack table tbody tr:nth-of-type(even) {
-  background-color: #202020;
-}
-div.normal-attack table tbody tr:hover {
-  background-color: #042a3b;
-}
-
 div.text {
   background-color: #202020;
   border: transparent solid 0.75rem;
   border-radius: 0.25rem;
   margin-bottom: 0.75rem;
   white-space: pre-line;
-}
-div.normal-attack table {
-  margin-bottom: 0;
-}
-div.normal-attack table th,
-div.normal-attack table td {
-  padding: 0.3rem 1.5rem;
 }
 @media (min-width: 992px) {
   div.ability .container {

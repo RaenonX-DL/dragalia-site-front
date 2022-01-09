@@ -1,14 +1,14 @@
 @use "sass:color";
 @use "../../../../../../styles/colors";
+@use "../../../../../../styles/utils";
 
 $button-bg-color: color.adjust(colors.$color-black-50, $lightness: -5%);
 $button-distance: 0.85vw;
 
 div {
   &.provider-frame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-center;
+
     height: 30vh;
   }
 }

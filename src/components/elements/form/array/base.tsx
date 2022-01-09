@@ -45,12 +45,14 @@ export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
     <>
       {array.slice(0, (elemCount && elemCount > 0) ? elemCount : array.length).map((elem, elemIdx) => (
         <React.Fragment key={counter[elemIdx]}>
-          <RowNoGutter className={elemIdx === 0 ? '' : 'mt-2'}>
+          <RowNoGutter className={`${elemIdx === 0 ? '' : 'mt-2'} text-end`}>
+            <Col>
+              <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
+            </Col>
+          </RowNoGutter>
+          <RowNoGutter className="mt-2">
             <Col>
               {renderEntries(elem, elemIdx)}
-            </Col>
-            <Col xs="auto">
-              <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
             </Col>
           </RowNoGutter>
         </React.Fragment>

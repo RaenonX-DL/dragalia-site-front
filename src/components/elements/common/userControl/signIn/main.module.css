@@ -2,6 +2,9 @@ div.provider-frame {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+div.provider-frame {
   height: 30vh;
 }
 

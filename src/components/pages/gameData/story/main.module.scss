@@ -1,4 +1,5 @@
 @use "../../../../../styles/colors";
+@use "../../../../../styles/utils";
 
 @mixin conversation() {
   margin: 0.3rem 0;
@@ -72,10 +73,7 @@ img {
 
 button {
   &.audio-control {
-    // For centering icon
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-center;
 
     // Sizing
     font-size: 2rem;

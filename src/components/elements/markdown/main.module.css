@@ -8,64 +8,57 @@
   padding: 0.5rem;
 }
 
-.md-body table {
-  width: 100%;
-  padding-right: 30px;
-  margin-bottom: 0.75rem;
-}
-.md-body table tr {
-  background-color: #0e0e0e;
-  border: 1px solid #656565;
-}
-.md-body table tr:last-child {
-  margin-bottom: 0;
-}
-.md-body table th,
-.md-body table td {
-  padding: 0.65rem 1.5rem;
-  text-align: center;
-  white-space: nowrap;
-}
-.md-body table tbody tr:nth-of-type(odd) {
-  background-color: #141414;
-}
-.md-body table tbody tr:nth-of-type(even) {
-  background-color: #202020;
-}
-.md-body table tbody tr:hover {
-  background-color: #042a3b;
-}
-
 .md-body {
   overflow: auto;
   padding: 0.75rem 0.75rem 0 0.75rem;
 }
+@media (min-width: 992px) {
+  .md-body table td > span.responsive-header {
+    display: none;
+  }
+}
 @media (max-width: 991.98px) {
+  .md-body table > :not(:first-child) {
+    border-top: 0;
+  }
   .md-body table thead {
     display: none;
   }
+}
+@media (max-width: 991.98px) and (max-width: 991.98px) {
+  .md-body table th,
+.md-body table td {
+    white-space: break-spaces;
+  }
+}
+@media (max-width: 991.98px) {
+  .md-body table tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    border: 1px solid #656565;
+  }
+}
+@media (max-width: 991.98px) {
+  .md-body table tr:last-child {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 991.98px) {
   .md-body table td {
     border-bottom: 1px solid #656565;
     display: block;
     text-align: right;
   }
+}
+@media (max-width: 991.98px) {
   .md-body table td > span.responsive-header {
     float: left;
-  }
-  .md-body table td:last-child {
-    border-bottom: 0;
-  }
-  .md-body table tr {
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-  .md-body table tr:last-child {
-    margin-bottom: 0;
+    margin-right: 0.5rem;
   }
 }
-@media (min-width: 992px) {
-  .md-body table td > span.responsive-header {
-    display: none;
+@media (max-width: 991.98px) {
+  .md-body table td:last-child {
+    border-bottom: 0;
   }
 }
 .md-body div.text {
@@ -75,6 +68,9 @@
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
+}
+.md-body div:last-child[class*=table-responsive] {
+  margin-bottom: 0.75rem;
 }
 .md-body span.calc {
   background-color: #060606;

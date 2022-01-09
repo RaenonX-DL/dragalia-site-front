@@ -39,15 +39,7 @@ export const ArrayFormEntryControl = <P, E>({
   };
 
   return (
-    <ButtonGroup vertical size="sm">
-      <Button
-        className="float-right ml-2 w-auto"
-        variant="outline-danger"
-        onClick={onRemoved(elemIdx)}
-        disabled={array.length <= minLength}
-      >
-        <IconDelete/>
-      </Button>
+    <ButtonGroup size="sm">
       {
         showMoveButton &&
         <>
@@ -69,6 +61,14 @@ export const ArrayFormEntryControl = <P, E>({
           </Button>
         </>
       }
+      <Button
+        className="float-right ml-2 w-auto"
+        variant="outline-danger"
+        onClick={onRemoved(elemIdx)}
+        disabled={array.length <= minLength}
+      >
+        <IconDelete/>
+      </Button>
     </ButtonGroup>
   );
 };
