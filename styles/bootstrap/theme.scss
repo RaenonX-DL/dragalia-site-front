@@ -13,6 +13,9 @@ $custom-theme-colors: (
   "black-32": colors.$color-bw-32,
   "black-50": colors.$color-bw-50,
   "light-gray": colors.$color-bw-170,
+  "dark-info": colors.$color-dark-info,
+  // Overridden
+  "secondary": colors.$color-secondary,
 );
 $text-muted: #7f7f7f;
 

@@ -1,12 +1,11 @@
 @use "sass:color";
 @use "../../../styles/colors";
+@use "../../../styles/utils";
 
 nav {
-  &.nav-site {
-    background-color: color.change(colors.$color-om-dark, $lightness: 7%);
-  }
+  &.nav-static-bar {
+    $height: 2.2rem;
 
-  &.nav-title {
     background-color: color.change(colors.$color-body-bg, $alpha: 0.9);
     border-width: 1px;
     border-style: solid;
@@ -16,5 +15,98 @@ nav {
         color.change(colors.$color-theme-dark, $lightness: 50%),
         color.change(colors.$color-theme-light, $lightness: 50%),
       ) 1;
+    z-index: 999;
+
+    & h1 {
+      font-size: 1rem;
+      margin: 0;
+      line-height: $height;
+      height: $height;
+    }
+
+    & button {
+      &.nav-static-menu-btn-show {
+        font-size: 1rem;
+      }
+
+      &.nav-static-menu-btn-hide {
+        display: none;
+      }
+    }
+
+    & div[class*="dropdown-menu"] {
+      transition: all 0.3s;
+    }
+  }
+}
+
+div {
+  &.nav-body {
+    @mixin nav-item() {
+      border: 1px solid colors.$color-bw-101;
+      border-radius: 0.3rem;
+
+      // !important to override the default style from BS `.navbar-nav .nav-link`
+      padding: 0.5rem 1rem !important;
+    }
+
+    @extend %flex-grow-fill;
+
+    text-align: left;
+
+    a,
+    button {
+      margin-bottom: 0.5rem;
+    }
+
+    div.text {
+      @include nav-item;
+
+      background-color: colors.$color-bw-20;
+      text-align: center;
+    }
+
+    a {
+      @include nav-item;
+
+      background-image: var(--bs-gradient);
+      color: colors.$color-bw-240;
+
+      &.active {
+        $bg-active: colors.$color-bw-215;
+
+        color: colors.$color-bw-20;
+        border: 1px solid $bg-active;
+        background-color: $bg-active;
+      }
+
+      &:hover,
+      &:focus {
+        $bg-hovered: color.change(colors.$color-om-dark, $lightness: 35%);
+
+        color: colors.$color-bw-240;
+        border: 1px solid $bg-hovered;
+        background-color: $bg-hovered;
+      }
+    }
+
+    button {
+      // For all button component to fill the vertical space
+      width: 100%;
+    }
+
+    & > div.nav-dropdown-menu {
+      background-color: colors.$color-bw-50;
+      border-radius: 0.3rem;
+
+      & > div.nav-dropdown-menu-inner {
+        // Inner section is needed for avoiding the collapsing glitch
+        padding: 0.7rem;
+
+        & > div:last-child a {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }

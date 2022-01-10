@@ -3,14 +3,13 @@ import React from 'react';
 import {fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {renderReact} from '../../test/render/main';
-import {SupportedLanguageNames, SupportedLanguages} from '../api-def/api';
-import {GeneralPath, PostPath} from '../const/path/definitions';
-import {CookiesKeys} from '../utils/cookies/keys';
-import * as cookiesUtils from '../utils/cookies/utils';
-import {makePostUrl} from '../utils/path/make';
-import {GoogleAnalytics} from '../utils/services/ga';
-import * as i18nHook from './hook';
+import {renderReact} from '../../../../test/render/main';
+import {SupportedLanguageNames, SupportedLanguages} from '../../../api-def/api';
+import {GeneralPath, PostPath} from '../../../const/path/definitions';
+import {CookiesKeys} from '../../../utils/cookies/keys';
+import * as cookiesUtils from '../../../utils/cookies/utils';
+import {makePostUrl} from '../../../utils/path/make';
+import {GoogleAnalytics} from '../../../utils/services/ga';
 import {LanguageSwitch} from './switch';
 
 
@@ -21,42 +20,33 @@ describe('Language Switch', () => {
   beforeEach(() => {
     gaLangChange = jest.spyOn(GoogleAnalytics, 'languageChange');
     setCookies = jest.spyOn(cookiesUtils, 'setCookies');
-    jest.spyOn(i18nHook, 'useI18n')
-      .mockReturnValue({t: () => 'trans', lang: SupportedLanguages.EN});
   });
 
   it('shows the current language', async () => {
     renderReact(() => <LanguageSwitch/>);
 
-    expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.EN])).toBeInTheDocument();
+    expect(screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]).length).toBeGreaterThan(0);
   });
 
   it('shows the current language 2', async () => {
-    jest.spyOn(i18nHook, 'useI18n')
-      .mockReturnValue({t: () => 'trans', lang: SupportedLanguages.CHT});
     renderReact(
       () => <LanguageSwitch/>,
-      {
-        routerOptions: {
-          locale: SupportedLanguages.CHT,
-        },
-      },
+      {routerOptions: {locale: SupportedLanguages.CHT}},
     );
 
-    expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT])).toBeInTheDocument();
+    expect(screen.getAllByText(SupportedLanguageNames[SupportedLanguages.CHT]).length).toBeGreaterThan(0);
   });
 
   it('shows the active language', async () => {
     renderReact(() => <LanguageSwitch/>);
 
-    const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    userEvent.click(langSwitch);
-
     const enItems = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]);
-    expect(enItems.length).toBe(3); // 1 already showing; 1 showing as active; 1 to be selected
+    userEvent.click(enItems[0]);
+
+    expect(enItems.length).toBe(3); // 1 already showing; 1 showing current active; 1 to be selected
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT])).toBeInTheDocument();
     expect(screen.getByText(SupportedLanguageNames[SupportedLanguages.JP])).toBeInTheDocument();
-    expect(enItems[2]).toHaveClass('active');
+    expect(enItems[2]).toHaveAttribute('data-test-is-active', 'true');
   });
 
   it('redirects to the correct language page on click', async () => {
@@ -74,7 +64,7 @@ describe('Language Switch', () => {
       },
     );
 
-    const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
+    const langSwitch = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN])[0];
     userEvent.click(langSwitch);
 
     const destPath = `/${SupportedLanguages.CHT}${GeneralPath.ABOUT}`;
@@ -97,15 +87,15 @@ describe('Language Switch', () => {
       },
     );
 
-    const langSwitch = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
+    const langSwitch = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.CHT])[0];
     userEvent.click(langSwitch);
 
-    const destPath = makePostUrl(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.CHT});
+    const destPath = makePostUrl(PostPath.ANALYSIS, {pid: 7, lang: SupportedLanguages.EN});
 
-    const chtLink = screen.getByText(SupportedLanguageNames[SupportedLanguages.CHT]);
-    expect(chtLink).toHaveAttribute('href', destPath);
-    fireEvent.click(chtLink);
-    expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.EN, SupportedLanguages.CHT);
-    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.CHT);
+    const link = screen.getByText(SupportedLanguageNames[SupportedLanguages.EN]);
+    expect(link).toHaveAttribute('href', destPath);
+    userEvent.click(link);
+    expect(gaLangChange).toHaveBeenCalledWith(SupportedLanguages.CHT, SupportedLanguages.EN);
+    expect(setCookies).toHaveBeenCalledWith(CookiesKeys.LANG, SupportedLanguages.EN);
   });
 });

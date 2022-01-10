@@ -1,11 +1,78 @@
-nav.nav-site {
-  background-color: #021122;
+div.nav-body {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
 }
-nav.nav-title {
+div.nav-body > div {
+  flex-grow: 1;
+}
+
+nav.nav-static-bar {
   background-color: rgba(24, 24, 24, 0.9);
   border-width: 1px;
   border-style: solid;
   border-image: linear-gradient(150deg, #9a36c9, #e9b816) 1;
+  z-index: 999;
+}
+nav.nav-static-bar h1 {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 2.2rem;
+  height: 2.2rem;
+}
+nav.nav-static-bar button.nav-static-menu-btn-show {
+  font-size: 1rem;
+}
+nav.nav-static-bar button.nav-static-menu-btn-hide {
+  display: none;
+}
+nav.nav-static-bar div[class*=dropdown-menu] {
+  transition: all 0.3s;
+}
+
+div.nav-body {
+  text-align: left;
+}
+div.nav-body a,
+div.nav-body button {
+  margin-bottom: 0.5rem;
+}
+div.nav-body div.text {
+  border: 1px solid #656565;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem !important;
+  background-color: #141414;
+  text-align: center;
+}
+div.nav-body a {
+  border: 1px solid #656565;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem !important;
+  background-image: var(--bs-gradient);
+  color: #e6ebff;
+}
+div.nav-body a.active {
+  color: #141414;
+  border: 1px solid #d7d7d7;
+  background-color: #d7d7d7;
+}
+div.nav-body a:hover, div.nav-body a:focus {
+  color: #e6ebff;
+  border: 1px solid #0855aa;
+  background-color: #0855aa;
+}
+div.nav-body button {
+  width: 100%;
+}
+div.nav-body > div.nav-dropdown-menu {
+  background-color: #323232;
+  border-radius: 0.3rem;
+}
+div.nav-body > div.nav-dropdown-menu > div.nav-dropdown-menu-inner {
+  padding: 0.7rem;
+}
+div.nav-body > div.nav-dropdown-menu > div.nav-dropdown-menu-inner > div:last-child a {
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=main.module.css.map */

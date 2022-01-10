@@ -11,7 +11,8 @@ import Row from 'react-bootstrap/Row';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Error404} from '../src/components/error/404';
-import {Navigation} from '../src/components/nav/main';
+import {NavigationBody} from '../src/components/nav/main/body';
+import {NavigationStatic} from '../src/components/nav/main/static';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
 import {AppReactContext} from '../src/context/app/main';
@@ -79,19 +80,20 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       <React.StrictMode>
         <AppReactContext.Provider value={{...pageProps}}>
           <ReduxProvider>
-            <Navigation/>
+            <NavigationStatic/>
             <SiteAlert/>
             {
               pageProps.isNotFound ?
                 <Error404/> :
                 <Container className="p-3">
                   <Row>
-                    <Col md={1}/>
-                    <Col>
+                    <Col lg={3} className="d-none d-lg-block">
+                      <NavigationBody/>
+                    </Col>
+                    <Col lg={9}>
                       <GlobalAlert/>
                       <Component {...pageProps}/>
                     </Col>
-                    <Col md={1}/>
                   </Row>
                 </Container>
             }

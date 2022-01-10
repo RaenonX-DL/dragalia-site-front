@@ -184,6 +184,12 @@ export const mockData: HomepageData = {
         ],
         toppedLang: ['English', 'Chinese'],
       },
+      active: {
+        data: [
+          {date: '20220110', D28: 28000, D7: 7000, D1: 1000},
+          {date: '20220111', D28: 28001, D7: 7001, D1: 1001},
+        ],
+      },
     },
     lastFetchedEpoch: 1641442985000,
   },
