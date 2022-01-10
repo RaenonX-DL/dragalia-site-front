@@ -107,8 +107,8 @@ describe('Tier list page', () => {
   it('shows no result on not found', async () => {
     renderReact(() => <TierList/>);
 
-    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    userEvent.type(searchInput, 'test');
+    const searchInput = await screen.findByText(translationEN.misc.searchKeyword);
+    userEvent.type(searchInput.previousSibling as Element, 'test');
 
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
     userEvent.click(searchButton);

@@ -337,7 +337,6 @@ describe('ATK skill lookup', () => {
 
     const displayActualDamageBtn = await screen.findByText(translationEN.game.skillAtk.display.options.actualDamage);
     userEvent.click(displayActualDamageBtn);
-    await waitFor(() => expect(displayActualDamageBtn.parentNode).toHaveClass('active'));
 
     const searchButton = await screen.findByText(
       translationEN.misc.search,
@@ -368,7 +367,6 @@ describe('ATK skill lookup', () => {
 
     const displayActualDamageBtn = await screen.findByText(translationEN.game.skillAtk.display.options.actualDamage);
     userEvent.click(displayActualDamageBtn);
-    await waitFor(() => expect(displayActualDamageBtn.parentNode).toHaveClass('active'));
 
     const searchButton = await screen.findByText(
       translationEN.misc.search,

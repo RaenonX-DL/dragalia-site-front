@@ -47,11 +47,11 @@ describe('New quest post form', () => {
       {user: {isAdmin: true}},
     );
 
-    const seqId = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(seqId, '7', {clear: true, rerender});
+    const seqId = screen.getByText(translationEN.posts.info.id);
+    typeInput(seqId.previousSibling as Element, '7', {clear: true, rerender});
     jest.advanceTimersByTime(1100);
 
-    expect(seqId).toHaveClass('is-valid');
+    expect(seqId.previousSibling).toHaveClass('is-valid');
   });
 
   it('shows invalid after typing in invalid ID', async () => {
@@ -66,11 +66,11 @@ describe('New quest post form', () => {
       {user: {isAdmin: true}},
     );
 
-    const seqId = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(seqId, '7', {clear: true, rerender});
+    const seqId = screen.getByText(translationEN.posts.info.id);
+    typeInput(seqId.previousSibling as Element, '7', {clear: true, rerender});
     jest.advanceTimersByTime(1100);
 
-    await waitFor(() => expect(seqId).toHaveClass('is-invalid'));
+    await waitFor(() => expect(seqId.previousSibling).toHaveClass('is-invalid'));
   });
 
   it('loads backup data', async () => {

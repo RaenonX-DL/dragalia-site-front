@@ -335,9 +335,7 @@ describe('Input panel', () => {
     ));
 
     const button = screen.getByText('check 1');
-
-    const actualButton = button.parentElement?.children[0];
-    expect(actualButton).toBeDisabled();
+    expect(button.parentElement).toHaveClass('disabled');
 
     userEvent.click(button);
 

@@ -104,9 +104,9 @@ describe('Analysis lookup page', () => {
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
-    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
+    const keywordInput = screen.getByText(translationEN.misc.searchKeyword);
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
-    userEvent.type(keywordInput, 'AAA');
+    userEvent.type(keywordInput.previousSibling as Element, 'AAA');
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
@@ -118,9 +118,9 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockResolvedValue(lookupResponseHasAnalyses);
     const {rerender} = renderReact(() => <UnitInfoLookup/>);
 
-    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
+    const keywordInput = screen.getByText(translationEN.misc.searchKeyword);
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
-    userEvent.type(keywordInput, 'AAA');
+    userEvent.type(keywordInput.previousSibling as Element, 'AAA');
     userEvent.click(searchButton);
 
     await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(2));
@@ -129,7 +129,7 @@ describe('Analysis lookup page', () => {
     rerender();
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
-    userEvent.clear(keywordInput);
+    userEvent.clear(keywordInput.previousSibling as Element);
     userEvent.click(searchButton);
 
     await waitFor(() => expect(fnScroll).toHaveBeenCalledTimes(3));
@@ -176,9 +176,9 @@ describe('Analysis lookup page', () => {
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
-    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
+    const keywordInput = screen.getByText(translationEN.misc.searchKeyword);
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
-    typeInput(keywordInput, 'Karina', {rerender});
+    typeInput(keywordInput.previousSibling as Element, 'Karina', {rerender});
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
@@ -192,9 +192,9 @@ describe('Analysis lookup page', () => {
 
     expect(fnGetLookupLanding).toHaveBeenCalledTimes(1);
 
-    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
-    userEvent.type(keywordInput, 'Karina');
-    userEvent.type(keywordInput, '{enter}');
+    const keywordInput = screen.getByText(translationEN.misc.searchKeyword);
+    userEvent.type(keywordInput.previousSibling as Element, 'Karina');
+    userEvent.type(keywordInput.previousSibling as Element, '{enter}');
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(screen.getByAltText('Karina')).toBeInTheDocument());
@@ -238,16 +238,15 @@ describe('Analysis lookup page', () => {
     fnGetLookup.mockResolvedValue(lookupResponseNoAnalyses);
     renderReact(() => <UnitInfoLookup/>);
 
-    const keywordInput = screen.getByPlaceholderText(translationEN.misc.searchKeyword);
+    const keywordInput = screen.getByText(translationEN.misc.searchKeyword);
     const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
-    userEvent.type(keywordInput, 'AAAA');
+    userEvent.type(keywordInput.previousSibling as Element, 'AAAA');
     userEvent.click(searchButton);
 
     expect(fnGetLookup).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(screen.getByText(translationEN.misc.noResult)).toBeInTheDocument());
     expect(fnScroll).toHaveBeenCalledTimes(2);
     const errorText = screen.getByText(translationEN.misc.noResult);
-    expect(errorText).toHaveClass('text-danger');
-    expect(errorText).toHaveClass('text-center');
+    expect(errorText).toHaveClass('alert-danger');
   });
 });

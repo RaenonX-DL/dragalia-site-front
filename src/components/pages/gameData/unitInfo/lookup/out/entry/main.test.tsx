@@ -58,8 +58,8 @@ describe('Analysis lookup entry', () => {
         makePostUrl(PostPath.ANALYSIS, {pid: 10950101, lang: SupportedLanguages.EN}),
       );
     expect(screen.getByText(/777/)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${translationEN.posts.info.published}`))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-cloud-arrow-up'})).toBeInTheDocument();
+    expect(screen.getByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
 
@@ -85,9 +85,9 @@ describe('Analysis lookup entry', () => {
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
     expect(unitName).not.toHaveClass('text-muted');
-    expect(screen.queryByText(/777/)).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.posts.info.published}`))).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`${translationEN.misc.timestamp.lastModified}`))).toBeInTheDocument();
+    expect(screen.queryByText(/777/)).toBeInTheDocument();
+    expect(screen.queryByText('', {selector: 'i.bi-cloud-arrow-up'})).not.toBeInTheDocument();
+    expect(screen.queryByText('', {selector: 'i.bi-pencil-fill'})).toBeInTheDocument();
     expect(screen.queryByText(translationEN.posts.analysis.error.unavailable)).not.toBeInTheDocument();
   });
 

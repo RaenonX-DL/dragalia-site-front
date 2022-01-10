@@ -52,8 +52,8 @@ describe('Quest post edit form', () => {
       {user: {isAdmin: true}},
     );
 
-    const editNote = screen.getByPlaceholderText(translationEN.posts.manage.editNote);
-    userEvent.type(editNote, 'Edit Note');
+    const editNote = screen.getByText(translationEN.posts.manage.editNote);
+    userEvent.type(editNote.previousSibling as Element, 'Edit Note');
 
     const editButton = screen.getByText(translationEN.posts.manage.edit);
     userEvent.click(editButton);

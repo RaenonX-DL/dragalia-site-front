@@ -63,8 +63,8 @@ describe('Auto-complete input', () => {
 
     const {rerender} = renderReact(() => <AutoCompleteWrapper/>);
 
-    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
-    typeInput(keywordInput, 'Keyword', {rerender});
+    const keywordInput = screen.getByText(/Enter keyword/);
+    typeInput(keywordInput.previousSibling as Element, 'Keyword', {rerender});
 
     expect(screen.getByText(translationEN.autoComplete.noMatchingOptions)).toBeInTheDocument();
   });
@@ -91,9 +91,9 @@ describe('Auto-complete input', () => {
 
     const {rerender} = renderReact(() => <AutoCompleteWrapper/>);
 
-    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
-    typeInput(keywordInput, 'Keyword', {rerender});
-    userEvent.clear(keywordInput);
+    const keywordInput = screen.getByText(/Enter keyword/);
+    typeInput(keywordInput.previousSibling as Element, 'Keyword', {rerender});
+    userEvent.clear(keywordInput.previousSibling as Element);
     rerender();
 
     expect(screen.getByText('option 1')).toBeInTheDocument();

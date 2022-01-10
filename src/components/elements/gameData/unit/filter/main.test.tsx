@@ -204,8 +204,8 @@ describe('Unit filter input', () => {
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
 
-    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    userEvent.type(searchInput, 'test');
+    const searchInput = await screen.findByText(translationEN.misc.searchKeyword);
+    userEvent.type(searchInput.previousSibling as Element, 'test');
 
     clickSearchButton();
 
@@ -260,8 +260,8 @@ describe('Unit filter input', () => {
     userEvent.click(elemButton);
     const weaponButton = await screen.findByText('weapon B EN');
     userEvent.click(weaponButton);
-    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    userEvent.type(searchInput, 'test');
+    const searchInput = await screen.findByText(translationEN.misc.searchKeyword);
+    userEvent.type(searchInput.previousSibling as Element, 'test');
 
     clickSearchButton();
 
@@ -289,9 +289,9 @@ describe('Unit filter input', () => {
 
     expect(getEnumElements).toHaveBeenCalledTimes(1);
 
-    const searchInput = await screen.findByPlaceholderText(translationEN.misc.searchKeyword);
-    userEvent.type(searchInput, 'test');
-    userEvent.type(searchInput, '{enter}');
+    const searchInput = await screen.findByText(translationEN.misc.searchKeyword);
+    userEvent.type(searchInput.previousSibling as Element, 'test');
+    userEvent.type(searchInput.previousSibling as Element, '{enter}');
 
     const expectedInput: UnitFilterInputData<'unitId'> = overrideObject(
       generateFilterInput('unitId'),
