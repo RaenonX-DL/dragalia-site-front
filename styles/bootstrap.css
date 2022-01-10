@@ -4178,7 +4178,7 @@ textarea.form-control-lg {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #b977ff;
+  background-color: #1172a7;
   background-image: var(--bs-gradient);
 }
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4222,7 +4222,7 @@ textarea.form-control-lg {
 }
 .dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #b977ff;
+  background-color: #1172a7;
   background-image: var(--bs-gradient);
 }
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled {

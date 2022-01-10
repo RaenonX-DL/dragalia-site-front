@@ -17,8 +17,10 @@ export const NavDropdownMenu = ({title, items}: Props) => {
 
   return (
     <NavDropdown
-      title={title} id={title}
+      id={title}
+      title={title}
       active={items.some((item) => item.type === 'item' && item.path === pathnameNoLang)}
+      menuVariant="dark"
     >
       {items.map((item, idx) => {
         if (item.type === 'header') {

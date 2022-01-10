@@ -104,7 +104,7 @@ export const UnitFilter = <S extends string,
               />
             </Col>
             <Col xs md="auto" className={styles.button}>
-              <DropdownButton title={sortTitle} variant="outline-light">
+              <DropdownButton title={sortTitle} variant="outline-light" menuVariant="dark">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
                     key={idx} onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
