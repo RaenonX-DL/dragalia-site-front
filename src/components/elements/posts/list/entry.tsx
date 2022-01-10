@@ -41,16 +41,15 @@ export const PostEntry = <E extends PostInfo>({
             />
           </h5>
           <RowNoGutter>
-            <Col md="auto">
+            <Col xs="auto">
               {renderPostBadge({entry})}&nbsp;
             </Col>
             <Col>
-              <PostEntryInfoBar entry={entry} className="d-none d-md-flex"/>
+              <PostEntryInfoBar entry={entry}/>
             </Col>
           </RowNoGutter>
         </Col>
       </RowNoGutter>
-      <PostEntryInfoBar entry={entry} className="d-flex d-md-none"/>
     </div>
   );
 };

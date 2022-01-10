@@ -7,6 +7,8 @@ export const IconInfo = () => <i className="bi bi-info-circle"/>;
 
 export const IconEdit = () => <i className="bi bi-pencil-fill"/>;
 
+export const IconView = () => <i className="bi bi-eye-fill"/>;
+
 export const IconPublish = () => <i className="bi bi-cloud-arrow-up"/>;
 
 export const IconAdd = () => <i className="bi bi-plus-lg"/>;

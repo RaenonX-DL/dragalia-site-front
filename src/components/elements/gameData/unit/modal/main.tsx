@@ -20,7 +20,7 @@ export const UnitLinkModal = ({unit, hasAnalysis}: UnitLinkModalProps) => {
 
   return (
     <div className="text-center">
-      <RowTight className="mb-3">
+      <RowTight className="mb-2">
         {
           hasAnalysis &&
           <Col>

@@ -40,16 +40,18 @@ export const ExAbilityPage = () => {
   fetchExAbility();
   fetchConditionEnums();
 
+  React.useEffect(() => {
+    scrollRefToTop(entryCol);
+  }, [inputDataForward]);
+
   return (
     <>
       <AdsToolTop/>
-      <RowTight>
+      <RowTight className="mb-2">
         <Col lg={4} className="mb-2">
           <ExAbilityInput
             onSearchRequested={(inputData: InputData) => () => {
               GoogleAnalytics.abilitySearch('EX', inputData);
-
-              scrollRefToTop(entryCol);
 
               // This function is expensive, scroll first
               setInputDataForward(inputData);

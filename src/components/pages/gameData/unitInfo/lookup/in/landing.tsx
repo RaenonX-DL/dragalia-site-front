@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
 import {RowTight} from '../../../../../elements/common/grid/row';
+import styles from '../main.module.css';
 import {UnitInfoEntry} from '../out/entry/main';
 
 
@@ -16,7 +17,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
   const {unitInfoMap} = useUnitInfo();
 
   return (
-    <RowTight>
+    <RowTight className={styles['landing-entry']}>
       {analyses
         .flatMap((entry) => {
           const unitInfo = unitInfoMap.get(entry.unitId);

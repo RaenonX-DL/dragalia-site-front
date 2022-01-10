@@ -50,7 +50,7 @@ export const AttackingSkillLookup = () => {
   return (
     <>
       <RowRegular>
-        <Col lg={4} className="section p-3 mb-3">
+        <Col lg={4} className="section p-3">
           <AttackingSkillInput
             isAllFetched={isAllFetched}
             onSearchRequested={(inputData: InputData) => {

@@ -6,6 +6,7 @@ import {useI18n} from '../../../../../../../../i18n/hook';
 import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
 import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
+import styles from '../../../main.module.css';
 import {EntryCommonProps} from '../types';
 
 
@@ -21,7 +22,7 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
           <UnitIconClickable
             unit={unitInfoToClickableProps(unitInfo, lang)}
             hasAnalysis={false}
-            style={{height: '4.5rem'}}
+            className={styles['unit-icon']}
           />
         </Col>
       </RowNoGutter>

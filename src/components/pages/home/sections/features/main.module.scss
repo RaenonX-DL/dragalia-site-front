@@ -4,21 +4,7 @@
 @import "../../../../../../styles/utils";
 
 div {
-  &.feature-row {
-    margin-bottom: 1rem;
-
-    @include media-breakpoint-down(md) {
-      margin-bottom: 0;
-    }
-  }
-
-  &.feature-outer {
-    & > a {
-      height: 5rem;
-    }
-
-    @include media-breakpoint-down(md) {
-      margin-bottom: 1rem;
-    }
+  &.feature-outer > a {
+    height: 5rem;
   }
 }

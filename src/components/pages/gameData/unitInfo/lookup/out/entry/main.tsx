@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 
 import {RowNoGutter} from '../../../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../../../elements/gameData/unit/icon';
+import styles from '../../main.module.css';
 import {EntryWithAnalysis} from './entryHasAnalysis';
 import {EntryNoAnalysis} from './entryNoAnalysis';
 import {EntryProps} from './types';
@@ -17,7 +18,7 @@ export const UnitInfoEntry = (props: EntryProps) => {
       {
         !props.iconOnly &&
         <Col xs="auto" className="me-2">
-          <UnitIcon unitInfo={unitInfo} className="ms-1" style={{height: '4rem'}}/>
+          <UnitIcon unitInfo={unitInfo} className={styles['unit-icon']}/>
         </Col>
       }
       <Col>

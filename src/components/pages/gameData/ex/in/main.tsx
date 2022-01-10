@@ -72,7 +72,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   }
 
   return (
-    <div className="section">
+    <div className="section p-3">
       <Filter
         elementEnums={selectionData.elementEnums}
         exBuffParams={selectionData.exBuffParams}

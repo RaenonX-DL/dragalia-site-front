@@ -825,7 +825,6 @@ export const translation: TranslationStruct = {
       published: '発表は',
       title: 'お題',
       viewCount: '閲覧回数',
-      viewCountComplete: '閲覧 {{count}} 回',
     },
     manage: {
       add: '文を追加する',

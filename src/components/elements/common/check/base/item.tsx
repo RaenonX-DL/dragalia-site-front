@@ -4,6 +4,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 
 import {ImageWithOverlay} from '../../image';
 import {CheckItemProps} from '../types';
+import styles from './main.module.css';
 
 
 export const CheckItem = (props: CheckItemProps) => {
@@ -34,6 +35,7 @@ export const CheckItem = (props: CheckItemProps) => {
       id={elemId}
       value={text}
       style={{width: block ? '100%' : undefined}}
+      className={styles['input-item']}
     >
       {label}
     </ToggleButton>

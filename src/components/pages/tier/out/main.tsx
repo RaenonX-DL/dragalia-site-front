@@ -49,10 +49,13 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
             iconOnly={inputData.iconOnly}
           />
       }
+      <div className="mt-3"/>
       {
         (entryPackHasTierNote.length > 0 || entryPackNoTierNote.length > 0) ?
           <AdsTierResultsEnd/> :
-          <>{t((t) => t.misc.noResult)}</>
+          <Alert variant="danger">
+            {t((t) => t.misc.noResult)}
+          </Alert>
       }
     </>
   );

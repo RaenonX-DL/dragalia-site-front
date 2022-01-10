@@ -816,7 +816,6 @@ export const translation: TranslationStruct = {
       published: '發布於',
       title: '標題',
       viewCount: '瀏覽次數',
-      viewCountComplete: '瀏覽 {{count}} 次',
     },
     manage: {
       add: '新增貼文',

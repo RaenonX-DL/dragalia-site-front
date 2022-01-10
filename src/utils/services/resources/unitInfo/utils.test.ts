@@ -1,4 +1,10 @@
-import {ApiResponseCode, SupportedLanguages, UnitNameRefResponse, UnitType} from '../../../../api-def/api';
+import {
+  ApiResponseCode,
+  PartiallySupportedLanguages,
+  SupportedLanguages,
+  UnitNameRefResponse,
+  UnitType,
+} from '../../../../api-def/api';
 import {CharaInfoData, DepotPaths, DragonInfoData, Element, UnitInfoData, Weapon} from '../../../../api-def/resources';
 import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
@@ -26,6 +32,7 @@ describe('Unit Info Name Map', () => {
     hasUniqueDragon: false,
     iconName: 'icon',
     name: {
+      [PartiallySupportedLanguages.CHS]: 'CHARA CHS',
       [SupportedLanguages.CHT]: 'CHARA CHT',
       [SupportedLanguages.EN]: 'CHARA EN',
       [SupportedLanguages.JP]: 'CHARA JP',
@@ -51,6 +58,7 @@ describe('Unit Info Name Map', () => {
     },
     iconName: 'icon',
     name: {
+      [PartiallySupportedLanguages.CHS]: 'DRAGON CHS',
       [SupportedLanguages.CHT]: 'DRAGON CHT',
       [SupportedLanguages.EN]: 'DRAGON EN',
       [SupportedLanguages.JP]: 'DRAGON JP',
@@ -127,6 +135,7 @@ describe('Unit Info Name Map', () => {
 
 describe('Get image URL using unit info', () => {
   const name = {
+    [PartiallySupportedLanguages.CHS]: 'name CHS',
     [SupportedLanguages.CHT]: 'name CHT',
     [SupportedLanguages.EN]: 'name EN',
     [SupportedLanguages.JP]: 'name JP',

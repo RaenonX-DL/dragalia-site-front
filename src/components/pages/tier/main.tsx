@@ -59,7 +59,7 @@ export const TierList = () => {
             text: t((t) => t.game.unitTier.points.edit),
             pathname: GeneralPath.TIER_POINTS_EDIT,
           }]}
-          bottomMarginClass="mb-0"
+          bottomMarginClass="mb-3"
         />
       }
       renderOutput={(props) => (

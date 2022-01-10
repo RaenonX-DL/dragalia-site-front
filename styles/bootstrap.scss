@@ -1,5 +1,6 @@
 // https://getbootstrap.com/docs/5.0/customize/overview/
 // https://react-bootstrap.github.io/getting-started/introduction/
+@use "sass:color";
 @import "bootstrap/alert";
 @import "bootstrap/body";
 @import "bootstrap/border";
@@ -12,12 +13,10 @@
 @import "bootstrap/popover";
 @import "bootstrap/tab";
 @import "bootstrap/table";
-@import "bootstrap/thematicBreak";
+@import "bootstrap/thematic-break";
 @import "bootstrap/theme";
 
 $min-contrast-ratio: 5;
 $small-font-size: 0.8rem;
 
-// This must be placed after all variable overrides above
-// stylelint-disable-next-line no-invalid-position-at-import-rule
 @import "../node_modules/bootstrap/scss/bootstrap";

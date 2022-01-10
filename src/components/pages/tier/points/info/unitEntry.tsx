@@ -17,7 +17,7 @@ export const UnitEntry = ({unitInfo}: Props) => {
   const {lang} = useI18n();
 
   return (
-    <RowNoGutter className="section mb-2">
+    <RowNoGutter className="section">
       <Col xs="auto">
         <UnitIcon unitInfo={unitInfo} style={{height: '4rem'}}/>
       </Col>

@@ -9,10 +9,11 @@ import {TimeAgo} from '../../../../../utils/timeago';
 import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
-import styles from '../../main.module.css';
+import mainStyles from '../../main.module.css';
 import {TierNoteEditIcon} from '../elements/editIcon';
 import {TierNote} from '../elements/note';
 import {TierNotePointIcon} from '../elements/pointIcon';
+import styles from './main.module.css';
 
 
 type Props = {
@@ -26,10 +27,10 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
 
   return (
     <div className="section">
-      <RowNoGutter className="text-center align-items-center bg-img-wrap">
-        <UnitIcon unitInfo={unitInfo} className={`bg-img ${styles['unit-icon']}`}/>
+      <RowNoGutter className={`text-center align-items-center ${styles['bg-img-wrap']}`}>
+        <UnitIcon unitInfo={unitInfo} className={`bg-img ${mainStyles['unit-icon']}`}/>
         <Col>
-          <RowNoGutter className="bg-img-wrap">
+          <RowNoGutter>
             <Col md={6} className="text-start">
               {
                 tierNote && tierNote.points.length > 0 &&

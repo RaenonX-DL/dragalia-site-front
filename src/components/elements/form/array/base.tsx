@@ -65,7 +65,7 @@ export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
                   <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
                 </Col>
               </RowNoGutter>
-              <RowNoGutter className={elemIdx === 0 ? '' : 'mt-2'}>
+              <RowNoGutter>
                 <Col>
                   {renderEntries(elem, elemIdx)}
                 </Col>

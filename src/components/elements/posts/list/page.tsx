@@ -64,7 +64,7 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
     <>
       <AdsPostList/>
       <div className={styles.title}>
-        <h4>{title}</h4>
+        <h2>{title}</h2>
       </div>
       {
         context?.session?.user.isAdmin &&

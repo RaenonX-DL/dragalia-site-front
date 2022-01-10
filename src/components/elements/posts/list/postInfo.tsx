@@ -3,10 +3,9 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import {PostInfo} from '../../../../api-def/api';
-import {useI18n} from '../../../../i18n/hook';
 import {TimeAgo} from '../../../../utils/timeago';
 import {RowNoGutter} from '../../common/grid/row';
-import {IconEdit, IconPublish} from '../../common/icons';
+import {IconEdit, IconPublish, IconView} from '../../common/icons';
 import styles from './entry.module.css';
 
 
@@ -16,8 +15,6 @@ type Props<E extends PostInfo> = {
 };
 
 export const PostEntryInfoBar = <E extends PostInfo>({entry, className}: Props<E>) => {
-  const {t} = useI18n();
-
   return (
     <RowNoGutter className={className}>
       <Col>
@@ -30,7 +27,8 @@ export const PostEntryInfoBar = <E extends PostInfo>({entry, className}: Props<E
       </Col>
       <Col xs="auto">
         <small className="text-muted">
-          {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
+          <IconView/>&nbsp;
+          {entry.viewCount.toString()}
         </small>
       </Col>
     </RowNoGutter>

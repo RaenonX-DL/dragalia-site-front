@@ -860,7 +860,6 @@ export const translation: TranslationStruct = {
       published: 'Published',
       title: 'Title',
       viewCount: 'View Count',
-      viewCountComplete: 'Viewed {{count}} times',
     },
     manage: {
       add: 'New Post',

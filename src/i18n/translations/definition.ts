@@ -668,7 +668,6 @@ export type TranslationStruct = {
       published: string,
       title: string,
       viewCount: string,
-      viewCountComplete: string,
     },
     manage: {
       add: string,

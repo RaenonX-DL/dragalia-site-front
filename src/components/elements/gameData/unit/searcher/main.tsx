@@ -92,7 +92,6 @@ export const UnitSearcher = <
         disabled={!isFetched || isLoading}
       />
       {context?.session?.user.isAdmin && renderIfAdmin}
-      <hr/>
       <div ref={elemRef}>
         {inputData && renderOutput({
           inputData,

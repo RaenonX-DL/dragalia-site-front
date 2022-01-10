@@ -30,7 +30,7 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
               />
             </Col>
           )) :
-          <Col className="mb-2 text-danger">
+          <Col className="text-danger">
             <div className="section">
               {t((t) => t.game.unitTier.alert.noUnitInRank)}
             </div>

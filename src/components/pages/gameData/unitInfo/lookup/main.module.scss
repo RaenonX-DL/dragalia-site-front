@@ -1,3 +1,4 @@
+@use "../../../../../../styles/colors";
 @use "../../../../../../styles/utils";
 @import "../../../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../../../node_modules/bootstrap/scss/variables";
@@ -6,19 +7,35 @@
 div {
   .icon-only-entry {
     @include media-breakpoint-down(sm) {
-      @include utils.eq-width-col(2);
+      @include utils.eq-width-col(3);
+
+      & div.unit-icon {
+        height: 4rem;
+      }
     }
 
     @include media-breakpoint-up(sm) {
       @include utils.eq-width-col(3);
+
+      & div.unit-icon {
+        height: 5rem;
+      }
     }
 
     @include media-breakpoint-up(lg) {
-      @include utils.eq-width-col(4);
+      @include utils.eq-width-col(5);
+
+      & div.unit-icon {
+        height: 5rem;
+      }
     }
 
     @include media-breakpoint-up(xl) {
       @include utils.eq-width-col(6);
+    }
+
+    @include media-breakpoint-up(xxl) {
+      @include utils.eq-width-col(7);
     }
   }
 
@@ -29,6 +46,35 @@ div {
 
     @include media-breakpoint-up(lg) {
       @include utils.eq-width-col(2);
+    }
+
+    & img.unit-icon {
+      height: 4rem;
+    }
+
+    & div.info-top {
+      height: 2.5rem;
+    }
+
+    & div.info-bottom {
+      height: 1.5rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .landing-entry {
+    & img.unit-icon {
+      height: 4rem;
+    }
+
+    & div.info-top {
+      height: 2.5rem;
+    }
+
+    & div.info-bottom {
+      height: 1.5rem;
+      font-size: 0.8rem;
+      color: colors.$color-bw-140;
     }
   }
 }

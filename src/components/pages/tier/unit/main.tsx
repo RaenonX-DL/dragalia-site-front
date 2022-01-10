@@ -52,10 +52,10 @@ export const TierNoteUnit = () => {
       <h4>{t((t) => t.game.unitTier.points.title)}</h4>
       <UnitTierNoteKeyPoints keyPointsIds={data.points}/>
       <hr/>
-      <div className="section mb-3 text-end">
+      <Alert variant="secondary" className="section mb-3 text-end">
         {t((t) => t.misc.timestamp.lastUpdated)}
         &nbsp;<TimeAgo epoch={data.lastUpdateEpoch}/>
-      </div>
+      </Alert>
       <AdsTierResultsEnd/>
     </>
   );

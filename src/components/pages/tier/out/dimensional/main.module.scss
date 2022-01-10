@@ -7,23 +7,23 @@
 div {
   &.entry {
     @include media-breakpoint-down(sm) {
-      @include utils.eq-width-col(2);
-    }
-
-    @include media-breakpoint-up(sm) {
       @include utils.eq-width-col(3);
     }
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(sm) {
       @include utils.eq-width-col(4);
     }
 
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(lg) {
       @include utils.eq-width-col(5);
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include media-breakpoint-up(xl) {
       @include utils.eq-width-col(6);
+    }
+
+    @include media-breakpoint-up(xxl) {
+      @include utils.eq-width-col(7);
     }
   }
 }

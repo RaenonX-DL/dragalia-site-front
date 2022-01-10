@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
@@ -32,14 +33,14 @@ export const UnitInfoLookupOutput = ({
 
   if (!unitInfoSorted.length) {
     return (
-      <h5 className="text-danger text-center">
+      <Alert variant="danger">
         {t((t) => t.misc.noResult)}
-      </h5>
+      </Alert>
     );
   }
 
   return (
-    <RowTight>
+    <RowTight className="mb-2">
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}

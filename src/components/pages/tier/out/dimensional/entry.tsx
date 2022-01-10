@@ -22,7 +22,7 @@ type Props = PropsUseKeyPointData & Pick<PropsDimensionalCommon, 'dimension'> & 
 };
 
 export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: Props) => {
-  const {t, lang} = useI18n();
+  const {lang} = useI18n();
   const context = React.useContext(AppReactContext);
 
   const {unitInfo, tierNote} = entryPack;
@@ -33,7 +33,7 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: P
     <div className="section">
       {
         !iconOnly &&
-        <Row className="text-center">
+        <Row className="text-center mb-1">
           <Col>
             <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
           </Col>
@@ -60,7 +60,7 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: P
             </div>
           }
         </Col>
-        <Col xs="auto">
+        <Col xs="auto" className="ps-0">
           {context?.session?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
         </Col>
       </Row>
@@ -69,7 +69,6 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: P
         <Row>
           <Col className="text-muted text-end">
             <small>
-              {t((t) => t.misc.timestamp.lastUpdated)}&nbsp;
               <TimeAgo epoch={tierNote.lastUpdateEpoch}/>
             </small>
           </Col>

@@ -1,18 +1,5 @@
-div.feature-row {
-  margin-bottom: 1rem;
-}
-@media (max-width: 767.98px) {
-  div.feature-row {
-    margin-bottom: 0;
-  }
-}
 div.feature-outer > a {
   height: 5rem;
-}
-@media (max-width: 767.98px) {
-  div.feature-outer {
-    margin-bottom: 1rem;
-  }
 }
 
 /*# sourceMappingURL=main.module.css.map */

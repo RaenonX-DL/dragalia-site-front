@@ -68,7 +68,7 @@ export const UnitInfoLookup = () => {
               text: t((t) => t.game.nameRef.manage),
               variant: 'outline-light',
             }]}
-            bottomMarginClass="mb-2"
+            bottomMarginClass="mb-3"
           />
         }
         renderOutput={(props) => (

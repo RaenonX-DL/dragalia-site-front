@@ -1,3 +1,7 @@
+label.input-item:hover {
+  background-color: #000;
+}
+
 div.input-group {
   text-align: center;
 }

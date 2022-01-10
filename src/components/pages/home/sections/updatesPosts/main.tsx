@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {HomepageData} from '../../../../../api-def/api';
 import {PostType} from '../../../../../api-def/api/post/types';
@@ -9,6 +8,7 @@ import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
 import {unitInfoToClickableProps} from '../../../../../utils/services/resources/unitInfo/utils';
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {UnitIconClickable} from '../../../../elements/gameData/unit/iconClickable';
 import mainStyles from './../../main.module.css';
 import styles from './main.module.css';
@@ -29,7 +29,7 @@ export const RecentUpdatedPosts = ({data}: Props) => {
       <h1 className={mainStyles['section-title']}>
         {t((t) => t.home.section.recentlyUpdated)}
       </h1>
-      <Row className="mb-0 mb-lg-3">
+      <RowRegular className="mb-3">
         <Col>
           <PostList
             title={t((t) => t.enum.postType[PostType.ANALYSIS])}
@@ -48,23 +48,23 @@ export const RecentUpdatedPosts = ({data}: Props) => {
             }}
           />
         </Col>
-      </Row>
-      <Row>
-        <Col lg={6} className="mt-3 mt-lg-0">
+      </RowRegular>
+      <RowRegular>
+        <Col lg={6}>
           <PostList
             title={t((t) => t.enum.postType[PostType.QUEST])}
             titlePath={GeneralPath.QUEST_LIST}
             entries={data.posts[PostType.QUEST]}
           />
         </Col>
-        <Col lg={6} className="mt-3 mt-lg-0">
+        <Col lg={6}>
           <PostList
             title={t((t) => t.enum.postType[PostType.MISC])}
             titlePath={GeneralPath.MISC_LIST}
             entries={data.posts[PostType.MISC]}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </>
   );
 };

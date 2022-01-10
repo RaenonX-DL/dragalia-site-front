@@ -50,6 +50,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
       }
 
       <SectionTop analysis={analysis}/>
+      <div className="mb-3"/>
       <AdsInPost/>
       {renderBody(analysis)}
       <SectionBottom analysis={analysis}/>
