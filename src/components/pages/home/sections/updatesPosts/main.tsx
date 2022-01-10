@@ -2,8 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {HomepageData} from '../../../../../api-def/api';
-import {PostType} from '../../../../../api-def/api/post/types';
+import {HomepageData, PostType} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';

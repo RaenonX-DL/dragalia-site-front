@@ -715,6 +715,7 @@ export type TranslationStruct = {
         header: {
           perCountry: string,
           perLang: string,
+          active: string,
         },
         content: {
           totalLangUser: string,
@@ -725,6 +726,13 @@ export type TranslationStruct = {
           country: string,
           user: string,
           periodUnitDay: string,
+          periodActive: {
+            legend: string,
+            period: string,
+            dailyAvg: string,
+            total: string,
+            d28diffPct: string,
+          },
         },
       },
       features: string,

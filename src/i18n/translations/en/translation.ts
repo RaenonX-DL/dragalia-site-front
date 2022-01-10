@@ -909,6 +909,7 @@ export const translation: TranslationStruct = {
         header: {
           perCountry: 'Active Users by Country',
           perLang: 'Active Users by Language',
+          active: 'Periodic Active Users (Daily Average)',
         },
         content: {
           totalLangUser: 'Total: {{total}}',
@@ -919,6 +920,13 @@ export const translation: TranslationStruct = {
           country: 'Country',
           user: 'User',
           periodUnitDay: 'Days',
+          periodActive: {
+            legend: '{{periodDays}} Days',
+            period: 'Period',
+            dailyAvg: 'Daily Avg',
+            total: 'Total',
+            d28diffPct: 'Diff % (to 28D)',
+          },
         },
       },
       features: 'Features',

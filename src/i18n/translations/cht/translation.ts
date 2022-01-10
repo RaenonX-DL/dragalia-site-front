@@ -863,6 +863,7 @@ export const translation: TranslationStruct = {
         header: {
           perCountry: '各國週期內使用者',
           perLang: '各語系使用者',
+          active: '週期內使用者 (日平均)',
         },
         content: {
           totalLangUser: '總計: {{total}}',
@@ -873,6 +874,13 @@ export const translation: TranslationStruct = {
           country: '國別',
           user: '使用者',
           periodUnitDay: '日',
+          periodActive: {
+            legend: '{{periodDays}} 日內',
+            period: '週期 (日)',
+            dailyAvg: '日均',
+            total: '總計',
+            d28diffPct: '差異 % (對 28D)',
+          },
         },
       },
       features: '網站功能',

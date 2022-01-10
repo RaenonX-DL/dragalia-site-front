@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
-import {GALangUserOfDate} from '../../../../../../../api-def/api/info/stats/elements';
+import {GALangUserOfDate} from '../../../../../../../api-def/api';
 import {formatDateString} from '../../utils';
 import {colors, stroke} from '../const';
 import {UserStatsOfLangProps} from './main';

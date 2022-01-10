@@ -6,7 +6,7 @@ import {
   GACountryUserEntry,
   GAPeriodicCountryUserData,
   GAPeriodKey,
-} from '../../../../../../../api-def/api/info/stats/elements';
+} from '../../../../../../../api-def/api';
 import {colors, stroke} from '../const';
 import {UserStatsOfCountryLabel} from './label';
 import {UserStatsOfCountryProps} from './main';

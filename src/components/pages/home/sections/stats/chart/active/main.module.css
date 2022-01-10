@@ -1,0 +1,29 @@
+div.result-table table {
+  width: 100%;
+  padding-right: 30px;
+}
+div.result-table table tr {
+  background-color: #070707;
+  border: #505050;
+}
+div.result-table table tr:last-child {
+  margin-bottom: 0;
+}
+div.result-table table th,
+div.result-table table td {
+  padding: 0.2rem 1rem;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+div.result-table table tbody tr:nth-of-type(odd) {
+  background-color: #141414;
+}
+div.result-table table tbody tr:nth-of-type(even) {
+  background-color: #202020;
+}
+div.result-table table tbody tr:hover {
+  background-color: #042a3b;
+}
+
+/*# sourceMappingURL=main.module.css.map */

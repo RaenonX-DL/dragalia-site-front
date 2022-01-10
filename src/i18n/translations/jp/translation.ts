@@ -872,6 +872,7 @@ export const translation: TranslationStruct = {
         header: {
           perCountry: 'TBA',
           perLang: 'TBA',
+          active: 'TBA',
         },
         content: {
           totalLangUser: 'TBA',
@@ -882,6 +883,13 @@ export const translation: TranslationStruct = {
           country: 'TBA',
           user: 'TBA',
           periodUnitDay: 'TBA',
+          periodActive: {
+            legend: 'TBA',
+            period: 'TBA',
+            dailyAvg: 'TBA',
+            total: 'TBA',
+            d28diffPct: 'TBA',
+          },
         },
       },
       features: 'TBA',

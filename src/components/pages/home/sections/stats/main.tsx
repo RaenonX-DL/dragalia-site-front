@@ -7,6 +7,7 @@ import {HomepageData} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 import mainStyles from '../../main.module.css';
+import {UserStatsPeriodicActive} from './chart/active/main';
 import {UserStatsOfCountry} from './chart/country/main';
 import {UserStatsOfLang} from './chart/lang/main';
 import styles from './main.module.css';
@@ -32,6 +33,11 @@ export const SiteStats = ({data}: Props) => {
       <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
           <UserStatsOfLang stats={data.stats.user.perLang}/>
+        </Col>
+      </Row>
+      <Row className={styles['stats-section']}>
+        <Col className={styles['stats-section-outer']}>
+          <UserStatsPeriodicActive stats={data.stats.user.active}/>
         </Col>
       </Row>
       <Row className="text-end mb-2">

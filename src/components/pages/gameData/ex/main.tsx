@@ -2,8 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {CharaExAbilityDataEntry} from '../../../../api-def/resources/types/ex';
-import {ConditionEnumMap} from '../../../../api-def/resources/types/export/enums';
+import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../api-def/resources';
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
 import {ResourceLoader} from '../../../../utils/services/resources/loader';
