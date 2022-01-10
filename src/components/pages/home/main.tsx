@@ -22,7 +22,7 @@ export const Home = () => {
   } = useFetchStateProcessed<HomepageData | undefined, HomepageLandingResponse | FailedResponse>(
     undefined,
     () => ApiRequestSender.getHomepageLanding(context?.session?.user.id.toString() || '', lang),
-    'Failed to fetch key point info.',
+    'Failed to fetch homepage landing data.',
     (response) => isFailedResponse(response) ? undefined : response.data,
   );
 
