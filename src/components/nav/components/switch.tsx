@@ -38,12 +38,12 @@ export const LanguageSwitch = () => {
         {type: 'header', text: (t) => t.lang.inUse},
         {type: 'text', text: () => currentLangName},
         {type: 'divider'},
-        ...Object.values(SupportedLanguages).map((lang) => ({
+        ...Object.values(SupportedLanguages).map((supportedLang) => ({
           type: 'path',
-          text: () => SupportedLanguageNames[lang],
-          onClick: onLangChanged(lang),
-          href: `/${lang}${neutralUrl}`,
-          activeOverride: false,
+          text: () => SupportedLanguageNames[supportedLang],
+          onClick: onLangChanged(supportedLang),
+          href: `/${supportedLang}${neutralUrl}`,
+          activeOverride: supportedLang === lang,
         } as NavItemDropdownContainable)),
       ]}
     />
