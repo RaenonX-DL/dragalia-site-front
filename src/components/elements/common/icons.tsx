@@ -40,3 +40,7 @@ export const IconPlay = () => <i className="bi bi-play-fill"/>;
 export const IconPause = () => <i className="bi bi-pause-fill"/>;
 
 export const IconStop = () => <i className="bi bi-stop-fill"/>;
+
+export const IconCollapseToLeft = () => <i className="bi bi-arrow-bar-left"/>;
+
+export const IconExpandToRight = () => <i className="bi bi-arrow-bar-right"/>;

@@ -50,6 +50,12 @@ div {
     overflow-x: hidden;
     overflow-y: auto;
     padding-right: 0.5rem;
+
+    & button.nav-collapse-btn {
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
   }
 
   &.nav-body {

@@ -20,7 +20,7 @@ type Props = {
 };
 
 export const MainApp = ({isNotFound, renderApp}: Props) => {
-  const {fluid} = useLayoutSelector();
+  const {fluid, collapse} = useLayoutSelector();
 
   return (
     <>
@@ -31,7 +31,12 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
           <Error404/> :
           <Container fluid={fluid} className="p-3">
             <Row className={styles['layout-row']}>
-              <Col className={styles['layout-col-nav']}>
+              <Col
+                className={
+                  `${styles['layout-col-nav']} ` +
+                  `${collapse ? styles['layout-col-nav-collapsed'] : styles['layout-col-nav-opened']}`
+                }
+              >
                 <NavigationLandscape/>
               </Col>
               <Col className={styles['layout-col-main']}>

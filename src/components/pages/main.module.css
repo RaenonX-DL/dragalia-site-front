@@ -2,7 +2,10 @@ div .layout-row {
   flex-wrap: nowrap;
   --bs-gutter-x: 0.5rem;
 }
-div .layout-row > div.layout-col-nav {
+div .layout-row > div.layout-col-nav.layout-col-nav-collapsed {
+  flex: 0 0 0;
+}
+div .layout-row > div.layout-col-nav.layout-col-nav-opened {
   flex: 0 0 20%;
 }
 @media (max-width: 991.98px) {

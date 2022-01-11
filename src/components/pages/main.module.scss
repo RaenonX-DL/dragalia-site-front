@@ -9,7 +9,13 @@ div {
     --bs-gutter-x: 0.5rem;
 
     & > div.layout-col-nav {
-      flex: 0 0 20%;
+      &.layout-col-nav-collapsed {
+        flex: 0 0 0;
+      }
+
+      &.layout-col-nav-opened {
+        flex: 0 0 20%;
+      }
 
       @include media-breakpoint-down(lg) {
         // For narrower screens
