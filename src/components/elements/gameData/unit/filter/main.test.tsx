@@ -243,6 +243,21 @@ describe('Unit filter input', () => {
     expect(onSearchRequested).toHaveBeenCalledWith(expectedInput);
   });
 
+  it('passes input data with sort order', async () => {
+    renderReact(() => (
+      <UnitFilter
+        sortOrderNames={{unitId: () => 'Unit ID', viewCount: () => 'View Count'}}
+        onSearchRequested={onSearchRequested}
+        generateInputData={() => generateFilterInput('unitId')}
+      />
+    ));
+
+    const sorter = await screen.findByText(/Sort by/);
+    userEvent.click(sorter);
+
+    expect(screen.getByText('Unit ID')).toHaveClass('active');
+  });
+
   it('passes input data with multiple conditions', async () => {
     renderReact(() => (
       <UnitFilter
