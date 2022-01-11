@@ -12,11 +12,11 @@ import {NavItemPath} from '../type';
 
 type Props = NavItemPath;
 
-export const NavPath = ({path, href: hrefProps, text, disabled, onClick, pathnameNoLang}: Props) => {
+export const NavPath = ({path, href: hrefProps, text, disabled, onClick, pathnameNoLang, activeOverride}: Props) => {
   const {t, lang} = useI18n();
   const href = !!path ? makeGeneralUrl(path, {lang}) : hrefProps;
   const i18nText = t(text);
-  const isActive = pathnameNoLang === path;
+  const isActive = activeOverride !== undefined ? activeOverride : pathnameNoLang === path;
 
   const props = {
     className: isActive ? styles.active : '',

@@ -43,6 +43,7 @@ export const LanguageSwitch = () => {
           text: () => SupportedLanguageNames[lang],
           onClick: onLangChanged(lang),
           href: `/${lang}${neutralUrl}`,
+          activeOverride: false,
         } as NavItemDropdownContainable)),
       ]}
     />

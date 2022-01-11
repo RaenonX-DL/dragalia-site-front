@@ -40,6 +40,7 @@ export const NavigationStatic = () => {
           <Offcanvas.Header
             closeButton
             closeVariant="white"
+            className={styles['nav-offcanvas-header']}
           >
             <Offcanvas.Title>
               {t((t) => t.meta.inUse.site.title)}

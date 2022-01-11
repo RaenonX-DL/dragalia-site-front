@@ -18,6 +18,7 @@ export type NavItemPath = NavItemCommon & {
   text: GetTranslationFunction,
   disabled?: boolean,
   onClick?: () => void,
+  activeOverride?: boolean,
 } & ({
   path?: GeneralPath,
   href?: never,

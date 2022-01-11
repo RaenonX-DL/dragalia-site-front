@@ -11,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import {isProduction} from '../server/utils/misc';
 import {Footer} from '../src/components/elements/footer';
 import {Error404} from '../src/components/error/404';
-import {NavigationBody} from '../src/components/nav/main/body';
+import {NavigationLandscape} from '../src/components/nav/main/landscape';
 import {NavigationStatic} from '../src/components/nav/main/static';
 import {SiteAlert} from '../src/components/pages/siteAlert';
 import {GlobalAlert} from '../src/components/pages/stateAlert';
@@ -85,12 +85,12 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
             {
               pageProps.isNotFound ?
                 <Error404/> :
-                <Container className="p-3">
+                <Container fluid className="p-3">
                   <Row>
-                    <Col lg={3} className="d-none d-lg-block">
-                      <NavigationBody/>
+                    <Col style={{flex: '0 0 200px'}} className="d-none d-lg-block">
+                      <NavigationLandscape/>
                     </Col>
-                    <Col lg={9}>
+                    <Col>
                       <GlobalAlert/>
                       <Component {...pageProps}/>
                     </Col>
