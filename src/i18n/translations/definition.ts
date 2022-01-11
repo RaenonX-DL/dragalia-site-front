@@ -629,6 +629,11 @@ export type TranslationStruct = {
       story: string,
       datamine: string,
     },
+    header: {
+      posts: string,
+      gameData: string,
+      others: string,
+    },
   },
   posts: {
     analysis: {

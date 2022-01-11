@@ -810,6 +810,11 @@ export const translation: TranslationStruct = {
     },
     unitInfo: 'Chara/Dragon Info',
     unitTier: 'Tier List',
+    header: {
+      posts: 'Posts',
+      gameData: 'Game Related',
+      others: 'Others',
+    },
   },
   posts: {
     analysis: {

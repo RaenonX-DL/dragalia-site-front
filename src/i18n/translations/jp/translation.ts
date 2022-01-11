@@ -776,6 +776,11 @@ export const translation: TranslationStruct = {
     },
     unitInfo: 'キャラ/ドラゴン情報',
     unitTier: 'ランキング',
+    header: {
+      posts: 'TBA',
+      gameData: 'TBA',
+      others: 'TBA',
+    },
   },
   posts: {
     analysis: {

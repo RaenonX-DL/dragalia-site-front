@@ -757,6 +757,8 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
+    unitInfo: '角色/龍族索引',
+    unitTier: '評級',
     gameData: {
       self: '遊戲資訊',
       passive: '被動技能',
@@ -768,8 +770,11 @@ export const translation: TranslationStruct = {
       story: '故事',
       datamine: '解包',
     },
-    unitInfo: '角色/龍族索引',
-    unitTier: '評級',
+    header: {
+      posts: '文章',
+      gameData: '遊戲相關',
+      others: '其他',
+    },
   },
   posts: {
     analysis: {

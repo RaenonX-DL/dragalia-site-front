@@ -81,7 +81,8 @@ div {
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &.nav-dropdown-hover {
         $bg-hovered: color.change(colors.$color-om-dark, $lightness: 35%);
 
         color: colors.$color-bw-240;
@@ -107,6 +108,20 @@ div {
           margin-bottom: 0;
         }
       }
+    }
+  }
+}
+
+h6 {
+  &.nav-header {
+    display: flex;
+    flex-direction: row;
+
+    &::after {
+      content: "";
+      flex: 1 1;
+      border-bottom: 1px solid;
+      margin: auto auto auto 0.7rem;
     }
   }
 }
