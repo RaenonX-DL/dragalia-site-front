@@ -17,12 +17,3 @@ export const featureBtnColors: Record<FeatureKey, ButtonVariant> = {
   ex: 'outline-success',
   thanks: 'outline-orange',
 };
-
-export const featureColors: Record<FeatureKey, string> = {
-  analysis: 'light',
-  tier: 'primary',
-  info: 'info',
-  story: 'warning',
-  ex: 'success',
-  thanks: 'orange',
-};

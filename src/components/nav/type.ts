@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {FeatureKey} from '../../const/colors';
 import {GeneralPath} from '../../const/path/definitions';
 import {GetTranslationFunction} from '../../i18n/types';
 
@@ -17,7 +16,6 @@ export type NavItemHeader = NavItemCommon & {
 export type NavItemPath = NavItemCommon & {
   type: 'path',
   text: GetTranslationFunction,
-  feature?: FeatureKey,
   disabled?: boolean,
   onClick?: () => void,
 } & ({

@@ -49,7 +49,7 @@ div.nav-body a {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem !important;
   background-image: var(--bs-gradient);
-  color: #e6ebff;
+  color: #f0f0f0;
 }
 div.nav-body a.active {
   color: #141414;
@@ -57,7 +57,7 @@ div.nav-body a.active {
   background-color: #d7d7d7;
 }
 div.nav-body a:hover, div.nav-body a:focus, div.nav-body a.nav-dropdown-hover {
-  color: #e6ebff;
+  color: #f0f0f0;
   border: 1px solid #0855aa;
   background-color: #0855aa;
 }
