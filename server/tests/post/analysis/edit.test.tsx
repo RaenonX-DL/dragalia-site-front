@@ -38,8 +38,6 @@ describe('Analysis edit page', () => {
     passives: 'psv',
     normalAttacks: 'nrm',
     videos: 'vid',
-    story: 'str',
-    keywords: 'kw',
     viewCount: 7,
     modifiedEpoch: 55,
     publishedEpoch: 55,
