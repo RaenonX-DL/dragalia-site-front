@@ -30,6 +30,11 @@ nav.nav-static-bar div[class*=dropdown-menu] {
   transition: all 0.3s;
 }
 
+div.nav-container {
+  position: sticky;
+  top: 4rem;
+  z-index: 970;
+}
 div.nav-body {
   text-align: left;
 }

@@ -41,6 +41,12 @@ nav {
 }
 
 div {
+  &.nav-container {
+    position: sticky;
+    top: 4rem;
+    z-index: 970;
+  }
+
   &.nav-body {
     @mixin nav-item() {
       border: 1px solid colors.$color-bw-101;
