@@ -21,7 +21,7 @@ export const NavigationBody = () => {
     <Nav className={styles['nav-body']}>
       <Nav.Link
         href={makeGeneralUrl(GeneralPath.HOME, {lang})}
-        className={pathnameNoLang === GeneralPath.HOME ? styles.active : ''}
+        className={`${pathnameNoLang === GeneralPath.HOME ? styles.active : ''} ${styles['nav-item']}`}
       >
         {t((t) => t.meta.inUse.home.title)}
       </Nav.Link>

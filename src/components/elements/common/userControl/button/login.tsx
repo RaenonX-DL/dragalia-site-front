@@ -10,7 +10,7 @@ export const LoginButton = () => {
   const {t} = useI18n();
 
   return (
-    <Button variant="outline-success" href={AuthPath.SIGN_IN}>
+    <Button variant="outline-success" href={AuthPath.SIGN_IN} className="bg-gradient">
       {t((t) => t.userControl.login)}
     </Button>
   );

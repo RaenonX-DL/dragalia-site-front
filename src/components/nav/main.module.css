@@ -49,19 +49,19 @@ div.nav-body div.text {
   background-color: #141414;
   text-align: center;
 }
-div.nav-body a {
+div.nav-body a.nav-item {
   border: 1px solid #656565;
   border-radius: 0.3rem;
   padding: 0.5rem 1rem !important;
   background-image: var(--bs-gradient);
   color: #f0f0f0;
 }
-div.nav-body a.active {
+div.nav-body a.nav-item.active {
   color: #141414;
   border: 1px solid #d7d7d7;
   background-color: #d7d7d7;
 }
-div.nav-body a:hover, div.nav-body a:focus, div.nav-body a.nav-dropdown-hover {
+div.nav-body a.nav-item:hover, div.nav-body a.nav-item:focus, div.nav-body a.nav-item.nav-dropdown-hover {
   color: #f0f0f0;
   border: 1px solid #0855aa;
   background-color: #0855aa;

@@ -72,7 +72,7 @@ div {
       text-align: center;
     }
 
-    a {
+    a.nav-item {
       @include nav-item;
 
       background-image: var(--bs-gradient);

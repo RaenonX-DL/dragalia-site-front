@@ -19,7 +19,7 @@ export const NavPath = ({path, href: hrefProps, text, disabled, onClick, pathnam
   const isActive = activeOverride !== undefined ? activeOverride : pathnameNoLang === path;
 
   const props = {
-    className: isActive ? styles.active : '',
+    className: `${isActive ? styles.active : ''} ${styles['nav-item']}`,
     href,
     disabled,
     onClick,

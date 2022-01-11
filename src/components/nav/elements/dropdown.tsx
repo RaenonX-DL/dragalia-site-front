@@ -28,7 +28,11 @@ export const NavDropdownMenu = ({text, pathnameNoLang, entries, renderTitle}: Pr
           <Nav.Link
             title={t(text)}
             onClick={() => setOpen(!open)}
-            className={`${isAnyPathActive ? styles.active : ''} ${open ? styles['nav-dropdown-hover'] : ''}`}
+            className={
+              `${isAnyPathActive ? styles.active : ''} ` +
+              `${open ? styles['nav-dropdown-hover'] : ''} ` +
+              `${styles['nav-item']}`
+            }
             data-test-is-active={isAnyPathActive}
           >
             <IconCollapse/>&nbsp;{t(text)}
