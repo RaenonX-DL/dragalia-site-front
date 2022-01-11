@@ -14,7 +14,12 @@ div .layout-row > div.layout-col-nav.layout-col-nav-opened {
   }
 }
 @media (min-width: 992px) {
-  div .layout-row > div.layout-col-main {
+  div .layout-row > div.layout-col-main.layout-col-main-collapsed {
+    max-width: calc(100% - 4rem);
+  }
+}
+@media (min-width: 992px) {
+  div .layout-row > div.layout-col-main.layout-col-main-opened {
     max-width: 80%;
   }
 }

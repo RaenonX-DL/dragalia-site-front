@@ -39,7 +39,12 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
               >
                 <NavigationLandscape/>
               </Col>
-              <Col className={styles['layout-col-main']}>
+              <Col
+                className={
+                  `${styles['layout-col-main']} ` +
+                  `${collapse ? styles['layout-col-main-collapsed'] : styles['layout-col-main-opened']}`
+                }
+              >
                 <GlobalAlert/>
                 {renderApp()}
                 <Footer/>
