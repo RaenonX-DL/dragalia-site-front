@@ -12,7 +12,7 @@ import {EntryPack, EntryPackOfRanking, InputData, KeyPointsOfType} from './types
 
 
 export const generateInputData = (): InputData => ({
-  ...generateFilterInput('avgRanking'),
+  ...generateFilterInput('lastUpdated'),
   display: 'all',
 });
 

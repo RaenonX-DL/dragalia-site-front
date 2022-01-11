@@ -36,9 +36,8 @@ export const sortFunc: SortFuncLookup = {
 };
 
 export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
-  unitId: (t) => t.game.unitTier.sort.unitId,
-  avgRanking: (t) => t.game.unitTier.sort.avgRanking,
   lastUpdated: (t) => t.game.unitTier.sort.lastUpdated,
+  avgRanking: (t) => t.game.unitTier.sort.avgRanking,
   conSolo: (t) => t.game.unitTier.dimension.conSolo,
   conAi: (t) => t.game.unitTier.dimension.conAi,
   conCoop: (t) => t.game.unitTier.dimension.conCoop,
@@ -47,6 +46,7 @@ export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
   normalCoop: (t) => t.game.unitTier.dimension.normalCoop,
   sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill,
   kaleidoscape: (t) => t.game.unitTier.dimension.kaleidoscape,
+  unitId: (t) => t.game.unitTier.sort.unitId,
 };
 
 export const rankingColor: {[ranking in Ranking]: Property.Color} = {

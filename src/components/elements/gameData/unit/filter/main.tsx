@@ -107,7 +107,9 @@ export const UnitFilter = <S extends string,
               <DropdownButton title={sortTitle} variant="outline-light" menuVariant="dark">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
-                    key={idx} onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
+                    key={idx}
+                    onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
+                    active={sortBy === inputData.sortBy}
                   >
                     {t(getNameFunc as GetTranslationFunction)}
                   </Dropdown.Item>
