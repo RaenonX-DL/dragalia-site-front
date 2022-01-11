@@ -9,6 +9,7 @@ import {Footer} from '../elements/footer';
 import {Error404} from '../error/404';
 import {NavigationLandscape} from '../nav/main/landscape';
 import {NavigationStatic} from '../nav/main/static';
+import styles from './main.module.css';
 import {SiteAlert} from './siteAlert';
 import {GlobalAlert} from './stateAlert';
 
@@ -27,11 +28,11 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
         isNotFound ?
           <Error404/> :
           <Container fluid className="p-3">
-            <Row className="flex-nowrap">
-              <Col style={{flex: '0 0 220px'}} className="d-none d-lg-block">
+            <Row className={styles['layout-row']}>
+              <Col className={styles['layout-col-nav']}>
                 <NavigationLandscape/>
               </Col>
-              <Col>
+              <Col className={styles['layout-col-main']}>
                 <GlobalAlert/>
                 {renderApp()}
               </Col>

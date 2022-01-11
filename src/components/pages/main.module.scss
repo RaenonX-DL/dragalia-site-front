@@ -1,0 +1,73 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
+div {
+  .layout-row {
+    flex-wrap: nowrap;
+
+    --bs-gutter-x: 1rem;
+
+    & > div.layout-col-nav {
+      flex: 0 0 20%;
+
+      @include media-breakpoint-down(lg) {
+        // For narrower screens
+
+        display: none;
+      }
+    }
+
+    & > div.layout-col-main {
+      @include media-breakpoint-up(lg) {
+        // For narrower screens
+
+        max-width: 80%;
+      }
+    }
+  }
+
+  .site-alert-container {
+    // Height of 2 lines of text
+    $height: 4.125rem;
+
+    @keyframes marquee {
+      0% {
+        transform: translate(0, 100%);
+      }
+
+      5% {
+        transform: translate(0, 0);
+      }
+
+      95% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(0, -100%);
+      }
+    }
+
+    overflow: hidden;
+    height: $height;
+
+    & > div.site-alert-text {
+      animation: marquee 4s linear infinite;
+      height: $height;
+
+      // Override border radius for alert in bootstrap
+      border-radius: 0 !important;
+
+      // Align element vertically at the middle
+      display: table-cell;
+      vertical-align: middle;
+
+      // `display: table-cell` causes the element NOT to stretch
+      width: 100vw;
+
+      // Align with navbar and override bootstrap alert padding
+      padding: 0.5rem 1rem !important;
+    }
+  }
+}

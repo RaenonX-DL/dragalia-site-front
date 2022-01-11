@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import {AlertEntry} from '../../api-def/api';
 import {AppReactContext} from '../../context/app/main';
 import {Markdown} from '../elements/markdown/main';
-import styles from './siteAlert.module.css';
+import styles from './main.module.css';
 
 
 export const SiteAlert = () => {
@@ -28,10 +28,10 @@ export const SiteAlert = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles['site-alert-container']}>
       <Alert
         variant={currentAlert.variant || 'light'}
-        className={`${styles.text} mb-0 mx-n1 py-2`}
+        className={`${styles['site-alert-text']}`}
         onAnimationIteration={() => setAlertIdx((alertIdx + 1) % alerts.length)}
       >
         <Markdown overrideStyle={false}>
