@@ -34,6 +34,11 @@ div.nav-container {
   position: sticky;
   top: 4rem;
   z-index: 970;
+  height: calc(100vh - 5rem);
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 0.5rem;
 }
 div.nav-body {
   text-align: left;

@@ -35,11 +35,11 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
               <Col className={styles['layout-col-main']}>
                 <GlobalAlert/>
                 {renderApp()}
+                <Footer/>
               </Col>
             </Row>
           </Container>
       }
-      <Footer/>
     </ReduxProvider>
   );
 };
