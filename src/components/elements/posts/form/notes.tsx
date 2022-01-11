@@ -10,7 +10,7 @@ export const FormNotes = () => {
   const {t} = useI18n();
 
   return (
-    <Row className="mb-2">
+    <Row className="mb-3">
       <Col>
         <div className="section">
           {t((t) => t.posts.manage.addNote)}

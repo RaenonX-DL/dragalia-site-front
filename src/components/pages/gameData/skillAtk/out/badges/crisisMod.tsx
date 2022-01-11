@@ -21,7 +21,7 @@ export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
 
     badges = badges.concat([
       <OverlayTooltip key="crisisUp" text={tooltipText}>
-        <Badge variant="danger">{t((t) => t.game.skillAtk.entry.crisisUp)}</Badge>
+        <Badge bg="dark-danger">{t((t) => t.game.skillAtk.entry.crisisUp)}</Badge>
       </OverlayTooltip>,
     ]);
   }
@@ -35,7 +35,7 @@ export const getBadgesCrisisMod = (atkSkillEntry: AttackingSkillData) => {
 
     badges = badges.concat([
       <OverlayTooltip key="crisisDown" text={tooltipText}>
-        <Badge key="crisisDown" variant="danger">{t((t) => t.game.skillAtk.entry.crisisDown)}</Badge>
+        <Badge bg="dark-danger">{t((t) => t.game.skillAtk.entry.crisisDown)}</Badge>
       </OverlayTooltip>,
     ]);
   }

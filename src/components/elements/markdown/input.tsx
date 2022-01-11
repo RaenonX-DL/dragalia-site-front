@@ -4,6 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 import {useI18n} from '../../../i18n/hook';
+import {FloatingTextarea} from '../form/control/floating/textarea';
 import {Markdown} from './main';
 
 
@@ -13,14 +14,16 @@ enum EventKey {
 }
 
 type MarkdownInputProps = {
+  label: string,
   rows?: number,
   onChanged?: ChangeEventHandler<HTMLTextAreaElement>,
   value?: string,
-  required?: boolean
+  required?: boolean,
   disabled?: boolean,
 };
 
 export const MarkdownInput = ({
+  label,
   rows,
   onChanged,
   value = '',
@@ -52,9 +55,13 @@ export const MarkdownInput = ({
   return (
     <Tabs defaultActiveKey={EventKey.MARKDOWN} onSelect={onSelect}>
       <Tab eventKey={EventKey.MARKDOWN} title={t((t) => t.posts.manage.md)}>
-        <textarea
-          className="form-control" rows={rows} onChange={updateContent}
-          required={required} value={content} disabled={disabled}
+        <FloatingTextarea
+          label={label}
+          rows={rows}
+          onChange={updateContent}
+          required={required}
+          value={content}
+          disabled={disabled}
         />
       </Tab>
       <Tab eventKey={EventKey.PREVIEW} title={t((t) => t.posts.manage.preview)}>

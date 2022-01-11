@@ -15,7 +15,7 @@ export const useAbilityVariantEffectBadges = (
 
   if (entry.cooldownSec !== 0) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoCooldown,
         {cooldownSec: entry.cooldownSec.toFixed(0)},
@@ -24,7 +24,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (entry.durationCount !== 0) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoDurationCount,
         {durationCount: entry.durationCount.toFixed(0)},
@@ -33,7 +33,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (entry.durationSec !== 0) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoDurationSec,
         {durationSec: entry.durationSec.toFixed(0)},
@@ -42,7 +42,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (!skipOccurrences && entry.maxOccurrences !== 0) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoMaxOccurrences,
         {maxOccurrences: entry.maxOccurrences.toFixed(0)},
@@ -51,7 +51,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (entry.maxStackCount !== 0) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoMaxStackCount,
         {maxStackCount: entry.maxStackCount.toFixed(0)},
@@ -60,7 +60,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (entry.probabilityPct !== 0 && entry.probabilityPct !== 100) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoProbabilityPct,
         {probabilityPct: entry.probabilityPct.toFixed(0)},
@@ -69,7 +69,7 @@ export const useAbilityVariantEffectBadges = (
   }
   if (entry.targetAction[lang]) {
     badges.push({
-      variant: 'info',
+      variant: 'dark-info',
       content: t(
         (t) => t.game.ex.badge.infoTargetAction,
         {targetAction: entry.targetAction[lang]},

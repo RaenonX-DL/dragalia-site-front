@@ -11,6 +11,7 @@ import {sortDescending} from '../../../../../utils/sort';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {AdsPageTop, AdsToolBottom} from '../../../../elements/common/ads/main';
 import {SlicedEntryBar} from '../../../../elements/common/entryBar';
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {InternalLink} from '../../../../elements/common/link/internal';
 import {useDatamineCatalog} from '../fetch/catalog';
 
@@ -31,9 +32,9 @@ export const DatamineCatalog = () => {
   return (
     <>
       <AdsPageTop/>
-      <Row>
+      <RowRegular className="mb-3">
         {catalogEntries.slice(0, resultCount).map(({timestampEpoch, versionCode}, idx) => (
-          <Col key={idx} md={6} className="mb-3 px-2">
+          <Col key={idx} md={6}>
             <Card className="section p-0">
               <Card.Body>
                 <Card.Title>
@@ -43,14 +44,14 @@ export const DatamineCatalog = () => {
                     href={makeDataUrl(DataPath.GAME_DATAMINE_DETAIL, {id: versionCode, lang})}
                   />
                 </Card.Title>
-                <Card.Text className="float-right">
+                <Card.Text className="float-end">
                   <TimeAgo epoch={timestampEpoch}/>
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
         ))}
-      </Row>
+      </RowRegular>
       <Row>
         <SlicedEntryBar
           resultCount={resultCount}

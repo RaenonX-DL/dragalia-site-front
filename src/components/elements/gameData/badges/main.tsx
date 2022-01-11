@@ -11,7 +11,7 @@ type Props = {
 
 export const BsBadge = ({entry}: Props) => {
   return (
-    <Badge variant={entry.variant}>
+    <Badge bg={entry.variant}>
       {entry.content}
     </Badge>
   );

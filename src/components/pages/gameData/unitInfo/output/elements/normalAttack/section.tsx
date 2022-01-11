@@ -7,7 +7,6 @@ import {useI18n} from '../../../../../../../i18n/hook';
 import {ResourceLoader} from '../../../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../../../../elements/common/fetch';
 import {Loading} from '../../../../../../elements/common/loading';
-import styles from '../main.module.css';
 import {SectionTitle} from '../title';
 import {NormalAttackChainTab} from './chainTab';
 
@@ -27,7 +26,7 @@ export const NormalAttackSection = ({unitId}: Props) => {
   fetchChain();
 
   return (
-    <div className={styles.normalAttack}>
+    <>
       <SectionTitle>{t((t) => t.game.unitInfo.title.normalAttack)}</SectionTitle>
       {
         !chain.data.length ?
@@ -43,6 +42,6 @@ export const NormalAttackSection = ({unitId}: Props) => {
             }
           </Tabs>
       }
-    </div>
+    </>
   );
 };

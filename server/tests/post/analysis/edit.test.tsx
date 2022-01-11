@@ -38,8 +38,6 @@ describe('Analysis edit page', () => {
     passives: 'psv',
     normalAttacks: 'nrm',
     videos: 'vid',
-    story: 'str',
-    keywords: 'kw',
     viewCount: 7,
     modifiedEpoch: 55,
     publishedEpoch: 55,
@@ -91,7 +89,7 @@ describe('Analysis edit page', () => {
   it('allows access for admin users (chara)', async () => {
     fnFetch.mockResolvedValue(charaResponse);
 
-    renderReact(() => <AnalysisEdit />, {user: {isAdmin: true}});
+    renderReact(() => <AnalysisEdit/>, {user: {isAdmin: true}});
 
     expect((await screen.findAllByText(charaResponse.forceStrikes)).length).toBeGreaterThan(0);
     expect(screen.queryByText(description401)).not.toBeInTheDocument();

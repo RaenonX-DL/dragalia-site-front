@@ -1,7 +1,5 @@
 import React from 'react';
 
-// FIXME: False-positive https://github.com/vercel/next.js/issues/28786
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 
 
@@ -54,9 +52,7 @@ class Document extends NextDocument<Props> {
             src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
           />
 
-          <script>var Alert = ReactBootstrap.Alert;</script>
-
-          {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` */}
+          {/* NOTE: Bootstrap CSS already imported via `bootstrap.css` on `_app.tsx` */}
         </Head>
         <body>
           <Main/>

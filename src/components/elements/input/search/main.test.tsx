@@ -21,8 +21,8 @@ describe('Search input', () => {
   it('shows no result if no matching options', async () => {
     const {rerender} = renderReact(() => <SearchWrapper/>);
 
-    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
-    typeInput(keywordInput, 'Keyword', {rerender});
+    const keywordInput = screen.getByText(/Enter keyword/);
+    typeInput(keywordInput.previousSibling as Element, 'Keyword', {rerender});
 
     expect(screen.getByText(translationEN.autoComplete.noMatchingOptions)).toBeInTheDocument();
   });
@@ -37,9 +37,9 @@ describe('Search input', () => {
   it('shows all options after clearing input', async () => {
     const {rerender} = renderReact(() => <SearchWrapper/>);
 
-    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
-    typeInput(keywordInput, 'Keyword', {rerender});
-    userEvent.clear(keywordInput);
+    const keywordInput = screen.getByText(/Enter keyword/);
+    typeInput(keywordInput.previousSibling as Element, 'Keyword', {rerender});
+    userEvent.clear(keywordInput.previousSibling as Element);
     rerender();
 
     expect(screen.getByText('option 1')).toBeInTheDocument();
@@ -55,9 +55,9 @@ describe('Search input', () => {
       />
     ));
 
-    const keywordInput = screen.getByPlaceholderText(/Enter keyword/);
-    typeInput(keywordInput, '汉字', {rerender});
-    userEvent.clear(keywordInput);
+    const keywordInput = screen.getByText(/Enter keyword/);
+    typeInput(keywordInput.previousSibling as Element, '汉字', {rerender});
+    userEvent.clear(keywordInput.previousSibling as Element);
     rerender();
 
     expect(screen.getByText('漢字')).toBeInTheDocument();

@@ -40,8 +40,8 @@ describe('Key point index page', () => {
   it('can perform keyword search on key points', async () => {
     const {rerender} = renderReact(() => <KeyPointIndexPage/>);
 
-    const keywordInput = await screen.findByPlaceholderText(translationEN.autoComplete.inputPlaceholder);
-    typeInput(keywordInput, 'S', {rerender});
+    const keywordInput = await screen.findByText(translationEN.autoComplete.inputPlaceholder);
+    typeInput(keywordInput.previousSibling as Element, 'S', {rerender});
 
     expect(screen.getByText('S1')).toBeInTheDocument();
     expect(screen.queryByText('W1')).not.toBeInTheDocument();

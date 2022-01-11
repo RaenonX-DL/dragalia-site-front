@@ -4,18 +4,11 @@ import {getSession} from 'next-auth/client';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 
 import {isProduction} from '../server/utils/misc';
-import {Footer} from '../src/components/elements/footer';
-import {Error404} from '../src/components/error/404';
-import {Navigation} from '../src/components/nav/main';
-import {SiteAlert} from '../src/components/pages/siteAlert';
-import {GlobalAlert} from '../src/components/pages/stateAlert';
+import {MainApp} from '../src/components/pages/app';
+import {PageProps} from '../src/components/pages/type';
 import {AppReactContext} from '../src/context/app/main';
-import {AppReactContextValue} from '../src/context/app/types';
 import {useI18n} from '../src/i18n/hook';
 import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
@@ -27,10 +20,6 @@ import '../styles/index.css';
 import '../styles/scrollbar.scss';
 import '../styles/section.css';
 
-
-type PageProps = AppReactContextValue & {
-  isNotFound: boolean,
-};
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {
@@ -46,7 +35,6 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       <Head>
         <title>{pageProps.title}{t((t) => t.meta.suffix)}</title>
         <meta content={pageProps.description} name="description"/>
-
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
       </Head>
       {/* Global site tag (gtag.js) - Google Analytics */}
@@ -77,27 +65,16 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         isProduction() &&
         <Script strategy="beforeInteractive" type="text/javascript" src="/js/newRelicEum.js"/>
       }
-      <AppReactContext.Provider value={{...pageProps}}>
-        <ReduxProvider>
-          <Navigation/>
-          <SiteAlert/>
-          {
-            pageProps.isNotFound ?
-              <Error404/> :
-              <Container className="p-3">
-                <GlobalAlert/>
-                <Row>
-                  <Col md={1}/>
-                  <Col>
-                    <Component {...pageProps}/>
-                  </Col>
-                  <Col md={1}/>
-                </Row>
-              </Container>
-          }
-          <Footer/>
-        </ReduxProvider>
-      </AppReactContext.Provider>
+      <React.StrictMode>
+        <AppReactContext.Provider value={{...pageProps}}>
+          <ReduxProvider>
+            <MainApp
+              isNotFound={pageProps.isNotFound}
+              renderApp={() => <Component {...pageProps}/>}
+            />
+          </ReduxProvider>
+        </AppReactContext.Provider>
+      </React.StrictMode>
     </>
   );
 };

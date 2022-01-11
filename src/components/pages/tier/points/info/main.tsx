@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
 import {FailedResponse, isFailedResponse, KeyPointInfo, KeyPointInfoResponse} from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
@@ -11,6 +10,7 @@ import {ApiRequestSender} from '../../../../../utils/services/api/requestSender'
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
 import {AdsPageTop, AdsUnitKeyPointInfo} from '../../../../elements/common/ads/main';
 import {useFetchStateProcessed} from '../../../../elements/common/fetch';
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {Loading} from '../../../../elements/common/loading';
 import {PointTypeIcon} from '../../icons';
 import {UnitEntry} from './unitEntry';
@@ -52,7 +52,7 @@ export const KeyPointInfoPage = () => {
       <hr/>
       <AdsUnitKeyPointInfo/>
       <h5>{t((t) => t.game.unitTier.points.info.linkedUnits)}</h5>
-      <Form.Row>
+      <RowRegular>
         {
           linkedUnits.length > 0 ?
             linkedUnits.sort().map((unitId) => {
@@ -68,11 +68,13 @@ export const KeyPointInfoPage = () => {
                 </Col>
               );
             }) :
-            <Col className="section text-danger">
-              {t((t) => t.game.unitTier.points.info.error.noLinkedUnits)}
+            <Col className="text-danger">
+              <div className="section mb-3">
+                {t((t) => t.game.unitTier.points.info.error.noLinkedUnits)}
+              </div>
             </Col>
         }
-      </Form.Row>
+      </RowRegular>
       <AdsUnitKeyPointInfo/>
     </>
   );

@@ -12,7 +12,7 @@ type Props = React.PropsWithChildren<{
 export const AdsWrapper = ({children, className}: Props) => {
   const context = React.useContext(AppReactContext);
 
-  const divClassName = `${className || 'mb-3'} ${isProduction() ? '' : styles.adsTest}`;
+  const divClassName = `${className || 'mb-3'} ${isProduction() ? '' : styles['ads-test']}`;
 
   if (context?.session?.user.adsFreeExpiry) {
     return <div className={divClassName}/>;

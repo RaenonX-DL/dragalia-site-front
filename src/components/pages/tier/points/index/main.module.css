@@ -1,4 +1,4 @@
-span.typeIcon {
+span.type-icon {
   font-size: 1.5rem;
 }
 
@@ -7,7 +7,7 @@ div.entry {
   padding: 0.5rem 0.8rem;
   border-bottom: gray 1px solid;
 }
-div.typeEntry {
+div.type-entry {
   padding: 0 0.6rem !important;
 }
 

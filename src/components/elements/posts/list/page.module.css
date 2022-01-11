@@ -1,0 +1,11 @@
+div.title {
+  padding: 1.5rem;
+  background-color: #323232;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+div.title > * {
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=page.module.css.map */

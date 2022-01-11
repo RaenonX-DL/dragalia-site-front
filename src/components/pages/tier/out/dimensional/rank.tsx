@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
 import {useI18n} from '../../../../../i18n/hook';
+import {RowTight} from '../../../../elements/common/grid/row';
 import {EntryPackOutput, PropsDimensionalCommon, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
-import {TierListEntryIconOnly} from './entryIconOnly';
+import styles from './main.module.css';
 
 
 type Props = PropsUseKeyPointData & PropsDimensionalCommon & {
@@ -17,37 +17,25 @@ export const TierListOutputRank = ({dimension, entryPacks, keyPointsData, iconOn
   const {t} = useI18n();
 
   return (
-    <Form.Row>
+    <RowTight>
       {
         entryPacks.length > 0 ?
           entryPacks.map((entryPack) => (
-            <Col
-              key={entryPack.unitInfo.id}
-              xs={iconOnly ? 4 : undefined}
-              md={iconOnly ? undefined : 6}
-              lg={iconOnly ? 2 : 4}
-            >
-              {
-                iconOnly ?
-                  <TierListEntryIconOnly
-                    dimension={dimension}
-                    entryPack={entryPack}
-                    keyPointsData={keyPointsData}
-                  /> :
-                  <TierListEntry
-                    dimension={dimension}
-                    entryPack={entryPack}
-                    keyPointsData={keyPointsData}
-                  />
-              }
+            <Col key={entryPack.unitInfo.id} className={styles.entry} >
+              <TierListEntry
+                dimension={dimension}
+                entryPack={entryPack}
+                keyPointsData={keyPointsData}
+                iconOnly={iconOnly}
+              />
             </Col>
           )) :
-          <Col className="mb-2 text-danger">
+          <Col className="text-danger">
             <div className="section">
               {t((t) => t.game.unitTier.alert.noUnitInRank)}
             </div>
           </Col>
       }
-    </Form.Row>
+    </RowTight>
   );
 };

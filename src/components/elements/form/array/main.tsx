@@ -2,15 +2,10 @@ import React from 'react';
 
 import {ArrayAddButtonRow} from './addButton';
 import {ArrayFormBase} from './base';
+import {ArrayFormCommonProps, ArrayFormOnChangeHandler} from './type';
 
 
-export type ArrayFormOnChangeHandler<E> = <K extends keyof E>(key: K) => (newValue: E[K]) => void;
-
-type Props<P, E> = {
-  payload: P,
-  minLength: number,
-  getArray: (payload: P) => Array<E>,
-  setArray: (newArray: Array<E>) => void,
+type Props<P, E> = ArrayFormCommonProps<P, E> & {
   getUpdatedElement: <K extends keyof E>(element: E, key: K, value: E[K]) => E,
   generateNewElement: () => E,
   renderEntries: (
@@ -19,20 +14,19 @@ type Props<P, E> = {
     idx: number,
   ) => React.ReactElement,
   addToTop?: boolean,
-  elemCount?: number,
 };
 
-export const ArrayForm = <P, E extends object>({
-  payload,
-  minLength,
-  getArray,
-  setArray,
-  getUpdatedElement,
-  generateNewElement,
-  renderEntries,
-  addToTop = false,
-  elemCount,
-}: Props<P, E>) => {
+export const ArrayForm = <P, E extends object>(props: Props<P, E>) => {
+  const {
+    payload,
+    getArray,
+    setArray,
+    getUpdatedElement,
+    generateNewElement,
+    renderEntries,
+    addToTop = false,
+  } = props;
+
   // Can't use element index for render because the components are cached after removal.
   // - For example, if `renderEntries()` renders a `<textarea>`,
   //   removing the first entry only removes the underlying 1st data.
@@ -74,18 +68,17 @@ export const ArrayForm = <P, E extends object>({
 
   return (
     <>
-      {addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
+      {addToTop && <ArrayAddButtonRow onAdded={onAdded} onTop/>}
       <ArrayFormBase
+        {...props}
         payload={payload}
-        minLength={minLength}
         getArray={getArray}
         setArray={setArray}
         renderEntries={(elem, elemIdx) => renderEntries(elem, onChangeHandler(elemIdx), elemIdx)}
         reversed={addToTop}
         counterState={counterState}
-        elemCount={elemCount}
       />
-      {!addToTop && <ArrayAddButtonRow onAdded={onAdded}/>}
+      {!addToTop && <ArrayAddButtonRow onAdded={onAdded} onTop={false}/>}
     </>
   );
 };

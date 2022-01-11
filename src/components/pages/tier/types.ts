@@ -3,7 +3,7 @@ import {UnitInfoData} from '../../../api-def/resources';
 import {UnitFilterInputData} from '../../elements/gameData/unit/filter/types';
 
 
-export type SortOrder = DimensionKey | 'unitId' | 'avgRanking';
+export type SortOrder = DimensionKey | 'unitId' | 'avgRanking' | 'lastUpdated';
 
 export type Display = DimensionKey | 'all';
 

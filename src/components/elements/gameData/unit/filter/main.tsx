@@ -13,8 +13,11 @@ import {GetTranslationFunction} from '../../../../../i18n/types';
 import {useUnitProps} from '../../../../hooks/unitProps';
 import {AdsPageTop, AdsUnitSearchBottom} from '../../../common/ads/main';
 import {CheckOption} from '../../../common/check/types';
+import {RowTight} from '../../../common/grid/row';
+import {FloatingInput} from '../../../form/control/floating/input';
 import {InputPanel} from '../../../input/panel/main';
 import {InputEntries} from '../../../input/panel/types';
+import styles from './main.module.css';
 import {UnitTypePicker} from './typePicker';
 import {UnitFilterInputData} from './types';
 
@@ -73,7 +76,7 @@ export const UnitFilter = <S extends string,
               getUpdatedInputData: (weaponTypes) => ({...inputData, weaponTypes}),
             },
             {
-              type: 'inputCheckGroup',
+              type: 'individualCheckGroup',
               checkboxes: [{
                 getValue: (data) => data.iconOnly,
                 getUpdatedInputData: (iconOnly) => ({...inputData, iconOnly}),
@@ -90,34 +93,35 @@ export const UnitFilter = <S extends string,
           e.preventDefault();
           onSearchRequested(inputData)(e);
         }}>
-          <Form.Row>
-            <Col xs={12} md className="mb-2 mb-md-0">
-              <Form.Control
-                placeholder={t((t) => t.misc.searchKeyword)}
+          <RowTight>
+            <Col xs={12} md>
+              <FloatingInput
                 value={inputData.keyword}
-                onChange={(e) => setInputData({
-                  ...inputData,
-                  keyword: e.target.value,
-                })}
+                label={t((t) => t.misc.searchKeyword)}
+                onChange={(e) => (
+                  setInputData({...inputData, keyword: e.target.value})
+                )}
               />
             </Col>
-            <Col xs md="auto" className="text-right">
-              <DropdownButton title={sortTitle} variant="outline-light">
+            <Col xs md="auto" className={styles.button}>
+              <DropdownButton title={sortTitle} variant="outline-light" menuVariant="dark">
                 {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
                   <Dropdown.Item
-                    key={idx} onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
+                    key={idx}
+                    onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
+                    active={sortBy === inputData.sortBy}
                   >
                     {t(getNameFunc as GetTranslationFunction)}
                   </Dropdown.Item>
                 ))}
               </DropdownButton>
             </Col>
-            <Col xs="auto" className="text-right">
+            <Col xs="auto" className={styles.button}>
               <Button variant="outline-info" type="submit" disabled={disabled}>
                 {disabled ? <Spinner animation="grow" size="sm"/> : t((t) => t.misc.search)}
               </Button>
             </Col>
-          </Form.Row>
+          </RowTight>
         </Form>
       </div>
       <AdsUnitSearchBottom/>

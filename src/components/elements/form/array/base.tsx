@@ -1,23 +1,19 @@
 import React, {Dispatch, SetStateAction} from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
+import {RowNoGutter} from '../../common/grid/row';
 import {ArrayFormEntryControl} from './entryControl';
+import {ArrayFormCommonProps} from './type';
 
 
-export type ArrayFormProps<P, E> = {
-  payload: P,
-  minLength: number,
-  getArray: (payload: P) => Array<E>,
-  setArray: (newArray: Array<E>) => void,
+export type ArrayFormBaseProps<P, E> = ArrayFormCommonProps<P, E> & {
   renderEntries: (element: E, idx: number) => React.ReactElement,
   counterState: [Array<number>, Dispatch<SetStateAction<Array<number>>>],
   reversed?: boolean,
-  elemCount?: number,
 };
 
-export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
+export const ArrayFormBase = <P, E>(props: ArrayFormBaseProps<P, E>) => {
   let {
     payload,
     getArray,
@@ -25,6 +21,7 @@ export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
     counterState,
     reversed = false,
     elemCount,
+    vertical = false,
   } = props;
 
   const array = getArray(payload);
@@ -48,16 +45,33 @@ export const ArrayFormBase = <P, E>(props: ArrayFormProps<P, E>) => {
   return (
     <>
       {array.slice(0, (elemCount && elemCount > 0) ? elemCount : array.length).map((elem, elemIdx) => (
-        <React.Fragment key={counter[elemIdx]}>
-          <Row noGutters className={elemIdx === 0 ? '' : 'mt-2'}>
-            <Col>
-              {renderEntries(elem, elemIdx)}
-            </Col>
-            <Col xs="auto">
-              <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
-            </Col>
-          </Row>
-        </React.Fragment>
+        vertical ?
+          (
+            <React.Fragment key={counter[elemIdx]}>
+              <RowNoGutter className={elemIdx === 0 ? '' : 'mt-2'}>
+                <Col>
+                  {renderEntries(elem, elemIdx)}
+                </Col>
+                <Col xs="auto" className="ps-2">
+                  <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
+                </Col>
+              </RowNoGutter>
+            </React.Fragment>
+          ) :
+          (
+            <React.Fragment key={counter[elemIdx]}>
+              <RowNoGutter className={`${elemIdx === 0 ? '' : 'mt-2'} text-end`}>
+                <Col>
+                  <ArrayFormEntryControl array={array} elemIdx={elemIdx} {...props}/>
+                </Col>
+              </RowNoGutter>
+              <RowNoGutter>
+                <Col>
+                  {renderEntries(elem, elemIdx)}
+                </Col>
+              </RowNoGutter>
+            </React.Fragment>
+          )
       ))}
     </>
   );

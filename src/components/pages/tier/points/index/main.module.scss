@@ -1,7 +1,7 @@
-@use '../../../../../../styles/colors';
+@use "../../../../../../styles/colors";
 
 span {
-  &.typeIcon {
+  &.type-icon {
     font-size: 1.5rem;
   }
 }
@@ -13,7 +13,7 @@ div {
     border-bottom: gray 1px solid;
   }
 
-  &.typeEntry {
+  &.type-entry {
     // No gutter row is voiding this, therefore `!important` is needed
     padding: 0 0.6rem !important;
   }

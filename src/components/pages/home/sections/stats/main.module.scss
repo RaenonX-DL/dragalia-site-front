@@ -1,0 +1,30 @@
+@use "sass:color";
+@use "../../../../../../styles/colors";
+
+div {
+  &.stats-section {
+    height: 23rem;
+    margin-bottom: 0.75rem;
+
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+  }
+
+  &.stats-section-outer {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$color-bw-7;
+    border-radius: 0.5rem;
+  }
+
+  &.stats-section-filler {
+    flex-grow: 1;
+    padding: 0.5rem;
+  }
+
+  &.tooltip {
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: color.change(colors.$color-bw-50, $alpha: 0.77);
+  }
+}

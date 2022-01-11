@@ -4,9 +4,9 @@
 
 **CI**
 
-Main | Dev
-:---: | :---:
-[![front-ci-main]][front-ci-main-link] | [![front-ci-dev]][front-ci-dev-link]
+|                  Main                  |                 Dev                  |
+|:--------------------------------------:|:------------------------------------:|
+| [![front-ci-main]][front-ci-main-link] | [![front-ci-dev]][front-ci-dev-link] |
 
 **CD**
 
@@ -29,21 +29,34 @@ Main | Dev
 [![front-lgtm-quality-badge]][front-lgtm-quality-link]
 [![front-lgtm-loc-badge]][front-lgtm-alert-link]
 
-Main | Dev
-:---: | :---:
-[![front-grade-badge-main]][front-cq-link-main] | [![front-grade-badge-dev]][front-cq-link-dev]
-[![front-coverage-badge-main]][front-cq-link-main] | [![front-coverage-badge-dev]][front-cq-link-dev]
+|                        Main                        |                       Dev                        |
+|:--------------------------------------------------:|:------------------------------------------------:|
+|  [![front-grade-badge-main]][front-cq-link-main]   |  [![front-grade-badge-dev]][front-cq-link-dev]   |
+| [![front-coverage-badge-main]][front-cq-link-main] | [![front-coverage-badge-dev]][front-cq-link-dev] |
 
 Frontend of [Dragalia Lost info website by OM][front-site].
 
 ## Environment Variables
 
-Name | Required/Optional | Description
-:---: | :---: | :---:
-`NEXT_PUBLIC_API_ROOT` | Required | Root URL of the backend. This should **not** end with a slash (`/`).
-`NEXT_PUBLIC_RESOURCE_ROOT` | Required | Root URL of the exported resources. This should **not** end with a slash (`/`).
-`NEXT_PUBLIC_DEPOT_ROOT` | Required | Root URL of the data depot. This should **not** end with a slash (`/`).
-`NEXT_PUBLIC_AUDIO_ROOT` | Required | Root URL of the audio depot. This should **not** end with a slash (`/`).
+|            Name             | Required/Optional | Description                                                                         |
+|:---------------------------:|:-----------------:|:------------------------------------------------------------------------------------|
+|   `NEXT_PUBLIC_API_ROOT`    |     Required      | Root URL of the backend. This should **not** end with a slash (`/`).                |
+| `NEXT_PUBLIC_RESOURCE_ROOT` |     Required      | Root URL of the exported resources. This should **not** end with a slash (`/`).     |
+|  `NEXT_PUBLIC_DEPOT_ROOT`   |     Required      | Root URL of the data depot. This should **not** end with a slash (`/`).             |
+|  `NEXT_PUBLIC_AUDIO_ROOT`   |     Required      | Root URL of the audio depot. This should **not** end with a slash (`/`).            |
+|     `NEXT_PUBLIC_GA_ID`     |     Optional      | Google AdSense client ID. The ads feature won't work if this is not specified.      |
+|   `NEW_RELIC_LICENSE_KEY`   |     Optional      | New Relic license key for measuring the application performance.                    |
+|     `AUTH_DATABASE_URL`     |     Required      | MongoDB URL for `next-auth`.                                                        |
+|      `AUTH_GOOGLE_ID`       |     Optional      | Google client ID for `next-auth`.                                                   |
+|    `AUTH_GOOGLE_SECRET`     |     Optional      | Google client secret for `next-auth`.                                               |
+|      `AUTH_DISCORD_ID`      |     Optional      | Discord client ID for `next-auth`.                                                  |
+|    `AUTH_DISCORD_SECRET`    |     Optional      | Discord client secret for `next-auth`.                                              |
+|      `AUTH_GITHUB_ID`       |     Optional      | GitHub client ID for `next-auth`.                                                   |
+|    `AUTH_GITHUB_SECRET`     |     Optional      | GitHub client secret for `next-auth`.                                               |
+|      `AUTH_TWITCH_ID`       |     Optional      | Twitch client ID for `next-auth`.                                                   |
+|    `AUTH_TWITCH_SECRET`     |     Optional      | Twitch client secret for `next-auth`.                                               |
+|            `CI`             |     Optional      | A truthy value (for example, `true` or `1` indicates that the app is running in CI. | 
+|           `PORT`            |     Optional      | Port to run the app. The app runs on `3000` if this is not specified.               |
 
 For the [current deployed website][front-site], `NEXT_PUBLIC_API_ROOT` is `https://dl-back.raenonx.cc`.
 

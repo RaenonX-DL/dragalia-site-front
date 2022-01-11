@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {OverlayChildren, Placement} from 'react-bootstrap/Overlay';
+import {OverlayChildren} from 'react-bootstrap/Overlay';
 import OverlayTrigger, {OverlayTriggerType} from 'react-bootstrap/OverlayTrigger';
+import {Placement} from 'react-bootstrap/types';
 
 
 export type OverlayCommonProps = {
@@ -19,8 +20,8 @@ type Props = OverlayCommonProps & {
 export const OverlayBase = ({placement, trigger, overlay, children}: Props) => {
   return (
     <OverlayTrigger
-      overlay={overlay}
       placement={placement}
+      overlay={overlay}
       trigger={trigger}
     >
       {children}

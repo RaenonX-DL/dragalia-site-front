@@ -44,8 +44,8 @@ const AfflictionEntry = ({affliction, statusEnums}: AfflictionEntryProps) => {
       )}&nbsp;
       {
         affliction.stackable ?
-          <Badge variant="success">{t((t) => t.game.skillAtk.entry.stackable)}</Badge> :
-          <Badge variant="danger">{t((t) => t.game.skillAtk.entry.unstackable)}</Badge>
+          <Badge bg="dark-success">{t((t) => t.game.skillAtk.entry.stackable)}</Badge> :
+          <Badge bg="dark-danger">{t((t) => t.game.skillAtk.entry.unstackable)}</Badge>
       }
     </div>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
+import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
+import {IconEdit, IconPublish, IconView} from '../../../../../../../elements/common/icons';
 import {UnitLink} from '../../../../../../../elements/gameData/unit/link';
+import styles from '../../../main.module.css';
 import {EntryPropsHasAnalysis} from '../types';
 
 
@@ -14,39 +16,34 @@ export const CompleteEntryWithAnalysis = ({
   analysisMeta,
   simplified = false,
 }: EntryPropsHasAnalysis) => {
-  const {t, lang} = useI18n();
+  const {lang} = useI18n();
 
   return (
     <>
-      <Row noGutters className="pt-1" style={{height: '2.5rem'}}>
-        <Col className="mr-2">
+      <RowNoGutter className={styles['info-top']}>
+        <Col>
           <UnitLink className="h6" unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis/>
         </Col>
-        {
-          !simplified &&
-          <Col xs="auto" className="text-right text-muted">
-            <small>
-              {t(
-                (t) => t.posts.info.viewCountComplete,
-                {count: analysisMeta.viewCount.toString()},
-              )}
-            </small>
-          </Col>
-        }
-      </Row>
-      <Row noGutters className="small align-items-center" style={{height: '1.5rem'}}>
+        <Col xs="auto" className="text-muted">
+          <small>
+            <IconView/>&nbsp;
+            {analysisMeta.viewCount.toString()}
+          </small>
+        </Col>
+      </RowNoGutter>
+      <RowNoGutter className={styles['info-bottom']}>
         <Col className="text-center">
-          {t((t) => t.misc.timestamp.lastModified)}&nbsp;
+          <IconEdit/>&nbsp;
           <TimeAgo epoch={analysisMeta.modifiedEpoch}/>
         </Col>
         {
           !simplified &&
-          <Col className="text-center d-none d-lg-block">
-            {t((t) => t.posts.info.published)}&nbsp;
+          <Col>
+            <IconPublish/>&nbsp;
             <TimeAgo epoch={analysisMeta.publishedEpoch}/>
           </Col>
         }
-      </Row>
+      </RowNoGutter>
     </>
   );
 };

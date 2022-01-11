@@ -1,65 +1,55 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-import {SequencedPostInfo} from '../../../../api-def/api';
+import {PostInfo} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
-import {TimeAgo} from '../../../../utils/timeago';
-import {IconEdit, IconPublish} from '../../common/icons';
+import {RowNoGutter} from '../../common/grid/row';
 import {InternalLink} from '../../common/link/internal';
 import styles from './entry.module.css';
+import {PostEntryInfoBar} from './postInfo';
+import {FunctionRenderPostBadge} from './types';
 
 
-export type LinkGenerator = (postId: number) => string;
-
-export type PostEntryBadgeProps<E extends SequencedPostInfo> = {
+type Props<E extends PostInfo> = {
   entry: E,
+  link: string,
+  title: string,
+  renderPostBadge: FunctionRenderPostBadge<E>,
+  icon?: React.ReactElement,
 };
 
-export type PostEntryProps<E extends SequencedPostInfo> = {
-  generateLink: LinkGenerator,
-  renderPostBadge: (badgeProps: PostEntryBadgeProps<E>) => React.ReactElement,
-};
-
-type PostEntryPropsInternal<E extends SequencedPostInfo> = PostEntryProps<E> & {
-  entry: E,
-};
-
-export const PostEntry = <E extends SequencedPostInfo>({
+export const PostEntry = <E extends PostInfo>({
   entry,
-  generateLink,
+  link,
+  title,
   renderPostBadge,
-}: PostEntryPropsInternal<E>) => {
-  const {t, lang} = useI18n();
+  icon,
+}: Props<E>) => {
+  const {lang} = useI18n();
 
   return (
     <div className={styles.entry}>
-      <h5>
-        <InternalLink
-          href={generateLink(entry.seqId)}
-          locale={lang}
-          content={entry.title}
-        />
-      </h5>
-      <Row noGutters>
-        <Col xs="auto">
-          {renderPostBadge({entry})}&nbsp;
-        </Col>
+      <RowNoGutter>
+        {icon ? <Col xs="auto">{icon}</Col> : <></>}
         <Col>
-          <small className={styles.timestamp}>
-            <IconEdit/>&nbsp;<TimeAgo epoch={entry.modifiedEpoch}/>
-          </small>
-          <small className={styles.timestamp}>
-            <IconPublish/>&nbsp;<TimeAgo epoch={entry.publishedEpoch}/>
-          </small>
+          <h5>
+            <InternalLink
+              href={link}
+              locale={lang}
+              content={title}
+            />
+          </h5>
+          <RowNoGutter>
+            <Col xs="auto">
+              {renderPostBadge({entry})}&nbsp;
+            </Col>
+            <Col>
+              <PostEntryInfoBar entry={entry}/>
+            </Col>
+          </RowNoGutter>
         </Col>
-        <Col className="text-right">
-          <small className="text-muted">
-            {t((t) => t.posts.info.viewCountComplete, {count: entry.viewCount.toString()})}
-          </small>
-        </Col>
-      </Row>
+      </RowNoGutter>
     </div>
   );
 };

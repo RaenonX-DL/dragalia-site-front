@@ -62,7 +62,7 @@ export const Filter = ({
           description: t((t) => t.game.skillAtk.input.filter.unitType.desc),
         },
         {
-          type: 'arrayCheckGroup',
+          type: 'inputCheckGroup',
           options: Object.keys(UnitType).filter((item) => !isNaN(+item)).map((item) => {
             const code = +item as UnitType;
 
@@ -78,7 +78,7 @@ export const Filter = ({
           description: t((t) => t.game.skillAtk.input.filter.other.desc),
         },
         {
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: t((t) => t.game.skillAtk.input.filter.only.shared),

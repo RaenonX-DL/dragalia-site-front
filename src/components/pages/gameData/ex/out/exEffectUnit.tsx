@@ -28,7 +28,7 @@ export const ExEffectUnit = ({effectUnit, conditionEnums, isEx}: ExEffectUnitPro
 
   return (
     <Row className="align-items-center">
-      <Col xs="auto" className="px-3 text-info text-right">
+      <Col xs="auto" className="text-info">
         <ImageWithOverlay
           src={DepotPaths.getImageURL(effectUnit.parameter.imagePath)}
           text={effectUnit.parameter.name[lang]}

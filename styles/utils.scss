@@ -1,0 +1,26 @@
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-grow-fill {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+
+  & > div {
+    flex-grow: 1;
+  }
+}
+
+@function unit-width-percent($count) {
+  @return calc(1 / #{$count} * 100%);
+}
+
+@mixin eq-width-col($count) {
+  $size: unit-width-percent($count);
+
+  flex: 0 0 $size;
+  max-width: $size;
+}

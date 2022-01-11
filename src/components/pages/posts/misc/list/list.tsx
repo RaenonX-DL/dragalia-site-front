@@ -6,7 +6,7 @@ import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/main';
 import {PostLookupPage} from '../../../../elements/posts/list/page';
-import {MiscEntryBadge} from './listBadges';
+import {MiscEntryBadge} from './badge';
 
 
 export const MiscPostList = () => {
@@ -24,8 +24,8 @@ export const MiscPostList = () => {
       renderPostEntries={(response) => (
         <PostList
           entries={response.posts}
-          generateLink={(postId) => (
-            makePostUrl(PostPath.MISC, {pid: postId, lang})
+          getLink={({seqId}) => (
+            makePostUrl(PostPath.MISC, {pid: seqId, lang})
           )}
           renderPostBadge={(props) => <MiscEntryBadge {...props}/>}
         />

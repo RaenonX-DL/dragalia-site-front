@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
+import {RowRegular} from '../../../../elements/common/grid/row';
 import {PropsUseEntryPack, PropsUseKeyPointData} from '../../types';
 import {TierListEntry} from './entry';
 
@@ -13,12 +13,12 @@ export const TierListOutputShowAll = ({entryPackHasTierNote, entryPackNoTierNote
   const entryPackMerged = [...entryPackHasTierNote, ...entryPackNoTierNote];
 
   return (
-    <Form.Row>
+    <RowRegular>
       {entryPackMerged.map(({unitInfo, tierNote}) => (
         <Col xl={6} key={unitInfo.id}>
           <TierListEntry tierNote={tierNote} unitInfo={unitInfo} keyPointsData={keyPointsData}/>
         </Col>
       ))}
-    </Form.Row>
+    </RowRegular>
   );
 };

@@ -24,7 +24,7 @@ export const getBadgesBuffZone = (atkSkillEntry: AttackingSkillData) => {
 
   return [
     <OverlayTooltip key="buffZone" text={tooltipText}>
-      <Badge key="buffZone" variant="primary">
+      <Badge bg="dark-primary">
         {t((t) => t.game.skillAtk.entry.buffZone)}
       </Badge>
     </OverlayTooltip>,

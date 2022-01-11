@@ -1,0 +1,11 @@
+@use "../../../../styles/colors";
+
+h1 {
+  &.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: colors.$color-bw-50;
+    border-radius: 0.5rem;
+  }
+}

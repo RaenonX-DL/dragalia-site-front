@@ -1,0 +1,133 @@
+div.nav-body {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+div.nav-body > div {
+  flex-grow: 1;
+}
+
+nav.nav-static-bar {
+  background-color: rgba(24, 24, 24, 0.9);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(150deg, #9a36c9, #e9b816) 1;
+  z-index: 999;
+}
+nav.nav-static-bar h1 {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 2.2rem;
+  height: 2.2rem;
+}
+nav.nav-static-bar button.nav-static-menu-btn-show {
+  font-size: 1rem;
+}
+nav.nav-static-bar button.nav-static-menu-btn-hide {
+  display: none;
+}
+nav.nav-static-bar div[class*=dropdown-menu] {
+  transition: all 0.3s;
+}
+
+div.nav-container {
+  position: sticky;
+  top: 4rem;
+  z-index: 970;
+  height: calc(100vh - 5rem);
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+div.nav-container button.nav-collapse-btn {
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+div.nav-body {
+  text-align: left;
+}
+div.nav-body a,
+div.nav-body button {
+  margin-bottom: 0.5rem;
+}
+div.nav-body div.text {
+  border: 1px solid #656565;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem !important;
+  background-color: #141414;
+  text-align: center;
+}
+div.nav-body a.nav-item {
+  border: 1px solid #656565;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem !important;
+  background-image: var(--bs-gradient);
+  color: #f0f0f0;
+}
+div.nav-body a.nav-item.active {
+  color: #141414;
+  border: 1px solid #d7d7d7;
+  background-color: #d7d7d7;
+}
+div.nav-body a.nav-item:hover, div.nav-body a.nav-item:focus, div.nav-body a.nav-item.nav-dropdown-hover {
+  color: #f0f0f0;
+  border: 1px solid #0855aa;
+  background-color: #0855aa;
+}
+div.nav-body button {
+  width: 100%;
+}
+div.nav-body > div.nav-dropdown-menu {
+  background-color: #323232;
+  border-radius: 0.3rem;
+}
+div.nav-body > div.nav-dropdown-menu > div.nav-dropdown-menu-inner {
+  padding: 0.7rem;
+}
+div.nav-body > div.nav-dropdown-menu > div.nav-dropdown-menu-inner > div:last-child a {
+  margin-bottom: 0;
+}
+div.nav-offcanvas-header {
+  background: linear-gradient(150deg, #341244, #4f3f07);
+}
+div.nav-title {
+  position: relative;
+  display: flex;
+  height: 5rem;
+  margin-bottom: 1rem;
+}
+div.nav-title::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+  background-image: url("/img/nav.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.5rem;
+}
+div.nav-title > h5 {
+  position: relative;
+  padding: 0.5rem;
+  align-self: end;
+}
+
+h6.nav-header {
+  display: flex;
+  flex-direction: row;
+}
+h6.nav-header::after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto auto auto 0.7rem;
+}
+
+/*# sourceMappingURL=main.module.css.map */

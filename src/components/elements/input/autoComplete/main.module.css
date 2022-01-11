@@ -5,38 +5,38 @@ div.selected {
   border: #707070 1px solid;
   padding: 0.5rem;
 }
-div.optionSelected {
+div.option-selected {
   align-items: center;
   padding: 0.5rem 0.8rem;
   color: #60fa5a;
 }
-div.optionSelected:hover {
+div.option-selected:hover {
   cursor: pointer;
   background-color: #202020;
   transition: background-color 100ms linear;
 }
-div.optionSelected:active {
+div.option-selected:active {
   background-color: #505050;
 }
-div.optionSelected:not(:last-child) {
+div.option-selected:not(:last-child) {
   border-bottom: gray 1px solid;
 }
-div.optionSelectable {
+div.option-selectable {
   align-items: center;
   padding: 0.5rem 0.8rem;
 }
-div.optionSelectable:hover {
+div.option-selectable:hover {
   cursor: pointer;
   background-color: #202020;
   transition: background-color 100ms linear;
 }
-div.optionSelectable:active {
+div.option-selectable:active {
   background-color: #505050;
 }
-div.optionSelectable:not(:last-child) {
+div.option-selectable:not(:last-child) {
   border-bottom: gray 1px solid;
 }
-div.optionIcon {
+div.option-icon {
   font-size: 1.3rem;
   text-align: right;
 }

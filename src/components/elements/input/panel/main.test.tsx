@@ -115,7 +115,7 @@ describe('Input panel', () => {
       <InputPanel
         inputEntries={[
           {
-            type: 'inputCheckGroup',
+            type: 'individualCheckGroup',
             checkboxes: [
               {
                 text: 'check 1',
@@ -319,7 +319,7 @@ describe('Input panel', () => {
     renderReact(() => (
       <InputPanel
         inputEntries={[{
-          type: 'inputCheckGroup',
+          type: 'individualCheckGroup',
           checkboxes: [
             {
               text: 'check 1',
@@ -335,9 +335,7 @@ describe('Input panel', () => {
     ));
 
     const button = screen.getByText('check 1');
-
-    const actualButton = button.parentElement?.children[0];
-    expect(actualButton).toBeDisabled();
+    expect(button.parentElement).toHaveClass('disabled');
 
     userEvent.click(button);
 
@@ -359,7 +357,7 @@ describe('Input panel', () => {
             type: 'separator',
           },
           {
-            type: 'inputCheckGroup',
+            type: 'individualCheckGroup',
             checkboxes: [
               {
                 text: 'check 1',

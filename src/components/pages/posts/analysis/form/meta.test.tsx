@@ -89,8 +89,8 @@ describe('Analysis form meta input', () => {
         setAvailability={setAvailability}
       />
     ));
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, 'string', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, 'string', {rerender});
 
     expect(state.payload.unitId).toBe(10950101);
     jest.advanceTimersByTime(1100);
@@ -112,13 +112,13 @@ describe('Analysis form meta input', () => {
         },
       },
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '10950102', {rerender, clear: true});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '10950102', {rerender, clear: true});
 
     expect(fnToUnitInfoMap).toHaveBeenCalled();
     jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(true));
-    expect(idField).toHaveClass('is-valid');
+    expect(idField.previousSibling).toHaveClass('is-valid');
     screen.getByAltText(name[SupportedLanguages.EN]);
   });
 
@@ -145,12 +145,12 @@ describe('Analysis form meta input', () => {
         },
       },
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '577', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '577', {rerender});
 
     jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(false));
-    expect(idField).toHaveClass('is-invalid');
+    expect(idField.previousSibling).toHaveClass('is-invalid');
   });
 
   it('starts checking 1 sec later after the last unit ID change', async () => {
@@ -168,8 +168,8 @@ describe('Analysis form meta input', () => {
         },
       },
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '577', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '577', {rerender});
 
     jest.advanceTimersByTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(3);

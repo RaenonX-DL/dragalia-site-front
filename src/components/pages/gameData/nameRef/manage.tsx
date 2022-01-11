@@ -39,6 +39,7 @@ export const UnitNameRefManagement = ({refs, uid}: RefsManagementProps) => {
         />
       )}
       elemRenderCount={30}
+      vertical
     />
   );
 };

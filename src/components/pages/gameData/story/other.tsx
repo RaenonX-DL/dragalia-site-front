@@ -4,11 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {DepotPaths, UnitInfoData} from '../../../../api-def/resources';
+import {featureBtnColors} from '../../../../const/colors';
 import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
 import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
+import {FullSizeButton} from '../../../elements/common/button/fullSize';
+import {RowRegular} from '../../../elements/common/grid/row';
 import {Image} from '../../../elements/common/image';
-import {InternalLink} from '../../../elements/common/link/internal';
 import styles from './main.module.css';
 
 
@@ -21,31 +23,41 @@ export const StoryOtherInfo = ({unitInfo}: Props) => {
 
   return (
     <>
-      <Row className={styles.mainImage}>
+      <Row className={styles['main-image']}>
         <Col>
           <Image
             src={DepotPaths.getUnitImageURL(unitInfo.type, unitInfo.iconName)}
             text={unitInfo.name[lang]}
-            className={styles.mainImage}
+            className={styles['main-image']}
           />
         </Col>
       </Row>
-      <Row className={styles.relatedLinks}>
+      <RowRegular className={styles['related-links']}>
         <Col>
-          <InternalLink
+          <FullSizeButton
             href={makePostUrl(PostPath.ANALYSIS, {pid: unitInfo.id, lang})}
-            locale={lang}
-            content={t((t) => t.game.unitInfo.links.analysis)}
-          />
+            variant={featureBtnColors.analysis}
+          >
+            {t((t) => t.game.unitInfo.links.analysis)}
+          </FullSizeButton>
         </Col>
         <Col>
-          <InternalLink
+          <FullSizeButton
             href={makeUnitUrl(UnitPath.UNIT_INFO, {id: unitInfo.id, lang})}
-            locale={lang}
-            content={t((t) => t.game.unitInfo.links.info)}
-          />
+            variant={featureBtnColors.info}
+          >
+            {t((t) => t.game.unitInfo.links.info)}
+          </FullSizeButton>
         </Col>
-      </Row>
+        <Col>
+          <FullSizeButton
+            href={makeUnitUrl(UnitPath.UNIT_TIER, {id: unitInfo.id, lang})}
+            variant={featureBtnColors.tier}
+          >
+            {t((t) => t.game.unitInfo.links.tier)}
+          </FullSizeButton>
+        </Col>
+      </RowRegular>
       <hr/>
     </>
   );

@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -300,7 +300,7 @@ export const translation: TranslationStruct = {
         crt: 'CRT - {{crtVal}}',
         crtInspired: 'Inspired',
         crtRate: 'CRT {{crtRate}} %',
-        crtDamage: 'CDMG +{{crtDamage}} %',
+        crtDamage: 'CDMG +{{crtDamage}}%',
         skill: 'SD - {{skillVal}}',
         skillPassive: 'Passive +{{skillPassivePct}}%',
         skillBuff: 'Buff +{{skillBuffPct}}%',
@@ -426,6 +426,7 @@ export const translation: TranslationStruct = {
         total: '(Total)',
         relatedLinks: 'Related Links',
         iconOnly: 'Icon Only',
+        unitName: 'Adventurer/Dragon Name',
       },
       tips: {
         clickNameForLinks: 'Click the unit name above for related links.',
@@ -465,40 +466,14 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: 'CoN (Solo)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) in solo mode.',
-        },
-        conCoop: {
-          name: 'CoN (Co-op)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) in co-op mode.',
-        },
-        conAi: {
-          name: 'CoN (AI)',
-          description: 'Ranking when playing the quest where Curse of Nihility (CoN) is available ' +
-            '(for example, Lilith\'s encroaching shadow) as AI.',
-        },
-        normalSolo: {
-          name: 'Normal (Solo)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) in solo mode.',
-        },
-        normalCoop: {
-          name: 'Normal (Co-op)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) in co-op mode.',
-        },
-        normalAi: {
-          name: 'Normal (AI)',
-          description: 'Ranking when playing the normal quest ' +
-            '(for example, Legend Agito, High Dragons Trial) as AI.',
-        },
-        sharedSkill: {
-          name: 'Shared Skill',
-          description: 'Shared skill ranking. Adventurer only.',
-        },
+        conSolo: 'CoN (Solo)',
+        conCoop: 'CoN (Co-op)',
+        conAi: 'CoN (AI)',
+        normalSolo: 'Normal (Solo)',
+        normalCoop: 'Normal (Co-op)',
+        normalAi: 'Normal (AI)',
+        sharedSkill: 'Shared Skill',
+        kaleidoscape: 'Kaleidoscape',
       },
       display: {
         conSolo: 'CoN (Solo)',
@@ -508,11 +483,13 @@ export const translation: TranslationStruct = {
         normalCoop: 'Normal (Co-op)',
         normalAi: 'Normal (AI)',
         sharedSkill: 'SS',
+        kaleidoscape: 'Kaleidoscape',
         all: 'Show All',
       },
       sort: {
         unitId: 'Unit ID',
         avgRanking: 'Average Ranking',
+        lastUpdated: 'Last Updated',
       },
       alert: {
         refRemoval: 'If the removed key point entry is used by any unit, ' +
@@ -617,11 +594,6 @@ export const translation: TranslationStruct = {
         'We will announce it in social media (Reddit, FB groups, etc.).\n\n' +
         '### Completed after the email notification system has been implemented\n\n' +
         'Users who logged in before or signed up for the email list will receive an email about the new release.',
-      welcome: 'Welcome to the Dragalia Lost info website constructed and maintained ' +
-        'by the members of the alliance - Oasis of the Maniacs (OM)!\n\n' +
-        'Most of the pages and the features are still under construction.\n\n' +
-        '**HDTs/Agitos, Unit Analysis** are completed. Take a look!\n\n' +
-        'Head to the pages/functions which are still under construction to get more details.',
       videoTips: 'For the Chinese audience who can\'t see the videos, ' +
         'please visit [my Bilibili](https://space.bilibili.com/1052053443).',
     },
@@ -645,10 +617,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: 'Last Modified',
       lastUpdated: 'Last Updated',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: 'Character',
-      [UnitType.DRAGON]: 'Dragon',
     },
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
@@ -842,6 +810,23 @@ export const translation: TranslationStruct = {
     },
     unitInfo: 'Chara/Dragon Info',
     unitTier: 'Tier List',
+    header: {
+      posts: 'Posts',
+      gameData: 'Game Related',
+      others: 'Others',
+    },
+    layout: {
+      config: 'Layout Config',
+      current: {
+        fluid: 'Full-width',
+      },
+      fluid: {
+        enable: 'Enable',
+        disable: 'Disable',
+        enabled: 'Enabled',
+        disabled: 'Disabled',
+      },
+    },
   },
   posts: {
     analysis: {
@@ -892,7 +877,6 @@ export const translation: TranslationStruct = {
       published: 'Published',
       title: 'Title',
       viewCount: 'View Count',
-      viewCountComplete: 'Viewed {{count}} times',
     },
     manage: {
       add: 'New Post',
@@ -935,10 +919,50 @@ export const translation: TranslationStruct = {
       video: 'Video',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: 'Stats',
+        header: {
+          perCountry: 'Active Users by Country',
+          perLang: 'Active Users by Language',
+          active: 'Periodic Active Users (Daily Average)',
+        },
+        content: {
+          totalLangUser: 'Total: {{total}}',
+        },
+        ui: {
+          stacked: 'Switch to Stacked',
+          separated: 'Switch to Separated',
+          country: 'Country',
+          user: 'User',
+          periodUnitDay: 'Days',
+          periodActive: {
+            legend: '{{periodDays}} Days',
+            period: 'Period',
+            dailyAvg: 'Daily Avg',
+            total: 'Total',
+            d28diffPct: 'Diff % (to 28D)',
+          },
+        },
+      },
+      features: 'Features',
+      recentlyUpdated: 'Posts',
+    },
+    message: {
+      features: 'Check the navigation bar for more features.',
+      noPost: 'No available posts.',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: 'Character',
       [UnitType.DRAGON]: 'Dragon',
+    },
+    postType: {
+      [PostType.ANALYSIS]: 'Analysis',
+      [PostType.QUEST]: 'Quest Guides',
+      [PostType.MISC]: 'Misc Posts',
     },
   },
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
+import {RowNoGutter} from '../../../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../../../elements/gameData/unit/icon';
+import styles from '../../main.module.css';
 import {EntryWithAnalysis} from './entryHasAnalysis';
 import {EntryNoAnalysis} from './entryNoAnalysis';
 import {EntryProps} from './types';
@@ -13,11 +14,11 @@ export const UnitInfoEntry = (props: EntryProps) => {
   const {unitInfo, analysisMeta} = props;
 
   return (
-    <Row noGutters className="section">
+    <RowNoGutter className="section">
       {
         !props.iconOnly &&
-        <Col xs="auto" className="mr-2">
-          <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '4rem'}}/>
+        <Col xs="auto" className="me-2">
+          <UnitIcon unitInfo={unitInfo} className={styles['unit-icon']}/>
         </Col>
       }
       <Col>
@@ -27,6 +28,6 @@ export const UnitInfoEntry = (props: EntryProps) => {
             <EntryNoAnalysis {...props}/>
         }
       </Col>
-    </Row>
+    </RowNoGutter>
   );
 };

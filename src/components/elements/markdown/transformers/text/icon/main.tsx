@@ -33,7 +33,7 @@ export const Icon = ({children}: TextComponentProps) => {
       <Image
         text={statusEnum.trans[lang]}
         src={DepotPaths.getImageURL(statusEnum.imagePath)}
-        className={styles.afflictionIcon}
+        className={styles['affliction-icon']}
       />
     );
   }

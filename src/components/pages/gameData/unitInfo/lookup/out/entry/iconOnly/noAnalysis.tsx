@@ -1,10 +1,12 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../../../i18n/hook';
+import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
+import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {UnitIconClickable} from '../../../../../../../elements/gameData/unit/iconClickable';
+import styles from '../../../main.module.css';
 import {EntryCommonProps} from '../types';
 
 
@@ -15,27 +17,20 @@ export const IconOnlyEntryNoAnalysis = ({unitInfo}: Props) => {
 
   return (
     <>
-      <Row noGutters className="pt-1 text-center">
+      <RowNoGutter className="pt-1 text-center">
         <Col>
           <UnitIconClickable
-            unit={{
-              id: unitInfo.id,
-              name: unitInfo.name[lang],
-              icon: {
-                type: unitInfo.type,
-                name: unitInfo.iconName,
-              },
-            }}
+            unit={unitInfoToClickableProps(unitInfo, lang)}
             hasAnalysis={false}
-            style={{height: '4.5rem'}}
+            className={styles['unit-icon']}
           />
         </Col>
-      </Row>
-      <Row noGutters className="align-items-center" style={{height: '1.5rem'}}>
+      </RowNoGutter>
+      <RowNoGutter className="align-items-center">
         <Col className="text-danger text-center">
           {t((t) => t.posts.analysis.error.unavailable)}
         </Col>
-      </Row>
+      </RowNoGutter>
     </>
   );
 };

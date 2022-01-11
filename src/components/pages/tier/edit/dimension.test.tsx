@@ -29,7 +29,7 @@ describe('Tier note dimension entry', () => {
       />
     ));
 
-    expect(screen.getByText(/Comp/).parentElement).toHaveClass('active');
+    expect(screen.getByText(/Comp/).parentElement?.previousElementSibling).toBeChecked();
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('Note')).toBeInTheDocument();
   });
@@ -142,6 +142,6 @@ describe('Tier note dimension entry', () => {
     const note = screen.getByText('Note', {selector: 'textarea'});
     await waitFor(() => expect(note).toBeDisabled());
     const compDependent = screen.getByText(/Comp/);
-    expect(compDependent.parentElement?.children[0]).toBeDisabled();
+    expect(compDependent.parentElement).toHaveClass('disabled');
   });
 });

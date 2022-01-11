@@ -92,6 +92,11 @@ rules:
 
   object-curly-spacing: off
 
+  no-restricted-imports:
+    - error
+    - name: react-bootstrap
+      message: Specify the sub-package to use for app size reduction. For example, `import Row from 'react-bootstrap/Row'`.
+
   "@typescript-eslint/object-curly-spacing":
     - error
     - never

@@ -82,19 +82,21 @@ export const TierNoteEdit = () => {
         <hr/>
         <h4>{t((t) => t.game.unitTier.tier.title)}</h4>
         {Object.keys(Dimension).map((dimension) => (
-          <TierNoteDimensionEntry
-            key={dimension}
-            dimension={dimension as DimensionKey}
-            inputData={unitTierNote.tier[dimension as DimensionKey]}
-            setInputData={(updatedNote) => {
-              setUnitTierNote(overrideObject(
-                unitTierNote,
-                {tier: {[dimension]: updatedNote}},
-              ));
-            }}
-          />
+          <>
+            <TierNoteDimensionEntry
+              key={dimension}
+              dimension={dimension as DimensionKey}
+              inputData={unitTierNote.tier[dimension as DimensionKey]}
+              setInputData={(updatedNote) => {
+                setUnitTierNote(overrideObject(
+                  unitTierNote,
+                  {tier: {[dimension]: updatedNote}},
+                ));
+              }}
+            />
+            <hr/>
+          </>
         ))}
-        <hr/>
         <h4>{t((t) => t.game.unitTier.points.title)}</h4>
         <AutoComplete
           options={keyPointEntries}
@@ -106,7 +108,7 @@ export const TierNoteEdit = () => {
           getArray={(payload) => payload.points}
           setArray={(points: Array<string>) => setUnitTierNote(overrideObject(unitTierNote, {points}))}
           renderOption={(option) => (
-            <div className={styles.pointEntry}>
+            <div className={styles['point-entry']}>
               <PointTypeIcon type={option.type}/>
               {option.description}
             </div>
@@ -119,12 +121,13 @@ export const TierNoteEdit = () => {
             }
 
             return (
-              <div className={styles.pointEntry}>
+              <div className={styles['point-entry']}>
                 <PointTypeIcon type={entry.type}/>
                 <span>{keyPointLookup[pointId].description}</span>
               </div>
             );
           }}
+          showMoveButton={false}
         />
       </AjaxForm>
     </ProtectedLayout>

@@ -15,11 +15,12 @@ export type CheckItemImageOptions = {
 
 export type CheckItemProps = {
   text: string,
-  variant?: ButtonVariant,
-  checked?: boolean,
   onChange: (checked: boolean) => void,
+  checked: boolean,
+  variant?: ButtonVariant,
   image?: CheckItemImageOptions,
   disabled?: boolean,
+  block?: boolean,
 } & ({
   type: 'radio',
   groupName: string,

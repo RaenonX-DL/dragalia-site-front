@@ -24,10 +24,10 @@ export const SignInPage = ({providers}: SignInPageProps) => {
   }
 
   return (
-    <div className={styles.providerFrame}>
+    <div className={styles['provider-frame']}>
       {Object.values(providers).map((provider) => (
         <Button
-          key={provider.name} variant="outline-light" className={styles.providerButton}
+          key={provider.name} variant="outline-light" className={styles['provider-button']}
           onClick={() => signIn(provider.id)}
         >
           {providerIcon[provider.name] || provider.name}

@@ -18,30 +18,36 @@ export const DragonAnalysisForm = <P extends DragonAnalysisPayload>({formState, 
     <>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.ultimate)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.ultimate)}
             onChanged={(e) => setPayload('ultimate', e.target.value)}
-            rows={5} value={payload.ultimate} required
+            rows={5}
+            value={payload.ultimate}
+            required
           />
         </Col>
       </Row>
       <hr/>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.notesDragon)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.notesDragon)}
             onChanged={(e) => setPayload('notes', e.target.value)}
-            rows={10} value={payload.notes} required
+            rows={10}
+            value={payload.notes}
+            required
           />
         </Col>
       </Row>
       <hr/>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.suitable)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.suitable)}
             onChanged={(e) => setPayload('suitableCharacters', e.target.value)}
-            rows={7} value={payload.suitableCharacters} required
+            rows={7}
+            value={payload.suitableCharacters}
+            required
           />
         </Col>
       </Row>

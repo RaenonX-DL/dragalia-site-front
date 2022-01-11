@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Form from 'react-bootstrap/Form';
-
 import {CheckItemProps} from '../types';
 import {CheckItem} from './item';
+import styles from './main.module.css';
 
 
 type Props<E> = {
@@ -11,13 +10,13 @@ type Props<E> = {
   optionToProps: (entry: E) => CheckItemProps,
 };
 
-export const CheckGroup = <E, >({
+export const CheckItemGroup = <E, >({
   options,
   optionToProps,
 }: Props<E>) => {
   return (
-    <Form.Group className="mb-2 text-center">
+    <div className={styles['input-group']}>
       {options.map((option, idx) => <CheckItem key={idx} {...optionToProps(option)}/>)}
-    </Form.Group>
+    </div>
   );
 };

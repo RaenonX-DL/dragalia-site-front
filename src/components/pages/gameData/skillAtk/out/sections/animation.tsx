@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Collapse from 'react-bootstrap/Collapse';
-import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../i18n/hook';
 import {IconCollapse} from '../../../../../elements/common/icons';
@@ -57,7 +57,7 @@ export type SectionAnimationProps = SectionProps & Pick<EnumDataPack, 'skillEnum
 export const SectionAnimation = ({atkSkillEntry, skillEnums, conditionEnumMap}: SectionAnimationProps) => {
   return (
     <div className={`${styles.section} text-center`}>
-      <Form.Row>
+      <Row>
         <Col lg={6}>
           <HitTiming atkSkillEntry={atkSkillEntry}/>
         </Col>
@@ -68,7 +68,7 @@ export const SectionAnimation = ({atkSkillEntry, skillEnums, conditionEnumMap}: 
             conditionEnumMap={conditionEnumMap}
           />
         </Col>
-      </Form.Row>
+      </Row>
     </div>
   );
 };

@@ -101,24 +101,23 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
         state={state.modal}
         setState={(modalState) => setState({...state, modal: modalState})}
       />
-      <InputGroup className="mb-2 mr-sm-2">
+      <InputGroup>
         <FormControl
-          className={`bg-black-32 ${state.status === 'copied' ? 'text-info' : 'text-light'}`} disabled
+          className={state.status === 'copied' ? 'text-info' : 'text-light'}
+          disabled
           value={
             state.status === 'copied' ?
               t((t) => t.game.skillAtk.info.presetExpiry) :
               state.link
           }
         />
-        <InputGroup.Append>
-          <Button
-            className="d-flex align-items-center"
-            variant="outline-light" onClick={onClickShareButton}
-            disabled={!isEnabled || state.status === 'creating' || state.status === 'copied'}
-          >
-            {statusButtonIcon[state.status]}
-          </Button>
-        </InputGroup.Append>
+        <Button
+          className="d-flex align-items-center"
+          variant="outline-light" onClick={onClickShareButton}
+          disabled={!isEnabled || state.status === 'creating' || state.status === 'copied'}
+        >
+          {statusButtonIcon[state.status]}
+        </Button>
       </InputGroup>
     </>
   );

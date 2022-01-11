@@ -16,7 +16,7 @@ export const TierNote = ({dimension, tierNote}: ItemProps) => {
   return (
     <>
       <span className={styles.title}>
-        {t((t) => t.game.unitTier.dimension[dimension].name)}
+        {t((t) => t.game.unitTier.dimension[dimension])}
       </span>
       <div>
         <TierRanking tierNote={tierNote}/>

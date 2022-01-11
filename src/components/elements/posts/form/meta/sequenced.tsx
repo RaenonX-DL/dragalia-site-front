@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
 import {
   OptionalSequencedPostMeta,
@@ -11,6 +10,8 @@ import {
 } from '../../../../../api-def/api';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
+import {RowRegular} from '../../../common/grid/row';
+import {FloatingInput} from '../../../form/control/floating/input';
 import {PostFormControlProps} from '../types';
 import {useFormMeta} from './hook';
 import {FormMetaLangPicker} from './lang';
@@ -45,18 +46,20 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   const {payload, isPreloaded} = formState;
 
   return (
-    <Form.Row>
+    <RowRegular>
       <Col lg={2}>
-        <Form.Control
-          className="mb-2" type="number" placeholder={t((t) => t.posts.info.id)}
+        <FloatingInput
+          type="number"
+          label={t((t) => t.posts.info.id)}
           isValid={isValid} isInvalid={!isValid}
           onChange={(e) => setPayload('seqId', +e.target.value)}
           value={payload.seqId || ''} disabled={isPreloaded || isChecking} min="1"
         />
       </Col>
       <Col lg={7}>
-        <Form.Control
-          className="mb-2" type="text" placeholder={titlePlaceholder}
+        <FloatingInput
+          type="text"
+          label={titlePlaceholder}
           onChange={(e) => setPayload('title', e.target.value)}
           value={payload.title} required
         />
@@ -68,6 +71,6 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
           setAvailability={setAvailability}
         />
       </Col>
-    </Form.Row>
+    </RowRegular>
   );
 };

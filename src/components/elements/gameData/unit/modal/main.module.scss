@@ -1,0 +1,10 @@
+@use "../../../../../../styles/colors";
+@use "../../../../../../styles/utils";
+
+a {
+  &.unit-link {
+    @extend %flex-center;
+
+    height: 4rem;
+  }
+}

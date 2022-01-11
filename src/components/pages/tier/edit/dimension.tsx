@@ -46,10 +46,9 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
   };
 
   return (
-    <Row noGutters className="section p-3 mb-2">
-      <Col lg={4} className="pr-lg-3 mb-lg-n3">
-        {t((t) => t.game.unitTier.dimension[dimension].name)}
-        <hr className="my-2"/>
+    <Row className="g-0 g-lg-3">
+      <Col lg={4}>
+        <h5>{t((t) => t.game.unitTier.dimension[dimension])}</h5>
         <InputPanel
           inputData={inputData}
           setInputData={setInputData}
@@ -69,12 +68,13 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
               getValue: (ranking) => ranking.text,
             },
             {
-              type: 'inputCheckGroup',
+              type: 'individualCheckGroup',
               checkboxes: [{
                 text: t((t) => t.game.unitTier.tier.isCompDependent),
                 getValue: (data) => data?.isCompDependent || false,
                 getUpdatedInputData: (isCompDependent) => overrideInputData(inputData, {isCompDependent}),
                 disabled,
+                block: true,
               }],
             },
           ]}
@@ -82,10 +82,12 @@ export const TierNoteDimensionEntry = ({inputData, setInputData, dimension}: Pro
       </Col>
       <Col lg={8}>
         <MarkdownInput
+          label={t((t) => t.game.unitTier.dimension[dimension])}
           rows={3}
           onChanged={(e) => setInputData(overrideObject(inputData, {note: e.target.value}))}
           value={inputData?.note || ''}
-          disabled={disabled} required={!disabled}
+          disabled={disabled}
+          required={!disabled}
         />
       </Col>
     </Row>

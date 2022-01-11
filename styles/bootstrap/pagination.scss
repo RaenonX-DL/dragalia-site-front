@@ -1,0 +1,15 @@
+@use "../colors";
+@use "link";
+
+$pagination-color: link.$link-color !default;
+$pagination-bg: colors.$color-bw-32 !default;
+$pagination-border-color: colors.$color-bw-32 !default;
+$pagination-hover-color: link.$link-hover-color !default;
+$pagination-hover-bg: colors.$color-bw-80 !default;
+$pagination-hover-border-color: colors.$color-bw-80 !default;
+$pagination-active-color: colors.$color-bw-255 !default;
+$pagination-active-bg: colors.$color-om-light !default;
+$pagination-active-border-color: colors.$color-om-light !default;
+$pagination-disabled-color: colors.$color-bw-170 !default;
+$pagination-disabled-bg: colors.$color-dark-red !default;
+$pagination-disabled-border-color: colors.$color-dark-red !default;

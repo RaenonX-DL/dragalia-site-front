@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-
 import {
   ApiResponseCode,
   isFailedResponse,
@@ -16,6 +14,7 @@ import {useFetchState} from '../../common/fetch';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
+import styles from './page.module.scss';
 
 
 type PostListPageProps<R extends SequencedPostListResponse> = {
@@ -64,9 +63,9 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
   return (
     <>
       <AdsPostList/>
-      <Jumbotron className="mb-3">
-        <h4>{title}</h4>
-      </Jumbotron>
+      <div className={styles.title}>
+        <h2>{title}</h2>
+      </div>
       {
         context?.session?.user.isAdmin &&
         <PostManageBar {...postManageBarProps}/>

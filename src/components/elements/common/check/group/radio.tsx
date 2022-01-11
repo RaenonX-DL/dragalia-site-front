@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {CheckGroup} from '../base/group';
+import {CheckItemGroup} from '../base/group';
 import {CheckOption, RadioGroupProps} from '../types';
 
 
@@ -16,7 +16,7 @@ export const RadioGroup = <E extends CheckOption, T, V>({
   imageHeight,
 }: RadioGroupProps<E, T, V>) => {
   return (
-    <CheckGroup
+    <CheckItemGroup
       options={options}
       optionToProps={(option) => ({
         type: 'radio',

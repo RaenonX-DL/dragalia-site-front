@@ -1,56 +1,40 @@
 @use "../../../../../../../styles/colors";
-
-// This must be placed after @use, and this rule is for complying the CSS spec
-// https://github.com/stylelint/stylelint/pull/5202#issuecomment-830668530
-/* stylelint-disable no-invalid-position-at-import-rule */
 @import "../../../../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../../../../node_modules/bootstrap/scss/variables";
 @import "../../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
-@import "../../../../../../../styles/table";
 
-$markdown-bg-color: colors.$color-black-32;
+$markdown-bg-color: colors.$color-bw-32;
 $item-margin: 0.75rem;
 
-.text {
-  background-color: $markdown-bg-color;
-  border: transparent solid $item-margin;
-  border-radius: 0.25rem;
-  margin-bottom: $item-margin;
-  white-space: pre-line;
-}
+div {
+  &.text {
+    background-color: $markdown-bg-color;
+    border: transparent solid $item-margin;
+    border-radius: 0.25rem;
+    margin-bottom: $item-margin;
+    white-space: pre-line;
+  }
 
-.ability {
-  @include media-breakpoint-up(lg) {
-    .container {
-      position: relative;
-      padding-top: 100%;
-      overflow: auto;
-    }
+  &.ability {
+    @include media-breakpoint-up(lg) {
+      .container {
+        position: relative;
+        padding-top: 100%;
+        overflow: auto;
+      }
 
-    .content {
-      position: absolute;
-      inset: 0;
+      .content {
+        position: absolute;
+        inset: 0;
+      }
     }
   }
-}
 
-.skill {
-  .entries {
-    max-height: 70vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-}
-
-.normalAttack {
-  table {
-    @extend %standard-table;
-
-    margin-bottom: 0;
-
-    th,
-    td {
-      padding: 0.3rem 1.5rem;
+  &.skill {
+    .entries {
+      max-height: 70vh;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 }

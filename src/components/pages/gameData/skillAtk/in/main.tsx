@@ -66,8 +66,8 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
       <hr/>
       <DisplayItemPicker inputData={inputData} setInputData={setInputData}/>
       <hr/>
-      <div className="text-right">
-        <Button variant="outline-primary" onClick={() => setCollapsed(!collapsed)} className="mr-2">
+      <div className="text-end">
+        <Button variant="outline-primary" onClick={() => setCollapsed(!collapsed)} className="me-2">
           {t((t) => t.game.skillAtk.collapse)}
         </Button>
         <Button variant="outline-info" disabled={!isSearchAllowed} onClick={() => {
@@ -83,7 +83,7 @@ export const AttackingSkillInput = ({isAllFetched, onSearchRequested}: InputProp
 
           onSearchRequested(inputData);
         }}>
-          {!isSearchAllowed && <Spinner animation="grow" size="sm" as="span" className="mr-1"/>}
+          {!isSearchAllowed && <Spinner animation="grow" size="sm" as="span" className="me-1"/>}
           {t((t) => t.misc.search)}
         </Button>
       </div>

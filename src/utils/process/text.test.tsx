@@ -4,7 +4,7 @@ import {screen} from '@testing-library/react';
 
 import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
 import {renderReact} from '../../../test/render/main';
-import {SupportedLanguages, UnitType} from '../../api-def/api';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../api-def/api';
 import {SimpleUnitInfo} from '../../api-def/resources';
 import {Markdown} from '../../components/elements/markdown/main';
 import {PostPath} from '../../const/path/definitions';
@@ -65,6 +65,7 @@ describe('Process text', () => {
   const simpleUnitInfo: SimpleUnitInfo = {
     '10550101': {
       name: {
+        [PartiallySupportedLanguages.CHS]: 'CHS',
         [SupportedLanguages.CHT]: 'CHT',
         [SupportedLanguages.EN]: 'Gala Mym',
         [SupportedLanguages.JP]: 'JP',

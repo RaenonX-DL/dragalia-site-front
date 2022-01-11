@@ -31,6 +31,7 @@ export const KeyPointsManagement = ({points, uid}: Props) => {
           isDescriptionInvalid={(counter.get(element.description) || 0) > 1}
         />
       )}
+      vertical
     />
   );
 };

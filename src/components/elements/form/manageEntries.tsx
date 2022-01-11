@@ -6,7 +6,8 @@ import {getElementCounter} from '../../../utils/counter';
 import {overrideObject} from '../../../utils/override';
 import {SlicedEntryBar} from '../common/entryBar';
 import {AjaxForm} from './ajax/main';
-import {ArrayForm, ArrayFormOnChangeHandler} from './array/main';
+import {ArrayForm} from './array/main';
+import {ArrayFormOnChangeHandler} from './array/type';
 import {UpdateStatus} from './updateStatus';
 
 
@@ -30,6 +31,7 @@ type Props<E, I, R extends BaseResponse> = {
     counter: Map<I, number>,
   ) => React.ReactElement,
   elemRenderCount?: number,
+  vertical?: boolean,
 };
 
 export const EntryManagement = <E extends object, I, R extends BaseResponse>({
@@ -40,6 +42,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
   generateNewElement,
   renderEntries,
   elemRenderCount,
+  vertical = false,
 }: Props<E, I, R>) => {
   const {t} = useI18n();
 
@@ -94,6 +97,7 @@ export const EntryManagement = <E extends object, I, R extends BaseResponse>({
         renderEntries={(...props) => renderEntries(...props, elementCounter)}
         elemCount={elemCount}
         addToTop
+        vertical={vertical}
       />
       <div className="mb-2"/>
       {

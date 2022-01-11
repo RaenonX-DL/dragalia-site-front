@@ -1,0 +1,12 @@
+@use "sass:color";
+@use "../colors";
+
+$link-color: #75a1ff !default;
+$link-decoration: none !default;
+$link-hover-color: color.adjust($link-color, $lightness: 10%) !default;
+$link-hover-decoration: none !default;
+
+// For some reason default bootstrap link underlining is not showing
+a {
+  border-bottom: 1px solid;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
 import {Optional} from '../../../../../utils/types';
+import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
 import {ExAbility} from './exUnit';
@@ -19,22 +19,22 @@ export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbility
   const {t, lang} = useI18n();
 
   return (
-    <div className="section mb-2">
+    <div className="section">
       {
         chara &&
         <>
-          <Row noGutters className="align-items-center">
+          <RowNoGutter className="align-items-center">
             <Col xs="auto">
               <UnitIcon unitInfo={chara} style={{height: '3rem'}}/>
             </Col>
             <Col className="text-center">
               <UnitLink unit={{id: chara.id, name: chara.name[lang]}} style={{fontSize: '1.1rem'}}/>
             </Col>
-          </Row>
+          </RowNoGutter>
           <hr className="m-1"/>
         </>
       }
-      <Row noGutters>
+      <RowNoGutter>
         <Col>
           <ExAbility
             effectUnits={ex}
@@ -44,8 +44,8 @@ export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbility
             isEx
           />
         </Col>
-      </Row>
-      <Row noGutters>
+      </RowNoGutter>
+      <RowNoGutter>
         <Col>
           <ExAbility
             effectUnits={chainedEx}
@@ -54,7 +54,7 @@ export const ExAbilityEntry = ({chara, ex, chainedEx, conditionEnums}: ExAbility
             conditionEnums={conditionEnums}
           />
         </Col>
-      </Row>
+      </RowNoGutter>
     </div>
   );
 };

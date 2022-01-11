@@ -22,39 +22,45 @@ export const FormTop = <P extends AnalysisBody>({
     <>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.summary)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.summary)}
             onChanged={(e) => setPayload('summary', e.target.value)}
-            rows={5} value={payload.summary} required
+            rows={5}
+            value={payload.summary}
+            required
           />
         </Col>
       </Row>
       <hr/>
       <Row>
         <Col>
-          <h5>{t((t) => t.posts.analysis.summonResult)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.summonResult)}
             onChanged={(e) => setPayload('summonResult', e.target.value)}
-            rows={4} value={payload.summonResult}
+            rows={4}
+            value={payload.summonResult}
           />
         </Col>
       </Row>
       <hr/>
       <Row className="mb-3">
         <Col>
-          <h5>{t((t) => t.posts.analysis.passive)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.passive)}
             onChanged={(e) => setPayload('passives', e.target.value)}
-            rows={7} value={payload.passives} required
+            rows={7}
+            value={payload.passives}
+            required
           />
         </Col>
       </Row>
       <Row className="mb-3">
         <Col>
-          <h5>{t((t) => t.posts.analysis.normalAttack)}</h5>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.normalAttack)}
             onChanged={(e) => setPayload('normalAttacks', e.target.value)}
-            rows={5} value={payload.normalAttacks}
+            rows={5}
+            value={payload.normalAttacks}
           />
         </Col>
       </Row>

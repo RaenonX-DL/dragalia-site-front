@@ -26,9 +26,13 @@ export const AttackingSkillSorter = ({inputData, onOrderPicked}: Props) => {
   };
 
   return (
-    <DropdownButton title={title} variant="outline-light">
+    <DropdownButton title={title} variant="outline-light" menuVariant="dark">
       {Object.entries(orderName).map(([sortBy, getNameFunc], idx) => (
-        <Dropdown.Item key={idx} onClick={onItemPicked(sortBy as SortBy)}>
+        <Dropdown.Item
+          key={idx}
+          onClick={onItemPicked(sortBy as SortBy)}
+          active={sortBy === inputData.sortBy}
+        >
           {t(getNameFunc)}
         </Dropdown.Item>
       ))}

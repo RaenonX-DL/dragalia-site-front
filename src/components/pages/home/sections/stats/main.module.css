@@ -1,0 +1,23 @@
+div.stats-section {
+  height: 23rem;
+  margin-bottom: 0.75rem;
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
+div.stats-section-outer {
+  display: flex;
+  flex-direction: column;
+  background-color: #070707;
+  border-radius: 0.5rem;
+}
+div.stats-section-filler {
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+div.tooltip {
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: rgba(50, 50, 50, 0.77);
+}
+
+/*# sourceMappingURL=main.module.css.map */

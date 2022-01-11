@@ -15,7 +15,7 @@ describe('Markdown input', () => {
     const mdElement = jest.spyOn(markdownMain, 'Markdown').mockReturnValue(<></>);
 
     const {rerender} = renderReact(() => (
-      <MarkdownInput value="value"/>
+      <MarkdownInput value="value" label="input"/>
     ));
 
     const textArea = screen.getByText('value', {selector: 'textarea'});
@@ -28,7 +28,7 @@ describe('Markdown input', () => {
     const mdElement = jest.spyOn(markdownMain, 'Markdown').mockReturnValue(<></>);
 
     renderReact(() => (
-      <MarkdownInput value="value"/>
+      <MarkdownInput value="value" label="input"/>
     ));
 
     const previewButton = screen.getByText(translationEN.posts.manage.preview);
@@ -42,7 +42,7 @@ describe('Markdown input', () => {
     const mdElement = jest.spyOn(markdownMain, 'Markdown').mockReturnValue(<></>);
 
     const {rerender} = renderReact(() => (
-      <MarkdownInput value="value"/>
+      <MarkdownInput value="value" label="input"/>
     ));
 
     const textArea = screen.getByText('value', {selector: 'textarea'});
@@ -59,7 +59,7 @@ describe('Markdown input', () => {
     const onChange = jest.fn();
 
     const {rerender} = renderReact(() => (
-      <MarkdownInput value="value" onChanged={onChange}/>
+      <MarkdownInput value="value" label="input" onChanged={onChange}/>
     ));
 
     const textArea = screen.getByText('value', {selector: 'textarea'});

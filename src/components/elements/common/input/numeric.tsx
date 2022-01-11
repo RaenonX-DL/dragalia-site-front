@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 
+import {FloatingInput} from '../../form/control/floating/input';
+import {RowTight} from '../grid/row';
 import {InfoPopover} from '../overlay/info';
 import {DetailedProps, InputPropsExtended} from '../types';
 
@@ -11,7 +11,8 @@ import {DetailedProps, InputPropsExtended} from '../types';
 export type NumericInputProps<T> = DetailedProps & InputPropsExtended<T, number> & {
   required?: boolean,
   minValue?: number,
-  maxValue?: number
+  maxValue?: number,
+  step?: number,
 };
 
 export const NumericInput = <T, >({
@@ -24,23 +25,21 @@ export const NumericInput = <T, >({
   minValue,
   maxValue,
   required = true,
+  step,
 }: NumericInputProps<T>) => {
   if (minValue && maxValue && minValue > maxValue) {
     console.warn(`Min value ${minValue} should not be greater than max value (${maxValue}).`);
   }
 
   return (
-    <Row className="mb-3">
-      <Form.Label column className="text-center">
-        {title}&nbsp;<InfoPopover title={title} description={description}/>
-      </Form.Label>
+    <RowTight className="mb-3">
       <Col>
-        <Form.Control
+        <FloatingInput
           type="number"
           value={Number(getValue(inputData)).toString()}
           min={minValue}
           max={maxValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e) => {
             const val = parseFloat(e.target.value);
 
             let newValue = Math.min(e.target.max ? parseFloat(e.target.max) : Infinity, val);
@@ -48,9 +47,14 @@ export const NumericInput = <T, >({
 
             setInputData(getUpdatedInputData(newValue));
           }}
+          label={title}
           required={required}
+          step={step}
         />
       </Col>
-    </Row>
+      <Col xs="auto" className="d-flex align-self-end">
+        <InfoPopover title={title} description={description}/>
+      </Col>
+    </RowTight>
   );
 };

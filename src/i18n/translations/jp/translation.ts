@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -278,7 +278,7 @@ export const translation: TranslationStruct = {
         crt: 'クリティカル - {{crtVal}}',
         crtInspired: '超ヒラメキ',
         crtRate: 'クリティカル率 {{crtRate}} %',
-        crtDamage: 'クリティカルダメ +{{crtDamage}} %',
+        crtDamage: 'クリティカルダメ +{{crtDamage}}%',
         skill: 'スキル - {{skillVal}}',
         skillPassive: 'パッシブ +{{skillPassivePct}}%',
         skillBuff: 'バフ +{{skillBuffPct}}%',
@@ -402,6 +402,7 @@ export const translation: TranslationStruct = {
         total: '(総計)',
         relatedLinks: 'に関するリンク',
         iconOnly: 'TBA',
+        unitName: 'TBA',
       },
       tips: {
         clickNameForLinks: 'TBA',
@@ -439,34 +440,14 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: '虚無 (ソロ)',
-          description: '虚無有効のクエスト中(ソロ)、キャラの評価 (例: ディアボロス)。',
-        },
-        conCoop: {
-          name: '虚無 (マルチ)',
-          description: '虚無有効のクエスト中(マルチ)、キャラの評価 (例: ディアボロス)。',
-        },
-        conAi: {
-          name: '虚無 (AI)',
-          description: '虚無有効のクエスト中(例: ディアボロス)、AIにとしての評価。',
-        },
-        normalSolo: {
-          name: '通常 (ソロ)',
-          description: '通常クエスト中(ソロ)、キャラの評価 (例: 真竜、絶級アギト)。',
-        },
-        normalCoop: {
-          name: '通常 (マルチ)',
-          description: '通常クエスト中(マルチ)、キャラの評価 (例: 真竜、絶級アギト)。',
-        },
-        normalAi: {
-          name: '通常 (AI)',
-          description: '通常クエスト中(例: 真竜、絶級アギト)、AIにとしての評価。',
-        },
-        sharedSkill: {
-          name: 'シェアスキル',
-          description: 'シェアスキルの評価。(キャラ限定)',
-        },
+        conSolo: '虚無 (ソロ)',
+        conCoop: '虚無 (マルチ)',
+        conAi: '虚無 (AI)',
+        normalSolo: '通常 (ソロ)',
+        normalCoop: '通常 (マルチ)',
+        normalAi: '通常 (AI)',
+        sharedSkill: 'シェアスキル',
+        kaleidoscape: 'カレイドラビリンス',
       },
       display: {
         conSolo: '虚無 (ソロ)',
@@ -476,11 +457,13 @@ export const translation: TranslationStruct = {
         normalCoop: '通常 (マルチ)',
         normalAi: '通常 (AI)',
         sharedSkill: 'シェア',
+        kaleidoscape: 'カレイドラビリンス',
         all: '全部',
       },
       sort: {
         unitId: 'ユニット ID',
         avgRanking: '平均ランキング',
+        lastUpdated: 'TBA',
       },
       alert: {
         refRemoval: '特性タグが削除された場合、該当するキャラリストは閲覧不可になります。',
@@ -580,9 +563,6 @@ export const translation: TranslationStruct = {
       constructing: '工事中です。\n\n' +
         '### 完成したら各SNSの上でお知らせします。(例: 掲示板、Facebook 、LINE…など) ' +
         '\n\n### メール通知機能も作成中ですのでお待ちください。',
-      welcome: '同盟「OM」製作のドラガリ攻略サイトへようこそ！工事中の機能やページも多いですが、どうぞよろしくお願いいたします。\n\n' +
-        '現在 **高難易度クエスト攻略、キャラドラゴン評価** のページの一部は完成しています、ご覧ください。\n\n' +
-        'ページを選択したら說明もついてます。',
       videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
@@ -605,10 +585,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: '最後編集は',
       lastUpdated: '最後更新は',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: 'キャラ',
-      [UnitType.DRAGON]: 'ドラゴン',
     },
     collapse: '展開 / 折り畳み',
     collapseAll: '全部展開 / 折り畳み',
@@ -800,6 +776,23 @@ export const translation: TranslationStruct = {
     },
     unitInfo: 'キャラ/ドラゴン情報',
     unitTier: 'ランキング',
+    header: {
+      posts: 'TBA',
+      gameData: 'TBA',
+      others: 'TBA',
+    },
+    layout: {
+      config: 'TBA',
+      current: {
+        fluid: 'TBA',
+      },
+      fluid: {
+        enable: 'TBA',
+        disable: 'TBA',
+        enabled: 'TBA',
+        disabled: 'TBA',
+      },
+    },
   },
   posts: {
     analysis: {
@@ -849,7 +842,6 @@ export const translation: TranslationStruct = {
       published: '発表は',
       title: 'お題',
       viewCount: '閲覧回数',
-      viewCountComplete: '閲覧 {{count}} 回',
     },
     manage: {
       add: '文を追加する',
@@ -890,10 +882,50 @@ export const translation: TranslationStruct = {
       video: '関する動画',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: 'TBA',
+        header: {
+          perCountry: 'TBA',
+          perLang: 'TBA',
+          active: 'TBA',
+        },
+        content: {
+          totalLangUser: 'TBA',
+        },
+        ui: {
+          stacked: 'TBA',
+          separated: 'TBA',
+          country: 'TBA',
+          user: 'TBA',
+          periodUnitDay: 'TBA',
+          periodActive: {
+            legend: 'TBA',
+            period: 'TBA',
+            dailyAvg: 'TBA',
+            total: 'TBA',
+            d28diffPct: 'TBA',
+          },
+        },
+      },
+      features: 'TBA',
+      recentlyUpdated: 'TBA',
+    },
+    message: {
+      features: 'TBA',
+      noPost: 'TBA',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: 'キャラ',
       [UnitType.DRAGON]: 'ドラゴン',
+    },
+    postType: {
+      [PostType.ANALYSIS]: 'TBA',
+      [PostType.QUEST]: 'TBA',
+      [PostType.MISC]: 'TBA',
     },
   },
 };

@@ -1,0 +1,7 @@
+$enable-gradients: true;
+$gradient-theme: rgb(0 0 0);
+$gradient: linear-gradient(
+  135deg,
+  rgba($gradient-theme, 0%) 0% 65%,
+  rgba($gradient-theme, 40%) 65% 100%
+);

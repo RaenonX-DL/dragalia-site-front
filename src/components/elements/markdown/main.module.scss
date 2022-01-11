@@ -1,56 +1,78 @@
+@use "sass:color";
 @use "../../../../styles/colors";
 @use "../../../../styles/section";
-@use "../../../../styles/table";
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
 $strong-color: #80b2ff;
 $markdown-bg-color: colors.$color-section;
 $item-margin: 0.75rem;
-$table-border-color: #656565;
+$table-border-style: 1px solid colors.$color-bw-101;
 
-.mdBody {
+.md-body {
   @extend %section-preset;
 
   overflow: auto;
-  // Bottom padding is determined by the elements
+
+  // Bottom padding determined by the elements
   padding: $item-margin $item-margin 0 $item-margin;
 
-  table {
-    @extend %standard-table;
+  @include media-breakpoint-up(lg) {
+    // For wider screens
 
-    @media screen and (max-width: 992px) {
+    table {
+      td > span.responsive-header {
+        display: none;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    // For narrower screens
+
+    table {
+      & > :not(:first-child) {
+        // Removes the bootstrap default styling for header row
+        border-top: 0;
+      }
+
       thead {
         display: none;
       }
 
+      th,
       td {
-        border-bottom: 1px solid $table-border-color;
-        display: block;
-        text-align: right;
-      }
-
-      td > span.responsiveHeader {
-        float: left;
-      }
-
-      td:last-child {
-        border-bottom: 0;
+        @include media-breakpoint-down(lg) {
+          white-space: break-spaces;
+        }
       }
 
       tr {
         display: block;
         margin-bottom: $item-margin;
+        border: $table-border-style;
       }
 
       tr:last-child {
         margin-bottom: 0;
       }
-    }
 
-    @media screen and (min-width: 992px) {
-      td > span.responsiveHeader {
-        display: none;
+      td {
+        border-bottom: $table-border-style;
+        display: block;
+        text-align: right;
       }
-    }
+
+      td > span.responsive-header {
+        float: left;
+        margin-right: 0.5rem;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+    } // End of <table> styling
   }
 
   div {
@@ -58,16 +80,21 @@ $table-border-color: #656565;
       margin-bottom: $item-margin;
     }
 
-    &.youtubeEmbed {
+    &.youtube-embed {
       position: relative;
       padding-bottom: 56.25%; // 16:9
       height: 0;
+    }
+
+    &:last-child[class*="table-responsive"] {
+      // Adds back the bottom margin invalidated by the root bootstrap SCSS
+      margin-bottom: $item-margin;
     }
   }
 
   span {
     &.calc {
-      background-color: darken($markdown-bg-color, 10%);
+      background-color: color.adjust($markdown-bg-color, $lightness: -10%);
       color: #ff0;
       border-radius: 0.25rem;
       padding: 0.1rem 0.2rem;
@@ -75,7 +102,7 @@ $table-border-color: #656565;
   }
 
   iframe {
-    &.youtubeEmbed {
+    &.youtube-embed {
       position: absolute;
       top: 0;
       left: 0;
@@ -95,7 +122,7 @@ $table-border-color: #656565;
   blockquote {
     border-left: 0.35rem solid $strong-color;
     padding-left: 0.5rem;
-    color: colors.$color-light-gray;
+    color: colors.$color-bw-170;
     margin: 0;
   }
 
@@ -119,7 +146,7 @@ $table-border-color: #656565;
   h2,
   h3 {
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid colors.$hr-color;
+    border-bottom: 1px solid colors.$color-hr;
   }
 
   h1,

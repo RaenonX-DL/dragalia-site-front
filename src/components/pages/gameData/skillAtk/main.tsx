@@ -1,11 +1,10 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 
 import {scrollRefToTop} from '../../../../utils/scroll';
 import {GoogleAnalytics} from '../../../../utils/services/ga';
+import {RowRegular, RowTight} from '../../../elements/common/grid/row';
 import {useAtkSkillResources} from '../../../hooks/atkSkillResources';
 import {AttackingSkillInput} from './in/main';
 import {InputData} from './in/types';
@@ -50,8 +49,8 @@ export const AttackingSkillLookup = () => {
 
   return (
     <>
-      <Row>
-        <Col lg={4} className="section p-3 mb-3">
+      <RowRegular>
+        <Col lg={4} className="section p-3">
           <AttackingSkillInput
             isAllFetched={isAllFetched}
             onSearchRequested={(inputData: InputData) => {
@@ -64,8 +63,8 @@ export const AttackingSkillLookup = () => {
             }}
           />
         </Col>
-        <Col ref={entryCol} lg={8} className="px-0 px-lg-3">
-          <Form.Row className="text-right mb-1">
+        <Col ref={entryCol} lg={8}>
+          <RowTight className="mb-2">
             <Col>
               <AttackingSkillPreset
                 inputData={inputDataForward.inputData}
@@ -83,7 +82,7 @@ export const AttackingSkillLookup = () => {
                 }}
               />
             </Col>
-          </Form.Row>
+          </RowTight>
           <AttackingSkillOutput
             displayConfig={inputDataForward.inputData.display}
             calculatedEntries={inputDataForward.calculatedEntries || []}
@@ -93,7 +92,7 @@ export const AttackingSkillLookup = () => {
             statusEnums={statusEnums}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </>
   );
 };

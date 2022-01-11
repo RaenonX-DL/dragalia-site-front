@@ -1,0 +1,22 @@
+@use "../../../../../../styles/colors";
+
+label {
+  &.input-item:hover {
+    background-color: colors.$color-bw-0;
+  }
+}
+
+div {
+  &.input-group {
+    text-align: center;
+
+    & > label {
+      margin-bottom: 0.7rem;
+    }
+
+    & > label:not(:only-of-type) {
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Table from 'react-bootstrap/Table';
 import {TableCellComponent, TableRowComponent} from 'react-markdown/src/ast-to-react';
 
 import styles from '../main.module.css';
@@ -15,7 +16,9 @@ export const renderTable = ({children}: MarkdownComponentProps) => {
   // https://stackoverflow.com/q/1232040
   headers.length = 0;
 
-  return <table>{children}</table>;
+  return (
+    <Table responsive striped hover>{children}</Table>
+  );
 };
 
 export const renderTableHeader = ({children}: MarkdownComponentProps) => {
@@ -43,7 +46,7 @@ export const renderTableRow: TableRowComponent = ({children}) => {
 export const renderTableCell: TableCellComponent = ({children}) => {
   return (
     <td>
-      <span className={styles.responsiveHeader}>
+      <span className={styles['responsive-header']}>
         {headers[idxCounter++]}
       </span>
       <TextChildren>

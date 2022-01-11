@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../i18n/hook';
+import {RowRegular} from '../../../../elements/common/grid/row';
+import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {MarkdownInput} from '../../../../elements/markdown/input';
 
 
@@ -35,41 +36,45 @@ export const QuestPositionUnit = ({
     <div className="section p-3">
       <Row>
         <Col>
-          <Form.Control
-            className="mb-2"
-            type="text" value={positionName}
-            placeholder={t((t) => t.posts.quest.character)}
+          <FloatingInput
+            label={t((t) => t.posts.quest.character)}
+            className="mb-3"
+            type="text"
+            value={positionName}
             onChange={(e) => onPositionNameChanged(e.target.value)}
             required
           />
         </Col>
       </Row>
-      <Row>
-        <Col lg={4} className="pr-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.quest.builds)}</Form.Label>
+      <RowRegular>
+        <Col lg={4}>
           <MarkdownInput
-            rows={7} value={builds}
+            label={t((t) => t.posts.quest.builds)}
+            rows={7}
+            value={builds}
             onChanged={(e) => onBuildsChanged(e.target.value)}
             required
           />
         </Col>
-        <Col lg={4} className="px-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.quest.rotations)}</Form.Label>
+        <Col lg={4}>
           <MarkdownInput
-            rows={7} value={rotations}
+            label={t((t) => t.posts.quest.rotations)}
+            rows={7}
+            value={rotations}
             onChanged={(e) => onRotationsChanged(e.target.value)}
             required
           />
         </Col>
-        <Col lg={4} className="pl-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.quest.tips)}</Form.Label>
+        <Col lg={4}>
           <MarkdownInput
-            rows={7} value={tips}
+            label={t((t) => t.posts.quest.tips)}
+            rows={7}
+            value={tips}
             onChanged={(e) => onTipsChanged(e.target.value)}
             required
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

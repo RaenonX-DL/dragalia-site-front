@@ -1,8 +1,80 @@
-@media (min-width: 1200px) {
-  div {
-    .iconOnlyEntry {
-      flex: 0 0 12.5%;
-      max-width: 12.5%;
+@use "../../../../../../styles/colors";
+@use "../../../../../../styles/utils";
+@import "../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
+div {
+  .icon-only-entry {
+    @include media-breakpoint-down(sm) {
+      @include utils.eq-width-col(3);
+
+      & div.unit-icon {
+        height: 4rem;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      @include utils.eq-width-col(3);
+
+      & div.unit-icon {
+        height: 5rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      @include utils.eq-width-col(5);
+
+      & div.unit-icon {
+        height: 5rem;
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include utils.eq-width-col(6);
+    }
+
+    @include media-breakpoint-up(xxl) {
+      @include utils.eq-width-col(7);
+    }
+  }
+
+  .complete-entry {
+    @include media-breakpoint-down(lg) {
+      @include utils.eq-width-col(1);
+    }
+
+    @include media-breakpoint-up(lg) {
+      @include utils.eq-width-col(2);
+    }
+
+    & img.unit-icon {
+      height: 4rem;
+    }
+
+    & div.info-top {
+      height: 2.5rem;
+    }
+
+    & div.info-bottom {
+      height: 1.5rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .landing-entry {
+    & img.unit-icon {
+      height: 4rem;
+    }
+
+    & div.info-top {
+      height: 2.5rem;
+    }
+
+    & div.info-bottom {
+      height: 1.5rem;
+      font-size: 0.8rem;
+      color: colors.$color-bw-215;
     }
   }
 }

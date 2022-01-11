@@ -21,6 +21,7 @@ export const sortFunc: SortFuncLookup = {
   normalAi: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'normalAi')}),
   normalCoop: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'normalCoop')}),
   sharedSkill: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'sharedSkill')}),
+  kaleidoscape: sortDescending({getComparer: (element) => getTierRanking(element.tierNote, 'kaleidoscape')}),
   avgRanking: sortDescending({
     getComparer: (element) => {
       const dimensionKeys = Object.keys(Dimension);
@@ -31,18 +32,21 @@ export const sortFunc: SortFuncLookup = {
       return total / count;
     },
   }),
+  lastUpdated: sortDescending({getComparer: (element) => element.tierNote.lastUpdateEpoch}),
 };
 
 export const orderName: {[sortBy in SortOrder]: GetTranslationFunction} = {
-  unitId: (t) => t.game.unitTier.sort.unitId,
+  lastUpdated: (t) => t.game.unitTier.sort.lastUpdated,
   avgRanking: (t) => t.game.unitTier.sort.avgRanking,
-  conSolo: (t) => t.game.unitTier.dimension.conSolo.name,
-  conAi: (t) => t.game.unitTier.dimension.conAi.name,
-  conCoop: (t) => t.game.unitTier.dimension.conCoop.name,
-  normalSolo: (t) => t.game.unitTier.dimension.normalSolo.name,
-  normalAi: (t) => t.game.unitTier.dimension.normalAi.name,
-  normalCoop: (t) => t.game.unitTier.dimension.normalCoop.name,
-  sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill.name,
+  conSolo: (t) => t.game.unitTier.dimension.conSolo,
+  conAi: (t) => t.game.unitTier.dimension.conAi,
+  conCoop: (t) => t.game.unitTier.dimension.conCoop,
+  normalSolo: (t) => t.game.unitTier.dimension.normalSolo,
+  normalAi: (t) => t.game.unitTier.dimension.normalAi,
+  normalCoop: (t) => t.game.unitTier.dimension.normalCoop,
+  sharedSkill: (t) => t.game.unitTier.dimension.sharedSkill,
+  kaleidoscape: (t) => t.game.unitTier.dimension.kaleidoscape,
+  unitId: (t) => t.game.unitTier.sort.unitId,
 };
 
 export const rankingColor: {[ranking in Ranking]: Property.Color} = {

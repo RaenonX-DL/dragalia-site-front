@@ -72,7 +72,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
   }
 
   return (
-    <div className="section">
+    <div className="section p-3">
       <Filter
         elementEnums={selectionData.elementEnums}
         exBuffParams={selectionData.exBuffParams}
@@ -80,7 +80,7 @@ export const ExAbilityInput = ({onSearchRequested}: InputProps) => {
         setInputData={setInputData}
       />
       <hr/>
-      <div className="text-right">
+      <div className="text-end">
         <Button
           variant="outline-info"
           onClick={onSearchRequested(inputData)}

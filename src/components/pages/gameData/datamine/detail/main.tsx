@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PyLocale, UpdatedIndexTask} from '../../../../../api-def/resources/depot/updated';
+import {PyLocale, UpdatedIndexTask} from '../../../../../api-def/resources';
 import {useNextRouter} from '../../../../../utils/router';
 import {AdsPageTop, AdsToolBottom} from '../../../../elements/common/ads/main';
 import {Loading} from '../../../../elements/common/loading';

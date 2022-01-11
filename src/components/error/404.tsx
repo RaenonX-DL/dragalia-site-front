@@ -11,7 +11,7 @@ export const Error404 = () => {
   const {t} = useI18n();
 
   return (
-    <Container className="p-3">
+    <Container className="mt-3 section py-5">
       <Row>
         <Col className="text-center text-danger">
           <span className="h2">{t((t) => t.meta.error['404'].description)}</span>

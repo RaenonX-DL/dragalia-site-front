@@ -18,9 +18,9 @@ export type RenderOptions = DeepPartial<Omit<AppReactContextValue, keyof PageMet
   hasSession?: boolean,
   alerts?: Array<AlertEntry>,
   contextParams?: PageMetaResponse['params'],
-}
+};
 
 export type RenderAppReturns = RenderResult & {
   rerender: (element?: React.ReactElement) => void,
   store: ReduxStore,
-}
+};

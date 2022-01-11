@@ -1,14 +1,15 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
+import {floatingControlHeight} from '../../../../../const/style';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
+import {RowRegular} from '../../../../elements/common/grid/row';
+import {FloatingInput} from '../../../../elements/form/control/floating/input';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
 import {useFormMeta} from '../../../../elements/posts/form/meta/hook';
 import {FormMetaLangPicker} from '../../../../elements/posts/form/meta/lang';
@@ -40,11 +41,10 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   const unitInfo = unitInfoMap.get(payload.unitId);
 
   return (
-    <Form.Row>
+    <RowRegular>
       <Col lg={3}>
-        <Form.Control
-          className="mb-3"
-          placeholder={t((t) => t.posts.info.id)}
+        <FloatingInput
+          label={t((t) => t.posts.info.id)}
           isValid={isValid} isInvalid={!isValid}
           onChange={(e) => {
             if (Number(e.target.value) || !e.target.value) {
@@ -55,18 +55,23 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
           disabled={isPreloaded || isChecking}
         />
       </Col>
-      <Col lg={6} className={unitInfo ? 'pr-0' : ''}>
-        <Row noGutters>
+      <Col lg={6}>
+        <RowRegular>
           <Col>
-            <Form.Control className="mb-3" type="text" value={unitInfo?.name[lang] || ''} disabled/>
+            <FloatingInput
+              label={t((t) => t.game.unitInfo.text.unitName)}
+              type="text"
+              value={unitInfo?.name[lang] || ''}
+              disabled
+            />
           </Col>
           {
             unitInfo &&
             <Col xs="auto">
-              <UnitIcon unitInfo={unitInfo} className="ml-1" style={{height: '2.5rem'}}/>
+              <UnitIcon unitInfo={unitInfo} style={{height: floatingControlHeight}}/>
             </Col>
           }
-        </Row>
+        </RowRegular>
       </Col>
       <Col lg={3}>
         <FormMetaLangPicker
@@ -75,6 +80,6 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
           setAvailability={setAvailability}
         />
       </Col>
-    </Form.Row>
+    </RowRegular>
   );
 };

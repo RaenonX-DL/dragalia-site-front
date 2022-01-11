@@ -1,10 +1,11 @@
 import React from 'react';
 
+import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
+import {RowTight} from '../../../../../elements/common/grid/row';
 import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
 import {InputData, SortOrder} from '../in/types';
 import styles from '../main.module.css';
@@ -32,20 +33,18 @@ export const UnitInfoLookupOutput = ({
 
   if (!unitInfoSorted.length) {
     return (
-      <h5 className="text-danger text-center">
+      <Alert variant="danger">
         {t((t) => t.misc.noResult)}
-      </h5>
+      </Alert>
     );
   }
 
   return (
-    <Form.Row>
+    <RowTight className="mb-2">
       {unitInfoSorted.map((info) => (
         <Col
           key={info.unitInfo.id}
-          xs={inputData.iconOnly ? 4 : undefined}
-          lg={inputData.iconOnly ? 2 : 6}
-          className={`mb-2 ${inputData.iconOnly ? styles.iconOnlyEntry : ''}`}
+          className={inputData.iconOnly ? styles['icon-only-entry'] : styles['complete-entry']}
         >
           <UnitInfoEntry
             unitInfo={info.unitInfo}
@@ -54,6 +53,6 @@ export const UnitInfoLookupOutput = ({
           />
         </Col>
       ))}
-    </Form.Row>
+    </RowTight>
   );
 };

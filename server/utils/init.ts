@@ -1,6 +1,7 @@
 import fastify, {FastifyInstance} from 'fastify';
-import next from 'next';
-import {NextServer} from 'next/dist/server/next';
+// False-negative of duplicated import
+import next from 'next'; // eslint-disable-line import/no-duplicates
+import {NextServer} from 'next/dist/server/next'; // eslint-disable-line import/no-duplicates
 
 import {registerHandlers} from './init/handlers';
 import {isProduction} from './misc';

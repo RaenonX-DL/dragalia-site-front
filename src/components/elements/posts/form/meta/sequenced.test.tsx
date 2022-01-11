@@ -65,12 +65,12 @@ describe('Sequenced form meta input', () => {
       ),
       {user: {isAdmin: true}},
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '577', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '577', {rerender});
 
     jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(true));
-    expect(idField).toHaveClass('is-valid');
+    expect(idField.previousSibling).toHaveClass('is-valid');
   });
 
   it('shows the invalid mark upon failing the check', async () => {
@@ -94,12 +94,12 @@ describe('Sequenced form meta input', () => {
       ),
       {user: {isAdmin: true}},
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '577', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '577', {rerender});
 
     jest.advanceTimersByTime(1100);
     await waitFor(() => expect(setAvailability).toHaveBeenCalledWith(false));
-    expect(idField).toHaveClass('is-invalid');
+    expect(idField.previousSibling).toHaveClass('is-invalid');
   });
 
   it('starts checking 1 sec later after the last seq ID change', async () => {
@@ -115,8 +115,8 @@ describe('Sequenced form meta input', () => {
       ),
       {user: {isAdmin: true}},
     );
-    const idField = screen.getByPlaceholderText(translationEN.posts.info.id);
-    typeInput(idField, '577', {rerender});
+    const idField = screen.getByText(translationEN.posts.info.id);
+    typeInput(idField.previousSibling as Element, '577', {rerender});
 
     jest.advanceTimersByTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(3);
@@ -136,8 +136,8 @@ describe('Sequenced form meta input', () => {
       ),
       {user: {isAdmin: true}},
     );
-    const titleField = screen.getByPlaceholderText(titlePlaceholder);
-    typeInput(titleField, 'Another Title', {rerender});
+    const titleField = screen.getByText(titlePlaceholder);
+    typeInput(titleField.previousSibling as Element, 'Another Title', {rerender});
 
     jest.advanceTimersByTime(1100);
     expect(setPayload).toHaveBeenCalledTimes(13);
@@ -201,8 +201,8 @@ describe('Sequenced form meta input', () => {
       ),
       {user: {isAdmin: true}},
     );
-    const titleField = screen.getByPlaceholderText(titlePlaceholder);
-    typeInput(titleField, 'Another Title', {rerender});
+    const titleField = screen.getByText(titlePlaceholder);
+    typeInput(titleField.previousSibling as Element, 'Another Title', {rerender});
 
     jest.advanceTimersByTime(100);
     expect(setPayload).toHaveBeenCalledTimes(13);

@@ -1,34 +1,39 @@
 @use "../../../../../styles/colors";
+@use "../../../../../styles/utils";
+
+@mixin conversation() {
+  margin: 0.3rem 0;
+}
 
 div {
-  &.sysMessage {
-    border: colors.$color-black-80 1px solid;
+  &.sys-message {
+    border: colors.$color-bw-80 1px solid;
     border-radius: 0.25rem;
     text-align: center;
     padding: 0.5rem;
     margin: 0.5rem 0;
   }
 
-  &.speakerIcon {
+  &.speaker-icon {
     height: 3rem;
     width: 3rem;
     margin-right: 0.5rem;
   }
 
-  &.mainImage {
+  &.main-image {
     text-align: center;
   }
 
-  &.relatedLinks {
+  &.related-links {
     text-align: center;
   }
 
-  &.audioControl {
+  &.audio-control {
     text-align: center;
     margin: 0.5rem 0;
   }
 
-  @keyframes conversationBackground {
+  @keyframes conversation-background {
     0% {
       background-color: #312901;
     }
@@ -43,13 +48,13 @@ div {
   }
 
   &.conversation {
-    margin: 0.3rem 0;
+    @include conversation;
   }
 
-  &.conversationActive {
-    @extend .conversation;
+  &.conversation-active {
+    @include conversation;
 
-    animation: conversationBackground 3s linear infinite;
+    animation: conversation-background 3s linear infinite;
     border: #806805 solid 3px;
     border-radius: 0.5rem;
     padding: 0 0.3rem 0.3rem;
@@ -57,25 +62,24 @@ div {
 }
 
 img {
-  &.speakerIcon {
+  &.speaker-icon {
     border-radius: 0.25rem;
   }
 
-  &.mainImage {
+  &.main-image {
     max-height: 60vh;
   }
 }
 
 button {
-  &.audioControl {
-    // For centering icon
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &.audio-control {
+    @extend %flex-center;
+
     // Sizing
     font-size: 2rem;
     width: 3rem;
     height: 3rem;
+
     // Styling
     border: 0;
     margin: 0 auto;

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {Property} from 'csstype';
-import Form from 'react-bootstrap/Form';
 
 import {useI18n} from '../../../../i18n/hook';
 import {transformForSearch} from '../../../../utils/text';
+import {FloatingInput} from '../../form/control/floating/input';
 import {SearchResults} from './results';
 
 
@@ -33,10 +33,10 @@ export const Search = <E, >({
 
   return (
     <>
-      <Form.Control
+      <FloatingInput
+        label={t((t) => t.autoComplete.inputPlaceholder)}
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        placeholder={t((t) => t.autoComplete.inputPlaceholder)}
       />
       <SearchResults results={matchedOptions} renderEntry={renderMatchedSelection} height={height}/>
     </>

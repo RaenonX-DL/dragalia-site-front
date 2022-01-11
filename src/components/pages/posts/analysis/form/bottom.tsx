@@ -19,10 +19,11 @@ export const FormBottom = <P extends AnalysisBody>({formState, setPayload}: Form
   return (
     <Row>
       <Col>
-        <h5>{t((t) => t.posts.analysis.videos)}</h5>
         <MarkdownInput
+          label={t((t) => t.posts.analysis.videos)}
           onChanged={(e) => setPayload('videos', e.target.value)}
-          rows={5} value={payload.videos}
+          rows={5}
+          value={payload.videos}
         />
       </Col>
     </Row>

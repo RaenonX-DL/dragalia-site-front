@@ -1,0 +1,47 @@
+@use "../../../../../../styles/utils";
+@use "../../main.module";
+@import "../../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
+div {
+  &.entry {
+    @include media-breakpoint-down(sm) {
+      @include utils.eq-width-col(3);
+    }
+
+    @include media-breakpoint-up(sm) {
+      @include utils.eq-width-col(4);
+    }
+
+    @include media-breakpoint-up(lg) {
+      @include utils.eq-width-col(5);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include utils.eq-width-col(6);
+    }
+
+    @include media-breakpoint-up(xxl) {
+      @include utils.eq-width-col(7);
+    }
+  }
+}
+
+span {
+  &.dimension-point-icon {
+    font-size: 1.1rem;
+    float: left;
+    margin-right: 0.5rem;
+  }
+}
+
+a {
+  &.tier-note-dimension {
+    @include main.tier-note;
+
+    margin-left: 0;
+    margin-right: 0.5rem;
+    float: left;
+  }
+}

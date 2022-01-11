@@ -1,4 +1,4 @@
-import {UnitType} from '../../../api-def/api';
+import {PostType, UnitType} from '../../../api-def/api';
 import {TranslationStruct} from '../definition';
 
 
@@ -273,7 +273,7 @@ export const translation: TranslationStruct = {
         crt: '爆擊 - {{crtVal}}',
         crtInspired: '超靈感',
         crtRate: '爆擊率 {{crtRate}} %',
-        crtDamage: '爆擊傷害 +{{crtDamage}} %',
+        crtDamage: '爆擊傷害 +{{crtDamage}}%',
         skill: '技能 - {{skillVal}}',
         skillPassive: '被動 +{{skillPassivePct}}%',
         skillBuff: 'Buff +{{skillBuffPct}}%',
@@ -394,6 +394,7 @@ export const translation: TranslationStruct = {
         total: '(總計)',
         relatedLinks: '相關連結',
         iconOnly: '只顯示圖片',
+        unitName: '角色/龍族名稱',
       },
       tips: {
         clickNameForLinks: '點擊上方角色名稱以查看相關連結。',
@@ -431,34 +432,14 @@ export const translation: TranslationStruct = {
         },
       },
       dimension: {
-        conSolo: {
-          name: '虛無 (單人)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以單人模式遊玩時的評級。',
-        },
-        conCoop: {
-          name: '虛無 (共鬥)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，以共鬥模式遊玩時的評級。',
-        },
-        conAi: {
-          name: '虛無 (AI)',
-          description: '在虛無有效的關卡中 (例如: 厄魔封滅戰)，作為 AI 時的評級。',
-        },
-        normalSolo: {
-          name: '一般 (單人)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以單人模式遊玩的評級。',
-        },
-        normalCoop: {
-          name: '一般 (共鬥)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，以共鬥模式遊玩的評級。',
-        },
-        normalAi: {
-          name: '一般 (AI)',
-          description: '在一般關卡中 (例如: 絕級咢牙、真龍)，作為 AI 時的評級。',
-        },
-        sharedSkill: {
-          name: '共享技能',
-          description: '共享技能評級。只限角色。',
-        },
+        conSolo: '虛無 (單人)',
+        conCoop: '虛無 (共鬥)',
+        conAi: '虛無 (AI)',
+        normalSolo: '一般 (單人)',
+        normalCoop: '一般 (共鬥)',
+        normalAi: '一般 (AI)',
+        sharedSkill: '共享技能',
+        kaleidoscape: '萬花筒',
       },
       display: {
         conSolo: '虛無 (單人)',
@@ -468,11 +449,13 @@ export const translation: TranslationStruct = {
         normalCoop: '一般 (共鬥)',
         normalAi: '一般 (AI)',
         sharedSkill: '共享',
+        kaleidoscape: '萬花筒',
         all: '全部',
       },
       sort: {
         unitId: '物件 ID',
         avgRanking: '平均評級',
+        lastUpdated: '最後更新時間',
       },
       alert: {
         refRemoval: '若被移除的要點條目有任何角色使用中，則該要點條目的參照也會被移除。',
@@ -574,9 +557,6 @@ export const translation: TranslationStruct = {
         '會在各社交平台上 (例如: 巴哈、FB 社團、LINE...等) 公布。\n\n' +
         '### Email 通知系統完成後\n\n' +
         '有登入過的使用者，或是有登記要收到最新功能通知的使用者會收到關於新功能 / 頁面的 Email。',
-      welcome: '歡迎來到由 OM 製作的龍絆攻略網！大部分的功能、網頁都還在建造中，不便之處請見諒。\n\n' +
-        '目前 **高難攻略、物件評測** 已完成，歡迎瀏覽。\n\n' +
-        '點選建置中的頁面可以查看相關說明。',
       videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
     },
     error: {
@@ -599,10 +579,6 @@ export const translation: TranslationStruct = {
     timestamp: {
       lastModified: '最後修改於',
       lastUpdated: '最後更新於',
-    },
-    unitType: {
-      [UnitType.CHARACTER]: '角色',
-      [UnitType.DRAGON]: '龍族',
     },
     collapse: '收摺/展開',
     collapseAll: '全部收摺/展開',
@@ -781,6 +757,8 @@ export const translation: TranslationStruct = {
     suffix: ' | 龍絆攻略站 by OM',
   },
   nav: {
+    unitInfo: '角色/龍族索引',
+    unitTier: '評級',
     gameData: {
       self: '遊戲資訊',
       passive: '被動技能',
@@ -792,8 +770,23 @@ export const translation: TranslationStruct = {
       story: '故事',
       datamine: '解包',
     },
-    unitInfo: '角色/龍族索引',
-    unitTier: '評級',
+    header: {
+      posts: '文章',
+      gameData: '遊戲相關',
+      others: '其他',
+    },
+    layout: {
+      config: '版面設定',
+      current: {
+        fluid: '全寬',
+      },
+      fluid: {
+        enable: '啟用',
+        disable: '停用',
+        enabled: '已啟用',
+        disabled: '已停用',
+      },
+    },
   },
   posts: {
     analysis: {
@@ -840,7 +833,6 @@ export const translation: TranslationStruct = {
       published: '發布於',
       title: '標題',
       viewCount: '瀏覽次數',
-      viewCountComplete: '瀏覽 {{count}} 次',
     },
     manage: {
       add: '新增貼文',
@@ -881,10 +873,50 @@ export const translation: TranslationStruct = {
       video: '影片',
     },
   },
+  home: {
+    section: {
+      stats: {
+        title: '統計資料',
+        header: {
+          perCountry: '各國週期內使用者',
+          perLang: '各語系使用者',
+          active: '週期內使用者 (日平均)',
+        },
+        content: {
+          totalLangUser: '總計: {{total}}',
+        },
+        ui: {
+          stacked: '切換為 堆疊',
+          separated: '切換為 單獨',
+          country: '國別',
+          user: '使用者',
+          periodUnitDay: '日',
+          periodActive: {
+            legend: '{{periodDays}} 日內',
+            period: '週期 (日)',
+            dailyAvg: '日均',
+            total: '總計',
+            d28diffPct: '差異 % (對 28D)',
+          },
+        },
+      },
+      features: '網站功能',
+      recentlyUpdated: '文章更新',
+    },
+    message: {
+      features: '歡迎瀏覽導引列以了解更多網站功能。',
+      noPost: '無可用文章更新資訊。',
+    },
+  },
   enum: {
     unitType: {
       [UnitType.CHARACTER]: '角色',
       [UnitType.DRAGON]: '龍族',
+    },
+    postType: {
+      [PostType.ANALYSIS]: '角色/龍族評測',
+      [PostType.QUEST]: '高難攻略',
+      [PostType.MISC]: '其他文章',
     },
   },
 };

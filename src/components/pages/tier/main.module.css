@@ -1,93 +1,81 @@
+div.point-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 span.title {
   font-size: 0.9rem;
 }
 span.ranking {
   font-size: 1.5rem;
 }
-span.pointIcon {
+span.point-icon {
   font-size: 1.3em;
   margin-right: 0.25rem;
 }
-span.dimensionPointIcon {
-  font-size: 1.1rem;
-  float: left;
-  margin-right: 0.5rem;
-}
 
-div.pointIcon {
+div.point-icon {
   font-size: 1.5em;
   width: 1.5em;
   margin-right: 0.5rem;
   text-align: center;
 }
-div.pointEntry {
+div.point-entry {
   display: flex;
   align-items: center;
   height: 100%;
 }
-div.dimensionEntryBar {
-  position: absolute;
-  bottom: 0;
-  text-align: right;
-  width: 100%;
-  margin-bottom: -0.3rem;
-}
 
-a.tierNote, a.tierNoteDimension {
+a.tier-note {
   border: 0;
   color: #bebebe;
   font-size: 1.1rem;
   margin-left: 0.7rem;
 }
-a.tierNote:hover, a.tierNoteDimension:hover {
+a.tier-note:hover {
   border: 0;
   color: #bebebe;
   color: white;
 }
-a.tierNoteDimension {
-  font-size: 1.1rem;
-  margin-left: 0;
-  margin-right: 0.5rem;
-  float: left;
-}
-a.tierNoteDimension:hover {
+a.tier-note-dimension:hover {
   border: 0;
   color: #bebebe;
   color: white;
 }
-a.unitPoint {
+a.unit-point {
   border: 0;
   color: #bebebe;
   height: 80%;
 }
-a.unitPoint:hover {
+a.unit-point:hover {
   border: 0;
   color: #bebebe;
   color: white;
   height: 80%;
 }
-a.editIcon {
+a.edit-icon {
   border: 0;
   color: #bebebe;
   margin-left: 0.5rem;
   font-size: 1rem;
 }
-a.editIcon:hover {
+a.edit-icon:hover {
   border: 0;
   color: #bebebe;
   color: white;
 }
-a.pointInfo {
+a.point-info {
   border: 0;
   color: #bebebe;
 }
-a.pointInfo:hover {
+a.point-info:hover {
   border: 0;
   color: #bebebe;
   color: white;
 }
 
-img.unitIcon {
+img.unit-icon {
   opacity: 0.2;
   right: 0;
   bottom: 0;

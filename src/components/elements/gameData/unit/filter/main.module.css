@@ -1,0 +1,14 @@
+div.button {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+div.button > div {
+  flex-grow: 1;
+}
+
+div.button button {
+  height: 100%;
+}
+
+/*# sourceMappingURL=main.module.css.map */

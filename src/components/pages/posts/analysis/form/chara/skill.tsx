@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import {useI18n} from '../../../../../../i18n/hook';
+import {RowRegular} from '../../../../../elements/common/grid/row';
+import {FloatingInput} from '../../../../../elements/form/control/floating/input';
 import {MarkdownInput} from '../../../../../elements/markdown/input';
 
 
@@ -39,45 +40,45 @@ export const AnalysisSkillInput = ({
     <div className="section p-3">
       <Row>
         <Col>
-          <Form.Control
-            className="mb-2"
+          <FloatingInput
+            className="mb-3"
             type="text"
             value={name}
-            placeholder={t((t) => t.posts.analysis.skill.name)}
+            label={t((t) => t.posts.analysis.skill.name)}
             onChange={(e) => onNameChanged(e.target.value)}
             required
           />
         </Col>
       </Row>
-      <Row>
-        <Col lg className="pr-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.analysis.skill.info)}</Form.Label>
+      <RowRegular>
+        <Col lg>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.skill.info)}
             rows={inputRows}
             value={info}
             onChanged={(e) => onInfoChanged(e.target.value)}
             required={required.some((val) => val === 'info')}
           />
         </Col>
-        <Col lg className="px-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.analysis.skill.rotations)}</Form.Label>
+        <Col lg>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.skill.rotations)}
             rows={inputRows}
             value={rotations}
             onChanged={(e) => onRotationsChanged(e.target.value)}
             required={required.some((val) => val === 'rotations')}
           />
         </Col>
-        <Col lg className="pl-lg-2 mb-2">
-          <Form.Label>{t((t) => t.posts.analysis.skill.tips)}</Form.Label>
+        <Col lg>
           <MarkdownInput
+            label={t((t) => t.posts.analysis.skill.tips)}
             rows={inputRows}
             value={tips}
             onChanged={(e) => onTipsChanged(e.target.value)}
             required={required.some((val) => val === 'tips')}
           />
         </Col>
-      </Row>
+      </RowRegular>
     </div>
   );
 };

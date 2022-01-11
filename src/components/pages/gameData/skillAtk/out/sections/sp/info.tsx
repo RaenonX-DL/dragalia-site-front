@@ -17,7 +17,7 @@ export const SpInfoTable = ({calculatedData}: Pick<SectionSpInfoProps, 'calculat
           <tr>
             <td className={styles.sp}>{t((t) => t.game.skillAtk.spInfo.sp)}</td>
             <td className={styles.ssp}>{t((t) => t.game.skillAtk.spInfo.ssp)}</td>
-            <td className={styles.ssCost}>{t((t) => t.game.skillAtk.spInfo.ssCost)}</td>
+            <td className={styles['ss-cost']}>{t((t) => t.game.skillAtk.spInfo.ssCost)}</td>
           </tr>
           <tr>
             <td className={styles.sp}>{
@@ -33,7 +33,7 @@ export const SpInfoTable = ({calculatedData}: Pick<SectionSpInfoProps, 'calculat
                 calculatedData.skillEntry.skill.ssSp.toFixed(0) :
                 '-'
             }</td>
-            <td className={styles.ssCost}>{
+            <td className={styles['ss-cost']}>{
               calculatedData.skillEntry.skill.sharable ?
                 calculatedData.skillEntry.skill.ssCost.toFixed(0) :
                 '-'

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {CharaExAbilityDataEntry, ConditionEnumMap} from '../../../../../api-def/resources';
+import {useI18n} from '../../../../../i18n/hook';
+import {RowTight} from '../../../../elements/common/grid/row';
 import {overLengthWarningCheck} from '../../../../elements/gameData/warnings/overLength';
 import {InputData} from '../in/types';
 import {ExAbilityEntry} from './entry';
@@ -18,6 +20,8 @@ export type OutputProps = {
 
 
 export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: OutputProps) => {
+  const {t} = useI18n();
+
   // Early termination if no input data
   if (!inputData) {
     return <></>;
@@ -47,5 +51,13 @@ export const ExAbilityOutput = ({exAbilityData, conditionEnums, inputData}: Outp
         )),
     );
 
-  return <Row>{entries}</Row>;
+  if (!entries.length) {
+    return (
+      <Alert variant="danger">
+        {t((t) => t.misc.noResult)}
+      </Alert>
+    );
+  }
+
+  return <RowTight>{entries}</RowTight>;
 };

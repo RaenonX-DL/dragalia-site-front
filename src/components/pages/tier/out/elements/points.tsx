@@ -57,17 +57,14 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps)
       })}
       {
         context?.session?.user.isAdmin &&
-        <>
-          <hr className="my-2"/>
-          <div className="text-right">
-            <InternalLink
-              className={styles.editIcon}
-              href={GeneralPath.TIER_POINTS_EDIT}
-              locale={lang}
-              content={<IconEdit/>}
-            />
-          </div>
-        </>
+        <div className="text-end">
+          <InternalLink
+            className={styles['edit-icon']}
+            href={GeneralPath.TIER_POINTS_EDIT}
+            locale={lang}
+            content={<IconEdit/>}
+          />
+        </div>
       }
     </>
   );

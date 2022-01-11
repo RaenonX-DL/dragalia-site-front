@@ -11,11 +11,9 @@ export type ChainTabProps = {
 export const NormalAttackChainTab = ({chain}: ChainTabProps) => {
   return (
     <>
-      {
-        chain.chain.map((branchedChain, idx) => (
-          <NormalAttackBranchedTab branchedChain={branchedChain} key={idx}/>
-        ))
-      }
+      {chain.chain.map((branchedChain, idx) => (
+        <NormalAttackBranchedTab branchedChain={branchedChain} key={idx}/>
+      ))}
     </>
   );
 };

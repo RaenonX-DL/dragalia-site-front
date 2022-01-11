@@ -37,19 +37,14 @@ export const UnitIconClickable = ({unit, className, style, hasAnalysis = true}: 
         state={modalState}
         setState={setModalState}
         lookup={{
-          content: (
-            <UnitLinkModal
-              unit={unit} hasAnalysis={hasAnalysis}
-              modalState={modalState} setModalState={setModalState}
-            />
-          ),
+          content: <UnitLinkModal unit={unit} hasAnalysis={hasAnalysis}/>,
           loading: <Loading/>,
         }}
       />
       <div className={className || ''} style={style} onClick={onIconClicked}>
         <Image
           text={unit.name} src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
-          className={styles.clickableUnitIcon}
+          className={styles['clickable-unit-icon']}
         />
       </div>
     </>

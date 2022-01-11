@@ -1,0 +1,41 @@
+@use "../../../../../../../../styles/colors";
+
+div {
+  &.result-table {
+    table {
+      width: 100%;
+      padding-right: 30px;
+
+      tr {
+        background-color: colors.$color-bw-7;
+        border: colors.$color-bw-80;
+      }
+
+      tr:last-child {
+        margin-bottom: 0;
+      }
+
+      th,
+      td {
+        padding: 0.2rem 1rem;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 0.8rem;
+      }
+
+      tbody {
+        tr:nth-of-type(odd) {
+          background-color: colors.$color-bw-20;
+        }
+
+        tr:nth-of-type(even) {
+          background-color: colors.$color-bw-32;
+        }
+
+        tr:hover {
+          background-color: colors.$color-dark-cyan;
+        }
+      }
+    }
+  }
+}

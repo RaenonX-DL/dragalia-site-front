@@ -1,5 +1,6 @@
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
 import {DepotPaths, toUnitInfoMap, toUnitInfoNameMap, UnitInfoData, UnitInfoMap} from '../../../../api-def/resources';
+import {UnitInfoRequireIcon} from '../../../../components/elements/gameData/unit/modal/types';
 import {ApiRequestSender} from '../../api/requestSender';
 import {ResourceLoader} from '../loader';
 
@@ -39,3 +40,12 @@ const fnGetImageURL: {[unitType in UnitType]: (iconName: string) => string} = {
 export const getImageURL = (unitInfo: UnitInfoData) => {
   return fnGetImageURL[unitInfo.type](unitInfo.iconName);
 };
+
+export const unitInfoToClickableProps = (unitInfo: UnitInfoData, lang: SupportedLanguages): UnitInfoRequireIcon => ({
+  id: unitInfo.id,
+  name: unitInfo.name[lang],
+  icon: {
+    type: unitInfo.type,
+    name: unitInfo.iconName,
+  },
+});

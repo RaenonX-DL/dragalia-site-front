@@ -33,7 +33,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
     <>
       <Row className="mb-2">
         <Col>
-          <Button variant="outline-warning" onClick={onClickAllOpen} className="float-right">
+          <Button variant="outline-warning" onClick={onClickAllOpen} className="float-end">
             {t((t) => t.misc.collapseAll)}
           </Button>
         </Col>
@@ -46,7 +46,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
             <Row>
               <Col className="mb-2">
                 <Button
-                  className={styles.sectionTitleButton}
+                  className={styles['section-title-button']}
                   onClick={() => setOpen({...open, [title]: !open[title]})}
                   variant="outline-light"
                 >

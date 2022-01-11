@@ -36,12 +36,7 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
         state={modalState}
         setState={setModalState}
         lookup={{
-          content: (
-            <UnitLinkModal
-              unit={unit} hasAnalysis={hasAnalysis}
-              modalState={modalState} setModalState={setModalState}
-            />
-          ),
+          content: <UnitLinkModal unit={unit} hasAnalysis={hasAnalysis}/>,
           loading: <Loading/>,
         }}
       />
@@ -49,7 +44,7 @@ export const UnitLink = ({unit, className, style, hasAnalysis = true}: UnitLinkP
         unit.icon &&
         <Image
           text="" src={DepotPaths.getUnitIconURL(unit.icon.type, unit.icon.name)}
-          className="unitIcon"
+          className="unit-icon"
         />
       }
       <InternalLink

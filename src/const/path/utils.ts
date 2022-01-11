@@ -1,3 +1,4 @@
+import {PostType} from '../../api-def/api';
 import {allPaths, DataPath, PagePath, PostPath, UnitPath} from './definitions';
 
 
@@ -15,4 +16,10 @@ export const isPostPath = (path: string): path is PostPath => {
 
 export const isPagePath = (path: string): path is PagePath => {
   return allPaths.some((pagePath) => pagePath === path);
+};
+
+export const toPostPath: {[type in PostType]: PostPath} = {
+  [PostType.ANALYSIS]: PostPath.ANALYSIS,
+  [PostType.QUEST]: PostPath.QUEST,
+  [PostType.MISC]: PostPath.MISC,
 };

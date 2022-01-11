@@ -76,25 +76,4 @@ describe('Clickable unit icon', () => {
     expect(await screen.findByText('Info')).toBeInTheDocument();
     expect(screen.queryByText('Analysis')).not.toBeInTheDocument();
   });
-
-  it('shows loading on clicking link', async () => {
-    renderReact(() => (
-      <UnitIconClickable
-        unit={{
-          id: 10950101,
-          name: 'Gala Leonidas',
-          icon: {type: UnitType.CHARACTER, name: 'G!Leon'},
-        }}
-        hasAnalysis
-      />
-    ));
-
-    const iconElement = await screen.findByText('', {selector: 'img'});
-    userEvent.click(iconElement);
-
-    const analysisLink = await screen.findByText('Analysis');
-    userEvent.click(analysisLink);
-
-    expect(await screen.findByText(/Loading/));
-  });
 });

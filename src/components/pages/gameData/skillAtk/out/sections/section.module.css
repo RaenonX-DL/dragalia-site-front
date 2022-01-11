@@ -6,7 +6,7 @@
   padding-right: 30px;
 }
 .section table tr {
-  background-color: #0e0e0e;
+  background-color: #070707;
   border: 1px solid #656565;
 }
 .section table tr:last-child {
@@ -17,20 +17,21 @@
   padding: 0.2rem 1rem;
   text-align: center;
   white-space: nowrap;
+  font-size: 0.8rem;
 }
 .section table th.sp, .section table th.ssp,
 .section table td.sp,
 .section table td.ssp {
   width: 40%;
 }
-.section table th.ssCost,
-.section table td.ssCost {
+.section table th.ss-cost,
+.section table td.ss-cost {
   width: 20%;
 }
-.section table th.sp, .section table th.ssp, .section table th.ssCost,
+.section table th.sp, .section table th.ssp, .section table th.ss-cost,
 .section table td.sp,
 .section table td.ssp,
-.section table td.ssCost {
+.section table td.ss-cost {
   border: 1px solid #656565;
 }
 .section table tbody tr:nth-of-type(odd) {

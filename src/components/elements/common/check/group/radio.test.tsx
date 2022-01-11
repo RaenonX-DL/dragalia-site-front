@@ -39,8 +39,7 @@ describe('Radio checks', () => {
       />
     ));
 
-    const toggleInput = screen.getByText('check 2').parentNode?.children[0];
-    expect(toggleInput).toHaveAttribute('checked');
+    expect(screen.getByText('check 2').parentElement?.previousElementSibling).toBeChecked();
     expect(setInputDataFunc).not.toHaveBeenCalled();
   });
 
