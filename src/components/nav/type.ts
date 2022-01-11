@@ -46,10 +46,14 @@ export type NavItemDropdownTitleProps = {
 
 export type NavItemDropdown = NavItemCommon & {
   type: 'dropdown',
-  text: GetTranslationFunction,
   entries: NavItemDropdownContainable[],
-  renderTitle?: (props: NavItemDropdownTitleProps) => React.ReactNode,
-};
+} & ({
+  text: GetTranslationFunction,
+  renderTitle?: never,
+} | {
+  text?: never,
+  renderTitle: (props: NavItemDropdownTitleProps) => React.ReactNode,
+});
 
 export type NavItemReactComponent = NavItemCommon & {
   type: 'component',

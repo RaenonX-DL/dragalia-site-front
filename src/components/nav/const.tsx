@@ -2,7 +2,8 @@ import React from 'react';
 
 import {GeneralPath} from '../../const/path/definitions';
 import {UserControlButton} from '../elements/common/userControl/button/main';
-import {LanguageSwitch} from './components/switch';
+import {NavFluidConfig} from './components/fluid';
+import {NavLanguageSwitch} from './components/switch';
 import {NavItems} from './type';
 
 
@@ -50,6 +51,7 @@ export const navItems: NavItems = [
   {type: 'path', path: GeneralPath.SPECIAL_THANKS, text: (t) => t.meta.inUse.thanks.title},
   {type: 'path', path: GeneralPath.ABOUT, text: (t) => t.meta.inUse.about.title},
   {type: 'divider'},
-  {type: 'component', renderComponent: () => <LanguageSwitch/>},
+  {type: 'component', renderComponent: () => <NavLanguageSwitch/>},
+  {type: 'component', renderComponent: () => <NavFluidConfig/>},
   {type: 'component', renderComponent: () => <UserControlButton/>},
 ];

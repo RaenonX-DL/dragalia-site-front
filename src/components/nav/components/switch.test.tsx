@@ -10,7 +10,7 @@ import {CookiesKeys} from '../../../utils/cookies/keys';
 import * as cookiesUtils from '../../../utils/cookies/utils';
 import {makePostUrl} from '../../../utils/path/make';
 import {GoogleAnalytics} from '../../../utils/services/ga';
-import {LanguageSwitch} from './switch';
+import {NavLanguageSwitch} from './switch';
 
 
 describe('Language Switch', () => {
@@ -23,14 +23,14 @@ describe('Language Switch', () => {
   });
 
   it('shows the current language', async () => {
-    renderReact(() => <LanguageSwitch/>);
+    renderReact(() => <NavLanguageSwitch/>);
 
     expect(screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]).length).toBeGreaterThan(0);
   });
 
   it('shows the current language 2', async () => {
     renderReact(
-      () => <LanguageSwitch/>,
+      () => <NavLanguageSwitch/>,
       {routerOptions: {locale: SupportedLanguages.CHT}},
     );
 
@@ -38,7 +38,7 @@ describe('Language Switch', () => {
   });
 
   it('shows the active language', async () => {
-    renderReact(() => <LanguageSwitch/>);
+    renderReact(() => <NavLanguageSwitch/>);
 
     const enItems = screen.getAllByText(SupportedLanguageNames[SupportedLanguages.EN]);
     userEvent.click(enItems[0]);
@@ -56,7 +56,7 @@ describe('Language Switch', () => {
     window.location = {assign: jest.fn()};
 
     renderReact(
-      () => <LanguageSwitch/>,
+      () => <NavLanguageSwitch/>,
       {
         routerOptions: {
           pathname: GeneralPath.ABOUT,
@@ -78,7 +78,7 @@ describe('Language Switch', () => {
 
   it('redirects to correct post page', async () => {
     renderReact(
-      () => <LanguageSwitch/>,
+      () => <NavLanguageSwitch/>,
       {
         routerOptions: {
           pathname: PostPath.ANALYSIS,

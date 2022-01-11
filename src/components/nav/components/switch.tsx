@@ -13,7 +13,7 @@ import {NavDropdownMenu} from '../elements/dropdown';
 import {NavItemDropdownContainable} from '../type';
 
 
-export const LanguageSwitch = () => {
+export const NavLanguageSwitch = () => {
   const {lang} = useI18n();
   const {pathnameNoLang, query} = useNextRouter();
 
@@ -33,7 +33,6 @@ export const LanguageSwitch = () => {
           {currentLangName}
         </Button>
       )}
-      text={() => currentLangName}
       entries={[
         {type: 'header', text: (t) => t.lang.inUse},
         {type: 'text', text: () => currentLangName},

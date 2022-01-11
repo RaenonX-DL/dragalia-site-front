@@ -781,6 +781,18 @@ export const translation: TranslationStruct = {
       gameData: 'TBA',
       others: 'TBA',
     },
+    layout: {
+      config: 'TBA',
+      current: {
+        fluid: 'TBA',
+      },
+      fluid: {
+        enable: 'TBA',
+        disable: 'TBA',
+        enabled: 'TBA',
+        disabled: 'TBA',
+      },
+    },
   },
   posts: {
     analysis: {

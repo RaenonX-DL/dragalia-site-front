@@ -634,6 +634,18 @@ export type TranslationStruct = {
       gameData: string,
       others: string,
     },
+    layout: {
+      config: string,
+      current: {
+        fluid: string,
+      },
+      fluid: {
+        enable: string,
+        disable: string,
+        enabled: string,
+        disabled: string,
+      },
+    },
   },
   posts: {
     analysis: {

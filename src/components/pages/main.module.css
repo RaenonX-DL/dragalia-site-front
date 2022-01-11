@@ -1,6 +1,6 @@
 div .layout-row {
   flex-wrap: nowrap;
-  --bs-gutter-x: 1rem;
+  --bs-gutter-x: 0.5rem;
 }
 div .layout-row > div.layout-col-nav {
   flex: 0 0 20%;

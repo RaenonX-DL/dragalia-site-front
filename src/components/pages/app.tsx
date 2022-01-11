@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import {ReduxProvider} from '../../state/provider';
+import {useLayoutSelector} from '../../state/layout/selector';
 import {Footer} from '../elements/footer';
 import {Error404} from '../error/404';
 import {NavigationLandscape} from '../nav/main/landscape';
@@ -20,14 +20,16 @@ type Props = {
 };
 
 export const MainApp = ({isNotFound, renderApp}: Props) => {
+  const {fluid} = useLayoutSelector();
+
   return (
-    <ReduxProvider>
+    <>
       <NavigationStatic/>
       <SiteAlert/>
       {
         isNotFound ?
           <Error404/> :
-          <Container fluid className="p-3">
+          <Container fluid={fluid} className="p-3">
             <Row className={styles['layout-row']}>
               <Col className={styles['layout-col-nav']}>
                 <NavigationLandscape/>
@@ -40,6 +42,6 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
             </Row>
           </Container>
       }
-    </ReduxProvider>
+    </>
   );
 };

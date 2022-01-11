@@ -10,6 +10,7 @@ import {MainApp} from '../src/components/pages/app';
 import {PageProps} from '../src/components/pages/type';
 import {AppReactContext} from '../src/context/app/main';
 import {useI18n} from '../src/i18n/hook';
+import {ReduxProvider} from '../src/state/provider';
 import {getPageMeta} from '../src/utils/meta/main';
 import {ResourceLoader} from '../src/utils/services/resources/loader';
 
@@ -66,10 +67,12 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       }
       <React.StrictMode>
         <AppReactContext.Provider value={{...pageProps}}>
-          <MainApp
-            isNotFound={pageProps.isNotFound}
-            renderApp={() => <Component {...pageProps}/>}
-          />
+          <ReduxProvider>
+            <MainApp
+              isNotFound={pageProps.isNotFound}
+              renderApp={() => <Component {...pageProps}/>}
+            />
+          </ReduxProvider>
         </AppReactContext.Provider>
       </React.StrictMode>
     </>

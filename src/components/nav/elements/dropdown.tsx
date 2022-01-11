@@ -4,6 +4,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import Nav from 'react-bootstrap/Nav';
 
 import {useI18n} from '../../../i18n/hook';
+import {GetTranslationFunction} from '../../../i18n/types';
 import {IconCollapse} from '../../elements/common/icons';
 import styles from '../main.module.css';
 import {NavItemDropdown} from '../type';
@@ -26,7 +27,7 @@ export const NavDropdownMenu = ({text, pathnameNoLang, entries, renderTitle}: Pr
         renderTitle ?
           renderTitle({open, setOpen, isAnyPathActive}) :
           <Nav.Link
-            title={t(text)}
+            title={t(text as GetTranslationFunction)}
             onClick={() => setOpen(!open)}
             className={
               `${isAnyPathActive ? styles.active : ''} ` +
@@ -35,7 +36,7 @@ export const NavDropdownMenu = ({text, pathnameNoLang, entries, renderTitle}: Pr
             }
             data-test-is-active={isAnyPathActive}
           >
-            <IconCollapse/>&nbsp;{t(text)}
+            <IconCollapse/>&nbsp;{t(text as GetTranslationFunction)}
           </Nav.Link>
       }
       <Collapse in={open} className="mb-2">

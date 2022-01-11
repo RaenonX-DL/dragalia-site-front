@@ -37,7 +37,7 @@ div.nav-container {
   height: calc(100vh - 5rem);
   width: auto;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 0.5rem;
 }
 div.nav-body {

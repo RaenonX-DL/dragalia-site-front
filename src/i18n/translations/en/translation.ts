@@ -815,6 +815,18 @@ export const translation: TranslationStruct = {
       gameData: 'Game Related',
       others: 'Others',
     },
+    layout: {
+      config: 'Layout Config',
+      current: {
+        fluid: 'Full-width',
+      },
+      fluid: {
+        enable: 'Enable',
+        disable: 'Disable',
+        enabled: 'Enabled',
+        disabled: 'Disabled',
+      },
+    },
   },
   posts: {
     analysis: {

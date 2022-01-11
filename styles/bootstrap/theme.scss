@@ -6,14 +6,15 @@ $success: colors.$color-success;
 $danger: colors.$color-danger;
 $custom-theme-colors: (
   // Newly added
-  "om-dark": colors.$color-om-dark,
-  "om-light": colors.$color-om-light,
   "orange": colors.$color-orange,
-  "dark-red": colors.$color-dark-red,
-  "black-32": colors.$color-bw-32,
-  "black-50": colors.$color-bw-50,
   "light-gray": colors.$color-bw-170,
+  // Extended theme colors
+  "dark-primary": colors.$color-dark-primary,
   "dark-info": colors.$color-dark-info,
+  "dark-success": colors.$color-dark-success,
+  "dark-warning": colors.$color-dark-warning,
+  "dark-orange": colors.$color-dark-orange,
+  "dark-danger": colors.$color-dark-danger,
   // Overridden
   "secondary": colors.$color-secondary,
 );

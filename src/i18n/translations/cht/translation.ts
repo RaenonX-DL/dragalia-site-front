@@ -775,6 +775,18 @@ export const translation: TranslationStruct = {
       gameData: '遊戲相關',
       others: '其他',
     },
+    layout: {
+      config: '版面設定',
+      current: {
+        fluid: '全寬',
+      },
+      fluid: {
+        enable: '啟用',
+        disable: '停用',
+        enabled: '已啟用',
+        disabled: '已停用',
+      },
+    },
   },
   posts: {
     analysis: {

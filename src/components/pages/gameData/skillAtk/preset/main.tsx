@@ -103,7 +103,8 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
       />
       <InputGroup>
         <FormControl
-          className={`bg-black-32 ${state.status === 'copied' ? 'text-info' : 'text-light'}`} disabled
+          className={state.status === 'copied' ? 'text-info' : 'text-light'}
+          disabled
           value={
             state.status === 'copied' ?
               t((t) => t.game.skillAtk.info.presetExpiry) :

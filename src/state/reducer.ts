@@ -3,17 +3,19 @@ import {persistReducer} from 'redux-persist';
 
 import alertReducer from './alert/reducer';
 import backupReducer from './backup/reducer';
+import layoutReducer from './layout/reducer';
 import storage from './storage';
 
 
 const reducers = {
   alert: alertReducer,
   backup: backupReducer,
+  layout: layoutReducer,
 };
 
 const persistConfig = {
   key: 'root',
-  storage: storage,
+  storage,
   whitelist: Object.keys(reducers),
 };
 
