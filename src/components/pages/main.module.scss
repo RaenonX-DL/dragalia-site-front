@@ -25,10 +25,20 @@ div {
     }
 
     & > div.layout-col-main {
-      @include media-breakpoint-up(lg) {
-        // For narrower screens
+      &.layout-col-main-collapsed {
+        @include media-breakpoint-up(lg) {
+          // For wider screens
 
-        max-width: 80%;
+          max-width: calc(100% - 4rem);
+        }
+      }
+
+      &.layout-col-main-opened {
+        @include media-breakpoint-up(lg) {
+          // For wider screens
+
+          max-width: 80%;
+        }
       }
     }
   }

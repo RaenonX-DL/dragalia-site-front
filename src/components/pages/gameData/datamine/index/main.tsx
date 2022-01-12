@@ -4,9 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {DataPath} from '../../../../../const/path/definitions';
+import {DataPath, makeDataUrl} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makeDataUrl} from '../../../../../utils/path/make';
 import {sortDescending} from '../../../../../utils/sort';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {AdsPageTop, AdsToolBottom} from '../../../../elements/common/ads/main';

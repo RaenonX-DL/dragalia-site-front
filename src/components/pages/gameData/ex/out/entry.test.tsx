@@ -6,9 +6,8 @@ import userEvent from '@testing-library/user-event';
 import {generateExAbilityDataEntry} from '../../../../../../test/data/mock/exAbilityData';
 import {renderReact} from '../../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../../api-def/api';
+import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {ConditionEnumMap} from '../../../../../api-def/resources';
-import {PostPath} from '../../../../../const/path/definitions';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {ResourceLoader} from '../../../../../utils/services/resources/loader';
 import {ExAbilityEntry} from './entry';
 

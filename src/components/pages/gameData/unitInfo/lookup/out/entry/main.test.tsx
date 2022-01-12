@@ -5,36 +5,24 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../../../test/render/main';
 import {
-  PartiallySupportedLanguages,
   SupportedLanguages,
   UnitInfoLookupEntry,
   UnitType,
 } from '../../../../../../../api-def/api';
-import {UnitInfoData} from '../../../../../../../api-def/resources';
-import {PostPath} from '../../../../../../../const/path/definitions';
+import {makePostUrl, PostPath} from '../../../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../../../i18n/translations/en/translation';
-import {makePostUrl} from '../../../../../../../utils/path/make';
+import {UnitInfoRequireIcon} from '../../../../../../elements/gameData/unit/modal/types';
 import {UnitInfoEntry} from './main';
 
 
 describe('Analysis lookup entry', () => {
-  const name = {
-    [SupportedLanguages.CHT]: 'name CHT',
-    [SupportedLanguages.EN]: 'Gala Leonidas',
-    [SupportedLanguages.JP]: 'name JP',
-    [PartiallySupportedLanguages.CHS]: 'name CHS',
-  };
-
-  const unitInfo: UnitInfoData = {
-    type: UnitType.CHARACTER,
-    name,
+  const unitInfo: UnitInfoRequireIcon = {
     id: 10950101,
-    rarity: 5,
-    element: 2,
-    iconName: 'icon',
-    cvEn: name,
-    cvJp: name,
-    releaseEpoch: 900000,
+    name: 'Gala Leonidas',
+    icon: {
+      type: UnitType.CHARACTER,
+      name: 'Gala Leonidas',
+    },
   };
   const analysisMeta: UnitInfoLookupEntry = {
     type: UnitType.CHARACTER,

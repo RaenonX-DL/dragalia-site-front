@@ -5,7 +5,7 @@ import {screen, waitFor} from '@testing-library/react';
 import {mockData} from '../../../../test/data/mock/homepage';
 import {renderReact} from '../../../../test/render/main';
 import {ApiResponseCode, PostType, SupportedLanguages} from '../../../api-def/api';
-import {GeneralPath} from '../../../const/path/definitions';
+import {GeneralPath} from '../../../api-def/paths';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {Home} from './main';

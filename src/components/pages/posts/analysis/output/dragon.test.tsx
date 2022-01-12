@@ -10,9 +10,8 @@ import {
   SupportedLanguages,
   UnitType,
 } from '../../../../../api-def/api';
-import {PostPath} from '../../../../../const/path/definitions';
+import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {AnalysisOutputDragon} from './dragon';
 
 

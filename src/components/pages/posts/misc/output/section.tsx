@@ -19,7 +19,7 @@ export const MiscSectionOutput = ({sections}: Props) => {
       <CollapsibleSectionedContent
         sections={sections}
         getTitle={(section) => section.title}
-        renderSection={(section) => <Markdown>{section.content}</Markdown>}
+        renderSection={({content}) => <Markdown>{content}</Markdown>}
       />
     </>
   );

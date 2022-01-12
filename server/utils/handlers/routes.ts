@@ -2,11 +2,10 @@ import {URL} from 'url';
 
 import {FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
 
-import {isSupportedLang} from '../../../src/api-def/api';
-import {DEFAULT_LANG} from '../../../src/i18n/langCode';
+import {DEFAULT_LANG, isSupportedLang} from '../../../src/api-def/api';
+import {urlRemoveLang} from '../../../src/api-def/paths';
 import {CookiesKeys} from '../../../src/utils/cookies/keys';
 import {getCookies} from '../../../src/utils/cookies/utils';
-import {urlRemoveLang} from '../../../src/utils/path/process';
 import {redirectLookup} from '../../const/redirect';
 import {urlObjectToLegacy} from '../url';
 import {NextHandler, Server, ServerHasLang} from './types';

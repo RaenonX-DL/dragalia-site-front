@@ -6,6 +6,7 @@ import {ObjectId} from 'mongodb';
 import {Session} from 'next-auth';
 import {RouterContext} from 'next/dist/shared/lib/router-context';
 
+import {DEFAULT_LANG} from '../../src/api-def/api';
 import {EnumEntry} from '../../src/api-def/resources';
 import {AppReactContext} from '../../src/context/app/main';
 import {AppReactContextValue} from '../../src/context/app/types';
@@ -30,6 +31,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
       createdAt: new Date(),
       updatedAt: new Date(),
       isAdmin: false,
+      lang: DEFAULT_LANG,
       ...options?.user,
     },
   };

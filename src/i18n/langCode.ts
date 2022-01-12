@@ -1,7 +1,5 @@
-import {SupportedLanguages} from '../api-def/api';
+import {DEFAULT_LANG, SupportedLanguages} from '../api-def/api';
 
-
-export const DEFAULT_LANG = SupportedLanguages.CHT;
 
 const langMap: {[lang in string]: SupportedLanguages} = {
   [SupportedLanguages.CHT]: SupportedLanguages.CHT,

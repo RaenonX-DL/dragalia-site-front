@@ -2,9 +2,8 @@ import React from 'react';
 
 import {screen} from '@testing-library/react';
 
-import {ApiResponseCode, QuestPostGetResponse, SupportedLanguages} from '../../../../src/api-def/api';
+import {DEFAULT_LANG, ApiResponseCode, QuestPostGetResponse, SupportedLanguages} from '../../../../src/api-def/api';
 import {QuestPage} from '../../../../src/components/pages/posts/quest/output';
-import {DEFAULT_LANG} from '../../../../src/i18n/langCode';
 import {translations} from '../../../../src/i18n/translations/main';
 import {ApiRequestSender} from '../../../../src/utils/services/api/requestSender';
 import {renderReact} from '../../../../test/render/main';

@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-
 import {useI18n} from '../../../../../i18n/hook';
+import {DropdownButton} from '../../../../elements/common/button/dropdown';
 import {InputData, SortBy} from '../in/types';
 import {overrideInputData} from '../in/utils/inputData';
 import {orderName} from './lookup';
@@ -20,22 +18,19 @@ export const AttackingSkillSorter = ({inputData, onOrderPicked}: Props) => {
   const sortBy = t(orderName[inputData.sortBy]);
   const title = t((t) => t.game.skillAtk.sort.text, {sortBy});
 
-  const onItemPicked = (sortBy: SortBy) => () => {
+  const onItemPicked = (sortBy: SortBy) => {
     const newInputData = overrideInputData(inputData, {sortBy});
     onOrderPicked(newInputData);
   };
 
   return (
-    <DropdownButton title={title} variant="outline-light" menuVariant="dark">
-      {Object.entries(orderName).map(([sortBy, getNameFunc], idx) => (
-        <Dropdown.Item
-          key={idx}
-          onClick={onItemPicked(sortBy as SortBy)}
-          active={sortBy === inputData.sortBy}
-        >
-          {t(getNameFunc)}
-        </Dropdown.Item>
-      ))}
-    </DropdownButton>
+    <DropdownButton
+      title={title}
+      variant="outline-light"
+      options={Object.entries(orderName)}
+      isActive={([sortBy]) => sortBy === inputData.sortBy}
+      onClick={([sortBy]) => onItemPicked(sortBy as SortBy)}
+      getOptionText={([_, getNameFunc]) => t(getNameFunc)}
+    />
   );
 };

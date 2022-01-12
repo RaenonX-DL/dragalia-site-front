@@ -2,8 +2,6 @@ import React, {FormEvent} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -12,6 +10,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {GetTranslationFunction} from '../../../../../i18n/types';
 import {useUnitProps} from '../../../../hooks/unitProps';
 import {AdsPageTop, AdsUnitSearchBottom} from '../../../common/ads/main';
+import {DropdownButton} from '../../../common/button/dropdown';
 import {CheckOption} from '../../../common/check/types';
 import {RowTight} from '../../../common/grid/row';
 import {FloatingInput} from '../../../form/control/floating/input';
@@ -104,17 +103,14 @@ export const UnitFilter = <S extends string,
               />
             </Col>
             <Col xs md="auto" className={styles.button}>
-              <DropdownButton title={sortTitle} variant="outline-light" menuVariant="dark">
-                {Object.entries(sortOrderNames).map(([sortBy, getNameFunc], idx) => (
-                  <Dropdown.Item
-                    key={idx}
-                    onClick={() => setInputData({...inputData, sortBy: sortBy as S})}
-                    active={sortBy === inputData.sortBy}
-                  >
-                    {t(getNameFunc as GetTranslationFunction)}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton>
+              <DropdownButton
+                title={sortTitle}
+                variant="outline-light"
+                options={Object.entries(sortOrderNames)}
+                isActive={([sortBy]) => sortBy === inputData.sortBy}
+                onClick={([sortBy]) => setInputData({...inputData, sortBy})}
+                getOptionText={([_, getNameFunc]) => t(getNameFunc as GetTranslationFunction)}
+              />
             </Col>
             <Col xs="auto" className={styles.button}>
               <Button variant="outline-info" type="submit" disabled={disabled}>

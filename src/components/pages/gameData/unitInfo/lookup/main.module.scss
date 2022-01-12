@@ -48,7 +48,7 @@ div {
       @include utils.eq-width-col(2);
     }
 
-    & img.unit-icon {
+    & div.unit-icon {
       height: 4rem;
     }
 
@@ -63,7 +63,7 @@ div {
   }
 
   .landing-entry {
-    & img.unit-icon {
+    & div.unit-icon {
       height: 4rem;
     }
 

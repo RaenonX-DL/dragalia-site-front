@@ -22,6 +22,8 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
   const [open, setOpen] = React.useState(Object.fromEntries(sections.map((section) => [getTitle(section), false])));
   const [allOpen, setAllOpen] = React.useState(false);
 
+  const [content] = React.useState(sections.map((section) => renderSection(section)));
+
   const onClickAllOpen = () => {
     const newAllOpen = !allOpen;
 
@@ -38,7 +40,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
           </Button>
         </Col>
       </Row>
-      {sections.map((section) => {
+      {sections.map((section, idx) => {
         const title = getTitle(section);
 
         return (
@@ -57,7 +59,7 @@ export const CollapsibleSectionedContent = <E, >({sections, getTitle, renderSect
             <Collapse in={open[title]} className="mb-2">
               {/* Needs a ref-able element for showing/hiding the element */}
               <div>
-                {renderSection(section)}
+                {content[idx]}
               </div>
             </Collapse>
           </React.Fragment>

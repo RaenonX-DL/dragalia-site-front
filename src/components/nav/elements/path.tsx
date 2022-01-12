@@ -4,19 +4,26 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 
+import {isPagePath, makeGeneralUrl} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
-import {makeGeneralUrl} from '../../../utils/path/make';
 import styles from '../main.module.css';
 import {NavItemPath} from '../type';
 
 
 type Props = NavItemPath;
 
-export const NavPath = ({path, href: hrefProps, text, disabled, onClick, pathnameNoLang, activeOverride}: Props) => {
+export const NavPath = ({
+  path, pathActiveBasis, href: hrefProps, text, disabled, onClick, pathnameNoLang, activeOverride,
+}: Props) => {
   const {t, lang} = useI18n();
   const href = !!path ? makeGeneralUrl(path, {lang}) : hrefProps;
   const i18nText = t(text);
-  const isActive = activeOverride !== undefined ? activeOverride : pathnameNoLang === path;
+  const isActive = activeOverride !== undefined ?
+    activeOverride :
+    (
+      pathnameNoLang === path ||
+      (pathnameNoLang && isPagePath(pathnameNoLang) && pathActiveBasis?.includes(pathnameNoLang))
+    );
 
   const props = {
     className: `${isActive ? styles.active : ''} ${styles['nav-item']}`,

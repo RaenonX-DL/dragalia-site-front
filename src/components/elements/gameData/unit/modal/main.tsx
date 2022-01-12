@@ -2,9 +2,8 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {PostPath, StoryPath, UnitPath} from '../../../../../const/path/definitions';
+import {makePostUrl, makeStoryUrl, makeUnitUrl, PostPath, StoryPath, UnitPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../../utils/path/make';
 import {RowTight} from '../../../common/grid/row';
 import {UnitLinkButton} from './button';
 import {UnitInfo} from './types';

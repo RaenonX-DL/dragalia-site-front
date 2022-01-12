@@ -64,6 +64,8 @@ div.nav-body a.nav-item {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem !important;
   background-image: var(--bs-gradient);
+}
+div.nav-body a.nav-item:not([class*=disabled]) {
   color: #f0f0f0;
 }
 div.nav-body a.nav-item.active {

@@ -1,8 +1,7 @@
+import {makePostUrl, PostPath} from '../../../api-def/paths';
 import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
 import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
-import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
-import {makePostUrl} from '../../path/make';
 import {getUnitNameInfoMap} from '../../services/resources/unitInfo/utils';
 import {sortDescending} from '../../sort';
 import {regexEscape} from '../../text';

@@ -2,11 +2,10 @@ import React from 'react';
 
 
 import {Dimension, DimensionKey} from '../../../../api-def/api';
-import {UnitPath} from '../../../../const/path/definitions';
+import {makeUnitUrl, UnitPath} from '../../../../api-def/paths';
 import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
-import {makeUnitUrl} from '../../../../utils/path/make';
 import {processText} from '../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';

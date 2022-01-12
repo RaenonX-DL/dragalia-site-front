@@ -5,10 +5,9 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguageNames, SupportedLanguages} from '../../../api-def/api';
-import {GeneralPath, PostPath} from '../../../const/path/definitions';
+import {makePostUrl, GeneralPath, PostPath} from '../../../api-def/paths';
 import {CookiesKeys} from '../../../utils/cookies/keys';
 import * as cookiesUtils from '../../../utils/cookies/utils';
-import {makePostUrl} from '../../../utils/path/make';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {NavLanguageSwitch} from './switch';
 

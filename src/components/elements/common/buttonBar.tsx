@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import {ButtonVariant} from 'react-bootstrap/types';
 
+import {pathnameRemoveLang, urlRemoveLang} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
-import {pathnameRemoveLang, urlRemoveLang} from '../../../utils/path/process';
 
 
 export type ButtonEntry = {

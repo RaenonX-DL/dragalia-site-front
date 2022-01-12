@@ -49,7 +49,7 @@
     max-width: calc(1 / 2 * 100%);
   }
 }
-div .complete-entry img.unit-icon {
+div .complete-entry div.unit-icon {
   height: 4rem;
 }
 div .complete-entry div.info-top {
@@ -59,7 +59,7 @@ div .complete-entry div.info-bottom {
   height: 1.5rem;
   font-size: 0.8rem;
 }
-div .landing-entry img.unit-icon {
+div .landing-entry div.unit-icon {
   height: 4rem;
 }
 div .landing-entry div.info-top {

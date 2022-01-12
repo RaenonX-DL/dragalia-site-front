@@ -2,9 +2,8 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {DataPath} from '../../../../../const/path/definitions';
+import {DataPath, makeDataUrl} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makeDataUrl} from '../../../../../utils/path/make';
 import {transformForSearch} from '../../../../../utils/text';
 import {AdsPageTop, AdsUnitKeyPointIndexEnd} from '../../../../elements/common/ads/main';
 import {RowNoGutter} from '../../../../elements/common/grid/row';

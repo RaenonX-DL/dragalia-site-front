@@ -9,9 +9,8 @@ import {
   SupportedLanguageNames,
   SupportedLanguages,
 } from '../../../../../api-def/api';
-import {PostPath} from '../../../../../const/path/definitions';
+import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {QuestPostOutput} from './main';
 
 

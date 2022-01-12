@@ -14,9 +14,9 @@ export const NavFluidConfig = () => {
   const {t} = useI18n();
   const dispatch = useDispatch();
   const {fluid} = useLayoutSelector();
-  const {allowFluidContainer} = useLayout();
+  const {isLandscape} = useLayout();
 
-  if (!allowFluidContainer) {
+  if (!isLandscape) {
     return <></>;
   }
 

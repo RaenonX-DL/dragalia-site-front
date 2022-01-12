@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AuthPath} from '../../../../../const/path/definitions';
+import {AuthPath} from '../../../../../api-def/paths';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useNextRouter} from '../../../../../utils/router';
 import {LoginButton} from './login';

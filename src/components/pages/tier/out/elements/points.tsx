@@ -3,7 +3,7 @@ import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
 import {KeyPointData} from '../../../../../api-def/api';
-import {GeneralPath} from '../../../../../const/path/definitions';
+import {GeneralPath} from '../../../../../api-def/paths';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsUnitKeyPointTop} from '../../../../elements/common/ads/main';

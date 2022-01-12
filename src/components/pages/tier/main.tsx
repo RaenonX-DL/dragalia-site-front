@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Dimension, UnitTierData, UnitTierNoteGetResponse} from '../../../api-def/api';
-import {GeneralPath} from '../../../const/path/definitions';
+import {GeneralPath} from '../../../api-def/paths';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {overrideObject} from '../../../utils/override';

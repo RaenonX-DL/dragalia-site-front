@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 
-import {AuthPath} from '../../../../../const/path/definitions';
+import {AuthPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {AuthPath} from '../../../../../const/path/definitions';
+import {AuthPath} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {UserControlButton} from './main';
 
@@ -12,9 +12,7 @@ describe('Sign-in button', () => {
   it('shows logout when the user is logged in', async () => {
     renderReact(
       () => <UserControlButton/>,
-      {
-        hasSession: true,
-      },
+      {hasSession: true},
     );
 
     expect(screen.getByText(translationEN.userControl.logout)).toBeInTheDocument();
@@ -23,9 +21,7 @@ describe('Sign-in button', () => {
   it('shows login if the user has not logged in', async () => {
     renderReact(
       () => <UserControlButton/>,
-      {
-        hasSession: false,
-      },
+      {hasSession: false},
     );
 
     expect(screen.getByText(translationEN.userControl.login)).toBeInTheDocument();
@@ -36,9 +32,7 @@ describe('Sign-in button', () => {
       () => <UserControlButton/>,
       {
         hasSession: false,
-        routerOptions: {
-          pathname: AuthPath.SIGN_IN,
-        },
+        routerOptions: {pathname: AuthPath.SIGN_IN},
       },
     );
 

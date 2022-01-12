@@ -1,3 +1,5 @@
+import {ProgressBarProps} from 'react-bootstrap/ProgressBar';
+
 import {EnumEntry} from '../../../../api-def/resources';
 import {EnumChecksBoxProps} from '../../common/check/enum/checkbox';
 import {EnumRadioGroupProps} from '../../common/check/enum/radio';
@@ -77,6 +79,12 @@ export type InputEntrySelect<E, T> = {
   getText?: (entry: E) => string,
 };
 
+export type InputEntryProgressBar = {
+  type: 'progress',
+  value: number,
+  variant: ProgressBarProps['variant'],
+};
+
 export type InputEntry<E, E2 extends EnumEntry, T, V> =
   InputEntryTitle |
   InputEntrySubTitle |
@@ -87,7 +95,8 @@ export type InputEntry<E, E2 extends EnumEntry, T, V> =
   InputEntryRadioGroup<E, T, V> |
   InputEntryEnumRadioGroup<E2, T> |
   InputEntryEnumCheckGroup<E2, T> |
-  InputEntrySelect<E, T>;
+  InputEntrySelect<E, T> |
+  InputEntryProgressBar;
 
 export type InputEntries<E, E2 extends EnumEntry, T, V> = Array<InputEntry<E, E2, T, V>>;
 

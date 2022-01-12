@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {ApiResponseCode, UnitInfoLookupLandingResponse} from '../../../../../api-def/api';
-import {GeneralPath} from '../../../../../const/path/definitions';
+import {GeneralPath} from '../../../../../api-def/paths';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';

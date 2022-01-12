@@ -1,9 +1,8 @@
-import {SupportedLanguages} from '../api-def/api';
+import {DEFAULT_LANG, SupportedLanguages} from '../api-def/api';
+import {getLangFromQuery} from '../api-def/paths';
 import {CookiesKeys} from '../utils/cookies/keys';
 import {getCookies, setCookies} from '../utils/cookies/utils';
-import {getLangFromQuery} from '../utils/path/process';
 import {useNextRouter} from '../utils/router';
-import {DEFAULT_LANG} from './langCode';
 import {translations} from './translations/main';
 import {TFunction} from './types';
 import {getTFunction} from './utils';

@@ -5,8 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages} from '../../../../api-def/api';
-import {GeneralPath} from '../../../../const/path/definitions';
-import {makeGeneralUrl} from '../../../../utils/path/make';
+import {makeGeneralUrl, GeneralPath} from '../../../../api-def/paths';
 import {InternalLink} from './internal';
 
 

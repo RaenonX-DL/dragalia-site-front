@@ -5,9 +5,8 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../test/render/main';
 import {SupportedLanguages, UnitType} from '../../../../api-def/api';
+import {makePostUrl, makeStoryUrl, makeUnitUrl, PostPath, StoryPath, UnitPath} from '../../../../api-def/paths';
 import {DepotPaths} from '../../../../api-def/resources';
-import {PostPath, StoryPath, UnitPath} from '../../../../const/path/definitions';
-import {makePostUrl, makeStoryUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {UnitLink} from './link';
 
 

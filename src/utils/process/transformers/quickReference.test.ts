@@ -1,14 +1,13 @@
 import {
+  generateBrunhildaInfo,
   generateGalaMymInfo,
   generateHighBrunhildaInfo,
-  generateBrunhildaInfo,
 } from '../../../../test/data/mock/unitInfo';
 import {SupportedLanguages} from '../../../api-def/api';
+import {makePostUrl, PostPath} from '../../../api-def/paths';
 import {unitSyntax} from '../../../components/elements/markdown/transformers/text/syntax';
 import {UNIT_NAME_SEPARATOR} from '../../../components/elements/markdown/transformers/text/unit';
-import {PostPath} from '../../../const/path/definitions';
 import {translations} from '../../../i18n/translations/main';
-import {makePostUrl} from '../../path/make';
 import * as unitInfoUtils from '../../services/resources/unitInfo/utils';
 import {transformQuickReference} from './quickReference';
 

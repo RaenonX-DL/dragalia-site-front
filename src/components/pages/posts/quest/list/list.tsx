@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/main';
 import {PostLookupPage} from '../../../../elements/posts/list/page';
@@ -24,9 +23,7 @@ export const QuestPostList = () => {
       renderPostEntries={(response) => (
         <PostList
           entries={response.posts}
-          getLink={({seqId}) => (
-            makePostUrl(PostPath.QUEST, {pid: seqId, lang})
-          )}
+          getLink={({seqId}) => makePostUrl(PostPath.QUEST, {pid: seqId, lang})}
           renderPostBadge={(props) => <QuestEntryBadge {...props}/>}
         />
       )}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GeneralPath} from '../../const/path/definitions';
+import {DataPath, GeneralPath, PostPath, StoryPath, UnitPath} from '../../api-def/paths';
 import {UserControlButton} from '../elements/common/userControl/button/main';
 import {NavFluidConfig} from './components/fluid';
 import {NavLanguageSwitch} from './components/switch';
@@ -12,14 +12,29 @@ export const TITLE_NAV_HTML_ID = 'nav-title'; // Global element ID for the nav b
 export const navItems: NavItems = [
   {type: 'header', text: (t) => t.nav.header.posts},
   {type: 'path', path: GeneralPath.INFO_LOOKUP, text: (t) => t.nav.unitInfo},
-  {type: 'path', path: GeneralPath.QUEST_LIST, text: (t) => t.posts.quest.titleSelf},
-  {type: 'path', path: GeneralPath.MISC_LIST, text: (t) => t.posts.misc.titleSelf},
+  {
+    type: 'path',
+    path: GeneralPath.QUEST_LIST,
+    text: (t) => t.posts.quest.titleSelf,
+    pathActiveBasis: [PostPath.QUEST],
+  },
+  {
+    type: 'path',
+    path: GeneralPath.MISC_LIST,
+    text: (t) => t.posts.misc.titleSelf,
+    pathActiveBasis: [PostPath.MISC],
+  },
   {type: 'header', text: (t) => t.nav.header.gameData},
   {
     type: 'dropdown',
     text: (t) => t.nav.unitTier,
     entries: [
-      {type: 'path', path: GeneralPath.TIER_LOOKUP, text: (t) => t.meta.inUse.tier.lookup.title},
+      {
+        type: 'path',
+        path: GeneralPath.TIER_LOOKUP,
+        pathActiveBasis: [UnitPath.UNIT_TIER],
+        text: (t) => t.meta.inUse.tier.lookup.title,
+      },
       {type: 'path', path: GeneralPath.TIER_POINTS_INDEX, text: (t) => t.meta.inUse.tier.points.index.title},
     ],
   },
@@ -35,8 +50,19 @@ export const navItems: NavItems = [
       {type: 'path', path: GeneralPath.SKILL_SUP, text: (t) => t.nav.gameData.skillSup, disabled: true},
       {type: 'divider'},
       {type: 'header', text: (t) => t.nav.gameData.others},
-      {type: 'path', path: GeneralPath.STORY, text: (t) => t.nav.gameData.story, disabled: true},
-      {type: 'path', path: GeneralPath.GAME_DATAMINE_INDEX, text: (t) => t.nav.gameData.datamine},
+      {
+        type: 'path',
+        path: GeneralPath.STORY,
+        pathActiveBasis: [StoryPath.UNIT],
+        text: (t) => t.nav.gameData.story,
+        disabled: true,
+      },
+      {
+        type: 'path',
+        path: GeneralPath.GAME_DATAMINE_INDEX,
+        text: (t) => t.nav.gameData.datamine,
+        pathActiveBasis: [DataPath.GAME_DATAMINE_DETAIL],
+      },
     ],
   },
   {

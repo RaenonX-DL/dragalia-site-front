@@ -4,7 +4,7 @@ import {TypeORM} from 'next-auth/adapters';
 import Providers from 'next-auth/providers';
 
 import {AUTH_DB} from '../../../src/api-def/models';
-import {AuthPath} from '../../../src/const/path/definitions';
+import {AuthPath} from '../../../src/api-def/paths';
 import {UserModel} from '../../../src/models/user';
 import {ensureIndex} from '../../../src/utils/auth';
 

@@ -5,11 +5,10 @@ import {screen} from '@testing-library/react';
 import {generateGalaMymInfo} from '../../../test/data/mock/unitInfo';
 import {renderReact} from '../../../test/render/main';
 import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../api-def/api';
+import {makePostUrl, PostPath} from '../../api-def/paths';
 import {SimpleUnitInfo} from '../../api-def/resources';
 import {Markdown} from '../../components/elements/markdown/main';
-import {PostPath} from '../../const/path/definitions';
 import {translations} from '../../i18n/translations/main';
-import {makePostUrl} from '../path/make';
 import * as unitInfoUtils from '../services/resources/unitInfo/utils';
 import {processText} from './text';
 

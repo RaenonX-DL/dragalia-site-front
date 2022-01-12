@@ -43,4 +43,19 @@ describe('ATK skill entry sorter', () => {
 
     expect(onOrderPicked).toHaveBeenCalledTimes(1);
   });
+
+  it('marks current sort order as active', async () => {
+    renderReact(() => (
+      <AttackingSkillSorter
+        inputData={generateInputData({sortBy: 'sp'})}
+        onOrderPicked={onOrderPicked}
+      />
+    ));
+
+    const dropdownButton = screen.getByText(/Order/);
+    userEvent.click(dropdownButton);
+
+    const orderButton = screen.getByText(translationEN.game.skillAtk.spInfo.sp);
+    expect(orderButton).toHaveClass('active');
+  });
 });

@@ -3,10 +3,8 @@ import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 
 import {PostInfoEntry} from '../../../../../api-def/api';
-import {GeneralPath} from '../../../../../const/path/definitions';
-import {toPostPath} from '../../../../../const/path/utils';
+import {GeneralPath, makePostUrl, toPostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {InternalLink} from '../../../../elements/common/link/internal';
 import {PostEntry} from '../../../../elements/posts/list/entry';
 

@@ -1,4 +1,4 @@
-import {AuthPath, DataPath, GeneralPath, PagePath, PostPath, StoryPath, UnitPath} from '../../const/path/definitions';
+import {AuthPath, DataPath, GeneralPath, PagePath, PostPath, StoryPath, UnitPath} from '../../api-def/paths';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {GetTranslationFunction} from '../../i18n/types';
 

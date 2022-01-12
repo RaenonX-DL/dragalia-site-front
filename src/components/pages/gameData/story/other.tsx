@@ -3,11 +3,10 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {makePostUrl, makeUnitUrl, PostPath, UnitPath} from '../../../../api-def/paths';
 import {DepotPaths, UnitInfoData} from '../../../../api-def/resources';
 import {featureBtnColors} from '../../../../const/colors';
-import {PostPath, UnitPath} from '../../../../const/path/definitions';
 import {useI18n} from '../../../../i18n/hook';
-import {makePostUrl, makeUnitUrl} from '../../../../utils/path/make';
 import {FullSizeButton} from '../../../elements/common/button/fullSize';
 import {RowRegular} from '../../../elements/common/grid/row';
 import {Image} from '../../../elements/common/image';

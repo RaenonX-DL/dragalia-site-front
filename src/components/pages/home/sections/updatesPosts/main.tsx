@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import {HomepageData, PostType} from '../../../../../api-def/api';
-import {GeneralPath} from '../../../../../const/path/definitions';
+import {GeneralPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
 import {unitInfoToClickableProps} from '../../../../../utils/services/resources/unitInfo/utils';

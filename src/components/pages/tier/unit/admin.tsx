@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {GeneralPath, UnitPath} from '../../../../const/path/definitions';
+import {GeneralPath, makeUnitUrl, UnitPath} from '../../../../api-def/paths';
 import {useI18n} from '../../../../i18n/hook';
-import {makeUnitUrl} from '../../../../utils/path/make';
 import {ButtonBar} from '../../../elements/common/buttonBar';
 
 

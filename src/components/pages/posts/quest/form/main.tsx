@@ -1,13 +1,8 @@
 import React from 'react';
 
-import {
-  QuestPostEditResponse,
-  QuestPostPublishPayload,
-  QuestPostPublishResponse,
-} from '../../../../../api-def/api';
-import {PostPath} from '../../../../../const/path/definitions';
+import {QuestPostEditResponse, QuestPostPublishPayload, QuestPostPublishResponse} from '../../../../../api-def/api';
+import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {processText} from '../../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../../utils/services/api';
 import {PostFormBase} from '../../../../elements/posts/form/base';
