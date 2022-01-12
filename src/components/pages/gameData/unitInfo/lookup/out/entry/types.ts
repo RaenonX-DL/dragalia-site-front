@@ -1,9 +1,9 @@
 import {UnitInfoLookupEntry} from '../../../../../../../api-def/api';
-import {UnitInfoData} from '../../../../../../../api-def/resources';
+import {UnitInfoRequireIcon} from '../../../../../../elements/gameData/unit/modal/types';
 
 
 export type EntryCommonProps = {
-  unitInfo: UnitInfoData,
+  unitInfo: UnitInfoRequireIcon,
   iconOnly?: boolean,
 };
 

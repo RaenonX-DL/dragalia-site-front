@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 import {UnitInfoLookupAnalyses} from '../../../../../../api-def/api';
 import {useI18n} from '../../../../../../i18n/hook';
+import {unitInfoToClickableProps} from '../../../../../../utils/services/resources/unitInfo/utils';
 import {RowTight} from '../../../../../elements/common/grid/row';
 import {UnitSearchOutputProps} from '../../../../../elements/gameData/unit/searcher/types';
 import {InputData, SortOrder} from '../in/types';
@@ -22,7 +23,7 @@ export const UnitInfoLookupOutput = ({
   analyses,
   inputData,
 }: AnalysisLookupOutputProps) => {
-  const {t} = useI18n();
+  const {t, lang} = useI18n();
 
   // Split to prioritize the units that have analysis
   const unitInfoHasAnalysis = prioritizedUnitInfo
@@ -47,7 +48,7 @@ export const UnitInfoLookupOutput = ({
           className={inputData.iconOnly ? styles['icon-only-entry'] : styles['complete-entry']}
         >
           <UnitInfoEntry
-            unitInfo={info.unitInfo}
+            unitInfo={unitInfoToClickableProps(info.unitInfo, lang)}
             analysisMeta={info.lookupInfo}
             iconOnly={inputData.iconOnly}
           />

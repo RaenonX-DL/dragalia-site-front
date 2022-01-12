@@ -12,13 +12,13 @@ import {EntryCommonProps} from '../types';
 type Props = EntryCommonProps;
 
 export const CompleteEntryNoAnalysis = ({unitInfo}: Props) => {
-  const {t, lang} = useI18n();
+  const {t} = useI18n();
 
   return (
     <>
       <RowNoGutter className={styles['info-top']}>
         <Col>
-          <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}} hasAnalysis={false}/>
+          <UnitLink unit={{...unitInfo, icon: undefined}} hasAnalysis={false}/>
         </Col>
       </RowNoGutter>
       <RowNoGutter className={styles['info-bottom']}>

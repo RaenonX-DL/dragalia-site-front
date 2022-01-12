@@ -3,8 +3,6 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {useI18n} from '../../../../../../../../i18n/hook';
-import {unitInfoToClickableProps} from '../../../../../../../../utils/services/resources/unitInfo/utils';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
 import {RowNoGutter} from '../../../../../../../elements/common/grid/row';
 import {IconEdit, IconPublish, IconView} from '../../../../../../../elements/common/icons';
@@ -17,14 +15,12 @@ export const IconOnlyEntryWithAnalysis = ({
   unitInfo,
   analysisMeta,
 }: EntryPropsHasAnalysis) => {
-  const {lang} = useI18n();
-
   return (
     <>
       <RowNoGutter className="pt-1 text-center">
         <Col>
           <UnitIconClickable
-            unit={unitInfoToClickableProps(unitInfo, lang)}
+            unit={unitInfo}
             hasAnalysis
             className={styles['unit-icon']}
           />

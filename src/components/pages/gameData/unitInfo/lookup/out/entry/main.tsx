@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import {RowNoGutter} from '../../../../../../elements/common/grid/row';
-import {UnitIcon} from '../../../../../../elements/gameData/unit/icon';
+import {UnitIconClickable} from '../../../../../../elements/gameData/unit/iconClickable';
 import styles from '../../main.module.css';
 import {EntryWithAnalysis} from './entryHasAnalysis';
 import {EntryNoAnalysis} from './entryNoAnalysis';
@@ -18,7 +18,7 @@ export const UnitInfoEntry = (props: EntryProps) => {
       {
         !props.iconOnly &&
         <Col xs="auto" className="me-2">
-          <UnitIcon unitInfo={unitInfo} className={styles['unit-icon']}/>
+          <UnitIconClickable unit={unitInfo} className={styles['unit-icon']}/>
         </Col>
       }
       <Col>

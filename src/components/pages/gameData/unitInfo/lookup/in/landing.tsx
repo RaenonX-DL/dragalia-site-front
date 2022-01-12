@@ -3,7 +3,9 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import {UnitInfoLookupEntry} from '../../../../../../api-def/api';
+import {useI18n} from '../../../../../../i18n/hook';
 import {useUnitInfo} from '../../../../../../utils/services/resources/unitInfo/hooks';
+import {unitInfoToClickableProps} from '../../../../../../utils/services/resources/unitInfo/utils';
 import {RowTight} from '../../../../../elements/common/grid/row';
 import styles from '../main.module.css';
 import {UnitInfoEntry} from '../out/entry/main';
@@ -14,6 +16,7 @@ type Props = {
 };
 
 export const UnitInfoLookupLanding = ({analyses}: Props) => {
+  const {lang} = useI18n();
   const {unitInfoMap} = useUnitInfo();
 
   return (
@@ -25,7 +28,7 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
         })
         .map(({entry, unitInfo}) => (
           <Col lg={6} xl={4} key={unitInfo.id}>
-            <UnitInfoEntry unitInfo={unitInfo} analysisMeta={entry} simplified/>
+            <UnitInfoEntry unitInfo={unitInfoToClickableProps(unitInfo, lang)} analysisMeta={entry} simplified/>
           </Col>
         ))}
     </RowTight>
