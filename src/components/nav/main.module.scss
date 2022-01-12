@@ -87,7 +87,10 @@ div {
       @include nav-item;
 
       background-image: var(--bs-gradient);
-      color: colors.$color-bw-240;
+
+      &:not([class*="disabled"]) {
+        color: colors.$color-bw-240;
+      }
 
       &.active {
         $bg-active: colors.$color-bw-215;
