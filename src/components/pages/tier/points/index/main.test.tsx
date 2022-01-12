@@ -5,9 +5,8 @@ import {screen} from '@testing-library/react';
 import {renderReact} from '../../../../../../test/render/main';
 import {typeInput} from '../../../../../../test/utils/event';
 import {ApiResponseCode, SupportedLanguages} from '../../../../../api-def/api';
-import {DataPath} from '../../../../../const/path/definitions';
+import {DataPath, makeDataUrl} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
-import {makeDataUrl} from '../../../../../utils/path/make';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {KeyPointIndexPage} from './main';
 
@@ -18,14 +17,8 @@ describe('Key point index page', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: {
-        idA: {
-          type: 'strength',
-          description: 'S1',
-        },
-        idB: {
-          type: 'weakness',
-          description: 'W1',
-        },
+        idA: {type: 'strength', description: 'S1'},
+        idB: {type: 'weakness', description: 'W1'},
       },
     });
   });

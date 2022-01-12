@@ -4,7 +4,7 @@ import {screen, waitFor} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
 import {ApiResponseCode} from '../../../../api-def/api';
-import {PostPath} from '../../../../const/path/definitions';
+import {PostPath} from '../../../../api-def/paths';
 import {PostLookupPage} from './page';
 
 

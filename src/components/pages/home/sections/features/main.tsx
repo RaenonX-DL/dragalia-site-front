@@ -3,8 +3,8 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {GeneralPath} from '../../../../../api-def/paths';
 import {featureBtnColors} from '../../../../../const/colors';
-import {GeneralPath} from '../../../../../const/path/definitions';
 import {useI18n} from '../../../../../i18n/hook';
 import {RowRegular} from '../../../../elements/common/grid/row';
 import mainStyles from '../../main.module.css';

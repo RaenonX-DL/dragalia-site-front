@@ -2,9 +2,8 @@ import React from 'react';
 
 import Nav from 'react-bootstrap/Nav';
 
-import {GeneralPath} from '../../../const/path/definitions';
+import {GeneralPath, makeGeneralUrl} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
-import {makeGeneralUrl} from '../../../utils/path/make';
 import {useNextRouter} from '../../../utils/router';
 import {navItems} from '../const';
 import {NavComponent} from '../elements/component';

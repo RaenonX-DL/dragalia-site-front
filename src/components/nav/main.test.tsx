@@ -4,7 +4,7 @@ import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../test/render/main';
-import {GeneralPath} from '../../const/path/definitions';
+import {GeneralPath} from '../../api-def/paths';
 import {translation as translationEN} from '../../i18n/translations/en/translation';
 import {layoutDispatchers} from '../../state/layout/dispatchers';
 import {LayoutDispatcherName} from '../../state/layout/types';

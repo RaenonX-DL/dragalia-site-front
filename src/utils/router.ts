@@ -1,6 +1,6 @@
 import {NextRouter, useRouter} from 'next/router';
 
-import {pathnameRemoveLang} from './path/process';
+import {pathnameRemoveLang} from '../api-def/paths';
 
 
 type UseNextRouterReturn = NextRouter & {

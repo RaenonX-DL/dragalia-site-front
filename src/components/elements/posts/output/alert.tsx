@@ -2,10 +2,9 @@ import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
-import {SupportedLanguageNames, PostGetResponse} from '../../../../api-def/api';
-import {PostPath} from '../../../../const/path/definitions';
+import {PostGetResponse, SupportedLanguageNames} from '../../../../api-def/api';
+import {makePostUrl, PostPath} from '../../../../api-def/paths';
 import {useI18n} from '../../../../i18n/hook';
-import {makePostUrl} from '../../../../utils/path/make';
 import {InternalLink} from '../../common/link/internal';
 
 

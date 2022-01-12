@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {QuestPostGetResponse} from '../../../../../api-def/api';
-import {GeneralPath, PostPath} from '../../../../../const/path/definitions';
+import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {AdsInPost} from '../../../../elements/common/ads/main';
 import {Markdown} from '../../../../elements/markdown/main';
 import {AlertVideoTips} from '../../../../elements/posts/alert';

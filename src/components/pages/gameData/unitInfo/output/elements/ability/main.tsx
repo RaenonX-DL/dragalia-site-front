@@ -3,10 +3,9 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import {makePostUrl, GeneralPath, PostPath} from '../../../../../../../api-def/paths';
 import {AbilityInfo, ConditionEnumMap} from '../../../../../../../api-def/resources';
-import {GeneralPath, PostPath} from '../../../../../../../const/path/definitions';
 import {useI18n} from '../../../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../../../utils/path/make';
 import {ResourceLoader} from '../../../../../../../utils/services/resources/loader';
 import {useFetchState} from '../../../../../../elements/common/fetch';
 import {InfoPopoverMarkdown} from '../../../../../../elements/common/overlay/info';

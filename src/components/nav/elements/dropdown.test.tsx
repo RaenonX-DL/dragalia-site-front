@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api';
-import {GeneralPath} from '../../../const/path/definitions';
+import {GeneralPath} from '../../../api-def/paths';
 import {NavItemDropdownContainable} from '../type';
 import {NavDropdownMenu} from './dropdown';
 

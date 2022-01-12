@@ -1,4 +1,4 @@
-import {GeneralPath, PagePath} from '../../src/const/path/definitions';
+import {GeneralPath, PagePath} from '../../src/api-def/paths';
 
 
 export const redirectLookup: {[P in string]?: PagePath} = {

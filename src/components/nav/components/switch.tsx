@@ -3,10 +3,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import {SupportedLanguageNames, SupportedLanguages} from '../../../api-def/api';
+import {mergePlaceholders} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
 import {CookiesKeys} from '../../../utils/cookies/keys';
 import {setCookies} from '../../../utils/cookies/utils';
-import {mergePlaceholders} from '../../../utils/path/process';
 import {useNextRouter} from '../../../utils/router';
 import {GoogleAnalytics} from '../../../utils/services/ga';
 import {NavDropdownMenu} from '../elements/dropdown';

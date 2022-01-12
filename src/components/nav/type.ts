@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GeneralPath} from '../../const/path/definitions';
+import {GeneralPath} from '../../api-def/paths';
 import {GetTranslationFunction} from '../../i18n/types';
 
 

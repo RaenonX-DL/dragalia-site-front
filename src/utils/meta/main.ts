@@ -1,12 +1,11 @@
 import {AppContext} from 'next/app';
 
 import {isFailedResponse} from '../../api-def/api';
-import {isPagePath} from '../../const/path/utils';
+import {getLangFromQuery, isPagePath, pathnameRemoveLang} from '../../api-def/paths';
 import {PageMetaTranslations} from '../../i18n/translations/definition';
 import {translations} from '../../i18n/translations/main';
 import {GetTranslationFunction} from '../../i18n/types';
 import {getMetaTFunction} from '../../i18n/utils';
-import {getLangFromQuery, pathnameRemoveLang} from '../path/process';
 import {onMetaResponseFailed, onNotFound} from './handler';
 import {getPageMetaPromise} from './preprocess';
 import {metaTransFunctions} from './translations';

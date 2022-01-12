@@ -5,7 +5,7 @@ import {screen} from '@testing-library/react';
 import {mockData} from '../../../../../../test/data/mock/homepage';
 import {renderReact} from '../../../../../../test/render/main';
 import {PostType, SupportedLanguages} from '../../../../../api-def/api';
-import {GeneralPath} from '../../../../../const/path/definitions';
+import {GeneralPath} from '../../../../../api-def/paths';
 import {PostList} from './postList';
 
 

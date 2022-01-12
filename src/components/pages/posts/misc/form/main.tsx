@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {MiscPostEditResponse, MiscPostPublishPayload, MiscPostPublishResponse} from '../../../../../api-def/api';
-import {PostPath} from '../../../../../const/path/definitions';
+import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makePostUrl} from '../../../../../utils/path/make';
 import {processText} from '../../../../../utils/process/text';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {ArrayForm} from '../../../../elements/form/array/main';

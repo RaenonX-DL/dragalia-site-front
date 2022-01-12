@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GeneralPath} from '../../const/path/definitions';
+import {GeneralPath} from '../../api-def/paths';
 import {UserControlButton} from '../elements/common/userControl/button/main';
 import {NavFluidConfig} from './components/fluid';
 import {NavLanguageSwitch} from './components/switch';

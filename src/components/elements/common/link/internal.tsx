@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {SupportedLanguages} from '../../../../api-def/api';
-import {urlRemoveLang} from '../../../../utils/path/process';
+import {urlRemoveLang} from '../../../../api-def/paths';
 
 
 type Props<T, A extends HTMLAnchorElement> = {

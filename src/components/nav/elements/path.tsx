@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 
+import {makeGeneralUrl} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
-import {makeGeneralUrl} from '../../../utils/path/make';
 import styles from '../main.module.css';
 import {NavItemPath} from '../type';
 

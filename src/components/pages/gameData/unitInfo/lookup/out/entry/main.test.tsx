@@ -10,10 +10,9 @@ import {
   UnitInfoLookupEntry,
   UnitType,
 } from '../../../../../../../api-def/api';
+import {makePostUrl, PostPath} from '../../../../../../../api-def/paths';
 import {UnitInfoData} from '../../../../../../../api-def/resources';
-import {PostPath} from '../../../../../../../const/path/definitions';
 import {translation as translationEN} from '../../../../../../../i18n/translations/en/translation';
-import {makePostUrl} from '../../../../../../../utils/path/make';
 import {UnitInfoEntry} from './main';
 
 

@@ -1,5 +1,4 @@
-import {SupportedLanguages} from '../../src/api-def/api';
-import {DEFAULT_LANG} from '../../src/i18n/langCode';
+import {DEFAULT_LANG, SupportedLanguages} from '../../src/api-def/api';
 import {CookiesKeys} from '../../src/utils/cookies/keys';
 
 

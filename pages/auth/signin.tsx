@@ -1,8 +1,8 @@
 import {GetServerSideProps} from 'next';
 import {getProviders, getSession} from 'next-auth/client';
 
+import {GeneralPath} from '../../src/api-def/paths';
 import {SignInPage, SignInPageProps} from '../../src/components/elements/common/userControl/signIn/main';
-import {GeneralPath} from '../../src/const/path/definitions';
 
 
 export const getServerSideProps: GetServerSideProps<SignInPageProps> = async (context) => {

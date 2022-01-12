@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {SupportedLanguages} from '../../../api-def/api';
-import {GeneralPath, PATH_ROOT} from '../../../const/path/definitions';
+import {GeneralPath, PATH_ROOT} from '../../../api-def/paths';
 import {ButtonBar} from './buttonBar';
 
 

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../test/render/main';
 import {ApiResponseCode} from '../../../api-def/api';
-import {GeneralPath} from '../../../const/path/definitions';
+import {GeneralPath} from '../../../api-def/paths';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {TierList} from './main';

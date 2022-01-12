@@ -3,9 +3,8 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import {ButtonVariant} from 'react-bootstrap/types';
 
-import {GeneralPath} from '../../../../../const/path/definitions';
+import {GeneralPath, makeGeneralUrl} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
-import {makeGeneralUrl} from '../../../../../utils/path/make';
 import {FullSizeButton} from '../../../../elements/common/button/fullSize';
 import styles from './main.module.css';
 
