@@ -18,7 +18,7 @@ export const AttackingSkillSorter = ({inputData, onOrderPicked}: Props) => {
   const sortBy = t(orderName[inputData.sortBy]);
   const title = t((t) => t.game.skillAtk.sort.text, {sortBy});
 
-  const onItemPicked = (sortBy: SortBy) => () => {
+  const onItemPicked = (sortBy: SortBy) => {
     const newInputData = overrideInputData(inputData, {sortBy});
     onOrderPicked(newInputData);
   };
