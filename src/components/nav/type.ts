@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GeneralPath} from '../../api-def/paths';
+import {GeneralPath, PagePath} from '../../api-def/paths';
 import {GetTranslationFunction} from '../../i18n/types';
 
 
@@ -21,9 +21,11 @@ export type NavItemPath = NavItemCommon & {
   activeOverride?: boolean,
 } & ({
   path?: GeneralPath,
+  pathActiveBasis?: PagePath[],
   href?: never,
 } | {
   path?: never,
+  pathActiveBasis?: never,
   href?: string,
 });
 
