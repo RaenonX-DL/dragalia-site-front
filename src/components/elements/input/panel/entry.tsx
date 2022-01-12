@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
 import {EnumEntry} from '../../../../api-def/resources';
 import {EnumCheckboxGroup} from '../../common/check/enum/checkbox';
 import {EnumRadioGroup} from '../../common/check/enum/radio';
@@ -56,6 +58,9 @@ export const InputPanelEntry = <E extends CheckOption, E2 extends EnumEntry, T, 
   }
   if (inputEntry.type === 'select') {
     return <InputSelectEntry {...inputEntry} inputData={inputData} setInputData={setInputData}/>;
+  }
+  if (inputEntry.type === 'progress') {
+    return <ProgressBar now={inputEntry.value} className="mb-3" {...inputEntry}/>;
   }
 
   throw new Error(`Unhandled input entry: ${inputEntry}`);

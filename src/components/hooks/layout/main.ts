@@ -22,5 +22,5 @@ export const useLayout = (): UseLayoutReturn => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  return {dimension, allowFluidContainer: width / height > WH_RATIO_GT_ALLOW_FLUID};
+  return {dimension, isLandscape: width / height > WH_RATIO_GT_ALLOW_FLUID};
 };

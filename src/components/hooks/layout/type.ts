@@ -5,5 +5,5 @@ export type Dimension = {
 
 export type UseLayoutReturn = {
   dimension: Dimension,
-  allowFluidContainer: boolean,
+  isLandscape: boolean,
 };
