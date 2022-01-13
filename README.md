@@ -101,10 +101,10 @@ where stores the dumped audio files.
 [front-lgtm-loc-badge]: https://badgen.net/lgtm/lines/g/RaenonX-DL/dragalia-site-front/javascript?icon=lgtm
 [front-cq-link-main]: https://www.codacy.com/gh/RaenonX-DL/dragalia-site-front/dashboard?branch=main
 [front-cq-link-dev]: https://www.codacy.com/gh/RaenonX-DL/dragalia-site-front/dashboard?branch=dev
-[front-grade-badge-main]: https://app.codacy.com/project/badge/Grade/83fa9f649f2e4001b848fc978642ea68?branch=main
-[front-grade-badge-dev]: https://app.codacy.com/project/badge/Grade/83fa9f649f2e4001b848fc978642ea68?branch=dev
-[front-coverage-badge-main]: https://app.codacy.com/project/badge/Coverage/83fa9f649f2e4001b848fc978642ea68?branch=main
-[front-coverage-badge-dev]: https://app.codacy.com/project/badge/Coverage/83fa9f649f2e4001b848fc978642ea68?branch=dev
+[front-grade-badge-main]: https://app.codacy.com/project/badge/Grade/d16177f9a98846958af18d959983181f?branch=main
+[front-grade-badge-dev]: https://app.codacy.com/project/badge/Grade/d16177f9a98846958af18d959983181f?branch=dev
+[front-coverage-badge-main]: https://app.codacy.com/project/badge/Coverage/d16177f9a98846958af18d959983181f?branch=main
+[front-coverage-badge-dev]: https://app.codacy.com/project/badge/Coverage/d16177f9a98846958af18d959983181f?branch=dev
 [front-cypress-badge-main]: https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/wgo7xq/main&logo=cypress
 [front-cypress-badge-dev]: https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/wgo7xq/dev&logo=cypress
 [front-cypress-link]: https://dashboard.cypress.io/projects/wgo7xq/runs
