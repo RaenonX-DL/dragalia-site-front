@@ -43,7 +43,7 @@ export const SiteStats = ({data}: Props) => {
       <Row className="text-end mb-2">
         <Col>
           {t((t) => t.misc.timestamp.lastUpdated)}:&nbsp;
-          <TimeAgo epoch={data.stats.lastFetchedEpoch}/>
+          <TimeAgo epoch={data.stats.lastFetchedEpoch * 1000}/>
         </Col>
       </Row>
     </>
