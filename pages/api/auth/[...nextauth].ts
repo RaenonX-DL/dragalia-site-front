@@ -1,40 +1,44 @@
-/* eslint-disable new-cap */
+import env from 'env-var';
 import NextAuth, {NextAuthOptions, Session, SignInEventMessage, User} from 'next-auth';
 import {TypeORM} from 'next-auth/adapters';
-import Providers from 'next-auth/providers';
+import nextAuthDiscordProvider from 'next-auth/providers/discord';
+import nextAuthGitHubProvider from 'next-auth/providers/github';
+import nextAuthGoogleProvider from 'next-auth/providers/google';
+import nextAuthTwitchProvider from 'next-auth/providers/twitch';
 
 import {AUTH_DB} from '../../../src/api-def/models';
 import {AuthPath} from '../../../src/api-def/paths';
+import {isCi} from '../../../src/api-def/utils';
 import {UserModel} from '../../../src/models/user';
 import {ensureIndex} from '../../../src/utils/auth';
 
 
-let DATABASE_URL = process.env.AUTH_DATABASE_URL;
-if (!DATABASE_URL && !process.env.CI) {
-  console.error('Specify `AUTH_DATABASE_URL` in env vars for next-auth database.');
-  process.exit(1);
-}
+let DATABASE_URL = env.get('AUTH_DATABASE_URL')
+  .required(!isCi())
+  .example('mongodb://localhost:27017/')
+  .asString();
+
 DATABASE_URL = `${DATABASE_URL}${AUTH_DB}`;
 
 const nextAuthOptions: NextAuthOptions = {
   // Services
   // - https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    nextAuthGoogleProvider({
+      clientId: env.get('AUTH_GOOGLE_ID').required().asString(),
+      clientSecret: env.get('AUTH_GOOGLE_SECRET').required().asString(),
     }),
-    Providers.Discord({
-      clientId: process.env.AUTH_DISCORD_ID,
-      clientSecret: process.env.AUTH_DISCORD_SECRET,
+    nextAuthDiscordProvider({
+      clientId: env.get('AUTH_DISCORD_ID').required().asString(),
+      clientSecret: env.get('AUTH_DISCORD_SECRET').required().asString(),
     }),
-    Providers.GitHub({
-      clientId: process.env.AUTH_GITHUB_ID,
-      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    nextAuthGitHubProvider({
+      clientId: env.get('AUTH_GITHUB_ID').required().asString(),
+      clientSecret: env.get('AUTH_GITHUB_SECRET').required().asString(),
     }),
-    Providers.Twitch({
-      clientId: process.env.AUTH_TWITCH_ID,
-      clientSecret: process.env.AUTH_TWITCH_SECRET,
+    nextAuthTwitchProvider({
+      clientId: env.get('AUTH_TWITCH_ID').required().asString(),
+      clientSecret: env.get('AUTH_TWITCH_SECRET').required().asString(),
     }),
   ],
 
@@ -59,7 +63,7 @@ const nextAuthOptions: NextAuthOptions = {
   ),
 
   // Security
-  secret: process.env.AUTH_SECRET,
+  secret: env.get('AUTH_SECRET').required().asString(),
 
   // Event hooks
   events: {

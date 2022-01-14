@@ -1,5 +1,6 @@
 import {SupportedLanguages, UnitType} from '../../api-def/api';
 import {Element, Weapon} from '../../api-def/resources';
+import {isCi, isProduction} from '../../api-def/utils';
 import {InputData as ExInputData} from '../../components/pages/gameData/ex/in/types';
 import {InputData as AtkInputData} from '../../components/pages/gameData/skillAtk/in/types';
 import {InputData as UnitInfoInput} from '../../components/pages/gameData/unitInfo/lookup/in/types';
@@ -150,8 +151,8 @@ export class GoogleAnalytics {
    */
   private static sendEvent(eventName: string, parameters: {[key in string]: any}) {
     // Log GA event instead of sending it if under development
-    if (process.env.NODE_ENV !== 'production') {
-      if (!process.env.CI) {
+    if (!isProduction()) {
+      if (!isCi()) {
         console.debug(eventName, parameters);
       }
       return;

@@ -1,5 +1,8 @@
+import {isCi} from '../../src/api-def/utils';
+
+
 export const initMockConsoleBehavior = () => {
-  if (!process.env.CI) {
+  if (!isCi()) {
     // Use default console behavior if not in CI mode
     return;
   }

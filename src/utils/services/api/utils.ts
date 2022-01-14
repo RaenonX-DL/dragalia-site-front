@@ -1,7 +1,16 @@
+import urlJoin from 'url-join';
+
 import {CharacterSkill, PositionalInfo} from '../../../api-def/api';
 
 
-const ApiRoot = process.env.NEXT_PUBLIC_API_ROOT;
+const API_ROOT = process.env.NEXT_PUBLIC_API_ROOT;
+
+if (!API_ROOT) {
+  throw new Error(
+    `Define NEXT_PUBLIC_API_ROOT as the root of the website API. ` +
+    `An example of this is https://dl.raenonx.cc.`,
+  );
+}
 
 export const generateNewCharaSkill = (name?: string): CharacterSkill => ({
   name: name || '',
@@ -18,5 +27,5 @@ export const generateNewPositionInfo = (): PositionalInfo => ({
 });
 
 export const getFullApiUrl = (endpoint: string): string => {
-  return ApiRoot + endpoint;
+  return urlJoin(API_ROOT, endpoint);
 };

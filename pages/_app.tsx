@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {getSession} from 'next-auth/client';
+import {SessionProvider, getSession} from 'next-auth/react';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 
-import {isProduction} from '../server/utils/misc';
+import {isProduction, isCi} from '../src/api-def/utils';
 import {MainApp} from '../src/components/pages/app';
 import {PageProps} from '../src/components/pages/type';
 import {AppReactContext} from '../src/context/app/main';
@@ -20,6 +20,8 @@ import '../styles/index.css';
 import '../styles/scrollbar.scss';
 import '../styles/section.css';
 
+
+const googleAdSenseId = process.env.NEXT_PUBLIC_GA_ID;
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {
@@ -39,18 +41,18 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       </Head>
       {/* Global site tag (gtag.js) - Google Analytics */}
       {
-        isProduction() && !process.env.CI &&
+        isProduction() && !isCi() &&
         <>
           <Script
             strategy="lazyOnload"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAdSenseId}`}
           />
           <Script strategy="lazyOnload" id="gtag">
             {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                gtag('config', '${googleAdSenseId}');
               `}
           </Script>
         </>

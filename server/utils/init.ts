@@ -3,8 +3,8 @@ import fastify, {FastifyInstance} from 'fastify';
 import next from 'next'; // eslint-disable-line import/no-duplicates
 import {NextServer} from 'next/dist/server/next'; // eslint-disable-line import/no-duplicates
 
+import {isProduction} from '../../src/api-def/utils';
 import {registerHandlers} from './init/handlers';
-import {isProduction} from './misc';
 
 
 type CreateAppReturn = {

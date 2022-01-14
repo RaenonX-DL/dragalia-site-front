@@ -75,6 +75,7 @@ import {
   UnitTierNoteUpdateResponse,
   UnitType,
 } from '../../../api-def/api';
+import {isCi} from '../../../api-def/utils';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
@@ -700,7 +701,7 @@ export class ApiRequestSender {
       headers: {'Content-Type': 'application/json'},
     };
 
-    if (!process.env.CI) {
+    if (!isCi()) {
       console.debug(`[API] Sending ${method} request to ${endpoint}`);
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {isProduction} from '../../../../../server/utils/misc';
+import {isProduction} from '../../../../api-def/utils';
 import {AppReactContext} from '../../../../context/app/main';
 import styles from './main.module.css';
 
