@@ -27,7 +27,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const session: Session = {
     expires: '99999999999',
     user: {
-      id: new ObjectId(),
+      id: new ObjectId().toHexString(),
       createdAt: new Date(),
       updatedAt: new Date(),
       isAdmin: false,

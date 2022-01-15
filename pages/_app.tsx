@@ -28,7 +28,10 @@ type AppInitialProps = NextAppInitialProps & {
   pageProps: PageProps
 };
 
-const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
+const NextApp = ({
+  Component,
+  pageProps: {session, ...pageProps},
+}: AppProps<PageProps>) => {
   const {t} = useI18n();
 
   // Page meta must be obtained here, or page preview won't work
@@ -68,14 +71,16 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         <Script strategy="beforeInteractive" type="text/javascript" src="/js/newRelicEum.js"/>
       }
       <React.StrictMode>
-        <AppReactContext.Provider value={{...pageProps}}>
-          <ReduxProvider>
-            <MainApp
-              isNotFound={pageProps.isNotFound}
-              renderApp={() => <Component {...pageProps}/>}
-            />
-          </ReduxProvider>
-        </AppReactContext.Provider>
+        <SessionProvider session={session} refetchInterval={5 * 60}>
+          <AppReactContext.Provider value={{...pageProps}}>
+            <ReduxProvider>
+              <MainApp
+                isNotFound={pageProps.isNotFound}
+                renderApp={() => <Component {...pageProps}/>}
+              />
+            </ReduxProvider>
+          </AppReactContext.Provider>
+        </SessionProvider>
       </React.StrictMode>
     </>
   );

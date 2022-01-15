@@ -1,4 +1,4 @@
-import {getSession} from 'next-auth/client';
+import {getSession} from 'next-auth/react';
 import {AppContext} from 'next/app';
 
 import {FailedResponse, PageMetaResponse, SupportedLanguages} from '../../api-def/api';

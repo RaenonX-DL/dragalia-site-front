@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {signOut} from 'next-auth/client';
+import {signOut} from 'next-auth/react';
 import Button from 'react-bootstrap/Button';
 
 import {useI18n} from '../../../../../i18n/hook';

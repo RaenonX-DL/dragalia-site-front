@@ -1,23 +1,29 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {AuthPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useNextRouter} from '../../../../../utils/router';
+import {AuthLoadingButton} from './loading';
 import {LoginButton} from './login';
 import {LogoutButton} from './logout';
 
 
 export const UserControlButton = () => {
-  const context = React.useContext(AppReactContext);
   const {pathname} = useNextRouter();
+  const {status} = useSession();
 
   if (pathname === AuthPath.SIGN_IN) {
     return <></>;
   }
 
-  if (!context?.session) {
+  if (status === 'unauthenticated') {
     return <LoginButton/>;
   }
 
-  return <LogoutButton/>;
+  if (status === 'authenticated') {
+    return <LogoutButton/>;
+  }
+
+  return <AuthLoadingButton/>;
 };
