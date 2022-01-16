@@ -1,3 +1,5 @@
+import {TextEncoder, TextDecoder} from 'util';
+
 // `jest-dom` extensions (for example, `expect` extension)
 import '@testing-library/jest-dom';
 import {configure} from '@testing-library/react';
@@ -21,3 +23,8 @@ configure({asyncUtilTimeout: 5000});
 
 initMockApi();
 initMockConsoleBehavior();
+
+// Polyfill for `import {ObjectId} from 'mongodb';` to work
+global.TextEncoder = TextEncoder;
+// @ts-ignore
+global.TextDecoder = TextDecoder;

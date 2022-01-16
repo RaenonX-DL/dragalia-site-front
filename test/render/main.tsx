@@ -4,6 +4,7 @@ import {render} from '@testing-library/react';
 import {renderHook} from '@testing-library/react-hooks';
 import {ObjectId} from 'mongodb';
 import {Session} from 'next-auth';
+import {SessionProvider} from 'next-auth/react';
 import {RouterContext} from 'next/dist/shared/lib/router-context';
 
 import {DEFAULT_LANG} from '../../src/api-def/api';
@@ -54,9 +55,11 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   return (
     <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
       <AppReactContext.Provider value={context}>
-        <ReduxProvider persist={false} reduxStore={store}>
-          {children}
-        </ReduxProvider>
+        <SessionProvider session={context.session}>
+          <ReduxProvider persist={false} reduxStore={store}>
+            {children}
+          </ReduxProvider>
+        </SessionProvider>
       </AppReactContext.Provider>
     </RouterContext.Provider>
   );
