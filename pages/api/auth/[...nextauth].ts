@@ -9,6 +9,7 @@ import nextAuthTwitchProvider from 'next-auth/providers/twitch';
 
 import {AUTH_DB} from '../../../src/api-def/models/user';
 import {AuthPath} from '../../../src/api-def/paths';
+import {isCi} from '../../../src/api-def/utils';
 import {ensureIndex} from '../../../src/utils/auth';
 import {generateMongoClient} from '../../../src/utils/db/client';
 
@@ -18,20 +19,20 @@ const nextAuthOptions: NextAuthOptions = {
   // - https://next-auth.js.org/configuration/providers
   providers: [
     nextAuthGoogleProvider({
-      clientId: env.get('AUTH_GOOGLE_ID').required().asString(),
-      clientSecret: env.get('AUTH_GOOGLE_SECRET').required().asString(),
+      clientId: env.get('AUTH_GOOGLE_ID').required(!isCi()).asString(),
+      clientSecret: env.get('AUTH_GOOGLE_SECRET').required(!isCi()).asString(),
     }),
     nextAuthDiscordProvider({
-      clientId: env.get('AUTH_DISCORD_ID').required().asString(),
-      clientSecret: env.get('AUTH_DISCORD_SECRET').required().asString(),
+      clientId: env.get('AUTH_DISCORD_ID').required(!isCi()).asString(),
+      clientSecret: env.get('AUTH_DISCORD_SECRET').required(!isCi()).asString(),
     }),
     nextAuthGitHubProvider({
-      clientId: env.get('AUTH_GITHUB_ID').required().asString(),
-      clientSecret: env.get('AUTH_GITHUB_SECRET').required().asString(),
+      clientId: env.get('AUTH_GITHUB_ID').required(!isCi()).asString(),
+      clientSecret: env.get('AUTH_GITHUB_SECRET').required(!isCi()).asString(),
     }),
     nextAuthTwitchProvider({
-      clientId: env.get('AUTH_TWITCH_ID').required().asString(),
-      clientSecret: env.get('AUTH_TWITCH_SECRET').required().asString(),
+      clientId: env.get('AUTH_TWITCH_ID').required(!isCi()).asString(),
+      clientSecret: env.get('AUTH_TWITCH_SECRET').required(!isCi()).asString(),
     }),
   ],
   session: {
@@ -40,10 +41,13 @@ const nextAuthOptions: NextAuthOptions = {
   },
 
   // Database connection
-  adapter: nextAuthMongoDBAdapter(generateMongoClient(AUTH_DB).connect()),
+  adapter: isCi() ? undefined : nextAuthMongoDBAdapter(generateMongoClient(AUTH_DB).connect()),
 
   // Security
-  secret: env.get('AUTH_SECRET').required().asString(),
+  secret: (
+    env.get('AUTH_SECRET').required(!isCi()).asString() ||
+    (Math.random() + 1).toString(36).substring(2)
+  ),
 
   // Event hooks
   events: {

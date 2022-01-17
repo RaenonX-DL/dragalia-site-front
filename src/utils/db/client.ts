@@ -9,6 +9,7 @@ const generateMongoClientUrl = (db?: string) => {
   const clientUrl = env.get('AUTH_DATABASE_URL')
     .required(!isCi())
     .example('mongodb://localhost:27017/')
+    .default('mongodb://localhost:27017/')
     .asString();
 
   if (!db) {
