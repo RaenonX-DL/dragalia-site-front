@@ -6,6 +6,5 @@
   "screenshotsFolder": ".cypress/screenshots",
   "supportFile": false,
   "videosFolder": ".cypress/videos",
-  "videoUploadOnPasses": false,
-  "nodeVersion": "system"
+  "videoUploadOnPasses": false
 }
