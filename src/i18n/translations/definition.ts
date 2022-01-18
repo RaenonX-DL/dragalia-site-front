@@ -604,7 +604,13 @@ export type TranslationStruct = {
       },
       story: {
         unit: PageMetaTranslations,
-      }
+      },
+      user: {
+        settings: {
+          general: PageMetaTranslations,
+          subscriptions: PageMetaTranslations,
+        },
+      },
     },
     error: {
       401: PageMetaTranslations,

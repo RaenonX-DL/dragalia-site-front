@@ -743,6 +743,18 @@ export const translation: TranslationStruct = {
           description: '全部の{{unitName}}のストーリー。',
         },
       },
+      user: {
+        settings: {
+          general: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+          subscriptions: {
+            title: 'TBA',
+            description: 'TBA',
+          },
+        },
+      },
     },
     error: {
       401: {

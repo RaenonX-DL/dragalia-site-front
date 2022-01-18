@@ -777,6 +777,18 @@ export const translation: TranslationStruct = {
           description: 'All unit stories of {{unitName}}.',
         },
       },
+      user: {
+        settings: {
+          general: {
+            title: 'User settings - General',
+            description: 'General user settings.',
+          },
+          subscriptions: {
+            title: 'User settings - Email subscriptions',
+            description: 'User email subscription settings.',
+          },
+        },
+      },
     },
     error: {
       401: {

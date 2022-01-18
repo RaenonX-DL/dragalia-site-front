@@ -737,6 +737,18 @@ export const translation: TranslationStruct = {
           description: '{{unitName}} 的角色故事全集。',
         },
       },
+      user: {
+        settings: {
+          general: {
+            title: '使用者設定 - 一般',
+            description: '一般使用者設定頁面。',
+          },
+          subscriptions: {
+            title: '使用者設定 - 通知',
+            description: '使用者通知設定頁面。',
+          },
+        },
+      },
     },
     error: {
       401: {
