@@ -6,14 +6,15 @@ import {useDispatch} from 'react-redux';
 import {useI18n} from '../../../i18n/hook';
 import {layoutDispatchers} from '../../../state/layout/dispatchers';
 import {useLayoutSelector} from '../../../state/layout/selector';
+import {LayoutDispatcherName} from '../../../state/layout/types';
 import {useLayout} from '../../hooks/layout/main';
 import {NavDropdownMenu} from '../elements/dropdown';
 
 
-export const NavFluidConfig = () => {
+export const NavWidthConfig = () => {
   const {t} = useI18n();
   const dispatch = useDispatch();
-  const {fluid} = useLayoutSelector();
+  const {width} = useLayoutSelector();
   const {isLandscape} = useLayout();
 
   if (!isLandscape) {
@@ -29,20 +30,26 @@ export const NavFluidConfig = () => {
         </Button>
       )}
       entries={[
-        {type: 'header', text: (t) => t.nav.layout.current.fluid},
-        {type: 'text', text: (t) => fluid ? t.nav.layout.fluid.enabled : t.nav.layout.fluid.disabled},
+        {type: 'header', text: (t) => t.nav.layout.current.width},
+        {type: 'text', text: (t) =>t.nav.layout.width[width]},
         {type: 'divider'},
         {
           type: 'path',
-          text: (t) => t.nav.layout.fluid.enable,
-          onClick: () => dispatch(layoutDispatchers.changeFluid(true)),
-          activeOverride: fluid,
+          text: (t) => t.nav.layout.width.full,
+          onClick: () => dispatch(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH]('full')),
+          activeOverride: width === 'full',
         },
         {
           type: 'path',
-          text: (t) => t.nav.layout.fluid.disable,
-          onClick: () => dispatch(layoutDispatchers.changeFluid(false)),
-          activeOverride: !fluid,
+          text: (t) => t.nav.layout.width.wide,
+          onClick: () => dispatch(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH]('wide')),
+          activeOverride: width === 'wide',
+        },
+        {
+          type: 'path',
+          text: (t) => t.nav.layout.width.mid,
+          onClick: () => dispatch(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH]('mid')),
+          activeOverride: width === 'mid',
         },
       ]}
     />

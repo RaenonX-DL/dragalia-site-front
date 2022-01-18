@@ -86,4 +86,28 @@ div {
       padding: 0.5rem 1rem !important;
     }
   }
+
+  %container {
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-full {
+    @extend %container;
+
+    width: 100%;
+  }
+
+  .container-wide {
+    @extend %container;
+
+    width: 80%;
+  }
+
+  .container-mid {
+    @extend %container;
+
+    width: 60%;
+  }
 }

@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 import {useLayoutSelector} from '../../state/layout/selector';
+import {LayoutWidthType} from '../../state/layout/types';
 import {Footer} from '../elements/footer';
 import {Error404} from '../error/404';
 import {NavigationLandscape} from '../nav/main/landscape';
@@ -19,8 +20,14 @@ type Props = {
   renderApp: () => React.ReactNode,
 };
 
+const widthClassMap: {[width in LayoutWidthType]: string} = {
+  full: styles['container-full'],
+  wide: styles['container-wide'],
+  mid: styles['container-mid'],
+};
+
 export const MainApp = ({isNotFound, renderApp}: Props) => {
-  const {fluid, collapse} = useLayoutSelector();
+  const {width, collapse} = useLayoutSelector();
 
   return (
     <>
@@ -29,7 +36,7 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
       {
         isNotFound ?
           <Error404/> :
-          <Container fluid={fluid} className="p-3">
+          <Container fluid={width === 'full'} className={widthClassMap[width]}>
             <Row className={styles['layout-row']}>
               <Col
                 className={

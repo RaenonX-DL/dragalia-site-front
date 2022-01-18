@@ -830,13 +830,12 @@ export const translation: TranslationStruct = {
     layout: {
       config: 'Layout Config',
       current: {
-        fluid: 'Full-width',
+        width: 'Width',
       },
-      fluid: {
-        enable: 'Enable',
-        disable: 'Disable',
-        enabled: 'Enabled',
-        disabled: 'Disabled',
+      width: {
+        full: 'Full',
+        wide: 'Wide',
+        mid: 'Medium',
       },
     },
   },

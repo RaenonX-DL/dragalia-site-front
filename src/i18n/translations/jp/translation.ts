@@ -796,13 +796,12 @@ export const translation: TranslationStruct = {
     layout: {
       config: 'TBA',
       current: {
-        fluid: 'TBA',
+        width: 'TBA',
       },
-      fluid: {
-        enable: 'TBA',
-        disable: 'TBA',
-        enabled: 'TBA',
-        disabled: 'TBA',
+      width: {
+        full: 'TBA',
+        wide: 'TBA',
+        mid: 'TBA',
       },
     },
   },

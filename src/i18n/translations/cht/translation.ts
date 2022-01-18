@@ -790,13 +790,12 @@ export const translation: TranslationStruct = {
     layout: {
       config: '版面設定',
       current: {
-        fluid: '全寬',
+        width: '寬度',
       },
-      fluid: {
-        enable: '啟用',
-        disable: '停用',
-        enabled: '已啟用',
-        disabled: '已停用',
+      width: {
+        full: '全寬',
+        wide: '寬',
+        mid: '中',
       },
     },
   },
