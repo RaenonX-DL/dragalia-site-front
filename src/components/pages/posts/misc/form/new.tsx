@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {MiscPostPublishPayload} from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {backupDispatchers} from '../../../../../state/backup/dispatchers';
 import {useBackupSelector} from '../../../../../state/backup/selector';
@@ -15,13 +16,13 @@ import {generatePayload} from './utils';
 
 export const MiscNew = () => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
   const dispatch = useDispatch();
 
   const {misc} = useBackupSelector();
 
   const [formState, setFormState] = React.useState<PostFormState<MiscPostPublishPayload>>({
-    payload: overrideObject(generatePayload(lang, context?.session?.user.id.toString()), misc),
+    payload: overrideObject(generatePayload(lang, data?.user.id.toString()), misc),
     isIdAvailable: true,
     isPreloaded: false,
   });

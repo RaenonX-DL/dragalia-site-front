@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Col from 'react-bootstrap/Col';
 
 import {AnalysisMeta, PostMeta} from '../../../../../api-def/api';
 import {floatingControlHeight} from '../../../../../const/style';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
@@ -24,13 +24,13 @@ export const FormAnalysisMeta = <P extends AnalysisMeta>({
   setAvailability,
 }: FormAnalysisMetaProps<P>) => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const {isValid, isChecking} = useFormMeta({
     formState,
     setAvailability,
     fnIdCheck: (payload) => (
-      ApiRequestSender.analysisIdCheck(context?.session?.user.id.toString() || '', payload.unitId, payload.lang)
+      ApiRequestSender.analysisIdCheck(data?.user.id.toString() || '', payload.unitId, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.unitId, payload.lang],
   });

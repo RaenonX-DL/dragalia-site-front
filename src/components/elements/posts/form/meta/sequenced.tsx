@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Col from 'react-bootstrap/Col';
 
 import {
@@ -8,7 +9,6 @@ import {
   PostMeta,
   SupportedLanguages,
 } from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {RowRegular} from '../../../common/grid/row';
 import {FloatingInput} from '../../../form/control/floating/input';
@@ -32,13 +32,13 @@ export const FormSequencedMeta = <P extends OptionalSequencedPostMeta, R extends
   fnIdCheck,
 }: FormMetaProps<P, R>) => {
   const {t} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const {isValid, isChecking} = useFormMeta({
     formState,
     setAvailability,
     fnIdCheck: (payload) => (
-      fnIdCheck(context?.session?.user.id.toString() || '', Number(payload.seqId) || null, payload.lang)
+      fnIdCheck(data?.user.id.toString() || '', Number(payload.seqId) || null, payload.lang)
     ),
     getEffectDependency: (payload) => [payload.seqId, payload.lang],
   });

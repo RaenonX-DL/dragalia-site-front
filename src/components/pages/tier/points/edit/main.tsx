@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Alert from 'react-bootstrap/Alert';
 
 import {FailedResponse, isFailedResponse, KeyPointManageResponse} from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {useFetchState} from '../../../../elements/common/fetch';
@@ -15,13 +15,13 @@ import {KeyPointsManagement} from './form';
 
 export const KeyPointsEdit = () => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
-  if (!context?.session?.user.isAdmin) {
+  if (!data?.user.isAdmin) {
     return <AccessDenied/>;
   }
 
-  const uid = context.session.user.id.toString();
+  const uid = data.user.id.toString();
 
   const {
     fetchStatus: keyPoints,

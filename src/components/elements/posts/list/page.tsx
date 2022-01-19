@@ -1,12 +1,13 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {
   ApiResponseCode,
   isFailedResponse,
   SequencedPostInfo,
   SequencedPostListResponse,
 } from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
 import {AdsPostList} from '../../common/ads/main';
@@ -31,14 +32,13 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
   renderPostEntries,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
-
+  const {data} = useSession();
   const {
     fetchStatus,
     fetchFunction: fetchPostList,
   } = useFetchState<R | undefined>(
     undefined,
-    () => fnFetchList(context?.session?.user.id.toString() || '', lang),
+    () => fnFetchList(data?.user.id.toString() || '', lang),
     'Failed to fetch post list.',
   );
 
@@ -67,7 +67,7 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
         <h2>{title}</h2>
       </div>
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <PostManageBar {...postManageBarProps}/>
       }
       <ListContent/>

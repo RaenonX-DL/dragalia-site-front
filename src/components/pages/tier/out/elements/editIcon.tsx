@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {makeUnitUrl, UnitPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {IconEdit} from '../../../../elements/common/icons';
 import {InternalLink} from '../../../../elements/common/link/internal';
@@ -13,10 +14,10 @@ type Props = {
 };
 
 export const TierNoteEditIcon = ({unitId}: Props) => {
-  const context = React.useContext(AppReactContext);
   const {lang} = useI18n();
+  const {data} = useSession();
 
-  if (!context?.session?.user.isAdmin) {
+  if (!data?.user.isAdmin) {
     return <></>;
   }
 

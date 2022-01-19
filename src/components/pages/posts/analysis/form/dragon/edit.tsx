@@ -1,10 +1,8 @@
 import React from 'react';
 
-import {
-  DragonAnalysisBody,
-  DragonAnalysisEditPayload,
-} from '../../../../../../api-def/api';
-import {AppReactContext} from '../../../../../../context/app/main';
+import {useSession} from 'next-auth/react';
+
+import {DragonAnalysisBody, DragonAnalysisEditPayload} from '../../../../../../api-def/api';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {PostEditCommon} from '../../../../../elements/posts/form/edit';
 import {PostFormState} from '../../../../../elements/posts/form/types';
@@ -16,11 +14,11 @@ type Props = {
 };
 
 export const AnalysisFormDragonEdit = ({analysis}: Props) => {
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
   const [formState, setFormState] = React.useState<PostFormState<DragonAnalysisEditPayload>>({
     payload: {
       // Explicit to avoid unwanted properties
-      uid: context?.session?.user.id.toString() || '',
+      uid: data?.user.id.toString() || '',
       lang: analysis.lang,
       type: analysis.type,
       unitId: analysis.unitId,

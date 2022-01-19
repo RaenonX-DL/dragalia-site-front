@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import {useDispatch} from 'react-redux';
 
 import {PostEditResponse, PostMeta} from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
 import {ProtectedLayout} from '../../../pages/layout/protected';
@@ -31,7 +31,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
-  const context = React.useContext(AppReactContext);
+  const {status} = useSession();
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
     const payload: P = {...formState.payload, [key]: newValue};
@@ -47,7 +47,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   });
 
   const onPreSubmit = async (setModal: React.Dispatch<React.SetStateAction<ModalStateFlex>>) => {
-    if (!context?.session) {
+    if (status !== 'authenticated') {
       setModal({
         show: true,
         title: t((t) => t.userControl.noUid),

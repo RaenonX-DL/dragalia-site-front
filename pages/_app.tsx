@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {SessionProvider, getSession} from 'next-auth/react';
+import {getSession, SessionProvider} from 'next-auth/react';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 
-import {isProduction, isCi} from '../src/api-def/utils';
+import {isCi, isProduction} from '../src/api-def/utils';
 import {MainApp} from '../src/components/pages/app';
 import {PageProps} from '../src/components/pages/type';
 import {AppReactContext} from '../src/context/app/main';
@@ -25,7 +25,7 @@ const googleAdSenseId = process.env.NEXT_PUBLIC_GA_ID;
 
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {
-  pageProps: PageProps
+  pageProps: PageProps,
 };
 
 const NextApp = ({
@@ -72,7 +72,7 @@ const NextApp = ({
       }
       <React.StrictMode>
         <SessionProvider session={session} refetchInterval={5 * 60}>
-          <AppReactContext.Provider value={{session, ...pageProps}}>
+          <AppReactContext.Provider value={pageProps}>
             <ReduxProvider>
               <MainApp
                 isNotFound={pageProps.isNotFound}
@@ -95,8 +95,8 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   // noinspection UnnecessaryLocalVariableJS
   const pageProps: PageProps = {
     ...await getPageMeta(appContext),
-    isNotFound: appContext.ctx.res?.statusCode === 404,
     session,
+    isNotFound: appContext.ctx.res?.statusCode === 404,
     resources: {
       simpleUnitInfo: await ResourceLoader.getSimpleUnitInfo(),
       afflictions: await ResourceLoader.getEnumAfflictionStatus(),

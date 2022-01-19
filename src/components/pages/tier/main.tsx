@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {Dimension, UnitTierData, UnitTierNoteGetResponse} from '../../../api-def/api';
 import {GeneralPath} from '../../../api-def/paths';
-import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
@@ -18,16 +19,14 @@ import {generateInputData} from './utils';
 
 export const TierList = () => {
   const {t, lang} = useI18n();
-
-  const context = React.useContext(AppReactContext);
-
+  const {data} = useSession();
   const {keyPointData} = useKeyPointData();
   const {
     fetchStatus: tierData,
     fetchFunction: fetchTierNotes,
   } = useFetchStateProcessed<UnitTierData, UnitTierNoteGetResponse>(
     {},
-    () => ApiRequestSender.getUnitTierNote(context?.session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.getUnitTierNote(data?.user.id.toString() || '', lang),
     'Failed to fetch tier note data.',
     (response) => response.data,
   );

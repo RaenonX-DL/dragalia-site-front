@@ -1,11 +1,11 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Spinner from 'react-bootstrap/Spinner';
 
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {IconClipboard, IconOk, IconShare} from '../../../../elements/common/icons';
@@ -30,7 +30,7 @@ type Props = {
 export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
   const {t} = useI18n();
 
-  const context = React.useContext(AppReactContext);
+  const {status, data} = useSession();
 
   const [state, setState] = React.useState<PresetState>({
     status: 'notCreated',
@@ -48,7 +48,8 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
 
   const makePreset = () => {
     setState({...state, status: 'creating'});
-    if (!context?.session) {
+
+    if (status !== 'authenticated' || !data) {
       setState({
         ...state,
         status: 'notCreated',
@@ -61,7 +62,7 @@ export const AttackingSkillPreset = ({inputData, isEnabled}: Props) => {
       return;
     }
 
-    ApiRequestSender.setPresetAtkSkill(context.session.user.id.toString(), inputData)
+    ApiRequestSender.setPresetAtkSkill(data.user.id.toString(), inputData)
       .then((response) => {
         const link = new URL(window.location.href);
         link.searchParams.set(PRESET_QUERY_NAME, response.presetId);

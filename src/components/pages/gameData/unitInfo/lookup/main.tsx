@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {ApiResponseCode, UnitInfoLookupLandingResponse} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
@@ -19,14 +20,16 @@ import {UnitInfoLookupOutput} from './out/main';
 
 export const UnitInfoLookup = () => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
+
+  const uid = data?.user.id.toString() || '';
 
   const {
     fetchStatus: lookupLanding,
     fetchFunction: fetchLookupLanding,
   } = useFetchState<UnitInfoLookupLandingResponse | null>(
     null,
-    () => ApiRequestSender.unitInfoLookupLanding(context?.session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.unitInfoLookupLanding(uid, lang),
     'Failed to fetch the weapon type enums.',
   );
   const {
@@ -38,7 +41,7 @@ export const UnitInfoLookup = () => {
       success: false,
       analyses: [],
     },
-    () => ApiRequestSender.analysisLookup(context?.session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.analysisLookup(uid, lang),
     'Failed to fetch analysis meta.',
   );
 

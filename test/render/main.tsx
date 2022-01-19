@@ -40,7 +40,6 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const context: AppReactContextValue = {
     title: 'Title',
     description: 'Description',
-    session: options?.hasSession || options?.user ? session : null,
     alerts: options?.alerts || [],
     params: options?.contextParams || {},
     resources: overrideObject(
@@ -55,7 +54,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   return (
     <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
       <AppReactContext.Provider value={context}>
-        <SessionProvider session={context.session}>
+        <SessionProvider session={options?.hasSession || options?.user ? session : null}>
           <ReduxProvider persist={false} reduxStore={store}>
             {children}
           </ReduxProvider>

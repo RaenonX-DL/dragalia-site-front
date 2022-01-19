@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Col from 'react-bootstrap/Col';
 
 import {FailedResponse, isFailedResponse, KeyPointInfo, KeyPointInfoResponse} from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {useNextRouter} from '../../../../../utils/router';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
@@ -18,7 +18,7 @@ import {UnitEntry} from './unitEntry';
 
 export const KeyPointInfoPage = () => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
   const {query} = useNextRouter();
   const {unitInfoMap} = useUnitInfo();
 
@@ -29,7 +29,7 @@ export const KeyPointInfoPage = () => {
     fetchFunction: fetchKeyPointInfo,
   } = useFetchStateProcessed<KeyPointInfo | undefined, KeyPointInfoResponse | FailedResponse>(
     undefined,
-    () => ApiRequestSender.getKeyPointInfo(context?.session?.user.id.toString() || '', lang, pointId),
+    () => ApiRequestSender.getKeyPointInfo(data?.user.id.toString() || '', lang, pointId),
     'Failed to fetch key point info.',
     (response) => isFailedResponse(response) ? undefined : response.info,
   );

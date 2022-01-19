@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Alert from 'react-bootstrap/Alert';
 
 import {KeyPointData} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsUnitKeyPointTop} from '../../../../elements/common/ads/main';
 import {IconEdit} from '../../../../elements/common/icons';
@@ -24,7 +24,7 @@ export type TierKeyPointsProps = {
 
 export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps) => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const pointListItems: Array<CategorizedPointEntries> = categorizeKeyPoints(keyPointsData, keyPointsIds)
     .map(({type, entries}) => ({
@@ -56,7 +56,7 @@ export const TierKeyPoints = ({keyPointsIds, keyPointsData}: TierKeyPointsProps)
         );
       })}
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <div className="text-end">
           <InternalLink
             className={styles['edit-icon']}

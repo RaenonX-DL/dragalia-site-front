@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 
 import {Dimension, DimensionKey} from '../../../../api-def/api';
 import {makeUnitUrl, UnitPath} from '../../../../api-def/paths';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {processText} from '../../../../utils/process/text';
@@ -23,7 +23,9 @@ import {TierNoteUnitOverview} from './unit';
 
 export const TierNoteEdit = () => {
   const {t, lang} = useI18n();
-  const uid = React.useContext(AppReactContext)?.session?.user.id.toString() || '';
+  const {data} = useSession();
+
+  const uid = data?.user.id.toString() || '';
 
   const unitId = useUnitId();
   const {unitInfoMap} = useUnitInfo();

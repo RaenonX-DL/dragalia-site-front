@@ -1,4 +1,4 @@
-import React from 'react';
+import {useSession} from 'next-auth/react';
 
 import {
   KeyPointData,
@@ -6,7 +6,6 @@ import {
   KeyPointManageResponse,
   UnitTierNoteEditResponse,
 } from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
@@ -24,7 +23,9 @@ type TierNoteEditResourceReturn = {
 
 export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceReturn => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
+
+  const uid = data?.user.id.toString() || '';
 
   const {
     fetchStatus: unitTierNote,
@@ -32,7 +33,7 @@ export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceRe
     setFetchStatus: setUnitTierNote,
   } = useFetchStateProcessed<UnitTierNoteEdit, UnitTierNoteEditResponse>(
     {tier: {}, points: []},
-    () => ApiRequestSender.getUnitTierNoteManage(context?.session?.user.id.toString() || '', lang, unitId),
+    () => ApiRequestSender.getUnitTierNoteManage(uid, lang, unitId),
     'Failed to fetch unit tier note for edit.',
     (response) => response.data || {tier: {}, points: []},
   );
@@ -41,7 +42,7 @@ export const useTierNoteEditResources = (unitId: number): TierNoteEditResourceRe
     fetchFunction: fetchKeyPointEntries,
   } = useFetchStateProcessed<Array<KeyPointEntryFromBack>, KeyPointManageResponse>(
     [],
-    () => ApiRequestSender.getKeyPointsManage(context?.session?.user.id.toString() || '', lang),
+    () => ApiRequestSender.getKeyPointsManage(uid, lang),
     'Failed to fetch unit key point data.',
     (response) => response.points,
   );

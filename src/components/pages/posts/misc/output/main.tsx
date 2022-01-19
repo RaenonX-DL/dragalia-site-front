@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {MiscPostGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../../elements/common/ads/main';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
@@ -17,12 +18,12 @@ type Props = {
 
 export const MiscPostOutput = ({post}: Props) => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   return (
     <>
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <PostManageBar
           newButtons={[{pathname: GeneralPath.MISC_NEW}]}
           editPostUrl={makePostUrl(PostPath.MISC_EDIT, {pid: post.seqId, lang})}

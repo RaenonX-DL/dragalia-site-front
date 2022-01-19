@@ -43,7 +43,7 @@ export const SubscribeButton = ({
   const fnUpdateSubscription = subscribed ? ApiRequestSender.removeSubscription : ApiRequestSender.addSubscription;
 
   const onClickInternal = () => {
-    if (status === 'unauthenticated') {
+    if (status !== 'authenticated') {
       setModalState({...modalState, show: true});
       return;
     }
