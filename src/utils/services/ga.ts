@@ -1,4 +1,4 @@
-import {SupportedLanguages, UnitType} from '../../api-def/api';
+import {SubscriptionKey, SupportedLanguages, UnitType} from '../../api-def/api';
 import {Element, Weapon} from '../../api-def/resources';
 import {isCi, isProduction} from '../../api-def/utils';
 import {InputData as ExInputData} from '../../components/pages/gameData/ex/in/types';
@@ -13,6 +13,7 @@ enum GAEvent {
   ANALYSIS_LOOKUP = 'analysis_lookup',
   OPEN_IMAGE = 'open_image',
   LOAD_INPUT_PRESET = 'load_preset',
+  SUBSCRIPTION_CHANGE = 'subscription_change',
 }
 
 enum GAParameter {
@@ -32,6 +33,8 @@ enum GAParameter {
   WEAPON_STAFF = 'weapon_staff',
   WEAPON_MANACASTER = 'weapon_manacaster',
   PRESET_TYPE = 'preset_type',
+  SUBSCRIPTION_UPDATE_TYPE = 'subscription_update_type',
+  SUBSCRIPTION_KEYS = 'subscription_keys',
 }
 
 /**
@@ -55,7 +58,7 @@ export class GoogleAnalytics {
   }
 
   /**
-   * Record the event of an user performed a search using damage calculator.
+   * Record the event of a user performed a search using damage calculator.
    *
    * @param {string} action action performed on the damage calculator
    * @param {InputData} inputData data input used for calculating the damage
@@ -139,6 +142,22 @@ export class GoogleAnalytics {
       GAEvent.LOAD_INPUT_PRESET,
       {
         [GAParameter.PRESET_TYPE]: type,
+      },
+    );
+  }
+
+  /**
+   * Record that a user attempted to change their subscription preference.
+   *
+   * @param {string} type update type
+   * @param {SubscriptionKey | SubscriptionKey[]} keys subscription key(s)
+   */
+  static subscriptionUpdate(type: 'add' | 'remove' | 'update', keys: SubscriptionKey | SubscriptionKey[]) {
+    GoogleAnalytics.sendEvent(
+      GAEvent.SUBSCRIPTION_CHANGE,
+      {
+        [GAParameter.SUBSCRIPTION_UPDATE_TYPE]: type,
+        [GAParameter.SUBSCRIPTION_KEYS]: keys,
       },
     );
   }

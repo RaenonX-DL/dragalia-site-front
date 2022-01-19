@@ -91,6 +91,7 @@ import {
 } from '../../../api-def/api';
 import {isCi} from '../../../api-def/utils';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
+import {GoogleAnalytics} from '../ga';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
@@ -118,7 +119,7 @@ export class ApiRequestSender {
   /**
    * Get a list of all quest posts.
    *
-   * @param {string} uid UID of the logged in user
+   * @param {string} uid UID of the logged-in user
    * @param {SupportedLanguages} lang language code of the posts
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
@@ -706,6 +707,8 @@ export class ApiRequestSender {
    * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
    */
   static addSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    GoogleAnalytics.subscriptionUpdate('add', subscriptionKey);
+
     const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
 
     return ApiRequestSender.sendRequest<SubscriptionAddResponse, SubscriptionAddPayload>(
@@ -723,6 +726,8 @@ export class ApiRequestSender {
    * @return {Promise<SubscriptionRemoveResponse>} promise returned from `fetch`
    */
   static removeSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    GoogleAnalytics.subscriptionUpdate('remove', subscriptionKey);
+
     const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
 
     return ApiRequestSender.sendRequest<SubscriptionRemoveResponse, SubscriptionRemovePayload>(
@@ -740,6 +745,8 @@ export class ApiRequestSender {
    * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
    */
   static updateSubscriptions(uid: string, subscriptionKeys: SubscriptionKey[]) {
+    GoogleAnalytics.subscriptionUpdate('update', subscriptionKeys);
+
     const subKeysBase64 = base64url(JSON.stringify(subscriptionKeys));
 
     return ApiRequestSender.sendRequest<SubscriptionUpdateResponse, SubscriptionUpdatePayload>(
