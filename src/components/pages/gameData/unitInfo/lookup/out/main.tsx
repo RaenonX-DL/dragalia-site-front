@@ -13,16 +13,18 @@ import styles from '../main.module.css';
 import {UnitInfoEntry} from './entry/main';
 
 
-type AnalysisLookupOutputProps = UnitSearchOutputProps<SortOrder, InputData> & {
+type Props = UnitSearchOutputProps<SortOrder, InputData> & {
   analyses: UnitInfoLookupAnalyses,
+  disableSubscription: boolean,
 };
 
 export const UnitInfoLookupOutput = ({
   prioritizedUnitInfo,
   otherUnitInfo,
-  analyses,
   inputData,
-}: AnalysisLookupOutputProps) => {
+  analyses,
+  disableSubscription,
+}: Props) => {
   const {t, lang} = useI18n();
 
   // Split to prioritize the units that have analysis
@@ -51,6 +53,7 @@ export const UnitInfoLookupOutput = ({
             unitInfo={unitInfoToClickableProps(info.unitInfo, lang)}
             analysisMeta={info.lookupInfo}
             iconOnly={inputData.iconOnly}
+            disableSubscription={disableSubscription}
           />
         </Col>
       ))}

@@ -39,6 +39,7 @@ describe('Analysis page', () => {
     editNotes: [],
     publishedEpoch: 55,
     modifiedEpoch: 55,
+    userSubscribed: true,
   };
 
   const charaResponse: CharaAnalysisGetResponse = {

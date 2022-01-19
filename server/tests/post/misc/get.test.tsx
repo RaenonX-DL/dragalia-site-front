@@ -30,6 +30,7 @@ describe('Misc page', () => {
     editNotes: [],
     publishedEpoch: 55,
     modifiedEpoch: 55,
+    userSubscribed: true,
   };
 
   beforeEach(() => {

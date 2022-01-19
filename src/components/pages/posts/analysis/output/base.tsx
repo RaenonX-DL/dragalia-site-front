@@ -2,10 +2,11 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {AnalysisGetResponse} from '../../../../../api-def/api';
+import {AnalysisGetResponse, PostType} from '../../../../../api-def/api';
 import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../../elements/common/ads/main';
+import {PostConfigBar} from '../../../../elements/posts/configBar';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../../../elements/posts/output/alert';
 import {PostInfo} from '../../../../elements/posts/output/info';
@@ -27,6 +28,10 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
 
   return (
     <>
+      <PostConfigBar
+        subscriptionKey={{type: 'post', postType: PostType.ANALYSIS, id: analysis.unitId}}
+        defaultSubscribed={analysis.userSubscribed}
+      />
       {
         data?.user.isAdmin &&
         <PostManageBar

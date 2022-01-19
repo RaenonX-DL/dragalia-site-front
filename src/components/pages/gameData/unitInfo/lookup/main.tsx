@@ -7,7 +7,8 @@ import {GeneralPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
-import {useFetchState} from '../../../../elements/common/fetch';
+import {SubscribeButtonState} from '../../../../elements/common/button/subscribe/type';
+import {isNotFetched, useFetchState} from '../../../../elements/common/fetch';
 import {UnitSearcher} from '../../../../elements/gameData/unit/searcher/main';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {UnitInfoLookupLanding} from './in/landing';
@@ -44,13 +45,32 @@ export const UnitInfoLookup = () => {
     () => ApiRequestSender.analysisLookup(uid, lang),
     'Failed to fetch analysis meta.',
   );
+  const globalSubscriptionButtonState = React.useState<SubscribeButtonState>({
+    subscribed: false,
+    updating: false,
+  });
+  const [globalSubscriptionState, setGlobalSubscriptionState] = globalSubscriptionButtonState;
+
+  React.useEffect(() => {
+    if (!lookupLanding.data) {
+      return;
+    }
+
+    setGlobalSubscriptionState({
+      ...globalSubscriptionState,
+      subscribed: lookupLanding.data.userSubscribed,
+    });
+  }, [lookupLanding.data]);
 
   fetchLookupLanding();
   fetchAnalysisMeta();
 
   return (
     <>
-      <UnitInfoLookupLanding analyses={lookupLanding.data?.analyses || []}/>
+      <UnitInfoLookupLanding
+        analyses={lookupLanding.data?.analyses || []}
+        disableSubscription={globalSubscriptionState.subscribed}
+      />
       <hr/>
       <UnitSearcher
         sortOrderNames={orderName}
@@ -76,10 +96,17 @@ export const UnitInfoLookup = () => {
           />
         }
         renderAdditional={
-          <UnitInfoLookupOutputBar subscribed={lookupLanding.data?.userSubscribed || false}/>
+          <UnitInfoLookupOutputBar
+            state={globalSubscriptionButtonState}
+            disabled={isNotFetched(lookupLanding)}
+          />
         }
         renderOutput={(props) => (
-          <UnitInfoLookupOutput analyses={analysisMeta.data.analyses} {...props}/>
+          <UnitInfoLookupOutput
+            analyses={analysisMeta.data.analyses}
+            disableSubscription={globalSubscriptionState.subscribed}
+            {...props}
+          />
         )}
         renderCount={MaxEntriesToDisplay}
         onSearchRequested={(inputData) => GoogleAnalytics.analysisLookup(inputData)}
