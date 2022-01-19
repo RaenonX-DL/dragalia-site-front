@@ -26,6 +26,10 @@ describe('Character analysis form', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     unitId: 10950101,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
   let formState: PostFormState<CharaAnalysisEditPayload>;
   let setFormState: jest.Mock;

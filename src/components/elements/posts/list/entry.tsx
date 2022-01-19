@@ -3,8 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import {PostInfo, PostType} from '../../../../api-def/api';
-import {toPostPath} from '../../../../api-def/paths/const/utils';
-import {makePostUrl} from '../../../../api-def/paths/utils/make';
+import {makePostUrl, toPostPath} from '../../../../api-def/paths';
 import {useI18n} from '../../../../i18n/hook';
 import {SubscribeButton} from '../../common/button/subscribe/main';
 import {RowNoGutter} from '../../common/grid/row';

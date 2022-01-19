@@ -18,16 +18,16 @@ describe('Misc listing page', () => {
   const postListResponse: MiscPostListResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
-    posts: [
-      {
-        lang: SupportedLanguages.EN,
-        seqId: 1,
-        title: 'title',
-        viewCount: 7,
-        modifiedEpoch: 0,
-        publishedEpoch: 0,
-      },
-    ],
+    posts: [{
+      lang: SupportedLanguages.EN,
+      seqId: 1,
+      title: 'title',
+      viewCount: 7,
+      modifiedEpoch: 0,
+      publishedEpoch: 0,
+      userSubscribed: false,
+    }],
+    userSubscribed: true,
   };
 
   beforeEach(() => {

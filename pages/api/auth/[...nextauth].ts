@@ -7,7 +7,7 @@ import nextAuthGitHubProvider from 'next-auth/providers/github';
 import nextAuthGoogleProvider from 'next-auth/providers/google';
 import nextAuthTwitchProvider from 'next-auth/providers/twitch';
 
-import {AUTH_DB} from '../../../src/api-def/models/user';
+import {AUTH_DB} from '../../../src/api-def/models';
 import {AuthPath} from '../../../src/api-def/paths';
 import {isCi} from '../../../src/api-def/utils';
 import {ensureIndex} from '../../../src/utils/auth';

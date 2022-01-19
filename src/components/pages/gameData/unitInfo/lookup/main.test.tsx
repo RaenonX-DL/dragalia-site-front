@@ -37,6 +37,7 @@ describe('Analysis lookup page', () => {
       viewCount: 777,
       modifiedEpoch: 3,
       publishedEpoch: 1,
+      userSubscribed: false,
     },
     10950102: {
       lang: SupportedLanguages.CHT,
@@ -45,6 +46,7 @@ describe('Analysis lookup page', () => {
       viewCount: 888,
       modifiedEpoch: 6,
       publishedEpoch: 4,
+      userSubscribed: false,
     },
     10950301: {
       lang: SupportedLanguages.CHT,
@@ -53,6 +55,7 @@ describe('Analysis lookup page', () => {
       viewCount: 999,
       modifiedEpoch: 6,
       publishedEpoch: 4,
+      userSubscribed: true,
     },
   };
 
@@ -71,6 +74,7 @@ describe('Analysis lookup page', () => {
     code: ApiResponseCode.SUCCESS,
     success: false,
     analyses: [analyses[10950102], analyses[10950301]],
+    userSubscribed: false,
   };
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import {AUTH_DB, AUTH_USER_COLLECTION, UserDocumentKey} from '../api-def/models/user';
+import {AUTH_DB, AUTH_USER_COLLECTION, UserDocumentKey} from '../api-def/models';
 import {generateMongoClient} from './db/client';
 
 

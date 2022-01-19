@@ -4,8 +4,7 @@ import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
 import {PostType, SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
-import {PostPath} from '../../../../api-def/paths/const/definitions';
-import {makePostUrl} from '../../../../api-def/paths/utils/make';
+import {makePostUrl, PostPath} from '../../../../api-def/paths';
 import {SequencedPostEntry} from './seqEntry';
 import {PostEntryBadgeProps} from './types';
 
