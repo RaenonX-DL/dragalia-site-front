@@ -21,13 +21,15 @@ export const MiscPostList = () => {
       postManageBarProps={{
         newButtons: [{pathname: GeneralPath.MISC_NEW}],
       }}
-      renderPostEntries={(response) => (
+      renderPostEntries={({response, globalSubscribed}) => (
         <PostList
           entries={response.posts}
           postType={PostType.MISC}
           renderPostBadge={(props) => <MiscEntryBadge {...props}/>}
+          disableSubscription={globalSubscribed}
         />
       )}
+      subKeyName="ALL_MISC"
     />
   );
 };

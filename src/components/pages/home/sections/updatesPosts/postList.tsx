@@ -36,7 +36,7 @@ export const PostList = ({title, titlePath, entries, getIcon, ...props}: Props) 
         </Col>
         <Col xs="auto">
           <SubscribeButton
-            onClick={() => setDisableIndividualSub(!disableIndividualSub)}
+            onClick={setDisableIndividualSub}
             {...props}
           />
         </Col>

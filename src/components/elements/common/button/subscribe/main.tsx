@@ -14,11 +14,16 @@ import {SubscribeButtonState} from './type';
 
 export type SubscribeButtonProps = {
   subscriptionKey: SubscriptionKey,
-  defaultSubscribed: boolean,
   asIcon?: boolean,
   disabled?: boolean,
-  onClick?: () => void,
-};
+  onClick?: (newSubStatus: boolean) => void,
+} & ({
+  defaultSubscribed: boolean,
+  state?: never,
+} | {
+  defaultSubscribed?: never,
+  state?: [SubscribeButtonState, (newState: SubscribeButtonState) => void],
+});
 
 export const SubscribeButton = ({
   subscriptionKey,
@@ -26,19 +31,20 @@ export const SubscribeButton = ({
   asIcon = true,
   disabled,
   onClick,
+  state,
 }: SubscribeButtonProps) => {
   const {status, data} = useSession();
   const {t} = useI18n();
 
-  const [state, setState] = React.useState<SubscribeButtonState>({
-    subscribed: defaultSubscribed,
+  const [buttonState, setButtonState] = state || React.useState<SubscribeButtonState>({
+    subscribed: defaultSubscribed as boolean,
     updating: false,
   });
   const [modalState, setModalState] = React.useState<ModalStateFix>({
     show: false,
     title: '',
   });
-  const {subscribed} = state;
+  const {subscribed} = buttonState;
 
   const fnUpdateSubscription = subscribed ? ApiRequestSender.removeSubscription : ApiRequestSender.addSubscription;
 
@@ -48,7 +54,7 @@ export const SubscribeButton = ({
       return;
     }
 
-    setState({...state, updating: true});
+    setButtonState({...buttonState, updating: true});
 
     fnUpdateSubscription(data?.user.id.toString() || '', subscriptionKey)
       .then((response) => {
@@ -57,10 +63,11 @@ export const SubscribeButton = ({
           return;
         }
 
-        setState({subscribed: !subscribed, updating: false});
+        const newSubscribed = !subscribed;
+        setButtonState({subscribed: newSubscribed, updating: false});
 
         if (onClick) {
-          onClick();
+          onClick(newSubscribed);
         }
       });
   };
@@ -72,8 +79,8 @@ export const SubscribeButton = ({
       </ModalFixedContent>
       {
         asIcon ?
-          <SubscribeButtonIconOnly onClick={onClickInternal} state={state} disabled={disabled}/> :
-          <SubscribeButtonText onClick={onClickInternal} state={state} disabled={disabled}/>
+          <SubscribeButtonIconOnly onClick={onClickInternal} state={buttonState} disabled={disabled}/> :
+          <SubscribeButtonText onClick={onClickInternal} state={buttonState} disabled={disabled}/>
       }
     </>
   );

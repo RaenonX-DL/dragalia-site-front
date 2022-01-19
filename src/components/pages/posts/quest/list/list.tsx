@@ -21,13 +21,15 @@ export const QuestPostList = () => {
       postManageBarProps={{
         newButtons: [{pathname: GeneralPath.QUEST_NEW}],
       }}
-      renderPostEntries={(response) => (
+      renderPostEntries={({response, globalSubscribed}) => (
         <PostList
           entries={response.posts}
           postType={PostType.QUEST}
           renderPostBadge={(props) => <QuestEntryBadge {...props}/>}
+          disableSubscription={globalSubscribed}
         />
       )}
+      subKeyName="ALL_QUEST"
     />
   );
 };

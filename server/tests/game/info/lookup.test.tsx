@@ -18,6 +18,7 @@ describe('Unit info searching page', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     analyses: [],
+    userSubscribed: true,
   };
 
   beforeEach(() => {
