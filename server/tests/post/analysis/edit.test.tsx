@@ -28,6 +28,10 @@ describe('Analysis edit page', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     unitId: 10950101,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
 
   const analysis = {
@@ -44,6 +48,7 @@ describe('Analysis edit page', () => {
     editNotes: [],
     isAltLang: false,
     otherLangs: [],
+    userSubscribed: true,
   };
 
   const charaResponse: CharaAnalysisGetResponse = {

@@ -25,6 +25,10 @@ describe('Misc edit page', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     seqId: 7,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
 
   const post: MiscPostGetResponse = {
@@ -40,6 +44,7 @@ describe('Misc edit page', () => {
     editNotes: [],
     isAltLang: false,
     otherLangs: [],
+    userSubscribed: true,
   };
 
   beforeEach(() => {
