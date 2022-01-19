@@ -1,23 +1,22 @@
 import React from 'react';
 
 import {useSession} from 'next-auth/react';
-import Col from 'react-bootstrap/Col';
 
 import {
   ApiResponseCode,
   isFailedResponse,
   SequencedPostInfo,
-  SequencedPostListResponse, SubscriptionKeyConstName,
+  SequencedPostListResponse,
+  SubscriptionKeyConstName,
 } from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
 import {AdsPostList} from '../../common/ads/main';
-import {SubscribeButton} from '../../common/button/subscribe/main';
 import {SubscribeButtonState} from '../../common/button/subscribe/type';
 import {isNotFetched, useFetchState} from '../../common/fetch';
-import {RowNoGutter} from '../../common/grid/row';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
+import {PostConfigBar} from '../configBar';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
 import styles from './page.module.scss';
 
@@ -98,16 +97,11 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
       <div className={styles.title}>
         <h2>{title}</h2>
       </div>
-      <RowNoGutter className="text-end mb-2">
-        <Col>
-          <SubscribeButton
-            subscriptionKey={{type: 'const', name: subKeyName}}
-            state={globalSubscriptionButtonState}
-            disabled={isNotFetched(fetchStatus)}
-            asIcon={false}
-          />
-        </Col>
-      </RowNoGutter>
+      <PostConfigBar
+        subscriptionKey={{type: 'const', name: subKeyName}}
+        state={globalSubscriptionButtonState}
+        disabled={isNotFetched(fetchStatus)}
+      />
       {
         data?.user.isAdmin &&
         <PostManageBar {...postManageBarProps}/>
