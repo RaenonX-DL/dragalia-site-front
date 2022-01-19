@@ -12,7 +12,11 @@ export const LogoutButton = () => {
   const {asPath} = useNextRouter();
 
   return (
-    <Button variant="outline-info" onClick={() => signOut({callbackUrl: asPath})} className="bg-gradient">
+    <Button
+      variant="outline-info"
+      onClick={() => signOut({callbackUrl: asPath})}
+      className="bg-gradient"
+    >
       {t((t) => t.userControl.logout)}
     </Button>
   );

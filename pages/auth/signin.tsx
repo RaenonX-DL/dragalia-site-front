@@ -3,21 +3,22 @@ import {getProviders, getSession} from 'next-auth/react';
 
 import {GeneralPath} from '../../src/api-def/paths';
 import {SignInPage, SignInPageProps} from '../../src/components/elements/common/userControl/signIn/main';
+import {PARAM_REDIRECT_PATH} from '../../src/const/auth';
 
 
 export const getServerSideProps: GetServerSideProps<SignInPageProps> = async (context) => {
   const {req, res, query} = context;
   const session = await getSession({req});
 
-  const {callbackUrl} = query;
+  const redirectPath = query[PARAM_REDIRECT_PATH];
 
-  if (session && res && session.accessToken) {
+  if (session && res) {
     // Manual redirect here instead of setting `callbackUrl` in `signIn()`
     // because customized page disregards `callbackUrl`
     return {
       redirect: {
         statusCode: 302,
-        destination: (callbackUrl as string) || GeneralPath.HOME,
+        destination: (redirectPath as string) || GeneralPath.HOME,
       },
     };
   }
