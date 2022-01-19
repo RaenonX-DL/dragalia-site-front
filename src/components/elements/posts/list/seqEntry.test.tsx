@@ -3,7 +3,9 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
-import {SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
+import {PostType, SequencedPostInfo, SupportedLanguages} from '../../../../api-def/api';
+import {PostPath} from '../../../../api-def/paths/const/definitions';
+import {makePostUrl} from '../../../../api-def/paths/utils/make';
 import {SequencedPostEntry} from './seqEntry';
 import {PostEntryBadgeProps} from './types';
 
@@ -18,8 +20,9 @@ describe('Sequenced post list entry', () => {
     viewCount: 777,
     modifiedEpoch: 1000000,
     publishedEpoch: 90000,
+    userSubscribed: true,
   };
-  const fakeLink = '/link';
+  const fakeLink = makePostUrl(PostPath.ANALYSIS, {lang: SupportedLanguages.EN, pid: 7});
 
   beforeEach(() => {
     renderPostBadges = jest.fn();
@@ -28,7 +31,7 @@ describe('Sequenced post list entry', () => {
   it('renders correctly', async () => {
     renderReact(() => (
       <SequencedPostEntry
-        link={fakeLink}
+        type={PostType.ANALYSIS}
         renderPostBadge={renderPostBadges}
         entry={entry}
       />
@@ -37,7 +40,7 @@ describe('Sequenced post list entry', () => {
     // Check title existence and clickable
     const linkElement = screen.getByText('title 7');
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
+    expect(linkElement).toHaveAttribute('href', fakeLink);
     // Check view count existence
     expect(screen.getByText('', {selector: 'i.bi-eye-fill'})).toBeInTheDocument();
     // Check meta existence

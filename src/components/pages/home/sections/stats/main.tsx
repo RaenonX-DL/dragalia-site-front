@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {HomepageData} from '../../../../../api-def/api';
+import {HomepageLandingResponse} from '../../../../../api-def/api';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 import mainStyles from '../../main.module.css';
@@ -14,11 +14,13 @@ import styles from './main.module.css';
 
 
 type Props = {
-  data: HomepageData,
+  response: HomepageLandingResponse,
 };
 
-export const SiteStats = ({data}: Props) => {
+export const SiteStats = ({response}: Props) => {
   const {t} = useI18n();
+
+  const {stats} = response.data;
 
   return (
     <>
@@ -27,23 +29,23 @@ export const SiteStats = ({data}: Props) => {
       </h1>
       <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
-          <UserStatsOfCountry stats={data.stats.user.perCountry}/>
+          <UserStatsOfCountry stats={stats.user.perCountry}/>
         </Col>
       </Row>
       <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
-          <UserStatsOfLang stats={data.stats.user.perLang}/>
+          <UserStatsOfLang stats={stats.user.perLang}/>
         </Col>
       </Row>
       <Row className={styles['stats-section']}>
         <Col className={styles['stats-section-outer']}>
-          <UserStatsPeriodicActive stats={data.stats.user.active}/>
+          <UserStatsPeriodicActive stats={stats.user.active}/>
         </Col>
       </Row>
       <Row className="text-end mb-2">
         <Col>
           {t((t) => t.misc.timestamp.lastUpdated)}:&nbsp;
-          <TimeAgo epoch={data.stats.lastFetchedEpoch * 1000}/>
+          <TimeAgo epoch={stats.lastFetchedEpoch * 1000}/>
         </Col>
       </Row>
     </>

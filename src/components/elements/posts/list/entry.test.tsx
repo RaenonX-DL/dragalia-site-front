@@ -3,7 +3,9 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../test/render/main';
-import {PostInfo, SupportedLanguages} from '../../../../api-def/api';
+import {PostInfo, PostType, SupportedLanguages} from '../../../../api-def/api';
+import {PostPath} from '../../../../api-def/paths/const/definitions';
+import {makePostUrl} from '../../../../api-def/paths/utils/make';
 import {PostEntry} from './entry';
 
 
@@ -15,8 +17,9 @@ describe('Post list entry', () => {
     viewCount: 777,
     modifiedEpoch: 1000000,
     publishedEpoch: 90000,
+    userSubscribed: true,
   };
-  const fakeLink = '/link';
+  const fakeLink = makePostUrl(PostPath.MISC, {lang: SupportedLanguages.EN, pid: 7});
 
   beforeEach(() => {
     renderPostBadges = jest.fn();
@@ -25,17 +28,18 @@ describe('Post list entry', () => {
   it('renders correctly', async () => {
     renderReact(() => (
       <PostEntry
-        link={fakeLink}
-        title="F7"
+        type={PostType.MISC}
+        pid={7}
+        title="title"
         renderPostBadge={renderPostBadges}
         entry={entry}
       />
     ));
 
     // Check title existence and clickable
-    const linkElement = screen.getByText('F7');
+    const linkElement = screen.getByText('title');
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', `/${SupportedLanguages.EN}${fakeLink}`);
+    expect(linkElement).toHaveAttribute('href', fakeLink);
     // Check view count existence
     expect(screen.getByText('', {selector: 'i.bi-eye-fill'})).toBeInTheDocument();
     // Check meta existence

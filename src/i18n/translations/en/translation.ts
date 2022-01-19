@@ -599,7 +599,9 @@ export const translation: TranslationStruct = {
     },
     error: {
       auth: {
+        failed: 'Authentication Failed: {{errorCode}}',
         noProvider: 'No authentication providers available.',
+        loginRequired: 'Login required.',
       },
     },
   },
@@ -620,6 +622,10 @@ export const translation: TranslationStruct = {
     },
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
+    subscription: {
+      add: 'Subscribe to notification email',
+      remove: 'Cancel email notification',
+    },
   },
   meta: {
     inUse: {

@@ -526,7 +526,9 @@ export type TranslationStruct = {
     },
     error: {
       auth: {
+        failed: string,
         noProvider: string,
+        loginRequired: string,
       }
     }
   },
@@ -547,6 +549,10 @@ export type TranslationStruct = {
     },
     collapse: string,
     collapseAll: string,
+    subscription: {
+      add: string,
+      remove: string,
+    },
   },
   meta: {
     inUse: {

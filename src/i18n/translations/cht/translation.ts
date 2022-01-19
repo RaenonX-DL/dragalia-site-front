@@ -561,7 +561,9 @@ export const translation: TranslationStruct = {
     },
     error: {
       auth: {
+        failed: '登入錯誤: {{errorCode}}',
         noProvider: '無可用登入服務。',
+        loginRequired: '請先登入。',
       },
     },
   },
@@ -582,6 +584,10 @@ export const translation: TranslationStruct = {
     },
     collapse: '收摺/展開',
     collapseAll: '全部收摺/展開',
+    subscription: {
+      add: '訂閱通知',
+      remove: '取消通知',
+    },
   },
   meta: {
     inUse: {

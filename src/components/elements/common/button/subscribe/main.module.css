@@ -1,0 +1,19 @@
+button.subscribe-button {
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  padding: 0;
+  height: 2rem;
+  width: 2rem;
+}
+button.subscribe-button:disabled {
+  background-color: #600000;
+}
+button.subscribe-button.subscribe-button-as-icon-enabled {
+  color: white;
+}
+button.subscribe-button.subscribe-button-as-icon-disabled {
+  color: #aaa;
+}
+
+/*# sourceMappingURL=main.module.css.map */

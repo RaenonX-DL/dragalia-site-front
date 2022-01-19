@@ -12,6 +12,7 @@ import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {UnitInfoLookupLanding} from './in/landing';
 import {orderName, sortFunc} from './in/sort/lookup';
 import {generateInputData} from './in/utils';
+import {UnitInfoLookupOutputBar} from './out/bar';
 import {MaxEntriesToDisplay} from './out/const';
 import {UnitInfoLookupOutput} from './out/main';
 
@@ -70,6 +71,9 @@ export const UnitInfoLookup = () => {
             }]}
             bottomMarginClass="mb-3"
           />
+        }
+        renderAdditional={
+          <UnitInfoLookupOutputBar subscribed={lookupLanding.data?.userSubscribed || false}/>
         }
         renderOutput={(props) => (
           <UnitInfoLookupOutput analyses={analysisMeta.data.analyses} {...props}/>

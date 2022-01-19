@@ -563,11 +563,13 @@ export const translation: TranslationStruct = {
       constructing: '工事中です。\n\n' +
         '### 完成したら各SNSの上でお知らせします。(例: 掲示板、Facebook 、LINE…など) ' +
         '\n\n### メール通知機能も作成中ですのでお待ちください。',
-      videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
+      videoTips: 'TBA',
     },
     error: {
       auth: {
+        failed: 'TBA',
         noProvider: 'ログインサービスは利用できません。',
+        loginRequired: 'TBA',
       },
     },
   },
@@ -588,6 +590,10 @@ export const translation: TranslationStruct = {
     },
     collapse: '展開 / 折り畳み',
     collapseAll: '全部展開 / 折り畳み',
+    subscription: {
+      add: 'TBA',
+      remove: 'TBA',
+    },
   },
   meta: {
     inUse: {

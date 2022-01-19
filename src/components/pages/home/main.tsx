@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {FailedResponse, HomepageData, HomepageLandingResponse, isFailedResponse} from '../../../api-def/api';
+import {FailedResponse, HomepageLandingResponse, isFailedResponse} from '../../../api-def/api';
 import {AppReactContext} from '../../../context/app/main';
 import {useI18n} from '../../../i18n/hook';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {AdsToolBottom} from '../../elements/common/ads/main';
-import {isNotFetched, useFetchStateProcessed} from '../../elements/common/fetch';
+import {isNotFetched, useFetchState} from '../../elements/common/fetch';
 import {Loading} from '../../elements/common/loading';
 import {SiteFeatures} from './sections/features/main';
 import {SiteStats} from './sections/stats/main';
@@ -19,11 +19,10 @@ export const Home = () => {
   const {
     fetchStatus: homepageData,
     fetchFunction: fetchHomepageData,
-  } = useFetchStateProcessed<HomepageData | undefined, HomepageLandingResponse | FailedResponse>(
+  } = useFetchState<HomepageLandingResponse | FailedResponse | undefined>(
     undefined,
     () => ApiRequestSender.getHomepageLanding(context?.session?.user.id.toString() || '', lang),
     'Failed to fetch homepage landing data.',
-    (response) => isFailedResponse(response) ? undefined : response.data,
   );
 
   fetchHomepageData();
@@ -34,12 +33,12 @@ export const Home = () => {
       <AdsToolBottom/>
       <hr/>
       {
-        !isNotFetched(homepageData) && homepageData.data ?
+        !isNotFetched(homepageData) && homepageData.data && !isFailedResponse(homepageData.data) ?
           <>
-            <SiteStats data={homepageData.data}/>
+            <SiteStats response={homepageData.data}/>
             <AdsToolBottom/>
             <hr/>
-            <RecentUpdatedPosts data={homepageData.data}/>
+            <RecentUpdatedPosts response={homepageData.data}/>
           </>:
           <Loading/>
       }

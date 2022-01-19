@@ -2,7 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-import {HomepageData, PostType} from '../../../../../api-def/api';
+import {HomepageLandingResponse, PostType} from '../../../../../api-def/api';
 import {GeneralPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
@@ -15,13 +15,15 @@ import {PostList} from './postList';
 
 
 type Props = {
-  data: HomepageData
+  response: HomepageLandingResponse
 };
 
-export const RecentUpdatedPosts = ({data}: Props) => {
+export const RecentUpdatedPosts = ({response}: Props) => {
   const {t, lang} = useI18n();
 
   const {unitInfoMap} = useUnitInfo();
+
+  const {data, userSubscribed} = response;
 
   return (
     <>
@@ -45,6 +47,8 @@ export const RecentUpdatedPosts = ({data}: Props) => {
                 <UnitIconClickable unit={unitInfoToClickableProps(unitInfo, lang)} className={styles['unit-icon']}/>
               );
             }}
+            defaultSubscribed={userSubscribed[PostType.ANALYSIS]}
+            subscriptionKey={{type: 'const', name: 'ALL_ANALYSIS'}}
           />
         </Col>
       </RowRegular>
@@ -54,6 +58,8 @@ export const RecentUpdatedPosts = ({data}: Props) => {
             title={t((t) => t.enum.postType[PostType.QUEST])}
             titlePath={GeneralPath.QUEST_LIST}
             entries={data.posts[PostType.QUEST]}
+            defaultSubscribed={userSubscribed[PostType.QUEST]}
+            subscriptionKey={{type: 'const', name: 'ALL_QUEST'}}
           />
         </Col>
         <Col lg={6}>
@@ -61,6 +67,8 @@ export const RecentUpdatedPosts = ({data}: Props) => {
             title={t((t) => t.enum.postType[PostType.MISC])}
             titlePath={GeneralPath.MISC_LIST}
             entries={data.posts[PostType.MISC]}
+            defaultSubscribed={userSubscribed[PostType.MISC]}
+            subscriptionKey={{type: 'const', name: 'ALL_MISC'}}
           />
         </Col>
       </RowRegular>

@@ -39,7 +39,7 @@ describe('Navigation bar', () => {
 
     renderReact(
       () => <NavigationLandscape/>,
-      {preloadState: {layout: {fluid: true, collapse: false}}},
+      {preloadState: {layout: {width: 'full', collapse: false}}},
     );
 
     const collapseButton = screen.getByText('', {selector: 'i.bi-arrow-bar-left'});
@@ -54,7 +54,7 @@ describe('Navigation bar', () => {
 
     renderReact(
       () => <NavigationLandscape/>,
-      {preloadState: {layout: {fluid: true, collapse: true}}},
+      {preloadState: {layout: {width: 'full', collapse: true}}},
     );
 
     const showButton = screen.getByText('', {selector: 'i.bi-arrow-bar-right'});

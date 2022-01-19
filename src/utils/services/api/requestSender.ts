@@ -1,3 +1,4 @@
+import base64url from 'base64url';
 import fetch from 'node-fetch';
 
 import {
@@ -21,7 +22,9 @@ import {
   DragonAnalysisPublishPayload,
   FailedResponse,
   GetAtkSkillPresetPayload,
-  GetAtkSkillPresetResponse, HomepageLandingPayload, HomepageLandingResponse,
+  GetAtkSkillPresetResponse,
+  HomepageLandingPayload,
+  HomepageLandingResponse,
   KeyPointEntryUpdate,
   KeyPointGetPayload,
   KeyPointGetResponse,
@@ -31,9 +34,14 @@ import {
   KeyPointManageResponse,
   KeyPointUpdatePayload,
   KeyPointUpdateResponse,
-  MiscPostEditPayload, MiscPostEditResponse,
+  MiscPostEditPayload,
+  MiscPostEditResponse,
   MiscPostGetPayload,
-  MiscPostGetResponse, MiscPostIdCheckPayload, MiscPostIdCheckResponse, MiscPostListPayload, MiscPostListResponse,
+  MiscPostGetResponse,
+  MiscPostIdCheckPayload,
+  MiscPostIdCheckResponse,
+  MiscPostListPayload,
+  MiscPostListResponse,
   MiscPostPublishPayload,
   MiscPostPublishResponse,
   PageMetaPayload,
@@ -54,6 +62,10 @@ import {
   RequestPayloadBase,
   SetAtkSkillPresetPayload,
   SetAtkSkillPresetResponse,
+  SubscriptionAddPayload,
+  SubscriptionAddResponse,
+  SubscriptionKey, SubscriptionRemovePayload,
+  SubscriptionRemoveResponse, SubscriptionUpdatePayload, SubscriptionUpdateResponse,
   SupportedLanguages,
   UnitInfoLookupLandingPayload,
   UnitInfoLookupLandingResponse,
@@ -70,7 +82,9 @@ import {
   UnitTierNoteEditPayload,
   UnitTierNoteEditResponse,
   UnitTierNoteGetPayload,
-  UnitTierNoteGetResponse, UnitTierNoteSinglePayload, UnitTierNoteSingleResponse,
+  UnitTierNoteGetResponse,
+  UnitTierNoteSinglePayload,
+  UnitTierNoteSingleResponse,
   UnitTierNoteUpdatePayload,
   UnitTierNoteUpdateResponse,
   UnitType,
@@ -681,6 +695,59 @@ export class ApiRequestSender {
     );
   }
 
+  // endregion
+
+  // region Subscription
+  /**
+   * Add an individual subscription to a user.
+   *
+   * @param {string} uid user to add the subscription
+   * @param {SubscriptionKey} subscriptionKey key of the subscription
+   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   */
+  static addSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
+
+    return ApiRequestSender.sendRequest<SubscriptionAddResponse, SubscriptionAddPayload>(
+      'POST',
+      ApiEndPoints.USER_SUBSCRIPTIONS_ADD,
+      {uid, subKeyBase64},
+    );
+  }
+
+  /**
+   * Remove an individual subscription from a user.
+   *
+   * @param {string} uid user to remove the subscription
+   * @param {SubscriptionKey} subscriptionKey key of the subscription
+   * @return {Promise<SubscriptionRemoveResponse>} promise returned from `fetch`
+   */
+  static removeSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
+
+    return ApiRequestSender.sendRequest<SubscriptionRemoveResponse, SubscriptionRemovePayload>(
+      'POST',
+      ApiEndPoints.USER_SUBSCRIPTIONS_REMOVE,
+      {uid, subKeyBase64},
+    );
+  }
+
+  /**
+   * Update the subscriptions a user.
+   *
+   * @param {string} uid user to update the subscriptions
+   * @param {SubscriptionKey[]} subscriptionKeys subscriptions to keep
+   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   */
+  static updateSubscriptions(uid: string, subscriptionKeys: SubscriptionKey[]) {
+    const subKeysBase64 = base64url(JSON.stringify(subscriptionKeys));
+
+    return ApiRequestSender.sendRequest<SubscriptionUpdateResponse, SubscriptionUpdatePayload>(
+      'POST',
+      ApiEndPoints.USER_SUBSCRIPTIONS_UPDATE,
+      {uid, subKeysBase64},
+    );
+  }
   // endregion
 
   /**

@@ -44,3 +44,7 @@ export const IconStop = () => <i className="bi bi-stop-fill"/>;
 export const IconCollapseToLeft = () => <i className="bi bi-arrow-bar-left"/>;
 
 export const IconExpandToRight = () => <i className="bi bi-arrow-bar-right"/>;
+
+export const IconSubscribed = () => <i className="bi bi-bell"/>;
+
+export const IconNotSubscribed = () => <i className="bi bi-bell-slash"/>;

@@ -72,7 +72,7 @@ const NextApp = ({
       }
       <React.StrictMode>
         <SessionProvider session={session} refetchInterval={5 * 60}>
-          <AppReactContext.Provider value={{...pageProps}}>
+          <AppReactContext.Provider value={{session, ...pageProps}}>
             <ReduxProvider>
               <MainApp
                 isNotFound={pageProps.isNotFound}

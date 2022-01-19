@@ -22,6 +22,7 @@ type Props<
 > = Pick<UnitFilterProps<S, D, E, E2, V>, 'sortOrderNames' | 'generateInputData' | 'getAdditionalInputs'> & {
   getSortedUnitInfo: (unitInfo: Array<UnitInfoData>, inputData: D) => Array<UnitInfoData>,
   renderIfAdmin?: React.ReactNode,
+  renderAdditional?: React.ReactNode,
   renderOutput: (props: UnitSearchOutputProps<S, D>) => React.ReactNode,
   renderCount: number,
   onSearchRequested?: (inputData: D) => void,
@@ -41,6 +42,7 @@ export const UnitSearcher = <
   getAdditionalInputs,
   getSortedUnitInfo,
   renderIfAdmin,
+  renderAdditional,
   renderOutput,
   renderCount,
   onSearchRequested,
@@ -92,6 +94,7 @@ export const UnitSearcher = <
         disabled={!isFetched || isLoading}
       />
       {context?.session?.user.isAdmin && renderIfAdmin}
+      {renderAdditional}
       <div ref={elemRef}>
         {inputData && renderOutput({
           inputData,

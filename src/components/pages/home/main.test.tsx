@@ -19,6 +19,11 @@ describe('Homepage', () => {
       success: true,
       code: ApiResponseCode.SUCCESS,
       data: mockData,
+      userSubscribed: {
+        [PostType.MISC]: true,
+        [PostType.ANALYSIS]: true,
+        [PostType.QUEST]: false,
+      },
     });
   });
 
