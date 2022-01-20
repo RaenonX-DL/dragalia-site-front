@@ -35,6 +35,7 @@ describe('Tier list page', () => {
           lastUpdateEpoch: 1628534262003,
         },
       },
+      userSubscribed: true,
     });
   });
 

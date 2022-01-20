@@ -12,11 +12,11 @@ import {
 import {useI18n} from '../../../../i18n/hook';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
 import {AdsPostList} from '../../common/ads/main';
+import {SubscriptionButtonBar} from '../../common/button/subscribe/bar';
 import {SubscribeButtonState} from '../../common/button/subscribe/type';
 import {isNotFetched, useFetchState} from '../../common/fetch';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
-import {PostConfigBar} from '../configBar';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
 import styles from './page.module.scss';
 
@@ -97,7 +97,7 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
       <div className={styles.title}>
         <h2>{title}</h2>
       </div>
-      <PostConfigBar
+      <SubscriptionButtonBar
         subscriptionKey={{type: 'const', name: subKeyName}}
         state={globalSubscriptionButtonState}
         disabled={isNotFetched(fetchStatus)}

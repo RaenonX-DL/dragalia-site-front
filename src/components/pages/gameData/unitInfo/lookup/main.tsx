@@ -7,6 +7,7 @@ import {GeneralPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
+import {SubscriptionButtonBar} from '../../../../elements/common/button/subscribe/bar';
 import {SubscribeButtonState} from '../../../../elements/common/button/subscribe/type';
 import {isNotFetched, useFetchState} from '../../../../elements/common/fetch';
 import {UnitSearcher} from '../../../../elements/gameData/unit/searcher/main';
@@ -14,7 +15,6 @@ import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {UnitInfoLookupLanding} from './in/landing';
 import {orderName, sortFunc} from './in/sort/lookup';
 import {generateInputData} from './in/utils';
-import {UnitInfoLookupOutputBar} from './out/bar';
 import {MaxEntriesToDisplay} from './out/const';
 import {UnitInfoLookupOutput} from './out/main';
 
@@ -96,8 +96,9 @@ export const UnitInfoLookup = () => {
           />
         }
         renderAdditional={
-          <UnitInfoLookupOutputBar
+          <SubscriptionButtonBar
             state={globalSubscriptionButtonState}
+            subscriptionKey={{type: 'const', name: 'ALL_ANALYSIS'}}
             disabled={isNotFetched(lookupLanding)}
           />
         }

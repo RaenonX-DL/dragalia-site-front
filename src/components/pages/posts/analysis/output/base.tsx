@@ -6,7 +6,7 @@ import {AnalysisGetResponse, PostType} from '../../../../../api-def/api';
 import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../../elements/common/ads/main';
-import {PostConfigBar} from '../../../../elements/posts/configBar';
+import {SubscriptionButtonBar} from '../../../../elements/common/button/subscribe/bar';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../../../elements/posts/output/alert';
 import {PostInfo} from '../../../../elements/posts/output/info';
@@ -28,7 +28,7 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
 
   return (
     <>
-      <PostConfigBar
+      <SubscriptionButtonBar
         subscriptionKey={{type: 'post', postType: PostType.ANALYSIS, id: analysis.unitId}}
         defaultSubscribed={analysis.userSubscribed}
       />
