@@ -77,7 +77,7 @@ export const TierList = () => {
       }
       renderOutput={(props) => (
         <TierListOutput
-          tierData={tierDataResponse.data}
+          tierData={tierData}
           keyPointsData={keyPointData}
           {...props}
         />
