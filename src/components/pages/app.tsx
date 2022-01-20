@@ -32,7 +32,6 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
   return (
     <>
       <NavigationStatic/>
-      <SiteAlert/>
       {
         isNotFound ?
           <Error404/> :
@@ -52,6 +51,7 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
                   `${collapse ? styles['layout-col-main-collapsed'] : styles['layout-col-main-opened']}`
                 }
               >
+                <SiteAlert/>
                 <GlobalAlert/>
                 {renderApp()}
                 <Footer/>

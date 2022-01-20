@@ -24,6 +24,7 @@ div .layout-row > div.layout-col-nav.layout-col-nav-opened {
   }
 }
 div .site-alert-container {
+  margin-bottom: 0.75rem;
   overflow: hidden;
   height: 4.125rem;
 }

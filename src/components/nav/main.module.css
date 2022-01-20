@@ -32,7 +32,7 @@ nav.nav-static-bar div[class*=dropdown-menu] {
 
 div.nav-container {
   position: sticky;
-  top: 4rem;
+  top: 4.3rem;
   z-index: 970;
   height: calc(100vh - 5rem);
   width: auto;
