@@ -83,9 +83,8 @@ export const TierNoteEdit = () => {
         <hr/>
         <h4>{t((t) => t.game.unitTier.tier.title)}</h4>
         {Object.keys(Dimension).map((dimension) => (
-          <>
+          <React.Fragment key={dimension}>
             <TierNoteDimensionEntry
-              key={dimension}
               dimension={dimension as DimensionKey}
               inputData={unitTierNote.tier[dimension as DimensionKey]}
               setInputData={(updatedNote) => {
@@ -96,7 +95,7 @@ export const TierNoteEdit = () => {
               }}
             />
             <hr/>
-          </>
+          </React.Fragment>
         ))}
         <h4>{t((t) => t.game.unitTier.points.title)}</h4>
         <AutoComplete
