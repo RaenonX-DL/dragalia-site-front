@@ -8,10 +8,9 @@ import {useI18n} from '../../../i18n/hook';
 import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
 import {SubscriptionButtonBar} from '../../elements/common/button/subscribe/bar';
-import {SubscribeButtonState} from '../../elements/common/button/subscribe/type';
+import {useSubscribeButtonState} from '../../elements/common/button/subscribe/hook';
 import {ButtonBar} from '../../elements/common/buttonBar';
 import {isNotFetched, useFetchState} from '../../elements/common/fetch';
-import {Loading} from '../../elements/common/loading';
 import {UnitSearcher} from '../../elements/gameData/unit/searcher/main';
 import {MaxEntriesToDisplay, orderName, sortFunc} from './const';
 import {useKeyPointData} from './hooks';
@@ -32,11 +31,10 @@ export const TierList = () => {
     () => ApiRequestSender.getUnitTierNote(session?.user.id.toString() || '', lang),
     'Failed to fetch tier note data.',
   );
-  const globalSubscriptionButtonState = React.useState<SubscribeButtonState>({
-    subscribed: false,
-    updating: false,
+  const {reactState: globalSubscriptionButtonState} = useSubscribeButtonState({
+    dependencies: [tierDataResponse.data],
+    getSubscribedOnEffect: () => tierDataResponse.data.userSubscribed,
   });
-  const [globalSubscriptionState, setGlobalSubscriptionState] = globalSubscriptionButtonState;
 
   const options: Array<DisplayOption> = (Object.keys(Dimension).concat('all') as Array<Display>).map((display) => {
     const key = display as Display;
@@ -45,17 +43,6 @@ export const TierList = () => {
   });
 
   const {data: tierData} = tierDataResponse.data;
-
-  React.useEffect(() => {
-    if (!tierDataResponse.data) {
-      return;
-    }
-
-    setGlobalSubscriptionState({
-      ...globalSubscriptionState,
-      subscribed: tierDataResponse.data.userSubscribed,
-    });
-  }, [tierDataResponse.data]);
 
   fetchTierNotes();
 
@@ -89,13 +76,11 @@ export const TierList = () => {
         />
       }
       renderOutput={(props) => (
-        tierDataResponse.data ?
-          <TierListOutput
-            tierData={tierDataResponse.data}
-            keyPointsData={keyPointData}
-            {...props}
-          /> :
-          <Loading/>
+        <TierListOutput
+          tierData={tierDataResponse.data}
+          keyPointsData={keyPointData}
+          {...props}
+        />
       )}
       renderCount={MaxEntriesToDisplay}
       isUnitPrioritized={(info) => info.id in tierData}

@@ -8,7 +8,7 @@ import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
 import {SubscriptionButtonBar} from '../../../../elements/common/button/subscribe/bar';
-import {SubscribeButtonState} from '../../../../elements/common/button/subscribe/type';
+import {useSubscribeButtonState} from '../../../../elements/common/button/subscribe/hook';
 import {isNotFetched, useFetchState} from '../../../../elements/common/fetch';
 import {UnitSearcher} from '../../../../elements/gameData/unit/searcher/main';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
@@ -45,22 +45,13 @@ export const UnitInfoLookup = () => {
     () => ApiRequestSender.analysisLookup(uid, lang),
     'Failed to fetch analysis meta.',
   );
-  const globalSubscriptionButtonState = React.useState<SubscribeButtonState>({
-    subscribed: false,
-    updating: false,
+  const {
+    reactState: globalSubscriptionButtonState,
+    state: globalSubscriptionState,
+  } = useSubscribeButtonState({
+    dependencies: [lookupLanding.data],
+    getSubscribedOnEffect: () => lookupLanding.data?.userSubscribed,
   });
-  const [globalSubscriptionState, setGlobalSubscriptionState] = globalSubscriptionButtonState;
-
-  React.useEffect(() => {
-    if (!lookupLanding.data) {
-      return;
-    }
-
-    setGlobalSubscriptionState({
-      ...globalSubscriptionState,
-      subscribed: lookupLanding.data.userSubscribed,
-    });
-  }, [lookupLanding.data]);
 
   fetchLookupLanding();
   fetchAnalysisMeta();

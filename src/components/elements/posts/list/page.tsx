@@ -13,7 +13,7 @@ import {useI18n} from '../../../../i18n/hook';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
 import {AdsPostList} from '../../common/ads/main';
 import {SubscriptionButtonBar} from '../../common/button/subscribe/bar';
-import {SubscribeButtonState} from '../../common/button/subscribe/type';
+import {useSubscribeButtonState} from '../../common/button/subscribe/hook';
 import {isNotFetched, useFetchState} from '../../common/fetch';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
@@ -51,20 +51,13 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
     () => fnFetchList(data?.user.id.toString() || '', lang),
     'Failed to fetch post list.',
   );
-
-  const globalSubscriptionButtonState = React.useState<SubscribeButtonState>({
-    subscribed: false,
-    updating: false,
+  const {
+    reactState: globalSubscriptionButtonState,
+    state: globalSubscriptionState,
+  } = useSubscribeButtonState({
+    dependencies: [fetchStatus.data],
+    getSubscribedOnEffect: () => fetchStatus.data?.userSubscribed,
   });
-  const [globalSubscriptionState, setGlobalSubscriptionState] = globalSubscriptionButtonState;
-
-  React.useEffect(() => {
-    if (!fetchStatus.data) {
-      return;
-    }
-
-    setGlobalSubscriptionState({...globalSubscriptionState, subscribed: fetchStatus.data.userSubscribed});
-  }, [fetchStatus.data]);
 
   fetchPostList();
 
