@@ -12,4 +12,5 @@ export const generatePayload = (lang: SupportedLanguages, uid?: string): QuestPo
     generateNewPositionInfo(),
   ],
   addendum: '',
+  sendUpdateEmail: true,
 });

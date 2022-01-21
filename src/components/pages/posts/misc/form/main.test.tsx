@@ -25,6 +25,7 @@ describe('Misc form (New/Edit)', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     seqId: 1,
+    emailResult: {accepted: [], rejected: []},
   };
   let formState: PostFormState<MiscPostEditPayload>;
   let setFormState: jest.Mock;
@@ -40,6 +41,7 @@ describe('Misc form (New/Edit)', () => {
         title: 'ttl',
         sections: [{title: 'A', content: 'B'}],
         editNote: '',
+        sendUpdateEmail: true,
       },
     };
     fnSendRequest = jest.fn().mockImplementation(async () => response);
@@ -229,6 +231,7 @@ describe('Misc form (New/Edit)', () => {
       title: originalText,
       sections: [{title: originalText, content: originalText}],
       editNote: originalText,
+      sendUpdateEmail: true,
     };
 
     renderReact(
@@ -253,6 +256,7 @@ describe('Misc form (New/Edit)', () => {
       title: originalText,
       sections: [{title: originalText, content: transformedText}],
       editNote: originalText,
+      sendUpdateEmail: true,
     });
   });
 
@@ -270,5 +274,46 @@ describe('Misc form (New/Edit)', () => {
 
     expect(screen.queryByText(translationEN.posts.manage.edit)).not.toBeInTheDocument();
     expect(screen.getByText(translationEN.meta.error['401'].description)).toBeInTheDocument();
+  });
+
+  it('sends update email on publish', async () => {
+    renderReact(
+      () => (
+        <MiscPostForm
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
+  });
+
+  it('does not send update email on publish', async () => {
+    renderReact(
+      () => (
+        <MiscPostForm
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const editNote = screen.getByText(translationEN.posts.manage.sendUpdateEmail);
+    userEvent.click(editNote.previousSibling as Element);
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
   });
 });

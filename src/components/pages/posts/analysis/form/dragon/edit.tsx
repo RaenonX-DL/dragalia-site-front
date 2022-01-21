@@ -31,6 +31,7 @@ export const AnalysisFormDragonEdit = ({analysis}: Props) => {
       notes: analysis.notes,
       videos: analysis.videos,
       editNote: '',
+      sendUpdateEmail: true,
     },
     isIdAvailable: true,
     isPreloaded: true,

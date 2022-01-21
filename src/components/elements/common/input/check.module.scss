@@ -1,0 +1,7 @@
+div {
+  &.custom-check {
+    & > input {
+      border-color: white;
+    }
+  }
+}

@@ -9,7 +9,7 @@ import {typeInput} from '../../../../../../../test/utils/event';
 import {
   AnalysisEditResponse,
   ApiResponseCode,
-  CharaAnalysisEditPayload,
+  DragonAnalysisEditPayload,
   SupportedLanguages,
   UnitType,
 } from '../../../../../../api-def/api';
@@ -17,10 +17,10 @@ import {makePostUrl, PostPath} from '../../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../../../../elements/posts/form/types';
-import {AnalysisFormChara} from './main';
+import {AnalysisFormDragon} from './main';
 
 
-describe('Character analysis form', () => {
+describe('Dragon analysis form', () => {
   let fnSendRequest: jest.Mock;
   const response: AnalysisEditResponse = {
     code: ApiResponseCode.SUCCESS,
@@ -31,7 +31,7 @@ describe('Character analysis form', () => {
       rejected: [],
     },
   };
-  let formState: PostFormState<CharaAnalysisEditPayload>;
+  let formState: PostFormState<DragonAnalysisEditPayload>;
   let setFormState: jest.Mock;
 
   beforeEach(() => {
@@ -52,16 +52,9 @@ describe('Character analysis form', () => {
         summonResult: 'smr',
         passives: 'psv',
         normalAttacks: 'nra',
-        forceStrikes: 'fs',
-        skills: [
-          {
-            name: 'S1',
-            info: 'S1 info',
-            rotations: 'S1 rotations',
-            tips: 'S1 tips',
-          },
-        ],
-        tipsBuilds: 'tb',
+        ultimate: 'ult',
+        notes: 'not',
+        suitableCharacters: 'cha',
         videos: 'vid',
         editNote: '',
         sendUpdateEmail: true,
@@ -72,7 +65,7 @@ describe('Character analysis form', () => {
       success: true,
       unitId: 10950101,
     });
-    setFormState = jest.fn().mockImplementation((newState: PostFormState<CharaAnalysisEditPayload>) => {
+    setFormState = jest.fn().mockImplementation((newState: PostFormState<DragonAnalysisEditPayload>) => {
       formState = newState;
     });
   });
@@ -80,7 +73,7 @@ describe('Character analysis form', () => {
   it('edits', async () => {
     const {rerender} = renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           formState={formState}
           setFormState={setFormState}
           fnSendRequest={fnSendRequest}
@@ -98,10 +91,12 @@ describe('Character analysis form', () => {
     typeInput(passives, 'passives', {clear: true, rerender});
     const normalAttacks = screen.getByText(formState.payload.normalAttacks, {selector: 'textarea'});
     typeInput(normalAttacks, 'normalAttacks', {clear: true, rerender});
-    const forceStrikes = screen.getByText(formState.payload.forceStrikes, {selector: 'textarea'});
-    typeInput(forceStrikes, 'forceStrikes', {clear: true, rerender});
-    const tipsBuilds = screen.getByText(formState.payload.tipsBuilds, {selector: 'textarea'});
-    typeInput(tipsBuilds, 'tipsBuilds', {clear: true, rerender});
+    const ultimate = screen.getByText(formState.payload.ultimate, {selector: 'textarea'});
+    typeInput(ultimate, 'ultimate', {clear: true, rerender});
+    const notes = screen.getByText(formState.payload.notes, {selector: 'textarea'});
+    typeInput(notes, 'notes', {clear: true, rerender});
+    const suitableCharacters = screen.getByText(formState.payload.suitableCharacters, {selector: 'textarea'});
+    typeInput(suitableCharacters, 'suitableCharacters', {clear: true, rerender});
     const videos = screen.getByText(formState.payload.videos, {selector: 'textarea'});
     typeInput(videos, 'videos', {clear: true, rerender});
     // endregion
@@ -119,9 +114,9 @@ describe('Character analysis form', () => {
       summonResult: 'summonResult',
       passives: 'passives',
       normalAttacks: 'normalAttacks',
-      forceStrikes: 'forceStrikes',
-      skills: formState.payload.skills,
-      tipsBuilds: 'tipsBuilds',
+      ultimate: 'ultimate',
+      notes: 'notes',
+      suitableCharacters: 'suitableCharacters',
       videos: 'videos',
       editNote: '',
       sendUpdateEmail: true,
@@ -136,7 +131,7 @@ describe('Character analysis form', () => {
 
     const {rerender} = renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           formState={formState}
           setFormState={setFormState}
           fnSendRequest={fnSendRequest}
@@ -167,7 +162,7 @@ describe('Character analysis form', () => {
 
     const {rerender} = renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           formState={formState}
           setFormState={setFormState}
           fnSendRequest={fnSendRequest}
@@ -202,14 +197,9 @@ describe('Character analysis form', () => {
       summonResult: originalText,
       passives: originalText,
       normalAttacks: originalText,
-      forceStrikes: originalText,
-      skills: [{
-        name: originalText,
-        info: originalText,
-        rotations: originalText,
-        tips: originalText,
-      }],
-      tipsBuilds: originalText,
+      ultimate: originalText,
+      notes: originalText,
+      suitableCharacters: originalText,
       videos: originalText,
       editNote: originalText,
       sendUpdateEmail: true,
@@ -217,7 +207,7 @@ describe('Character analysis form', () => {
 
     renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           formState={formState}
           setFormState={setFormState}
           fnSendRequest={fnSendRequest}
@@ -239,14 +229,9 @@ describe('Character analysis form', () => {
       summonResult: transformedText,
       passives: transformedText,
       normalAttacks: transformedText,
-      forceStrikes: transformedText,
-      skills: [{
-        name: originalText,
-        info: transformedText,
-        rotations: transformedText,
-        tips: transformedText,
-      }],
-      tipsBuilds: transformedText,
+      ultimate: transformedText,
+      notes: transformedText,
+      suitableCharacters: transformedText,
       videos: transformedText,
       editNote: originalText,
       sendUpdateEmail: true,
@@ -256,7 +241,7 @@ describe('Character analysis form', () => {
   it('blocks access from non-admin user', async () => {
     renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           formState={formState}
           setFormState={setFormState}
           fnSendRequest={fnSendRequest}
@@ -272,7 +257,7 @@ describe('Character analysis form', () => {
   it('sends update email on publish', async () => {
     renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           fnSendRequest={fnSendRequest}
           formState={{...formState, isPreloaded: false}}
           setFormState={setFormState}
@@ -291,7 +276,7 @@ describe('Character analysis form', () => {
   it('does not send update email on publish', async () => {
     renderReact(
       () => (
-        <AnalysisFormChara
+        <AnalysisFormDragon
           fnSendRequest={fnSendRequest}
           formState={{...formState, isPreloaded: false}}
           setFormState={setFormState}

@@ -873,6 +873,7 @@ export const translation: TranslationStruct = {
       postNotExists: '文がありません。',
       preview: 'プレビュー',
       publish: '文を発表する',
+      sendUpdateEmail: 'TBA',
     },
     message: {
       altLang: '本ページは言語が {{langUi}} 版がないため、代わりに言語が {{langPost}} 版を表示しています。',

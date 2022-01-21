@@ -677,22 +677,14 @@ export class ApiRequestSender {
   /**
    * Get tier note of a unit for editing.
    *
-   * @param {string} uid user ID
-   * @param {SupportedLanguages} lang language of the tier note
-   * @param {number} unitId unit ID of the tier note
-   * @param {Omit<UnitTierNote, 'lastUpdateEpoch'>} data updated unit tier note
+   * @param {UnitTierNoteUpdatePayload} payload unit tier note update sending payload
    * @return {Promise<UnitTierNoteUpdateResponse>} promise returned from `fetch`
    */
-  static updateUnitTierNote(
-    uid: string,
-    lang: SupportedLanguages,
-    unitId: number,
-    data: UnitTierNoteUpdatePayload['data'],
-  ) {
+  static updateUnitTierNote(payload: UnitTierNoteUpdatePayload) {
     return ApiRequestSender.sendRequest<UnitTierNoteUpdateResponse, UnitTierNoteUpdatePayload>(
       'POST',
       ApiEndPoints.MANAGE_TIER_NOTE,
-      {uid, lang, unitId, data},
+      payload,
     );
   }
 

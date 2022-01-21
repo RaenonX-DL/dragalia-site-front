@@ -13,6 +13,7 @@ import {Loading} from '../../../elements/common/loading';
 import {AjaxForm} from '../../../elements/form/ajax/main';
 import {useUnitId} from '../../../elements/gameData/hook';
 import {AutoComplete} from '../../../elements/input/autoComplete/main';
+import {FormConfig} from '../../../elements/posts/form/config';
 import {ProtectedLayout} from '../../layout/protected';
 import styles from '../main.module.css';
 import {TierNoteDimensionEntry} from './dimension';
@@ -29,6 +30,8 @@ export const TierNoteEdit = () => {
 
   const unitId = useUnitId();
   const {unitInfoMap} = useUnitInfo();
+
+  const [sendUpdateEmail, setSendUpdateEmail] = React.useState(true);
 
   if (!unitId) {
     return <></>;
@@ -71,7 +74,9 @@ export const TierNoteEdit = () => {
             ),
           };
 
-          return ApiRequestSender.updateUnitTierNote(uid, lang, unitId, tierNoteToSend);
+          return ApiRequestSender.updateUnitTierNote({
+            uid, lang, unitId, data: tierNoteToSend, sendUpdateEmail,
+          });
         }}
         formControl={{
           variant: 'outline-light',
@@ -128,6 +133,11 @@ export const TierNoteEdit = () => {
             );
           }}
           showMoveButton={false}
+        />
+        <hr/>
+        <FormConfig
+          sendEmail={sendUpdateEmail}
+          onChangeSendEmail={(newValue) => setSendUpdateEmail(newValue)}
         />
       </AjaxForm>
     </ProtectedLayout>

@@ -24,6 +24,7 @@ export const MiscEditForm = <R extends MiscPostGetResponse>({post}: Props<R>) =>
       title: post.title,
       sections: post.sections,
       editNote: '',
+      sendUpdateEmail: true,
     },
     isIdAvailable: false,
     isPreloaded: true,

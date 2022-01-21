@@ -910,6 +910,7 @@ export const translation: TranslationStruct = {
       postNotExists: 'Post not exists.',
       preview: 'Preview',
       publish: 'Publish',
+      sendUpdateEmail: 'Send notification email',
     },
     message: {
       altLang: 'This post does not have a version in {{langUi}}. Therefore, we\'re displaying it in {{langPost}}.',

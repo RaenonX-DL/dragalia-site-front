@@ -32,6 +32,7 @@ export const AnalysisFormCharaEdit = ({analysis}: Props) => {
       tipsBuilds: analysis.tipsBuilds,
       videos: analysis.videos,
       editNote: '',
+      sendUpdateEmail: true,
     },
     isIdAvailable: true,
     isPreloaded: true,

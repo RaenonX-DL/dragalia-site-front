@@ -1,6 +1,11 @@
 import React from 'react';
 
-import {AnalysisBody, AnalysisEditResponse, AnalysisPublishResponse} from '../../../../../api-def/api';
+import {
+  AnalysisEditPayload,
+  AnalysisEditResponse,
+  AnalysisPublishPayload,
+  AnalysisPublishResponse,
+} from '../../../../../api-def/api';
 import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {processText} from '../../../../../utils/process/text';
@@ -11,7 +16,10 @@ import {FormAnalysisMeta} from './meta';
 import {FormTop} from './top';
 
 
-export const AnalysisFormBase = <P extends AnalysisBody, R extends AnalysisEditResponse | AnalysisPublishResponse>({
+export const AnalysisFormBase = <
+  P extends AnalysisEditPayload | AnalysisPublishPayload,
+  R extends AnalysisEditResponse | AnalysisPublishResponse
+>({
   formState,
   fnProcessPayload,
   renderMain,

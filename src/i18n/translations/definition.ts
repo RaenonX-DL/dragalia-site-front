@@ -707,6 +707,7 @@ export type TranslationStruct = {
       postNotExists: string,
       preview: string,
       publish: string,
+      sendUpdateEmail: string,
     },
     message: {
       altLang: string,

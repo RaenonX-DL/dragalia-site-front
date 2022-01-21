@@ -28,6 +28,7 @@ export const QuestEditForm = <R extends QuestPostGetResponse>({post}: Props<R>) 
       positional: post.positional,
       addendum: post.addendum,
       editNote: '',
+      sendUpdateEmail: true,
     },
     isIdAvailable: false,
     isPreloaded: true,
