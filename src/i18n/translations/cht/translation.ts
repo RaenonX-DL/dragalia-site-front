@@ -410,6 +410,7 @@ export const translation: TranslationStruct = {
       },
       tips: {
         main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
+        kaleidoscape: '萬花筒評級為同武器角色之間的比較結果，而非全部角色。',
         notRanked: '此角色尚無評級。',
         compIcon: '需要搭配特定隊友以達到對應評級',
       },

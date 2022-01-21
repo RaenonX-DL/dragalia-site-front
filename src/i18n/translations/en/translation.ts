@@ -443,6 +443,8 @@ export const translation: TranslationStruct = {
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +
           'the actual strength, how-to-use, and the other details!',
+        kaleidoscape: 'Kaleidoscape tier list only compares characters among the same weapon type ' +
+          'instead of all characters.',
         notRanked: 'This unit is not yet ranked.',
         compIcon: 'Needs specific companion for the corresponding tier',
       },

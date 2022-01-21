@@ -406,6 +406,7 @@ export type TranslationStruct = {
       },
       tips: {
         main: string,
+        kaleidoscape: string,
         notRanked: string,
         compIcon: string,
       },

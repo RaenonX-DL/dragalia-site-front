@@ -21,6 +21,8 @@ type Props = PropsUseKeyPointData & UnitSearchOutputProps<SortOrder, InputData> 
 export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherUnitInfo, keyPointsData}: Props) => {
   const {t} = useI18n();
 
+  const {display} = inputData;
+
   const entryPackHasTierNote = prioritizedUnitInfo
     .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}));
   const entryPackNoTierNote = otherUnitInfo
@@ -28,7 +30,15 @@ export const TierListOutput = ({inputData, tierData, prioritizedUnitInfo, otherU
 
   return (
     <>
-      <Alert variant="info" className="mb-2">{t((t) => t.game.unitTier.tips.main)}</Alert>
+      <Alert variant="info" className="mb-2">
+        {t((t) => t.game.unitTier.tips.main)}
+      </Alert>
+      {
+        (display === 'all' || display === 'kaleidoscape') &&
+        <Alert variant="warning" className="mb-2">
+          {t((t) => t.game.unitTier.tips.kaleidoscape)}
+        </Alert>
+      }
       <Row className="text-end mb-2">
         <Col>
           <IconCompDependent/>&nbsp;=&nbsp;{t((t) => t.game.unitTier.tips.compIcon)}
