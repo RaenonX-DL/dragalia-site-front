@@ -7,6 +7,7 @@ import {GeneralPath} from '../../../api-def/paths';
 import {useI18n} from '../../../i18n/hook';
 import {overrideObject} from '../../../utils/override';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
+import {sortFuncMerged} from '../../../utils/sort';
 import {SubscriptionButtonBar} from '../../elements/common/button/subscribe/bar';
 import {useSubscribeButtonState} from '../../elements/common/button/subscribe/hook';
 import {ButtonBar} from '../../elements/common/buttonBar';
@@ -87,7 +88,12 @@ export const TierList = () => {
       getSortedUnitInfo={(unitInfo, inputData) => (
         unitInfo
           .map((info) => ({unitInfo: info, tierNote: tierData[info.id]}))
-          .sort(sortFunc[inputData.sortBy])
+          .sort(
+            inputData.display === 'all' ?
+              sortFunc[inputData.sortBy] :
+              // Sort by displaying dimension first
+              sortFuncMerged(sortFunc[inputData.display], sortFunc[inputData.sortBy]),
+          )
           .map((obj) => obj.unitInfo)
       )}
       isLoading={tierDataResponse.fetching}
