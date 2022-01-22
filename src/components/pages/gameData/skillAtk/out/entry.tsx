@@ -44,7 +44,7 @@ export const AttackingSkillEntry = ({
         </Col>
         {
           displayConfig.damageInfo &&
-          <Col xs="auto" className="my-auto">
+          <Col xs="auto" className="my-auto text-end">
             <SectionSkillInfo atkSkillEntry={atkSkillEntry} calculatedData={calculatedData}/>
             {
               !displayConfig.actualDamage &&
