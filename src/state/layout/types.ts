@@ -8,7 +8,13 @@ export enum LayoutDispatcherName {
   CHANGE_COLLAPSE = 'changeCollapse',
 }
 
-export type LayoutWidthType = 'full' | 'wide' | 'mid';
+export const LayoutWidthTypeObj = {
+  full: undefined,
+  wide: undefined,
+  mid: undefined,
+};
+
+export type LayoutWidthType = keyof typeof LayoutWidthTypeObj;
 
 export type LayoutData = {
   collapse: boolean,

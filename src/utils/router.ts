@@ -14,7 +14,7 @@ export const useNextRouter = (): UseNextRouterReturn => {
 
   const lang = router.query.lang as string;
 
-  const push: NextRouter['push'] = async (url, as, options) => {
+  const push: NextRouter['push'] = (url, as, options) => {
     if (typeof url !== 'string') {
       url.pathname = `/${lang}${url.pathname}`;
     } else {

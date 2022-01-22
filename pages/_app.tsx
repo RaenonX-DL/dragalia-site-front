@@ -35,6 +35,7 @@ const NextApp = ({
   const {t} = useI18n();
 
   // Page meta must be obtained here, or page preview won't work
+  // - Using layout component wrapper doesn't work
   return (
     <>
       <Head>

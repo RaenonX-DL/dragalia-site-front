@@ -544,6 +544,25 @@ export const translation: TranslationStruct = {
     login: 'ログイン',
     logout: 'ログアウト',
     loading: '読み込み中...',
+    settings: {
+      general: 'TBA',
+      subscriptions: 'TBA',
+    },
+    general: {
+      email: 'TBA',
+      isAdmin: 'TBA',
+      adsFreeInEffect: 'TBA',
+      adsFreeNotEffective: 'TBA',
+    },
+    layout: {
+      config: 'TBA',
+      width: {
+        full: 'TBA',
+        wide: 'TBA',
+        mid: 'TBA',
+      },
+      disabledInPortrait: 'TBA',
+    },
   },
   lang: {
     inUse: '使用中',
@@ -752,14 +771,8 @@ export const translation: TranslationStruct = {
       },
       user: {
         settings: {
-          general: {
-            title: 'TBA',
-            description: 'TBA',
-          },
-          subscriptions: {
-            title: 'TBA',
-            description: 'TBA',
-          },
+          title: 'TBA',
+          description: 'TBA',
         },
       },
     },
@@ -799,17 +812,6 @@ export const translation: TranslationStruct = {
       posts: 'TBA',
       gameData: 'TBA',
       others: 'TBA',
-    },
-    layout: {
-      config: 'TBA',
-      current: {
-        width: 'TBA',
-      },
-      width: {
-        full: 'TBA',
-        wide: 'TBA',
-        mid: 'TBA',
-      },
     },
   },
   posts: {

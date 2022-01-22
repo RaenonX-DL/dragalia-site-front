@@ -8,6 +8,7 @@ import {useLayoutSelector} from '../../state/layout/selector';
 import {LayoutWidthType} from '../../state/layout/types';
 import {Footer} from '../elements/footer';
 import {Error404} from '../error/404';
+import {useLayout} from '../hooks/layout/main';
 import {NavigationLandscape} from '../nav/main/landscape';
 import {NavigationStatic} from '../nav/main/static';
 import styles from './main.module.css';
@@ -28,14 +29,16 @@ const widthClassMap: {[width in LayoutWidthType]: string} = {
 
 export const MainApp = ({isNotFound, renderApp}: Props) => {
   const {width, collapse} = useLayoutSelector();
+  const {isLandscape} = useLayout();
 
   return (
     <>
       <NavigationStatic/>
+      <SiteAlert/>
       {
         isNotFound ?
           <Error404/> :
-          <Container fluid={width === 'full'} className={widthClassMap[width]}>
+          <Container fluid={width === 'full' || isLandscape} className={isLandscape ? widthClassMap[width] : ''}>
             <Row className={styles['layout-row']}>
               <Col
                 className={
@@ -51,7 +54,6 @@ export const MainApp = ({isNotFound, renderApp}: Props) => {
                   `${collapse ? styles['layout-col-main-collapsed'] : styles['layout-col-main-opened']}`
                 }
               >
-                <SiteAlert/>
                 <GlobalAlert/>
                 {renderApp()}
                 <Footer/>

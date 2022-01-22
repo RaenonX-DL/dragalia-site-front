@@ -35,8 +35,7 @@ export const metaTransFunctions: {[path in PagePath]: GetTranslationFunction<Pag
   [GeneralPath.UPDATE_UNIT_NAME_REF]: (t) => t.meta.inUse.unit.name,
   [GeneralPath.ENMITY_CALC]: (t) => t.meta.inUse.calc.enmity,
   [GeneralPath.GAME_DATAMINE_INDEX]: (t) => t.meta.inUse.gameData.datamine.index,
-  [GeneralPath.USER_GENERAL]: (t) => t.meta.inUse.user.settings.general,
-  [GeneralPath.USER_SUBSCRIPTION]: (t) => t.meta.inUse.user.settings.subscriptions,
+  [GeneralPath.USER_SETTINGS]: (t) => t.meta.inUse.user.settings,
   [AuthPath.SIGN_IN]: (t) => t.meta.inUse.auth.signIn,
   // Constructing paths
   [GeneralPath.SKILL_SUP]: (t) => t.meta.temp.constructing,

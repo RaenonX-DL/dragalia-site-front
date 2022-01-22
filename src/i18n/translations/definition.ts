@@ -2,6 +2,7 @@ import {DimensionKey, KeyPointType, PostType, UnitType} from '../../api-def/api'
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
 import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/types';
+import {SettingsTypeKey} from '../../components/pages/user/settings/type';
 import {LayoutWidthType} from '../../state/layout/types';
 
 
@@ -508,6 +509,18 @@ export type TranslationStruct = {
     login: string,
     logout: string,
     loading: string,
+    settings: {[type in SettingsTypeKey]: string},
+    general: {
+      email: string,
+      isAdmin: string,
+      adsFreeInEffect: string,
+      adsFreeNotEffective: string,
+    },
+    layout: {
+      config: string,
+      width: {[key in LayoutWidthType]: string},
+      disabledInPortrait: string,
+    },
   },
   lang: {
     inUse: string,
@@ -614,10 +627,7 @@ export type TranslationStruct = {
         unit: PageMetaTranslations,
       },
       user: {
-        settings: {
-          general: PageMetaTranslations,
-          subscriptions: PageMetaTranslations,
-        },
+        settings: PageMetaTranslations,
       },
     },
     error: {
@@ -647,13 +657,6 @@ export type TranslationStruct = {
       posts: string,
       gameData: string,
       others: string,
-    },
-    layout: {
-      config: string,
-      current: {
-        width: string,
-      },
-      width: {[key in LayoutWidthType]: string},
     },
   },
   posts: {

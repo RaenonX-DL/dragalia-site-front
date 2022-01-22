@@ -3,7 +3,6 @@ import React from 'react';
 import {DataPath, GeneralPath, PostPath, StoryPath, UnitPath} from '../../api-def/paths';
 import {UserControlButton} from '../elements/common/userControl/button/main';
 import {NavLanguageSwitch} from './components/switch';
-import {NavWidthConfig} from './components/width';
 import {NavItems} from './type';
 
 
@@ -78,6 +77,5 @@ export const navItems: NavItems = [
   {type: 'path', path: GeneralPath.ABOUT, text: (t) => t.meta.inUse.about.title},
   {type: 'divider'},
   {type: 'component', renderComponent: () => <NavLanguageSwitch/>},
-  {type: 'component', renderComponent: () => <NavWidthConfig/>},
   {type: 'component', renderComponent: () => <UserControlButton/>},
 ];

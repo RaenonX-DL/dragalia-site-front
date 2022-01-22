@@ -536,6 +536,25 @@ export const translation: TranslationStruct = {
     login: '登入',
     logout: '登出',
     loading: '讀取中...',
+    settings: {
+      general: '一般',
+      subscriptions: '通知',
+    },
+    general: {
+      email: 'Email',
+      isAdmin: '擁有網站管理權限。',
+      adsFreeInEffect: '無廣告有效中。',
+      adsFreeNotEffective: '無廣告未啟用。歡迎贊助啟用無廣告！',
+    },
+    layout: {
+      config: '版面寬度設定',
+      width: {
+        full: '全寬',
+        wide: '寬',
+        mid: '中',
+      },
+      disabledInPortrait: '直立螢幕中，無法調整版面寬度。',
+    },
   },
   lang: {
     inUse: '目前使用中',
@@ -746,14 +765,8 @@ export const translation: TranslationStruct = {
       },
       user: {
         settings: {
-          general: {
-            title: '使用者設定 - 一般',
-            description: '一般使用者設定頁面。',
-          },
-          subscriptions: {
-            title: '使用者設定 - 通知',
-            description: '使用者通知設定頁面。',
-          },
+          title: '使用者設定',
+          description: '使用者設定頁面。',
         },
       },
     },
@@ -793,17 +806,6 @@ export const translation: TranslationStruct = {
       posts: '文章',
       gameData: '遊戲相關',
       others: '其他',
-    },
-    layout: {
-      config: '版面設定',
-      current: {
-        width: '寬度',
-      },
-      width: {
-        full: '全寬',
-        wide: '寬',
-        mid: '中',
-      },
     },
   },
   posts: {

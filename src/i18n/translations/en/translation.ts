@@ -572,6 +572,25 @@ export const translation: TranslationStruct = {
     login: 'Login',
     logout: 'Logout',
     loading: 'Loading...',
+    settings: {
+      general: 'General',
+      subscriptions: 'Subscription',
+    },
+    general: {
+      email: 'Email',
+      isAdmin: 'Website administration permissions granted.',
+      adsFreeInEffect: 'Ads-free is effective.',
+      adsFreeNotEffective: 'Ads-free not activated. Welcome to donate for activating ads-free!',
+    },
+    layout: {
+      config: 'Layout width',
+      width: {
+        full: 'Full',
+        wide: 'Wide',
+        mid: 'Medium',
+      },
+      disabledInPortrait: 'Layout width config is disabled under portrait dimension.',
+    },
   },
   lang: {
     inUse: 'Currently in-use',
@@ -787,14 +806,8 @@ export const translation: TranslationStruct = {
       },
       user: {
         settings: {
-          general: {
-            title: 'User settings - General',
-            description: 'General user settings.',
-          },
-          subscriptions: {
-            title: 'User settings - Email subscriptions',
-            description: 'User email subscription settings.',
-          },
+          title: 'User settings - General',
+          description: 'General user settings.',
         },
       },
     },
@@ -834,17 +847,6 @@ export const translation: TranslationStruct = {
       posts: 'Posts',
       gameData: 'Game Related',
       others: 'Others',
-    },
-    layout: {
-      config: 'Layout Config',
-      current: {
-        width: 'Width',
-      },
-      width: {
-        full: 'Full',
-        wide: 'Wide',
-        mid: 'Medium',
-      },
     },
   },
   posts: {
