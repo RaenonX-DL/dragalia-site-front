@@ -614,6 +614,7 @@ export const translation: TranslationStruct = {
         mid: 'Medium',
       },
       disabledInPortrait: 'Layout width config is disabled under portrait dimension.',
+      notUploaded: 'Layout width config does NOT upload. Settings are applied immediately.',
     },
   },
   lang: {

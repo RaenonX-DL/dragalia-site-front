@@ -51,29 +51,34 @@ export const UserSettingsGeneral = () => {
       <h5>{t((t) => t.userControl.layout.config)}</h5>
       {
         isLandscape ?
-          <ButtonGroup className="mb-2 w-100">
-            {(Object.keys(LayoutWidthTypeObj) as LayoutWidthType[]).map((widthType, idx) => {
-              const isActive = widthType === width;
+          <>
+            <ButtonGroup className="mb-2 w-100">
+              {(Object.keys(LayoutWidthTypeObj) as LayoutWidthType[]).map((widthType, idx) => {
+                const isActive = widthType === width;
 
-              return (
-                <ToggleButton
-                  key={idx}
-                  id={`radio-${idx}`}
-                  type="radio"
-                  variant={isActive ? 'primary' : 'outline-light'}
-                  name="radio"
-                  value={widthType}
-                  checked={isActive}
-                  onChange={({currentTarget: target}) => (
-                    dispatch(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH](target.value as LayoutWidthType))
-                  )}
-                  disabled={!isLandscape}
-                >
-                  {t((t) => t.userControl.layout.width[widthType])}
-                </ToggleButton>
-              );
-            })}
-          </ButtonGroup> :
+                return (
+                  <ToggleButton
+                    key={idx}
+                    id={`radio-${idx}`}
+                    type="radio"
+                    variant={isActive ? 'primary' : 'outline-light'}
+                    name="radio"
+                    value={widthType}
+                    checked={isActive}
+                    onChange={({currentTarget: target}) => (
+                      dispatch(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH](target.value as LayoutWidthType))
+                    )}
+                    disabled={!isLandscape}
+                  >
+                    {t((t) => t.userControl.layout.width[widthType])}
+                  </ToggleButton>
+                );
+              })}
+            </ButtonGroup>
+            <Alert variant="info" className="mb-2">
+              {t((t) => t.userControl.layout.notUploaded)}
+            </Alert>
+          </> :
           <Alert variant="danger">
             {t((t) => t.userControl.layout.disabledInPortrait)}
           </Alert>

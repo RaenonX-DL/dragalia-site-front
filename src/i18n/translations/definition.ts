@@ -535,6 +535,7 @@ export type TranslationStruct = {
       config: string,
       width: {[key in LayoutWidthType]: string},
       disabledInPortrait: string,
+      notUploaded: string,
     },
   },
   lang: {

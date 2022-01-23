@@ -583,6 +583,7 @@ export const translation: TranslationStruct = {
         mid: 'TBA',
       },
       disabledInPortrait: 'TBA',
+      notUploaded: 'TBA',
     },
   },
   lang: {

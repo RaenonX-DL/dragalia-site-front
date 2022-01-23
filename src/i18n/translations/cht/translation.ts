@@ -577,6 +577,7 @@ export const translation: TranslationStruct = {
         mid: '中',
       },
       disabledInPortrait: '直立螢幕中，無法調整版面寬度。',
+      notUploaded: '版面寬度設定不上傳備份，設定立即生效。',
     },
   },
   lang: {
