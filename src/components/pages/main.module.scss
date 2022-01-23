@@ -4,6 +4,7 @@
 
 div {
   .layout-row {
+    padding: 1rem;
     flex-wrap: nowrap;
 
     --bs-gutter-x: 0.5rem;
@@ -88,7 +89,6 @@ div {
   }
 
   %container {
-    padding: 1rem;
     margin-left: auto;
     margin-right: auto;
   }

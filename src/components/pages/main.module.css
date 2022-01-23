@@ -1,4 +1,5 @@
 div .layout-row {
+  padding: 1rem;
   flex-wrap: nowrap;
   --bs-gutter-x: 0.5rem;
 }
@@ -51,7 +52,6 @@ div .site-alert-container > div.site-alert-text {
   padding: 0.5rem 1rem !important;
 }
 div .container-mid, div .container-wide, div .container-full {
-  padding: 1rem;
   margin-left: auto;
   margin-right: auto;
 }
