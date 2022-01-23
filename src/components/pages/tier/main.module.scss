@@ -33,6 +33,15 @@ span {
   }
 }
 
+img {
+  &.unit-icon-bg {
+    opacity: 0.2;
+    right: 0;
+    bottom: 0;
+    height: 5rem;
+  }
+}
+
 div {
   &.point-icon {
     @extend %flex-center;
@@ -47,6 +56,15 @@ div {
     display: flex;
     align-items: center;
     height: 100%;
+  }
+
+  &.unit-icon-name {
+    display: inline;
+    margin-right: 0.25rem;
+
+    & > img {
+      height: 1.5rem;
+    }
   }
 }
 
@@ -94,14 +112,5 @@ a {
 
   &.point-info:hover {
     @include clickable-icon-hover;
-  }
-}
-
-img {
-  &.unit-icon {
-    opacity: 0.2;
-    right: 0;
-    bottom: 0;
-    height: 5rem;
   }
 }

@@ -3,4 +3,9 @@ div {
     overflow: hidden;
     position: relative;
   }
+
+  &.entry-show-all {
+    // Prevent unit icon overlapping the text
+    z-index: 5;
+  }
 }

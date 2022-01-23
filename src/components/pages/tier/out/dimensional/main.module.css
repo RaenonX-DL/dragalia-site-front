@@ -15,6 +15,13 @@ span.point-icon {
   margin-right: 0.25rem;
 }
 
+img.unit-icon-bg {
+  opacity: 0.2;
+  right: 0;
+  bottom: 0;
+  height: 5rem;
+}
+
 div.point-icon {
   font-size: 1.5em;
   width: 1.5em;
@@ -25,6 +32,13 @@ div.point-entry {
   display: flex;
   align-items: center;
   height: 100%;
+}
+div.unit-icon-name {
+  display: inline;
+  margin-right: 0.25rem;
+}
+div.unit-icon-name > img {
+  height: 1.5rem;
 }
 
 a.tier-note {
@@ -73,13 +87,6 @@ a.point-info:hover {
   border: 0;
   color: #bebebe;
   color: white;
-}
-
-img.unit-icon {
-  opacity: 0.2;
-  right: 0;
-  bottom: 0;
-  height: 5rem;
 }
 
 @media (max-width: 575.98px) {
