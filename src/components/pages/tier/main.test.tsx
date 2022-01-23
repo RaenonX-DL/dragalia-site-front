@@ -54,7 +54,7 @@ describe('Tier list page', () => {
     userEvent.click(searchButton);
 
     // Partial text of the tier note tips
-    expect(await screen.findByText(/tier/)).toBeInTheDocument();
+    expect((await screen.findAllByText(/tier/)).length).toBeGreaterThan(0);
   });
 
   it('loads the tier notes correctly', async () => {
