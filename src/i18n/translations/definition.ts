@@ -12,6 +12,16 @@ export type PageMetaTranslations = {
 };
 
 export type TranslationStruct = {
+  admin: {
+    announcement: {
+      title: string,
+      content: string,
+      tips: string,
+      send: string,
+      confirmSend: string,
+      emailSent: string,
+    },
+  },
   autoComplete: {
     selected: string,
     inputPlaceholder: string,
@@ -568,6 +578,7 @@ export type TranslationStruct = {
     },
     collapse: string,
     collapseAll: string,
+    cancel: string,
     subscription: {
       add: string,
       remove: string,

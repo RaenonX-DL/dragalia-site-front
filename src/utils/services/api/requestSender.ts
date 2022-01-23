@@ -62,6 +62,8 @@ import {
   RequestPayloadBase,
   SetAtkSkillPresetPayload,
   SetAtkSkillPresetResponse,
+  SiteAnnouncementPayload,
+  SiteAnnouncementResponse,
   SubscriptionAddPayload,
   SubscriptionAddResponse,
   SubscriptionKey,
@@ -88,9 +90,12 @@ import {
   UnitTierNoteSingleResponse,
   UnitTierNoteUpdatePayload,
   UnitTierNoteUpdateResponse,
-  UnitType, UserConfigApi,
+  UnitType,
+  UserConfigApi,
   UserConfigGetPayload,
-  UserConfigGetResponse, UserConfigUpdatePayload, UserConfigUpdateResponse,
+  UserConfigGetResponse,
+  UserConfigUpdatePayload,
+  UserConfigUpdateResponse,
 } from '../../../api-def/api';
 import {isCi} from '../../../api-def/utils';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
@@ -738,7 +743,7 @@ export class ApiRequestSender {
    * Get the config of a user.
    *
    * @param {string} uid user to get the subscriptions
-   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   * @return {Promise<UserConfigGetResponse>} promise returned from `fetch`
    */
   static getUserConfig(uid: string) {
     return ApiRequestSender.sendRequest<UserConfigGetResponse, UserConfigGetPayload>(
@@ -752,14 +757,30 @@ export class ApiRequestSender {
    * Update the config of a user.
    *
    * @param {string} uid user to update the subscriptions
-   * @param {configApi} configApi new user config object
-   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   * @param {UserConfigApi} configApi new user config object
+   * @return {Promise<UserConfigUpdateResponse>} promise returned from `fetch`
    */
   static updateUserConfig(uid: string, configApi: UserConfigApi) {
     return ApiRequestSender.sendRequest<UserConfigUpdateResponse, UserConfigUpdatePayload>(
       'POST',
       ApiEndPoints.USER_CONFIG_UPDATE,
       {uid, ...configApi},
+    );
+  }
+  // endregion
+
+  // region Admin
+  /**
+   * Send a website announcement.
+   *
+   * @param {SiteAnnouncementPayload} payload site announcement payload
+   * @return {Promise<SiteAnnouncementResponse>} promise returned from `fetch`
+   */
+  static sendSiteAnnouncement(payload: SiteAnnouncementPayload) {
+    return ApiRequestSender.sendRequest<SiteAnnouncementResponse, SiteAnnouncementPayload>(
+      'POST',
+      ApiEndPoints.ADMIN_SEND_ANNOUNCEMENT,
+      payload,
     );
   }
   // endregion

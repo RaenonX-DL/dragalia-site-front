@@ -3,6 +3,18 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: 'Announcement Title',
+      content: 'Announcement Content',
+      tips: 'Contents will send to the users who have subscribed to the website announcement by email.\n\n' +
+        'Announcement language is determined by the current language.\n\n' +
+        'Does NOT support advanced syntax (for example: text coloring).',
+      send: 'Send Announcement',
+      confirmSend: 'Send now?',
+      emailSent: 'Email sent. ({{accepted}} Accepted / {{rejected}} Rejected)',
+    },
+  },
   autoComplete: {
     selected: 'Selected',
     inputPlaceholder: 'Enter keyword here',
@@ -655,6 +667,7 @@ export const translation: TranslationStruct = {
     },
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
+    cancel: 'Cancel',
     subscription: {
       add: 'Subscribe',
       remove: 'Cancel subscription',

@@ -3,6 +3,16 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: 'TBA',
+      content: 'TBA',
+      tips: 'TBA',
+      send: 'TBA',
+      confirmSend: 'TBA',
+      emailSent: 'TBA',
+    },
+  },
   autoComplete: {
     selected: '選択済み',
     inputPlaceholder: '検索キーワードを入力する',
@@ -621,6 +631,7 @@ export const translation: TranslationStruct = {
     },
     collapse: '展開 / 折り畳み',
     collapseAll: '全部展開 / 折り畳み',
+    cancel: 'TBA',
     subscription: {
       add: 'TBA',
       remove: 'TBA',

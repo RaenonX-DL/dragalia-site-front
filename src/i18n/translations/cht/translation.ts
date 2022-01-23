@@ -3,6 +3,18 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: '公告標題',
+      content: '公告內容',
+      tips: '以下輸入的內容將發布至有訂閱網站公告的使用者 Email 信箱。\n' +
+        '公告語言根據當前 UI 語言決定。\n' +
+        '公告內容不支援進階語法 (例如: 文字上色)。',
+      send: '發布公告',
+      confirmSend: '確定要發布嗎？',
+      emailSent: '已傳送。({{accepted}} 成功 / {{rejected}} 失敗)',
+    },
+  },
   autoComplete: {
     noMatchingOptions: '無可用選項。',
     selected: '已選擇',
@@ -615,6 +627,7 @@ export const translation: TranslationStruct = {
     },
     collapse: '收摺/展開',
     collapseAll: '全部收摺/展開',
+    cancel: '取消',
     subscription: {
       add: '訂閱通知',
       remove: '取消通知',

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -24,6 +25,7 @@ export const NavPath = ({
   adminOnly = false,
 }: Props) => {
   const {t, lang} = useI18n();
+  const {data} = useSession();
   const href = !!path ? makeGeneralUrl(path, {lang}) : hrefProps;
   const i18nText = t(text);
   const isActive = activeOverride !== undefined ?
@@ -32,6 +34,10 @@ export const NavPath = ({
       pathnameNoLang === path ||
       (pathnameNoLang && isPagePath(pathnameNoLang) && pathActiveBasis?.includes(pathnameNoLang))
     );
+
+  if (adminOnly && !data?.user.isAdmin) {
+    return <></>;
+  }
 
   const props = {
     className: `${isActive ? styles.active : ''} ${adminOnly ? styles['nav-item-admin'] : styles['nav-item']}`,
