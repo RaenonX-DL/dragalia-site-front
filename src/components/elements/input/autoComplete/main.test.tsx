@@ -35,7 +35,7 @@ describe('Auto-complete input', () => {
       payload={payload}
       minLength={0}
       getArray={(payload) => payload}
-      setArray={(options: Array<string>) => payload = options}
+      setArray={(options: string[]) => payload = options}
       renderOption={fnRenderOption}
       renderEntries={fnRenderEntries}
       showMoveButton={showMoveButton}
@@ -113,7 +113,7 @@ describe('Auto-complete input', () => {
     expect(screen.getAllByText('', {selector: 'i.bi-plus-circle'})).toHaveLength(2);
   });
 
-  it('does not add the same option twice', async () => {
+  it('removes the option that is clicked twice', async () => {
     payload = [];
 
     renderReact(() => <AutoCompleteWrapper/>);
@@ -122,7 +122,7 @@ describe('Auto-complete input', () => {
     userEvent.click(option);
     userEvent.click(option);
 
-    expect(payload).toStrictEqual(['option 1']);
+    expect(payload).toStrictEqual([]);
   });
 
   it('loads both search results and pre-selected options', async () => {
