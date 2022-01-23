@@ -132,10 +132,6 @@ describe('Tier list page', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: Object.fromEntries(unitDataEntries
-        // Shuffle the data array so that it's more realistic
-        // .map((value) => ({value, sort: Math.random()}))
-        // .sort((a, b) => a.sort - b.sort)
-        // .map(({value}) => value)
         .map((entry, idx) => {
           let tier;
           if (idx < 50) {
