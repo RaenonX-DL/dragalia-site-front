@@ -75,6 +75,12 @@ export const navItems: NavItems = [
   {type: 'header', text: (t) => t.nav.header.others},
   {type: 'path', path: GeneralPath.SPECIAL_THANKS, text: (t) => t.meta.inUse.thanks.title},
   {type: 'path', path: GeneralPath.ABOUT, text: (t) => t.meta.inUse.about.title},
+  {
+    type: 'path',
+    path: GeneralPath.ADMIN_ANNOUNCEMENT,
+    text: (t) => t.meta.inUse.admin.announcement.title,
+    adminOnly: true,
+  },
   {type: 'divider'},
   {type: 'path', path: GeneralPath.USER_SETTINGS, text: (t) => t.meta.inUse.user.settings.title},
   {type: 'component', renderComponent: () => <NavLanguageSwitch/>},

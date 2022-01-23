@@ -780,6 +780,12 @@ export const translation: TranslationStruct = {
           description: '全部の{{unitName}}のストーリー。',
         },
       },
+      admin: {
+        announcement: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+      },
       user: {
         settings: {
           title: 'TBA',

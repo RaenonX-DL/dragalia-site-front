@@ -816,6 +816,12 @@ export const translation: TranslationStruct = {
           description: 'All unit stories of {{unitName}}.',
         },
       },
+      admin: {
+        announcement: {
+          title: 'Website announcement',
+          description: 'Page to send the website announcement',
+        },
+      },
       user: {
         settings: {
           title: 'User settings',

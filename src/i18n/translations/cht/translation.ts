@@ -774,6 +774,12 @@ export const translation: TranslationStruct = {
           description: '{{unitName}} 的角色故事全集。',
         },
       },
+      admin: {
+        announcement: {
+          title: '發送網站公告',
+          description: '發送網站公告的頁面。',
+        },
+      },
       user: {
         settings: {
           title: '使用者設定',

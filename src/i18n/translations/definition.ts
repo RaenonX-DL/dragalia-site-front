@@ -634,6 +634,9 @@ export type TranslationStruct = {
       user: {
         settings: PageMetaTranslations,
       },
+      admin: {
+        announcement: PageMetaTranslations,
+      },
     },
     error: {
       401: PageMetaTranslations,

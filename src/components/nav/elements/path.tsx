@@ -13,7 +13,15 @@ import {NavItemPath} from '../type';
 type Props = NavItemPath;
 
 export const NavPath = ({
-  path, pathActiveBasis, href: hrefProps, text, disabled, onClick, pathnameNoLang, activeOverride,
+  path,
+  pathActiveBasis,
+  href: hrefProps,
+  text,
+  disabled,
+  onClick,
+  pathnameNoLang,
+  activeOverride,
+  adminOnly = false,
 }: Props) => {
   const {t, lang} = useI18n();
   const href = !!path ? makeGeneralUrl(path, {lang}) : hrefProps;
@@ -26,7 +34,7 @@ export const NavPath = ({
     );
 
   const props = {
-    className: `${isActive ? styles.active : ''} ${styles['nav-item']}`,
+    className: `${isActive ? styles.active : ''} ${adminOnly ? styles['nav-item-admin'] : styles['nav-item']}`,
     href,
     disabled,
     onClick,
