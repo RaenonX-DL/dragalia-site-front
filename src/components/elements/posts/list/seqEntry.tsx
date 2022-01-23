@@ -8,7 +8,7 @@ import {PostEntryProps} from './types';
 type Props<E extends SequencedPostInfo> = PostEntryProps<E> & {
   entry: E,
   type: PostType,
-  disableSubscription: boolean,
+  disableSubscription?: boolean,
 };
 
 export const SequencedPostEntry = <E extends SequencedPostInfo>({

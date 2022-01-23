@@ -16,6 +16,7 @@ describe('Analysis lookup top section upon landing', () => {
       viewCount: 107,
       modifiedEpoch: 5000000,
       publishedEpoch: 900000,
+      userSubscribed: true,
     },
     {
       type: UnitType.CHARACTER,
@@ -24,6 +25,7 @@ describe('Analysis lookup top section upon landing', () => {
       viewCount: 207,
       modifiedEpoch: 5000000,
       publishedEpoch: 900000,
+      userSubscribed: true,
     },
     {
       type: UnitType.CHARACTER,
@@ -32,11 +34,12 @@ describe('Analysis lookup top section upon landing', () => {
       viewCount: 307,
       modifiedEpoch: 5000000,
       publishedEpoch: 900000,
+      userSubscribed: true,
     },
   ];
 
   it('shows analyses on fetched', async () => {
-    renderReact(() => (<UnitInfoLookupLanding analyses={analyses}/>));
+    renderReact(() => (<UnitInfoLookupLanding analyses={analyses} disableSubscription={false}/>));
 
     await waitFor(() => screen.getByText('Gala Leonidas'), {timeout: 2000});
   });
