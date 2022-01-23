@@ -44,10 +44,8 @@ const nextAuthOptions: NextAuthOptions = {
   adapter: isCi() ? undefined : nextAuthMongoDBAdapter(generateMongoClient(AUTH_DB).connect()),
 
   // Security
-  secret: (
-    env.get('AUTH_SECRET').required(!isCi()).asString() ||
-    (Math.random() + 1).toString(36).substring(2)
-  ),
+  // ---- `AUTH_SECRET` is required besides CI (i.e. `secret` is used in CI)
+  secret: env.get('AUTH_SECRET').required(!isCi()).asString() || 'secret',
 
   // Event hooks
   events: {
