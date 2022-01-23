@@ -955,7 +955,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: '文章更新',
     },
     message: {
-      features: '歡迎瀏覽導引列以了解更多網站功能。',
+      onSiteAnnouncementDisabled: '開啟網站公告 Email 通知以接收最新相關資訊。',
+      onSiteAnnouncementEnabled: '已開啟網站公告 Email 通知。',
       noPost: '無可用文章更新資訊。',
     },
   },

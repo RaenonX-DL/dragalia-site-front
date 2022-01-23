@@ -22,7 +22,7 @@ export type SubscribeButtonProps = {
   state?: never,
 } | {
   defaultSubscribed?: never,
-  state?: [SubscribeButtonState, (newState: SubscribeButtonState) => void],
+  state: [SubscribeButtonState, (newState: SubscribeButtonState) => void],
 });
 
 export const SubscribeButton = ({

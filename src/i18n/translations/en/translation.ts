@@ -1003,7 +1003,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: 'Posts',
     },
     message: {
-      features: 'Check the navigation bar for more features.',
+      onSiteAnnouncementDisabled: 'Subscribe to website announcement to receive related information by email.',
+      onSiteAnnouncementEnabled: 'Website announcement email enabled.',
       noPost: 'No available posts.',
     },
   },

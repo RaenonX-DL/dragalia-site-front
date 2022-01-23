@@ -30,7 +30,7 @@ export const Home = () => {
 
   return (
     <>
-      <SiteFeatures/>
+      <SiteFeatures response={homepageData.data}/>
       <AdsToolBottom/>
       <hr/>
       {

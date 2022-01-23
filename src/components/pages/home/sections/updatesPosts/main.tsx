@@ -23,7 +23,7 @@ export const RecentUpdatedPosts = ({response}: Props) => {
 
   const {unitInfoMap} = useUnitInfo();
 
-  const {data, userSubscribed} = response;
+  const {data, subscribed} = response;
 
   return (
     <>
@@ -47,7 +47,7 @@ export const RecentUpdatedPosts = ({response}: Props) => {
                 <UnitIconClickable unit={unitInfoToClickableProps(unitInfo, lang)} className={styles['unit-icon']}/>
               );
             }}
-            defaultSubscribed={userSubscribed[PostType.ANALYSIS]}
+            defaultSubscribed={subscribed.post[PostType.ANALYSIS]}
             subscriptionKey={{type: 'const', name: 'ALL_ANALYSIS'}}
           />
         </Col>
@@ -58,7 +58,7 @@ export const RecentUpdatedPosts = ({response}: Props) => {
             title={t((t) => t.enum.postType[PostType.QUEST])}
             titlePath={GeneralPath.QUEST_LIST}
             entries={data.posts[PostType.QUEST]}
-            defaultSubscribed={userSubscribed[PostType.QUEST]}
+            defaultSubscribed={subscribed.post[PostType.QUEST]}
             subscriptionKey={{type: 'const', name: 'ALL_QUEST'}}
           />
         </Col>
@@ -67,7 +67,7 @@ export const RecentUpdatedPosts = ({response}: Props) => {
             title={t((t) => t.enum.postType[PostType.MISC])}
             titlePath={GeneralPath.MISC_LIST}
             entries={data.posts[PostType.MISC]}
-            defaultSubscribed={userSubscribed[PostType.MISC]}
+            defaultSubscribed={subscribed.post[PostType.MISC]}
             subscriptionKey={{type: 'const', name: 'ALL_MISC'}}
           />
         </Col>

@@ -3,7 +3,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {PostType} from '../../../../../../../../api-def/api/post/types';
+import {PostType} from '../../../../../../../../api-def/api';
 import {TimeAgo} from '../../../../../../../../utils/timeago';
 import {SubscribeButton} from '../../../../../../../elements/common/button/subscribe/main';
 import {RowNoGutter} from '../../../../../../../elements/common/grid/row';

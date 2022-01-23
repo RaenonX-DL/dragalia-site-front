@@ -788,7 +788,8 @@ export type TranslationStruct = {
       recentlyUpdated: string,
     },
     message: {
-      features: string,
+      onSiteAnnouncementDisabled: string,
+      onSiteAnnouncementEnabled: string,
       noPost: string,
     },
   },

@@ -962,7 +962,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: 'TBA',
     },
     message: {
-      features: 'TBA',
+      onSiteAnnouncementDisabled: 'TBA',
+      onSiteAnnouncementEnabled: 'TBA',
       noPost: 'TBA',
     },
   },
