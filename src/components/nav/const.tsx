@@ -76,6 +76,7 @@ export const navItems: NavItems = [
   {type: 'path', path: GeneralPath.SPECIAL_THANKS, text: (t) => t.meta.inUse.thanks.title},
   {type: 'path', path: GeneralPath.ABOUT, text: (t) => t.meta.inUse.about.title},
   {type: 'divider'},
+  {type: 'path', path: GeneralPath.USER_SETTINGS, text: (t) => t.meta.inUse.user.settings.title},
   {type: 'component', renderComponent: () => <NavLanguageSwitch/>},
   {type: 'component', renderComponent: () => <UserControlButton/>},
 ];
