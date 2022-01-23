@@ -103,14 +103,17 @@ describe('Auto-complete input', () => {
   it('removes an option', async () => {
     payload = ['option 1'];
 
-    renderReact(() => <AutoCompleteWrapper/>);
+    const {rerender} = renderReact(() => <AutoCompleteWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[0];
     userEvent.click(removeButton);
+    rerender();
 
     expect(payload).toStrictEqual([]);
     // Should have 2 selectable options after removal
     expect(screen.getAllByText('', {selector: 'i.bi-plus-circle'})).toHaveLength(2);
+    // Should not display twice after removal (1 for selectable, 1 for selected)
+    expect(screen.getAllByText('option 1')).toHaveLength(1);
   });
 
   it('removes the option that is clicked twice', async () => {
