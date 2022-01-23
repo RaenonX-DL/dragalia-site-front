@@ -49,6 +49,11 @@ describe('Misc edit page', () => {
 
   beforeEach(() => {
     fnFetch = jest.spyOn(ApiRequestSender, 'miscGet').mockResolvedValue(post);
+    jest.spyOn(ApiRequestSender, 'miscIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
   it('blocks access for anonymous users', async () => {

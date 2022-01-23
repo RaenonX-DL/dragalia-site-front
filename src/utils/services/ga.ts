@@ -169,11 +169,13 @@ export class GoogleAnalytics {
    * @param {Object} parameters parameters of the event
    */
   private static sendEvent(eventName: string, parameters: {[key in string]: any}) {
-    // Log GA event instead of sending it if under development
-    if (!isProduction()) {
-      if (!isCi()) {
-        console.debug(eventName, parameters);
-      }
+    if (!isCi()) {
+      console.debug(eventName, parameters);
+    }
+
+    // Do not send GA event if is CI or not production (CI & production might be true at the same time)
+    // - On Azure pipeline, for improving testing result accuracy
+    if (isCi() || !isProduction()) {
       return;
     }
 

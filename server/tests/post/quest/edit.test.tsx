@@ -50,6 +50,11 @@ describe('Quest edit page', () => {
 
   beforeEach(() => {
     fnFetch = jest.spyOn(ApiRequestSender, 'questGet').mockResolvedValue(questPost);
+    jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
   it('blocks access for anonymous users', async () => {

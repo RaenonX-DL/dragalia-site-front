@@ -13,7 +13,7 @@ describe('API request sender', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
     }); // Mock to prevent actually sending a request
-    fnGaEvent = jest.spyOn(GoogleAnalytics, 'subscriptionUpdate');
+    fnGaEvent = jest.spyOn(GoogleAnalytics, 'subscriptionUpdate').mockImplementation(() => void 0);
   });
 
   it('sends a GA event on user adding a subscription', async () => {

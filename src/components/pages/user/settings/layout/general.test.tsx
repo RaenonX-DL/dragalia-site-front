@@ -9,19 +9,28 @@ import {UserSettingsGeneral} from './general';
 
 describe('User config - General', () => {
   it('shows that the user is ads-free', async () => {
-    renderReact(() => <UserSettingsGeneral/>, {user: {adsFreeExpiry: new Date()}});
+    renderReact(
+      () => <UserSettingsGeneral/>,
+      {hasSession: true, user: {adsFreeExpiry: new Date()}},
+    );
 
     expect(screen.getByText(translationEN.userControl.general.adsFreeInEffect)).toBeInTheDocument();
   });
 
   it('shows that the user is not ads-free', async () => {
-    renderReact(() => <UserSettingsGeneral/>, {hasSession: true});
+    renderReact(
+      () => <UserSettingsGeneral/>,
+      {hasSession: true},
+    );
 
     expect(screen.getByText(translationEN.userControl.general.adsFreeNotEffective)).toBeInTheDocument();
   });
 
   it('shows that the user is an admin', async () => {
-    renderReact(() => <UserSettingsGeneral/>, {user: {isAdmin: true}});
+    renderReact(
+      () => <UserSettingsGeneral/>,
+      {hasSession: true, user: {isAdmin: true}},
+    );
 
     expect(screen.getByText(translationEN.userControl.general.isAdmin)).toBeInTheDocument();
   });
@@ -29,7 +38,10 @@ describe('User config - General', () => {
   it('shows the email of the user', async () => {
     const email = 'user@email.com';
 
-    renderReact(() => <UserSettingsGeneral/>, {user: {email}});
+    renderReact(
+      () => <UserSettingsGeneral/>,
+      {user: {email}},
+    );
 
     expect(screen.getByDisplayValue(email)).toBeInTheDocument();
   });

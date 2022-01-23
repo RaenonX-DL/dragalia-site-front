@@ -69,6 +69,11 @@ describe('Analysis edit page', () => {
 
   beforeEach(() => {
     fnFetch = jest.spyOn(ApiRequestSender, 'analysisGet');
+    jest.spyOn(ApiRequestSender, 'analysisIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
   it('blocks access for anonymous users (chara)', async () => {

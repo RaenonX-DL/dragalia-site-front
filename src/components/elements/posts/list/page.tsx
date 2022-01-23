@@ -18,7 +18,7 @@ import {isNotFetched, useFetchState} from '../../common/fetch';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
-import styles from './page.module.scss';
+import styles from './page.module.css';
 
 
 type PostListRenderPostEntryProps<R extends SequencedPostListResponse> = {
