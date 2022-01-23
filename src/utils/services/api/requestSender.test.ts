@@ -35,14 +35,4 @@ describe('API request sender', () => {
     expect(fnGaEvent).toHaveBeenCalledTimes(1);
     expect(fnGaEvent).toHaveBeenLastCalledWith('remove', {type: 'const', name: 'ALL_QUEST'});
   });
-
-  it('sends a GA event on user updating their subscriptions', async () => {
-    await ApiRequestSender.updateSubscriptions(
-      new ObjectId().toHexString(),
-      [{type: 'const', name: 'ALL_QUEST'}],
-    );
-
-    expect(fnGaEvent).toHaveBeenCalledTimes(1);
-    expect(fnGaEvent).toHaveBeenLastCalledWith('update', [{type: 'const', name: 'ALL_QUEST'}]);
-  });
 });

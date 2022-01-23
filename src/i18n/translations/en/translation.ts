@@ -582,6 +582,18 @@ export const translation: TranslationStruct = {
       adsFreeInEffect: 'Ads-free is effective.',
       adsFreeNotEffective: 'Ads-free not activated. Welcome to donate for activating ads-free!',
     },
+    subscriptions: {
+      tipsToAdd: 'To enable individual post subscription, ' +
+        'go the corresponding post, then find the bell icon or the "Subscribe" button.',
+      removeAll: 'Remove All',
+      const: {
+        ALL_QUEST: 'All Quest Guides',
+        ALL_MISC: 'All Other Posts',
+        ALL_ANALYSIS: 'All Unit Analysis',
+        ALL_TIER: 'All Unit Tier',
+        ANNOUNCEMENT: 'Site Announcement',
+      },
+    },
     layout: {
       config: 'Layout width',
       width: {
@@ -644,8 +656,8 @@ export const translation: TranslationStruct = {
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
     subscription: {
-      add: 'Subscribe to notification email',
-      remove: 'Cancel email notification',
+      add: 'Subscribe',
+      remove: 'Cancel subscription',
     },
   },
   meta: {
@@ -806,8 +818,8 @@ export const translation: TranslationStruct = {
       },
       user: {
         settings: {
-          title: 'User settings - General',
-          description: 'General user settings.',
+          title: 'User settings',
+          description: 'User settings.',
         },
       },
     },

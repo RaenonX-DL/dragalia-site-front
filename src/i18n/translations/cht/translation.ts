@@ -546,6 +546,17 @@ export const translation: TranslationStruct = {
       adsFreeInEffect: '無廣告有效中。',
       adsFreeNotEffective: '無廣告未啟用。歡迎贊助啟用無廣告！',
     },
+    subscriptions: {
+      tipsToAdd: '如果要開啟個別文章的通知，請到對應文章尋找鈴鐺圖案，或是「訂閱通知」按鈕。',
+      removeAll: '全部移除',
+      const: {
+        ALL_QUEST: '全高難攻略',
+        ALL_MISC: '全其他文章',
+        ALL_ANALYSIS: '全角色 / 龍族評測',
+        ALL_TIER: '全角色 / 龍族評級',
+        ANNOUNCEMENT: '網站公告',
+      },
+    },
     layout: {
       config: '版面寬度設定',
       width: {

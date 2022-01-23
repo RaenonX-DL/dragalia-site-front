@@ -548,6 +548,17 @@ export const translation: TranslationStruct = {
       general: 'TBA',
       subscriptions: 'TBA',
     },
+    subscriptions: {
+      tipsToAdd: 'TBA',
+      removeAll: 'TBA',
+      const: {
+        ALL_QUEST: 'TBA',
+        ALL_MISC: 'TBA',
+        ALL_ANALYSIS: 'TBA',
+        ALL_TIER: 'TBA',
+        ANNOUNCEMENT: 'TBA',
+      },
+    },
     general: {
       email: 'TBA',
       isAdmin: 'TBA',

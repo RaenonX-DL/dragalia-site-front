@@ -38,6 +38,10 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
   const counterState = React.useState([...Array(getArray(payload).length).keys()]);
   const [counter, setCounter] = counterState;
 
+  React.useEffect(() => {
+    setCounter([...Array(getArray(payload).length).keys()]);
+  }, [getArray(payload).length]);
+
   return (
     <>
       <Search

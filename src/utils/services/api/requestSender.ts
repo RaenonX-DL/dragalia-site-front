@@ -64,8 +64,9 @@ import {
   SetAtkSkillPresetResponse,
   SubscriptionAddPayload,
   SubscriptionAddResponse,
-  SubscriptionKey, SubscriptionRemovePayload,
-  SubscriptionRemoveResponse, SubscriptionUpdatePayload, SubscriptionUpdateResponse,
+  SubscriptionKey,
+  SubscriptionRemovePayload,
+  SubscriptionRemoveResponse,
   SupportedLanguages,
   UnitInfoLookupLandingPayload,
   UnitInfoLookupLandingResponse,
@@ -87,7 +88,9 @@ import {
   UnitTierNoteSingleResponse,
   UnitTierNoteUpdatePayload,
   UnitTierNoteUpdateResponse,
-  UnitType,
+  UnitType, UserConfigApi,
+  UserConfigGetPayload,
+  UserConfigGetResponse, UserConfigUpdatePayload, UserConfigUpdateResponse,
 } from '../../../api-def/api';
 import {isCi} from '../../../api-def/utils';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
@@ -728,23 +731,35 @@ export class ApiRequestSender {
       {uid, subKeyBase64},
     );
   }
+  // endregion
 
+  // region User Config
   /**
-   * Update the subscriptions a user.
+   * Get the config of a user.
    *
-   * @param {string} uid user to update the subscriptions
-   * @param {SubscriptionKey[]} subscriptionKeys subscriptions to keep
+   * @param {string} uid user to get the subscriptions
    * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
    */
-  static updateSubscriptions(uid: string, subscriptionKeys: SubscriptionKey[]) {
-    GoogleAnalytics.subscriptionUpdate('update', subscriptionKeys);
+  static getUserConfig(uid: string) {
+    return ApiRequestSender.sendRequest<UserConfigGetResponse, UserConfigGetPayload>(
+      'GET',
+      ApiEndPoints.USER_CONFIG_GET,
+      {uid},
+    );
+  }
 
-    const subKeysBase64 = base64url(JSON.stringify(subscriptionKeys));
-
-    return ApiRequestSender.sendRequest<SubscriptionUpdateResponse, SubscriptionUpdatePayload>(
+  /**
+   * Update the config of a user.
+   *
+   * @param {string} uid user to update the subscriptions
+   * @param {configApi} configApi new user config object
+   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   */
+  static updateUserConfig(uid: string, configApi: UserConfigApi) {
+    return ApiRequestSender.sendRequest<UserConfigUpdateResponse, UserConfigUpdatePayload>(
       'POST',
-      ApiEndPoints.USER_SUBSCRIPTIONS_UPDATE,
-      {uid, subKeysBase64},
+      ApiEndPoints.USER_CONFIG_UPDATE,
+      {uid, ...configApi},
     );
   }
   // endregion
