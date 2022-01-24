@@ -23,6 +23,7 @@ describe('Post list page', () => {
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
         renderPostEntries={() => <></>}
+        subKeyName="ALL_QUEST"
       />
     ));
 
@@ -36,6 +37,7 @@ describe('Post list page', () => {
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
         renderPostEntries={() => <></>}
+        subKeyName="ALL_QUEST"
       />
     ));
 
@@ -52,6 +54,7 @@ describe('Post list page', () => {
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
           renderPostEntries={() => <></>}
+          subKeyName="ALL_QUEST"
         />
       ),
       {
@@ -74,6 +77,7 @@ describe('Post list page', () => {
           postManageBarProps={{newButtons: [{pathname: PostPath.QUEST_EDIT, title: newPostButtonTitle}]}}
           fnFetchList={fnFetchList}
           renderPostEntries={() => <></>}
+          subKeyName="ALL_QUEST"
         />
       ),
       {
@@ -93,6 +97,7 @@ describe('Post list page', () => {
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
         renderPostEntries={() => <></>}
+        subKeyName="ALL_QUEST"
       />
     ));
 
@@ -115,6 +120,7 @@ describe('Post list page', () => {
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
         renderPostEntries={fnRenderEntries}
+        subKeyName="ALL_QUEST"
       />
     ));
 
@@ -133,6 +139,7 @@ describe('Post list page', () => {
         postManageBarProps={{newButtons: []}}
         fnFetchList={fnFetchList}
         renderPostEntries={() => <></>}
+        subKeyName="ALL_QUEST"
       />
     ));
 
