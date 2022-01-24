@@ -1,4 +1,5 @@
 div .layout-row {
+  padding: 1rem;
   flex-wrap: nowrap;
   --bs-gutter-x: 0.5rem;
 }
@@ -49,6 +50,19 @@ div .site-alert-container > div.site-alert-text {
   vertical-align: middle;
   width: 100vw;
   padding: 0.5rem 1rem !important;
+}
+div .container-mid, div .container-wide, div .container-full {
+  margin-left: auto;
+  margin-right: auto;
+}
+div .container-full {
+  width: 100%;
+}
+div .container-wide {
+  width: 80%;
+}
+div .container-mid {
+  width: 70%;
 }
 
 /*# sourceMappingURL=main.module.css.map */

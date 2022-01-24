@@ -13,9 +13,10 @@ import {UnitInfoEntry} from '../out/entry/main';
 
 type Props = {
   analyses: Array<UnitInfoLookupEntry>,
+  disableSubscription: boolean,
 };
 
-export const UnitInfoLookupLanding = ({analyses}: Props) => {
+export const UnitInfoLookupLanding = ({analyses, disableSubscription}: Props) => {
   const {lang} = useI18n();
   const {unitInfoMap} = useUnitInfo();
 
@@ -28,7 +29,12 @@ export const UnitInfoLookupLanding = ({analyses}: Props) => {
         })
         .map(({entry, unitInfo}) => (
           <Col lg={6} xl={4} key={unitInfo.id}>
-            <UnitInfoEntry unitInfo={unitInfoToClickableProps(unitInfo, lang)} analysisMeta={entry} simplified/>
+            <UnitInfoEntry
+              unitInfo={unitInfoToClickableProps(unitInfo, lang)}
+              analysisMeta={entry}
+              simplified
+              disableSubscription={disableSubscription}
+            />
           </Col>
         ))}
     </RowTight>

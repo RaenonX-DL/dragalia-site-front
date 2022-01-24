@@ -25,6 +25,10 @@ describe('Quest edit page', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     seqId: 7,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
 
   const questPost: QuestPostGetResponse = {
@@ -41,10 +45,16 @@ describe('Quest edit page', () => {
     editNotes: [],
     isAltLang: false,
     otherLangs: [],
+    userSubscribed: true,
   };
 
   beforeEach(() => {
     fnFetch = jest.spyOn(ApiRequestSender, 'questGet').mockResolvedValue(questPost);
+    jest.spyOn(ApiRequestSender, 'questIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
   it('blocks access for anonymous users', async () => {

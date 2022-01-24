@@ -166,6 +166,7 @@ describe('New dragon analysis form', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       unitId: 10950101,
+      emailResult: {accepted: [], rejected: []},
     });
 
     renderReact(
@@ -188,6 +189,7 @@ describe('New dragon analysis form', () => {
                 suitableCharacters: 'sut',
                 notes: 'not',
                 videos: 'vid',
+                sendUpdateEmail: true,
               },
             },
             quest: null,

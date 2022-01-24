@@ -9,4 +9,5 @@ export const generatePayload = (lang: SupportedLanguages, uid?: string): MiscPos
     title: '',
     content: '',
   }],
+  sendUpdateEmail: true,
 });

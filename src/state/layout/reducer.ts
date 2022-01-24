@@ -1,20 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {layoutDispatchers} from './dispatchers';
-import {LAYOUT_STATE_NAME, LayoutData, LayoutDispatcherName, LayoutDataState} from './types';
+import {LAYOUT_STATE_NAME, LayoutData, LayoutDataState, LayoutDispatcherName, LayoutWidthType} from './types';
 
 
 const initialState: LayoutDataState = {
   collapse: false,
-  fluid: true,
+  width: 'full',
 };
 
-export const changeCollapseReducer = (
-  key: keyof LayoutDataState,
-) => (
-  state: LayoutData, {payload}: {payload: boolean},
-) => {
-  state[key] = payload;
+export const changeCollapseReducer = (state: LayoutData, {payload}: {payload: boolean}) => {
+  state.collapse = payload;
+};
+
+export const changeWidthReducer = (state: LayoutData, {payload}: {payload: LayoutWidthType}) => {
+  state.width = payload;
 };
 
 const layoutSlice = createSlice({
@@ -22,8 +22,8 @@ const layoutSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(layoutDispatchers[LayoutDispatcherName.CHANGE_FLUID], changeCollapseReducer('fluid'));
-    builder.addCase(layoutDispatchers[LayoutDispatcherName.CHANGE_COLLAPSE], changeCollapseReducer('collapse'));
+    builder.addCase(layoutDispatchers[LayoutDispatcherName.CHANGE_COLLAPSE], changeCollapseReducer);
+    builder.addCase(layoutDispatchers[LayoutDispatcherName.CHANGE_WIDTH], changeWidthReducer);
   },
 });
 

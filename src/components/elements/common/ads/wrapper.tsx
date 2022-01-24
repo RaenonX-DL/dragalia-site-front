@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {isProduction} from '../../../../../server/utils/misc';
-import {AppReactContext} from '../../../../context/app/main';
+import {useSession} from 'next-auth/react';
+
+import {isProduction} from '../../../../api-def/utils';
 import styles from './main.module.css';
 
 
@@ -10,11 +11,11 @@ type Props = React.PropsWithChildren<{
 }>;
 
 export const AdsWrapper = ({children, className}: Props) => {
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const divClassName = `${className || 'mb-3'} ${isProduction() ? '' : styles['ads-test']}`;
 
-  if (context?.session?.user.adsFreeExpiry) {
+  if (data?.user.adsFreeExpiry) {
     return <div className={divClassName}/>;
   }
 

@@ -35,7 +35,7 @@ describe('Auto-complete input', () => {
       payload={payload}
       minLength={0}
       getArray={(payload) => payload}
-      setArray={(options: Array<string>) => payload = options}
+      setArray={(options: string[]) => payload = options}
       renderOption={fnRenderOption}
       renderEntries={fnRenderEntries}
       showMoveButton={showMoveButton}
@@ -103,17 +103,20 @@ describe('Auto-complete input', () => {
   it('removes an option', async () => {
     payload = ['option 1'];
 
-    renderReact(() => <AutoCompleteWrapper/>);
+    const {rerender} = renderReact(() => <AutoCompleteWrapper/>);
 
     const removeButton = screen.getAllByText('', {selector: 'i.bi-x-lg'})[0];
     userEvent.click(removeButton);
+    rerender();
 
     expect(payload).toStrictEqual([]);
     // Should have 2 selectable options after removal
     expect(screen.getAllByText('', {selector: 'i.bi-plus-circle'})).toHaveLength(2);
+    // Should not display twice after removal (1 for selectable, 1 for selected)
+    expect(screen.getAllByText('option 1')).toHaveLength(1);
   });
 
-  it('does not add the same option twice', async () => {
+  it('removes the option that is clicked twice', async () => {
     payload = [];
 
     renderReact(() => <AutoCompleteWrapper/>);
@@ -122,7 +125,7 @@ describe('Auto-complete input', () => {
     userEvent.click(option);
     userEvent.click(option);
 
-    expect(payload).toStrictEqual(['option 1']);
+    expect(payload).toStrictEqual([]);
   });
 
   it('loads both search results and pre-selected options', async () => {

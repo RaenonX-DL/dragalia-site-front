@@ -18,6 +18,7 @@ describe('Unit info lookup output', () => {
         prioritizedUnitInfo={unitInfo}
         otherUnitInfo={[]}
         analyses={{}}
+        disableSubscription={false}
       />
     ));
   });

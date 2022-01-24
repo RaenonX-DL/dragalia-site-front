@@ -25,6 +25,10 @@ describe('Misc edit page', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     seqId: 7,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
 
   const post: MiscPostGetResponse = {
@@ -40,10 +44,16 @@ describe('Misc edit page', () => {
     editNotes: [],
     isAltLang: false,
     otherLangs: [],
+    userSubscribed: true,
   };
 
   beforeEach(() => {
     fnFetch = jest.spyOn(ApiRequestSender, 'miscGet').mockResolvedValue(post);
+    jest.spyOn(ApiRequestSender, 'miscIdCheck').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      available: true,
+    });
   });
 
   it('blocks access for anonymous users', async () => {

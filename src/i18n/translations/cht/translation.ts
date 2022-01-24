@@ -3,6 +3,18 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: '公告標題',
+      content: '公告內容',
+      tips: '以下輸入的內容將發布至有訂閱網站公告的使用者 Email 信箱。\n' +
+        '公告語言根據當前 UI 語言決定。\n' +
+        '公告內容不支援進階語法 (例如: 文字上色)。',
+      send: '發布公告',
+      confirmSend: '確定要發布嗎？',
+      emailSent: '已傳送。({{accepted}} 成功 / {{rejected}} 失敗)',
+    },
+  },
   autoComplete: {
     noMatchingOptions: '無可用選項。',
     selected: '已選擇',
@@ -410,6 +422,7 @@ export const translation: TranslationStruct = {
       },
       tips: {
         main: '以下評價僅供參考，強烈建議閱讀該角色評測以了解該角色的實際強度、用法及其他詳細資訊！',
+        kaleidoscape: '萬花筒評級為同武器角色之間的比較結果，而非全部角色。',
         notRanked: '此角色尚無評級。',
         compIcon: '需要搭配特定隊友以達到對應評級',
       },
@@ -535,6 +548,37 @@ export const translation: TranslationStruct = {
     login: '登入',
     logout: '登出',
     loading: '讀取中...',
+    settings: {
+      general: '一般',
+      subscriptions: '通知',
+    },
+    general: {
+      email: 'Email',
+      isAdmin: '擁有網站管理權限。',
+      adsFreeInEffect: '無廣告有效中。',
+      adsFreeNotEffective: '無廣告未啟用。歡迎贊助啟用無廣告！',
+    },
+    subscriptions: {
+      tipsToAdd: '如果要開啟個別文章的通知，請到對應文章尋找鈴鐺圖案，或是「訂閱通知」按鈕。',
+      removeAll: '全部移除',
+      const: {
+        ALL_QUEST: '全高難攻略',
+        ALL_MISC: '全其他文章',
+        ALL_ANALYSIS: '全角色 / 龍族評測',
+        ALL_TIER: '全角色 / 龍族評級',
+        ANNOUNCEMENT: '網站公告',
+      },
+    },
+    layout: {
+      config: '版面寬度設定',
+      width: {
+        full: '全寬',
+        wide: '寬',
+        mid: '中',
+      },
+      disabledInPortrait: '直立螢幕中，無法調整版面寬度。',
+      notUploaded: '版面寬度設定不上傳備份，設定立即生效。',
+    },
   },
   lang: {
     inUse: '目前使用中',
@@ -561,7 +605,9 @@ export const translation: TranslationStruct = {
     },
     error: {
       auth: {
+        failed: '登入錯誤: {{errorCode}}',
         noProvider: '無可用登入服務。',
+        loginRequired: '請先登入。',
       },
     },
   },
@@ -582,6 +628,11 @@ export const translation: TranslationStruct = {
     },
     collapse: '收摺/展開',
     collapseAll: '全部收摺/展開',
+    cancel: '取消',
+    subscription: {
+      add: '訂閱通知',
+      remove: '取消通知',
+    },
   },
   meta: {
     inUse: {
@@ -737,6 +788,18 @@ export const translation: TranslationStruct = {
           description: '{{unitName}} 的角色故事全集。',
         },
       },
+      admin: {
+        announcement: {
+          title: '發送網站公告',
+          description: '發送網站公告的頁面。',
+        },
+      },
+      user: {
+        settings: {
+          title: '使用者設定',
+          description: '使用者設定頁面。',
+        },
+      },
     },
     error: {
       401: {
@@ -774,18 +837,6 @@ export const translation: TranslationStruct = {
       posts: '文章',
       gameData: '遊戲相關',
       others: '其他',
-    },
-    layout: {
-      config: '版面設定',
-      current: {
-        fluid: '全寬',
-      },
-      fluid: {
-        enable: '啟用',
-        disable: '停用',
-        enabled: '已啟用',
-        disabled: '已停用',
-      },
     },
   },
   posts: {
@@ -847,6 +898,7 @@ export const translation: TranslationStruct = {
       postNotExists: '貼文不存在。',
       preview: '預覽',
       publish: '發布貼文',
+      sendUpdateEmail: '發送更新通知',
     },
     message: {
       altLang: '本貼文沒有語言為 {{langUi}} 的版本。因此，以下顯示語言為 {{langPost}} 的版本替代。',
@@ -904,7 +956,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: '文章更新',
     },
     message: {
-      features: '歡迎瀏覽導引列以了解更多網站功能。',
+      onSiteAnnouncementDisabled: '開啟網站公告 Email 通知以接收最新相關資訊。',
+      onSiteAnnouncementEnabled: '已開啟網站公告 Email 通知。',
       noPost: '無可用文章更新資訊。',
     },
   },

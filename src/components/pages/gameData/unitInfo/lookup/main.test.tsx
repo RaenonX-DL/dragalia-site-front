@@ -25,9 +25,10 @@ import {UnitInfoLookup} from './main';
 
 describe('Analysis lookup page', () => {
   let fnScroll: jest.SpyInstance;
-  let fnGetLookup: jest.SpyInstance<Promise<UnitInfoLookupResponse>, [string, SupportedLanguages]>;
-  let fnGetLookupLanding: jest.SpyInstance<Promise<UnitInfoLookupLandingResponse>, [string, SupportedLanguages]>;
+  let fnGetLookup: jest.SpyInstance;
+  let fnGetLookupLanding: jest.SpyInstance;
   let fnGaAnalysisLookup: jest.SpyInstance;
+  let fnUpdateSubscription: jest.SpyInstance;
 
   const analyses: UnitInfoLookupAnalyses = {
     10950101: {
@@ -37,6 +38,7 @@ describe('Analysis lookup page', () => {
       viewCount: 777,
       modifiedEpoch: 3,
       publishedEpoch: 1,
+      userSubscribed: false,
     },
     10950102: {
       lang: SupportedLanguages.CHT,
@@ -45,6 +47,7 @@ describe('Analysis lookup page', () => {
       viewCount: 888,
       modifiedEpoch: 6,
       publishedEpoch: 4,
+      userSubscribed: false,
     },
     10950301: {
       lang: SupportedLanguages.CHT,
@@ -53,6 +56,7 @@ describe('Analysis lookup page', () => {
       viewCount: 999,
       modifiedEpoch: 6,
       publishedEpoch: 4,
+      userSubscribed: true,
     },
   };
 
@@ -71,6 +75,7 @@ describe('Analysis lookup page', () => {
     code: ApiResponseCode.SUCCESS,
     success: false,
     analyses: [analyses[10950102], analyses[10950301]],
+    userSubscribed: false,
   };
 
   beforeEach(() => {
@@ -248,5 +253,80 @@ describe('Analysis lookup page', () => {
     expect(fnScroll).toHaveBeenCalledTimes(2);
     const errorText = screen.getByText(translationEN.misc.noResult);
     expect(errorText).toHaveClass('alert-danger');
+  });
+
+  it('indicates the user subscribed globally', async () => {
+    fnGetLookupLanding.mockResolvedValue({...lookupLandingResponse, userSubscribed: true});
+
+    renderReact(() => <UnitInfoLookup/>);
+
+    expect(await screen.findByText(translationEN.misc.subscription.remove)).toBeInTheDocument();
+  });
+
+  it('indicates the user does not subscribe globally', async () => {
+    fnGetLookupLanding.mockResolvedValue({...lookupLandingResponse, userSubscribed: false});
+
+    renderReact(() => <UnitInfoLookup/>);
+
+    expect(await screen.findByText(translationEN.misc.subscription.add)).toBeInTheDocument();
+  });
+
+  it('indicates the user subscribed partially', async () => {
+    fnGetLookupLanding.mockResolvedValue({
+      ...lookupLandingResponse,
+      analyses: [analyses[10950102], analyses[10950301]],
+      userSubscribed: false,
+    });
+
+    renderReact(() => <UnitInfoLookup/>);
+
+    expect(await screen.findAllByText('', {selector: 'i.bi-bell'})).toHaveLength(1);
+    expect(await screen.findAllByText('', {selector: 'i.bi-bell-slash'})).toHaveLength(1);
+  });
+
+  it('enables individual subscription after globally unsubscribed', async () => {
+    fnUpdateSubscription = jest.spyOn(ApiRequestSender, 'removeSubscription').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    });
+    fnGetLookupLanding.mockResolvedValue({...lookupLandingResponse, userSubscribed: true});
+
+    renderReact(() => <UnitInfoLookup/>, {hasSession: true});
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+    const button = await screen.findByText(translationEN.misc.subscription.remove, {selector: 'button:enabled'});
+    userEvent.click(button);
+
+    await waitFor(() => expect(fnUpdateSubscription).toHaveBeenCalled());
+
+    const subButtons = screen
+      .getAllByText('', {selector: 'i.bi-bell,i.bi-bell-slash'})
+      .map((icon) => icon.parentElement as HTMLElement);
+    expect(subButtons.length).toBeGreaterThan(0);
+    subButtons.forEach((button) => expect(button).toBeEnabled());
+  });
+
+  it('disables individual subscription after globally subscribed', async () => {
+    fnUpdateSubscription = jest.spyOn(ApiRequestSender, 'addSubscription').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    });
+    fnGetLookupLanding.mockResolvedValue({...lookupLandingResponse, userSubscribed: false});
+
+    renderReact(() => <UnitInfoLookup/>, {hasSession: true});
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+    const button = await screen.findByText(translationEN.misc.subscription.add, {selector: 'button:enabled'});
+    userEvent.click(button);
+
+    await waitFor(() => expect(fnUpdateSubscription).toHaveBeenCalled());
+
+    const subButtons = screen
+      .getAllByText('', {selector: 'i.bi-bell,i.bi-bell-slash'})
+      .map((icon) => icon.parentElement as HTMLElement);
+    expect(subButtons.length).toBeGreaterThan(0);
+    subButtons.forEach((button) => expect(button).toBeDisabled());
   });
 });

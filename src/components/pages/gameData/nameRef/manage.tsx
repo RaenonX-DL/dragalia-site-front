@@ -1,19 +1,12 @@
 import React from 'react';
 
-import {ApiResponseCode, UnitNameRefManageResponse} from '../../../../api-def/api';
+import {UnitNameRefManageResponse} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useUnitInfo} from '../../../../utils/services/resources/unitInfo/hooks';
 import {EntryManagement} from '../../../elements/form/manageEntries';
 import {UnitNameRefEntry} from './entry';
 
-
-export type RefsState = {
-  refs: UnitNameRefManageResponse['refs'],
-  updateStatus: null | ApiResponseCode,
-  updating: boolean,
-  isInit: boolean,
-};
 
 export type RefsManagementProps = {
   refs: UnitNameRefManageResponse['refs'],

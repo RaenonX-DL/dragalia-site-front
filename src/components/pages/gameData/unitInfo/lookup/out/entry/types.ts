@@ -8,6 +8,7 @@ export type EntryCommonProps = {
 };
 
 export type EntryProps = EntryCommonProps & {
+  disableSubscription: boolean,
   analysisMeta?: UnitInfoLookupEntry,
   simplified?: boolean,
 };

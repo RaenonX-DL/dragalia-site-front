@@ -34,12 +34,30 @@ describe('Navigation bar', () => {
     expect(aboutButton).toHaveAttribute('data-test-is-active', 'true');
   });
 
+  it('does not show admin only path for non-admin', async () => {
+    renderReact(
+      () => <NavigationBody/>,
+      {hasSession: true, user: {isAdmin: false}},
+    );
+
+    expect(screen.queryByText(translationEN.meta.inUse.admin.announcement.title)).not.toBeInTheDocument();
+  });
+
+  it('shows admin only path', async () => {
+    renderReact(
+      () => <NavigationBody/>,
+      {hasSession: true, user: {isAdmin: true}},
+    );
+
+    expect(screen.getByText(translationEN.meta.inUse.admin.announcement.title)).toBeInTheDocument();
+  });
+
   it('hides the navbar', async () => {
     const fnSetCollapse = jest.spyOn(layoutDispatchers, LayoutDispatcherName.CHANGE_COLLAPSE);
 
     renderReact(
       () => <NavigationLandscape/>,
-      {preloadState: {layout: {fluid: true, collapse: false}}},
+      {preloadState: {layout: {width: 'full', collapse: false}}},
     );
 
     const collapseButton = screen.getByText('', {selector: 'i.bi-arrow-bar-left'});
@@ -54,7 +72,7 @@ describe('Navigation bar', () => {
 
     renderReact(
       () => <NavigationLandscape/>,
-      {preloadState: {layout: {fluid: true, collapse: true}}},
+      {preloadState: {layout: {width: 'full', collapse: true}}},
     );
 
     const showButton = screen.getByText('', {selector: 'i.bi-arrow-bar-right'});

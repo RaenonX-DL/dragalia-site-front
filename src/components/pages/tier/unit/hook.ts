@@ -1,7 +1,6 @@
-import React from 'react';
+import {useSession} from 'next-auth/react';
 
-import {UnitTierNote, isFailedResponse} from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
+import {isFailedResponse, UnitTierNote} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {useFetchState} from '../../../elements/common/fetch';
@@ -24,10 +23,11 @@ type UseSingleUnitTierNoteResourcesReturn = {
 
 export const useSingleUnitTierNoteResources = (): UseSingleUnitTierNoteResourcesReturn => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
-
+  const {data} = useSession();
   const unitId = useUnitId();
-  const isAdmin = context?.session?.user.isAdmin || false;
+
+  const user = data?.user;
+  const isAdmin = user?.isAdmin || false;
 
   if (unitId === undefined) {
     return {
@@ -43,7 +43,7 @@ export const useSingleUnitTierNoteResources = (): UseSingleUnitTierNoteResources
     fetchFunction: fetchTierNote,
   } = useFetchState(
     undefined,
-    () => ApiRequestSender.getUnitTierNoteSingle(context?.session?.user.id.toString() || '', lang, unitId),
+    () => ApiRequestSender.getUnitTierNoteSingle(user?.id.toString() || '', lang, unitId),
     `Failed to fetch the unit tier note of #${unitId}.`,
   );
 

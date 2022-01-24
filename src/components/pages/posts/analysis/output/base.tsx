@@ -1,10 +1,12 @@
 import React from 'react';
 
-import {AnalysisGetResponse} from '../../../../../api-def/api';
+import {useSession} from 'next-auth/react';
+
+import {AnalysisGetResponse, PostType} from '../../../../../api-def/api';
 import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../../elements/common/ads/main';
+import {SubscriptionButtonBar} from '../../../../elements/common/button/subscribe/bar';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
 import {AlertIsAlternativeLanguage, AlertOtherLanguageAvailable} from '../../../../elements/posts/output/alert';
 import {PostInfo} from '../../../../elements/posts/output/info';
@@ -22,12 +24,16 @@ export const AnalysisOutputBase = <R extends AnalysisGetResponse>({
   renderBody,
 }: AnalysisOutputBaseProps<R>) => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   return (
     <>
+      <SubscriptionButtonBar
+        subscriptionKey={{type: 'post', postType: PostType.ANALYSIS, id: analysis.unitId}}
+        defaultSubscribed={analysis.userSubscribed}
+      />
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <PostManageBar
           newButtons={[
             {

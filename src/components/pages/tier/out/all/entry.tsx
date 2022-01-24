@@ -5,9 +5,11 @@ import Col from 'react-bootstrap/Col';
 import {Dimension, DimensionKey, KeyPointData, UnitTierNote} from '../../../../../api-def/api';
 import {UnitInfoData} from '../../../../../api-def/resources';
 import {useI18n} from '../../../../../i18n/hook';
+import {unitInfoToClickableProps} from '../../../../../utils/services/resources/unitInfo/utils';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {RowNoGutter} from '../../../../elements/common/grid/row';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
+import {UnitIconClickable} from '../../../../elements/gameData/unit/iconClickable';
 import {UnitLink} from '../../../../elements/gameData/unit/link';
 import mainStyles from '../../main.module.css';
 import {TierNoteEditIcon} from '../elements/editIcon';
@@ -28,17 +30,21 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
   return (
     <div className="section">
       <RowNoGutter className={`text-center align-items-center ${styles['bg-img-wrap']}`}>
-        <UnitIcon unitInfo={unitInfo} className={`bg-img ${mainStyles['unit-icon']}`}/>
+        <UnitIcon unitInfo={unitInfo} className={`bg-img ${mainStyles['unit-icon-bg']}`}/>
         <Col>
           <RowNoGutter>
-            <Col md={6} className="text-start">
+            <Col md className="text-start">
               {
                 tierNote && tierNote.points.length > 0 &&
                 <><TierNotePointIcon pointIds={tierNote.points} keyPointsData={keyPointsData}/>&nbsp;</>
               }
+              <UnitIconClickable
+                unit={unitInfoToClickableProps(unitInfo, lang)}
+                className={mainStyles['unit-icon-name']}
+              />
               <UnitLink unit={{id: unitInfo.id, name: unitInfo.name[lang]}}/>
             </Col>
-            <Col md={6} className="text-end">
+            <Col md="auto" className="text-end">
               <small>
                 {
                   tierNote ?
@@ -58,7 +64,7 @@ export const TierListEntry = ({tierNote, keyPointsData, unitInfo}: Props) => {
               const dimension = item as DimensionKey;
 
               return (
-                <Col xs={4} lg={3} key={item}>
+                <Col xs={4} lg={3} key={item} className={styles['entry-show-all']}>
                   <TierNote
                     dimension={dimension}
                     tierNote={tierNote ? tierNote.tier[dimension] : undefined}

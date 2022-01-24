@@ -85,8 +85,8 @@ where stores the dumped audio files.
 [front-ci-main-link]: https://dev.azure.com/RaenonX-DL/DL-Site/_build/latest?definitionId=1&branchName=main
 [front-ci-dev]: https://dev.azure.com/RaenonX-DL/DL-Site/_apis/build/status/dragalia-site-front%20(Build)?branchName=dev
 [front-ci-dev-link]: https://dev.azure.com/RaenonX-DL/DL-Site/_build/latest?definitionId=1&branchName=dev
-[front-cd]: https://vsrm.dev.azure.com/RaenonX-DL/_apis/public/Release/badge/0159375c-7a21-49a8-88d5-9af78c5f2150/2/2
-[front-cd-link]: https://dev.azure.com/RaenonX-DL/DL-Site/_release?definitionId=2
+[front-cd]: https://vsrm.dev.azure.com/RaenonX-DL/_apis/public/Release/badge/0159375c-7a21-49a8-88d5-9af78c5f2150/6/6
+[front-cd-link]: https://dev.azure.com/RaenonX-DL/DL-Site/_release?definitionId=6
 [front-time-badge]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front.svg
 [front-time-link]: https://wakatime.com/badge/github/RaenonX-DL/dragalia-site-front
 [front-site-status]: https://badgen.net/uptime-robot/status/m787223686-f1d10f084c18dd5d5389f456?cache=300

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
+import {PostType} from '../../../../../api-def/api';
+import {GeneralPath} from '../../../../../api-def/paths';
 import {useI18n} from '../../../../../i18n/hook';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostList} from '../../../../elements/posts/list/main';
@@ -9,7 +10,7 @@ import {QuestEntryBadge} from './badge';
 
 
 export const QuestPostList = () => {
-  const {t, lang} = useI18n();
+  const {t} = useI18n();
 
   const title = t((t) => t.meta.inUse.post.quest.list.title);
 
@@ -20,13 +21,15 @@ export const QuestPostList = () => {
       postManageBarProps={{
         newButtons: [{pathname: GeneralPath.QUEST_NEW}],
       }}
-      renderPostEntries={(response) => (
+      renderPostEntries={({response, globalSubscribed}) => (
         <PostList
           entries={response.posts}
-          getLink={({seqId}) => makePostUrl(PostPath.QUEST, {pid: seqId, lang})}
+          postType={PostType.QUEST}
           renderPostBadge={(props) => <QuestEntryBadge {...props}/>}
+          disableSubscription={globalSubscribed}
         />
       )}
+      subKeyName="ALL_QUEST"
     />
   );
 };

@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import {renderReact} from '../../../../../test/render/main';
 import {typeInput} from '../../../../../test/utils/event';
 import {ApiResponseCode} from '../../../../api-def/api';
+import {translation as translationEN} from '../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../utils/services/api/requestSender';
 import {TierNoteEdit} from './main';
 
@@ -28,16 +29,8 @@ describe('Unit tier note editing UI', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       points: [
-        {
-          id: 'idA',
-          type: 'strength',
-          description: 'S1',
-        },
-        {
-          id: 'idB',
-          type: 'weakness',
-          description: 'W1',
-        },
+        {id: 'idA', type: 'strength', description: 'S1'},
+        {id: 'idB', type: 'weakness', description: 'W1'},
       ],
     });
     fnSubmitEdit = jest.spyOn(ApiRequestSender, 'updateUnitTierNote').mockResolvedValue({
@@ -68,16 +61,8 @@ describe('Unit tier note editing UI', () => {
       success: true,
       data: {
         tier: {
-          conAi: {
-            ranking: 'S',
-            note: 'CoN AI',
-            isCompDependent: false,
-          },
-          conSolo: {
-            ranking: 'S',
-            note: 'CoN Solo',
-            isCompDependent: false,
-          },
+          conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
+          conSolo: {ranking: 'S', note: 'CoN Solo', isCompDependent: false},
         },
         points: ['idA'],
       },
@@ -102,13 +87,7 @@ describe('Unit tier note editing UI', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: {
-        tier: {
-          conAi: {
-            ranking: 'S',
-            note: 'CoN AI',
-            isCompDependent: false,
-          },
-        },
+        tier: {conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false}},
         points: ['idA'],
       },
     });
@@ -131,16 +110,8 @@ describe('Unit tier note editing UI', () => {
       success: true,
       data: {
         tier: {
-          conAi: {
-            ranking: 'S',
-            note: 'CoN AI',
-            isCompDependent: false,
-          },
-          conSolo: {
-            ranking: 'B',
-            note: 'CoN Solo',
-            isCompDependent: false,
-          },
+          conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
+          conSolo: {ranking: 'B', note: 'CoN Solo', isCompDependent: false},
         },
         points: ['idA'],
       },
@@ -169,18 +140,10 @@ describe('Unit tier note editing UI', () => {
     userEvent.click(updateButton);
 
     await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalledTimes(1));
-    expect(fnSubmitEdit.mock.calls[0][3]).toStrictEqual({
+    expect(fnSubmitEdit.mock.calls[0][0].data).toStrictEqual({
       tier: {
-        conAi: {
-          ranking: 'S',
-          note: 'CoN AI - Update',
-          isCompDependent: false,
-        },
-        conCoop: {
-          ranking: 'A',
-          note: 'note',
-          isCompDependent: false,
-        },
+        conAi: {ranking: 'S', note: 'CoN AI - Update', isCompDependent: false},
+        conCoop: {ranking: 'A', note: 'note', isCompDependent: false},
       },
       points: ['idA'],
     });
@@ -191,9 +154,7 @@ describe('Unit tier note editing UI', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       data: {
-        tier: {
-          conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
-        },
+        tier: {conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false}},
         points: ['idA'],
       },
     });
@@ -215,7 +176,7 @@ describe('Unit tier note editing UI', () => {
     userEvent.click(updateButton);
 
     await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalledTimes(1));
-    expect(fnSubmitEdit.mock.calls[0][3]).toStrictEqual({
+    expect(fnSubmitEdit.mock.calls[0][0].data).toStrictEqual({
       tier: {
         conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false},
       },
@@ -224,6 +185,15 @@ describe('Unit tier note editing UI', () => {
   });
 
   it('blocks access from non-admin users', async () => {
+    fnGetEditData.mockResolvedValueOnce({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: {
+        tier: {conAi: {ranking: 'S', note: 'CoN AI', isCompDependent: false}},
+        points: ['idA'],
+      },
+    });
+
     renderReact(
       () => <TierNoteEdit/>,
       {hasSession: true, user: {isAdmin: false}, routerOptions: {query: {id: '10950101', lang: 'en'}}},
@@ -264,9 +234,38 @@ describe('Unit tier note editing UI', () => {
     userEvent.click(updateButton);
 
     await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalledTimes(1));
-    expect(fnSubmitEdit.mock.calls[0][3]).toStrictEqual({
+    expect(fnSubmitEdit.mock.calls[0][0].data).toStrictEqual({
       tier: {conAi: {ranking: 'S', note: 'CoN AI - --10750404/Summer Chelle--', isCompDependent: false}},
       points: ['idA'],
     });
+  });
+
+  it('sends update email on publish', async () => {
+    renderReact(
+      () => <TierNoteEdit/>,
+      {hasSession: true, user: {isAdmin: true}, routerOptions: {query: {id: '10950101', lang: 'en'}}},
+    );
+
+    const updateButton = await screen.findByText('Update');
+    userEvent.click(updateButton);
+
+    await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalled());
+    expect(fnSubmitEdit.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
+  });
+
+  it('does not send update email on publish', async () => {
+    renderReact(
+      () => <TierNoteEdit/>,
+      {hasSession: true, user: {isAdmin: true}, routerOptions: {query: {id: '10950101', lang: 'en'}}},
+    );
+
+    const sendEmailCheck = await screen.findByText(translationEN.posts.manage.sendUpdateEmail);
+    userEvent.click(sendEmailCheck.previousSibling as Element);
+
+    const updateButton = screen.getByText('Update');
+    userEvent.click(updateButton);
+
+    await waitFor(() => expect(fnSubmitEdit).toHaveBeenCalled());
+    expect(fnSubmitEdit.mock.calls[0][0].sendUpdateEmail).toBeFalsy();
   });
 });

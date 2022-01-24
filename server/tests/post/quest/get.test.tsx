@@ -31,6 +31,7 @@ describe('Quest page', () => {
     editNotes: [],
     publishedEpoch: 55,
     modifiedEpoch: 55,
+    userSubscribed: true,
   };
 
   beforeEach(() => {

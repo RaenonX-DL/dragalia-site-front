@@ -1,3 +1,4 @@
+import base64url from 'base64url';
 import fetch from 'node-fetch';
 
 import {
@@ -21,7 +22,9 @@ import {
   DragonAnalysisPublishPayload,
   FailedResponse,
   GetAtkSkillPresetPayload,
-  GetAtkSkillPresetResponse, HomepageLandingPayload, HomepageLandingResponse,
+  GetAtkSkillPresetResponse,
+  HomepageLandingPayload,
+  HomepageLandingResponse,
   KeyPointEntryUpdate,
   KeyPointGetPayload,
   KeyPointGetResponse,
@@ -31,9 +34,14 @@ import {
   KeyPointManageResponse,
   KeyPointUpdatePayload,
   KeyPointUpdateResponse,
-  MiscPostEditPayload, MiscPostEditResponse,
+  MiscPostEditPayload,
+  MiscPostEditResponse,
   MiscPostGetPayload,
-  MiscPostGetResponse, MiscPostIdCheckPayload, MiscPostIdCheckResponse, MiscPostListPayload, MiscPostListResponse,
+  MiscPostGetResponse,
+  MiscPostIdCheckPayload,
+  MiscPostIdCheckResponse,
+  MiscPostListPayload,
+  MiscPostListResponse,
   MiscPostPublishPayload,
   MiscPostPublishResponse,
   PageMetaPayload,
@@ -54,6 +62,13 @@ import {
   RequestPayloadBase,
   SetAtkSkillPresetPayload,
   SetAtkSkillPresetResponse,
+  SiteAnnouncementPayload,
+  SiteAnnouncementResponse,
+  SubscriptionAddPayload,
+  SubscriptionAddResponse,
+  SubscriptionKey,
+  SubscriptionRemovePayload,
+  SubscriptionRemoveResponse,
   SupportedLanguages,
   UnitInfoLookupLandingPayload,
   UnitInfoLookupLandingResponse,
@@ -70,12 +85,21 @@ import {
   UnitTierNoteEditPayload,
   UnitTierNoteEditResponse,
   UnitTierNoteGetPayload,
-  UnitTierNoteGetResponse, UnitTierNoteSinglePayload, UnitTierNoteSingleResponse,
+  UnitTierNoteGetResponse,
+  UnitTierNoteSinglePayload,
+  UnitTierNoteSingleResponse,
   UnitTierNoteUpdatePayload,
   UnitTierNoteUpdateResponse,
   UnitType,
+  UserConfigApi,
+  UserConfigGetPayload,
+  UserConfigGetResponse,
+  UserConfigUpdatePayload,
+  UserConfigUpdateResponse,
 } from '../../../api-def/api';
+import {isCi} from '../../../api-def/utils';
 import {InputData as AtkSkillInput} from '../../../components/pages/gameData/skillAtk/in/types';
+import {GoogleAnalytics} from '../ga';
 import {FetchPostOptions} from './types';
 import {getFullApiUrl} from './utils';
 
@@ -103,7 +127,7 @@ export class ApiRequestSender {
   /**
    * Get a list of all quest posts.
    *
-   * @param {string} uid UID of the logged in user
+   * @param {string} uid UID of the logged-in user
    * @param {SupportedLanguages} lang language code of the posts
    * @return {Promise<QuestPostListResponse>} promise returned from `fetch`
    */
@@ -661,25 +685,104 @@ export class ApiRequestSender {
   /**
    * Get tier note of a unit for editing.
    *
-   * @param {string} uid user ID
-   * @param {SupportedLanguages} lang language of the tier note
-   * @param {number} unitId unit ID of the tier note
-   * @param {Omit<UnitTierNote, 'lastUpdateEpoch'>} data updated unit tier note
+   * @param {UnitTierNoteUpdatePayload} payload unit tier note update sending payload
    * @return {Promise<UnitTierNoteUpdateResponse>} promise returned from `fetch`
    */
-  static updateUnitTierNote(
-    uid: string,
-    lang: SupportedLanguages,
-    unitId: number,
-    data: UnitTierNoteUpdatePayload['data'],
-  ) {
+  static updateUnitTierNote(payload: UnitTierNoteUpdatePayload) {
     return ApiRequestSender.sendRequest<UnitTierNoteUpdateResponse, UnitTierNoteUpdatePayload>(
       'POST',
       ApiEndPoints.MANAGE_TIER_NOTE,
-      {uid, lang, unitId, data},
+      payload,
     );
   }
 
+  // endregion
+
+  // region Subscription
+  /**
+   * Add an individual subscription to a user.
+   *
+   * @param {string} uid user to add the subscription
+   * @param {SubscriptionKey} subscriptionKey key of the subscription
+   * @return {Promise<SubscriptionAddResponse>} promise returned from `fetch`
+   */
+  static addSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    GoogleAnalytics.subscriptionUpdate('add', subscriptionKey);
+
+    const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
+
+    return ApiRequestSender.sendRequest<SubscriptionAddResponse, SubscriptionAddPayload>(
+      'POST',
+      ApiEndPoints.USER_SUBSCRIPTIONS_ADD,
+      {uid, subKeyBase64},
+    );
+  }
+
+  /**
+   * Remove an individual subscription from a user.
+   *
+   * @param {string} uid user to remove the subscription
+   * @param {SubscriptionKey} subscriptionKey key of the subscription
+   * @return {Promise<SubscriptionRemoveResponse>} promise returned from `fetch`
+   */
+  static removeSubscription(uid: string, subscriptionKey: SubscriptionKey) {
+    GoogleAnalytics.subscriptionUpdate('remove', subscriptionKey);
+
+    const subKeyBase64 = base64url(JSON.stringify(subscriptionKey));
+
+    return ApiRequestSender.sendRequest<SubscriptionRemoveResponse, SubscriptionRemovePayload>(
+      'POST',
+      ApiEndPoints.USER_SUBSCRIPTIONS_REMOVE,
+      {uid, subKeyBase64},
+    );
+  }
+  // endregion
+
+  // region User Config
+  /**
+   * Get the config of a user.
+   *
+   * @param {string} uid user to get the subscriptions
+   * @return {Promise<UserConfigGetResponse>} promise returned from `fetch`
+   */
+  static getUserConfig(uid: string) {
+    return ApiRequestSender.sendRequest<UserConfigGetResponse, UserConfigGetPayload>(
+      'GET',
+      ApiEndPoints.USER_CONFIG_GET,
+      {uid},
+    );
+  }
+
+  /**
+   * Update the config of a user.
+   *
+   * @param {string} uid user to update the subscriptions
+   * @param {UserConfigApi} configApi new user config object
+   * @return {Promise<UserConfigUpdateResponse>} promise returned from `fetch`
+   */
+  static updateUserConfig(uid: string, configApi: UserConfigApi) {
+    return ApiRequestSender.sendRequest<UserConfigUpdateResponse, UserConfigUpdatePayload>(
+      'POST',
+      ApiEndPoints.USER_CONFIG_UPDATE,
+      {uid, ...configApi},
+    );
+  }
+  // endregion
+
+  // region Admin
+  /**
+   * Send a website announcement.
+   *
+   * @param {SiteAnnouncementPayload} payload site announcement payload
+   * @return {Promise<SiteAnnouncementResponse>} promise returned from `fetch`
+   */
+  static sendSiteAnnouncement(payload: SiteAnnouncementPayload) {
+    return ApiRequestSender.sendRequest<SiteAnnouncementResponse, SiteAnnouncementPayload>(
+      'POST',
+      ApiEndPoints.ADMIN_SEND_ANNOUNCEMENT,
+      payload,
+    );
+  }
   // endregion
 
   /**
@@ -700,7 +803,7 @@ export class ApiRequestSender {
       headers: {'Content-Type': 'application/json'},
     };
 
-    if (!process.env.CI) {
+    if (!isCi()) {
       console.debug(`[API] Sending ${method} request to ${endpoint}`);
     }
 

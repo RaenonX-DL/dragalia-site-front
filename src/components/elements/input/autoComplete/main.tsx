@@ -1,5 +1,6 @@
 import React from 'react';
 
+import _ from 'lodash';
 import Col from 'react-bootstrap/Col';
 
 import {useI18n} from '../../../../i18n/hook';
@@ -37,6 +38,10 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
   const counterState = React.useState([...Array(getArray(payload).length).keys()]);
   const [counter, setCounter] = counterState;
 
+  React.useEffect(() => {
+    setCounter([...Array(getArray(payload).length).keys()]);
+  }, [getArray(payload).length]);
+
   return (
     <>
       <Search
@@ -56,6 +61,12 @@ export const AutoComplete = <P, E, O>(props: Props<P, E, O>) => {
               className={isSelected ? styles['option-selected'] : styles['option-selectable']}
               onClick={() => {
                 if (isSelected) {
+                  const payloadArray = getArray(payload);
+                  // Use _.isEqual so that both values are shallow equal if they are objects
+                  const idx = payloadArray.findIndex((elem) => _.isEqual(elem, getValue(option)));
+
+                  setArray([...payloadArray.slice(0, idx), ...payloadArray.slice(idx + 1)]);
+                  setCounter([...counter.slice(0, idx), ...counter.slice(idx + 1)]);
                   return;
                 }
 

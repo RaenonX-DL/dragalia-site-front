@@ -163,6 +163,7 @@ describe('New character analysis form', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       unitId: 10950101,
+      emailResult: {accepted: [], rejected: []},
     });
 
     renderReact(
@@ -184,6 +185,7 @@ describe('New character analysis form', () => {
                 skills: [],
                 tipsBuilds: 'tipsBuilds',
                 videos: 'videos',
+                sendUpdateEmail: true,
               },
               dragon: null,
             },

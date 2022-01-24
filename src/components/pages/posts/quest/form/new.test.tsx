@@ -166,6 +166,7 @@ describe('New quest post form', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       seqId: 7,
+      emailResult: {accepted: [], rejected: []},
     });
 
     renderReact(
@@ -190,6 +191,7 @@ describe('New quest post form', () => {
                 },
               ],
               addendum: 'adm',
+              sendUpdateEmail: true,
             },
             misc: null,
           },

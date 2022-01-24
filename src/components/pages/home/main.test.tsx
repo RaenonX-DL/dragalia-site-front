@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {screen, waitFor} from '@testing-library/react';
+import {screen, waitFor, within} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {ObjectId} from 'mongodb';
 
 import {mockData} from '../../../../test/data/mock/homepage';
 import {renderReact} from '../../../../test/render/main';
@@ -13,12 +15,25 @@ import {Home} from './main';
 
 describe('Homepage', () => {
   let fnFetchHomepageLanding: jest.SpyInstance;
+  let fnRemoveSubscription: jest.SpyInstance;
 
   beforeEach(() => {
     fnFetchHomepageLanding = jest.spyOn(ApiRequestSender, 'getHomepageLanding').mockResolvedValue({
       success: true,
       code: ApiResponseCode.SUCCESS,
       data: mockData,
+      subscribed: {
+        post: {
+          [PostType.MISC]: true,
+          [PostType.ANALYSIS]: true,
+          [PostType.QUEST]: false,
+        },
+        announcement: true,
+      },
+    });
+    fnRemoveSubscription = jest.spyOn(ApiRequestSender, 'removeSubscription').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
     });
   });
 
@@ -86,5 +101,29 @@ describe('Homepage', () => {
     mockData.posts[PostType.QUEST].forEach((post) => expect(screen.getByText(post.title)).toBeInTheDocument());
     mockData.posts[PostType.MISC].forEach((post) => expect(screen.getByText(post.title)).toBeInTheDocument());
     mockData.posts[PostType.ANALYSIS].forEach((post) => expect(screen.getByText(post.title)).toBeInTheDocument());
+  });
+
+  it('loads announcement subscription correctly', async () => {
+    renderReact(() => <Home/>);
+
+    await waitFor(() => expect(fnFetchHomepageLanding).toHaveBeenCalled());
+
+    const tips = screen.getByText(translationEN.home.message.onSiteAnnouncementEnabled)
+      .nextElementSibling as HTMLElement;
+    expect(within(tips).getByText('', {selector: 'i.bi-bell'})).toBeInTheDocument();
+  });
+
+  it('updates announcement subscription', async () => {
+    const id = new ObjectId().toHexString();
+    renderReact(() => <Home/>, {user: {id}});
+
+    await waitFor(() => expect(fnFetchHomepageLanding).toHaveBeenCalled());
+
+    const tips = screen.getByText(translationEN.home.message.onSiteAnnouncementEnabled)
+      .nextElementSibling as HTMLElement;
+    const subButton = within(tips).getByText('', {selector: 'i.bi-bell'});
+    userEvent.click(subButton);
+
+    expect(fnRemoveSubscription).toHaveBeenCalledWith(id, {type: 'const', name: 'ANNOUNCEMENT'});
   });
 });

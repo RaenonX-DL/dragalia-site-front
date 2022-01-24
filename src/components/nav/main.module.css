@@ -32,9 +32,9 @@ nav.nav-static-bar div[class*=dropdown-menu] {
 
 div.nav-container {
   position: sticky;
-  top: 4rem;
+  top: 4.3rem;
   z-index: 970;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 9.5rem);
   width: auto;
   overflow-x: hidden;
   overflow-y: auto;
@@ -55,6 +55,7 @@ div.nav-body button {
 div.nav-body div.text {
   border: 1px solid #656565;
   border-radius: 0.3rem;
+  background-image: var(--bs-gradient);
   padding: 0.5rem 1rem !important;
   background-color: #141414;
   text-align: center;
@@ -62,8 +63,8 @@ div.nav-body div.text {
 div.nav-body a.nav-item {
   border: 1px solid #656565;
   border-radius: 0.3rem;
-  padding: 0.5rem 1rem !important;
   background-image: var(--bs-gradient);
+  padding: 0.5rem 1rem !important;
 }
 div.nav-body a.nav-item:not([class*=disabled]) {
   color: #f0f0f0;
@@ -77,6 +78,25 @@ div.nav-body a.nav-item:hover, div.nav-body a.nav-item:focus, div.nav-body a.nav
   color: #f0f0f0;
   border: 1px solid #0855aa;
   background-color: #0855aa;
+}
+div.nav-body a.nav-item-admin {
+  border: 1px solid #656565;
+  border-radius: 0.3rem;
+  background-image: var(--bs-gradient);
+  padding: 0.5rem 1rem !important;
+}
+div.nav-body a.nav-item-admin:not([class*=disabled]) {
+  color: #ff4457;
+}
+div.nav-body a.nav-item-admin.active {
+  color: #fff;
+  border: 1px solid #ff4457;
+  background-color: #ff4457;
+}
+div.nav-body a.nav-item-admin:hover, div.nav-body a.nav-item-admin:focus, div.nav-body a.nav-item-admin.nav-dropdown-hover {
+  color: #f0f0f0;
+  border: 1px solid #b30012;
+  background-color: #b30012;
 }
 div.nav-body button {
   width: 100%;

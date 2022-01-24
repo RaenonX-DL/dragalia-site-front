@@ -1,23 +1,25 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import {useDispatch} from 'react-redux';
 
-import {PostEditResponse, PostMeta} from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
+import {PostEditResponse, PostUpdateCommonPayload} from '../../../../api-def/api';
 import {useI18n} from '../../../../i18n/hook';
 import {alertDispatchers} from '../../../../state/alert/dispatchers';
 import {ProtectedLayout} from '../../../pages/layout/protected';
 import {ModalStateFlex} from '../../common/modal/types';
 import {AjaxForm} from '../../form/ajax/main';
+import {FormConfig} from './config';
 import {isFormStateValid, PostFormBaseProps} from './types';
 
 
-type PostFormBaseInternalProps<P extends PostMeta, R extends PostEditResponse> = PostFormBaseProps<P, R> & {
-  fnGetRedirectUrl: (redirectId: number) => string,
-  fnGetRedirectId: (response: R) => number,
-};
+type PostFormBaseInternalProps<P extends PostUpdateCommonPayload, R extends PostEditResponse> =
+  PostFormBaseProps<P, R> & {
+    fnGetRedirectUrl: (redirectId: number) => string,
+    fnGetRedirectId: (response: R) => number,
+  };
 
-export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
+export const PostFormBase = <P extends PostUpdateCommonPayload, R extends PostEditResponse>({
   formState,
   setFormState,
   fnSendRequest,
@@ -31,7 +33,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
 }: PostFormBaseInternalProps<P, R>) => {
   const {t} = useI18n();
   const dispatch = useDispatch();
-  const context = React.useContext(AppReactContext);
+  const {status} = useSession();
 
   const setPayload = <K extends keyof P>(key: K, newValue: P[K]) => {
     const payload: P = {...formState.payload, [key]: newValue};
@@ -47,7 +49,7 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
   });
 
   const onPreSubmit = async (setModal: React.Dispatch<React.SetStateAction<ModalStateFlex>>) => {
-    if (!context?.session) {
+    if (status !== 'authenticated') {
       setModal({
         show: true,
         title: t((t) => t.userControl.noUid),
@@ -93,7 +95,12 @@ export const PostFormBase = <P extends PostMeta, R extends PostEditResponse>({
         getRedirectUrlOnSuccess={(response) => fnGetRedirectUrl(fnGetRedirectId(response))}
       >
         {renderMain(setPayload, setAvailability)}
-        <div className="mb-3"/>
+        <div className="mb-2"/>
+        <FormConfig
+          sendEmail={formState.payload.sendUpdateEmail}
+          onChangeSendEmail={(newValue) => setPayload('sendUpdateEmail', newValue)}
+        />
+        <div className="mb-2"/>
         {renderOnPreloaded && renderOnPreloaded(setPayload)}
       </AjaxForm>
     </ProtectedLayout>

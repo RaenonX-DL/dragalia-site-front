@@ -3,6 +3,18 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: 'Announcement Title',
+      content: 'Announcement Content',
+      tips: 'Contents will send to the users who have subscribed to the website announcement by email.\n\n' +
+        'Announcement language is determined by the current language.\n\n' +
+        'Does NOT support advanced syntax (for example: text coloring).',
+      send: 'Send Announcement',
+      confirmSend: 'Send now?',
+      emailSent: 'Email sent. ({{accepted}} Accepted / {{rejected}} Rejected)',
+    },
+  },
   autoComplete: {
     selected: 'Selected',
     inputPlaceholder: 'Enter keyword here',
@@ -443,6 +455,8 @@ export const translation: TranslationStruct = {
       tips: {
         main: 'It is strongly recommended to read the unit analysis to know ' +
           'the actual strength, how-to-use, and the other details!',
+        kaleidoscape: 'Kaleidoscape tier list only compares characters among the same weapon type ' +
+          'instead of all characters.',
         notRanked: 'This unit is not yet ranked.',
         compIcon: 'Needs specific companion for the corresponding tier',
       },
@@ -570,6 +584,38 @@ export const translation: TranslationStruct = {
     login: 'Login',
     logout: 'Logout',
     loading: 'Loading...',
+    settings: {
+      general: 'General',
+      subscriptions: 'Subscription',
+    },
+    general: {
+      email: 'Email',
+      isAdmin: 'Website administration permissions granted.',
+      adsFreeInEffect: 'Ads-free is effective.',
+      adsFreeNotEffective: 'Ads-free not activated. Welcome to donate for activating ads-free!',
+    },
+    subscriptions: {
+      tipsToAdd: 'To enable individual post subscription, ' +
+        'go the corresponding post, then find the bell icon or the "Subscribe" button.',
+      removeAll: 'Remove All',
+      const: {
+        ALL_QUEST: 'All Quest Guides',
+        ALL_MISC: 'All Other Posts',
+        ALL_ANALYSIS: 'All Unit Analysis',
+        ALL_TIER: 'All Unit Tier',
+        ANNOUNCEMENT: 'Site Announcement',
+      },
+    },
+    layout: {
+      config: 'Layout width',
+      width: {
+        full: 'Full',
+        wide: 'Wide',
+        mid: 'Medium',
+      },
+      disabledInPortrait: 'Layout width config is disabled under portrait dimension.',
+      notUploaded: 'Layout width config does NOT upload. Settings are applied immediately.',
+    },
   },
   lang: {
     inUse: 'Currently in-use',
@@ -599,7 +645,9 @@ export const translation: TranslationStruct = {
     },
     error: {
       auth: {
+        failed: 'Authentication Failed: {{errorCode}}',
         noProvider: 'No authentication providers available.',
+        loginRequired: 'Login required.',
       },
     },
   },
@@ -620,6 +668,11 @@ export const translation: TranslationStruct = {
     },
     collapse: 'Collapse/Expand',
     collapseAll: 'Collapse/Expand All',
+    cancel: 'Cancel',
+    subscription: {
+      add: 'Subscribe',
+      remove: 'Cancel subscription',
+    },
   },
   meta: {
     inUse: {
@@ -777,6 +830,18 @@ export const translation: TranslationStruct = {
           description: 'All unit stories of {{unitName}}.',
         },
       },
+      admin: {
+        announcement: {
+          title: 'Website announcement',
+          description: 'Page to send the website announcement',
+        },
+      },
+      user: {
+        settings: {
+          title: 'User settings',
+          description: 'User settings.',
+        },
+      },
     },
     error: {
       401: {
@@ -814,18 +879,6 @@ export const translation: TranslationStruct = {
       posts: 'Posts',
       gameData: 'Game Related',
       others: 'Others',
-    },
-    layout: {
-      config: 'Layout Config',
-      current: {
-        fluid: 'Full-width',
-      },
-      fluid: {
-        enable: 'Enable',
-        disable: 'Disable',
-        enabled: 'Enabled',
-        disabled: 'Disabled',
-      },
     },
   },
   posts: {
@@ -893,6 +946,7 @@ export const translation: TranslationStruct = {
       postNotExists: 'Post not exists.',
       preview: 'Preview',
       publish: 'Publish',
+      sendUpdateEmail: 'Send notification email',
     },
     message: {
       altLang: 'This post does not have a version in {{langUi}}. Therefore, we\'re displaying it in {{langPost}}.',
@@ -950,7 +1004,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: 'Posts',
     },
     message: {
-      features: 'Check the navigation bar for more features.',
+      onSiteAnnouncementDisabled: 'Subscribe to website announcement to receive related information by email.',
+      onSiteAnnouncementEnabled: 'Website announcement email enabled.',
       noPost: 'No available posts.',
     },
   },

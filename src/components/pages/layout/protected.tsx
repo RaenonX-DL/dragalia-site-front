@@ -1,13 +1,14 @@
 import React from 'react';
 
-import {AppReactContext} from '../../../context/app/main';
+import {useSession} from 'next-auth/react';
+
 import {AccessDenied} from './accessDenied';
 
 
 export const ProtectedLayout = ({children}: React.PropsWithChildren<{}>) => {
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
-  if (!context?.session?.user.isAdmin) {
+  if (!data?.user.isAdmin) {
     return <AccessDenied/>;
   }
 

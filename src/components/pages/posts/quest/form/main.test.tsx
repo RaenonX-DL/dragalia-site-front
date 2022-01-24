@@ -16,15 +16,16 @@ import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {PostFormState} from '../../../../elements/posts/form/types';
-import {QuestPostForm, QuestPostWriteResponse} from './main';
+import {QuestPostForm} from './main';
 
 
 describe('Quest form (New/Edit)', () => {
-  let fnSendRequest: jest.Mock<Promise<QuestPostWriteResponse>, [QuestPostEditPayload]>;
+  let fnSendRequest: jest.Mock;
   const response: QuestPostEditResponse = {
     code: ApiResponseCode.SUCCESS,
     success: true,
     seqId: 1,
+    emailResult: {accepted: [], rejected: []},
   };
   let formState: PostFormState<QuestPostEditPayload>;
   let setFormState: jest.Mock;
@@ -50,6 +51,7 @@ describe('Quest form (New/Edit)', () => {
         ],
         addendum: 'adm',
         editNote: 'edn',
+        sendUpdateEmail: true,
       },
     };
     fnSendRequest = jest.fn().mockImplementation(async () => response);
@@ -376,6 +378,7 @@ describe('Quest form (New/Edit)', () => {
       ],
       addendum: originalText,
       editNote: originalText,
+      sendUpdateEmail: true,
     };
 
     renderReact(
@@ -410,6 +413,7 @@ describe('Quest form (New/Edit)', () => {
       ],
       addendum: transformedText,
       editNote: originalText,
+      sendUpdateEmail: true,
     });
   });
 
@@ -427,5 +431,46 @@ describe('Quest form (New/Edit)', () => {
 
     expect(screen.queryByText(translationEN.posts.manage.edit)).not.toBeInTheDocument();
     expect(screen.getByText(translationEN.meta.error['401'].description)).toBeInTheDocument();
+  });
+
+  it('sends update email on publish', async () => {
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
+  });
+
+  it('does not send update email on publish', async () => {
+    renderReact(
+      () => (
+        <QuestPostForm
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const editNote = screen.getByText(translationEN.posts.manage.sendUpdateEmail);
+    userEvent.click(editNote.previousSibling as Element);
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
   });
 });

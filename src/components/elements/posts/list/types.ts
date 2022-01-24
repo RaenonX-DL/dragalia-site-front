@@ -10,6 +10,5 @@ export type PostEntryBadgeProps<E extends PostInfo> = {
 export type FunctionRenderPostBadge<E extends PostInfo> = (props: PostEntryBadgeProps<E>) => React.ReactElement;
 
 export type PostEntryProps<E extends SequencedPostInfo> = {
-  link: string,
   renderPostBadge: FunctionRenderPostBadge<E>,
 };

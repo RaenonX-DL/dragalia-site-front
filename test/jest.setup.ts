@@ -1,15 +1,19 @@
+import {TextEncoder, TextDecoder} from 'util';
+
 // `jest-dom` extensions (for example, `expect` extension)
 import '@testing-library/jest-dom';
 import {configure} from '@testing-library/react';
 import * as dotenv from 'dotenv';
 
+
 dotenv.config();
 
+import {isCi} from '../src/api-def/utils';
 import {initMockApi} from './init/api';
 import {initMockConsoleBehavior} from './init/console';
 
 // Retry failing test at most 3 times if in CI
-if (!!process.env.CI) {
+if (isCi()) {
   jest.retryTimes(3);
 }
 
@@ -19,3 +23,8 @@ configure({asyncUtilTimeout: 5000});
 
 initMockApi();
 initMockConsoleBehavior();
+
+// Polyfill for `import {ObjectId} from 'mongodb';` to work
+global.TextEncoder = TextEncoder;
+// @ts-ignore
+global.TextDecoder = TextDecoder;

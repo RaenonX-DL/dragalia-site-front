@@ -37,6 +37,10 @@ div {
     @include media-breakpoint-up(xxl) {
       @include utils.eq-width-col(7);
     }
+
+    & div.subscription-icon {
+      position: absolute;
+    }
   }
 
   .complete-entry {

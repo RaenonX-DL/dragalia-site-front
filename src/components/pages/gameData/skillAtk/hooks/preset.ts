@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {AppReactContext} from '../../../../../context/app/main';
+import {useSession} from 'next-auth/react';
+
 import {useNextRouter} from '../../../../../utils/router';
 import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {GoogleAnalytics} from '../../../../../utils/services/ga';
@@ -16,14 +17,13 @@ type UseAtkSkillInputReturn = InputPanelCommonProps<InputData> & {
   getPresetStatus: FetchStatusSimple,
 };
 
-// This input data is expect to change frequently.
+// This input data is expected to change frequently.
 // Therefore, it should not be used in expensive component, such as ATK skill output,
-// because every change triggers a re-render.
+// because every change triggers a rerender.
 export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputReturn => {
   const {query} = useNextRouter();
+  const {data, status} = useSession();
   const presetId = query[PRESET_QUERY_NAME];
-
-  const context = React.useContext(AppReactContext);
 
   const [inputData, setInputData] = React.useState<InputData>(generateInputData());
   const [getPresetStatus, setGetPresetStatus] = React.useState<FetchStatusSimple>({
@@ -32,9 +32,9 @@ export const useAtkSkillInput = (onNotLoggedIn: () => void): UseAtkSkillInputRet
   });
 
   if (isNotFetched(getPresetStatus)) {
-    if (context?.session) {
+    if (status === 'authenticated') {
       setGetPresetStatus({...getPresetStatus, fetched: false, fetching: true});
-      ApiRequestSender.getPresetAtkSkill(context.session.user.id.toString(), presetId as string)
+      ApiRequestSender.getPresetAtkSkill(data?.user.id.toString() || '', presetId as string)
         .then((response) => {
           setGetPresetStatus({
             fetched: true,

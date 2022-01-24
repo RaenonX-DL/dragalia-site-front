@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {TimeAgo} from '../../../../../utils/timeago';
 import {UnitIcon} from '../../../../elements/gameData/unit/icon';
@@ -23,7 +23,7 @@ type Props = PropsUseKeyPointData & Pick<PropsDimensionalCommon, 'dimension'> & 
 
 export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: Props) => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const {unitInfo, tierNote} = entryPack;
   const noteOfDimension = tierNote?.tier[dimension];
@@ -61,7 +61,7 @@ export const TierListEntry = ({entryPack, dimension, keyPointsData, iconOnly}: P
           }
         </Col>
         <Col xs="auto" className="ps-0">
-          {context?.session?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
+          {data?.user.isAdmin && <TierNoteEditIcon unitId={unitInfo.id}/>}
         </Col>
       </Row>
       {

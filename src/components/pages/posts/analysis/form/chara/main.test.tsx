@@ -26,6 +26,10 @@ describe('Character analysis form', () => {
     code: ApiResponseCode.SUCCESS,
     success: true,
     unitId: 10950101,
+    emailResult: {
+      accepted: [],
+      rejected: [],
+    },
   };
   let formState: PostFormState<CharaAnalysisEditPayload>;
   let setFormState: jest.Mock;
@@ -60,6 +64,7 @@ describe('Character analysis form', () => {
         tipsBuilds: 'tb',
         videos: 'vid',
         editNote: '',
+        sendUpdateEmail: true,
       },
     };
     fnSendRequest = jest.fn().mockResolvedValue({
@@ -119,6 +124,7 @@ describe('Character analysis form', () => {
       tipsBuilds: 'tipsBuilds',
       videos: 'videos',
       editNote: '',
+      sendUpdateEmail: true,
     });
   });
 
@@ -206,6 +212,7 @@ describe('Character analysis form', () => {
       tipsBuilds: originalText,
       videos: originalText,
       editNote: originalText,
+      sendUpdateEmail: true,
     };
 
     renderReact(
@@ -242,6 +249,7 @@ describe('Character analysis form', () => {
       tipsBuilds: transformedText,
       videos: transformedText,
       editNote: originalText,
+      sendUpdateEmail: true,
     });
   });
 
@@ -259,5 +267,46 @@ describe('Character analysis form', () => {
 
     expect(screen.queryByText(translationEN.posts.manage.edit)).not.toBeInTheDocument();
     expect(screen.getByText(translationEN.meta.error['401'].description)).toBeInTheDocument();
+  });
+
+  it('sends update email on publish', async () => {
+    renderReact(
+      () => (
+        <AnalysisFormChara
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
+  });
+
+  it('does not send update email on publish', async () => {
+    renderReact(
+      () => (
+        <AnalysisFormChara
+          fnSendRequest={fnSendRequest}
+          formState={{...formState, isPreloaded: false}}
+          setFormState={setFormState}
+        />
+      ),
+      {user: {isAdmin: true}},
+    );
+
+    const editNote = screen.getByText(translationEN.posts.manage.sendUpdateEmail);
+    userEvent.click(editNote.previousSibling as Element);
+
+    const publishButton = await screen.findByText(translationEN.posts.manage.publish, {selector: 'button:enabled'});
+    userEvent.click(publishButton);
+
+    await waitFor(() => expect(fnSendRequest).toHaveBeenCalled());
+    expect(fnSendRequest.mock.calls[0][0].sendUpdateEmail).toBeTruthy();
   });
 });

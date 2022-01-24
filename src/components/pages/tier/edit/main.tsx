@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
 
 import {Dimension, DimensionKey} from '../../../../api-def/api';
 import {makeUnitUrl, UnitPath} from '../../../../api-def/paths';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {overrideObject} from '../../../../utils/override';
 import {processText} from '../../../../utils/process/text';
@@ -13,6 +13,7 @@ import {Loading} from '../../../elements/common/loading';
 import {AjaxForm} from '../../../elements/form/ajax/main';
 import {useUnitId} from '../../../elements/gameData/hook';
 import {AutoComplete} from '../../../elements/input/autoComplete/main';
+import {FormConfig} from '../../../elements/posts/form/config';
 import {ProtectedLayout} from '../../layout/protected';
 import styles from '../main.module.css';
 import {TierNoteDimensionEntry} from './dimension';
@@ -23,10 +24,14 @@ import {TierNoteUnitOverview} from './unit';
 
 export const TierNoteEdit = () => {
   const {t, lang} = useI18n();
-  const uid = React.useContext(AppReactContext)?.session?.user.id.toString() || '';
+  const {data} = useSession();
+
+  const uid = data?.user.id.toString() || '';
 
   const unitId = useUnitId();
   const {unitInfoMap} = useUnitInfo();
+
+  const [sendUpdateEmail, setSendUpdateEmail] = React.useState(true);
 
   if (!unitId) {
     return <></>;
@@ -69,7 +74,9 @@ export const TierNoteEdit = () => {
             ),
           };
 
-          return ApiRequestSender.updateUnitTierNote(uid, lang, unitId, tierNoteToSend);
+          return ApiRequestSender.updateUnitTierNote({
+            uid, lang, unitId, data: tierNoteToSend, sendUpdateEmail,
+          });
         }}
         formControl={{
           variant: 'outline-light',
@@ -81,9 +88,8 @@ export const TierNoteEdit = () => {
         <hr/>
         <h4>{t((t) => t.game.unitTier.tier.title)}</h4>
         {Object.keys(Dimension).map((dimension) => (
-          <>
+          <React.Fragment key={dimension}>
             <TierNoteDimensionEntry
-              key={dimension}
               dimension={dimension as DimensionKey}
               inputData={unitTierNote.tier[dimension as DimensionKey]}
               setInputData={(updatedNote) => {
@@ -94,7 +100,7 @@ export const TierNoteEdit = () => {
               }}
             />
             <hr/>
-          </>
+          </React.Fragment>
         ))}
         <h4>{t((t) => t.game.unitTier.points.title)}</h4>
         <AutoComplete
@@ -127,6 +133,11 @@ export const TierNoteEdit = () => {
             );
           }}
           showMoveButton={false}
+        />
+        <hr/>
+        <FormConfig
+          sendEmail={sendUpdateEmail}
+          onChangeSendEmail={(newValue) => setSendUpdateEmail(newValue)}
         />
       </AjaxForm>
     </ProtectedLayout>

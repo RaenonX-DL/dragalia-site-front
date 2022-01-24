@@ -4,6 +4,7 @@ import {render} from '@testing-library/react';
 import {renderHook} from '@testing-library/react-hooks';
 import {ObjectId} from 'mongodb';
 import {Session} from 'next-auth';
+import {SessionProvider} from 'next-auth/react';
 import {RouterContext} from 'next/dist/shared/lib/router-context';
 
 import {DEFAULT_LANG} from '../../src/api-def/api';
@@ -27,7 +28,7 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const session: Session = {
     expires: '99999999999',
     user: {
-      id: new ObjectId(),
+      id: new ObjectId().toHexString(),
       createdAt: new Date(),
       updatedAt: new Date(),
       isAdmin: false,
@@ -39,7 +40,6 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   const context: AppReactContextValue = {
     title: 'Title',
     description: 'Description',
-    session: options?.hasSession || options?.user ? session : null,
     alerts: options?.alerts || [],
     params: options?.contextParams || {},
     resources: overrideObject(
@@ -54,9 +54,11 @@ const RenderWrapper = ({store, options, children}: React.PropsWithChildren<Wrapp
   return (
     <RouterContext.Provider value={makeRouter(options?.routerOptions)}>
       <AppReactContext.Provider value={context}>
-        <ReduxProvider persist={false} reduxStore={store}>
-          {children}
-        </ReduxProvider>
+        <SessionProvider session={options?.hasSession || options?.user ? session : null}>
+          <ReduxProvider persist={false} reduxStore={store}>
+            {children}
+          </ReduxProvider>
+        </SessionProvider>
       </AppReactContext.Provider>
     </RouterContext.Provider>
   );

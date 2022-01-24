@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {screen} from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {renderReact} from '../../../../../../test/render/main';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../../../../api-def/api';
 import {makePostUrl, PostPath} from '../../../../../api-def/paths';
 import {translation as translationEN} from '../../../../../i18n/translations/en/translation';
+import {ApiRequestSender} from '../../../../../utils/services/api/requestSender';
 import {QuestPostOutput} from './main';
 
 
@@ -43,6 +45,7 @@ describe('Quest post output', () => {
     otherLangs: [],
     modifiedEpoch: 10000,
     publishedEpoch: 9000,
+    userSubscribed: true,
   };
 
   const altLangTips = translationEN.posts.message.altLang
@@ -151,5 +154,43 @@ describe('Quest post output', () => {
     expect(screen.getByText(/edit note/)).toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${altLangTips}`, 'g'))).not.toBeInTheDocument();
     expect(screen.queryByText(new RegExp(`${otherLangTips}`, 'g'))).not.toBeInTheDocument();
+  });
+
+  it('unsubscribes', async () => {
+    const fnUpdateSubscription = jest.spyOn(ApiRequestSender, 'removeSubscription').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    });
+
+    renderReact(
+      () => <QuestPostOutput post={{...postResponse, userSubscribed: true}}/>,
+      {hasSession: true},
+    );
+
+    const updateSubscriptionBtn = await screen.findByText(translationEN.misc.subscription.remove);
+    userEvent.click(updateSubscriptionBtn);
+
+    await waitFor(() => expect(fnUpdateSubscription).toHaveBeenCalled());
+
+    expect(fnUpdateSubscription).toHaveBeenCalled();
+  });
+
+  it('subscribes', async () => {
+    const fnUpdateSubscription = jest.spyOn(ApiRequestSender, 'addSubscription').mockResolvedValue({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+    });
+
+    renderReact(
+      () => <QuestPostOutput post={{...postResponse, userSubscribed: false}}/>,
+      {hasSession: true},
+    );
+
+    const updateSubscriptionBtn = await screen.findByText(translationEN.misc.subscription.add);
+    userEvent.click(updateSubscriptionBtn);
+
+    await waitFor(() => expect(fnUpdateSubscription).toHaveBeenCalled());
+
+    expect(fnUpdateSubscription).toHaveBeenCalled();
   });
 });

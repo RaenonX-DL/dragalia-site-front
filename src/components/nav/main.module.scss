@@ -43,9 +43,9 @@ nav {
 div {
   &.nav-container {
     position: sticky;
-    top: 4rem;
+    top: 4.3rem;
     z-index: 970;
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 9.5rem);
     width: auto;
     overflow-x: hidden;
     overflow-y: auto;
@@ -62,6 +62,7 @@ div {
     @mixin nav-item() {
       border: 1px solid colors.$color-bw-101;
       border-radius: 0.3rem;
+      background-image: var(--bs-gradient);
 
       // !important to override the default style from BS `.navbar-nav .nav-link`
       padding: 0.5rem 1rem !important;
@@ -86,8 +87,6 @@ div {
     a.nav-item {
       @include nav-item;
 
-      background-image: var(--bs-gradient);
-
       &:not([class*="disabled"]) {
         color: colors.$color-bw-240;
       }
@@ -104,6 +103,32 @@ div {
       &:focus,
       &.nav-dropdown-hover {
         $bg-hovered: color.change(colors.$color-om-dark, $lightness: 35%);
+
+        color: colors.$color-bw-240;
+        border: 1px solid $bg-hovered;
+        background-color: $bg-hovered;
+      }
+    }
+
+    a.nav-item-admin {
+      @include nav-item;
+
+      &:not([class*="disabled"]) {
+        color: colors.$color-danger;
+      }
+
+      &.active {
+        $bg-active: colors.$color-danger;
+
+        color: colors.$color-bw-255;
+        border: 1px solid $bg-active;
+        background-color: $bg-active;
+      }
+
+      &:hover,
+      &:focus,
+      &.nav-dropdown-hover {
+        $bg-hovered: color.change(colors.$color-danger, $lightness: 35%);
 
         color: colors.$color-bw-240;
         border: 1px solid $bg-hovered;

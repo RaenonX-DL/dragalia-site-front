@@ -165,6 +165,7 @@ describe('New misc post form', () => {
       code: ApiResponseCode.SUCCESS,
       success: true,
       seqId: 7,
+      emailResult: {accepted: [], rejected: []},
     });
 
     renderReact(

@@ -19,6 +19,7 @@ export type NavItemPath = NavItemCommon & {
   disabled?: boolean,
   onClick?: () => void,
   activeOverride?: boolean,
+  adminOnly?: boolean,
 } & ({
   path?: GeneralPath,
   pathActiveBasis?: PagePath[],
@@ -38,7 +39,11 @@ export type NavItemDivider = NavItemCommon & {
   type: 'divider',
 };
 
-export type NavItemDropdownContainable = NavItemHeader | NavItemPath | NavItemText | NavItemDivider;
+export type NavItemDropdownContainable =
+  NavItemHeader |
+  NavItemPath |
+  NavItemText |
+  NavItemDivider;
 
 export type NavItemDropdownTitleProps = {
   open: boolean,

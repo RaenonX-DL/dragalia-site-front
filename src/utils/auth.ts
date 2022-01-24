@@ -1,14 +1,12 @@
-import {getMongoManager} from 'typeorm';
-
-import {UserModel} from '../models/user';
+import {AUTH_DB, AUTH_USER_COLLECTION, UserDocumentKey} from '../api-def/models';
+import {generateMongoClient} from './db/client';
 
 
 export const ensureIndex = async () => {
-  const mongoManager = getMongoManager('nextauth');
+  const mongoDb = await generateMongoClient(AUTH_DB).connect();
 
-  await mongoManager.createCollectionIndex(
-    UserModel.name,
-    'adsFreeExpiry',
-    {expireAfterSeconds: 1},
-  );
+  await mongoDb
+    .db(AUTH_DB)
+    .collection(AUTH_USER_COLLECTION)
+    .createIndex([UserDocumentKey.adsFreeExpiry], {expireAfterSeconds: 1});
 };

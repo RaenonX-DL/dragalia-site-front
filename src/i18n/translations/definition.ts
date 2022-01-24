@@ -1,7 +1,9 @@
-import {DimensionKey, KeyPointType, PostType, UnitType} from '../../api-def/api';
+import {DimensionKey, KeyPointType, PostType, SubscriptionKeyConstName, UnitType} from '../../api-def/api';
 import {Efficiency} from '../../components/pages/gameData/skillAtk/out/types';
 import {SortOrder as LookupSortOrder} from '../../components/pages/gameData/unitInfo/lookup/in/types';
 import {Display, SortOrder as TierSortOrder} from '../../components/pages/tier/types';
+import {SettingsTypeKey} from '../../components/pages/user/settings/type';
+import {LayoutWidthType} from '../../state/layout/types';
 
 
 export type PageMetaTranslations = {
@@ -10,6 +12,16 @@ export type PageMetaTranslations = {
 };
 
 export type TranslationStruct = {
+  admin: {
+    announcement: {
+      title: string,
+      content: string,
+      tips: string,
+      send: string,
+      confirmSend: string,
+      emailSent: string,
+    },
+  },
   autoComplete: {
     selected: string,
     inputPlaceholder: string,
@@ -405,6 +417,7 @@ export type TranslationStruct = {
       },
       tips: {
         main: string,
+        kaleidoscape: string,
         notRanked: string,
         compIcon: string,
       },
@@ -506,6 +519,24 @@ export type TranslationStruct = {
     login: string,
     logout: string,
     loading: string,
+    settings: {[type in SettingsTypeKey]: string},
+    general: {
+      email: string,
+      isAdmin: string,
+      adsFreeInEffect: string,
+      adsFreeNotEffective: string,
+    },
+    subscriptions: {
+      tipsToAdd: string,
+      removeAll: string,
+      const: {[name in SubscriptionKeyConstName]: string},
+    },
+    layout: {
+      config: string,
+      width: {[key in LayoutWidthType]: string},
+      disabledInPortrait: string,
+      notUploaded: string,
+    },
   },
   lang: {
     inUse: string,
@@ -525,7 +556,9 @@ export type TranslationStruct = {
     },
     error: {
       auth: {
+        failed: string,
         noProvider: string,
+        loginRequired: string,
       }
     }
   },
@@ -546,6 +579,11 @@ export type TranslationStruct = {
     },
     collapse: string,
     collapseAll: string,
+    cancel: string,
+    subscription: {
+      add: string,
+      remove: string,
+    },
   },
   meta: {
     inUse: {
@@ -604,7 +642,13 @@ export type TranslationStruct = {
       },
       story: {
         unit: PageMetaTranslations,
-      }
+      },
+      user: {
+        settings: PageMetaTranslations,
+      },
+      admin: {
+        announcement: PageMetaTranslations,
+      },
     },
     error: {
       401: PageMetaTranslations,
@@ -633,18 +677,6 @@ export type TranslationStruct = {
       posts: string,
       gameData: string,
       others: string,
-    },
-    layout: {
-      config: string,
-      current: {
-        fluid: string,
-      },
-      fluid: {
-        enable: string,
-        disable: string,
-        enabled: string,
-        disabled: string,
-      },
     },
   },
   posts: {
@@ -699,6 +731,7 @@ export type TranslationStruct = {
       postNotExists: string,
       preview: string,
       publish: string,
+      sendUpdateEmail: string,
     },
     message: {
       altLang: string,
@@ -756,7 +789,8 @@ export type TranslationStruct = {
       recentlyUpdated: string,
     },
     message: {
-      features: string,
+      onSiteAnnouncementDisabled: string,
+      onSiteAnnouncementEnabled: string,
       noPost: string,
     },
   },

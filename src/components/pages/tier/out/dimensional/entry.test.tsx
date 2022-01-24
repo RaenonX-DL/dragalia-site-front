@@ -51,6 +51,7 @@ describe('Tier list entry', () => {
         dimension="conCoop"
         entryPack={{unitInfo, tierNote}}
         keyPointsData={keyPointsData}
+        iconOnly
       />
     ));
 
@@ -66,6 +67,7 @@ describe('Tier list entry', () => {
         dimension="conCoop"
         entryPack={{unitInfo, tierNote}}
         keyPointsData={keyPointsData}
+        iconOnly
       />
     ));
 
@@ -78,6 +80,7 @@ describe('Tier list entry', () => {
         dimension="conAi"
         entryPack={{unitInfo, tierNote: overrideObject(tierNote, {tier: {conCoop: {isCompDependent: false}}})}}
         keyPointsData={keyPointsData}
+        iconOnly
       />
     ));
 
@@ -90,6 +93,7 @@ describe('Tier list entry', () => {
         dimension="conCoop"
         entryPack={{unitInfo, tierNote}}
         keyPointsData={keyPointsData}
+        iconOnly
       />
     ));
 
@@ -102,6 +106,7 @@ describe('Tier list entry', () => {
         dimension="conCoop"
         entryPack={{unitInfo, tierNote: overrideObject(tierNote, {points: []})}}
         keyPointsData={keyPointsData}
+        iconOnly
       />
     ));
 
@@ -115,6 +120,7 @@ describe('Tier list entry', () => {
           dimension="conCoop"
           entryPack={{unitInfo, tierNote}}
           keyPointsData={keyPointsData}
+          iconOnly
         />
       ),
       {hasSession: true, user: {isAdmin: true}},
@@ -135,6 +141,7 @@ describe('Tier list entry', () => {
           dimension="conCoop"
           entryPack={{unitInfo, tierNote}}
           keyPointsData={keyPointsData}
+          iconOnly
         />
       ),
       {hasSession: true, user: {isAdmin: false}},
@@ -154,6 +161,7 @@ describe('Tier list entry', () => {
           dimension="conCoop"
           entryPack={{unitInfo, tierNote}}
           keyPointsData={keyPointsData}
+          iconOnly
         />
       ),
       {hasSession: true, user: {isAdmin: true}},
@@ -169,6 +177,7 @@ describe('Tier list entry', () => {
           dimension="conCoop"
           entryPack={{unitInfo, tierNote}}
           keyPointsData={keyPointsData}
+          iconOnly
         />
       ),
       {hasSession: true, user: {isAdmin: false}},

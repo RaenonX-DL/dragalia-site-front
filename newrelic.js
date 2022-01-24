@@ -1,4 +1,8 @@
 'use strict';
+const env = require('env-var');
+
+const {isProduction} = require('./src/api-def/utils');
+
 /**
  * New Relic agent configuration.
  *
@@ -7,7 +11,9 @@
  */
 exports.config = {
   app_name: ['DL Site (Front)'],
-  license_key: process.env.NEW_RELIC_LICENSE_KEY,
+  license_key: env.get('NEW_RELIC_LICENSE_KEY')
+    .required(isProduction())
+    .asString(),
   distributed_tracing: {
     enabled: true,
   },

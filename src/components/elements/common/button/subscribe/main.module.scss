@@ -1,0 +1,26 @@
+@import "../../../../../../styles/colors";
+
+button {
+  &.subscribe-button {
+    border: 0;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    padding: 0;
+
+    // 2rem is the exact size of a normal spinner
+    height: 2rem;
+    width: 2rem;
+
+    &:disabled {
+      background-color: $color-dark-red;
+    }
+
+    &.subscribe-button-as-icon-enabled {
+      color: white;
+    }
+
+    &.subscribe-button-as-icon-disabled {
+      color: $color-bw-170;
+    }
+  }
+}

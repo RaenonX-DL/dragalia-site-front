@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {ApiResponseCode, isFailedResponse, PostGetResponse} from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {useNextRouter} from '../../../../utils/router';
 import {FunctionFetchPost} from '../../../../utils/services/api/types';
@@ -22,21 +23,17 @@ export const PrefetchedForm = <K extends string | number, R extends PostGetRespo
   renderOnSuccess,
 }: Props<K, R>) => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
   const {query} = useNextRouter();
+  const {data} = useSession();
 
   const postId = query.pid as K;
-
-  if (!context) {
-    return <></>;
-  }
 
   const {
     fetchStatus,
     fetchFunction: fetchPost,
   } = useFetchState<R | undefined>(
     undefined,
-    () => fnFetch({uid: context.session?.user?.id.toString() || '', postId, lang, incCount: false}),
+    () => fnFetch({uid: data?.user.id.toString() || '', postId, lang, incCount: false}),
     'Failed to fetch the post.',
   );
 

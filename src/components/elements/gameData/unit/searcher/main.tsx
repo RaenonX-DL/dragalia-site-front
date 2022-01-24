@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 
 import {EnumEntry, UnitInfoData} from '../../../../../api-def/resources';
-import {AppReactContext} from '../../../../../context/app/main';
 import {scrollRefToTop} from '../../../../../utils/scroll';
 import {useUnitData, useUnitInfo} from '../../../../../utils/services/resources/unitInfo/hooks';
 import {CheckOption} from '../../../common/check/types';
@@ -22,6 +23,7 @@ type Props<
 > = Pick<UnitFilterProps<S, D, E, E2, V>, 'sortOrderNames' | 'generateInputData' | 'getAdditionalInputs'> & {
   getSortedUnitInfo: (unitInfo: Array<UnitInfoData>, inputData: D) => Array<UnitInfoData>,
   renderIfAdmin?: React.ReactNode,
+  renderAdditional?: React.ReactNode,
   renderOutput: (props: UnitSearchOutputProps<S, D>) => React.ReactNode,
   renderCount: number,
   onSearchRequested?: (inputData: D) => void,
@@ -41,6 +43,7 @@ export const UnitSearcher = <
   getAdditionalInputs,
   getSortedUnitInfo,
   renderIfAdmin,
+  renderAdditional,
   renderOutput,
   renderCount,
   onSearchRequested,
@@ -49,8 +52,8 @@ export const UnitSearcher = <
 }: Props<S, D, E, E2, V>) => {
   const {charaInfo, dragonInfo, isFetched} = useUnitInfo();
   const {nameRef} = useUnitData();
+  const {data} = useSession();
 
-  const context = React.useContext(AppReactContext);
   const elemRef = React.useRef<HTMLDivElement>(null);
   const [inputData, setInputData] = React.useState<D>();
   const [resultCount, setResultCount] = React.useState(renderCount); // < 0 = don't limit
@@ -91,7 +94,8 @@ export const UnitSearcher = <
         getAdditionalInputs={getAdditionalInputs}
         disabled={!isFetched || isLoading}
       />
-      {context?.session?.user.isAdmin && renderIfAdmin}
+      {data?.user.isAdmin && renderIfAdmin}
+      {renderAdditional}
       <div ref={elemRef}>
         {inputData && renderOutput({
           inputData,

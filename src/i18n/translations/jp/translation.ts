@@ -3,6 +3,16 @@ import {TranslationStruct} from '../definition';
 
 
 export const translation: TranslationStruct = {
+  admin: {
+    announcement: {
+      title: 'TBA',
+      content: 'TBA',
+      tips: 'TBA',
+      send: 'TBA',
+      confirmSend: 'TBA',
+      emailSent: 'TBA',
+    },
+  },
   autoComplete: {
     selected: '選択済み',
     inputPlaceholder: '検索キーワードを入力する',
@@ -418,6 +428,7 @@ export const translation: TranslationStruct = {
       },
       tips: {
         main: '下のランキングはご参考まで、キャラの強さ／手順はキャラの評価ページへご覧ください！',
+        kaleidoscape: 'TBA',
         notRanked: 'TBA',
         compIcon: '固定のサポートキャラが必要。',
       },
@@ -543,6 +554,37 @@ export const translation: TranslationStruct = {
     login: 'ログイン',
     logout: 'ログアウト',
     loading: '読み込み中...',
+    settings: {
+      general: 'TBA',
+      subscriptions: 'TBA',
+    },
+    subscriptions: {
+      tipsToAdd: 'TBA',
+      removeAll: 'TBA',
+      const: {
+        ALL_QUEST: 'TBA',
+        ALL_MISC: 'TBA',
+        ALL_ANALYSIS: 'TBA',
+        ALL_TIER: 'TBA',
+        ANNOUNCEMENT: 'TBA',
+      },
+    },
+    general: {
+      email: 'TBA',
+      isAdmin: 'TBA',
+      adsFreeInEffect: 'TBA',
+      adsFreeNotEffective: 'TBA',
+    },
+    layout: {
+      config: 'TBA',
+      width: {
+        full: 'TBA',
+        wide: 'TBA',
+        mid: 'TBA',
+      },
+      disabledInPortrait: 'TBA',
+      notUploaded: 'TBA',
+    },
   },
   lang: {
     inUse: '使用中',
@@ -563,11 +605,13 @@ export const translation: TranslationStruct = {
       constructing: '工事中です。\n\n' +
         '### 完成したら各SNSの上でお知らせします。(例: 掲示板、Facebook 、LINE…など) ' +
         '\n\n### メール通知機能も作成中ですのでお待ちください。',
-      videoTips: '如果有大陸的朋友無法觀看視頻的話，歡迎到 [我的 B 站](https://space.bilibili.com/1052053443) 查找對應視頻。',
+      videoTips: 'TBA',
     },
     error: {
       auth: {
+        failed: 'TBA',
         noProvider: 'ログインサービスは利用できません。',
+        loginRequired: 'TBA',
       },
     },
   },
@@ -588,6 +632,11 @@ export const translation: TranslationStruct = {
     },
     collapse: '展開 / 折り畳み',
     collapseAll: '全部展開 / 折り畳み',
+    cancel: 'TBA',
+    subscription: {
+      add: 'TBA',
+      remove: 'TBA',
+    },
   },
   meta: {
     inUse: {
@@ -743,6 +792,18 @@ export const translation: TranslationStruct = {
           description: '全部の{{unitName}}のストーリー。',
         },
       },
+      admin: {
+        announcement: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+      },
+      user: {
+        settings: {
+          title: 'TBA',
+          description: 'TBA',
+        },
+      },
     },
     error: {
       401: {
@@ -780,18 +841,6 @@ export const translation: TranslationStruct = {
       posts: 'TBA',
       gameData: 'TBA',
       others: 'TBA',
-    },
-    layout: {
-      config: 'TBA',
-      current: {
-        fluid: 'TBA',
-      },
-      fluid: {
-        enable: 'TBA',
-        disable: 'TBA',
-        enabled: 'TBA',
-        disabled: 'TBA',
-      },
     },
   },
   posts: {
@@ -856,6 +905,7 @@ export const translation: TranslationStruct = {
       postNotExists: '文がありません。',
       preview: 'プレビュー',
       publish: '文を発表する',
+      sendUpdateEmail: 'TBA',
     },
     message: {
       altLang: '本ページは言語が {{langUi}} 版がないため、代わりに言語が {{langPost}} 版を表示しています。',
@@ -913,7 +963,8 @@ export const translation: TranslationStruct = {
       recentlyUpdated: 'TBA',
     },
     message: {
-      features: 'TBA',
+      onSiteAnnouncementDisabled: 'TBA',
+      onSiteAnnouncementEnabled: 'TBA',
       noPost: 'TBA',
     },
   },

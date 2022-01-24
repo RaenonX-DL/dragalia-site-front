@@ -1,27 +1,37 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {
   ApiResponseCode,
   isFailedResponse,
   SequencedPostInfo,
   SequencedPostListResponse,
+  SubscriptionKeyConstName,
 } from '../../../../api-def/api';
-import {AppReactContext} from '../../../../context/app/main';
 import {useI18n} from '../../../../i18n/hook';
 import {FunctionFetchPostList} from '../../../../utils/services/api';
 import {AdsPostList} from '../../common/ads/main';
-import {useFetchState} from '../../common/fetch';
+import {SubscriptionButtonBar} from '../../common/button/subscribe/bar';
+import {useSubscribeButtonState} from '../../common/button/subscribe/hook';
+import {isNotFetched, useFetchState} from '../../common/fetch';
 import {Loading} from '../../common/loading';
 import {AlertFetchListFailed} from '../alert';
 import {PostManageBar, PostManageBarProps} from '../manageBar';
-import styles from './page.module.scss';
+import styles from './page.module.css';
 
+
+type PostListRenderPostEntryProps<R extends SequencedPostListResponse> = {
+  response: R,
+  globalSubscribed: boolean,
+};
 
 type PostListPageProps<R extends SequencedPostListResponse> = {
   title: string,
   postManageBarProps: PostManageBarProps,
   fnFetchList: FunctionFetchPostList<R>,
-  renderPostEntries: (response: R) => React.ReactElement,
+  renderPostEntries: (props: PostListRenderPostEntryProps<R>) => React.ReactElement,
+  subKeyName: SubscriptionKeyConstName,
 };
 
 export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedPostListResponse<E>>({
@@ -29,18 +39,25 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
   postManageBarProps,
   fnFetchList,
   renderPostEntries,
+  subKeyName,
 }: PostListPageProps<R>) => {
   const {lang} = useI18n();
-  const context = React.useContext(AppReactContext);
-
+  const {data} = useSession();
   const {
     fetchStatus,
     fetchFunction: fetchPostList,
   } = useFetchState<R | undefined>(
     undefined,
-    () => fnFetchList(context?.session?.user.id.toString() || '', lang),
+    () => fnFetchList(data?.user.id.toString() || '', lang),
     'Failed to fetch post list.',
   );
+  const {
+    reactState: globalSubscriptionButtonState,
+    state: globalSubscriptionState,
+  } = useSubscribeButtonState({
+    dependencies: [fetchStatus.data],
+    getSubscribedOnEffect: () => fetchStatus.data?.userSubscribed,
+  });
 
   fetchPostList();
 
@@ -50,7 +67,14 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
     }
 
     if (fetchStatus.data && !isFailedResponse(fetchStatus.data)) {
-      return <>{renderPostEntries(fetchStatus.data)}</>;
+      return (
+        <>
+          {renderPostEntries({
+            response: fetchStatus.data,
+            globalSubscribed: globalSubscriptionState.subscribed,
+          })}
+        </>
+      );
     }
 
     return (
@@ -66,8 +90,13 @@ export const PostLookupPage = <E extends SequencedPostInfo, R extends SequencedP
       <div className={styles.title}>
         <h2>{title}</h2>
       </div>
+      <SubscriptionButtonBar
+        subscriptionKey={{type: 'const', name: subKeyName}}
+        state={globalSubscriptionButtonState}
+        disabled={isNotFetched(fetchStatus)}
+      />
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <PostManageBar {...postManageBarProps}/>
       }
       <ListContent/>

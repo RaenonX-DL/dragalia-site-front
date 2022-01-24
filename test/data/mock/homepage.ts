@@ -11,6 +11,7 @@ export const mockData: HomepageData = {
           viewCount: 10000,
           modifiedEpoch: 1640923804,
           publishedEpoch: 1610923804,
+          userSubscribed: true,
         },
       },
       {
@@ -20,6 +21,7 @@ export const mockData: HomepageData = {
           viewCount: 5000,
           modifiedEpoch: 1635923804,
           publishedEpoch: 1605923804,
+          userSubscribed: true,
         },
       },
       {
@@ -29,6 +31,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1620923804,
           publishedEpoch: 1590923804,
+          userSubscribed: false,
         },
       },
       {
@@ -38,6 +41,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1590923804,
           publishedEpoch: 1590923804,
+          userSubscribed: true,
         },
       },
       {
@@ -47,6 +51,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1585923804,
           publishedEpoch: 1565923804,
+          userSubscribed: true,
         },
       },
     ],
@@ -58,6 +63,7 @@ export const mockData: HomepageData = {
           viewCount: 10000,
           modifiedEpoch: 1640923804,
           publishedEpoch: 1610923804,
+          userSubscribed: false,
         },
       },
       {
@@ -67,6 +73,7 @@ export const mockData: HomepageData = {
           viewCount: 5000,
           modifiedEpoch: 1635923804,
           publishedEpoch: 1605923804,
+          userSubscribed: false,
         },
       },
       {
@@ -76,6 +83,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1620923804,
           publishedEpoch: 1590923804,
+          userSubscribed: false,
         },
       },
       {
@@ -85,6 +93,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1590923804,
           publishedEpoch: 1590923804,
+          userSubscribed: true,
         },
       },
       {
@@ -94,6 +103,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1585923804,
           publishedEpoch: 1565923804,
+          userSubscribed: true,
         },
       },
     ],
@@ -105,6 +115,7 @@ export const mockData: HomepageData = {
           viewCount: 10000,
           modifiedEpoch: 1640923804,
           publishedEpoch: 1610923804,
+          userSubscribed: true,
         },
       },
       {
@@ -114,6 +125,7 @@ export const mockData: HomepageData = {
           viewCount: 5000,
           modifiedEpoch: 1635923804,
           publishedEpoch: 1605923804,
+          userSubscribed: false,
         },
       },
       {
@@ -123,6 +135,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1620923804,
           publishedEpoch: 1590923804,
+          userSubscribed: true,
         },
       },
       {
@@ -132,6 +145,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1590923804,
           publishedEpoch: 1590923804,
+          userSubscribed: true,
         },
       },
       {
@@ -141,6 +155,7 @@ export const mockData: HomepageData = {
           viewCount: 2000,
           modifiedEpoch: 1585923804,
           publishedEpoch: 1565923804,
+          userSubscribed: true,
         },
       },
     ],

@@ -8,6 +8,8 @@ import {ApiResponseCode} from '../../../api-def/api';
 import {GeneralPath} from '../../../api-def/paths';
 import {translation as translationEN} from '../../../i18n/translations/en/translation';
 import {ApiRequestSender} from '../../../utils/services/api/requestSender';
+import data from './../../../../test/data/resources/info/chara.json';
+import {MaxEntriesToDisplay} from './const';
 import {TierList} from './main';
 
 
@@ -35,6 +37,7 @@ describe('Tier list page', () => {
           lastUpdateEpoch: 1628534262003,
         },
       },
+      userSubscribed: true,
     });
   });
 
@@ -51,7 +54,7 @@ describe('Tier list page', () => {
     userEvent.click(searchButton);
 
     // Partial text of the tier note tips
-    expect(await screen.findByText(/tier/)).toBeInTheDocument();
+    expect((await screen.findAllByText(/tier/)).length).toBeGreaterThan(0);
   });
 
   it('loads the tier notes correctly', async () => {
@@ -115,5 +118,51 @@ describe('Tier list page', () => {
 
     // Partial text of the tier note tips
     expect(await screen.findByText(translationEN.misc.noResult)).toBeInTheDocument();
+  });
+
+  it('does not suddenly show more items on clicking show all', async () => {
+    // Move entries at index `MaxEntriesToDisplay +/- 10` to the last
+    const unitDataEntries = [
+      ...data.slice(0, MaxEntriesToDisplay - 10),
+      ...data.slice(MaxEntriesToDisplay + 10),
+      ...data.slice(MaxEntriesToDisplay - 10, MaxEntriesToDisplay + 10),
+    ];
+
+    fnFetchTierNote.mockResolvedValueOnce({
+      code: ApiResponseCode.SUCCESS,
+      success: true,
+      data: Object.fromEntries(unitDataEntries
+        .map((entry, idx) => {
+          let tier;
+          if (idx < 50) {
+            tier = {kaleidoscape: {isCompDependent: false, ranking: 'S', note: 'Some note.'}};
+          } else {
+            tier = {kaleidoscape: {isCompDependent: false, ranking: 'A', note: 'Some note.'}};
+          }
+
+          return [entry.id, {points: [], tier, lastUpdateEpoch: 1628534262003 - entry.id}];
+        })),
+      userSubscribed: true,
+    });
+
+    renderReact(() => <TierList/>);
+
+    const kaleidoscapeDimensionButton = await screen.findByText(translationEN.game.unitTier.display['kaleidoscape']);
+    userEvent.click(kaleidoscapeDimensionButton);
+
+    const searchButton = await screen.findByText(translationEN.misc.search, {selector: 'button:enabled'});
+    userEvent.click(searchButton);
+
+    const initialChildCount = (await screen.findByText('S', {selector: 'h4'}))
+      .nextElementSibling?.childElementCount as number;
+    expect(initialChildCount).toBeGreaterThan(0);
+
+    userEvent.click(await screen.findByText(translationEN.misc.showAll, {selector: 'button'}));
+
+    const expandedChildCount = (await screen.findByText('S', {selector: 'h4'}))
+      .nextElementSibling?.childElementCount as number;
+    expect(expandedChildCount).toBeGreaterThan(0);
+
+    expect(initialChildCount).toBe(expandedChildCount);
   });
 });

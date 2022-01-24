@@ -37,6 +37,9 @@
     max-width: calc(1 / 7 * 100%);
   }
 }
+div .icon-only-entry div.subscription-icon {
+  position: absolute;
+}
 @media (max-width: 991.98px) {
   div .complete-entry {
     flex: 0 0 calc(1 / 1 * 100%);

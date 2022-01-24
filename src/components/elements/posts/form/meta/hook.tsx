@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {PostIdCheckResponse, PostMeta} from '../../../../../api-def/api';
-import {AppReactContext} from '../../../../../context/app/main';
 import {DelayedCheckState} from '../../../common/types';
 import {isFormStateValid, PostFormControlProps} from '../types';
 
@@ -26,17 +27,18 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   getEffectDependency,
 }: FormMetaHookProps<P, R>): FormMetaHookReturns => {
   const {payload} = formState;
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   const [checkState, setCheckState] = React.useState<DelayedCheckState>({
     isChecking: false,
     checkTimer: null,
   });
 
-  const isValid = context?.session?.user.isAdmin ? isFormStateValid(formState) : false;
+  const isAdmin = data?.user.isAdmin || false;
+  const isValid = isAdmin ? isFormStateValid(formState) : false;
 
   const checkAvailability = (payload: P) => {
-    if (!context?.session?.user.isAdmin) {
+    if (!isAdmin) {
       setAvailability(false);
       return;
     }
@@ -54,7 +56,7 @@ export const useFormMeta = <P extends PostMeta, R extends PostIdCheckResponse>({
   //   Even if submitted, it's likely to fail.
   React.useEffect(
     () => {
-      if (!context?.session?.user.isAdmin) {
+      if (!isAdmin) {
         setAvailability(false);
         return;
       }

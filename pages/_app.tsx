@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {getSession} from 'next-auth/client';
+import {getSession, SessionProvider} from 'next-auth/react';
 import App, {AppContext, AppInitialProps as NextAppInitialProps, AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 
-import {isProduction} from '../server/utils/misc';
+import {isCi, isProduction} from '../src/api-def/utils';
 import {MainApp} from '../src/components/pages/app';
 import {PageProps} from '../src/components/pages/type';
 import {AppReactContext} from '../src/context/app/main';
@@ -21,15 +21,21 @@ import '../styles/scrollbar.scss';
 import '../styles/section.css';
 
 
+const googleAdSenseId = process.env.NEXT_PUBLIC_GA_ID;
+
 // `pageProps` from `AppInitialProps` of `next/app` is `any`, weakening the type check
 type AppInitialProps = NextAppInitialProps & {
-  pageProps: PageProps
+  pageProps: PageProps,
 };
 
-const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
+const NextApp = ({
+  Component,
+  pageProps: {session, ...pageProps},
+}: AppProps<PageProps>) => {
   const {t} = useI18n();
 
   // Page meta must be obtained here, or page preview won't work
+  // - Using layout component wrapper doesn't work
   return (
     <>
       <Head>
@@ -39,18 +45,18 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
       </Head>
       {/* Global site tag (gtag.js) - Google Analytics */}
       {
-        isProduction() && !process.env.CI &&
+        isProduction() && !isCi() &&
         <>
           <Script
             strategy="lazyOnload"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAdSenseId}`}
           />
           <Script strategy="lazyOnload" id="gtag">
             {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                gtag('config', '${googleAdSenseId}');
               `}
           </Script>
         </>
@@ -66,14 +72,16 @@ const NextApp = ({Component, pageProps}: AppProps<PageProps>) => {
         <Script strategy="beforeInteractive" type="text/javascript" src="/js/newRelicEum.js"/>
       }
       <React.StrictMode>
-        <AppReactContext.Provider value={{...pageProps}}>
-          <ReduxProvider>
-            <MainApp
-              isNotFound={pageProps.isNotFound}
-              renderApp={() => <Component {...pageProps}/>}
-            />
-          </ReduxProvider>
-        </AppReactContext.Provider>
+        <SessionProvider session={session} refetchInterval={5 * 60}>
+          <AppReactContext.Provider value={pageProps}>
+            <ReduxProvider>
+              <MainApp
+                isNotFound={pageProps.isNotFound}
+                renderApp={() => <Component {...pageProps}/>}
+              />
+            </ReduxProvider>
+          </AppReactContext.Provider>
+        </SessionProvider>
       </React.StrictMode>
     </>
   );
@@ -88,8 +96,8 @@ NextApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
   // noinspection UnnecessaryLocalVariableJS
   const pageProps: PageProps = {
     ...await getPageMeta(appContext),
-    isNotFound: appContext.ctx.res?.statusCode === 404,
     session,
+    isNotFound: appContext.ctx.res?.statusCode === 404,
     resources: {
       simpleUnitInfo: await ResourceLoader.getSimpleUnitInfo(),
       afflictions: await ResourceLoader.getEnumAfflictionStatus(),

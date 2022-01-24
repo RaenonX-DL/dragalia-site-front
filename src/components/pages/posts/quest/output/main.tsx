@@ -1,10 +1,12 @@
 import React from 'react';
 
-import {QuestPostGetResponse} from '../../../../../api-def/api';
+import {useSession} from 'next-auth/react';
+
+import {PostType, QuestPostGetResponse} from '../../../../../api-def/api';
 import {GeneralPath, makePostUrl, PostPath} from '../../../../../api-def/paths';
-import {AppReactContext} from '../../../../../context/app/main';
 import {useI18n} from '../../../../../i18n/hook';
 import {AdsInPost} from '../../../../elements/common/ads/main';
+import {SubscriptionButtonBar} from '../../../../elements/common/button/subscribe/bar';
 import {Markdown} from '../../../../elements/markdown/main';
 import {AlertVideoTips} from '../../../../elements/posts/alert';
 import {PostManageBar} from '../../../../elements/posts/manageBar';
@@ -19,12 +21,16 @@ type Props = {
 
 export const QuestPostOutput = ({post}: Props) => {
   const {t, lang} = useI18n();
-  const context = React.useContext(AppReactContext);
+  const {data} = useSession();
 
   return (
     <>
+      <SubscriptionButtonBar
+        subscriptionKey={{type: 'post', postType: PostType.QUEST, id: post.seqId}}
+        defaultSubscribed={post.userSubscribed}
+      />
       {
-        context?.session?.user.isAdmin &&
+        data?.user.isAdmin &&
         <PostManageBar
           newButtons={[{pathname: GeneralPath.QUEST_NEW}]}
           editPostUrl={makePostUrl(PostPath.QUEST_EDIT, {pid: post.seqId, lang})}

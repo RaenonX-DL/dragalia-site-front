@@ -4,6 +4,7 @@
 
 div {
   .layout-row {
+    padding: 1rem;
     flex-wrap: nowrap;
 
     --bs-gutter-x: 0.5rem;
@@ -85,5 +86,28 @@ div {
       // Align with navbar and override bootstrap alert padding
       padding: 0.5rem 1rem !important;
     }
+  }
+
+  %container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-full {
+    @extend %container;
+
+    width: 100%;
+  }
+
+  .container-wide {
+    @extend %container;
+
+    width: 80%;
+  }
+
+  .container-mid {
+    @extend %container;
+
+    width: 70%;
   }
 }
