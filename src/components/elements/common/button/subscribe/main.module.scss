@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "../../../../../../styles/colors";
 
 button {
@@ -12,11 +13,12 @@ button {
     width: 2rem;
 
     &:disabled {
-      background-color: $color-dark-red;
+      background-color: color.change($color-dark-red, $alpha: 0.75);
     }
 
     &.subscribe-button-as-icon-enabled {
       color: white;
+      background-color: color.change($color-bw-80, $alpha: 0.75);
     }
 
     &.subscribe-button-as-icon-disabled {

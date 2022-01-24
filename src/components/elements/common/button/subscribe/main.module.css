@@ -7,10 +7,11 @@ button.subscribe-button {
   width: 2rem;
 }
 button.subscribe-button:disabled {
-  background-color: #600000;
+  background-color: rgba(96, 0, 0, 0.75);
 }
 button.subscribe-button.subscribe-button-as-icon-enabled {
   color: white;
+  background-color: rgba(80, 80, 80, 0.75);
 }
 button.subscribe-button.subscribe-button-as-icon-disabled {
   color: #aaa;
