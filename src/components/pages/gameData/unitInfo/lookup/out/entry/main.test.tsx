@@ -31,10 +31,13 @@ describe('Analysis lookup entry', () => {
     viewCount: 777,
     modifiedEpoch: 9000000,
     publishedEpoch: 8000000,
+    userSubscribed: true,
   };
 
   it('renders analysis with correct info and link to click', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={false}/>);
+    renderReact(() => (
+      <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified={false} disableSubscription/>
+    ));
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -52,7 +55,9 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows unavailable as expected', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified={false}/>);
+    renderReact(() => (
+      <UnitInfoEntry unitInfo={unitInfo} simplified={false} disableSubscription/>
+    ));
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -68,7 +73,9 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows available but simplified entry', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified/>);
+    renderReact(() => (
+      <UnitInfoEntry unitInfo={unitInfo} analysisMeta={analysisMeta} simplified disableSubscription/>
+    ));
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');
@@ -80,7 +87,9 @@ describe('Analysis lookup entry', () => {
   });
 
   it('shows unavailable even if simplified', async () => {
-    renderReact(() => <UnitInfoEntry unitInfo={unitInfo} simplified/>);
+    renderReact(() => (
+      <UnitInfoEntry unitInfo={unitInfo} simplified disableSubscription/>
+    ));
 
     expect(screen.getByAltText('Gala Leonidas')).toBeInTheDocument();
     const unitName = screen.getByText('Gala Leonidas');

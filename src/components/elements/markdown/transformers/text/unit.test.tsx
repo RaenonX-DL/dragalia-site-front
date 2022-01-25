@@ -3,7 +3,7 @@ import React from 'react';
 import {screen} from '@testing-library/react';
 
 import {renderReact} from '../../../../../../test/render/main';
-import {SupportedLanguages, UnitType} from '../../../../../api-def/api';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../../../../api-def/api';
 import {DepotPaths, SimpleUnitInfo} from '../../../../../api-def/resources';
 import {MarkdownUnitName} from './unit';
 
@@ -15,6 +15,7 @@ describe('Unit link', () => {
         [SupportedLanguages.CHT]: 'CHT',
         [SupportedLanguages.EN]: 'EN',
         [SupportedLanguages.JP]: 'JP',
+        [PartiallySupportedLanguages.CHS]: 'CHS',
       },
       type: UnitType.CHARACTER,
       icon: '100013_04_r05',

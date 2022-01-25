@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import status from '../../../../test/data/resources/enums/status.json';
 import {renderReact} from '../../../../test/render/main';
-import {SupportedLanguages, UnitType} from '../../../api-def/api';
+import {PartiallySupportedLanguages, SupportedLanguages, UnitType} from '../../../api-def/api';
 import {DepotPaths, SimpleUnitInfo} from '../../../api-def/resources';
 import {Markdown} from './main';
 import {makeAfflictionIconMarkdown} from './transformers/text/icon/utils';
@@ -311,6 +311,7 @@ describe('Markdown', () => {
           [SupportedLanguages.CHT]: 'CHT',
           [SupportedLanguages.EN]: 'EN',
           [SupportedLanguages.JP]: 'JP',
+          [PartiallySupportedLanguages.CHS]: 'CHS',
         },
         type: UnitType.CHARACTER,
         icon: '100013_04_r05',
