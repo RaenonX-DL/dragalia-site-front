@@ -565,6 +565,7 @@ export type TranslationStruct = {
   misc: {
     omMember: string,
     omGroup: string,
+    contentContributor: string,
     openImage: string,
     search: string,
     searchKeyword: string,

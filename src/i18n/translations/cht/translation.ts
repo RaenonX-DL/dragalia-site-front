@@ -614,6 +614,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟成員',
     omGroup: 'OM 群組成員',
+    contentContributor: '網站內容協助',
     openImage: '點擊以開啟圖片',
     search: '搜尋',
     searchKeyword: '關鍵字',
@@ -649,8 +650,8 @@ export const translation: TranslationStruct = {
         description: '由 Oasis of the Maniacs 共同製作的失落龍絆攻略網。',
       },
       thanks: {
-        title: '特別感謝',
-        description: '各方面協助本網站的成員清單。',
+        title: '贊助 / 感謝名單',
+        description: '各方面 (金錢、資料) 協助本網站的成員清單。',
       },
       post: {
         analysis: {

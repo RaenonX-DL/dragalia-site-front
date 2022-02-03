@@ -618,6 +618,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
+    contentContributor: 'TBA',
     openImage: 'クリックすると開きます',
     search: '検索',
     searchKeyword: 'キーワード',

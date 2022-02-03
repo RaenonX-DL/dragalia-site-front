@@ -654,6 +654,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM Alliance Member',
     omGroup: 'OM Group Member',
+    contentContributor: 'Content Contributor',
     openImage: 'Click to open the image',
     search: 'Search',
     searchKeyword: 'Keyword',
@@ -689,8 +690,8 @@ export const translation: TranslationStruct = {
         description: 'Dragalia Lost info website by Oasis of the Maniacs.',
       },
       thanks: {
-        title: 'Special Thanks',
-        description: 'List of the contributors of this website.',
+        title: 'Sponsor us / Thanks',
+        description: 'List of the contributors (monetary / data) of this website.',
       },
       post: {
         analysis: {
