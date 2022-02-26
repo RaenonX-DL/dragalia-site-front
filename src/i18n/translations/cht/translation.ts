@@ -738,6 +738,10 @@ export const translation: TranslationStruct = {
         },
       },
       gameData: {
+        amp: {
+          title: '氣場查詢',
+          description: '各角色、龍族的氣場能力查詢頁面。',
+        },
         info: {
           title: '角色/龍族索引',
           description: '各角色、龍族的評測、資訊的索引頁面。',
@@ -824,6 +828,7 @@ export const translation: TranslationStruct = {
     unitInfo: '角色/龍族索引',
     unitTier: '評級',
     gameData: {
+      amp: '氣場查詢',
       self: '遊戲資訊',
       passive: '被動技能',
       ex: 'EX / CEX',

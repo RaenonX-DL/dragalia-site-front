@@ -58,6 +58,11 @@ export const navItems: NavItems = [
       },
       {
         type: 'path',
+        path: GeneralPath.AMP_LOOKUP,
+        text: (t) => t.nav.gameData.amp,
+      },
+      {
+        type: 'path',
         path: GeneralPath.GAME_DATAMINE_INDEX,
         text: (t) => t.nav.gameData.datamine,
         pathActiveBasis: [DataPath.GAME_DATAMINE_DETAIL],

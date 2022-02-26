@@ -623,6 +623,7 @@ export type TranslationStruct = {
         unit: PageMetaTranslations,
       },
       gameData: {
+        amp: PageMetaTranslations,
         info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
@@ -673,6 +674,7 @@ export type TranslationStruct = {
       others: string,
       story: string,
       datamine: string,
+      amp: string,
     },
     header: {
       posts: string,
