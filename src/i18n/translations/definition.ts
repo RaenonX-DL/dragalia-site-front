@@ -565,6 +565,7 @@ export type TranslationStruct = {
   misc: {
     omMember: string,
     omGroup: string,
+    contentContributor: string,
     openImage: string,
     search: string,
     searchKeyword: string,
@@ -622,6 +623,7 @@ export type TranslationStruct = {
         unit: PageMetaTranslations,
       },
       gameData: {
+        amp: PageMetaTranslations,
         info: PageMetaTranslations,
         ex: PageMetaTranslations,
         skillAtk: PageMetaTranslations,
@@ -672,6 +674,7 @@ export type TranslationStruct = {
       others: string,
       story: string,
       datamine: string,
+      amp: string,
     },
     header: {
       posts: string,

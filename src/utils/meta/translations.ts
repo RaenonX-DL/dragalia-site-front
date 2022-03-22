@@ -30,6 +30,7 @@ export const metaTransFunctions: {[path in PagePath]: GetTranslationFunction<Pag
   [GeneralPath.INFO_LOOKUP]: (t) => t.meta.inUse.gameData.info,
   [GeneralPath.EX]: (t) => t.meta.inUse.gameData.ex,
   [GeneralPath.SKILL_ATK]: (t) => t.meta.inUse.gameData.skillAtk,
+  [GeneralPath.AMP_LOOKUP]: (t) => t.meta.inUse.gameData.amp,
   [GeneralPath.ABOUT]: (t) => t.meta.inUse.about,
   [GeneralPath.SPECIAL_THANKS]: (t) => t.meta.inUse.thanks,
   [GeneralPath.UPDATE_UNIT_NAME_REF]: (t) => t.meta.inUse.unit.name,

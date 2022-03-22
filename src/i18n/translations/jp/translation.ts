@@ -618,6 +618,7 @@ export const translation: TranslationStruct = {
   misc: {
     omMember: 'OM 同盟メンバー',
     omGroup: 'OM グループメンバー',
+    contentContributor: 'TBA',
     openImage: 'クリックすると開きます',
     search: '検索',
     searchKeyword: 'キーワード',
@@ -741,6 +742,10 @@ export const translation: TranslationStruct = {
         },
       },
       gameData: {
+        amp: {
+          title: 'TBA',
+          description: 'TBA',
+        },
         info: {
           title: 'キャラ/ドラゴン情報カタログ',
           description: '各キャラ、ドラゴンのページ',
@@ -825,6 +830,7 @@ export const translation: TranslationStruct = {
   },
   nav: {
     gameData: {
+      amp: 'TBA',
       self: 'ゲーム情報',
       passive: 'アビリティ',
       ex: 'EXアビ / リンクEXアビ',

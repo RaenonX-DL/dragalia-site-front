@@ -22,12 +22,19 @@ export const SpecialThanks = () => {
         <li>
           <Badge bg="dark-primary">{t((t) => t.donation.tierSSS)}</Badge>&nbsp;
           <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          <Badge bg="warning">{t((t) => t.misc.contentContributor)}</Badge>&nbsp;
           桜井みゆき
         </li>
         <li>
           <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
           <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          <Badge bg="warning">{t((t) => t.misc.contentContributor)}</Badge>&nbsp;
           Andy
+        </li>
+        <li>
+          <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
+          <Badge bg="dark-orange">{t((t) => t.misc.omMember)}</Badge>&nbsp;
+          Anny
         </li>
         <li>
           <Badge bg="secondary">{t((t) => t.donation.tierS2)}</Badge>&nbsp;
